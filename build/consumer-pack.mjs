@@ -51,7 +51,10 @@ export function packageSkills(root, lock) {
   for (const skill of skills) {
     const target = resolve(dist, skill);
     rmSync(target, { recursive: true, force: true });
-    cpSync(resolve(root, 'skills', skill), target, { recursive: true });
+    cpSync(resolve(root, 'skills', skill), target, {
+      recursive: true,
+      filter: source => !['node_modules', 'dist', 'test-results', 'playwright-report', '.artifacts', '.cache', '.git', '__pycache__', '.DS_Store', 'vendor'].includes(source.split(/[\\/]/).at(-1)),
+    });
     cpSync(resolve(root, 'vendor'), resolve(target, 'vendor'), { recursive: true });
     for (const file of ['source.lock.json', 'pnpm-workspace.yaml', 'pnpm-lock.yaml'])
       cpSync(resolve(root, file), resolve(target, file));

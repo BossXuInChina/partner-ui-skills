@@ -5,6 +5,8 @@ import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { checkGenerated, writeGenerated } from '../build/generated.mjs';
 import { loadPinnedPackages, packRoot, json } from '../build/verify-lock.mjs';
+import { packageSkills } from '../build/consumer-pack.mjs';
+import { execFileSync } from 'node:child_process';
 
 function fixture(run) {
   const root = mkdtempSync(resolve(tmpdir(), 'partner-pack-lock-'));
@@ -73,3 +75,28 @@ test('managed prefix and ancestor symlinks cannot redirect generated writes outs
   assert.throws(() => writeGenerated(root, files), /GENERATED_SYMLINK/);
   assert.equal(existsSync(resolve(outside, 'references/probe.md')), false);
 })));
+test('self-contained archives keep source and lockfiles while excluding installed dependencies and test/build output', () => fixture(root => {
+  for (const name of ['package.json', 'source.lock.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml'])
+    cpSync(resolve(packRoot, name), resolve(root, name));
+  mkdirSync(resolve(root, 'vendor')); writeFileSync(resolve(root, 'vendor/input.tgz'), 'fixture archive');
+  mkdirSync(resolve(root, 'shared/runtime'), { recursive: true });
+  writeFileSync(resolve(root, 'shared/runtime/builder.mjs'), 'export {};');
+  for (const skill of ['partner-ui-pages', 'partner-ui-vue3']) {
+    const folder = resolve(root, 'skills', skill);
+    mkdirSync(resolve(folder, 'assets/harness/src'), { recursive: true });
+    writeFileSync(resolve(folder, 'SKILL.md'), '# Skill');
+    writeFileSync(resolve(folder, 'assets/harness/src/main.ts'), 'export {};');
+    for (const name of ['node_modules', 'dist', 'test-results', '.artifacts']) {
+      mkdirSync(resolve(folder, 'assets/harness', name), { recursive: true });
+      writeFileSync(resolve(folder, 'assets/harness', name, 'private-output.txt'), name);
+    }
+  }
+  packageSkills(root, json(resolve(root, 'source.lock.json')));
+  for (const skill of ['partner-ui-pages', 'partner-ui-vue3']) {
+    const members = JSON.parse(execFileSync('python3', ['-c', 'import json,sys,zipfile;print(json.dumps(zipfile.ZipFile(sys.argv[1]).namelist()))', resolve(root, 'dist', skill + '.zip')], { encoding: 'utf8' }));
+    assert.ok(members.includes(skill + '/assets/harness/src/main.ts'));
+    assert.ok(members.includes(skill + '/pnpm-lock.yaml'));
+    assert.ok(members.includes(skill + '/vendor/input.tgz'));
+    assert.ok(!members.some(name => name.includes('private-output.txt')));
+  }
+}));
