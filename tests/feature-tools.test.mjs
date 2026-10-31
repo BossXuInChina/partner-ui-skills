@@ -42,6 +42,7 @@ function portableSkill(parent) {
     resolve(skill, "assets/harness/src/feature-dom.d.ts"),
     resolve(portable, "assets/harness/src/feature-dom.d.ts"),
   );
+  cpSync(resolve(skill, "skill.json"), resolve(portable, "skill.json"));
   mkdirSync(resolve(portable, "scripts"));
   for (const name of ["new_feature.mjs", "find_icon.mjs"])
     cpSync(resolve(skill, "scripts", name), resolve(portable, "scripts", name));
@@ -113,7 +114,10 @@ test("all six source templates produce closed feature starts and truthful unveri
       const manifest = JSON.parse(
         readFileSync(resolve(result.directory, "delivery.json"), "utf8"),
       );
-      assert.equal(manifest.skillVersion, null);
+      assert.equal(manifest.skillVersion, "0.1.0");
+      assert.ok(
+        manifest.knownLimits.every((limit) => !limit.includes("skillVersion is null")),
+      );
       assert.equal(manifest.vue.resolved, null);
       assert.equal(manifest.vue.singleInstance, null);
       assert.ok(
@@ -160,6 +164,102 @@ test("all six source templates produce closed feature starts and truthful unveri
       originalManifest,
     );
     assert.ok(readdirSync(parent).every((name) => !name.includes("staging")));
+  } finally {
+    rmSync(parent, { recursive: true, force: true });
+  }
+});
+test("both independent Skills declare their own initial version and user-controlled releases", () => {
+  for (const name of ["partner-ui-vue3", "partner-ui-pages"]) {
+    const declaration = JSON.parse(
+      readFileSync(resolve(root, "skills", name, "skill.json"), "utf8"),
+    );
+    assert.equal(declaration.name, name);
+    assert.equal(declaration.version, "0.1.0");
+    assert.equal(declaration.releasePolicy, "user-decides");
+  }
+});
+test("a missing Skill declaration preserves null without borrowing package or runtime versions", () => {
+  const parent = temporary();
+  try {
+    const portable = portableSkill(parent);
+    unlinkSync(resolve(portable, "skill.json"));
+    writeFileSync(
+      resolve(portable, "package.json"),
+      JSON.stringify({
+        name: "partner-ui-vue3",
+        version: "99.0.0",
+        runtimeVersion: "88.0.0",
+      }),
+    );
+    const result = createFeature({
+      name: "no-declaration",
+      skillRoot: portable,
+      directory: resolve(parent, "no-declaration"),
+    });
+    assert.equal(result.manifest.skillVersion, null);
+    assert.ok(
+      result.manifest.knownLimits.some((limit) =>
+        /No skill.json.*source Skill root.*skillVersion is null/.test(limit),
+      ),
+    );
+    assert.match(
+      readFileSync(resolve(result.directory, "DELIVERY.md"), "utf8"),
+      /未声明（null）/,
+    );
+    assert.equal(
+      readFileSync(resolve(result.directory, "DELIVERY.md"), "utf8"),
+      renderFeatureDelivery(result.manifest),
+    );
+  } finally {
+    rmSync(parent, { recursive: true, force: true });
+  }
+});
+test("invalid Skill declarations fail without partial output or fallback versions", () => {
+  const parent = temporary();
+  try {
+    const portable = portableSkill(parent);
+    const script = resolve(portable, "scripts/new_feature.mjs");
+    const invalid = [
+      ["{", /FEATURE_SKILL_DECLARATION_INVALID/],
+      [
+        JSON.stringify({ name: "partner-ui-pages", version: "0.1.0" }),
+        /FEATURE_SKILL_NAME_INVALID/,
+      ],
+      ...[
+        null, 1, "", "0.1", "v0.1.0", "01.1.0", "0.1.0-01", "0.1.0+", "0.1.0\n",
+      ].map((version) => [
+        JSON.stringify({ name: "partner-ui-vue3", version, runtimeVersion: "0.1.0" }),
+        /FEATURE_SKILL_VERSION_INVALID/,
+      ]),
+      [
+        JSON.stringify({ name: "partner-ui-vue3", runtimeVersion: "0.1.0" }),
+        /FEATURE_SKILL_VERSION_INVALID/,
+      ],
+    ];
+    for (const [index, [declaration, error]] of invalid.entries()) {
+      writeFileSync(resolve(portable, "skill.json"), declaration);
+      const destination = resolve(parent, "invalid-" + index);
+      const result = runScript(
+        script,
+        ["invalid-skill", "--out", destination, "--json"],
+        parent,
+      );
+      assert.equal(result.status, 1);
+      assert.match(result.stderr, error);
+      assert.equal(result.stdout, "");
+      assert.equal(existsSync(destination), false);
+      assert.ok(readdirSync(parent).every((name) => !name.includes("staging")));
+    }
+    writeFileSync(
+      resolve(portable, "skill.json"),
+      JSON.stringify({ name: "partner-ui-vue3", version: "1.2.3-rc.1+build.001" }),
+    );
+    const result = createFeature({
+      name: "valid-semver",
+      skillRoot: portable,
+      directory: resolve(parent, "valid-semver"),
+    });
+    assert.equal(result.manifest.skillVersion, "1.2.3-rc.1+build.001");
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
@@ -281,6 +381,7 @@ test("standalone CLI runs with only Node, without global tools or Skill root dep
     );
     assert.equal(result.status, 0, result.stderr);
     assert.equal(JSON.parse(result.stdout).manifest.feature, "standalone-chat");
+    assert.equal(JSON.parse(result.stdout).manifest.skillVersion, "0.1.0");
     assert.equal(existsSync(resolve(portable, "node_modules")), false);
     const found = runScript(
       resolve(portable, "scripts/find_icon.mjs"),

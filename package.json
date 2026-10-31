@@ -16,7 +16,8 @@
     "test:templates": "node build/test-templates.mjs",
     "verify:harness": "node build/verify-harness.mjs",
     "test:harness-guard": "node --test tests/harness-guard.test.mjs",
-    "gallery:serve": "node gallery/serve.mjs"
+    "gallery:serve": "node gallery/serve.mjs",
+    "package:release": "node build/package-release.mjs"
   },
   "dependencies": {
     "@workbench/ui-vue3": "file:vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz",

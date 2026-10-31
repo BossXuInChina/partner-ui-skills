@@ -74,3 +74,7 @@ node scripts/serve_gallery.mjs
 ```
 
 访问打印出的本地地址（默认 http://127.0.0.1:4190/）。图库使用模块及延迟资源，需要 HTTP 服务；无需安装依赖或编译。静态入口为 `assets/gallery/index.html`，内部演示不构成生产批准。
+
+## Skill 交付版本与维护
+
+本独立 Skill 为 `0.1.0`，以 [skill.json](skill.json) 为准；组件包与原型运行时版本另见 source.lock.json 和公开元数据。升级、三项新会话试验及本地归档流程见 [维护说明](references/maintenance.md)，变更见 [CHANGELOG](CHANGELOG.md)。发布频率由用户决定。

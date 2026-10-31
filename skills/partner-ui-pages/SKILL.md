@@ -9,7 +9,7 @@ description: 用伙伴工作台的两套 UI 消费包（@workbench/ui-vue3 与 h
 
 ```
 references/workbench/index.md  Workbench 包参考索引
-references/ai-ui.md  AI UI 公开导出与元数据缺口（当前不包含独立组件图库）
+references/ai-ui.md  AI UI 公开组件 API、缺口及来源说明
 assets/runtime/     partner-ui-runtime.js / .css / versions.json（全局 PartnerUI 与 Vue）
 assets/fonts/       HarmonyOS Sans 原件 + 许可（可选）
 assets/templates/   6 个起步页面

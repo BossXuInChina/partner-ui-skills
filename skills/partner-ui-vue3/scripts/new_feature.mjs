@@ -97,6 +97,40 @@ function lockRootFor(skillRoot) {
     "FEATURE_SOURCE_LOCK_MISSING: use a complete generated Skill",
   );
 }
+function readFeatureSkillVersion(skillRoot) {
+  const file = resolve(skillRoot, "skill.json");
+  const stat = statIfPresent(file);
+  if (!stat)
+    return {
+      version: null,
+      reason: "No skill.json exists at the source Skill root; skillVersion is null. Package, runtime and maintenance versions are not substitutes.",
+    };
+  if (stat.isSymbolicLink() || !stat.isFile())
+    throw new Error(
+      "FEATURE_SKILL_DECLARATION_INVALID: skill.json must be a regular file",
+    );
+  let declaration;
+  try {
+    declaration = readJSON(file);
+  } catch {
+    throw new Error(
+      "FEATURE_SKILL_DECLARATION_INVALID: skill.json must contain valid JSON",
+    );
+  }
+  if (declaration?.name !== "partner-ui-vue3")
+    throw new Error("FEATURE_SKILL_NAME_INVALID: expected partner-ui-vue3");
+  // SemVer 2.0.0: numeric identifiers have no leading zeroes; build metadata may.
+  const semver =
+    /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$/;
+  if (
+    typeof declaration.version !== "string" ||
+    !semver.test(declaration.version)
+  )
+    throw new Error(
+      "FEATURE_SKILL_VERSION_INVALID: skill.json version must be valid SemVer",
+    );
+  return { version: declaration.version, reason: null };
+}
 function tarDocument(archive, member) {
   let offset = 0;
   while (offset + 512 <= archive.length) {
@@ -286,7 +320,7 @@ function publicBindings(text) {
     names.add(match[2]);
   return [...names];
 }
-function draftDelivery(name, template, identity, files) {
+function draftDelivery(name, template, identity, files, skillVersion) {
   const page = `pages/${template}/Page.vue`;
   const components = [
     ...new Set([...files.values()].flatMap(publicBindings)),
@@ -310,7 +344,7 @@ function draftDelivery(name, template, identity, files) {
     });
   return {
     feature: name,
-    skillVersion: null,
+    skillVersion: skillVersion.version,
     generatedAt: new Date().toISOString(),
     template,
     packages: identity.packages.map((entry) => {
@@ -372,7 +406,7 @@ function draftDelivery(name, template, identity, files) {
       ],
     },
     knownLimits: [
-      "No independent Skill version is declared; skillVersion is null.",
+      ...(skillVersion.reason ? [skillVersion.reason] : []),
       "This is a source starting point; host installation, actual requirements, API/auth/platform integration and verification are not completed.",
       "Package source.file is relative to the source Skill lock root; archives are verified inputs and are not copied into this feature. Update source.file/scope after the host vendors and installs them.",
       "Package status is copied without changing eligibility; AI UI release currently has no production-eligibility claim.",
@@ -413,6 +447,7 @@ export function createFeature({
     throw new Error("FEATURE_DESTINATION_OVERLAPS_SKILL");
   if (statIfPresent(destination))
     throw new Error("FEATURE_DESTINATION_EXISTS:" + destination);
+  const skillVersion = readFeatureSkillVersion(sourceRoot);
   const identity = readFeaturePackageIdentity(sourceRoot);
   if (inside(resolve(identity.root, "vendor"), destination))
     throw new Error("FEATURE_DESTINATION_OVERLAPS_VENDOR");
@@ -510,7 +545,7 @@ export function createFeature({
     "index.ts",
     `import './styles/layout.css';\nexport { createFeatureRoutes } from './routes';\nexport type { ${definition.api} } from './pages/${template}/api';\nexport const loadFeaturePage = () => import('./pages/${template}/Page.vue');\n`,
   );
-  const manifest = draftDelivery(name, template, identity, files);
+  const manifest = draftDelivery(name, template, identity, files, skillVersion);
   files.set("delivery.json", JSON.stringify(manifest, null, 2) + "\n");
   files.set("DELIVERY.md", renderFeatureDelivery(manifest));
   files.set("INTEGRATION.md", integrationNotes(name, template, identity));

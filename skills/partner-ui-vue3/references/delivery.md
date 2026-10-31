@@ -27,7 +27,7 @@ src/features/<feature>/
 
 | 字段                                     | 必需内容与口径                                                                                                                                                                                                                                                                                      |
 | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `feature`, `skillVersion`, `generatedAt` | 功能标识、实际 Skill 交付版本、ISO 8601 UTC 时间；Skill 尚无独立版本声明时 `skillVersion: null` 并列入限制，不把组件版本、`source.lock.runtimeVersion` 或维护工具版本当 Skill 版本。                                                                                                                |
+| `feature`, `skillVersion`, `generatedAt` | 功能标识、实际 Skill 交付版本、ISO 8601 UTC 时间；从独立 Skill 的 `skill.json` 读取版本（当前0.1.0）；缺少声明时 `skillVersion: null` 并列入限制，不把组件版本、`source.lock.runtimeVersion` 或维护工具版本当 Skill 版本。                                                                          |
 | `packages[]`                             | 每个消费包的 `name`、`version`、`source`、完整 `sourceCommit`、`sourceHasLocalChanges`、`status`。tarball 来源记录文件及实际 SHA-256；registry 来源记录 registry、包名/版本及可核实的 integrity。Git 身份未知保留 `null`，不借宿主仓身份。`status` 只转录包元数据的原有资格声明；未声明不补成批准。 |
 | `vue`                                    | `peerRequired`（按包分别记录）、实际 `resolved`、安装树与打包/浏览器证据支持的 `singleInstance`。未验证用 `null`，不能仅凭 overrides 写 `true`。                                                                                                                                                    |
 | `pages[]`                                | `{route, file, components[]}`，路由与文件对应实际公开入口；组件记录公开导出名。                                                                                                                                                                                                                     |
@@ -45,7 +45,7 @@ src/features/<feature>/
 ```json
 {
   "feature": "partner-dashboard",
-  "skillVersion": null,
+  "skillVersion": "0.1.0",
   "generatedAt": "2026-10-31T00:00:00.000Z",
   "packages": [
     {
@@ -142,7 +142,7 @@ src/features/<feature>/
     "notes": ["未构建；KB 约定为未压缩 rawBytes / 1024，不是网络传输或运行时间"]
   },
   "knownLimits": [
-    "当前独立 Skill 尚无版本声明；skillVersion 保持 null",
+    "Skill 版本由独立 skill.json 声明，不使用 runtimeVersion 推测",
     "当前 AI UI release 元数据没有生产资格声明",
     "目标平台、真实 API、单 Vue 实例和整体验证尚未确认；没有生产批准"
   ]
