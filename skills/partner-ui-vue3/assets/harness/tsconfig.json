@@ -15,7 +15,10 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "types": ["vite/client", "node"]
+    "types": ["vite/client", "node"],
+    "paths": {
+      "@scaffold/*": ["./src/scaffold/*"]
+    }
   },
   "include": [
     "src/**/*.ts",
@@ -23,5 +26,8 @@
     "tests/**/*.ts",
     "vite.config.ts",
     "playwright.config.ts"
-  ]
+  ],
+  "vueCompilerOptions": {
+    "strictTemplates": true
+  }
 }

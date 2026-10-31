@@ -1,6 +1,6 @@
 # Partner UI Skills
 
-独立的伙伴工作台消费仓库：`partner-ui-pages` 制作离线 HTML 原型，`partner-ui-vue3` 面向 Vue 3 业务模块。组件资料只由 `source.lock.json` 锁定的两个发布包生成。已完成独立打包、原型运行时、共享资料和 Vue 验证工程；scaffold、业务模板及交付检查按后续计划加入。
+独立的伙伴工作台消费仓库：`partner-ui-pages` 制作离线 HTML 原型，`partner-ui-vue3` 面向 Vue 3 业务模块。组件资料只由 `source.lock.json` 锁定的两个发布包生成。已完成独立打包、原型运行时、共享资料、Vue 验证工程和产品模块 scaffold；业务模板及交付检查按后续计划加入。
 
 ```sh
 pnpm install --frozen-lockfile

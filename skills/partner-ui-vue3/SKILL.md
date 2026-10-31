@@ -13,4 +13,4 @@ description: 用伙伴工作台 Workbench 与 AI UI 消费包，把需求、PRD 
 
 选择 Vue 3.5.13；通过 `vendor/` 中锁定 tarball 和 `file:` 安装两个组件包，保留 SHA-256 与 source commit。宿主提供批准字体，历史存储默认注入且生产关闭持久化。发布频率由用户决定。
 
-已提供包锁、生成参考和 `assets/harness/` 验证工程（用法见其 README）；scaffold、业务模板及交付检查将在对应实施阶段加入。不得把当前参考包描述为已完成业务交付验证。
+已提供包锁、生成参考、`assets/scaffold/` 产品模块起步代码和 `assets/harness/` 验证工程（用法见各自 README）；业务模板及交付检查将在对应实施阶段加入。不得把当前参考包描述为已完成业务交付验证。

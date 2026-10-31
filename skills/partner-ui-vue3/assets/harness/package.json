@@ -23,7 +23,10 @@
     "@workbench/ui-vue3": "file:../../vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz",
     "huawei-partner-ai-ui": "file:../../vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz",
     "vue": "3.5.13",
-    "vue-router": "4.6.4"
+    "vue-router": "4.6.4",
+    "@opentiny/tiny-robot": "0.5.1",
+    "dompurify": "3.3.1",
+    "markdown-it": "14.1.0"
   },
   "devDependencies": {
     "@eslint/js": "9.39.1",
