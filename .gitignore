@@ -11,3 +11,4 @@ trials/*/host/dist/
 trials/*/host/test-results/
 trials/*/host/playwright-report/
 trials/*/vendor/
+trials/*/clean-replay-*/
