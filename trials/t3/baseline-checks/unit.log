@@ -1,0 +1,10 @@
+$ vitest run
+
+ RUN  v5.0.5 /Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3/host
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  17:51:54
+   Duration  260ms (environment 73%, import 16%, transform 9%, tests 1%, worker 1%)
+

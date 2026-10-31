@@ -3,3 +3,11 @@ node_modules/
 dist/
 .artifacts/
 .DS_Store
+
+# Local independent trial workspaces
+trials/*/.work/
+trials/*/skill/
+trials/*/host/dist/
+trials/*/host/test-results/
+trials/*/host/playwright-report/
+trials/*/vendor/

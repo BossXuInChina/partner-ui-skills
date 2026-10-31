@@ -1,0 +1,31 @@
+
+Playwright version: 1.59.1
+  Browsers:
+    /Users/bossxu/Library/Caches/ms-playwright/chromium-1217
+    /Users/bossxu/Library/Caches/ms-playwright/chromium_headless_shell-1217
+    /Users/bossxu/Library/Caches/ms-playwright/ffmpeg-1011
+  References:
+    /Users/bossxu/.codex/worktrees/agent-team-v2-workbench-merged/design-system/node_modules/playwright-core
+    /Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/kunling/design-system/node_modules/playwright-core
+    /Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/kunling/ebg-mobile-test/node_modules/playwright-core
+
+Playwright version: 1.62.1
+  Browsers:
+    /Users/bossxu/Library/Caches/ms-playwright/ffmpeg-1011
+  References:
+    /Users/bossxu/.codex/worktrees/design-system-g0/node_modules/.pnpm/playwright-core@1.62.1/node_modules/playwright-core
+
+Playwright version: 1.63.0
+  Browsers:
+    /Users/bossxu/Library/Caches/ms-playwright/chromium-1243
+    /Users/bossxu/Library/Caches/ms-playwright/chromium_headless_shell-1243
+    /Users/bossxu/Library/Caches/ms-playwright/ffmpeg-1011
+  References:
+    /Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/huawei-partner-workbench-harness/node_modules/.pnpm/playwright-core@1.63.0/node_modules/playwright-core
+
+Playwright version: 1.64.1
+  Browsers:
+    /Users/bossxu/Library/Caches/ms-playwright/chromium_headless_shell-1248
+    /Users/bossxu/Library/Caches/ms-playwright/ffmpeg-1013
+  References:
+    /Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/.cache/harness-wb-verify/skill/assets/harness/node_modules/.pnpm/playwright-core@1.64.1/node_modules/playwright-core

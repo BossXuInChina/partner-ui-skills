@@ -1,0 +1,51 @@
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 24, reused 22, downloaded 2, added 0
+Progress: resolved 26, reused 22, downloaded 2, added 0
+Progress: resolved 162, reused 129, downloaded 2, added 0
+Progress: resolved 164, reused 131, downloaded 2, added 0
+Progress: resolved 167, reused 131, downloaded 4, added 0
+Progress: resolved 566, reused 476, downloaded 9, added 0
+Progress: resolved 583, reused 487, downloaded 13, added 0
+Progress: resolved 611, reused 515, downloaded 18, added 0
+Progress: resolved 679, reused 582, downloaded 20, added 0
+[WARN] 3 deprecated subdependencies found: glob@10.5.0, ini@1.3.4, lodash.isequal@4.5.0
+Packages: +604
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Packages are cloned from the content-addressable store to the virtual store.
+  Content-addressable store is at: /Users/bossxu/Library/pnpm/store/v11
+  Virtual store is at:             node_modules/.pnpm
+Progress: resolved 679, reused 582, downloaded 22, added 245
+Progress: resolved 679, reused 582, downloaded 22, added 604, done
+
+dependencies:
++ @opentiny/tiny-robot 0.5.1
++ @workbench/ui-vue3 0.2.0-prototype.20261031.1
++ axios 1.21.0
++ dompurify 3.3.1 (3.4.17 is available)
++ huawei-partner-ai-ui 0.3.1-dev.20261031.1
++ markdown-it 14.1.0 (15.0.3 is available)
++ pinia 3.0.4 (4.1.0 is available)
++ vue 3.5.13 (3.5.44 is available)
++ vue-i18n 11.4.16
++ vue-router 4.6.4 (5.4.0 is available)
+
+devDependencies:
++ @eslint/js 9.39.1 (10.0.1 is available)
++ @playwright/test 1.64.1
++ @types/node 24.10.0 (26.6.6 is available)
++ @vitejs/plugin-vue 6.0.8 (6.0.10 is available)
++ @vue/test-utils 2.5.1
++ esbuild 0.25.12 (0.28.2 is available)
++ eslint 9.39.1
++ eslint-config-prettier 10.1.8
++ eslint-plugin-vue 10.11.1 (10.12.0 is available)
++ globals 17.13.0
++ happy-dom 21.0.4
++ prettier 3.9.10
++ typescript 5.9.3 (7.0.2 is available)
++ typescript-eslint 8.71.0 (8.72.1 is available)
++ vite 7.3.6 (8.3.5 is available)
++ vitest 5.0.5
++ vue-tsc 3.3.11 (3.3.14 is available)
+
+Done in 11.5s using pnpm v11.22.0

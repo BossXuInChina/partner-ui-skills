@@ -1,0 +1,357 @@
+{
+  "feature": "prototype-conversion-t2",
+  "skillVersion": null,
+  "generatedAt": "2026-10-31T09:51:14.555876+00:00",
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261031.1",
+      "source": {
+        "kind": "tarball",
+        "file": "vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz",
+        "sha256": "ec8ed28188210781fe9d8aab582e41f736a99efc0740a8f6e79deb94e98ba82a",
+        "scope": "skill-lock",
+        "copiedToFeature": false
+      },
+      "sourceCommit": "af939228028791e24280015c5d48a35a658d40f3",
+      "sourceHasLocalChanges": false,
+      "status": {
+        "channel": "development",
+        "developmentEligible": true,
+        "stableEligible": false,
+        "targetProductionEligible": false
+      }
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261031.1",
+      "source": {
+        "kind": "tarball",
+        "file": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz",
+        "sha256": "69045605688b022f114788274991a36f3910eeadd92f876e5407b5b7f2cf75d7",
+        "scope": "skill-lock",
+        "copiedToFeature": false
+      },
+      "sourceCommit": "8d5f658b9152fecbe954840ac2f52a01c551636f",
+      "sourceHasLocalChanges": false,
+      "status": {}
+    }
+  ],
+  "vue": {
+    "peerRequired": {
+      "@workbench/ui-vue3": ">=3.5.13 <=3.5.42",
+      "huawei-partner-ai-ui": ">=3.5.13 <=3.5.42"
+    },
+    "requested": "3.5.13",
+    "resolved": "3.5.13",
+    "singleInstance": true,
+    "evidence": "pnpm why found one version; Rollup graph includes one 3.5.13 runtime-core/dom/reactivity set, browser app reports 3.5.13; prebundled hidden code cannot be separately attributed."
+  },
+  "pages": [
+    {
+      "route": "/list",
+      "file": "features/list/pages/workbench-list/Page.vue",
+      "components": [
+        "GlobalMessageStack",
+        "WorkbenchAlert",
+        "WorkbenchBreadcrumb",
+        "WorkbenchButton",
+        "WorkbenchDatePicker",
+        "WorkbenchDraftListFilter",
+        "WorkbenchFeedbackDialog",
+        "WorkbenchFooter",
+        "WorkbenchForm",
+        "WorkbenchFormItem",
+        "WorkbenchInput",
+        "WorkbenchLink",
+        "WorkbenchManagementFormModal",
+        "WorkbenchSelect",
+        "WorkbenchTable",
+        "WorkbenchTag",
+        "WorkbenchTopNav"
+      ],
+      "verificationRoute": "/templates/workbench-list"
+    },
+    {
+      "route": "/workspace",
+      "file": "features/workspace/pages/ai-assistant-workspace/Page.vue",
+      "components": [
+        "AgreementAssistantPanel",
+        "AgreementTable",
+        "AiIcon",
+        "AiSummaryCard",
+        "AssistantHostLayout",
+        "BusinessNavigationCard",
+        "GlobalMessageStack",
+        "WorkbenchBreadcrumb",
+        "WorkbenchButton",
+        "WorkbenchButtonRadioGroup",
+        "WorkbenchTable",
+        "WorkbenchTag",
+        "WorkbenchTopNav",
+        "WorkspaceSmartCard"
+      ],
+      "verificationRoute": "/templates/ai-assistant-workspace"
+    }
+  ],
+  "customComponents": [
+    {
+      "name": "MessagesHost",
+      "file": "features/list/scaffold/feedback/MessagesHost.vue",
+      "reason": "Selected template/scaffold composition using public package APIs; adapt its feature-owned behavior to the product requirements.",
+      "suggestedPackageComponent": null
+    },
+    {
+      "name": "AgreementTableRenderer",
+      "file": "features/workspace/scaffold/ai/renderers/AgreementTableRenderer.vue",
+      "reason": "Selected template/scaffold composition using public package APIs; adapt its feature-owned behavior to the product requirements.",
+      "suggestedPackageComponent": null
+    },
+    {
+      "name": "BusinessNavigationRenderer",
+      "file": "features/workspace/scaffold/ai/renderers/BusinessNavigationRenderer.vue",
+      "reason": "Selected template/scaffold composition using public package APIs; adapt its feature-owned behavior to the product requirements.",
+      "suggestedPackageComponent": null
+    },
+    {
+      "name": "SummaryRenderer",
+      "file": "features/workspace/scaffold/ai/renderers/SummaryRenderer.vue",
+      "reason": "Selected template/scaffold composition using public package APIs; adapt its feature-owned behavior to the product requirements.",
+      "suggestedPackageComponent": null
+    },
+    {
+      "name": "AssistantCloseButton",
+      "file": "features/workspace/scaffold/ai/AssistantCloseButton.vue",
+      "reason": "Selected template/scaffold composition using public package APIs; adapt its feature-owned behavior to the product requirements.",
+      "suggestedPackageComponent": null
+    },
+    {
+      "name": "MessagesHost",
+      "file": "features/workspace/scaffold/feedback/MessagesHost.vue",
+      "reason": "Selected template/scaffold composition using public package APIs; adapt its feature-owned behavior to the product requirements.",
+      "suggestedPackageComponent": null
+    }
+  ],
+  "api": [
+    {
+      "name": "WorkbenchListApi.load",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/list/pages/workbench-list/api.ts"
+    },
+    {
+      "name": "WorkbenchListApi.create",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/list/pages/workbench-list/api.ts"
+    },
+    {
+      "name": "WorkbenchListApi.renew",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/list/pages/workbench-list/api.ts"
+    },
+    {
+      "name": "WorkbenchListApi.terminate",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/list/pages/workbench-list/api.ts"
+    },
+    {
+      "name": "WorkbenchListApi.exportRows",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/list/pages/workbench-list/api.ts"
+    },
+    {
+      "name": "WorkbenchListApi.openDetail",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/list/pages/workbench-list/api.ts"
+    },
+    {
+      "name": "AssistantWorkspaceApi.listAgreements",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/workspace/pages/ai-assistant-workspace/api.ts"
+    },
+    {
+      "name": "AssistantWorkspaceApi.listInsights",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/workspace/pages/ai-assistant-workspace/api.ts"
+    },
+    {
+      "name": "AssistantWorkspaceApi.assistant.stream",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/workspace/pages/ai-assistant-workspace/api.ts"
+    },
+    {
+      "name": "AssistantWorkspaceApi.assistant.updateAgreement",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/workspace/pages/ai-assistant-workspace/api.ts"
+    },
+    {
+      "name": "AssistantWorkspaceApi.assistant.renewAgreement",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/workspace/pages/ai-assistant-workspace/api.ts"
+    },
+    {
+      "name": "AssistantWorkspaceApi.renew",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/workspace/pages/ai-assistant-workspace/api.ts"
+    },
+    {
+      "name": "AssistantWorkspaceApi.navigate",
+      "method": null,
+      "path": null,
+      "status": "assumed",
+      "contract": "features/workspace/pages/ai-assistant-workspace/api.ts"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "R-LIST",
+      "text": "按原型实现布局及交互；真实服务契约待确认",
+      "files": [
+        "features/list/pages/workbench-list/Page.vue",
+        "features/list/pages/workbench-list/usePage.ts"
+      ],
+      "status": "assumed"
+    },
+    {
+      "id": "R-WORKSPACE",
+      "text": "按原型实现布局及交互；真实服务契约待确认",
+      "files": [
+        "features/workspace/pages/ai-assistant-workspace/Page.vue",
+        "features/workspace/pages/ai-assistant-workspace/usePage.ts"
+      ],
+      "status": "assumed"
+    }
+  ],
+  "checks": [
+    {
+      "name": "typecheck",
+      "command": "pnpm run verify",
+      "result": "passed",
+      "durationMs": null,
+      "scope": "strict TS + strictTemplates"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm run verify",
+      "result": "passed",
+      "durationMs": null,
+      "scope": "harness"
+    },
+    {
+      "name": "format:check",
+      "command": "pnpm run verify",
+      "result": "passed",
+      "durationMs": null,
+      "scope": "harness"
+    },
+    {
+      "name": "check:rules",
+      "command": "pnpm run verify",
+      "result": "passed",
+      "durationMs": null,
+      "scope": "95 files; 0 errors, 1 unrelated dynamic-icon warning"
+    },
+    {
+      "name": "test:unit",
+      "command": "pnpm run verify",
+      "result": "passed",
+      "durationMs": null,
+      "scope": "15 files, 85 tests including both generated features"
+    },
+    {
+      "name": "build",
+      "command": "pnpm run verify",
+      "result": "passed",
+      "durationMs": null,
+      "scope": "Vite production and mock guard"
+    },
+    {
+      "name": "smoke:fixtures",
+      "command": "pnpm run verify",
+      "result": "passed",
+      "durationMs": null,
+      "scope": "six routes at 1440×900 and 1280×800; QA fixture"
+    },
+    {
+      "name": "verify total",
+      "command": "pnpm run verify",
+      "result": "passed",
+      "durationMs": 21997
+    },
+    {
+      "name": "browser interactions",
+      "command": "node interaction.mjs",
+      "result": "passed",
+      "durationMs": 5687,
+      "scope": "assert five filtered rows and visible create dialog; assert structured AI agreement table and actual answer; failures exit nonzero"
+    },
+    {
+      "name": "visual comparison",
+      "command": "PARTNER_UI_EVIDENCE=1 node visual.mjs",
+      "result": "reviewed",
+      "durationMs": null,
+      "scope": "both routes at 1440×900 and 1280×800; engineering visual review only"
+    }
+  ],
+  "bundle": {
+    "routeChunksKb": [
+      {
+        "route": "/templates/workbench-list",
+        "entryFiles": [
+          "assets/Page-DLd-S98-.js"
+        ],
+        "staticKb": 1516.75,
+        "dynamicKb": 3359.33,
+        "sharedFiles": [
+          "assets/index-BU8015BT.js",
+          "assets/preload-helper-DXLKh0qS.js"
+        ]
+      },
+      {
+        "route": "/templates/ai-assistant-workspace",
+        "entryFiles": [
+          "assets/Page-Bn6YO6J7.js"
+        ],
+        "staticKb": 1515.95,
+        "dynamicKb": 4730.8,
+        "sharedFiles": [
+          "assets/index-BU8015BT.js",
+          "assets/preload-helper-DXLKh0qS.js"
+        ]
+      }
+    ],
+    "notes": [
+      "实际测试 harness 路由为 /templates/...；feature 公共路由为 /list 和 /workspace。原始未压缩 JS，详见 evidence/route-chunks.json。"
+    ]
+  },
+  "knownLimits": [
+    "真实服务、鉴权、宿主与生产资格未验证；所有 API 均为 assumed。",
+    "宿主提供字体；视觉工程复核不等于用户批准。",
+    "锁包无独立 Skill 版本；AI 包未声明生产资格。",
+    "依赖树、构建模块图和浏览器 app 均指向同一 Vue 3.5.13；无法单独归因预打包包内隐藏代码。",
+    "生产构建有大块告警；体积不是性能实测。"
+  ]
+}

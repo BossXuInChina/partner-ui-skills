@@ -54,6 +54,8 @@ Page 负责布局与意图，组合式函数负责状态/并发/取消，API 层
 
 ## 可执行验证
 
+复制独立 harness 时保留随包 vendor、lock 与 workspace 的相对布局。替换页面后，先按 [宿主集成](references/integration.md#路由挂载与-ai) 同步 router、`routeChunkReport` 的显式 routes 和 QA 路由；不要修改分析器源码或保留错误的六路默认值。
+
 在独立 Skill 的 `assets/harness` 安装冻结依赖后，运行类型、Lint、规则、单测和生产构建。`pnpm verify` 串联这些检查及显式 QA 网络桩 smoke；`pnpm smoke` 检查宿主实际服务。QA 桩由独立 Node 测试进程注入，不进入生产图。
 
 工具用法与生成边界见 [工具说明](references/tools.md)。常用入口：

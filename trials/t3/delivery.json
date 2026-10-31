@@ -1,0 +1,273 @@
+{
+  "cleanReplay": {
+    "evidence": "clean-replay-receipt.json",
+    "scope": "无 node_modules/vendor/dist 的新临时副本：prepare、frozen install、source pin",
+    "startedAt": "2026-10-31T10:01:05.838Z",
+    "endedAt": "2026-10-31T10:01:53.338Z"
+  },
+  "feature": "agreements-query",
+  "skillVersion": null,
+  "generatedAt": "2026-10-31T10:01:58.082Z",
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261031.1",
+      "source": {
+        "kind": "tarball",
+        "file": "vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz",
+        "sha256": "ec8ed28188210781fe9d8aab582e41f736a99efc0740a8f6e79deb94e98ba82a"
+      },
+      "sourceCommit": "af939228028791e24280015c5d48a35a658d40f3",
+      "sourceHasLocalChanges": false,
+      "status": {
+        "channel": "development",
+        "developmentEligible": true,
+        "stableEligible": false,
+        "targetProductionEligible": false
+      }
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261031.1",
+      "source": {
+        "kind": "tarball",
+        "file": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz",
+        "sha256": "69045605688b022f114788274991a36f3910eeadd92f876e5407b5b7f2cf75d7"
+      },
+      "sourceCommit": "8d5f658b9152fecbe954840ac2f52a01c551636f",
+      "sourceHasLocalChanges": false,
+      "status": {}
+    }
+  ],
+  "vue": {
+    "peerRequired": {
+      "@workbench/ui-vue3": ">=3.5.13 <=3.5.42",
+      "huawei-partner-ai-ui": ">=3.5.13 <=3.5.42"
+    },
+    "resolved": "3.5.13",
+    "singleInstance": null,
+    "evidence": [
+      "checks/vue-tree.log",
+      "host/dist/vue-runtime-evidence.json",
+      "browser-vue.json",
+      "smoke/receipt.json"
+    ]
+  },
+  "pages": [
+    {
+      "route": "/",
+      "file": "host/src/pages/HomePage.vue",
+      "components": [
+        "WorkbenchButton"
+      ]
+    },
+    {
+      "route": "/agreements",
+      "file": "host/src/pages/AgreementsPage.vue",
+      "components": [
+        "WorkbenchAlert",
+        "WorkbenchButton",
+        "WorkbenchDraftListFilter",
+        "WorkbenchFormItem",
+        "WorkbenchInput",
+        "WorkbenchSelect",
+        "WorkbenchTable"
+      ]
+    }
+  ],
+  "customComponents": [],
+  "api": [
+    {
+      "name": "loadAgreements",
+      "method": "GET",
+      "path": null,
+      "status": "assumed",
+      "notes": "本地假设 /api/agreements，参数 name/status/page/pageSize，响应 items/total；复用宿主 Axios 与 AbortSignal；真实路径与鉴权待确认。"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "text": "只读协议列表、名称和状态筛选、重置、分页",
+      "files": [
+        "host/src/pages/AgreementsPage.vue",
+        "host/src/services/agreements.ts"
+      ],
+      "status": "assumed"
+    },
+    {
+      "id": "R2",
+      "text": "请求中、空、失败重试及取消旧请求",
+      "files": [
+        "host/src/pages/AgreementsPage.vue"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "R3",
+      "text": "路由往返保留查询条件和共享访问记录",
+      "files": [
+        "host/src/stores/workspace.ts",
+        "host/src/router/index.ts"
+      ],
+      "status": "done"
+    }
+  ],
+  "checks": [
+    {
+      "name": "prepare",
+      "command": "/Users/bossxu/.homebrew/Cellar/node/26.0.0/bin/node ../prepare.mjs",
+      "result": "pass",
+      "durationMs": 62,
+      "startedAt": "2026-10-31T10:01:17.782Z",
+      "endedAt": "2026-10-31T10:01:17.844Z",
+      "evidence": "checks/prepare.log"
+    },
+    {
+      "name": "install",
+      "command": "pnpm install --frozen-lockfile",
+      "result": "pass",
+      "durationMs": 1732,
+      "startedAt": "2026-10-31T10:01:17.844Z",
+      "endedAt": "2026-10-31T10:01:19.575Z",
+      "evidence": "checks/install.log"
+    },
+    {
+      "name": "browser-prepare",
+      "command": "pnpm exec playwright install --only-shell chromium",
+      "result": "pass",
+      "durationMs": 2744,
+      "startedAt": "2026-10-31T10:01:19.576Z",
+      "endedAt": "2026-10-31T10:01:22.320Z",
+      "evidence": "checks/browser-prepare.log"
+    },
+    {
+      "name": "sources",
+      "command": "/Users/bossxu/.homebrew/Cellar/node/26.0.0/bin/node ../check-sources.mjs",
+      "result": "pass",
+      "durationMs": 110,
+      "startedAt": "2026-10-31T10:01:22.320Z",
+      "endedAt": "2026-10-31T10:01:22.430Z",
+      "evidence": "checks/sources.log"
+    },
+    {
+      "name": "vue-tree",
+      "command": "pnpm list vue --depth 10 --json",
+      "result": "pass",
+      "durationMs": 2723,
+      "startedAt": "2026-10-31T10:01:22.430Z",
+      "endedAt": "2026-10-31T10:01:25.153Z",
+      "evidence": "checks/vue-tree.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "result": "pass",
+      "durationMs": 2633,
+      "startedAt": "2026-10-31T10:01:25.153Z",
+      "endedAt": "2026-10-31T10:01:27.785Z",
+      "evidence": "checks/typecheck.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "result": "pass",
+      "durationMs": 2869,
+      "startedAt": "2026-10-31T10:01:27.786Z",
+      "endedAt": "2026-10-31T10:01:30.655Z",
+      "evidence": "checks/lint.log"
+    },
+    {
+      "name": "format",
+      "command": "pnpm format:check",
+      "result": "pass",
+      "durationMs": 2041,
+      "startedAt": "2026-10-31T10:01:30.655Z",
+      "endedAt": "2026-10-31T10:01:32.696Z",
+      "evidence": "checks/format.log"
+    },
+    {
+      "name": "rules",
+      "command": "pnpm check:rules",
+      "result": "pass",
+      "durationMs": 2390,
+      "startedAt": "2026-10-31T10:01:32.696Z",
+      "endedAt": "2026-10-31T10:01:35.086Z",
+      "evidence": "checks/rules.log"
+    },
+    {
+      "name": "unit",
+      "command": "pnpm test:unit",
+      "result": "pass",
+      "durationMs": 2213,
+      "startedAt": "2026-10-31T10:01:35.086Z",
+      "endedAt": "2026-10-31T10:01:37.299Z",
+      "evidence": "checks/unit.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "result": "pass",
+      "durationMs": 4020,
+      "startedAt": "2026-10-31T10:01:37.299Z",
+      "endedAt": "2026-10-31T10:01:41.319Z",
+      "evidence": "checks/build.log"
+    },
+    {
+      "name": "browser",
+      "command": "pnpm test:browser",
+      "result": "pass",
+      "durationMs": 5258,
+      "startedAt": "2026-10-31T10:01:41.319Z",
+      "endedAt": "2026-10-31T10:01:46.577Z",
+      "evidence": "checks/browser.log"
+    },
+    {
+      "name": "smoke",
+      "command": "/Users/bossxu/.homebrew/Cellar/node/26.0.0/bin/node tests/smoke.mjs",
+      "result": "pass",
+      "durationMs": 1119,
+      "startedAt": "2026-10-31T10:01:46.577Z",
+      "endedAt": "2026-10-31T10:01:47.696Z",
+      "evidence": "checks/smoke.log"
+    }
+  ],
+  "bundle": {
+    "routeChunksKb": [
+      {
+        "route": "/",
+        "entryFiles": [
+          "assets/HomePage-Ds6N8qKw.js"
+        ],
+        "staticKb": 1285.0751953125,
+        "dynamicKb": 2762.6123046875,
+        "sharedFiles": [
+          "assets/preload-helper-Ba_u6h38.js",
+          "assets/workspace-DT5r2Z64.js"
+        ]
+      },
+      {
+        "route": "/agreements",
+        "entryFiles": [
+          "assets/AgreementsPage-CWhV8ttn.js"
+        ],
+        "staticKb": 1345.84765625,
+        "dynamicKb": 2762.6123046875,
+        "sharedFiles": [
+          "assets/preload-helper-Ba_u6h38.js",
+          "assets/workspace-DT5r2Z64.js"
+        ]
+      }
+    ],
+    "notes": [
+      "未压缩 rawBytes / 1024；共享 chunk 不跨路由相加，不代表传输大小或性能。详情见 host/dist/route-chunks.json。构建存在大 chunk 提示。"
+    ]
+  },
+  "knownLimits": [
+    "Skill 未声明独立版本。",
+    "接口、鉴权、目标平台、生产资格、跨浏览器及人工视觉验收均未验证；Workbench 包声明 targetProductionEligible=false，AI 包未声明生产资格。",
+    "安装树和构建可见 Vue runtime 模块为 3.5.13，浏览器应用实例报告 3.5.13；预编译代码中可能内嵌的 runtime 无法独立归因，singleInstance 保持 null。",
+    "engines 声明 Node >=22.12，但当前 pnpm 要求 >=22.13；本次使用 Node 26。",
+    "QA 网络桩只在浏览器测试进程注入，不是实际后端。"
+  ]
+}

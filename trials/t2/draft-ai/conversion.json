@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "1.0",
+  "status": "needs-review",
+  "input": "ai-assistant-workspace.html",
+  "productionReady": false,
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261031.1",
+      "sha256": "ec8ed28188210781fe9d8aab582e41f736a99efc0740a8f6e79deb94e98ba82a",
+      "sourceCommit": "af939228028791e24280015c5d48a35a658d40f3",
+      "sourceHasLocalChanges": false
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261031.1",
+      "sha256": "69045605688b022f114788274991a36f3910eeadd92f876e5407b5b7f2cf75d7",
+      "sourceCommit": "8d5f658b9152fecbe954840ac2f52a01c551636f",
+      "sourceHasLocalChanges": false
+    }
+  ],
+  "templateId": "page",
+  "importedComponents": [
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "GlobalMessageStack",
+      "local": "GlobalMessageStack"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchBreadcrumb",
+      "local": "WorkbenchBreadcrumb"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchButton",
+      "local": "WorkbenchButton"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchButtonRadioGroup",
+      "local": "WorkbenchButtonRadioGroup"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchTable",
+      "local": "WorkbenchTable"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchTag",
+      "local": "WorkbenchTag"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchTopNav",
+      "local": "WorkbenchTopNav"
+    },
+    {
+      "moduleName": "huawei-partner-ai-ui",
+      "exported": "AgreementAssistantPanel",
+      "local": "AgreementAssistantPanel"
+    },
+    {
+      "moduleName": "huawei-partner-ai-ui",
+      "exported": "AssistantHostLayout",
+      "local": "AssistantHostLayout"
+    },
+    {
+      "moduleName": "huawei-partner-ai-ui",
+      "exported": "WorkspaceSmartCard",
+      "local": "WorkspaceSmartCard"
+    }
+  ],
+  "vueImports": [
+    {
+      "moduleName": "vue",
+      "exported": "nextTick",
+      "local": "__vue_nextTick"
+    },
+    {
+      "moduleName": "vue",
+      "exported": "reactive",
+      "local": "__vue_reactive"
+    },
+    {
+      "moduleName": "vue",
+      "exported": "ref",
+      "local": "__vue_ref"
+    }
+  ],
+  "prototypeUsages": [
+    {
+      "path": "PartnerUI.mockAgreementAdapter",
+      "todo": "TODO(conversion.md#chat)",
+      "location": "setup",
+      "line": 33,
+      "source": "PartnerUI.mockAgreementAdapter"
+    },
+    {
+      "path": "PartnerUI.chatRenderers",
+      "todo": "TODO(conversion.md#renderers)",
+      "location": "setup",
+      "line": 54,
+      "source": "PartnerUI.chatRenderers"
+    },
+    {
+      "path": "PartnerUI.chatRenderers",
+      "todo": "TODO(conversion.md#renderers)",
+      "location": "return",
+      "line": 74,
+      "source": "renderers"
+    },
+    {
+      "path": "PartnerUI.mount",
+      "todo": "TODO(conversion.md#mount)",
+      "location": "mount",
+      "source": "PartnerUI.mount"
+    },
+    {
+      "path": "PartnerUI.chatRenderers",
+      "todo": "TODO(conversion.md#renderers)",
+      "location": "template",
+      "source": "renderers"
+    }
+  ],
+  "issues": [
+    {
+      "code": "MANUAL_PRODUCT_MIGRATION",
+      "detail": "No API, mock removal, lifecycle, styles, accessibility, visual parity or production approval is inferred. Guarded skeleton is not runnable production code."
+    },
+    {
+      "code": "PROTOTYPE_HELPER",
+      "detail": "TODO(conversion.md#chat): replace PartnerUI.mockAgreementAdapter with a typed product implementation.",
+      "line": 33
+    },
+    {
+      "code": "PROTOTYPE_HELPER",
+      "detail": "TODO(conversion.md#renderers): replace PartnerUI.chatRenderers with a typed product implementation.",
+      "line": 54
+    },
+    {
+      "code": "PROTOTYPE_HELPER",
+      "detail": "TODO(conversion.md#renderers): replace PartnerUI.chatRenderers with a typed product implementation.",
+      "line": 74
+    },
+    {
+      "code": "MODULE_SCOPE_NOT_COPIED",
+      "detail": "Module-scope imports/data/side effects are retained only in the report; move needed dependencies to typed APIs, mocks or explicit imports."
+    },
+    {
+      "code": "PROTOTYPE_HELPER",
+      "detail": "TODO(conversion.md#renderers): replace PartnerUI.chatRenderers"
+    },
+    {
+      "code": "UNKNOWN_COMPONENT",
+      "detail": "Review PuiAssistantCloseButton: no unique conflict-free public value export."
+    },
+    {
+      "code": "LAYOUT_MIGRATION",
+      "detail": "TODO(conversion.md#layout): replace prototype utilities with feature-owned Token layout."
+    }
+  ],
+  "extraction": {
+    "setupBody": "\n    const nav = reactive({\n      active: 'sales',\n      tabs: [{ value: 'home', label: '首页' }, { value: 'sales', label: '销售' }, { value: 'service', label: '服务' }],\n      sites: [{ value: 'partner', label: '企业伙伴网站' }],\n    })\n    const crumbs = [{ id: 'home', label: '首页', href: '#' }, { id: 'sales', label: '销售', href: '#' }, { id: 'cur', label: '协议续签工作台' }]\n    const ai = reactive({ open: true, mode: 'sidebar', full: false })\n    const range = ref('90')\n    const tone = { 待续签: 'warning', 审批中: 'info', 已续签: 'success' }\n    const columns = [\n      { key: 'name', title: '协议名称', field: 'name', primary: true, fluid: true, ellipsis: true },\n      { key: 'partner', title: '合作伙伴', field: 'partner', width: 120 },\n      { key: 'endDate', title: '到期日期', field: 'endDate', width: 120 },\n      { key: 'amount', title: '金额', field: 'amount', width: 130, align: 'end' },\n      { key: 'status', title: '状态', field: 'status', width: 100 },\n    ]\n    const rows = ref(agreements.map((a) => ({ ...a })))\n\n    // ---- AI：本地模拟 adapter ----\n    const adapter = PartnerUI.mockAgreementAdapter({\n      agreements,\n      answers: [\n        { match: /续签|到期|优先/, reply: [\n          '以下 **3 份协议**将在 90 天内到期，建议优先处理「华东区分销框架协议」（金额最高、剩余 31 天）：',\n          { type: 'agreement-table', agreements, total: agreements.length },\n          { type: 'business-navigation', title: '协议续签工作台', description: '批量发起续签', target: { target: 'renewals' } },\n        ] },\n        { match: /注意|风险/, reply: [\n          '这份协议需要关注三点：\\n\\n1. **到期时间**：剩余天数不足 60 天，需尽快启动续签审批；\\n2. **价格条款**：附件价格表为 2025 版，续签时建议同步更新；\\n3. **负责人**：确认负责人在岗，避免审批卡点。',\n        ] },\n        { match: /总结|经营|摘要/, reply: { type: 'ai-summary', text: '本月续签完成率 68%，较上月提升 9 个百分点；华东区贡献最大，西南区仍有 2 份协议未启动续签。' } },\n      ],\n      fallback: '已收到。这是本地演示回复，未连接真实服务。可以试试问“哪些协议需要续签”。',\n    })\n    const welcome = [\n      { id: 'w1', title: '到期协议', description: '查看即将到期需要续签的协议', query: '哪些协议需要续签' },\n      { id: 'w2', title: '续签总结', description: '总结本月续签进展', query: '总结本月续签情况' },\n    ]\n    const pills = [{ id: 'p1', label: '到期协议' , query: '哪些协议需要续签' }, { id: 'p2', label: '续签总结', query: '总结本月续签情况' }]\n    const prompts = () => [{ id: 'f1', label: '按金额排序' }, { id: 'f2', label: '生成续签提醒' }]\n    const renderers = PartnerUI.chatRenderers\n    const history = { namespace: 'pui-demo:renewal-workspace', storage: { read: async () => null, write: async () => {} } }\n\n    const insights = [\n      { id: 'i1', fragments: [{ text: '华东区分销框架协议', emphasis: 'bold' }, { text: ' 剩余 ' }, { text: '31 天', emphasis: 'data' }, { text: '，金额最高' }],\n        action: { label: '去续签', navigation: { target: 'renew', params: { id: 'HT-2026-0101' } } } },\n      { id: 'i2', fragments: [{ text: '西南区有 ' }, { text: '2 份', emphasis: 'data' }, { text: '协议尚未启动续签' }] },\n    ]\n\n    const panel = ref(null)\n    const messages = ref([])\n    const notify = (message, type = 'success') => { messages.value = [{ id: Date.now() + Math.random(), message, type }, ...messages.value] }\n    async function ask(q) { ai.open = true; await nextTick(); if (panel.value?.canSendQuery()) panel.value.sendQuery(q) }\n    function onRowAction({ row, action }) {\n      if (action.id === 'ask') ask(`${row.name}需要注意什么`)\n      if (action.id === 'renew') { row.status = '审批中'; notify(`已提交「${row.name}」续签申请`) }\n    }\n    function onNavigate(nav) { notify(`导航到：${nav.target}${nav.params ? ' ' + JSON.stringify(nav.params) : ''}（由页面处理路由）`, 'info') }\n    function onBusiness(action) { notify(`AI 面板业务动作：${action.type} ${action.agreement?.name || ''}`, 'info') }\n\n    return { nav, crumbs, ai, range, tone, columns, agreements: rows, adapter, welcome, pills, prompts, renderers, history,\n      insights, panel, messages, notify, ask, onRowAction, onNavigate, onBusiness }\n  ",
+    "moduleScope": "const agreements = [\n  { id: 'HT-2026-0101', name: '华东区分销框架协议', partner: '星河科技', owner: '王敏', endDate: '2026-11-30', amount: '¥1,280,000', status: '待续签' },\n  { id: 'HT-2026-0107', name: '华南区解决方案框架协议', partner: '南山云服务', owner: '李华', endDate: '2026-12-15', amount: '¥750,000', status: '审批中' },\n  { id: 'HT-2026-0113', name: '西南区服务框架协议', partner: '海川智能', owner: '赵磊', endDate: '2027-01-08', amount: '¥460,000', status: '待续签' },\n]",
+    "mountOptions": "{\n  template: '#page',\n  setup() {\n    const nav = reactive({\n      active: 'sales',\n      tabs: [{ value: 'home', label: '首页' }, { value: 'sales', label: '销售' }, { value: 'service', label: '服务' }],\n      sites: [{ value: 'partner', label: '企业伙伴网站' }],\n    })\n    const crumbs = [{ id: 'home', label: '首页', href: '#' }, { id: 'sales', label: '销售', href: '#' }, { id: 'cur', label: '协议续签工作台' }]\n    const ai = reactive({ open: true, mode: 'sidebar', full: false })\n    const range = ref('90')\n    const tone = { 待续签: 'warning', 审批中: 'info', 已续签: 'success' }\n    const columns = [\n      { key: 'name', title: '协议名称', field: 'name', primary: true, fluid: true, ellipsis: true },\n      { key: 'partner', title: '合作伙伴', field: 'partner', width: 120 },\n      { key: 'endDate', title: '到期日期', field: 'endDate', width: 120 },\n      { key: 'amount', title: '金额', field: 'amount', width: 130, align: 'end' },\n      { key: 'status', title: '状态', field: 'status', width: 100 },\n    ]\n    const rows = ref(agreements.map((a) => ({ ...a })))\n\n    // ---- AI：本地模拟 adapter ----\n    const adapter = PartnerUI.mockAgreementAdapter({\n      agreements,\n      answers: [\n        { match: /续签|到期|优先/, reply: [\n          '以下 **3 份协议**将在 90 天内到期，建议优先处理「华东区分销框架协议」（金额最高、剩余 31 天）：',\n          { type: 'agreement-table', agreements, total: agreements.length },\n          { type: 'business-navigation', title: '协议续签工作台', description: '批量发起续签', target: { target: 'renewals' } },\n        ] },\n        { match: /注意|风险/, reply: [\n          '这份协议需要关注三点：\\n\\n1. **到期时间**：剩余天数不足 60 天，需尽快启动续签审批；\\n2. **价格条款**：附件价格表为 2025 版，续签时建议同步更新；\\n3. **负责人**：确认负责人在岗，避免审批卡点。',\n        ] },\n        { match: /总结|经营|摘要/, reply: { type: 'ai-summary', text: '本月续签完成率 68%，较上月提升 9 个百分点；华东区贡献最大，西南区仍有 2 份协议未启动续签。' } },\n      ],\n      fallback: '已收到。这是本地演示回复，未连接真实服务。可以试试问“哪些协议需要续签”。',\n    })\n    const welcome = [\n      { id: 'w1', title: '到期协议', description: '查看即将到期需要续签的协议', query: '哪些协议需要续签' },\n      { id: 'w2', title: '续签总结', description: '总结本月续签进展', query: '总结本月续签情况' },\n    ]\n    const pills = [{ id: 'p1', label: '到期协议' , query: '哪些协议需要续签' }, { id: 'p2', label: '续签总结', query: '总结本月续签情况' }]\n    const prompts = () => [{ id: 'f1', label: '按金额排序' }, { id: 'f2', label: '生成续签提醒' }]\n    const renderers = PartnerUI.chatRenderers\n    const history = { namespace: 'pui-demo:renewal-workspace', storage: { read: async () => null, write: async () => {} } }\n\n    const insights = [\n      { id: 'i1', fragments: [{ text: '华东区分销框架协议', emphasis: 'bold' }, { text: ' 剩余 ' }, { text: '31 天', emphasis: 'data' }, { text: '，金额最高' }],\n        action: { label: '去续签', navigation: { target: 'renew', params: { id: 'HT-2026-0101' } } } },\n      { id: 'i2', fragments: [{ text: '西南区有 ' }, { text: '2 份', emphasis: 'data' }, { text: '协议尚未启动续签' }] },\n    ]\n\n    const panel = ref(null)\n    const messages = ref([])\n    const notify = (message, type = 'success') => { messages.value = [{ id: Date.now() + Math.random(), message, type }, ...messages.value] }\n    async function ask(q) { ai.open = true; await nextTick(); if (panel.value?.canSendQuery()) panel.value.sendQuery(q) }\n    function onRowAction({ row, action }) {\n      if (action.id === 'ask') ask(`${row.name}需要注意什么`)\n      if (action.id === 'renew') { row.status = '审批中'; notify(`已提交「${row.name}」续签申请`) }\n    }\n    function onNavigate(nav) { notify(`导航到：${nav.target}${nav.params ? ' ' + JSON.stringify(nav.params) : ''}（由页面处理路由）`, 'info') }\n    function onBusiness(action) { notify(`AI 面板业务动作：${action.type} ${action.agreement?.name || ''}`, 'info') }\n\n    return { nav, crumbs, ai, range, tone, columns, agreements: rows, adapter, welcome, pills, prompts, renderers, history,\n      insights, panel, messages, notify, ask, onRowAction, onNavigate, onBusiness }\n  },\n}",
+    "omittedScriptSources": [
+      "runtime/partner-ui-runtime.js"
+    ],
+    "omittedStylesheetSources": [
+      "fonts/partner-ui-fonts.css",
+      "runtime/partner-ui-runtime.css"
+    ]
+  }
+}

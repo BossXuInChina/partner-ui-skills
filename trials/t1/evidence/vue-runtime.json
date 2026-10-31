@@ -1,0 +1,28 @@
+{
+  "physical": {
+    "vue": [
+      "vue@3.5.13_typescript@5.9.3"
+    ],
+    "@vue+runtime-core": [
+      "@vue+runtime-core@3.5.13"
+    ],
+    "@vue+runtime-dom": [
+      "@vue+runtime-dom@3.5.13"
+    ]
+  },
+  "resolvedPaths": {
+    "vue": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t1/.work/app/node_modules/.pnpm/vue@3.5.13_typescript@5.9.3/node_modules/vue/index.js",
+    "runtimeDom": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t1/.work/app/node_modules/.pnpm/@vue+runtime-dom@3.5.13/node_modules/@vue/runtime-dom/index.js",
+    "runtimeCore": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t1/.work/app/node_modules/.pnpm/@vue+runtime-core@3.5.13/node_modules/@vue/runtime-core/index.js"
+  },
+  "runtimeIdentity": {
+    "createApp": true,
+    "getCurrentInstance": true
+  },
+  "renderedModules": {
+    "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t1/.work/app/node_modules/.pnpm/@vue+runtime-core@3.5.13/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js": 193180,
+    "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t1/.work/app/node_modules/.pnpm/@vue+runtime-dom@3.5.13/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js": 49745,
+    "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t1/.work/app/node_modules/.pnpm/vue@3.5.13_typescript@5.9.3/node_modules/vue/dist/vue.runtime.esm-bundler.js": 119
+  },
+  "caveat": "Precompiled package internals cannot be separately attributed."
+}

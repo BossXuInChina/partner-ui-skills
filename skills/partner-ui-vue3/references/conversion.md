@@ -63,3 +63,5 @@ node scripts/convert_prototype.mjs --input <prototype.html> --out <new-directory
 输出 `Page.vue` 与 `conversion.json`，状态始终 `needs-review`。它按实际公开 value exports 为可识别标签添加 imports、抽取 setup 并改写 Vue 引用，将原型 helper 标为 `TODO(conversion.md#…)` 与显式抛错占位；不执行 HTML/runtime。模块级 seed/副作用不进入 Page，原文留在报告供逐项迁移。未知组件、闭包依赖和动态行为不能自动变成产品能力。输出带 `PROTOTYPE_CONVERSION_NEEDS_REVIEW` mount guard；人工完成 API、状态和布局等迁移后，才移除 guard 进行实际挂载、交互与视觉检查；这些检查完成前状态仍是 `needs-review`。
 
 工具拒绝已有输出及不支持的输入结构，父目录须存在；更多边界见 [tools.md](tools.md)。手工迁移可从 `new_feature` 生成起点并用 `find_icon` 查询注册名；不要用另一个 runtime 编译器代替转换。
+
+复用对应的已迁移 SFC 起点时，仍须逐项记录提取稿的模板、setup/helpers、事件、API、状态与样式到最终文件的映射，完成缺项并对实际功能验证。原始 guarded 草稿可保留供审计；最终模块完成复核后才移除 guard，不能把未复核的提取稿标为完成。

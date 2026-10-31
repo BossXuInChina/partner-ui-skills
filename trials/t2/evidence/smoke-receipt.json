@@ -1,0 +1,725 @@
+{
+  "status": "PASS",
+  "scope": "one development smoke per route, two viewport visits",
+  "evidence": false,
+  "routes": [
+    {
+      "path": "/templates/workbench-list",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        }
+      ]
+    },
+    {
+      "path": "/templates/workbench-detail",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        }
+      ]
+    },
+    {
+      "path": "/templates/workbench-dashboard",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        }
+      ]
+    },
+    {
+      "path": "/templates/ai-assistant-workspace",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [
+              {
+                "name": "AgreementAssistantPanel",
+                "inScope": true,
+                "height": 798,
+                "panel": true
+              },
+              {
+                "name": "WorkspaceSmartCard",
+                "inScope": true,
+                "height": 114,
+                "panel": false
+              },
+              {
+                "name": "WorkspaceSmartIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "WorkspaceSmartTag",
+                "inScope": true,
+                "height": 28,
+                "panel": false
+              },
+              {
+                "name": "WorkspaceSmartIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AgreementAssistantPanel",
+                "inScope": true,
+                "height": 798,
+                "panel": true
+              },
+              {
+                "name": "ChatPanel",
+                "inScope": true,
+                "height": 798,
+                "panel": true
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 22,
+                "panel": false
+              }
+            ],
+            "neutralHosts": [
+              {
+                "name": "AssistantHostLayout",
+                "reason": "Neutral layout for business, navigation and assistant slots (public HOST_LAYOUT.md).",
+                "inScope": false
+              },
+              {
+                "name": "BusinessOverlayHost",
+                "reason": "Neutral business-region overlay provider/portal (public HOST_LAYOUT.md).",
+                "inScope": false
+              }
+            ],
+            "scopes": [
+              {
+                "height": 114
+              },
+              {
+                "height": 798
+              },
+              {
+                "height": 798
+              },
+              {
+                "height": 32
+              }
+            ]
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [
+              {
+                "name": "AgreementAssistantPanel",
+                "inScope": true,
+                "height": 698,
+                "panel": true
+              },
+              {
+                "name": "WorkspaceSmartCard",
+                "inScope": true,
+                "height": 114,
+                "panel": false
+              },
+              {
+                "name": "WorkspaceSmartIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "WorkspaceSmartTag",
+                "inScope": true,
+                "height": 28,
+                "panel": false
+              },
+              {
+                "name": "WorkspaceSmartIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AgreementAssistantPanel",
+                "inScope": true,
+                "height": 698,
+                "panel": true
+              },
+              {
+                "name": "ChatPanel",
+                "inScope": true,
+                "height": 698,
+                "panel": true
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 22,
+                "panel": false
+              }
+            ],
+            "neutralHosts": [
+              {
+                "name": "AssistantHostLayout",
+                "reason": "Neutral layout for business, navigation and assistant slots (public HOST_LAYOUT.md).",
+                "inScope": false
+              },
+              {
+                "name": "BusinessOverlayHost",
+                "reason": "Neutral business-region overlay provider/portal (public HOST_LAYOUT.md).",
+                "inScope": false
+              }
+            ],
+            "scopes": [
+              {
+                "height": 114
+              },
+              {
+                "height": 698
+              },
+              {
+                "height": 698
+              },
+              {
+                "height": 32
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/templates/ai-chat",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [
+              {
+                "name": "ChatPanel",
+                "inScope": true,
+                "height": 720,
+                "panel": true
+              },
+              {
+                "name": "ChatPanel",
+                "inScope": true,
+                "height": 720,
+                "panel": true
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              }
+            ],
+            "neutralHosts": [],
+            "scopes": [
+              {
+                "height": 720
+              }
+            ]
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [
+              {
+                "name": "ChatPanel",
+                "inScope": true,
+                "height": 620,
+                "panel": true
+              },
+              {
+                "name": "ChatPanel",
+                "inScope": true,
+                "height": 620,
+                "panel": true
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              },
+              {
+                "name": "AiIcon",
+                "inScope": true,
+                "height": 24,
+                "panel": false
+              }
+            ],
+            "neutralHosts": [],
+            "scopes": [
+              {
+                "height": 620
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/templates/blank",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        }
+      ]
+    }
+  ],
+  "startedAt": "2026-10-31T09:56:44.590Z",
+  "aiComponentNames": [
+    "AgreementAssistantPanel",
+    "AgreementTable",
+    "AiAlert",
+    "AiIcon",
+    "AiIconProvider",
+    "AiSummaryCard",
+    "AiToast",
+    "AssistantHostLayout",
+    "BusinessNavigationCard",
+    "BusinessOverlayHost",
+    "ChatPanel",
+    "UiDialog",
+    "WorkspaceSmartCard",
+    "WorkspaceSmartIcon",
+    "WorkspaceSmartTabs",
+    "WorkspaceSmartTag"
+  ],
+  "devLog": "\n  VITE v7.3.6  ready in 107 ms\n\n  ➜  Local:   http://127.0.0.1:61757/\n",
+  "finishedAt": "2026-10-31T09:56:48.338Z",
+  "receipt": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t2/.work/skill/assets/harness/.artifacts/smoke/receipt.json",
+  "backendSessions": [
+    {
+      "path": "/templates/workbench-list",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/__template-api/agreements",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/templates/workbench-list",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/__template-api/agreements",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/templates/workbench-detail",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/__template-api/agreement-detail",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/templates/workbench-detail",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/__template-api/agreement-detail",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/templates/workbench-dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/__template-api/dashboard",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/templates/workbench-dashboard",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/__template-api/dashboard",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/templates/ai-assistant-workspace",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/__template-api/workspace/agreements",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/__template-api/workspace/insights",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/templates/ai-assistant-workspace",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/__template-api/workspace/agreements",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/__template-api/workspace/insights",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/templates/ai-chat",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "requests": []
+    },
+    {
+      "path": "/templates/ai-chat",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "requests": []
+    },
+    {
+      "path": "/templates/blank",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "requests": []
+    },
+    {
+      "path": "/templates/blank",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "requests": []
+    }
+  ]
+}

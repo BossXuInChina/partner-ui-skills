@@ -1,0 +1,124 @@
+{
+  "startedAt": "2026-10-31T10:01:17.782Z",
+  "node": "v26.0.0",
+  "checks": [
+    {
+      "name": "prepare",
+      "command": "/Users/bossxu/.homebrew/Cellar/node/26.0.0/bin/node ../prepare.mjs",
+      "startedAt": "2026-10-31T10:01:17.782Z",
+      "endedAt": "2026-10-31T10:01:17.844Z",
+      "durationMs": 62,
+      "exitCode": 0,
+      "log": "checks/prepare.log"
+    },
+    {
+      "name": "install",
+      "command": "pnpm install --frozen-lockfile",
+      "startedAt": "2026-10-31T10:01:17.844Z",
+      "endedAt": "2026-10-31T10:01:19.575Z",
+      "durationMs": 1732,
+      "exitCode": 0,
+      "log": "checks/install.log"
+    },
+    {
+      "name": "browser-prepare",
+      "command": "pnpm exec playwright install --only-shell chromium",
+      "startedAt": "2026-10-31T10:01:19.576Z",
+      "endedAt": "2026-10-31T10:01:22.320Z",
+      "durationMs": 2744,
+      "exitCode": 0,
+      "log": "checks/browser-prepare.log"
+    },
+    {
+      "name": "sources",
+      "command": "/Users/bossxu/.homebrew/Cellar/node/26.0.0/bin/node ../check-sources.mjs",
+      "startedAt": "2026-10-31T10:01:22.320Z",
+      "endedAt": "2026-10-31T10:01:22.430Z",
+      "durationMs": 110,
+      "exitCode": 0,
+      "log": "checks/sources.log"
+    },
+    {
+      "name": "vue-tree",
+      "command": "pnpm list vue --depth 10 --json",
+      "startedAt": "2026-10-31T10:01:22.430Z",
+      "endedAt": "2026-10-31T10:01:25.153Z",
+      "durationMs": 2723,
+      "exitCode": 0,
+      "log": "checks/vue-tree.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "startedAt": "2026-10-31T10:01:25.153Z",
+      "endedAt": "2026-10-31T10:01:27.785Z",
+      "durationMs": 2633,
+      "exitCode": 0,
+      "log": "checks/typecheck.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "startedAt": "2026-10-31T10:01:27.786Z",
+      "endedAt": "2026-10-31T10:01:30.655Z",
+      "durationMs": 2869,
+      "exitCode": 0,
+      "log": "checks/lint.log"
+    },
+    {
+      "name": "format",
+      "command": "pnpm format:check",
+      "startedAt": "2026-10-31T10:01:30.655Z",
+      "endedAt": "2026-10-31T10:01:32.696Z",
+      "durationMs": 2041,
+      "exitCode": 0,
+      "log": "checks/format.log"
+    },
+    {
+      "name": "rules",
+      "command": "pnpm check:rules",
+      "startedAt": "2026-10-31T10:01:32.696Z",
+      "endedAt": "2026-10-31T10:01:35.086Z",
+      "durationMs": 2390,
+      "exitCode": 0,
+      "log": "checks/rules.log"
+    },
+    {
+      "name": "unit",
+      "command": "pnpm test:unit",
+      "startedAt": "2026-10-31T10:01:35.086Z",
+      "endedAt": "2026-10-31T10:01:37.299Z",
+      "durationMs": 2213,
+      "exitCode": 0,
+      "log": "checks/unit.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "startedAt": "2026-10-31T10:01:37.299Z",
+      "endedAt": "2026-10-31T10:01:41.319Z",
+      "durationMs": 4020,
+      "exitCode": 0,
+      "log": "checks/build.log"
+    },
+    {
+      "name": "browser",
+      "command": "pnpm test:browser",
+      "startedAt": "2026-10-31T10:01:41.319Z",
+      "endedAt": "2026-10-31T10:01:46.577Z",
+      "durationMs": 5258,
+      "exitCode": 0,
+      "log": "checks/browser.log"
+    },
+    {
+      "name": "smoke",
+      "command": "/Users/bossxu/.homebrew/Cellar/node/26.0.0/bin/node tests/smoke.mjs",
+      "startedAt": "2026-10-31T10:01:46.577Z",
+      "endedAt": "2026-10-31T10:01:47.696Z",
+      "durationMs": 1119,
+      "exitCode": 0,
+      "log": "checks/smoke.log"
+    }
+  ],
+  "endedAt": "2026-10-31T10:01:47.696Z"
+}

@@ -1,0 +1,149 @@
+/* Feature-owned layout. Host applications supply approved fonts; no fonts ship here. */
+.feature-page {
+  --partner-ai-font-family: var(--partner-ui-host-font-family, system-ui);
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--partner-ui-host-font-family, system-ui);
+  font-size: var(--wb-font-body-m-font-size);
+  line-height: var(--wb-font-body-m-line-height);
+  color: var(--wb-color-text-primary);
+  background: var(--wb-color-surface-page);
+}
+.feature-page *,
+.feature-page *::before,
+.feature-page *::after {
+  box-sizing: border-box;
+}
+.feature-container {
+  width: 100%;
+  max-width: calc(var(--wb-layout-grid-max-width) + 2 * var(--wb-spacing-screen-edge-expanded));
+  margin-inline: auto;
+  padding-inline: var(--wb-spacing-screen-edge-expanded);
+}
+/* The package's compact-screen boundary is 768px; custom properties cannot be media conditions. */
+@media (max-width: 767px) {
+  .feature-container {
+    padding-inline: var(--wb-spacing-screen-edge-compact);
+  }
+}
+.feature-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-spacing-layout-section-gap);
+}
+.feature-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--feature-gap, var(--wb-spacing-component-lg));
+}
+.feature-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--feature-gap, var(--wb-spacing-component-md));
+}
+.feature-row.feature-between {
+  justify-content: space-between;
+}
+.feature-grid {
+  display: grid;
+  gap: var(--wb-spacing-layout-card-gap);
+  grid-template-columns: repeat(var(--feature-cols, 24), minmax(0, 1fr));
+}
+@media (max-width: 1279px) {
+  .feature-grid {
+    --feature-cols: 12;
+  }
+}
+.feature-span-3 {
+  grid-column: span 3;
+}
+.feature-span-4 {
+  grid-column: span 4;
+}
+.feature-span-6 {
+  grid-column: span 6;
+}
+.feature-span-8 {
+  grid-column: span 8;
+}
+.feature-span-12 {
+  grid-column: span 12;
+}
+.feature-span-16 {
+  grid-column: span 16;
+}
+.feature-span-18 {
+  grid-column: span 18;
+}
+.feature-span-24 {
+  grid-column: 1 / -1;
+}
+.feature-surface {
+  background: var(--wb-color-surface-container);
+  border-radius: var(--wb-radius-lg);
+  padding: var(--wb-spacing-layout-container-block) var(--wb-spacing-layout-container-inline);
+}
+.feature-title-xxl {
+  font-size: var(--wb-font-headline-xxl-font-size);
+  line-height: var(--wb-font-headline-xxl-line-height);
+  font-weight: var(--wb-font-headline-xxl-font-weight);
+  margin: 0;
+}
+.feature-title-xl {
+  font-size: var(--wb-font-headline-xl-font-size);
+  line-height: var(--wb-font-headline-xl-line-height);
+  font-weight: var(--wb-font-headline-xl-font-weight);
+  margin: 0;
+}
+.feature-title-l {
+  font-size: var(--wb-font-headline-l-font-size);
+  line-height: var(--wb-font-headline-l-line-height);
+  font-weight: var(--wb-font-headline-l-font-weight);
+  margin: 0;
+}
+.feature-title-m {
+  font-size: var(--wb-font-headline-m-font-size);
+  line-height: var(--wb-font-headline-m-line-height);
+  font-weight: var(--wb-font-headline-m-font-weight);
+  margin: 0;
+}
+.feature-title-s {
+  font-size: var(--wb-font-headline-s-font-size);
+  line-height: var(--wb-font-headline-s-line-height);
+  font-weight: var(--wb-font-headline-s-font-weight);
+  margin: 0;
+}
+.feature-text {
+  font-size: var(--wb-font-body-m-font-size);
+  line-height: var(--wb-font-body-m-line-height);
+  margin: 0;
+}
+.feature-text-s {
+  font-size: var(--wb-font-body-s-font-size);
+  line-height: var(--wb-font-body-s-line-height);
+  color: var(--wb-color-text-secondary);
+  margin: 0;
+}
+.feature-muted {
+  color: var(--wb-color-text-secondary);
+}
+.feature-num {
+  font-variant-numeric: tabular-nums;
+}
+.feature-display {
+  font-size: var(--wb-font-display-xs-font-size);
+  line-height: var(--wb-font-display-xs-line-height);
+  font-weight: var(--wb-font-display-xs-font-weight);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+.feature-ai-frame {
+  height: 720px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.feature-chat-part {
+  margin: var(--wb-spacing-component-xs) 0;
+}

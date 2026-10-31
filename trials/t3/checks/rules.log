@@ -1,0 +1,2 @@
+Checked 11 source files; 0 error(s), 0 warning(s).
+$ node ../../../dist/partner-ui-vue3/scripts/check_vue.mjs src

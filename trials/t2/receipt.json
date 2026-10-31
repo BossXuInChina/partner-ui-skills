@@ -1,0 +1,58 @@
+{
+  "scope": "两个原型，随包迁移起点、独立 harness、实际 headless 对照",
+  "conversion": [
+    {
+      "command": "node skill/scripts/convert_prototype.mjs --input ../../dist/partner-ui-pages/assets/templates/workbench-list.html --out draft-list --project skill/assets/harness",
+      "result": "needs-review; 4 items",
+      "durationMs": null
+    },
+    {
+      "command": "node skill/scripts/convert_prototype.mjs --input ../../dist/partner-ui-pages/assets/templates/ai-assistant-workspace.html --out draft-ai --project skill/assets/harness",
+      "result": "needs-review; 8 items",
+      "durationMs": null
+    }
+  ],
+  "verification": {
+    "command": "pnpm run verify",
+    "result": "passed",
+    "durationMs": 21997,
+    "tests": 85,
+    "testFiles": 15,
+    "smokeRoutes": 6,
+    "viewports": [
+      "1440x900",
+      "1280x800"
+    ]
+  },
+  "interactions": "evidence/interactions.json",
+  "visual": "evidence/visual-results.json",
+  "issues": [
+    "routeChunkReport requires explicit facade configuration when paths change; original analyzer unchanged",
+    "parallel fixture scratch was included by formatter; serial rerun passed"
+  ],
+  "limitations": [
+    "assumed API and auth",
+    "no platform or production approval",
+    "no user visual approval"
+  ],
+  "interactionVerification": {
+    "command": "node interaction.mjs",
+    "result": "passed",
+    "durationMs": 5687,
+    "assertions": [
+      "5 filtered rows",
+      "visible create dialog with fields",
+      "AI structured table and specific answer",
+      "Vue runtime 3.5.13"
+    ],
+    "failuresExitNonzero": true,
+    "negativeControl": "temporarily changed expected filtered row count to 999; process exited 1 and reported the assertion"
+  },
+  "sourcePins": "source-pins.json",
+  "currentDocsRead": {
+    "SKILL.md": "b14731081dd93f74266d7af6316432679ddd01c3810c72ab04111bd47bc3ed4c",
+    "references/testing.md": "f66d68e9a4713657696af62729427f108f96cc5ff40037aee53e27379a4dd468",
+    "references/conversion.md": "35de71abda2cd8b2b0ba4e5b4c0da4342cbab2d01169b8cdaa756524e1224363"
+  },
+  "revalidatedAt": "2026-10-31T09:57:05.475938+00:00"
+}

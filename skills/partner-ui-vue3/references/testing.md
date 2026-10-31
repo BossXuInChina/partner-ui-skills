@@ -4,7 +4,7 @@
 
 ## 使用已提供的工具
 
-使用 harness 的 packageManager、锁文件和随包工具，不依赖全局安装的检查器。当前所锁 pnpm 要求 Node ≥22.13，engines 与技术栈默认声明差异见 [集成](integration.md)；不要在 22.12 用 pnpm 结果声称完整工程通过。复制 feature 后调整宿主路径与路由，具体见 [integration.md](integration.md)。在验证工程目录运行：
+使用 harness 的 packageManager、锁文件和随包工具，不依赖全局安装的检查器。当前所锁 pnpm 要求 Node ≥22.13，engines 与技术栈默认声明差异见 [集成](integration.md)；不要在 22.12 用 pnpm 结果声称完整工程通过。复制 feature 后调整宿主路径与路由，具体见 [integration.md](integration.md)。复制 harness 时保留其 workspace 边界，避免 pnpm 在上层工作区安装。改用实际功能路由时，同时更新 router、体积报告的显式 routes、相关 QA URL 与数据契约；保留仍适用的断言，在对应功能测试中覆盖迁移后的行为，不改分析器源码硬编码路径。在验证工程目录运行：
 
 ```sh
 cd assets/harness
@@ -62,3 +62,5 @@ node build/verify-template-parity.mjs --evidence --project <已安装的独立ha
 TinyRobot 归因基于有实际 rendered 内容的模块 ID；已预编译进其他包单体代码的内容无法独立归因。依赖图未识别到 TinyRobot 不等于证明其字节不存在，动态输出也不能说成“没有产物”。发现包级单体/加载问题回包维护流程处理，不能由 feature 绕开公开入口或复制组件源码。
 
 其他工具用法见 [tools.md](tools.md)；生成和提取成功本身不是验证通过，转换稿的 mount guard 只在人工完成迁移后移除。交付按 [delivery.md](delivery.md) 如实记录未运行项与范围。
+
+运行会写临时文件的 fixture/smoke 与格式检查时使用验证脚本的串行顺序；并行任务各用独立工作目录与端口。交付清单分别列出功能模块路由和实际验证的 harness 路由，所有 contract、requirements 和报告路径都相对交付根且必须存在。

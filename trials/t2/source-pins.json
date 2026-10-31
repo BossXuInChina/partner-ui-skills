@@ -1,0 +1,15 @@
+{
+  "skillSourceLockSha256": "176e1d4ef94ef13aef1e5a86c5ebf19ebdbf80b4314e1ed52a2b7ec9d451d76b",
+  "prototypeAssets": {
+    "templates/workbench-list.html": "07eb5a2eefb117e2da298c49dc841b066e87a7b69ef4625f87f41b211795515b",
+    "templates/ai-assistant-workspace.html": "64da1c478f423d32bd258165bfc4f376c59552372bf91020179d142a8e38e2d5",
+    "fonts/HarmonyOS_Sans.ttf": "72d5adb60242fae60686ca94c27e10b89cb7ed2008531390d3f22ac61ad64593",
+    "fonts/HarmonyOS_Sans_SC.ttf": "8978e05044e7089ad6a9de38c505c8148305607983487435a916d2610700a7ca",
+    "fonts/LICENSE.txt": "7d7acf8e3ac928ae7f34aaa9f8e348dd0476dbb52caaa058e402894d4f6efe73",
+    "fonts/NOTICE.md": "e4a524af4f57cbf5d9968d5fd46064dafbd1e3d1776d6089badffb021ab3eb8a",
+    "fonts/partner-ui-fonts.css": "526752791173d6faafa4d0a813ff468410453d5b64f5daf789f12806ffcb885c",
+    "runtime/partner-ui-runtime.css": "b639cdea0d59f3645a6889f2b46d71add8c6f351d0373b3c9028d29f0602e201",
+    "runtime/partner-ui-runtime.js": "fd2c7f216fa6373bdd99a884c2d05901aac7359601bb45037bc7542a2712ddf6",
+    "runtime/versions.json": "bf9b04ad1ed0701ea174388a4141c9663676c3b4408f482726422809fa9ceb77"
+  }
+}

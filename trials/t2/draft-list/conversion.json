@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "1.0",
+  "status": "needs-review",
+  "input": "workbench-list.html",
+  "productionReady": false,
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261031.1",
+      "sha256": "ec8ed28188210781fe9d8aab582e41f736a99efc0740a8f6e79deb94e98ba82a",
+      "sourceCommit": "af939228028791e24280015c5d48a35a658d40f3",
+      "sourceHasLocalChanges": false
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261031.1",
+      "sha256": "69045605688b022f114788274991a36f3910eeadd92f876e5407b5b7f2cf75d7",
+      "sourceCommit": "8d5f658b9152fecbe954840ac2f52a01c551636f",
+      "sourceHasLocalChanges": false
+    }
+  ],
+  "templateId": "page",
+  "importedComponents": [
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "GlobalMessageStack",
+      "local": "GlobalMessageStack"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchBreadcrumb",
+      "local": "WorkbenchBreadcrumb"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchButton",
+      "local": "WorkbenchButton"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchCollapse",
+      "local": "WorkbenchCollapse"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchCollapseItem",
+      "local": "WorkbenchCollapseItem"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchDatePicker",
+      "local": "WorkbenchDatePicker"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchDraftListFilter",
+      "local": "WorkbenchDraftListFilter"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchFeedbackDialog",
+      "local": "WorkbenchFeedbackDialog"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchFooter",
+      "local": "WorkbenchFooter"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchForm",
+      "local": "WorkbenchForm"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchFormItem",
+      "local": "WorkbenchFormItem"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchInput",
+      "local": "WorkbenchInput"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchLink",
+      "local": "WorkbenchLink"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchManagementFormModal",
+      "local": "WorkbenchManagementFormModal"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchSelect",
+      "local": "WorkbenchSelect"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchTable",
+      "local": "WorkbenchTable"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchTag",
+      "local": "WorkbenchTag"
+    },
+    {
+      "moduleName": "@workbench/ui-vue3",
+      "exported": "WorkbenchTopNav",
+      "local": "WorkbenchTopNav"
+    }
+  ],
+  "vueImports": [
+    {
+      "moduleName": "vue",
+      "exported": "computed",
+      "local": "__vue_computed"
+    },
+    {
+      "moduleName": "vue",
+      "exported": "reactive",
+      "local": "__vue_reactive"
+    },
+    {
+      "moduleName": "vue",
+      "exported": "ref",
+      "local": "__vue_ref"
+    }
+  ],
+  "prototypeUsages": [
+    {
+      "path": "PartnerUI.mount",
+      "todo": "TODO(conversion.md#mount)",
+      "location": "mount",
+      "source": "PartnerUI.mount"
+    }
+  ],
+  "issues": [
+    {
+      "code": "MANUAL_PRODUCT_MIGRATION",
+      "detail": "No API, mock removal, lifecycle, styles, accessibility, visual parity or production approval is inferred. Guarded skeleton is not runnable production code."
+    },
+    {
+      "code": "MODULE_SCOPE_NOT_COPIED",
+      "detail": "Module-scope imports/data/side effects are retained only in the report; move needed dependencies to typed APIs, mocks or explicit imports."
+    },
+    {
+      "code": "LAYOUT_MIGRATION",
+      "detail": "TODO(conversion.md#layout): replace prototype utilities with feature-owned Token layout."
+    },
+    {
+      "code": "INSTANCE_REFS",
+      "detail": "TODO(conversion.md#mount): replace $refs with typed template refs."
+    }
+  ],
+  "extraction": {
+    "setupBody": "\n    const nav = reactive({\n      active: 'sales',\n      tabs: [{ value: 'home', label: '首页' }, { value: 'programs', label: '伙伴计划' }, { value: 'marketing', label: '营销' }, { value: 'sales', label: '销售' }, { value: 'service', label: '服务' }],\n      sites: [{ value: 'partner', label: '企业伙伴网站' }],\n    })\n    const crumbs = [{ id: 'home', label: '首页', href: '#' }, { id: 'sales', label: '销售', href: '#' }, { id: 'cur', label: '协议管理' }]\n\n    const rows = ref(seed)\n    const statusTone = { 生效中: 'success', 待续签: 'warning', 审批中: 'info', 已到期: 'none' }\n    const statusOptions = [{ value: 'all', label: '全部状态' }, ...statuses.map((s) => ({ value: s, label: s }))]\n    const columns = [\n      { key: 'id', title: '协议编号', field: 'id', width: 150 },\n      { key: 'name', title: '协议名称', field: 'name', primary: true, fluid: true, ellipsis: true },\n      { key: 'partner', title: '合作伙伴', field: 'partner', width: 140 },\n      { key: 'endDate', title: '到期日期', field: 'endDate', width: 130, sortable: true },\n      { key: 'amount', title: '金额（元）', field: 'amount', width: 140, align: 'end', sortable: true },\n      { key: 'status', title: '状态', field: 'status', width: 110 },\n    ]\n    const rowActions = (row) => [\n      { id: 'view', label: '查看' },\n      { id: 'renew', label: '续签', disabled: row.status === '审批中' },\n      { id: 'stop', label: '终止' },\n    ]\n\n    const draft = reactive({ keyword: '', status: 'all' })\n    const applied = reactive({ keyword: '', status: 'all' })\n    const sort = ref(null)\n    const page = ref(1)\n    const pageSize = ref(10)\n    const selected = ref([])\n    const loading = ref(false)\n\n    const filtered = computed(() => {\n      const k = applied.keyword.trim()\n      let list = rows.value.filter((r) => (!k || [r.id, r.name, r.partner].some((v) => v.includes(k))) && (applied.status === 'all' || r.status === applied.status))\n      if (sort.value) {\n        const { key, direction } = sort.value\n        const f = direction === 'asc' ? 1 : -1\n        list = [...list].sort((a, b) => (a[key] > b[key] ? f : a[key] < b[key] ? -f : 0))\n      }\n      return list\n    })\n    const pageRows = computed(() => filtered.value.slice((page.value - 1) * pageSize.value, page.value * pageSize.value))\n\n    const messages = ref([])\n    function notify(message, type = 'success') { messages.value = [{ id: Date.now(), message, type }, ...messages.value] }\n    function dismiss(e) { messages.value = messages.value.filter((m) => m.id !== e.id) }\n\n    function applyFilter() {\n      loading.value = true\n      setTimeout(() => { Object.assign(applied, draft); page.value = 1; selected.value = []; loading.value = false }, 400)\n    }\n    function resetFilter() { Object.assign(draft, { keyword: '', status: 'all' }); applyFilter() }\n\n    const confirm = reactive({ open: false, message: '', row: null })\n    function onRowAction({ row, action }) {\n      if (action.id === 'view') openDetail(row)\n      if (action.id === 'renew') { row.status = '审批中'; notify(`已提交「${row.name}」的续签申请`) }\n      if (action.id === 'stop') Object.assign(confirm, { open: true, row, message: `终止后「${row.name}」将无法继续履约，此操作不可撤销。` })\n    }\n    async function confirmHandler(action) {\n      if (action.id === 'ok') { rows.value = rows.value.filter((r) => r !== confirm.row); notify('协议已终止') }\n      return true\n    }\n    function batchRenew(keys) { rows.value.forEach((r) => { if (keys.includes(r.id) && r.status !== '审批中') r.status = '审批中' }); notify(`已提交 ${keys.length} 份协议的续签申请`); selected.value = [] }\n    function openDetail(row) { notify(`打开详情：${row.name}`, 'info') }\n    function exportList() { notify(`已导出 ${filtered.value.length} 条记录`) }\n\n    const createOpen = ref(false)\n    const form = reactive({ name: '', partner: '', endDate: '' })\n    function openCreate() { Object.assign(form, { name: '', partner: '', endDate: '' }); createOpen.value = true }\n    function saveCreate() {\n      rows.value = [{ id: `HT-2026-${String(rows.value.length + 200).padStart(4, '0')}`, name: form.name, partner: form.partner, endDate: form.endDate || '—', amount: 0, status: '审批中' }, ...rows.value]\n      createOpen.value = false\n      notify('协议已创建')\n    }\n\n    return { nav, crumbs, columns, statusTone, statusOptions, rowActions, draft, applied, sort, page, pageSize, selected, loading,\n      filtered, pageRows, messages, dismiss, applyFilter, resetFilter, confirm, onRowAction, confirmHandler, batchRenew,\n      openDetail, exportList, createOpen, form, openCreate, saveCreate }\n  ",
+    "moduleScope": "const partners = ['星河科技', '远航数码', '启明信息', '海川智能', '北辰网络', '东篱电子', '南山云服务']\nconst statuses = ['生效中', '待续签', '审批中', '已到期']\nconst seed = Array.from({ length: 23 }, (_, i) => ({\n  id: `HT-2026-${String(101 + i).padStart(4, '0')}`,\n  name: `${['华东', '华南', '华北', '西南', '西北'][i % 5]}区${['分销', '服务', '解决方案', '云业务'][i % 4]}框架协议`,\n  partner: partners[i % partners.length],\n  endDate: `2026-${String((i % 12) + 1).padStart(2, '0')}-${String((i * 7) % 28 + 1).padStart(2, '0')}`,\n  amount: 200000 + ((i * 137) % 50) * 25000,\n  status: statuses[i % statuses.length],\n}))",
+    "mountOptions": "{\n  template: '#page',\n  setup() {\n    const nav = reactive({\n      active: 'sales',\n      tabs: [{ value: 'home', label: '首页' }, { value: 'programs', label: '伙伴计划' }, { value: 'marketing', label: '营销' }, { value: 'sales', label: '销售' }, { value: 'service', label: '服务' }],\n      sites: [{ value: 'partner', label: '企业伙伴网站' }],\n    })\n    const crumbs = [{ id: 'home', label: '首页', href: '#' }, { id: 'sales', label: '销售', href: '#' }, { id: 'cur', label: '协议管理' }]\n\n    const rows = ref(seed)\n    const statusTone = { 生效中: 'success', 待续签: 'warning', 审批中: 'info', 已到期: 'none' }\n    const statusOptions = [{ value: 'all', label: '全部状态' }, ...statuses.map((s) => ({ value: s, label: s }))]\n    const columns = [\n      { key: 'id', title: '协议编号', field: 'id', width: 150 },\n      { key: 'name', title: '协议名称', field: 'name', primary: true, fluid: true, ellipsis: true },\n      { key: 'partner', title: '合作伙伴', field: 'partner', width: 140 },\n      { key: 'endDate', title: '到期日期', field: 'endDate', width: 130, sortable: true },\n      { key: 'amount', title: '金额（元）', field: 'amount', width: 140, align: 'end', sortable: true },\n      { key: 'status', title: '状态', field: 'status', width: 110 },\n    ]\n    const rowActions = (row) => [\n      { id: 'view', label: '查看' },\n      { id: 'renew', label: '续签', disabled: row.status === '审批中' },\n      { id: 'stop', label: '终止' },\n    ]\n\n    const draft = reactive({ keyword: '', status: 'all' })\n    const applied = reactive({ keyword: '', status: 'all' })\n    const sort = ref(null)\n    const page = ref(1)\n    const pageSize = ref(10)\n    const selected = ref([])\n    const loading = ref(false)\n\n    const filtered = computed(() => {\n      const k = applied.keyword.trim()\n      let list = rows.value.filter((r) => (!k || [r.id, r.name, r.partner].some((v) => v.includes(k))) && (applied.status === 'all' || r.status === applied.status))\n      if (sort.value) {\n        const { key, direction } = sort.value\n        const f = direction === 'asc' ? 1 : -1\n        list = [...list].sort((a, b) => (a[key] > b[key] ? f : a[key] < b[key] ? -f : 0))\n      }\n      return list\n    })\n    const pageRows = computed(() => filtered.value.slice((page.value - 1) * pageSize.value, page.value * pageSize.value))\n\n    const messages = ref([])\n    function notify(message, type = 'success') { messages.value = [{ id: Date.now(), message, type }, ...messages.value] }\n    function dismiss(e) { messages.value = messages.value.filter((m) => m.id !== e.id) }\n\n    function applyFilter() {\n      loading.value = true\n      setTimeout(() => { Object.assign(applied, draft); page.value = 1; selected.value = []; loading.value = false }, 400)\n    }\n    function resetFilter() { Object.assign(draft, { keyword: '', status: 'all' }); applyFilter() }\n\n    const confirm = reactive({ open: false, message: '', row: null })\n    function onRowAction({ row, action }) {\n      if (action.id === 'view') openDetail(row)\n      if (action.id === 'renew') { row.status = '审批中'; notify(`已提交「${row.name}」的续签申请`) }\n      if (action.id === 'stop') Object.assign(confirm, { open: true, row, message: `终止后「${row.name}」将无法继续履约，此操作不可撤销。` })\n    }\n    async function confirmHandler(action) {\n      if (action.id === 'ok') { rows.value = rows.value.filter((r) => r !== confirm.row); notify('协议已终止') }\n      return true\n    }\n    function batchRenew(keys) { rows.value.forEach((r) => { if (keys.includes(r.id) && r.status !== '审批中') r.status = '审批中' }); notify(`已提交 ${keys.length} 份协议的续签申请`); selected.value = [] }\n    function openDetail(row) { notify(`打开详情：${row.name}`, 'info') }\n    function exportList() { notify(`已导出 ${filtered.value.length} 条记录`) }\n\n    const createOpen = ref(false)\n    const form = reactive({ name: '', partner: '', endDate: '' })\n    function openCreate() { Object.assign(form, { name: '', partner: '', endDate: '' }); createOpen.value = true }\n    function saveCreate() {\n      rows.value = [{ id: `HT-2026-${String(rows.value.length + 200).padStart(4, '0')}`, name: form.name, partner: form.partner, endDate: form.endDate || '—', amount: 0, status: '审批中' }, ...rows.value]\n      createOpen.value = false\n      notify('协议已创建')\n    }\n\n    return { nav, crumbs, columns, statusTone, statusOptions, rowActions, draft, applied, sort, page, pageSize, selected, loading,\n      filtered, pageRows, messages, dismiss, applyFilter, resetFilter, confirm, onRowAction, confirmHandler, batchRenew,\n      openDetail, exportList, createOpen, form, openCreate, saveCreate }\n  },\n}",
+    "omittedScriptSources": [
+      "runtime/partner-ui-runtime.js"
+    ],
+    "omittedStylesheetSources": [
+      "fonts/partner-ui-fonts.css",
+      "runtime/partner-ui-runtime.css"
+    ]
+  }
+}

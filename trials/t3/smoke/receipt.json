@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "scope": "one development smoke per route, two viewport visits",
+  "evidence": false,
+  "routes": [
+    {
+      "path": "/",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        }
+      ]
+    },
+    {
+      "path": "/agreements",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        }
+      ]
+    }
+  ],
+  "startedAt": "2026-10-31T10:01:46.621Z",
+  "aiComponentNames": [
+    "AgreementAssistantPanel",
+    "AgreementTable",
+    "AiAlert",
+    "AiIcon",
+    "AiIconProvider",
+    "AiSummaryCard",
+    "AiToast",
+    "AssistantHostLayout",
+    "BusinessNavigationCard",
+    "BusinessOverlayHost",
+    "ChatPanel",
+    "UiDialog",
+    "WorkspaceSmartCard",
+    "WorkspaceSmartIcon",
+    "WorkspaceSmartTabs",
+    "WorkspaceSmartTag"
+  ],
+  "devLog": "\n  VITE v7.3.6  ready in 103 ms\n\n  ➜  Local:   http://127.0.0.1:63377/\n",
+  "finishedAt": "2026-10-31T10:01:47.688Z"
+}

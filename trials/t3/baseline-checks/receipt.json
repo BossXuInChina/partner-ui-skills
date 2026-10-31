@@ -1,0 +1,37 @@
+[
+  {
+    "name": "install",
+    "exitCode": 0,
+    "seconds": 12.882
+  },
+  {
+    "name": "frozen",
+    "exitCode": 0,
+    "seconds": 1.879
+  },
+  {
+    "name": "format",
+    "exitCode": 0,
+    "seconds": 1.65
+  },
+  {
+    "name": "typecheck",
+    "exitCode": 0,
+    "seconds": 2.155
+  },
+  {
+    "name": "lint",
+    "exitCode": 0,
+    "seconds": 3.3
+  },
+  {
+    "name": "unit",
+    "exitCode": 0,
+    "seconds": 4.96
+  },
+  {
+    "name": "build",
+    "exitCode": 0,
+    "seconds": 3.592
+  }
+]
