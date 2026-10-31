@@ -154,6 +154,19 @@ const installedHarness = resolve(
   process.env.PARTNER_HARNESS_TOOLCHAIN ??
     join(root, "dist/partner-ui-vue3/assets/harness"),
 );
+test("smoke help exits without starting a server or installing tools", () => {
+  const result = spawnSync(
+    process.execPath,
+    [join(root, "skills/partner-ui-vue3/scripts/smoke.mjs"), "--help"],
+    {
+      cwd: tmpdir(),
+      encoding: "utf8",
+    },
+  );
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Usage:/);
+  assert.match(result.stdout, /#app/);
+});
 test(
   "isolated skill uses only harness tools and captures actual browser failures",
   {
@@ -192,14 +205,15 @@ test(
       );
       writeFileSync(
         join(project, "main.js"),
-        `import {createApp,h} from 'vue';
+        `import {createApp,h,Teleport} from 'vue';
 const path=location.pathname;
 const InlineAi={name:'WorkspaceSmartTag',render(){return h('span',{style:{display:'inline-block',height:'24px'}},'Inline AI fixture')}};
 const PublicAiIcon={name:'AiIcon',render(){return h('span',{style:{display:'inline-block',height:'24px'}},'Public AI icon')}};
+const PortalAi={name:'AiIcon',render(){return h(Teleport,{to:'body'},h('div',{class:path.includes('scoped')?'partner-ai':'host'},[h('span',{style:{display:'block',height:'24px'}},'Teleported AI icon')]))}};
 const HostLayout={name:'AssistantHostLayout',render(){return h('div',{class:'business-layout'},this.$slots.default?.())}};
 const OverlayHost={name:'BusinessOverlayHost',render(){return h('div',{class:'business-overlays'},this.$slots.default?.())}};
 const BusinessDialog={name:'UiDialog',props:{theme:String},render(){return h('div',{class:'business-dialog'},this.$slots.default?.())}};
-createApp({name:'AiChatPage',render(){return h(HostLayout,null,{default:()=>h(OverlayHost,null,{default:()=>h('main',{'data-template-ready':'true'},[h('h1','Fixture'),path.includes('dialog')?h(BusinessDialog,{theme:path.includes('aurora')?'aurora':'workbench'},{default:()=>path.includes('dialog-icon')?h(PublicAiIcon):h('p','Business dialog content')}):null,path.includes('icon-outside')&&!path.includes('dialog')?h(PublicAiIcon):null,path.includes('inline')?h('div',{class:path.includes('outside')?'host':'partner-ai',style:{height:'24px'}},[h(InlineAi)]):h('div',{class:path.includes('outside')?'host':'partner-ai',style:{height:path.includes('short')?'100px':'400px'}},[h('section',{'data-ai-component':'ChatPanel',style:{height:'100%'}},'AI fixture')])])})})}}).mount('#app');
+createApp({name:'AiChatPage',render(){return h(HostLayout,null,{default:()=>h(OverlayHost,null,{default:()=>h('main',{'data-template-ready':'true'},[h('h1','Fixture'),path.includes('teleport')?h(PortalAi):null,path.includes('dialog')?h(BusinessDialog,{theme:path.includes('aurora')?'aurora':'workbench'},{default:()=>path.includes('dialog-icon')?h(PublicAiIcon):h('p','Business dialog content')}):null,path.includes('icon-outside')&&!path.includes('dialog')?h(PublicAiIcon):null,path.includes('inline')?h('div',{class:path.includes('outside')&&!path.includes('teleport')?'host':'partner-ai',style:{height:'24px'}},[h(InlineAi)]):h('div',{class:path.includes('outside')&&!path.includes('teleport')?'host':'partner-ai',style:{height:path.includes('short')?'100px':'400px'}},[h('section',{'data-ai-component':'ChatPanel',style:{height:'100%'}},'AI fixture')])])})})}}).mount('#app');
 if(path.includes('console'))console.error('negative fixture console error');
 if(path.includes('warning'))console.warn('[Vue warn]: Failed to resolve component: FixtureMissing');`,
       );
@@ -222,12 +236,13 @@ if(path.includes('warning'))console.warn('[Vue warn]: Failed to resolve componen
           { path: "/good", expectAI: true },
           { path: "/inline", expectAI: true },
           { path: "/workbench-dialog", expectAI: true },
+          { path: "/teleport-scoped", expectAI: true },
         ],
         out: output,
         evidence: false,
       });
       assert.equal(clean.status, "PASS");
-      assert.equal(clean.routes.length, 3);
+      assert.equal(clean.routes.length, 4);
       assert.equal(
         clean.routes[1].visits[0].ai.ai[0].name,
         "WorkspaceSmartTag",
@@ -300,6 +315,7 @@ if(path.includes('warning'))console.warn('[Vue warn]: Failed to resolve componen
             "/icon-outside",
             "/dialog-icon-outside",
             "/aurora-dialog",
+            "/teleport-outside",
           ],
           out: join(temporary, "failures"),
           evidence: false,
@@ -357,11 +373,19 @@ if(path.includes('warning'))console.warn('[Vue warn]: Failed to resolve componen
             error.includes("AI_SCOPE: UiDialog"),
           ),
       );
+      // Real Teleport ownership and computed geometry require this browser runner.
+      assert.ok(
+        failure.routes
+          .find((route) => route.path === "/teleport-outside")
+          .visits.every((visit) =>
+            visit.errors.some((error) => error.includes("AI_SCOPE: AiIcon")),
+          ),
+      );
       assert.equal(
         readdirSync(join(temporary, "failures")).filter((name) =>
           name.endsWith("-failure.png"),
         ).length,
-        16,
+        18,
       );
       assert.equal(
         JSON.parse(

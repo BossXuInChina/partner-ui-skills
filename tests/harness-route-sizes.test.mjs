@@ -224,3 +224,70 @@ test("style-only and fully removed modules cannot masquerade as a route JS facad
     ["/templates/blank"],
   );
 });
+
+test("a trimmed harness attributes only selected routes and still rejects a missing selected facade", () => {
+  const bundle = outputFixture();
+  delete bundle["assets/blank.js"];
+  const plugin = routeChunkReport({
+    root: "/project",
+    names: ["workbench-list"],
+  });
+  const emitted = [];
+  const context = {
+    emitFile: (asset) => emitted.push(asset),
+    error: (message) => {
+      throw new Error(message);
+    },
+  };
+  plugin.generateBundle.handler.call(context, {}, bundle);
+  assert.deepEqual(
+    JSON.parse(emitted[0].source).routes.map((route) => route.route),
+    ["/templates/workbench-list"],
+  );
+  delete bundle["assets/workbench-list.js"];
+  assert.throws(
+    () => plugin.generateBundle.handler.call(context, {}, bundle),
+    /ROUTE_CHUNK_FACADE_MISSING:\/templates\/workbench-list/,
+  );
+});
+
+test("product route configuration follows an explicit feature facade and reports its actual path", () => {
+  const bundle = outputFixture();
+  const page = bundle["assets/workbench-list.js"];
+  page.facadeModuleId = "/project/src/features/agreements/Page.vue";
+  page.modules = { [page.facadeModuleId]: { renderedLength: 30 } };
+  const report = analyzeRouteChunks(bundle, {
+    root: "/project",
+    routes: [
+      { route: "/agreements/:id?", file: "src/features/agreements/Page.vue" },
+    ],
+  });
+  assert.equal(report.routes[0].route, "/agreements/:id?");
+  assert.equal(report.routes[0].facade, "src/features/agreements/Page.vue");
+  assert.equal(report.routes[0].businessRoute, true);
+  assert.deepEqual(report.missingRoutes, []);
+});
+
+test("empty, conflicting, malformed or escaping route configuration cannot silently disable attribution", () => {
+  for (const options of [
+    { names: [] },
+    { routes: [] },
+    { names: "blank" },
+    { routes: null },
+    { names: ["blank"], routes: [] },
+    { names: ["../blank"] },
+    { routes: [{ route: "https://elsewhere", file: "src/Page.vue" }] },
+    { routes: [{ route: "/page", file: "../Page.vue" }] },
+    { routes: [{ route: "/page", file: "src/Page.vue", business: "yes" }] },
+    {
+      routes: [
+        { route: "/page", file: "src/Page.vue" },
+        { route: "/page", file: "src/Other.vue" },
+      ],
+    },
+  ])
+    assert.throws(
+      () => routeChunkReport({ root: "/project", ...options }),
+      /ROUTE_CHUNK_CONFIG/,
+    );
+});

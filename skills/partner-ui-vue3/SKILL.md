@@ -56,15 +56,18 @@ Page 负责布局与意图，组合式函数负责状态/并发/取消，API 层
 
 在独立 Skill 的 `assets/harness` 安装冻结依赖后，运行类型、Lint、规则、单测和生产构建。`pnpm verify` 串联这些检查及显式 QA 网络桩 smoke；`pnpm smoke` 检查宿主实际服务。QA 桩由独立 Node 测试进程注入，不进入生产图。
 
-当前可用入口：
+工具用法与生成边界见 [工具说明](references/tools.md)。常用入口：
 
 ```sh
+node scripts/new_feature.mjs agreements --template workbench-list --out <new-feature-dir>
+node scripts/find_icon.mjs 告警 --family status --limit 5
+node scripts/convert_prototype.mjs --input <prototype.html> --out <new-conversion-dir>
 node scripts/check_vue.mjs <feature-dir>
 node scripts/smoke.mjs --project <harness-dir>
 ```
 
 `smoke` 使用 dev 模式捕获 Vue 警告，每条路由一个 smoke、覆盖 1440×900 和 1280×800；真实面板高度小于 200px、AI scope 缺失或控制台错误会失败；控件越界与资源加载仍需专项复核。成功截图仅显式证据开关保存，失败保留诊断。原型转换的视觉对照在交付试验时做，不建立每组件常驻浏览器套件。
 
-生成/查图/自动转换辅助入口尚待后续工具版本补齐；当前按上述模板和 [转换对照](references/conversion.md) 手工执行，不调用不存在的脚本。完整命令、检查层级和截图边界见 [测试](references/testing.md)。
+生成器只创建源码起点，不安装或改宿主；转换器输出带 mount guard 的 `needs-review` 提取稿，按 [转换对照](references/conversion.md) 手工迁移完成后才能移除 guard。完整命令、检查层级和截图边界见 [测试](references/testing.md)。
 
 交付时先报告实际结果，给出可审查源码、清单、检查范围及未解决契约；不把定向通过写成全量通过。发布频率和外部操作按当次用户授权执行。

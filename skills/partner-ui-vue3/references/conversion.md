@@ -54,4 +54,12 @@ Workflow B 只用于由 `partner-ui-pages` 生成且原始 HTML/runtime 可取�
 
 交付记录保留源原型、已迁移交互、自有块、API 的 provided/assumed 状态、包来源与资格声明、未解决差异及实际检查范围/耗时，见 [delivery.md](delivery.md)。静态/单测/视觉检查不等于生产批准。
 
-`new_feature.mjs`、`find_icon.mjs`、`convert_prototype.mjs` 属于后续工具版本，当前不提供可用命令。现在手工从 assets 复制模板/scaffold，查生成 icons 元数据，逐项按本页迁移并运行现有 [检查](testing.md)；不要用另一个 runtime 编译器代替转换。
+先用静态提取工具形成可审查草稿：
+
+```sh
+node scripts/convert_prototype.mjs --input <prototype.html> --out <new-directory> --project <installed-harness>
+```
+
+输出 `Page.vue` 与 `conversion.json`，状态始终 `needs-review`。它按实际公开 value exports 为可识别标签添加 imports、抽取 setup 并改写 Vue 引用，将原型 helper 标为 `TODO(conversion.md#…)` 与显式抛错占位；不执行 HTML/runtime。模块级 seed/副作用不进入 Page，原文留在报告供逐项迁移。未知组件、闭包依赖和动态行为不能自动变成产品能力。输出带 `PROTOTYPE_CONVERSION_NEEDS_REVIEW` mount guard；人工完成 API、状态和布局等迁移后，才移除 guard 进行实际挂载、交互与视觉检查；这些检查完成前状态仍是 `needs-review`。
+
+工具拒绝已有输出及不支持的输入结构，父目录须存在；更多边界见 [tools.md](tools.md)。手工迁移可从 `new_feature` 生成起点并用 `find_icon` 查询注册名；不要用另一个 runtime 编译器代替转换。

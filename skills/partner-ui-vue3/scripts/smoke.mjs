@@ -267,7 +267,9 @@ export function inspectAiDom(publicNames) {
     );
   const seen = new Set();
   // Development Vue exposes component owners on DOM nodes, including fragment children.
-  for (const element of document.querySelectorAll("#app *")) {
+  const application = document.querySelector("#app")?.__vue_app__;
+  // Teleported descendants keep the same Vue app context outside the mount node.
+  for (const element of document.querySelectorAll("*")) {
     for (
       let instance = element.__vueParentComponent;
       instance && !seen.has(instance);
@@ -275,7 +277,7 @@ export function inspectAiDom(publicNames) {
     ) {
       seen.add(instance);
       const name = instance.type?.name || instance.type?.__name || "";
-      if (aiNames.has(name)) {
+      if (aiNames.has(name) && instance.appContext?.app === application) {
         const owner =
           instance.subTree?.el instanceof Element
             ? instance.subTree.el
@@ -544,10 +546,20 @@ if (
   realpathSync(resolve(process.argv[1])) === realpathSync(ownFile)
 ) {
   try {
-    const result = await runSmoke(parseSmokeOptions(process.argv.slice(2)));
-    console.log(
-      `PASS: ${result.routes.length} route smoke(s), two viewports each; receipt: ${result.receipt}`,
-    );
+    const args = process.argv.slice(2);
+    if (args.length === 1 && args[0] === "--help") {
+      console.log(`Usage: node scripts/smoke.mjs [--project <harness>] [--routes <json>] [--url <dev-url>] [--out <directory>] [--timeout <ms>] [--evidence]
+Runs headless Vite development smoke at 1440x900 and 1280x800.
+Requires a mounted #app Vue application and a visible main element.
+Defaults to the six template routes; install the local harness dependencies first.
+The host must provide its API or the caller must inject QA network fixtures.
+Successful screenshots are opt-in; failures retain diagnostic screenshots.`);
+    } else {
+      const result = await runSmoke(parseSmokeOptions(args));
+      console.log(
+        `PASS: ${result.routes.length} route smoke(s), two viewports each; receipt: ${result.receipt}`,
+      );
+    }
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;

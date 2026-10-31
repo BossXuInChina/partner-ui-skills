@@ -35,7 +35,58 @@ const assetKind = (file) =>
           ? 'sourceMaps'
           : 'other';
 
-export function analyzeRouteChunks(bundle, { root = process.cwd(), names = TEMPLATE_NAMES } = {}) {
+function routeDefinitions(root, { names, routes }) {
+  if (names !== undefined && routes !== undefined)
+    throw new Error('ROUTE_CHUNK_CONFIG: choose names or explicit routes');
+  if (
+    (names !== undefined && !Array.isArray(names)) ||
+    (routes !== undefined && !Array.isArray(routes))
+  )
+    throw new Error('ROUTE_CHUNK_CONFIG: names and routes must be arrays');
+  const selected =
+    routes ??
+    (names ?? TEMPLATE_NAMES).map((name) => {
+      if (typeof name !== 'string' || !/^[a-z][a-z0-9-]*$/.test(name))
+        throw new Error('ROUTE_CHUNK_CONFIG: invalid template name');
+      return {
+        route: '/templates/' + name,
+        file: `src/templates/${name}/Page.vue`,
+        business: businessTemplates.has(name),
+      };
+    });
+  if (!Array.isArray(selected) || selected.length === 0)
+    throw new Error('ROUTE_CHUNK_CONFIG: select at least one route');
+  const seen = new Set();
+  return selected.map((entry) => {
+    if (
+      !entry ||
+      typeof entry.route !== 'string' ||
+      !/^\/(?!\/)[^\s#\\]*$/.test(entry.route) ||
+      typeof entry.file !== 'string' ||
+      !entry.file.endsWith('.vue') ||
+      (entry.business !== undefined && typeof entry.business !== 'boolean')
+    )
+      throw new Error('ROUTE_CHUNK_CONFIG: expected {route, file, business?}');
+    const file = cleanId(resolve(root, entry.file));
+    const local = relative(resolve(root), file);
+    if (
+      local === '..' ||
+      local.startsWith('../') ||
+      local.startsWith('..\\') ||
+      /^(?:[a-z]:[\\/]|\/)/i.test(local) ||
+      seen.has(entry.route)
+    )
+      throw new Error('ROUTE_CHUNK_CONFIG: duplicate route or file outside project');
+    seen.add(entry.route);
+    return { ...entry, file, business: entry.business ?? true };
+  });
+}
+
+export function analyzeRouteChunks(
+  bundle,
+  { root = process.cwd(), names, routes: selectedRoutes } = {},
+) {
+  const definitions = routeDefinitions(root, { names, routes: selectedRoutes });
   const chunks = new Map(
     Object.values(bundle)
       .filter((output) => output.type === 'chunk')
@@ -118,9 +169,8 @@ export function analyzeRouteChunks(bundle, { root = process.cwd(), names = TEMPL
     .sort();
   const applicationInitial = closure(entryFiles);
   const missingRoutes = [];
-  const routes = names.map((name) => {
-    const suffix = `/src/templates/${name}/Page.vue`;
-    const isPage = (id) => cleanId(id).endsWith(suffix) && !String(id).includes('type=style');
+  const routes = definitions.map((definition) => {
+    const isPage = (id) => cleanId(id) === definition.file && !String(id).includes('type=style');
     const renderedPage = (chunk) =>
       Object.entries(chunk.modules ?? {}).find(
         ([id, info]) => isPage(id) && info.renderedLength !== 0,
@@ -131,8 +181,8 @@ export function analyzeRouteChunks(bundle, { root = process.cwd(), names = TEMPL
       : [...chunks.values()].filter((chunk) => !!renderedPage(chunk));
     const entry = fallback.find((chunk) => chunk.isDynamicEntry) ?? fallback[0];
     if (!entry) {
-      missingRoutes.push('/templates/' + name);
-      return { route: '/templates/' + name, status: 'unattributed', facade: null };
+      missingRoutes.push(definition.route);
+      return { route: definition.route, status: 'unattributed', facade: null };
     }
     const staticFiles = closure([entry.fileName]);
     const initialFiles = closure([...entryFiles, entry.fileName]);
@@ -147,7 +197,7 @@ export function analyzeRouteChunks(bundle, { root = process.cwd(), names = TEMPL
     const dynamicFiles = closure(directDynamic, true);
     for (const file of staticFiles) dynamicFiles.delete(file);
     return {
-      route: '/templates/' + name,
+      route: definition.route,
       status: 'attributed',
       facade: displayId(entry.facadeModuleId),
       sourceModule: displayId(renderedPage(entry) || entry.facadeModuleId),
@@ -171,7 +221,7 @@ export function analyzeRouteChunks(bundle, { root = process.cwd(), names = TEMPL
           'application entry static closure plus this selected route; other route dynamic imports are excluded',
         ...summarize(initialFiles),
       },
-      businessRoute: businessTemplates.has(name),
+      businessRoute: definition.business,
     };
   });
   const routeCounts = new Map();
@@ -241,7 +291,13 @@ export function analyzeRouteChunks(bundle, { root = process.cwd(), names = TEMPL
   };
 }
 
-export function routeChunkReport({ root = process.cwd(), reportFile = 'route-chunks.json' } = {}) {
+export function routeChunkReport({
+  root = process.cwd(),
+  reportFile = 'route-chunks.json',
+  names,
+  routes,
+} = {}) {
+  routeDefinitions(root, { names, routes });
   return {
     name: 'partner-template-route-chunks',
     apply: 'build',
@@ -249,7 +305,7 @@ export function routeChunkReport({ root = process.cwd(), reportFile = 'route-chu
     generateBundle: {
       order: 'post',
       handler(_options, bundle) {
-        const report = analyzeRouteChunks(bundle, { root });
+        const report = analyzeRouteChunks(bundle, { root, names, routes });
         if (report.missingRoutes.length)
           this.error('ROUTE_CHUNK_FACADE_MISSING:' + report.missingRoutes.join(','));
         this.emitFile({

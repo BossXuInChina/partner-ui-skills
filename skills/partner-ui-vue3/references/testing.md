@@ -4,7 +4,7 @@
 
 ## 使用已提供的工具
 
-使用 harness 声明的 Node、packageManager、锁文件和随包工具，不依赖全局安装。复制 feature 后调整宿主路径与路由，具体见 [integration.md](integration.md)。在验证工程目录运行：
+使用 harness 的 packageManager、锁文件和随包工具，不依赖全局安装的检查器。当前所锁 pnpm 要求 Node ≥22.13，engines 与技术栈默认声明差异见 [集成](integration.md)；不要在 22.12 用 pnpm 结果声称完整工程通过。复制 feature 后调整宿主路径与路由，具体见 [integration.md](integration.md)。在验证工程目录运行：
 
 ```sh
 cd assets/harness
@@ -29,7 +29,7 @@ pnpm run verify
 
 ## 静态与 mock 门禁
 
-`check_vue.mjs` 检查公开导入边界、组件内部 CSS 覆盖、`!important`、硬编码颜色、图标名、非法 mock 导入、runtime template/compile、未净化 v-html、原生对话框与 PartnerUI 全局。spacing 非 4 倍数是 warning。它不证明完整运行时数据流、无障碍或业务正确性，不能代替类型/组件/浏览器验证。
+`check_vue.mjs` 检查公开导入边界、组件内部 CSS 覆盖、`!important`、硬编码颜色、图标名、非法 mock 导入、runtime template/compile、未净化 v-html、原生对话框与 PartnerUI 全局。spacing 非 4 倍数是 warning。它只追踪确定的局部常量、词法绑定与有限静态表达式；HTML 净化只认可不可变且未被重写的值和真实 Vue computed。let、可变 ref、任意 helper 返回等不确定值不会判为已净化。复杂解构、重导出、动态 options/样式/图标与未知函数副作用仍需复核。静态通过不是完整安全证明，也不证明完整运行时数据流、无障碍或业务正确性，不能代替类型/组件/浏览器验证。
 
 `mocks/` 和 `*.mock.*` 只用于明确开发入口或测试。harness `.env.test` 显式启用 `VITE_ENABLE_MOCKS=true`，仅供 unit 注入测试替身；生产默认关闭，preview/smoke 使用外部 HTTP fixture。不要把该标记复制进 `.env.production`。
 
@@ -39,7 +39,7 @@ pnpm run verify
 
 `smoke.mjs` 启动 Vite **dev**，从安装包公开类型取得 AI 组件名单；检查真实 DOM 的 console/页面错误、Vue warning、AI scope 与真实面板高度，并在 finally 关闭浏览器与服务。中性宿主与业务弹层例外、内联小卡片的尺寸规则见 [ai-ui-vue.md](ai-ui-vue.md)。相对图片地址仍须实际加载，不能通过忽略坏图完成验收。当前 smoke 没有独立坏图或控件越界检测器；这些项目须另做实际 DOM/资源复核，阶段视觉工具会检查图片是否加载成功。
 
-已有产品可给本地工具传 `--routes <json>` 选择相关路由，路由项含 `path`，可加 `readySelector` 与 `expectAI`。当前工具还要求 Vite dev、`#app.__vue_app__` 挂载点和可见 `<main>`，AI 实例遍历也限于 `#app`；适用于附带 harness 及符合这些条件的宿主。其他挂载约定须适配 QA 工具或用产品已有浏览器验证，不为通过工具改产品结构。这仍是定向 dev smoke，不是全部产品行为测试。只有需要绘制/浏览器行为的改动才扩大浏览器范围。
+已有产品可给本地工具传 `--routes <json>` 选择相关路由，路由项含 `path`，可加 `readySelector` 与 `expectAI`。当前工具还要求 Vite dev、`#app.__vue_app__` 挂载点和可见 `<main>`，AI 实例按 `#app` 的 app context 归属遍历，包含 Teleport 到挂载点外的节点；适用于附带 harness 及符合这些条件的宿主。其他挂载约定须适配 QA 工具或用产品已有浏览器验证，不为通过工具改产品结构。这仍是定向 dev smoke，不是全部产品行为测试。只有需要绘制/浏览器行为的改动才扩大浏览器范围。
 
 ## 截图只用于明确的证据任务
 
@@ -61,4 +61,4 @@ node build/verify-template-parity.mjs --evidence --project <已安装的独立ha
 
 TinyRobot 归因基于有实际 rendered 内容的模块 ID；已预编译进其他包单体代码的内容无法独立归因。依赖图未识别到 TinyRobot 不等于证明其字节不存在，动态输出也不能说成“没有产物”。发现包级单体/加载问题回包维护流程处理，不能由 feature 绕开公开入口或复制组件源码。
 
-`new_feature/find_icon/convert_prototype` 尚待后续工具版本；此处只列现有命令。交付按 [delivery.md](delivery.md) 如实记录未运行项与范围。
+其他工具用法见 [tools.md](tools.md)；生成和提取成功本身不是验证通过，转换稿的 mount guard 只在人工完成迁移后移除。交付按 [delivery.md](delivery.md) 如实记录未运行项与范围。

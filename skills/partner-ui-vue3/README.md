@@ -34,7 +34,7 @@
 
 以下命令针对生成或解压后的完整 Skill，安装仅需其 `assets/harness` 依赖；无需在 Skill 根安装维护工具。消费包维护源仓先运行自身 `pnpm build`，再进入产物 `dist/partner-ui-vue3`；不要直接运行缺少生成文件的源模板目录。
 
-从独立 Skill 根目录执行：
+当前所锁 pnpm 11.22.0 运行要求 Node ≥22.13，engines 尚写 22.12 的差异见 [integration.md](references/integration.md)。从独立 Skill 根目录执行：
 
 ```sh
 cd assets/harness
@@ -53,7 +53,7 @@ pnpm run smoke:fixtures --evidence
 
 `dev` 不自动提供后端。harness 自带的 `VITE_TEMPLATE_API_BASE=/__template-api` 属于 assumed 验证配置；`smoke:fixtures` 明确在 QA Node 进程使用网络桩。接真实服务后可运行 `pnpm smoke`。成功截图仅在 `--evidence` 或证据环境变量开启时保存；失败保留诊断。原字体视觉 QA 的可选参数和各检查细节见 [harness README](assets/harness/README.md) 与 [testing.md](references/testing.md)。
 
-目前可用规则检查与 smoke 工具；`new_feature`、`find_icon`、`convert_prototype` 自动化入口尚未交付，当前按对应参考和模板实现。
+工具已提供 `new_feature`、`find_icon`、`convert_prototype`、`check_vue` 和 `smoke`；用法见 [tools.md](references/tools.md)。生成器不自动安装/改宿主；转换器仅产出 guarded needs-review 提取稿，仍须按转换对照完成业务迁移。
 
 ## 包锁与交付边界
 

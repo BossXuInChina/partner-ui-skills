@@ -8,7 +8,7 @@
 
 - 消费随 Skill 的 `vendor/` tarball，通过 `file:` 安装，核实 `source.lock.json` 的版本、SHA-256 与完整 source commit。发布包是 API 真值；不读取相邻 Workbench/AI UI 维护仓。
 - 独立 harness 从 `assets/harness/` 执行 `pnpm install --frozen-lockfile`；这里的 `file:../../vendor/<filename>` 按打包后的 Skill 目录解析。保留 vendor、lock 和 workspace，不把源码目录当 npm 包。
-- harness 使用 Node ≥22.12 与其声明的 pnpm，`pnpm-workspace.yaml` overrides 将 Vue 及其 runtime/compiler/shared 子包固定 3.5.13；Vite `resolve.dedupe` 含 `vue` 与 TinyRobot。现有产品用其等价 overrides/dedupe 配置，并核对子包是否一致。
+- harness 当前 engines 声明 Node ≥22.12，但所锁 pnpm 11.22.0 实际要求 Node ≥22.13（22.12 会在 pnpm 启动时失败）；运行完整工程请用 22.13+。该工具链声明待统一，不能把 22.12 的脚本验证当作完整安装验证。`pnpm-workspace.yaml` overrides 将 Vue 及其 runtime/compiler/shared 子包固定 3.5.13；Vite `resolve.dedupe` 含 `vue` 与 TinyRobot。现有产品用其等价 overrides/dedupe 配置，并核对子包是否一致。
 - 用安装树、实际 resolved 路径及消费者构建/浏览器证据确认单实例；overrides 或版本字符串相同本身不构成证明。不要在同页把 CDN Vue、另一包的嵌套 Vue 或不同 URL 的 Vue 模块混用。
 - 使用 scaffold 的 `AssistantCloseButton.vue` 时，产品直接声明 `@opentiny/tiny-robot@0.5.1`。它使用公开 `TrActionButton` 和 AI UI 的 `AiIcon`；AI UI 当前没有对应 close-button 组件导出，不依赖传递依赖碰巧可解析。
 
@@ -39,7 +39,7 @@ AI 入口用 `defineAsyncComponent` 或路由动态 import，业务 renderers �
 
 AI 组件置于 `.partner-ai` scope；聊天/助手**面板**从宿主取得明确高度（可采用已确定高度的 flex/grid 容器，并给可收缩子项 `min-height: 0`）。验证实际面板至少 200px，不只看祖先写了百分比。内联 SmartTag/Card 保持内容高度，不强行撑为面板。宿主外层保持中性，布局包装类属于 feature；AI 自身视觉通过公开 API 与 Token 控制。
 
-附带 `routeChunkReport({ root })` 默认要求六份 `src/templates/<name>/Page.vue` 全部参与构建。当前包装插件没有暴露 `names` 配置；只保留部分示例时，需在验证工程副本中让该插件向 `analyzeRouteChunks` 传递实际保留的模板名，并同步 router 与 QA 路由。若功能移到产品自己的目录或改变路由名，须适配报表匹配/路由字段或使用产品自身分析；当前插件不是任意业务路由的通用扫描器。不能以补回无关页面或忽略构建错误完成精简接入。
+附带 `routeChunkReport({ root })` 默认要求六份 `src/templates/<name>/Page.vue` 全部参与构建。只保留部分示例时，在 `vite.config.ts` 用 `routeChunkReport({ root, names: ['workbench-list'] })` 选实际保留模板，并同步 router 与 QA 路由。功能采用产品目录/路由时，改传显式 `routes: [{ route: '/agreements', file: 'src/features/agreements/Page.vue', business: true }]`（不与 `names` 同传）；`file` 必须对应项目内实际参与构建的 Page，路由表非空且名称唯一。缺失所选 facade 仍使构建失败。插件只归因显式配置，不自动发现任意业务路由；不能以补回无关页面或忽略构建错误完成精简接入。
 
 懒加载只能改变消费入口。检查构建的 `route-chunks.json`，记录应用入口加路由静态闭包中的真实 TinyRobot 归属；包本身若有聚合依赖，不能用 `defineAsyncComponent` 的存在宣称已消除首屏成本。
 
@@ -59,6 +59,6 @@ scaffold 的 transport 接收配置 URL/headers 与协议 decoder，处理流式
 
 `check_vue.mjs` 和 `smoke.mjs` 已提供，具体规则、运行方式与证据开关见 [testing.md](testing.md)。harness 有类型、lint、单测、mock 构建 guard 及路由 chunk 报告；这些检查不等于平台注册、真实 API 或生产批准。
 
-`new_feature.mjs`、`find_icon.mjs`、`convert_prototype.mjs` 尚待后续脚本阶段实现，本阶段不宣称可调用。当前等价做法：手工复制所选模板并注册懒路由；检索 [icons.json](icons.json) 的真实注册名；按 [conversion.md](conversion.md) 将原型逐项迁为 SFC，并人工核对公开导出及未完成的 API 假设。
+`new_feature.mjs` 生成所选模板与必要 scaffold 的源码起点，保留 typed API 注入及懒路由，依赖仍由宿主安装；`find_icon.mjs` 检索真实注册数据；`convert_prototype.mjs` 仅做 guarded 静态提取。用法见 [tools.md](tools.md)，迁移仍按 [conversion.md](conversion.md) 人工核对公开导出、业务/API 假设与视觉。
 
 Starling、TurboUI 目标平台接入尚未验证；遵循其实际产品仓库和已提供的契约，不虚构平台 API、配置或验收结果。把这些缺口写入 [交付清单](delivery.md) 的 `knownLimits`。

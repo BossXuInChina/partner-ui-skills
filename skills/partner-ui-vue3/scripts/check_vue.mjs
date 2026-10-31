@@ -139,16 +139,210 @@ export function checkSource(
       /\.[jt]sx$/.test(file) ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
     ),
   }));
-  const compilerNames = new Set(["compile"]);
-  const purifierObjects = new Set();
-  const sanitizerFunctions = new Set();
-  const bindings = new Map();
-  const stringBindings = new Map();
+  // Module/template names and nested lexical names are separate. Only immutable,
+  // unmodified local expressions are traced; this is not interprocedural analysis.
+  const moduleScope = { parent: null, kind: "module", bindings: new Map() };
+  const nodeScopes = new WeakMap();
+  const astOffsets = new WeakMap(trees.map(({ ast, line }) => [ast, line]));
   const relativeFile = file.replaceAll("\\", "/");
+  const mockFilename = /(?:^|\/)[^/]*\.mock\.[^/]+$/i;
   const mockContext =
     /(?:^|\/)(?:mocks|tests|__tests__)\//.test(relativeFile) ||
+    mockFilename.test(relativeFile) ||
     testFile.test(file) ||
     developmentEntry.test(file);
+  const childScope = (parent, kind = "block") => ({
+    parent,
+    kind,
+    bindings: new Map(),
+  });
+  function declare(scope, name, details = {}) {
+    const existing = scope.bindings.get(name);
+    if (existing) existing.ambiguous = true;
+    else
+      scope.bindings.set(name, {
+        name,
+        scope,
+        constant: false,
+        written: false,
+        ...details,
+      });
+  }
+  function bindingNames(name, scope, details = {}) {
+    if (ts.isIdentifier(name)) declare(scope, name.text, details);
+    else if (ts.isObjectBindingPattern(name) || ts.isArrayBindingPattern(name))
+      for (const element of name.elements)
+        if (ts.isBindingElement(element)) bindingNames(element.name, scope);
+  }
+  function lookup(name, scope = moduleScope) {
+    for (let current = scope; current; current = current.parent)
+      if (current.bindings.has(name)) return current.bindings.get(name);
+  }
+  const scopeOf = (node) => nodeScopes.get(node) ?? moduleScope;
+  const stable = (binding) =>
+    binding?.constant && !binding.written && !binding.ambiguous;
+  function indexTree(node, incoming) {
+    let scope = incoming;
+    if (ts.isFunctionLike(node)) {
+      if (ts.isFunctionDeclaration(node) && node.name)
+        declare(incoming, node.name.text);
+      scope = childScope(incoming, "function");
+      if (ts.isFunctionExpression(node) && node.name)
+        declare(scope, node.name.text);
+      for (const parameter of node.parameters)
+        bindingNames(parameter.name, scope);
+    } else if (
+      ts.isBlock(node) ||
+      ts.isCaseBlock(node) ||
+      ts.isCatchClause(node) ||
+      ts.isForStatement(node) ||
+      ts.isForInStatement(node) ||
+      ts.isForOfStatement(node)
+    ) {
+      scope = childScope(incoming);
+      if (ts.isCatchClause(node) && node.variableDeclaration)
+        bindingNames(node.variableDeclaration.name, scope);
+    }
+    nodeScopes.set(node, scope);
+    if (
+      ts.isImportDeclaration(node) &&
+      ts.isStringLiteralLike(node.moduleSpecifier)
+    ) {
+      const module = node.moduleSpecifier.text;
+      const clause = node.importClause;
+      if (!clause?.isTypeOnly) {
+        if (clause?.name)
+          declare(scope, clause.name.text, {
+            constant: true,
+            module,
+            imported: "default",
+          });
+        if (clause?.namedBindings && ts.isNamespaceImport(clause.namedBindings))
+          declare(scope, clause.namedBindings.name.text, {
+            constant: true,
+            module,
+            imported: "*",
+          });
+        if (clause?.namedBindings && ts.isNamedImports(clause.namedBindings))
+          for (const entry of clause.namedBindings.elements)
+            if (!entry.isTypeOnly)
+              declare(scope, entry.name.text, {
+                constant: true,
+                module,
+                imported: entry.propertyName?.text ?? entry.name.text,
+              });
+      }
+    }
+    if (
+      ts.isVariableDeclaration(node) &&
+      ts.isVariableDeclarationList(node.parent)
+    ) {
+      const flags = node.parent.flags;
+      let target = scope;
+      if (!(flags & ts.NodeFlags.BlockScoped))
+        while (target.parent && !["function", "module"].includes(target.kind))
+          target = target.parent;
+      bindingNames(node.name, target, {
+        constant: !!(flags & ts.NodeFlags.Const),
+        initializer: node.initializer,
+      });
+    }
+    if (ts.isClassDeclaration(node) && node.name)
+      declare(scope, node.name.text);
+    ts.forEachChild(node, (child) => indexTree(child, scope));
+  }
+  for (const { ast } of trees) indexTree(ast, moduleScope);
+  function markWritten(input, throughMember = false, seen = new Set()) {
+    const node = unwrap(input);
+    if (!node) return;
+    if (ts.isIdentifier(node)) {
+      const binding = lookup(node.text, scopeOf(node));
+      if (binding && !seen.has(binding)) {
+        binding.written = true;
+        if (throughMember && binding.initializer)
+          markWritten(binding.initializer, true, new Set([...seen, binding]));
+      }
+    } else if (
+      ts.isPropertyAccessExpression(node) ||
+      ts.isElementAccessExpression(node)
+    )
+      markWritten(node.expression, true, seen);
+    else if (ts.isArrayLiteralExpression(node))
+      for (const element of node.elements) markWritten(element);
+    else if (ts.isObjectLiteralExpression(node))
+      for (const entry of node.properties) {
+        if (ts.isPropertyAssignment(entry)) markWritten(entry.initializer);
+        else if (ts.isShorthandPropertyAssignment(entry))
+          markWritten(entry.name);
+        else if (ts.isSpreadAssignment(entry)) markWritten(entry.expression);
+      }
+  }
+  function indexWrites(node) {
+    if (
+      ts.isBinaryExpression(node) &&
+      node.operatorToken.kind >= ts.SyntaxKind.FirstAssignment &&
+      node.operatorToken.kind <= ts.SyntaxKind.LastAssignment
+    )
+      markWritten(node.left);
+    if (
+      (ts.isPrefixUnaryExpression(node) || ts.isPostfixUnaryExpression(node)) &&
+      [ts.SyntaxKind.PlusPlusToken, ts.SyntaxKind.MinusMinusToken].includes(
+        node.operator,
+      )
+    )
+      markWritten(node.operand);
+    if (ts.isDeleteExpression(node)) markWritten(node.expression);
+    ts.forEachChild(node, indexWrites);
+  }
+  for (const { ast } of trees) indexWrites(ast);
+  function resolveConstant(input, seen = new Set()) {
+    const node = unwrap(input);
+    if (!node || !ts.isIdentifier(node)) return node;
+    const binding = lookup(node.text, scopeOf(node));
+    if (!stable(binding) || !binding.initializer || seen.has(binding))
+      return node;
+    return resolveConstant(binding.initializer, new Set([...seen, binding]));
+  }
+  function staticValue(input) {
+    const node = resolveConstant(input);
+    if (node && ts.isStringLiteralLike(node)) return node.text;
+    if (node && ts.isNumericLiteral(node)) return Number(node.text);
+    if (
+      node &&
+      ts.isPrefixUnaryExpression(node) &&
+      [ts.SyntaxKind.PlusToken, ts.SyntaxKind.MinusToken].includes(
+        node.operator,
+      ) &&
+      ts.isNumericLiteral(node.operand)
+    )
+      return (
+        Number(node.operand.text) *
+        (node.operator === ts.SyntaxKind.MinusToken ? -1 : 1)
+      );
+  }
+  function importOrigin(input, seen = new Set()) {
+    const node = unwrap(input);
+    if (!node) return;
+    if (ts.isIdentifier(node)) {
+      const binding = lookup(node.text, scopeOf(node));
+      if (!stable(binding) || seen.has(binding)) return;
+      if (binding.module)
+        return { module: binding.module, member: binding.imported };
+      if (binding.initializer)
+        return importOrigin(binding.initializer, new Set([...seen, binding]));
+    } else if (
+      ts.isPropertyAccessExpression(node) ||
+      ts.isElementAccessExpression(node)
+    ) {
+      const base = importOrigin(node.expression, seen);
+      if (base && ["*", "default"].includes(base.member))
+        return { module: base.module, member: property(node) };
+    }
+  }
+  function importedApi(node, module, members) {
+    const origin = importOrigin(node);
+    return origin?.module === module && members.includes(origin.member);
+  }
   function imported(module, line) {
     if (packagePath.test(module) && !publicEntries.has(module))
       add(
@@ -156,92 +350,57 @@ export function checkSource(
         `Use the package public entry instead of ${JSON.stringify(module)}.`,
         line,
       );
-    if (/(?:^|[/\\])mocks(?:[/\\]|$)/.test(module) && !mockContext)
+    const path = module.replaceAll("\\", "/").split(/[?#]/, 1)[0];
+    if (
+      (/(?:^|\/)mocks(?:\/|$)/i.test(path) || mockFilename.test(path)) &&
+      !mockContext
+    )
       add(
         "MOCK_BOUNDARY",
         "Mock imports are allowed only in mocks, tests, or an explicit development entry.",
         line,
       );
   }
-  for (const { ast } of trees) {
-    function discover(node) {
-      if (
-        ts.isImportDeclaration(node) &&
-        ts.isStringLiteralLike(node.moduleSpecifier)
-      ) {
-        const module = node.moduleSpecifier.text;
-        const clause = node.importClause;
-        if (module === "dompurify") {
-          if (clause?.name) purifierObjects.add(clause.name.text);
-          if (
-            clause?.namedBindings &&
-            ts.isNamespaceImport(clause.namedBindings)
-          )
-            purifierObjects.add(clause.namedBindings.name.text);
-          if (clause?.namedBindings && ts.isNamedImports(clause.namedBindings))
-            for (const entry of clause.namedBindings.elements)
-              if ((entry.propertyName?.text ?? entry.name.text) === "sanitize")
-                sanitizerFunctions.add(entry.name.text);
-        }
-        if (
-          module === "vue" &&
-          clause?.namedBindings &&
-          ts.isNamedImports(clause.namedBindings)
-        )
-          for (const entry of clause.namedBindings.elements)
-            if ((entry.propertyName?.text ?? entry.name.text) === "compile")
-              compilerNames.add(entry.name.text);
-      }
-      if (
-        ts.isVariableDeclaration(node) &&
-        ts.isIdentifier(node.name) &&
-        node.initializer
-      ) {
-        bindings.set(node.name.text, node.initializer);
-        const value = plainString(unwrap(node.initializer));
-        if (value !== undefined) stringBindings.set(node.name.text, value);
-      }
-      ts.forEachChild(node, discover);
-    }
-    discover(ast);
-  }
   function sanitized(input, seen = new Set()) {
     const node = unwrap(input);
     if (!node) return false;
     if (ts.isIdentifier(node)) {
-      if (seen.has(node.text)) return false;
-      return sanitized(bindings.get(node.text), new Set([...seen, node.text]));
+      const binding = lookup(node.text, scopeOf(node));
+      if (!stable(binding) || !binding.initializer || seen.has(binding))
+        return false;
+      return sanitized(binding.initializer, new Set([...seen, binding]));
     }
     if (ts.isPropertyAccessExpression(node) && node.name.text === "value")
       return sanitized(node.expression, seen);
-    if (ts.isArrowFunction(node)) {
+    if (ts.isConditionalExpression(node))
+      return sanitized(node.whenTrue, seen) && sanitized(node.whenFalse, seen);
+    if (ts.isArrowFunction(node) || ts.isFunctionExpression(node)) {
       if (!ts.isBlock(node.body)) return sanitized(node.body, seen);
-      const returns = node.body.statements.filter(ts.isReturnStatement);
+      const returns = [];
+      function collect(child) {
+        if (ts.isFunctionLike(child)) return;
+        if (ts.isReturnStatement(child)) returns.push(child);
+        else ts.forEachChild(child, collect);
+      }
+      collect(node.body);
       return (
         returns.length > 0 &&
         returns.every((item) => sanitized(item.expression, seen))
       );
     }
     if (ts.isCallExpression(node)) {
-      const callee = unwrap(node.expression);
-      if (ts.isIdentifier(callee) && sanitizerFunctions.has(callee.text))
-        return true;
+      if (importedApi(node.expression, "dompurify", ["sanitize"])) return true;
+      // Vue computed is read-only. A ref's initializer does not establish that
+      // its future .value is sanitized; mutable refs intentionally remain unknown.
       if (
-        property(callee) === "sanitize" &&
-        ts.isIdentifier(callee.expression) &&
-        purifierObjects.has(callee.expression.text)
-      )
-        return true;
-      if (
-        ts.isIdentifier(callee) &&
-        ["computed", "ref"].includes(callee.text) &&
+        importedApi(node.expression, "vue", ["computed"]) &&
         node.arguments.length === 1
       )
         return sanitized(node.arguments[0], seen);
     }
     return false;
   }
-  function expression(text) {
+  function expression(text, parentScope = moduleScope) {
     const ast = ts.createSourceFile(
       "expression.ts",
       `const __value = (${text});`,
@@ -249,15 +408,82 @@ export function checkSource(
       true,
       ts.ScriptKind.TS,
     );
+    indexTree(ast, childScope(parentScope));
+    indexWrites(ast);
     return ast.statements[0]?.declarationList?.declarations[0]?.initializer;
   }
-  function jsScan(ast, lineOffset) {
-    const lineFor = (node) =>
+  function globalObject(input) {
+    const node = unwrap(input);
+    return (
+      node &&
+      ts.isIdentifier(node) &&
+      ["window", "globalThis"].includes(node.text) &&
+      !lookup(node.text, scopeOf(node))
+    );
+  }
+  function browserDialog(input, seen = new Set()) {
+    const node = unwrap(input);
+    if (!node) return false;
+    if (ts.isIdentifier(node)) {
+      const binding = lookup(node.text, scopeOf(node));
+      if (!binding) return ["alert", "confirm", "prompt"].includes(node.text);
+      if (stable(binding) && binding.initializer && !seen.has(binding))
+        return browserDialog(binding.initializer, new Set([...seen, binding]));
+    } else if (
+      (ts.isPropertyAccessExpression(node) ||
+        ts.isElementAccessExpression(node)) &&
+      globalObject(node.expression)
+    )
+      return ["alert", "confirm", "prompt"].includes(property(node));
+    return false;
+  }
+  const templateProperties = new WeakSet();
+  function scriptLine(node, fallback) {
+    const ast = node.getSourceFile();
+    return (
       ast.getLineAndCharacterOfPosition(node.getStart(ast)).line +
       1 +
-      lineOffset;
+      (astOffsets.get(ast) ?? fallback)
+    );
+  }
+  function inspectOptions(input, offset, seen = new Set()) {
+    const node = resolveConstant(input);
+    if (!node || seen.has(node) || !ts.isObjectLiteralExpression(node)) return;
+    seen.add(node);
+    for (const entry of node.properties) {
+      if (ts.isSpreadAssignment(entry))
+        inspectOptions(entry.expression, offset, seen);
+      else if (
+        (ts.isPropertyAssignment(entry) ||
+          ts.isShorthandPropertyAssignment(entry)) &&
+        propName(entry.name) === "template"
+      ) {
+        const value = ts.isPropertyAssignment(entry)
+          ? resolveConstant(entry.initializer)
+          : resolveConstant(entry.name);
+        if (
+          value?.kind === ts.SyntaxKind.NullKeyword ||
+          value?.kind === ts.SyntaxKind.FalseKeyword ||
+          (value &&
+            ts.isIdentifier(value) &&
+            value.text === "undefined" &&
+            !lookup(value.text, scopeOf(value)))
+        )
+          continue;
+        if (!templateProperties.has(entry)) {
+          templateProperties.add(entry);
+          add(
+            "RUNTIME_TEMPLATE",
+            "A Vue runtime template option is forbidden; use a precompiled SFC.",
+            scriptLine(entry, offset),
+          );
+        }
+      }
+    }
+  }
+  function jsScan(ast, lineOffset) {
     function visit(node) {
-      const line = lineFor(node);
+      const line = scriptLine(node, lineOffset);
       if (
         (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
         node.moduleSpecifier &&
@@ -268,50 +494,47 @@ export function checkSource(
         const callee = unwrap(node.expression);
         if (
           (callee.kind === ts.SyntaxKind.ImportKeyword ||
-            (ts.isIdentifier(callee) && callee.text === "require")) &&
+            (ts.isIdentifier(callee) &&
+              callee.text === "require" &&
+              !lookup("require", scopeOf(callee)))) &&
           node.arguments[0]
         ) {
-          const module = plainString(node.arguments[0]);
-          if (module !== undefined) imported(module, line);
+          const module = staticValue(node.arguments[0]);
+          if (typeof module === "string") imported(module, line);
         }
-        const name = ts.isIdentifier(callee) ? callee.text : property(callee);
-        if (compilerNames.has(name))
+        if (importedApi(callee, "vue", ["compile"]))
           add(
             "RUNTIME_TEMPLATE",
             "Runtime template compilation is forbidden; use precompiled SFCs.",
             line,
           );
         if (
-          ["alert", "confirm", "prompt"].includes(name) &&
-          (ts.isIdentifier(callee) ||
-            (ts.isIdentifier(callee.expression) &&
-              ["window", "globalThis"].includes(callee.expression.text)))
+          importedApi(callee, "vue", [
+            "defineComponent",
+            "createApp",
+            "createSSRApp",
+          ]) ||
+          (ts.isIdentifier(callee) &&
+            callee.text === "defineOptions" &&
+            !lookup(callee.text, scopeOf(callee)))
         )
+          inspectOptions(node.arguments[0], lineOffset);
+        if (browserDialog(callee))
           add(
             "BROWSER_DIALOG",
             "Use an accessible package dialog or local feedback instead of a browser dialog.",
             line,
           );
       }
-      if (
-        ts.isPropertyAssignment(node) &&
-        propName(node.name) === "template" &&
-        (ts.isStringLiteralLike(node.initializer) ||
-          ts.isTemplateExpression(node.initializer))
-      )
-        add(
-          "RUNTIME_TEMPLATE",
-          "A runtime template string is forbidden; use a precompiled SFC.",
-          line,
-        );
+      if (sfc && ts.isExportAssignment(node) && !node.isExportEquals)
+        inspectOptions(node.expression, lineOffset);
       if (
         (ts.isPropertyAccessExpression(node) ||
           ts.isElementAccessExpression(node)) &&
         ((ts.isIdentifier(node.expression) &&
-          node.expression.text === "PartnerUI") ||
-          (ts.isIdentifier(node.expression) &&
-            ["window", "globalThis"].includes(node.expression.text) &&
-            property(node) === "PartnerUI"))
+          node.expression.text === "PartnerUI" &&
+          !lookup("PartnerUI", scopeOf(node.expression))) ||
+          (globalObject(node.expression) && property(node) === "PartnerUI"))
       )
         add(
           "PARTNER_GLOBAL",
@@ -329,26 +552,53 @@ export function checkSource(
       .replace(/url\((?:[^()"']|"[^"]*"|'[^']*')*\)/gi, "")
       .replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, "");
   }
+  const namedColors = new Set(
+    "aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond blue blueviolet brown burlywood cadetblue chartreuse chocolate coral cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldenrod darkgray darkgreen darkgrey darkkhaki darkmagenta darkolivegreen darkorange darkorchid darkred darksalmon darkseagreen darkslateblue darkslategray darkslategrey darkturquoise darkviolet deeppink deepskyblue dimgray dimgrey dodgerblue firebrick floralwhite forestgreen fuchsia gainsboro ghostwhite gold goldenrod gray green greenyellow grey honeydew hotpink indianred indigo ivory khaki lavender lavenderblush lawngreen lemonchiffon lightblue lightcoral lightcyan lightgoldenrodyellow lightgray lightgreen lightgrey lightpink lightsalmon lightseagreen lightskyblue lightslategray lightslategrey lightsteelblue lightyellow lime limegreen linen magenta maroon mediumaquamarine mediumblue mediumorchid mediumpurple mediumseagreen mediumslateblue mediumspringgreen mediumturquoise mediumvioletred midnightblue mintcream mistyrose moccasin navajowhite navy oldlace olive olivedrab orange orangered orchid palegoldenrod palegreen paleturquoise palevioletred papayawhip peachpuff peru pink plum powderblue purple rebeccapurple red rosybrown royalblue saddlebrown salmon sandybrown seagreen seashell sienna silver skyblue slateblue slategray slategrey snow springgreen steelblue tan teal thistle tomato turquoise violet wheat white whitesmoke yellow yellowgreen".split(
+      " ",
+    ),
+  );
   function scanCss(text, offset, inline = false) {
-    const result = compileStyle({
-      source: inline ? `.feature-inline{${text}}` : text,
-      filename: file,
-      id: "feature-rules",
-      trim: false,
-    });
+    let result;
+    let root;
+    try {
+      result = compileStyle({
+        source: inline ? `.feature-inline{${text}}` : text,
+        filename: file,
+        id: "feature-rules",
+        trim: false,
+      });
+      if (!result.errors.length) root = result.rawResult?.root;
+    } catch (error) {
+      add(
+        "CSS_PARSE",
+        error.reason ?? error.message,
+        offset + (error.line ?? 1),
+      );
+      return;
+    }
     for (const error of result.errors)
       add(
         "CSS_PARSE",
         error.reason ?? error.message,
         offset + (error.line ?? 1),
       );
-    result.rawResult?.root?.walkRules((rule) => {
+    root?.walkRules((rule) => {
       if (inline) return;
       const selector = rule.selector
         .replace(/\/\*[\s\S]*?\*\//g, "")
+        // class attribute values are selector syntax, unlike data-note strings.
+        .replace(
+          /\[\s*class\s*[~|^$*]?=\s*(?:"([^"]*)"|'([^']*)'|([^\]\s]+))\s*(?:[is]\s*)?\]/gi,
+          (_match, double, single, bare) =>
+            (double ?? single ?? bare)
+              .split(/\s+/)
+              .filter(Boolean)
+              .map((name) => "." + name)
+              .join(""),
+        )
         .replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, "");
       // CSS has already been parsed; inspect class tokens and combinators, not arbitrary file text.
-      const internal = /\.(?:wb|tr)-[\w-]+/.test(selector);
+      const internal = /\.(?:wb|tr)-[\w-]*/.test(selector);
       const descendant =
         /\.partner-ai(?:[\w.#:[\]=()-]*)(?:\s+(?![,)])|\s*[>+~])/.test(
           selector,
@@ -364,12 +614,26 @@ export function checkSource(
           offset + (rule.source?.start?.line ?? 1),
         );
     });
-    result.rawResult?.root?.walkDecls((declaration) => {
+    root?.walkDecls((declaration) => {
       const line = offset + (declaration.source?.start?.line ?? 1);
       if (declaration.important)
         add("IMPORTANT", "!important is forbidden in feature CSS.", line);
       const value = cleanCssValue(declaration.value);
-      if (/(?:^|[^\w-])#[\da-f]{3,8}\b|\b(?:rgba?|hsla?)\s*\(/i.test(value))
+      const colorProperty =
+        /(?:color|fill|stroke)$|^(?:background(?:-image)?|border(?:-(?:top|right|bottom|left|block|inline))?|outline|box-shadow|text-shadow|text-decoration|text-emphasis|column-rule|filter)$|^--/i.test(
+          declaration.prop,
+        );
+      const named =
+        colorProperty &&
+        (value.replace(/--[\w-]+/g, "").match(/\b[a-z]+\b/gi) ?? []).some(
+          (word) => namedColors.has(word.toLowerCase()),
+        );
+      if (
+        named ||
+        /(?:^|[^\w-])#[\da-f]{3,8}\b|\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\s*\(/i.test(
+          value,
+        )
+      )
         add(
           "COLOR_LITERAL",
           "Use Foundation colour tokens instead of literal colours.",
@@ -392,7 +656,119 @@ export function checkSource(
     });
   }
   for (const style of styles) scanCss(style.text, style.line);
+  function scanBoundStyle(input, line, seen = new Set()) {
+    const node = resolveConstant(input);
+    if (!node || seen.has(node)) return;
+    seen.add(node);
+    if (ts.isStringLiteralLike(node)) scanCss(node.text, line - 1, true);
+    else if (ts.isArrayLiteralExpression(node))
+      for (const element of node.elements) scanBoundStyle(element, line, seen);
+    else if (ts.isObjectLiteralExpression(node))
+      for (const entry of node.properties) {
+        if (ts.isSpreadAssignment(entry))
+          scanBoundStyle(entry.expression, line, seen);
+        else if (
+          ts.isPropertyAssignment(entry) ||
+          ts.isShorthandPropertyAssignment(entry)
+        ) {
+          const name = propName(entry.name);
+          const value = staticValue(
+            ts.isPropertyAssignment(entry) ? entry.initializer : entry.name,
+          );
+          if (
+            name &&
+            (typeof value === "string" || typeof value === "number")
+          ) {
+            const property = name.replace(
+              /[A-Z]/g,
+              (letter) => "-" + letter.toLowerCase(),
+            );
+            const css =
+              typeof value === "number" &&
+              /^(?:margin|padding|gap|row-gap|column-gap)/.test(property)
+                ? value + "px"
+                : value;
+            scanCss(`${property}:${css}`, line - 1, true);
+          }
+        }
+      }
+  }
+  const templateScopes = new WeakMap();
+  const templateAsts = new WeakMap();
+  function templateBinding(pattern, scope) {
+    const text = pattern.trim().replace(/^\(([\s\S]*)\)$/, "$1");
+    const ast = ts.createSourceFile(
+      "binding.ts",
+      `(${text}) => {}`,
+      ts.ScriptTarget.Latest,
+      true,
+      ts.ScriptKind.TS,
+    );
+    const arrow = unwrap(ast.statements[0]?.expression);
+    if (arrow && ts.isArrowFunction(arrow))
+      for (const parameter of arrow.parameters)
+        bindingNames(parameter.name, scope);
+  }
+  function prepareTemplate(node, parentScope = moduleScope) {
+    let scope = parentScope;
+    if (node.type === 1) {
+      for (const prop of node.props) {
+        if (prop.type !== 7 || !prop.exp) continue;
+        let pattern;
+        if (prop.name === "for")
+          pattern = prop.exp.content.split(/\s+(?:in|of)\s+/, 1)[0];
+        if (prop.name === "slot") pattern = prop.exp.content;
+        if (pattern) {
+          if (scope === parentScope) scope = childScope(parentScope);
+          templateBinding(pattern, scope);
+        }
+      }
+      for (const prop of node.props)
+        if (prop.type === 7 && prop.exp)
+          prepareExpression(
+            prop,
+            prop.exp.content,
+            prop.loc.start.line - 1,
+            scope,
+          );
+    }
+    if (node.type === 5 && node.content?.content)
+      prepareExpression(
+        node,
+        node.content.content,
+        node.loc.start.line - 1,
+        scope,
+      );
+    templateScopes.set(node, scope);
+    for (const child of node.children ?? []) prepareTemplate(child, scope);
+  }
+  function prepareExpression(owner, text, offset, scope) {
+    const ast = ts.createSourceFile(
+      "template-expression.ts",
+      text,
+      ts.ScriptTarget.Latest,
+      true,
+      ts.ScriptKind.TS,
+    );
+    astOffsets.set(ast, offset);
+    indexTree(ast, childScope(scope));
+    indexWrites(ast);
+    templateAsts.set(owner, ast);
+  }
+  function isIcon(tag, scope) {
+    const local = tag.includes("-")
+      ? tag.replace(/(?:^|-)(\w)/g, (_match, letter) => letter.toUpperCase())
+      : tag;
+    const binding = lookup(local, scope);
+    if (!binding && iconComponents.test(tag)) return true;
+    const origin = importOrigin(expression(local, scope));
+    return (
+      origin?.module === "@workbench/ui-vue3" &&
+      iconComponents.test(origin.member)
+    );
+  }
   function visitTemplate(node) {
+    const scope = templateScopes.get(node) ?? moduleScope;
     if (node.type === 1) {
       for (const prop of node.props) {
         const line = prop.loc.start.line;
@@ -401,11 +777,11 @@ export function checkSource(
         if (
           prop.type === 7 &&
           prop.name === "html" &&
-          !sanitized(expression(prop.exp?.content ?? ""))
+          !sanitized(expression(prop.exp?.content ?? "", scope))
         )
           add(
             "UNSAFE_HTML",
-            "v-html requires a DOMPurify sanitization call or a statically traceable sanitized binding.",
+            "v-html requires DOMPurify output or an immutable, unmodified, lexically traceable sanitized binding; unknown values are not considered safe.",
             line,
           );
         if (
@@ -413,55 +789,27 @@ export function checkSource(
           prop.name === "bind" &&
           prop.arg?.content === "style" &&
           prop.exp
-        ) {
-          const style = unwrap(expression(prop.exp.content));
-          if (style && ts.isObjectLiteralExpression(style))
-            for (const entry of style.properties) {
-              if (ts.isPropertyAssignment(entry)) {
-                const name = propName(entry.name);
-                const value = plainString(unwrap(entry.initializer));
-                if (name && value !== undefined)
-                  scanCss(
-                    `${name.replace(/[A-Z]/g, (letter) => "-" + letter.toLowerCase())}:${value}`,
-                    line - 1,
-                    true,
-                  );
-              }
-            }
-        }
-        if (prop.type === 7 && prop.exp) {
-          const ast = ts.createSourceFile(
-            "template-expression.ts",
-            prop.exp.content,
-            ts.ScriptTarget.Latest,
-            true,
-            ts.ScriptKind.TS,
-          );
-          jsScan(ast, line - 1);
-        }
+        )
+          scanBoundStyle(expression(prop.exp.content, scope), line);
+        if (templateAsts.has(prop)) jsScan(templateAsts.get(prop), line - 1);
         if (
-          iconComponents.test(node.tag) &&
+          isIcon(node.tag, scope) &&
           ((prop.type === 6 && prop.name === "name") ||
             (prop.type === 7 &&
               prop.name === "bind" &&
               prop.arg?.content === "name"))
         ) {
-          let value = prop.type === 6 ? prop.value?.content : undefined;
-          if (prop.type === 7) {
-            const expr = unwrap(expression(prop.exp?.content ?? ""));
-            value =
-              plainString(expr) ??
-              (expr && ts.isIdentifier(expr)
-                ? stringBindings.get(expr.text)
-                : undefined);
-          }
-          if (value !== undefined && !iconNames.has(value))
+          const value =
+            prop.type === 6
+              ? prop.value?.content
+              : staticValue(expression(prop.exp?.content ?? "", scope));
+          if (typeof value === "string" && !iconNames.has(value))
             add(
               "ICON_REGISTERED",
               `Unknown icon name ${JSON.stringify(value)} in the pinned icons.json.`,
               line,
             );
-          else if (value === undefined)
+          else if (typeof value !== "string")
             add(
               "ICON_DYNAMIC",
               "Dynamic icon names require a registry-backed mapping; static analysis cannot enumerate this expression.",
@@ -471,18 +819,11 @@ export function checkSource(
         }
       }
     }
-    if (node.type === 5 && node.content?.content) {
-      const ast = ts.createSourceFile(
-        "template-expression.ts",
-        node.content.content,
-        ts.ScriptTarget.Latest,
-        true,
-        ts.ScriptKind.TS,
-      );
-      jsScan(ast, node.loc.start.line - 1);
-    }
+    if (templateAsts.has(node))
+      jsScan(templateAsts.get(node), node.loc.start.line - 1);
     for (const child of node.children ?? []) visitTemplate(child);
   }
+  if (template) prepareTemplate(template);
   if (template) visitTemplate(template);
   return findings.sort(
     (a, b) => a.line - b.line || a.rule.localeCompare(b.rule),
@@ -533,6 +874,12 @@ export function checkVueDirectory(
 }
 
 function main(args) {
+  if (args.length === 1 && ["--help", "-h"].includes(args[0])) {
+    console.log(
+      "Usage: check_vue.mjs <directory> [--icons <icons.json>] [--json]\n       check_vue.mjs --help",
+    );
+    return;
+  }
   let directory;
   let icons;
   let json = false;
