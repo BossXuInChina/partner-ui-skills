@@ -1,9 +1,9 @@
 {
-  "_generated": "Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (1255ff9747cef05c6558318547e69acbbf71b928) — do not edit.",
+  "_generated": "Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit.",
   "schemaVersion": "1.0",
   "packageName": "@workbench/ui-vue3",
   "version": "0.2.0-prototype.20261031.1",
-  "sourceCommit": "1255ff9747cef05c6558318547e69acbbf71b928",
+  "sourceCommit": "af939228028791e24280015c5d48a35a658d40f3",
   "sourceHasLocalChanges": false,
   "iconCount": 1196,
   "families": [

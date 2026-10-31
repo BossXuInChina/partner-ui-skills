@@ -1,0 +1,1 @@
+import{U as o}from"./chunk-FRVCVL5C.js";import{L as t,N as i,j as e}from"./chunk-VSJSLDJY.js";var m={__name:"wb-timeline",setup(c){let r=[{id:"created",time:"09:00",title:"订单已创建",description:"等待付款"},{id:"paid",time:"09:12",title:"付款已完成",description:"订单进入处理中"}];return(n,p)=>(t(),i(e(o),{items:r,"node-type":"dot",label:"订单进度"}))}};export{m as default};

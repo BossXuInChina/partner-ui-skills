@@ -1,0 +1,9 @@
+var i=`<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16.000000" height="16.000000" fill="none" customFrame="#000000">
+	<rect id="名称=书签" width="16.000000" height="16.000000" x="0.000000" y="0.000000" fill="rgb(255,255,255)" fill-opacity="0" />
+	<path id="合并" d="M3.66675 13.1667L12.3334 13.1667C13.438 13.1667 14.3334 12.2712 14.3334 11.1667L14.3334 2.5C14.3334 1.39543 13.438 0.5 12.3334 0.5L3.66675 0.5C2.56218 0.5 1.66675 1.39543 1.66675 2.5L1.66675 13.5C1.66675 14.6046 2.56218 15.5 3.66675 15.5L14.3334 15.5" fill-rule="evenodd" stroke="rgb(25,25,25)" stroke-linecap="round" stroke-width="1.000000" />
+	<path id="ic_public_book_2_4" d="M3.66675 0.5L12.3334 0.5C13.438 0.5 14.3334 1.39543 14.3334 2.5L14.3334 11.1667C14.3334 12.2712 13.438 13.1667 12.3334 13.1667L1.66675 13.1667L1.66675 13.1667L1.66675 2.5C1.66675 1.39543 2.56218 0.5 3.66675 0.5Z" fill="rgb(255,255,255)" fill-opacity="0" fill-rule="evenodd" />
+	<path id="ic_public_book_2_4" d="M12.3334 0.5C13.438 0.5 14.3334 1.39543 14.3334 2.5L14.3334 11.1667C14.3334 12.2712 13.438 13.1667 12.3334 13.1667L1.66675 13.1667L1.66675 13.1667L1.66675 2.5C1.66675 1.39543 2.56218 0.5 3.66675 0.5L12.3334 0.5Z" fill-rule="evenodd" stroke="rgb(255,255,255)" stroke-opacity="0" stroke-width="1.000000" />
+	<path id="ic_public_book_2_5" d="M7 0.5L11.6667 0.5L11.6667 6.16667L9.7651 4.55033C9.51615 4.33872 9.15052 4.33872 8.90157 4.55033L7 6.16667L7 0.5Z" fill="rgb(255,255,255)" fill-opacity="0" fill-rule="evenodd" />
+	<path id="ic_public_book_2_5" d="M11.6667 0.5L11.6667 6.16667L9.7651 4.55033C9.51615 4.33872 9.15052 4.33872 8.90157 4.55033L7 6.16667L7 0.5L11.6667 0.5Z" fill-rule="evenodd" stroke="rgb(113,90,251)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.000000" />
+</svg>
+`;export{i as default};

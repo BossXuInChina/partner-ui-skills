@@ -1,0 +1,8 @@
+var i=`<svg viewBox="0 0 16.0518 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16.051758" height="16.000000" fill="none" customFrame="#000000">
+	<rect id="名称=书本" width="16.000000" height="16.000000" x="0.025879" y="0.000000" fill="rgb(255,255,255)" fill-opacity="0" />
+	<path id="ic_public_book_side_2_3" d="M0.525879 2L13.1925 2C14.4812 2 15.5259 3.04467 15.5259 4.33333L15.5259 4.66667C15.5259 5.95533 14.4812 7 13.1925 7L0.525879 7L0.525879 7C1.85921 6.16667 2.52588 5.33333 2.52588 4.5C2.52588 3.66667 1.85921 2.83333 0.525879 2Z" fill="rgb(255,255,255)" fill-opacity="0" fill-rule="evenodd" />
+	<path id="ic_public_book_side_2_3" d="M13.1925 2C14.4812 2 15.5259 3.04467 15.5259 4.33333L15.5259 4.66667C15.5259 5.95533 14.4812 7 13.1925 7L0.525879 7L0.525879 7C1.85921 6.16667 2.52588 5.33333 2.52588 4.5C2.52588 3.66667 1.85921 2.83333 0.525879 2L13.1925 2Z" fill-rule="evenodd" stroke="rgb(32,112,243)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.000000" />
+	<path id="ic_public_book_side_2_4" d="M0 0L12.6667 0C13.9553 0 15 1.04467 15 2.33333L15 2.66667C15 3.95533 13.9553 5 12.6667 5L0 5L0 5C1.33333 4.16667 2 3.33333 2 2.5C2 1.66667 1.33333 0.833333 0 0Z" fill="rgb(255,255,255)" fill-opacity="0" fill-rule="evenodd" transform="matrix(-1,0,0,-1,15.5259,14)" />
+	<path id="ic_public_book_side_2_4" d="M12.6667 0C13.9553 0 15 1.04467 15 2.33333L15 2.66667C15 3.95533 13.9553 5 12.6667 5L0 5L0 5C1.33333 4.16667 2 3.33333 2 2.5C2 1.66667 1.33333 0.833333 0 0L12.6667 0Z" fill-rule="evenodd" stroke="rgb(25,25,25)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.000000" transform="matrix(-1,0,0,-1,15.5259,14)" />
+</svg>
+`;export{i as default};

@@ -1,0 +1,1 @@
+import{e as n}from"./chunk-FRVCVL5C.js";import{L as l,N as o,h as r,j as a}from"./chunk-VSJSLDJY.js";var m={__name:"wb-tag",setup(c){let e=r(!1);return(s,t)=>(l(),o(a(n),{label:"已归档",variant:"basic",interactive:"",selected:e.value,onSelect:t[0]||(t[0]=u=>e.value=!e.value)},null,8,["selected"]))}};export{m as default};

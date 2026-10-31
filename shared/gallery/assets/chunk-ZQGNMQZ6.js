@@ -1,0 +1,1 @@
+import{aa as o}from"./chunk-FRVCVL5C.js";import{L as r,N as t,j as e}from"./chunk-VSJSLDJY.js";var _={__name:"wb-metric-card",setup(c){let a=[{id:"partners",label:"新增伙伴（家）",value:128}];return(l,n)=>(r(),t(e(o),{title:"经营数据",layout:"row",items:a}))}};export{_ as default};

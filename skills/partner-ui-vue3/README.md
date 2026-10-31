@@ -62,3 +62,15 @@ pnpm run smoke:fixtures --evidence
 应用入口统一导入 Workbench、TinyRobot 公开样式、AI UI 样式，保留此顺序；代码中的 AI 面板仍按需加载。字体由宿主通过 `--partner-ui-host-font-family` 提供，功能模块没有字体文件。历史持久化默认关闭；生产构建拒绝 mock 标志及 mock 模块进入导入图。
 
 交付功能源码、需求/API 状态、包来源、实际检查结果和限制，使用 [delivery.md](references/delivery.md) 的清单。当前 Workbench prototype、AI UI dev 状态保持不变；本地验证通过不代表真实公司 API、平台或生产资格已验收。发布频率及外部发布动作由用户决定。
+
+## 组件图库
+
+图库条目从本批锁定包的公开元数据生成；以四节浏览组件预览、变体与状态、使用场景及使用规范与API。每条保留两包版本、完整来源提交、构建日期、资格和 Open in Studio。可移植官方 SFC 在构建时预编译；未提供可安全预览的条目明确回到 Studio。controls 不冒充 props，未知信息保留原因。
+
+在生成或解压后的完整 Skill 根目录运行：
+
+```sh
+node scripts/serve_gallery.mjs
+```
+
+访问打印出的本地地址（默认 http://127.0.0.1:4190/）。图库使用模块及延迟资源，需要 HTTP 服务；无需安装依赖或编译。静态入口为 `assets/gallery/index.html`，内部演示不构成生产批准。

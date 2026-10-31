@@ -54,9 +54,9 @@ src/features/<feature>/
       "source": {
         "kind": "tarball",
         "file": "vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz",
-        "sha256": "4d933ca4a8d2a0a6f421f7141c6d6250eb4ba2b7b394018bd80044d3e95acdbf"
+        "sha256": "ec8ed28188210781fe9d8aab582e41f736a99efc0740a8f6e79deb94e98ba82a"
       },
-      "sourceCommit": "1255ff9747cef05c6558318547e69acbbf71b928",
+      "sourceCommit": "af939228028791e24280015c5d48a35a658d40f3",
       "sourceHasLocalChanges": false,
       "status": {
         "channel": "development",
@@ -71,9 +71,9 @@ src/features/<feature>/
       "source": {
         "kind": "tarball",
         "file": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz",
-        "sha256": "02a88ac3fa07f1bd78fe725562ea9a2ddf39d3b2ed512b5194dd970dbd8ce153"
+        "sha256": "69045605688b022f114788274991a36f3910eeadd92f876e5407b5b7f2cf75d7"
       },
-      "sourceCommit": "5911a7dbcd15854eabacc4f3679a6100c400dd5f",
+      "sourceCommit": "8d5f658b9152fecbe954840ac2f52a01c551636f",
       "sourceHasLocalChanges": false,
       "status": {}
     }

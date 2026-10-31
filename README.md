@@ -17,3 +17,9 @@ pnpm build
 原始六个 HTML 模板、页面脚本、原型 helpers 与 HarmonyOS 字体字节保留。字体只以原始文件随原型分发，未转换或内联到运行时；具体声明见原型 Skill 的字体目录。包来源与输入迁移记录在 `build/input-provenance.json`。
 
 Vue 验证工程位于打包后的 `dist/partner-ui-vue3/assets/harness`。`pnpm verify:harness` 使用它自己的冻结依赖，执行类型、Lint、格式、规则、组件与组合逻辑测试、生产构建、预览及六路双视口 smoke，并实际验证 mock 拒绝路径。QA 网络桩只在独立 Node 测试进程注入，生产导入图不含 mocks；公司的真实 API 仍未验证。普通参考/原型测试不重复安装此工程。
+
+## 从包生成的 Partner UI 图库
+
+`pnpm generate` 刷新锁包参考、原型 runtime 与图库；`pnpm build` 验证漂移并打包。`pnpm gallery:serve` 在本地 HTTP 服务浏览生成的 `shared/gallery`，静态产物也随两个 Skill 放入 `assets/gallery`。图库代码只维护通用浏览器，不维护组件清单；76 个当前条目及 API 均由锁包生成。案例 controls 与公开 props 分别保存，不对未推导项编造默认预览。
+
+两包的 `components.schema.json` 原始字节由 source.lock.componentsSchemaSha256 校验。维护仓仍是组件规范源头，消费包仅使用 vendor 的公开产物。

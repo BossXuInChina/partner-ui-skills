@@ -1,6 +1,6 @@
 # Vue 业务模块中的 AI
 
-本页只说明公开类型与现有 scaffold 已验证的组合方式，不补写组件 API 手册。AI 包尚无 `components.json`；元数据范围与包声明见 [ai-ui.md](ai-ui.md)。新增 props、事件或 slots 先核对锁定包的公开 TypeScript 入口，不能从名称推测，也不能导入包内部实现。
+本页只说明公开类型与现有 scaffold 已验证的组合方式，不补写组件 API 手册。AI 包的 `components.json` 已由实际声明生成；16 个公开组件及非组件辅助导出见 [AI 索引](ai-ui/index.md) 与 [包参考](ai-ui.md)。新增 props、事件或 slots 先核对锁定包的公开 TypeScript 入口，不能从名称推测，也不能导入包内部实现。
 
 ## 选择会话入口
 
