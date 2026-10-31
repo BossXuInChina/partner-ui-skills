@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>伙伴工作台</title>
+  <link rel="stylesheet" href="fonts/partner-ui-fonts.css">
+  <link rel="stylesheet" href="runtime/partner-ui-runtime.css">
+  <style>
+    .page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--wb-spacing-component-lg); }
+    .page-head p { margin: var(--wb-spacing-component-xs) 0 0; }
+    /* 自建：经营趋势图（包内没有图表组件）。只用 Token。 */
+    .trend { display: flex; flex-direction: column; gap: var(--wb-spacing-component-md); height: 100%; }
+    .trend-head { display: flex; align-items: center; justify-content: space-between; gap: var(--wb-spacing-component-md); }
+    .trend svg { width: 100%; height: auto; display: block; }
+    .trend .axis { stroke: var(--wb-color-border-separator); stroke-width: 1; }
+    .trend .label { fill: var(--wb-color-text-secondary); font-size: var(--wb-font-caption-m-font-size); }
+    .trend .bar { fill: var(--wb-color-info-primary); }
+    .trend .bar.is-last { fill: var(--wb-color-brand); }
+    .trend .line { fill: none; stroke: var(--wb-color-success); stroke-width: 2; }
+    .legend { display: flex; gap: var(--wb-spacing-component-lg); }
+    .legend i { display: inline-block; width: 8px; height: 8px; border-radius: var(--wb-radius-full); margin-inline-end: var(--wb-spacing-component-xs); }
+    .todo-item { display: flex; align-items: center; justify-content: space-between; gap: var(--wb-spacing-component-md); padding-block: var(--wb-spacing-component-md); border-bottom: 1px solid var(--wb-color-border-separator-subtle); }
+    .todo-item:last-child { border-bottom: 0; }
+    .todo-main { display: flex; align-items: center; gap: var(--wb-spacing-component-sm); min-width: 0; }
+  </style>
+</head>
+<body class="pui-page">
+<div id="app"></div>
+
+<script type="text/x-template" id="page">
+  <WorkbenchTopNav :tabs="nav.tabs" :sites="nav.sites" v-model:active-tab="nav.active" />
+
+  <main class="pui-container pui-section" style="padding-block: var(--wb-spacing-layout-section-gap) var(--wb-spacing-layout-section-gap-large)">
+    <header class="page-head">
+      <div>
+        <h1 class="pui-title-xl">下午好，王敏</h1>
+        <p class="pui-text pui-muted">星河科技有限公司 · 金牌经销商（演示数据）</p>
+      </div>
+      <div class="partner-ai" style="height:auto;background:transparent">
+        <WorkspaceSmartTag :fragments="[{ text: '有 ' }, { text: '3 份协议', emphasis: 'data' }, { text: ' 将在 30 天内到期' }]" @activate="notify('打开 AI 助手（演示）', 'info')" />
+      </div>
+    </header>
+
+    <!-- 24 栅格：左 16 列、右 8 列，列内卡片纵向间距 16px -->
+    <div class="pui-grid" style="align-items: start">
+      <div class="pui-span-16 pui-stack">
+          <!-- 指标 -->
+          <WorkbenchMetricCard title="经营概览" layout="row" :items="metrics"
+            :header-actions="[{ id: 'more', label: '查看报表', appearance: 'text' }]"
+            :footer="{ kind: 'metadata', text: '数据更新于 2026-10-30 09:00' }" @action="onCardAction">
+            <template #icon="{ item }"><WorkbenchPedestalIcon :name="item.icon" /></template>
+          </WorkbenchMetricCard>
+          <!-- 趋势（自建） -->
+          <WorkbenchCard variant="display-white">
+            <template #header><h2 class="pui-title-m">销售趋势</h2></template>
+            <div class="trend pui-custom" data-pui-name="销售趋势图">
+              <div class="trend-head">
+                <div class="legend pui-text-s">
+                  <span><i style="background: var(--wb-color-info-primary)"></i>月度销售额（万元）</span>
+                  <span><i style="background: var(--wb-color-success)"></i>目标完成率</span>
+                </div>
+                <WorkbenchButtonRadioGroup v-model="range" :items="[{ value: '6', label: '近6个月' }, { value: '12', label: '近12个月' }]" aria-label="时间范围" />
+              </div>
+              <svg :viewBox="`0 0 ${chart.w} ${chart.h}`" role="img" aria-label="月度销售额柱状图">
+                <line class="axis" :x1="0" :x2="chart.w" :y1="chart.h - 24" :y2="chart.h - 24" />
+                <g v-for="(b, i) in chart.bars" :key="b.m">
+                  <rect class="bar" :class="{ 'is-last': i === chart.bars.length - 1 }" :x="b.x" :y="b.y" :width="b.bw" :height="b.bh" rx="2" />
+                  <text class="label" :x="b.x + b.bw / 2" :y="chart.h - 6" text-anchor="middle">{{ b.m }}</text>
+                </g>
+                <polyline class="line" :points="chart.line" />
+              </svg>
+            </div>
+          </WorkbenchCard>
+          <!-- 待办 -->
+          <WorkbenchCard variant="display-white">
+            <template #header>
+              <div class="pui-row pui-between" style="width: 100%">
+                <h2 class="pui-title-m">我的待办</h2>
+                <WorkbenchButton appearance="text" intent="drilldown" drilldown="more" @click="notify('查看全部待办', 'info')">全部</WorkbenchButton>
+              </div>
+            </template>
+            <WorkbenchTabs v-model="todoTab" :items="todoTabs" variant="divider" aria-label="待办分类" />
+            <div v-if="todos.length">
+              <div class="todo-item" v-for="t in todos" :key="t.id">
+                <div class="todo-main">
+                  <WorkbenchTag :label="t.type" variant="status-subtle" size="small" :status="t.tone" />
+                  <span class="pui-text">{{ t.title }}</span>
+                </div>
+                <div class="pui-row">
+                  <span class="pui-text-s">{{ t.date }}</span>
+                  <WorkbenchButton appearance="text" size="28" @click="notify('处理：' + t.title)">处理</WorkbenchButton>
+                </div>
+              </div>
+            </div>
+            <WorkbenchEmptyState v-else type="no-data" level="local" title="暂无待办" />
+          </WorkbenchCard>
+      </div>
+      <div class="pui-span-8 pui-stack">
+          <!-- 快捷应用 -->
+          <WorkbenchQuickAppCard title="快捷应用" layout="multi" :items="apps" @activate="({ item, event }) => { event?.preventDefault?.(); notify('打开：' + item.label, 'info') }" />
+          <!-- AI 智慧洞察 -->
+          <div class="partner-ai" style="height:auto;background:transparent">
+            <WorkspaceSmartCard title="智慧洞察" :items="insights" variant="outlined"
+              :tag="{ fragments: [{ text: '今日 ' }, { text: '3', emphasis: 'data' }, { text: ' 条建议' }] }"
+              @navigate="(n) => notify('跳转：' + n.target, 'info')" @activate="notify('打开 AI 助手（演示）', 'info')" />
+          </div>
+          <!-- 公告 -->
+          <WorkbenchCard variant="display-white">
+            <template #header><h2 class="pui-title-m">伙伴公告</h2></template>
+            <WorkbenchTimeline :items="notices" node-type="dot" label="伙伴公告" />
+          </WorkbenchCard>
+      </div>
+    </div>
+
+    <WorkbenchCollapse>
+      <WorkbenchCollapseItem title="页面说明">
+        <p class="pui-text">演示数据，未连接真实服务。新建组件：销售趋势图（包内无图表组件，SVG + Token 绘制）。</p>
+      </WorkbenchCollapseItem>
+    </WorkbenchCollapse>
+  </main>
+
+  <WorkbenchFooter :registration="{ id: 'registration', label: '' }" />
+  <GlobalMessageStack :items="messages" @dismiss="(e) => messages = messages.filter((m) => m.id !== e.id)" />
+</script>
+
+<script src="runtime/partner-ui-runtime.js"></script>
+<script>
+const { ref, reactive, computed } = Vue
+PartnerUI.mount('#app', {
+  template: '#page',
+  setup() {
+    const nav = reactive({
+      active: 'home',
+      tabs: [{ value: 'home', label: '首页' }, { value: 'programs', label: '伙伴计划' }, { value: 'marketing', label: '营销' }, { value: 'sales', label: '销售' }, { value: 'service', label: '服务' }],
+      sites: [{ value: 'partner', label: '企业伙伴网站' }],
+    })
+    const metrics = [
+      { id: 'sales', label: '本月销售额（万元）', value: '1,286.4', icon: 'pedestal/circle/high/flow/48' },
+      { id: 'orders', label: '新增订单（笔）', value: 342, icon: 'pedestal/circle/high/collect-files/48' },
+      { id: 'opps', label: '在跟商机（个）', value: 57, icon: 'pedestal/circle/high/project/48' },
+      { id: 'rate', label: '目标完成率', value: '86%', icon: 'pedestal/rounded-square/high/completed/48' },
+    ]
+    const apps = [
+      { id: 'orders', label: '订单中心', icon: '布局视图/视图=列表,尺寸=20,面性=off' },
+      { id: 'report', label: '经营报表', icon: '图表/类型=柱状图,尺寸=20,面性=off' },
+      { id: 'upload', label: '资料上传', icon: '上传/尺寸=20' },
+      { id: 'download', label: '物料下载', icon: '下载/尺寸=20' },
+      { id: 'qr', label: '伙伴码', icon: '二维码/尺寸=20' },
+      { id: 'more', label: '暂未开放', disabled: true },
+    ]
+    const insights = [
+      { id: 'i1', fragments: [{ text: '华东区' }, { text: '分销框架协议', emphasis: 'bold' }, { text: '将于 ' }, { text: '11 月 30 日', emphasis: 'data' }, { text: '到期，建议尽快发起续签' }],
+        action: { label: '去续签', navigation: { target: 'renewals' } } },
+      { id: 'i2', fragments: [{ text: '本月商机转化率 ' }, { text: '18%', emphasis: 'data' }, { text: '，高于区域平均' }] },
+      { id: 'i3', fragments: [{ text: '有 ' }, { text: '2 笔订单', emphasis: 'data' }, { text: '回款逾期' }], action: { label: '查看', navigation: { target: 'orders' } } },
+    ]
+    const range = ref('6')
+    const series = [620, 710, 680, 830, 790, 905, 880, 960, 1010, 1120, 1190, 1286]
+    const rates = [62, 66, 64, 70, 69, 74, 73, 77, 79, 82, 84, 86]
+    const chart = computed(() => {
+      const n = Number(range.value), w = 760, h = 240, top = 12, base = h - 24
+      const vals = series.slice(-n), rs = rates.slice(-n), max = Math.max(...vals) * 1.1
+      const step = w / n, bw = Math.min(36, step * 0.5)
+      const months = Array.from({ length: n }, (_, i) => `${((10 - n + i + 12) % 12) + 1}月`)
+      const bars = vals.map((v, i) => { const bh = (v / max) * (base - top); return { m: months[i], x: i * step + (step - bw) / 2, y: base - bh, bw, bh } })
+      const line = rs.map((r, i) => `${i * step + step / 2},${base - (r / 100) * (base - top)}`).join(' ')
+      return { w, h, bars, line }
+    })
+    const todoTab = ref('all')
+    const todoTabs = [{ value: 'all', label: '全部' }, { value: 'approve', label: '待审批' }, { value: 'renew', label: '待续签' }]
+    const allTodos = [
+      { id: 1, kind: 'approve', type: '审批', tone: 'info', title: '远航数码 · 特价申请（¥286,000）', date: '今天 10:20' },
+      { id: 2, kind: 'renew', type: '续签', tone: 'warning', title: '华东区分销框架协议 将于 11-30 到期', date: '昨天' },
+      { id: 3, kind: 'approve', type: '审批', tone: 'info', title: '启明信息 · 新增联系人', date: '10-28' },
+      { id: 4, kind: 'renew', type: '续签', tone: 'warning', title: '西南区服务框架协议 将于 12-15 到期', date: '10-27' },
+    ]
+    const todos = computed(() => allTodos.filter((t) => todoTab.value === 'all' || t.kind === todoTab.value))
+    const notices = [
+      { id: 'n1', time: '10-29', title: '2027 年伙伴计划发布', description: '新增云服务专项激励' },
+      { id: 'n2', time: '10-21', title: '第四季度返利政策调整说明' },
+      { id: 'n3', time: '10-15', title: '伙伴工作台 11 月例行维护通知' },
+    ]
+    const messages = ref([])
+    function notify(message, type = 'success') { messages.value = [{ id: Date.now() + Math.random(), message, type }, ...messages.value] }
+    function onCardAction({ id }) { notify('查看报表', 'info') }
+    return { nav, metrics, apps, insights, range, chart, todoTab, todoTabs, todos, notices, messages, notify, onCardAction }
+  },
+})
+</script>
+</body>
+</html>

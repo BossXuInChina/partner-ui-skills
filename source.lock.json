@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0",
+  "buildDate": "2026-10-31",
+  "runtimeVersion": "1.0.1-dev.20261031.1",
+  "releasePolicy": "user-decides",
+  "studioBaseURLs": {
+    "@workbench/ui-vue3": "http://localhost:4173",
+    "huawei-partner-ai-ui": "http://localhost:5173"
+  },
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261031.1",
+      "tarball": "vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz",
+      "sha256": "f971b6828ebc541722cee57fa63a8895511bc6db7e4637c3574ee04bfb3b1130",
+      "sourceCommit": "75b8e1c367077ff9a0e50ac7cb115868a2a7b3f6"
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261031.1",
+      "tarball": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz",
+      "sha256": "f515dde3c2a50e9eccf9466514b369f2d36ab4bfcf819dd9550a705951621c57",
+      "sourceCommit": "0db2601cb0507c1897eb99f4b02baacde8e6991e"
+    }
+  ]
+}

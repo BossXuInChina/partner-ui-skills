@@ -1,0 +1,18 @@
+/* This software uses HarmonyOS Sans Fonts. Copyright 2021 Huawei Device Co., Ltd.
+   Original font files and LICENSE.txt are included unchanged (no conversion or subsetting).
+   Same family aliases as the AI UI preview, so Workbench and AI UI share one font stack.
+   Keep this folder together with the page; do not redistribute the fonts on their own. */
+@font-face {
+  font-family: "Partner AI HarmonyOS Sans";
+  src: url('./HarmonyOS_Sans.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Partner AI HarmonyOS Sans SC";
+  src: url('./HarmonyOS_Sans_SC.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}

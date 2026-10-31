@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>页面标题</title>
+  <link rel="stylesheet" href="fonts/partner-ui-fonts.css">
+  <link rel="stylesheet" href="runtime/partner-ui-runtime.css">
+  <style>
+    /* 页面级样式：只用 var(--wb-*) Token 和 .pui-* 工具类；不要覆盖组件内部样式。 */
+  </style>
+</head>
+<body class="pui-page">
+<div id="app"></div>
+
+<!-- 模板必须写在这里（不要直接写进 #app）。组件已全局注册，直接使用 PascalCase 名称。 -->
+<script type="text/x-template" id="page">
+  <WorkbenchTopNav :tabs="nav.tabs" :sites="nav.sites" v-model:active-tab="nav.active" />
+  <main class="pui-container pui-stack" style="padding-block: var(--wb-spacing-component-lg) var(--wb-spacing-layout-section-gap-large)">
+    <WorkbenchBreadcrumb :items="crumbs" @navigate="(item, e) => e?.preventDefault()" />
+    <h1 class="pui-title-xl">页面标题</h1>
+    <section class="pui-surface pui-stack">
+      <p class="pui-text">从这里开始。组件用法见 references/workbench/*.md 与 references/ai-ui.md。</p>
+      <div class="pui-row">
+        <WorkbenchButton appearance="primary" @click="count++">主要操作</WorkbenchButton>
+        <WorkbenchButton appearance="secondary">次要操作</WorkbenchButton>
+        <span class="pui-text pui-muted">已点击 {{ count }} 次</span>
+      </div>
+    </section>
+  </main>
+  <WorkbenchFooter :registration="{ id: 'registration', label: '' }" />
+</script>
+
+<script src="runtime/partner-ui-runtime.js"></script>
+<script>
+const { ref, reactive, computed } = Vue
+PartnerUI.mount('#app', {
+  template: '#page',
+  setup() {
+    const nav = reactive({ active: 'home', tabs: [{ value: 'home', label: '首页' }, { value: 'sales', label: '销售' }, { value: 'service', label: '服务' }], sites: [{ value: 'partner', label: '企业伙伴网站' }] })
+    const crumbs = [{ id: 'home', label: '首页', href: '#' }, { id: 'cur', label: '页面标题' }]
+    const count = ref(0)
+    return { nav, crumbs, count }
+  },
+})
+</script>
+</body>
+</html>

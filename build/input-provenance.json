@@ -1,0 +1,107 @@
+{
+  "archive": "partner-ui-pages-skill.zip",
+  "sha256": "b63bdf956f185fb5609e1195a280656e9c769659ed99f365946f98210e0ba4ab",
+  "preserved": [
+    {
+      "path": "references/runtime-api.md",
+      "sha256": "7b000d0cc7a9f115bf6201623be5ec187616db9619c63c1df2fc5cb816d0e487"
+    },
+    {
+      "path": "references/restyle.md",
+      "sha256": "9b973688b36a4d6f9551ee7e0c009ae4752b84dac4d018cd59afa5855272e8c1"
+    },
+    {
+      "path": "assets/templates/workbench-list.html",
+      "sha256": "07eb5a2eefb117e2da298c49dc841b066e87a7b69ef4625f87f41b211795515b"
+    },
+    {
+      "path": "assets/templates/workbench-dashboard.html",
+      "sha256": "24223fb5443a9364da2c441a9114fc7c80258f6368b967e7e4918cc3876f23c4"
+    },
+    {
+      "path": "assets/templates/workbench-detail.html",
+      "sha256": "06fc9d74700e3417427a438278af964be5eae29763f7ef89711597f73c449e7a"
+    },
+    {
+      "path": "assets/templates/ai-assistant-workspace.html",
+      "sha256": "64da1c478f423d32bd258165bfc4f376c59552372bf91020179d142a8e38e2d5"
+    },
+    {
+      "path": "assets/templates/ai-chat.html",
+      "sha256": "1d6ed22111afdbaaf3e3b8af4e98f8450c5101606066925676673c603c5b8ca4"
+    },
+    {
+      "path": "assets/templates/blank.html",
+      "sha256": "ec227cef7dc823c3dad2e6ff2ef089b57e347cc5da07e578b5ec88037b780421"
+    },
+    {
+      "path": "assets/fonts/partner-ui-fonts.css",
+      "sha256": "526752791173d6faafa4d0a813ff468410453d5b64f5daf789f12806ffcb885c"
+    },
+    {
+      "path": "assets/fonts/NOTICE.md",
+      "sha256": "e4a524af4f57cbf5d9968d5fd46064dafbd1e3d1776d6089badffb021ab3eb8a"
+    },
+    {
+      "path": "assets/fonts/HarmonyOS_Sans.ttf",
+      "sha256": "72d5adb60242fae60686ca94c27e10b89cb7ed2008531390d3f22ac61ad64593"
+    },
+    {
+      "path": "assets/fonts/HarmonyOS_Sans_SC.ttf",
+      "sha256": "8978e05044e7089ad6a9de38c505c8148305607983487435a916d2610700a7ca"
+    },
+    {
+      "path": "assets/fonts/LICENSE.txt",
+      "sha256": "7d7acf8e3ac928ae7f34aaa9f8e348dd0476dbb52caaa058e402894d4f6efe73"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "39ccfc281cdb8d513dc212acea2ec7bc0f28fd36ebd168f2dc1242307f0e3814"
+    },
+    {
+      "path": "README.md",
+      "sha256": "9e0ef3298a9005a25bd3c9a8b35f7bd0babfa953ecc70b17ab3f31b6c16e910b"
+    },
+    {
+      "path": "scripts/new_page.py",
+      "sha256": "6a5fa05934192922993231bbbae690fbe4a8fe0900c495fb79e4a384564e89c0"
+    },
+    {
+      "path": "scripts/check_page.mjs",
+      "sha256": "ef30ee51c1a7d9e5d59a0b2ca33dc83fdc84820ca69af2c599c9be2bb0ce8ee1"
+    },
+    {
+      "path": "scripts/bundle_single.py",
+      "sha256": "378684c3be278d43f1277157425e2632771c85d1a830b1894b27b7ef60906134"
+    },
+    {
+      "path": "maintainer/runtime-src/helpers/overlays.ts",
+      "sha256": "d46b3750a2a45c42368534416a0e28fef8d75964d288ed0478e35ffd68b93e91"
+    },
+    {
+      "path": "maintainer/runtime-src/helpers/chat.ts",
+      "sha256": "b9e4a066b91acc5d4d079ec82297c5ae21e0d6e20609d7047e656088d4f54ead"
+    },
+    {
+      "path": "maintainer/runtime-src/helpers/restyle.ts",
+      "sha256": "5c4bbeae779d0b50e8919c57cd9f6e5777c019888b20434a0a8c8fcd8aeca571"
+    },
+    {
+      "path": "maintainer/runtime-src/base.css",
+      "sha256": "2796015f761fd4f8fc999385f687a72c1b89e87d79cdc31f1089eab017dd9af6"
+    },
+    {
+      "path": "maintainer/runtime-src/versions.ts",
+      "sha256": "408c7347101db157380a9c9d76165149666994a6ccb5b2b1928cbcef14b2c58d"
+    },
+    {
+      "path": "maintainer/runtime-src/partner-ui-runtime.ts",
+      "sha256": "58452a384f1e5ce7f2d689d7a8bbcffe1aca9c85ea701b99b28df4bf1f726a7a"
+    },
+    {
+      "path": "maintainer/build.mjs",
+      "sha256": "d0a94407ba8bd0439fe4b82340ddf631782849cdb89bccca1a92c57804836385"
+    }
+  ],
+  "omitted": "Old generated references/runtime/overview and repo-reading refgen are replaced by package-only generation. Original input remains unchanged in PLAN/inputs."
+}

@@ -1,0 +1,10 @@
+{
+  "_generated": "generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1(75b8e1c367077ff9a0e50ac7cb115868a2a7b3f6) + huawei-partner-ai-ui@0.3.1-dev.20261031.1(0db2601cb0507c1897eb99f4b02baacde8e6991e) — do not edit",
+  "runtime": "1.0.1-dev.20261031.1",
+  "builtAt": "2026-10-31",
+  "@workbench/ui-vue3": "0.2.0-prototype.20261031.1",
+  "huawei-partner-ai-ui": "0.3.1-dev.20261031.1",
+  "vue": "3.5.13",
+  "@opentiny/tiny-robot": "0.5.1",
+  "@opentiny/tiny-robot-kit": "0.4.0"
+}

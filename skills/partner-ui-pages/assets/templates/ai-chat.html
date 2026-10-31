@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>智能问数</title>
+  <link rel="stylesheet" href="fonts/partner-ui-fonts.css">
+  <link rel="stylesheet" href="runtime/partner-ui-runtime.css">
+  <style>
+    .layout { align-items: start; }
+    /* ChatPanel 需要确定高度：这里取视口高度减去顶部导航与页面留白 */
+    .chat-frame { height: calc(100vh - 180px); min-height: 560px; border-radius: var(--wb-radius-lg); overflow: hidden; box-shadow: var(--wb-shadow-sm); }
+  </style>
+</head>
+<body class="pui-page">
+<div id="app"></div>
+
+<script type="text/x-template" id="page">
+  <WorkbenchTopNav :tabs="nav.tabs" :sites="nav.sites" v-model:active-tab="nav.active" />
+
+  <main class="pui-container pui-stack" style="padding-block: var(--wb-spacing-component-lg) var(--wb-spacing-layout-section-gap-large)">
+    <WorkbenchBreadcrumb :items="crumbs" @navigate="(item, e) => e?.preventDefault()" />
+
+    <div class="pui-grid layout">
+      <!-- 左侧：业务说明与常用问题（业务自有内容，用 Workbench 组件） -->
+      <aside class="pui-span-6 pui-stack">
+        <WorkbenchCard variant="display-white">
+          <template #header><h2 class="pui-title-m">智能问数</h2></template>
+          <p class="pui-text pui-muted">用自然语言查询经营数据。回复为本地演示数据，未连接真实服务。</p>
+        </WorkbenchCard>
+        <WorkbenchCard variant="display-white">
+          <template #header><h2 class="pui-title-s">常用问题</h2></template>
+          <div class="pui-stack" style="--pui-gap: var(--wb-spacing-component-sm)">
+            <WorkbenchButton v-for="q in quick" :key="q" appearance="text" intent="drilldown" drilldown="more" :disabled="chat.processing" @click="chat.send(q)">{{ q }}</WorkbenchButton>
+          </div>
+        </WorkbenchCard>
+      </aside>
+
+      <!-- 右侧：AI 聊天面板。独立使用 ChatPanel 时外层必须有 .partner-ai（AI Token 作用域）和确定高度 -->
+      <section class="pui-span-18 chat-frame partner-ai">
+        <ChatPanel
+          :messages="chat.messages" :processing="chat.processing" :error="chat.error" :aborted="chat.aborted"
+          :renderers="renderers" :welcome-entries="welcome" :suggestion-pills="pills" :message-prompts="prompts"
+          @send="chat.send" @abort="chat.abort" @retry="chat.retry" @new-conversation="chat.reset" />
+      </section>
+    </div>
+  </main>
+</script>
+
+<script src="runtime/partner-ui-runtime.js"></script>
+<script>
+const { reactive } = Vue
+
+// 回复里的业务卡片：pui-template 可使用全部包组件，数据放在 data 里
+const regionTable = (rows) => ({
+  type: 'pui-template',
+  data: { rows },
+  template: `<WorkbenchTable caption="区域销售额" :columns="[
+      { key: 'region', title: '区域', field: 'region' },
+      { key: 'amount', title: '销售额（万元）', field: 'amount', align: 'end' },
+      { key: 'yoy', title: '同比', field: 'yoy', align: 'end' }]"
+    :rows="data.rows" row-key="region" />`,
+})
+
+PartnerUI.mount('#app', {
+  template: '#page',
+  setup() {
+    const nav = reactive({
+      active: 'sales',
+      tabs: [{ value: 'home', label: '首页' }, { value: 'sales', label: '销售' }, { value: 'service', label: '服务' }],
+      sites: [{ value: 'partner', label: '企业伙伴网站' }],
+    })
+    const crumbs = [{ id: 'home', label: '首页', href: '#' }, { id: 'cur', label: '智能问数' }]
+
+    const chat = PartnerUI.createChatSession({
+      delay: 900,
+      respond(q) {
+        if (/区域|排名/.test(q)) return [
+          '10 月各区域销售额如下，**华东**同比增长最快：',
+          regionTable([
+            { region: '华东', amount: '412.6', yoy: '+18.2%' },
+            { region: '华南', amount: '336.1', yoy: '+9.7%' },
+            { region: '华北', amount: '298.4', yoy: '+4.1%' },
+            { region: '西南', amount: '239.3', yoy: '-2.3%' },
+          ]),
+        ]
+        if (/总结|概况/.test(q)) return { type: 'ai-summary', text: '10 月销售额 1,286.4 万元，环比 +8.0%；新增订单 342 笔；目标完成率 86%，预计 11 月中旬完成季度目标。' }
+        if (/报表|明细/.test(q)) return ['已为您定位到经营报表：', { type: 'business-navigation', title: '经营报表', description: '查看分区域、分产品明细', target: { target: 'report' } }]
+        return '这是本地演示回复，未连接真实服务。可以试试“各区域销售额排名”或“总结本月经营概况”。'
+      },
+    })
+    const renderers = PartnerUI.chatRenderers
+    const welcome = [
+      { id: 'w1', title: '区域排名', description: '各区域销售额与同比', query: '各区域销售额排名' },
+      { id: 'w2', title: '经营概况', description: '一句话总结本月经营', query: '总结本月经营概况' },
+      { id: 'w3', title: '报表入口', description: '打开经营报表明细', query: '打开报表明细' },
+    ]
+    const pills = [{ id: 'p1', label: '区域排名', query: '各区域销售额排名' }, { id: 'p2', label: '经营概况', query: '总结本月经营概况' }]
+    const prompts = () => [{ id: 'f1', label: '按同比排序' }, { id: 'f2', label: '导出为表格' }]
+    const quick = ['各区域销售额排名', '总结本月经营概况', '打开报表明细']
+    window.addEventListener('pui:navigate', (e) => console.log('[demo] 导航', e.detail))
+    return { nav, crumbs, chat, renderers, welcome, pills, prompts, quick }
+  },
+})
+</script>
+</body>
+</html>
