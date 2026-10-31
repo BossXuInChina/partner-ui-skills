@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue';
 import { loadEnv } from 'vite';
 import { defineConfig } from 'vitest/config';
 import { productionMockGuard } from './build/mock-guard.mjs';
+import { routeChunkReport } from './build/route-sizes.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 
@@ -29,9 +30,18 @@ export default defineConfig(({ command, mode }) => {
     root,
     resolve: {
       dedupe: ['vue', '@opentiny/tiny-robot'],
-      alias: { '@scaffold': fileURLToPath(new URL('./src/scaffold', import.meta.url)) },
+      alias: {
+        '@scaffold': fileURLToPath(new URL('./src/scaffold', import.meta.url)),
+        '@templates': fileURLToPath(new URL('./src/templates', import.meta.url)),
+      },
     },
-    plugins: [vue(), productionMockGuard({ production: command === 'build', mocksEnabled })],
+    // Preserve relative new URL() assets in the published package during dev serving.
+    optimizeDeps: { exclude: ['huawei-partner-ai-ui'] },
+    plugins: [
+      vue(),
+      productionMockGuard({ production: command === 'build', mocksEnabled }),
+      routeChunkReport({ root }),
+    ],
     test: {
       environment: 'happy-dom',
       server: { deps: { inline: [/@opentiny\//, 'huawei-partner-ai-ui'] } },
@@ -43,7 +53,7 @@ export default defineConfig(({ command, mode }) => {
           customResolver: declaredModuleEntry,
         },
       ],
-      include: ['tests/unit/**/*.test.ts'],
+      include: ['tests/unit/**/*.test.ts', 'src/templates/**/__tests__/**/*.test.ts'],
       clearMocks: true,
       restoreMocks: true,
     },

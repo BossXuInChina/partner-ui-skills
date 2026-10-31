@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink, RouterView, useRoute } from 'vue-router';
 import { copy } from './content/zh-CN';
+const route = useRoute();
 </script>
 
 <template>
   <div class="app-shell">
-    <header class="app-header">
+    <header v-if="!route.meta.template" class="app-header">
       <span>{{ copy.appName }}</span>
       <nav aria-label="页面导航">
         <RouterLink :to="{ name: 'blank' }">{{ copy.blankLink }}</RouterLink>

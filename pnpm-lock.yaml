@@ -36,7 +36,7 @@ importers:
         version: 3.3.1
       huawei-partner-ai-ui:
         specifier: file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz
-        version: file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz(typescript@5.9.3)
+        version: file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz(vue@3.5.13(typescript@5.9.3))
       markdown-it:
         specifier: 14.1.0
         version: 14.1.0
@@ -1022,7 +1022,7 @@ packages:
       vue: 3.5.13
 
   '@workbench/ui-vue3@file:vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz':
-    resolution: {integrity: sha512-098ndd5xZ928yAa1fKL0LrJjcZSPYd4CacCKO+L7D/Q6+lmQMJBnHZqj8wfOyG/XEI/4BB4eaggXA0YsI+Sq9A==, tarball: file:vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz}
+    resolution: {integrity: sha512-DtSw1kg4gu3OeZ8+nJC61hu4THflPm1PxtW0lILS7g+pH8Egxc6j8ny9A/QmLqkYLWP/5YY11AJ9a8zZWYXweQ==, tarball: file:vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz}
     version: 0.2.0-prototype.20261031.1
     peerDependencies:
       vue: 3.5.13
@@ -1135,9 +1135,11 @@ packages:
     engines: {node: 6.* || 8.* || >= 10.*}
 
   huawei-partner-ai-ui@file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz:
-    resolution: {integrity: sha512-g6T3e9hkTFKc8aeixQZrUWkmTa/cUPZoNaMGW6kAtXp6J3LEhppN2Wf/N3DN0rkFb5hBjC2TO/tSWNpbuuxBqg==, tarball: file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz}
+    resolution: {integrity: sha512-kQaPEV6PpN7IiyhiJ9fR2CygmHF2iqLzCmxDYjhkqYX1l4CrxkVCBAAW//GciPOBzNb9x+dTCQn31ssZ6G2bxA==, tarball: file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz}
     version: 0.3.1-dev.20261031.1
     engines: {node: '>=22.12.0'}
+    peerDependencies:
+      vue: 3.5.13
 
   idb@8.0.4:
     resolution: {integrity: sha512-jd0ITCrN+Zah4J7R/Z2jnR3W7A4BXDAjmo62MwWuSjxCiueUAf7X5rbodEdidWzeknwXHmLpdZkoiiCppNi30Q==}
@@ -3805,7 +3807,7 @@ snapshots:
 
   get-caller-file@2.0.5: {}
 
-  huawei-partner-ai-ui@file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz(typescript@5.9.3):
+  huawei-partner-ai-ui@file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz(vue@3.5.13(typescript@5.9.3)):
     dependencies:
       '@opentiny/tiny-robot': 0.5.1(dompurify@3.3.1)(markdown-it@14.1.0)(vue@3.5.13(typescript@5.9.3))
       '@opentiny/tiny-robot-kit': 0.4.0(vue@3.5.13(typescript@5.9.3))
@@ -3813,8 +3815,6 @@ snapshots:
       dompurify: 3.3.1
       markdown-it: 14.1.0
       vue: 3.5.13(typescript@5.9.3)
-    transitivePeerDependencies:
-      - typescript
 
   idb@8.0.4: {}
 

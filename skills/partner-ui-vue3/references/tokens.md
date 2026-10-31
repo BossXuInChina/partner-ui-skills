@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (75b8e1c367077ff9a0e50ac7cb115868a2a7b3f6); huawei-partner-ai-ui@0.3.1-dev.20261031.1 (0db2601cb0507c1897eb99f4b02baacde8e6991e) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (1255ff9747cef05c6558318547e69acbbf71b928); huawei-partner-ai-ui@0.3.1-dev.20261031.1 (5911a7dbcd15854eabacc4f3679a6100c400dd5f) — do not edit. -->
 
 # Tokens
 
 ## `@workbench/ui-vue3`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`75b8e1c367077ff9a0e50ac7cb115868a2a7b3f6` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`1255ff9747cef05c6558318547e69acbbf71b928` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -219,7 +219,7 @@
 
 ## `huawei-partner-ai-ui`
 
-包：`huawei-partner-ai-ui@0.3.1-dev.20261031.1` · commit：`0db2601cb0507c1897eb99f4b02baacde8e6991e` · dirty：false
+包：`huawei-partner-ai-ui@0.3.1-dev.20261031.1` · commit：`5911a7dbcd15854eabacc4f3679a6100c400dd5f` · dirty：false
 
 资格（包内声明）：channel=unknown；stableEligible=unknown；targetProductionEligible=unknown。元数据和示例不授予发布或生产批准。
 

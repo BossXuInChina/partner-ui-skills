@@ -1,7 +1,14 @@
 import { abortable, isAbortError, throwIfAborted } from './abort';
 import { ChatTransportError } from './errors';
-import { isAssistantDelta } from './protocol';
-import type { AssistantDelta, BusinessActionContext, ChatRequest, ChatTransport } from './types';
+import { createDeltaValidator } from './protocol';
+import type {
+  ChatDelta,
+  ChatPart,
+  PartValidator,
+  BusinessActionContext,
+  ChatRequest,
+  ChatTransport,
+} from './types';
 
 export interface SSEEvent {
   event: string;
@@ -13,13 +20,14 @@ export type HeaderSource<Input> =
   HeadersInit | ((input: Input, signal: AbortSignal) => HeadersInit | Promise<HeadersInit>);
 type URLSource<Input> = string | URL | ((input: Input) => string | URL);
 
-export interface FetchChatTransportOptions {
-  url: URLSource<ChatRequest>;
-  headers?: HeaderSource<ChatRequest>;
+export interface FetchChatTransportOptions<Extension extends ChatPart = never> {
+  url: URLSource<ChatRequest<Extension>>;
+  headers?: HeaderSource<ChatRequest<Extension>>;
   credentials?: RequestCredentials;
   fetch?: typeof globalThis.fetch;
-  serializeRequest?: (request: ChatRequest) => unknown;
-  decodeEvent?: (event: SSEEvent) => AssistantDelta | readonly AssistantDelta[] | null;
+  serializeRequest?: (request: ChatRequest<Extension>) => unknown;
+  decodeEvent?: (event: SSEEvent) => ChatDelta<Extension> | readonly ChatDelta<Extension>[] | null;
+  partValidator?: PartValidator<Extension>;
   maxEventCharacters?: number;
 }
 
@@ -125,7 +133,7 @@ export async function* readSSE(
   }
 }
 
-function decodeEvent(event: SSEEvent): AssistantDelta {
+function decodeEvent(event: SSEEvent): unknown {
   if (event.event === 'error') throw new ChatTransportError('CHAT_STREAM_ERROR');
   let value: unknown;
   try {
@@ -133,7 +141,6 @@ function decodeEvent(event: SSEEvent): AssistantDelta {
   } catch (cause) {
     throw new ChatTransportError('CHAT_SSE_JSON', undefined, { cause });
   }
-  if (!isAssistantDelta(value)) throw new ChatTransportError('CHAT_INVALID_DELTA');
   return value;
 }
 
@@ -164,7 +171,10 @@ function endpoint<Input>(source: URLSource<Input>, input: Input) {
   return url;
 }
 
-export function createFetchChatTransport(options: FetchChatTransportOptions): ChatTransport {
+export function createFetchChatTransport<Extension extends ChatPart = never>(
+  options: FetchChatTransportOptions<Extension>,
+): ChatTransport<Extension> {
+  const isDelta = createDeltaValidator(options.partValidator);
   const fetchRequest = options.fetch ?? globalThis.fetch.bind(globalThis);
   return {
     async *stream(request, signal) {
@@ -204,11 +214,11 @@ export function createFetchChatTransport(options: FetchChatTransportOptions): Ch
         for await (const event of readSSE(response.body, signal, options.maxEventCharacters)) {
           if (event.event === 'error') throw new ChatTransportError('CHAT_STREAM_ERROR');
           if (event.data.trim() === '[DONE]') return;
-          const result = (options.decodeEvent ?? decodeEvent)(event);
+          const result: unknown = (options.decodeEvent ?? decodeEvent)(event);
           const deltas = result === null ? [] : Array.isArray(result) ? result : [result];
           for (const delta of deltas) {
             throwIfAborted(signal);
-            if (!isAssistantDelta(delta)) throw new ChatTransportError('CHAT_INVALID_DELTA');
+            if (!isDelta(delta)) throw new ChatTransportError('CHAT_INVALID_DELTA');
             yield delta;
           }
         }

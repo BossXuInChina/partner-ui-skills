@@ -128,9 +128,26 @@ export async function verifyHarness(root = packRoot) {
   node('typecheck', 'vue-tsc', 'vue-tsc', ['--noEmit']);
   node('lint', 'eslint', 'eslint', ['.', '--max-warnings', '0']);
   node('format', 'prettier', 'prettier', ['--check', '.']);
-  node('unit', 'vitest', 'vitest', ['run']);
+  run('feature-rules', process.execPath, [
+    resolve(project, '../../scripts/check_vue.mjs'),
+    resolve(project, 'src'),
+  ]);
+  run('unit', process.execPath, [toolEntry(project, 'vitest', 'vitest'), 'run'], {
+    extraEnv: { VITE_ENABLE_MOCKS: 'true' },
+  });
   node('production-build', 'vite', 'vite', ['build']);
   node('preview-browser', '@playwright/test', 'playwright', ['test']);
+  run('template-backend-contracts', process.execPath, [
+    '--test',
+    'tests/fixtures/template-backend.test.mjs',
+  ]);
+  run('template-smoke', process.execPath, [
+    'tests/fixtures/run-template-smoke.mjs',
+    '--project',
+    '.',
+    '--out',
+    resolve(evidence, 'template-smoke'),
+  ]);
   run('guard-real-vite-tests', process.execPath, ['--test', 'tests/harness-guard.test.mjs'], {
     cwd: root,
   });

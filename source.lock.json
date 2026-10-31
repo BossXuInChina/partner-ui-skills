@@ -12,15 +12,15 @@
       "name": "@workbench/ui-vue3",
       "version": "0.2.0-prototype.20261031.1",
       "tarball": "vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz",
-      "sha256": "f971b6828ebc541722cee57fa63a8895511bc6db7e4637c3574ee04bfb3b1130",
-      "sourceCommit": "75b8e1c367077ff9a0e50ac7cb115868a2a7b3f6"
+      "sha256": "4d933ca4a8d2a0a6f421f7141c6d6250eb4ba2b7b394018bd80044d3e95acdbf",
+      "sourceCommit": "1255ff9747cef05c6558318547e69acbbf71b928"
     },
     {
       "name": "huawei-partner-ai-ui",
       "version": "0.3.1-dev.20261031.1",
       "tarball": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz",
-      "sha256": "f515dde3c2a50e9eccf9466514b369f2d36ab4bfcf819dd9550a705951621c57",
-      "sourceCommit": "0db2601cb0507c1897eb99f4b02baacde8e6991e"
+      "sha256": "02a88ac3fa07f1bd78fe725562ea9a2ddf39d3b2ed512b5194dd970dbd8ce153",
+      "sourceCommit": "5911a7dbcd15854eabacc4f3679a6100c400dd5f"
     }
   ]
 }

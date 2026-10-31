@@ -61,7 +61,7 @@ describe('public assistant UI', () => {
     expect(wrapper.get('button').attributes('aria-label')).toBe('Close custom assistant');
   });
 
-  it('keeps welcome icons raw and uses public registered families without resizing pedestal artwork', () => {
+  it('keeps welcome icons raw and uses public registered families without resizing pedestal artwork', async () => {
     const system = welcomeIcon('/ic_public_search_line');
     expect(isReactive(reactive({ system }).system)).toBe(false);
     const icon = render(system).findComponent(WorkbenchSystemIcon);
@@ -74,6 +74,7 @@ describe('public assistant UI', () => {
     const artwork = pedestal.get('img');
     expect(artwork.attributes('width')).toBe('48');
     expect(artwork.attributes('height')).toBe('48');
+    await vi.waitFor(() => expect(artwork.attributes('src')).toMatch(/^data:image\/svg\+xml,/));
     const source = artwork.attributes('src') ?? '';
     expect(source).toMatch(/^data:image\/svg\+xml,/);
     expect(decodeURIComponent(source.split(',')[1] ?? '')).toMatch(/viewBox=['"]0 0 48 48['"]/);

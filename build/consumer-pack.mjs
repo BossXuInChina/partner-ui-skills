@@ -98,6 +98,10 @@ export function packageSkills(root, lock) {
       cpSync(resolve(target, 'assets/scaffold'), resolve(target, 'assets/harness/src/scaffold'), {
         recursive: true,
       });
+    if (skill === skills[1] && existsSync(resolve(target, 'assets/templates')))
+      cpSync(resolve(target, 'assets/templates'), resolve(target, 'assets/harness/src/templates'), {
+        recursive: true,
+      });
     const files = sortedFiles(target);
     const archive = resolve(dist, skill + '.zip');
     // Python's standard library makes archive bytes reproducible without a zip dependency.

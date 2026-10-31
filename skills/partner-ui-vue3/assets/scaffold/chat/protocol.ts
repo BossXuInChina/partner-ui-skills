@@ -1,4 +1,4 @@
-import type { AssistantDelta, AssistantPart } from './types';
+import type { AssistantDelta, AssistantPart, ChatPart, ChatDelta, PartValidator } from './types';
 
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -38,7 +38,8 @@ export function isAssistantPart(value: unknown): value is AssistantPart {
             ['id', 'name', 'partner', 'owner', 'endDate', 'amount'].every(
               (key) => typeof agreement[key] === 'string',
             ) &&
-            ['待续签', '审批中', '已续签'].includes(String(agreement.status)),
+            typeof agreement.status === 'string' &&
+            ['待续签', '审批中', '已续签'].includes(agreement.status),
         ) &&
         (value.calculation === undefined ||
           (record(value.calculation) &&
@@ -57,4 +58,33 @@ export function isAssistantDelta(value: unknown): value is AssistantDelta {
       ? typeof value.text === 'string'
       : value.kind === 'part' && isAssistantPart(value.part))
   );
+}
+
+/** Extensions never override validation of a known public discriminant. */
+export function createPartValidator<Extension extends ChatPart = never>(
+  extension?: PartValidator<Extension>,
+) {
+  const publicTypes: readonly AssistantPart['type'][] = [
+    'text',
+    'ai-summary',
+    'empty-result',
+    'unsupported',
+    'business-navigation',
+    'agreement-table',
+  ];
+  return (value: unknown): value is AssistantPart | Extension => {
+    if (!record(value) || typeof value.type !== 'string' || !value.type.trim()) return false;
+    if (publicTypes.some((type) => type === value.type)) return isAssistantPart(value);
+    return extension?.(value) ?? false;
+  };
+}
+export function createDeltaValidator<Extension extends ChatPart = never>(
+  extension?: PartValidator<Extension>,
+) {
+  const isPart = createPartValidator(extension);
+  return (value: unknown): value is ChatDelta<Extension> =>
+    record(value) &&
+    (value.kind === 'text'
+      ? typeof value.text === 'string'
+      : value.kind === 'part' && isPart(value.part));
 }

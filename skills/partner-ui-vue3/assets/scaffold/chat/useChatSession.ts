@@ -1,9 +1,11 @@
 import { computed, getCurrentScope, onScopeDispose, readonly, ref, shallowRef } from 'vue';
 import { abortable, isAbortError } from './abort';
 import { chatErrorCode, ChatTransportError } from './errors';
-import { isAssistantDelta, isAssistantPart } from './protocol';
+import { createDeltaValidator, createPartValidator, isAssistantPart } from './protocol';
 import type {
-  AssistantDelta,
+  AssistantPart,
+  ChatPart,
+  ChatDelta,
   ChatMessage,
   ChatRequest,
   ChatSessionOptions,
@@ -24,13 +26,16 @@ function copy<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
 }
 
-function applyDelta(message: ChatMessage, delta: AssistantDelta): ChatMessage {
+function applyDelta<Extension extends ChatPart>(
+  message: ChatMessage<Extension>,
+  delta: ChatDelta<Extension>,
+): ChatMessage<Extension> {
   const parts = [...(message.uiParts ?? [])];
   let content = typeof message.content === 'string' ? message.content : '';
   if (delta.kind === 'text') {
     content += delta.text;
     const last = parts.at(-1);
-    if (last?.type === 'text')
+    if (isAssistantPart(last) && last.type === 'text')
       parts[parts.length - 1] = { type: 'text', text: last.text + delta.text };
     else parts.push({ type: 'text', text: delta.text });
   } else parts.push(copy(delta.part));
@@ -44,27 +49,36 @@ function applyDelta(message: ChatMessage, delta: AssistantDelta): ChatMessage {
   };
 }
 
-function validSnapshot(value: unknown): value is ChatSnapshot {
-  if (!value || typeof value !== 'object') return false;
-  const snapshot = value as Partial<ChatSnapshot>;
+function validSnapshot<Extension extends ChatPart>(
+  value: unknown,
+  isPart: (part: unknown) => part is AssistantPart | Extension,
+): value is ChatSnapshot<Extension> {
+  const record = (candidate: unknown): candidate is Record<string, unknown> =>
+    candidate !== null && typeof candidate === 'object' && !Array.isArray(candidate);
+  if (!record(value)) return false;
+  const snapshot = value;
   return (
     snapshot.version === 1 &&
     Array.isArray(snapshot.messages) &&
     snapshot.messages.every(
       (message) =>
-        message &&
-        typeof message === 'object' &&
+        record(message) &&
         typeof message.id === 'string' &&
         (message.role === 'user' || message.role === 'assistant') &&
         typeof message.content === 'string' &&
         (message.uiParts === undefined ||
-          (Array.isArray(message.uiParts) && message.uiParts.every(isAssistantPart))),
+          (Array.isArray(message.uiParts) && message.uiParts.every(isPart))),
     )
   );
 }
 
-export function useChatSession(transport: ChatTransport, options: ChatSessionOptions = {}) {
-  const messageState = shallowRef<ChatMessage[]>([]);
+export function useChatSession<Extension extends ChatPart = never>(
+  transport: ChatTransport<Extension>,
+  options: ChatSessionOptions<Extension> = {},
+) {
+  const isDelta = createDeltaValidator(options.partValidator);
+  const isPart = createPartValidator(options.partValidator);
+  const messageState = shallowRef<ChatMessage<Extension>[]>([]);
   const processing = ref(false);
   const error = ref('');
   const aborted = ref(false);
@@ -76,7 +90,10 @@ export function useChatSession(transport: ChatTransport, options: ChatSessionOpt
   let lastAttempt: Attempt | undefined;
   let storageWrites: Promise<void> = Promise.resolve();
 
-  function replaceAssistant(id: string, change: (message: ChatMessage) => ChatMessage) {
+  function replaceAssistant(
+    id: string,
+    change: (message: ChatMessage<Extension>) => ChatMessage<Extension>,
+  ) {
     messageState.value = messageState.value.map((message) =>
       message.id === id ? change(message) : message,
     );
@@ -107,7 +124,7 @@ export function useChatSession(transport: ChatTransport, options: ChatSessionOpt
     processing.value = true;
     aborted.value = false;
     error.value = '';
-    const assistant: ChatMessage = {
+    const assistant: ChatMessage<Extension> = {
       id: attempt.assistantId,
       role: 'assistant',
       content: '',
@@ -120,10 +137,10 @@ export function useChatSession(transport: ChatTransport, options: ChatSessionOpt
     messageState.value = messageState.value
       .filter((message) => message.id !== attempt.assistantId)
       .concat(assistant);
-    let iterator: AsyncIterator<AssistantDelta> | undefined;
+    let iterator: AsyncIterator<ChatDelta<Extension>> | undefined;
     let finished = false;
     try {
-      const request: ChatRequest = {
+      const request: ChatRequest<Extension> = {
         requestId: createId(),
         idempotencyKey: attempt.idempotencyKey,
         query: attempt.query,
@@ -138,7 +155,7 @@ export function useChatSession(transport: ChatTransport, options: ChatSessionOpt
           finished = true;
           break;
         }
-        if (!isAssistantDelta(next.value)) throw new ChatTransportError('CHAT_INVALID_DELTA');
+        if (!isDelta(next.value)) throw new ChatTransportError('CHAT_INVALID_DELTA');
         replaceAssistant(attempt.assistantId, (message) => applyDelta(message, next.value));
       }
       replaceAssistant(attempt.assistantId, (message) => ({
@@ -224,7 +241,7 @@ export function useChatSession(transport: ChatTransport, options: ChatSessionOpt
     try {
       const snapshot = await options.storage.read();
       if (stamp !== epoch || disposed) return;
-      if (snapshot !== null && !validSnapshot(snapshot))
+      if (snapshot !== null && !validSnapshot(snapshot, isPart))
         throw new ChatTransportError('CHAT_STORAGE_INVALID');
       messageState.value = copy(snapshot?.messages ?? []).map((message) =>
         message.loading
@@ -255,7 +272,7 @@ export function useChatSession(transport: ChatTransport, options: ChatSessionOpt
       return;
     }
     const stamp = epoch;
-    const snapshot: ChatSnapshot = {
+    const snapshot: ChatSnapshot<Extension> = {
       version: 1,
       messages: copy(messageState.value),
     };

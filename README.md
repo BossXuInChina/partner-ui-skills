@@ -1,6 +1,6 @@
 # Partner UI Skills
 
-独立的伙伴工作台消费仓库：`partner-ui-pages` 制作离线 HTML 原型，`partner-ui-vue3` 面向 Vue 3 业务模块。组件资料只由 `source.lock.json` 锁定的两个发布包生成。已完成独立打包、原型运行时、共享资料、Vue 验证工程和产品模块 scaffold；业务模板及交付检查按后续计划加入。
+独立的伙伴工作台消费仓库：`partner-ui-pages` 制作离线 HTML 原型，`partner-ui-vue3` 面向 Vue 3 业务模块。组件资料只由 `source.lock.json` 锁定的两个发布包生成。已提供独立打包、共享资料、产品模块 scaffold、六份 Vue SFC 模板及验证工程；完整交付工作流按后续计划补齐。
 
 ```sh
 pnpm install --frozen-lockfile
@@ -16,4 +16,4 @@ pnpm build
 
 原始六个 HTML 模板、页面脚本、原型 helpers 与 HarmonyOS 字体字节保留。字体只以原始文件随原型分发，未转换或内联到运行时；具体声明见原型 Skill 的字体目录。包来源与输入迁移记录在 `build/input-provenance.json`。
 
-Vue 验证工程位于打包后的 `dist/partner-ui-vue3/assets/harness`。`pnpm verify:harness` 使用它自己的冻结依赖，执行类型、Lint、格式、组件测试、生产构建、预览浏览器和真实 mock 拒绝检查；普通参考/原型测试不因此重复安装此工程。
+Vue 验证工程位于打包后的 `dist/partner-ui-vue3/assets/harness`。`pnpm verify:harness` 使用它自己的冻结依赖，执行类型、Lint、格式、规则、组件与组合逻辑测试、生产构建、预览及六路双视口 smoke，并实际验证 mock 拒绝路径。QA 网络桩只在独立 Node 测试进程注入，生产导入图不含 mocks；公司的真实 API 仍未验证。普通参考/原型测试不重复安装此工程。

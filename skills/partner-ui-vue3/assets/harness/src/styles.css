@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  /* Host font mapping also reaches dialogs and popovers teleported outside the page. */
+  font-family: var(--partner-ui-host-font-family, system-ui);
 }
 
 #app {
