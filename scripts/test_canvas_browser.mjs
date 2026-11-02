@@ -90,6 +90,13 @@ try {
     });
   }
 
+  await check('detail column scrolls with the mouse wheel', async () => {
+    await page.evaluate(p => window.__CANVAS__.select(p), pageIds[0]);
+    const box = await page.$eval('.dch-detail', el => { el.scrollTop = 0; const r = el.getBoundingClientRect(); return {x:r.left + r.width / 2, y:r.top + r.height / 2, overflow:el.scrollHeight > el.clientHeight}; });
+    if (!box.overflow) return;
+    await page.mouse.move(box.x, box.y); await page.mouse.wheel(0, 400); await page.waitForTimeout(150);
+    assert.ok(await page.$eval('.dch-detail', el => el.scrollTop) > 0, 'wheel did not scroll the detail column');
+  });
   await check('label hover highlights region and leaving clears it', async () => {
     await page.evaluate(p => window.__CANVAS__.select(p), pageIds[0]);
     const chip = page.locator('.dci [data-inspector-action="region"]').first();

@@ -25,7 +25,8 @@
 .dch-node-foot{height:44px;display:flex;align-items:center;gap:6px;padding:0 14px;font-size:10px}.dch-node-foot span{border-radius:4px;padding:2px 6px}.dch-node-foot .reuse{background:#edf6ef;color:var(--dch-reuse)}.dch-node-foot .component-work{background:#eaf1fc;color:var(--dch-work)}.dch-node-foot .review{background:#fff1e2;color:var(--dch-review)}.dch-node-foot em{margin-left:auto;font-style:normal;color:var(--dch-muted)}
 .dch-box{position:absolute;border:3px solid #d92f47;background:#e3384520;pointer-events:none}.dch-box[hidden]{display:none}.dch-box.review{border-color:#c47a2c;background:#f0a04a22}.dch-box span{position:absolute;left:-3px;top:-20px;font-size:11px;white-space:nowrap;background:#ce2c43;color:#fff;padding:1px 5px;border-radius:3px}.dch-box.review span{background:#b56a22}
 .dch-hint{position:absolute;left:16px;bottom:12px;font-size:11px;color:#8794a6;background:#ffffffd9;border-radius:6px;padding:4px 10px;pointer-events:none}
-.dch-detail{min-width:0;min-height:0;overflow:hidden}.dch-detail.dci{height:100%}
+/* Must stay scrollable: this file loads after inspector.css and would otherwise override .dci overflow. */
+.dch-detail{min-width:0;min-height:0;overflow-y:auto;overscroll-behavior:contain}.dch-detail.dci{height:100%}
 .dch-preview{border:0;border-radius:10px;padding:14px;max-width:92vw;max-height:92vh}.dch-preview::backdrop{background:#152237c9}.dch-preview-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}.dch-preview-bar button{border:1px solid #dde3ed;background:#fff;border-radius:6px;padding:4px 10px}
 .dch-frame{position:relative;display:inline-block;max-width:100%}.dch-frame img{display:block;max-width:86vw;max-height:78vh}
 @media (max-width:1100px){

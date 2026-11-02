@@ -83,7 +83,9 @@ def lint_placeholders(data, warnings):
                 hits.append(page['id'] + '/' + s['id'] + ': no fields or referenceDisplayData recorded')
         for where, text in texts:
             stripped = text.strip()
-            if len(stripped) < 4 or any(p in stripped for p in PLACEHOLDERS):
+            # Field labels are short by nature; only facts must say something concrete.
+            too_short = where.endswith('facts') and len(stripped) < 4
+            if too_short or any(p in stripped for p in PLACEHOLDERS):
                 hits.append(page['id'] + '/' + where + ': generic or placeholder text “' + stripped[:30] + '”')
     if hits:
         warnings.append({'placeholderLint': len(hits), 'items': hits[:40],
