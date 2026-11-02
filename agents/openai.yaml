@@ -1,0 +1,4 @@
+interface:
+  display_name: "设计需求画布审查"
+  short_description: "将设计大图拆解为页面、组件映射与需求画布，核对缺漏、证据和实施范围"
+  default_prompt: "使用 $design-requirement-canvas 对照设计大图和现有组件库，整理可追溯的页面需求、实施范围与交互画布，并检查缺漏。"
