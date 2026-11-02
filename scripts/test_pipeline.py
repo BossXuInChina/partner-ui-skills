@@ -58,6 +58,13 @@ class CanvasChecks(unittest.TestCase):
         lint = [w for w in result['warnings'] if isinstance(w, dict)]
         self.assertTrue(lint and lint[0]['placeholderLint'] >= 1)
 
+    def test_short_field_labels_are_not_flagged(self):
+        data = load()
+        data['pages'][0]['sections'][0]['fields'] = ['日期', '金额']
+        data['pages'][0]['sections'][0]['facts'] = ['表头为日期与金额两列']
+        lint = [w for w in validate(data)['warnings'] if isinstance(w, dict)]
+        self.assertFalse(any('demo-a-body.fields' in i for w in lint for i in w['items']))
+
 
 class Handoff(unittest.TestCase):
     def test_review_items_never_buildable(self):
