@@ -4,9 +4,11 @@ import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 const here=path.dirname(fileURLToPath(import.meta.url)),base=path.resolve(here,'../assets');
+import {createRequire} from 'node:module';
 const arg=process.argv.indexOf('--dom-module');
-if(arg<0||!process.argv[arg+1])throw Error('Usage: node test_inspector.mjs --dom-module /absolute/path/to/happy-dom/lib/index.js');
-const {Window}=await import(pathToFileURL(path.resolve(process.argv[arg+1])).href);
+// Default: happy-dom from this repo's devDependencies (npm install); --dom-module overrides.
+const domModule=arg>=0&&process.argv[arg+1]?path.resolve(process.argv[arg+1]):(()=>{try{return createRequire(path.join(here,'..','package.json')).resolve('happy-dom');}catch{throw Error('happy-dom not found: run npm install in the skill folder, or pass --dom-module /absolute/path/to/happy-dom/lib/index.js');}})();
+const {Window}=await import(pathToFileURL(domModule).href);
 const window=new Window({settings:{disableCSSFileLoading:true,disableJavaScriptFileLoading:true}});
 const document=window.document;document.body.innerHTML='<aside id="detail"></aside>';
 for(const f of ['page-review.js','inspector.js'])window.eval(fs.readFileSync(path.join(base,f),'utf8'));
@@ -19,6 +21,8 @@ let checked=0;
 function check(fn){fn();checked++;}
 check(()=>assert.ok(host.querySelector('[data-inspector-empty]')));
 api.select('demo-a');
+// Regression: leaving a non-label element while nothing is highlighted must not throw.
+check(()=>host.querySelector('h2').dispatchEvent(new window.MouseEvent('mouseout',{bubbles:true})));
 check(()=>assert.deepEqual([...host.querySelectorAll('[data-inspector-part]')].map(x=>x.dataset.inspectorPart),['identity','evidence','scope','completeness','sections','connections','limits']));
 check(()=>assert.equal(host.querySelectorAll('[data-review-group]').length,4));
 check(()=>assert.match(host.querySelector('[data-scope-counts]').textContent,/纳入还原 1 · 组件优先 1 · 待评审排除 1/));

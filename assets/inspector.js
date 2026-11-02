@@ -85,7 +85,7 @@
       else if(kind==='navigate'){const from=current,to=button.dataset.targetPageId;select(to);options.onNavigate({fromPageId:from,pageId:to});}
     }
     function enter(event){const b=event.target.closest('[data-inspector-action="region"]');if(b&&container.contains(b)&&!b.contains(event.relatedTarget))show(b);}
-    function leave(event){const b=event.target.closest('[data-inspector-action="region"]');if(b===active&&!b.contains(event.relatedTarget)){const focused=b.ownerDocument.activeElement;if(event.type==='mouseout'&&focused===b)return;clearHighlight();}}
+    function leave(event){const b=event.target.closest('[data-inspector-action="region"]');if(b&&b===active&&!b.contains(event.relatedTarget)){const focused=b.ownerDocument.activeElement;if(event.type==='mouseout'&&focused===b)return;clearHighlight();}}
     const listeners={click,mouseover:enter,mouseout:leave,focusin:enter,focusout:leave};
     Object.entries(listeners).forEach(([type,fn])=>container.addEventListener(type,fn));
     empty();
