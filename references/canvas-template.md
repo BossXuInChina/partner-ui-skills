@@ -4,7 +4,7 @@
 
 ## 必须复用的实现
 
-新场景使用 `assets/page-review.js`、`assets/inspector.js`、`assets/inspector.css`。前者计算页级范围和四类摘要，后两者固定完整右栏及行为。把资源复制到交付源码，并内嵌进离线 HTML，不能运行时依赖 Skill 路径、CDN 或服务器。
+新场景由 `scripts/build_canvas.py` 生成，自动内嵌 `assets/page-review.js`（页级范围与四类摘要）、`assets/inspector.js` + `inspector.css`（完整右栏）、`assets/canvas-host.js` + `canvas-host.css`（左侧视图/目录、节点与连线、缩放平移、原图浮层、导出）。不能运行时依赖 Skill 路径、CDN 或服务器。
 
 旧数据结构通过适配器转为 `design-evidence/1` 后使用同一面板；不要各场景重写一套 innerHTML，再声称结构等价。原有用户认可的首页保留业务语义，迁移只改适配与面板接入，不擅自改写事实。除用户明确要求替换交互框架外，不提供另造精简右栏的路径。
 
@@ -70,7 +70,7 @@ inspector.select(pageId);
 // 场景切换：inspector.clear()；载入新 manifest：先 inspector.destroy() 再创建。
 ```
 
-这里的 canvas/preview 是宿主适配器示意，不是随 Skill 提供的全画布 API。所有回调均须接入真实行为，不能传空函数来通过检查。面板负责内部渲染、折叠、当前页与清理；宿主负责画布选中/定位、浮层及全局导出。`onNavigate` 调用时目标右栏已经选中，宿主不要再次替换右栏 DOM。
+`assets/canvas-host.js` 的 `DesignCanvasHost.mount({root, manifest, images})` 已按本节接好全部回调，构建出的画布直接使用它；上例仅说明自行嵌入其他宿主时的接法。所有回调均须接入真实行为，不能传空函数来通过检查。面板负责内部渲染、折叠、当前页与清理；宿主负责画布选中/定位、浮层及全局导出。`onNavigate` 调用时目标右栏已经选中，宿主不要再次替换右栏 DOM。
 
 定位事件载荷包含 `pageId/sectionId/mappingId/workItemId/region/precision/lane/label`。优先 `mapping.evidence.region` 或工作项区域，其次区块区域，再降级整页；ID 固定且语义明确，不依赖数组下标。回调收到 region=null 时不能继续显示上一个红框。
 
@@ -82,6 +82,6 @@ inspector.select(pageId);
 
 运行数据和面板 DOM 回归后，仍需实际浏览器验证：所有页面七个区域及每区块两类折叠详情存在且可用；三类计数一致；焦点、hover、清除、区域放大、来去连接、关闭/切换、重复选择和导出行为正确。采用 `data-inspector-version/part`、`data-page-scope`、`data-page-completeness`、`data-review-group` 和 section/mapping/workItem ID 定位，不只检查标题文字。
 
-共享 DOM 测试运行 `node scripts/test_inspector.mjs --dom-module /absolute/path/to/happy-dom/lib/index.js`，加 `--manifest /absolute/path/manifest.json` 逐页检查本次真实数据，而不是只跑合成样例。DOM 测试只验证渲染、事件与状态，不证明实际布局、图片加载或像素定位。离线与浏览器限制按工具规则处理；不能绕过拒绝，也不能用结构检查替代未完成的视觉/交互验收。修复一处不应停止其他可继续的内容与组件审查。
+共享 DOM 测试先在 Skill 根目录 `npm install`，再运行 `node scripts/test_inspector.mjs`（或用 `--dom-module` 指定 happy-dom），加 `--manifest /absolute/path/manifest.json` 逐页检查本次真实数据，而不是只跑合成样例。DOM 测试只验证渲染、事件与状态，不证明实际布局、图片加载或像素定位；实际浏览器行为用 `node scripts/test_canvas_browser.mjs --html <画布> --manifest <manifest>` 检查。离线与浏览器限制按工具规则处理；不能绕过拒绝，也不能用结构检查替代未完成的视觉/交互验收。修复一处不应停止其他可继续的内容与组件审查。
 
 可运行 `python3 scripts/build_inspector_demo.py /absolute/output/统一右侧面板-模板示例.html` 查看自包含的合成示例，检验结构、折叠、双向关系、关闭/选择、标签区域放大与导出。示例不是业务模板数据或完整无限画布，不得拿合成事实生成业务页面。

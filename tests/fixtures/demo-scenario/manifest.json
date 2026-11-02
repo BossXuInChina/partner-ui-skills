@@ -1,0 +1,325 @@
+{
+  "schemaVersion": "design-evidence/1",
+  "sources": [
+    {
+      "id": "demo-source",
+      "path": "合成示例，非业务原图",
+      "width": 1000,
+      "height": 700
+    }
+  ],
+  "assets": [
+    {
+      "id": "example-card",
+      "version": "example-only",
+      "publicExport": "ExampleCard",
+      "contractSource": "示例契约，不能当作真实组件资产",
+      "qualification": "仅用于模板测试"
+    }
+  ],
+  "pages": [
+    {
+      "id": "demo-a",
+      "title": "示例页 A",
+      "role": "示例角色",
+      "description": "面板模板示例；不是新的业务设计。",
+      "crop": {
+        "sourceId": "demo-source",
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 700
+      },
+      "sections": [
+        {
+          "id": "demo-a-body",
+          "title": "示例信息区",
+          "evidence": {
+            "sourceId": "demo-source",
+            "region": [
+              8,
+              15,
+              84,
+              65
+            ]
+          },
+          "evidencePrecision": "approx-section",
+          "facts": [
+            "合成内容仅用于核对面板结构及交互。"
+          ],
+          "fields": [
+            "示例字段"
+          ],
+          "referenceState": {
+            "selected": "示例选项"
+          },
+          "referenceDisplayData": [
+            "示例数值 12"
+          ],
+          "actions": [
+            {
+              "id": "demo-a-body-view",
+              "label": "查看示例 B",
+              "visibleInReference": true,
+              "evidenceSourceId": "demo-source",
+              "targetStatus": "confirmed",
+              "targetPageId": "demo-b"
+            }
+          ],
+          "mappings": [
+            {
+              "id": "demo-a-body-card",
+              "assetId": "example-card",
+              "configurationStatus": "candidate",
+              "props": {
+                "title": "示例标题"
+              },
+              "slots": {
+                "default": "示例正文"
+              },
+              "bindings": {
+                "selected": "宿主状态，待配置"
+              },
+              "events": {},
+              "actionIds": [
+                "demo-a-body-view"
+              ],
+              "unknowns": [
+                "此为合成契约，不能用于业务页面生成。"
+              ]
+            }
+          ],
+          "unknowns": [
+            "示例业务规则待确认"
+          ],
+          "acceptance": [
+            "选择变化能够反映到当前示例。"
+          ]
+        }
+      ],
+      "requirementSummary": {
+        "facts": [
+          "合成内容仅用于核对面板结构及交互。"
+        ],
+        "unknowns": [
+          "示例业务规则待确认"
+        ],
+        "acceptance": [
+          "选择变化能够反映到当前示例。"
+        ],
+        "scopeWorkItemIds": [
+          "demo-a-body-reuse",
+          "demo-a-body-component-work",
+          "demo-a-body-review"
+        ],
+        "componentWork": [
+          {
+            "workItemId": "demo-a-body-component-work",
+            "lane": "component-work",
+            "reason": "合成范围工作项，用于测试三类互斥计数与排除联动。"
+          },
+          {
+            "workItemId": "demo-a-body-review",
+            "lane": "review",
+            "reason": "合成范围工作项，用于测试三类互斥计数与排除联动。"
+          }
+        ]
+      },
+      "image": "crops/demo-a.svg"
+    },
+    {
+      "id": "demo-b",
+      "title": "示例页 B",
+      "role": "示例角色",
+      "description": "面板模板示例；不是新的业务设计。",
+      "crop": {
+        "sourceId": "demo-source",
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 700
+      },
+      "sections": [
+        {
+          "id": "demo-b-body",
+          "title": "示例信息区",
+          "evidence": {
+            "sourceId": "demo-source",
+            "region": [
+              8,
+              15,
+              84,
+              65
+            ]
+          },
+          "evidencePrecision": "approx-section",
+          "facts": [
+            "合成内容仅用于核对面板结构及交互。"
+          ],
+          "fields": [
+            "示例字段"
+          ],
+          "referenceState": {
+            "selected": "示例选项"
+          },
+          "referenceDisplayData": [
+            "示例数值 12"
+          ],
+          "actions": [
+            {
+              "id": "demo-b-body-view",
+              "label": "当前页操作",
+              "visibleInReference": true,
+              "evidenceSourceId": "demo-source",
+              "targetStatus": "unknown",
+              "targetPageId": null
+            }
+          ],
+          "mappings": [
+            {
+              "id": "demo-b-body-card",
+              "assetId": "example-card",
+              "configurationStatus": "candidate",
+              "props": {
+                "title": "示例标题"
+              },
+              "slots": {
+                "default": "示例正文"
+              },
+              "bindings": {
+                "selected": "宿主状态，待配置"
+              },
+              "events": {},
+              "actionIds": [
+                "demo-b-body-view"
+              ],
+              "unknowns": [
+                "此为合成契约，不能用于业务页面生成。"
+              ]
+            }
+          ],
+          "unknowns": [
+            "示例业务规则待确认"
+          ],
+          "acceptance": [
+            "选择变化能够反映到当前示例。"
+          ]
+        }
+      ],
+      "requirementSummary": {
+        "facts": [
+          "合成内容仅用于核对面板结构及交互。"
+        ],
+        "unknowns": [
+          "示例业务规则待确认"
+        ],
+        "acceptance": [
+          "选择变化能够反映到当前示例。"
+        ],
+        "scopeWorkItemIds": [
+          "demo-b-body-reuse"
+        ],
+        "componentWork": []
+      },
+      "image": "crops/demo-b.svg"
+    }
+  ],
+  "workItems": [
+    {
+      "id": "demo-a-body-reuse",
+      "title": "既有内容组合",
+      "sectionId": "demo-a-body",
+      "lane": "reuse",
+      "baseAssetIds": [
+        "example-card"
+      ],
+      "inPageRestoration": true,
+      "pageGeneration": "use-existing-components",
+      "reason": "合成范围工作项，用于测试三类互斥计数与排除联动。"
+    },
+    {
+      "id": "demo-a-body-component-work",
+      "title": "交互能力前置",
+      "sectionId": "demo-a-body",
+      "lane": "component-work",
+      "baseAssetIds": [
+        "example-card"
+      ],
+      "inPageRestoration": true,
+      "pageGeneration": "after-component-verification",
+      "reason": "合成范围工作项，用于测试三类互斥计数与排除联动。",
+      "workKind": "existing-adaptation",
+      "priority": 1
+    },
+    {
+      "id": "demo-a-body-review",
+      "title": "定制视觉评审参考",
+      "sectionId": "demo-a-body",
+      "lane": "review",
+      "baseAssetIds": [],
+      "inPageRestoration": false,
+      "pageGeneration": "exclude",
+      "reason": "合成范围工作项，用于测试三类互斥计数与排除联动。"
+    },
+    {
+      "id": "demo-b-body-reuse",
+      "title": "既有内容组合",
+      "sectionId": "demo-b-body",
+      "lane": "reuse",
+      "baseAssetIds": [
+        "example-card"
+      ],
+      "inPageRestoration": true,
+      "pageGeneration": "use-existing-components",
+      "reason": "合成范围工作项，用于测试三类互斥计数与排除联动。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "demo-a--demo-b",
+      "from": "demo-a",
+      "to": "demo-b",
+      "label": "查看示例 B",
+      "fromSectionId": "demo-a-body",
+      "strength": "explicit",
+      "evidence": "合成连线"
+    }
+  ],
+  "generationPlan": {
+    "included": [
+      "demo-a-body-reuse",
+      "demo-a-body-component-work",
+      "demo-b-body-reuse"
+    ],
+    "excludedPendingReview": [
+      "demo-a-body-review"
+    ]
+  },
+  "canvas": {
+    "title": "示例场景 · 合成数据",
+    "subtitle": "仅用于测试画布宿主，不是业务设计",
+    "scopeBanner": "合成数据 · 只测结构与交互",
+    "views": [
+      {
+        "id": "main",
+        "title": "示例视图",
+        "groups": [
+          {
+            "id": "entry",
+            "title": "入口",
+            "pageIds": [
+              "demo-a"
+            ]
+          },
+          {
+            "id": "targets",
+            "title": "关联页面",
+            "pageIds": [
+              "demo-b"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
