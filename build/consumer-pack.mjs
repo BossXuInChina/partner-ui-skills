@@ -17,9 +17,12 @@ import { generateReferences } from "../shared/format/index.mjs";
 import { buildPrototypeRuntime } from "../shared/runtime/build-prototype.mjs";
 import { buildGallery } from "./build-gallery.mjs";
 
-const skills = ["partner-ui-pages", "partner-ui-vue3"];
+const skills = ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review"];
 export async function candidateFiles(root, lock, packages) {
   const files = new Map();
+  for (const skill of ["partner-ui-vue3", "partner-ui-review"])
+    for (const name of ["check_vue.mjs", "tooling.mjs"])
+      files.set(`skills/${skill}/scripts/${name}`, readFileSync(resolve(root, "shared/static", name)));
   const refs = generateReferences({
     packages,
     studioBaseURLs: lock.studioBaseURLs,

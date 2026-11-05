@@ -1,0 +1,571 @@
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+
+# 按钮 Button — `WorkbenchButton`
+
+资产：`wb-button` · 类型：`component` · 资产合同版本：`1.7.0`
+
+包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+
+资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
+
+## 组件预览
+
+[在 Studio 中查看](http://localhost:4173/preview/WB-BUTTON-V1/button?view=preview)
+
+用于提交、创建、编辑、取消与轻量披露等明确操作。按钮承载动作，不代替链接导航、互斥选择或内容页签。
+
+公开入口：`@workbench/ui-vue3` → `WorkbenchButton`
+
+## 变体与状态
+
+状态：`unsupported`。声明值属于 Studio 案例数据，不自动等于公开组件 props。
+
+[在 Studio 中查看](http://localhost:4173/preview/WB-BUTTON-V1/button?view=variants)
+
+unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery.
+
+### 包内声明
+
+```json
+{
+  "states": [
+    {
+      "id": "default",
+      "label": "默认"
+    },
+    {
+      "id": "hover",
+      "label": "悬停"
+    },
+    {
+      "id": "pressed",
+      "label": "按下"
+    },
+    {
+      "id": "focus",
+      "label": "聚焦"
+    },
+    {
+      "id": "disabled",
+      "label": "禁用"
+    }
+  ],
+  "controls": [
+    {
+      "id": "showFilledIcon",
+      "label": "显示填充按钮前置图标",
+      "description": "L/M图标14px，S图标12px",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "showTextIcon",
+      "label": "显示操作类文字按钮右侧图标",
+      "description": "蓝色操作文字可配置右侧图标；黑色下钻文字使用方向箭头",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "pilotControls": [
+    {
+      "id": "appearance",
+      "label": "按钮类型",
+      "type": "select",
+      "default": "primary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "主要填充"
+        },
+        {
+          "value": "secondary",
+          "label": "次要填充"
+        },
+        {
+          "value": "dropdown",
+          "label": "下拉按钮"
+        },
+        {
+          "value": "text",
+          "label": "操作文字"
+        },
+        {
+          "value": "drilldown",
+          "label": "下钻文字"
+        },
+        {
+          "value": "icon",
+          "label": "图标按钮"
+        }
+      ],
+      "group": "类型与尺寸"
+    },
+    {
+      "id": "size",
+      "label": "按钮尺寸",
+      "type": "select",
+      "default": "32",
+      "options": [
+        {
+          "value": "36",
+          "label": "L · 36px",
+          "when": {
+            "appearance": [
+              "primary",
+              "secondary",
+              "dropdown"
+            ]
+          }
+        },
+        {
+          "value": "32",
+          "label": "M · 32px",
+          "when": {
+            "appearance": [
+              "primary",
+              "secondary",
+              "dropdown",
+              "text",
+              "drilldown",
+              "icon"
+            ]
+          }
+        },
+        {
+          "value": "28",
+          "label": "S · 28px",
+          "when": {
+            "appearance": [
+              "primary",
+              "secondary",
+              "dropdown",
+              "text",
+              "drilldown"
+            ]
+          }
+        },
+        {
+          "value": "24",
+          "label": "图标 · 24px",
+          "when": {
+            "appearance": [
+              "icon"
+            ]
+          }
+        }
+      ],
+      "group": "类型与尺寸"
+    },
+    {
+      "id": "label",
+      "label": "按钮文案",
+      "type": "text",
+      "default": "新建伙伴",
+      "group": "内容",
+      "when": {
+        "appearance": [
+          "primary",
+          "secondary",
+          "dropdown",
+          "text",
+          "drilldown"
+        ]
+      }
+    },
+    {
+      "id": "drilldown",
+      "label": "箭头方向",
+      "type": "select",
+      "default": "more",
+      "options": [
+        {
+          "value": "more",
+          "label": "更多"
+        },
+        {
+          "value": "expand",
+          "label": "展开"
+        },
+        {
+          "value": "collapse",
+          "label": "收起"
+        }
+      ],
+      "group": "内容",
+      "when": {
+        "appearance": [
+          "dropdown",
+          "drilldown"
+        ]
+      }
+    },
+    {
+      "id": "leadingIcon",
+      "label": "前置图标插槽",
+      "type": "select",
+      "default": "plus",
+      "options": [
+        {
+          "value": "none",
+          "label": "无图标"
+        },
+        {
+          "value": "plus",
+          "label": "新增"
+        },
+        {
+          "value": "close",
+          "label": "关闭"
+        },
+        {
+          "value": "more",
+          "label": "更多"
+        },
+        {
+          "value": "download",
+          "label": "下载",
+          "when": {
+            "size": [
+              "32",
+              "36"
+            ]
+          }
+        }
+      ],
+      "group": "插槽",
+      "when": {
+        "appearance": [
+          "primary",
+          "secondary",
+          "dropdown"
+        ]
+      },
+      "description": "使用已登记的原生尺寸图标；填充按钮 S 使用12px，M/L使用14px。"
+    },
+    {
+      "id": "trailingIcon",
+      "label": "尾部图标插槽",
+      "type": "select",
+      "default": "arrow",
+      "options": [
+        {
+          "value": "none",
+          "label": "无图标"
+        },
+        {
+          "value": "arrow",
+          "label": "右箭头"
+        },
+        {
+          "value": "plus",
+          "label": "新增"
+        },
+        {
+          "value": "close",
+          "label": "关闭"
+        }
+      ],
+      "group": "插槽",
+      "when": {
+        "appearance": [
+          "text"
+        ]
+      },
+      "description": "通过组件的 icon 插槽渲染已登记图标。"
+    },
+    {
+      "id": "buttonIcon",
+      "label": "图标插槽",
+      "type": "select",
+      "default": "more",
+      "options": [
+        {
+          "value": "more",
+          "label": "更多"
+        },
+        {
+          "value": "plus",
+          "label": "新增"
+        },
+        {
+          "value": "close",
+          "label": "关闭"
+        }
+      ],
+      "group": "插槽",
+      "when": {
+        "appearance": [
+          "icon"
+        ]
+      },
+      "description": "通过组件的 icon 插槽渲染已登记图标。"
+    }
+  ],
+  "presets": []
+}
+```
+
+### 定制画廊来源清单（unsupported）
+
+```json
+{
+  "literalData": {
+    "types": [
+      {
+        "appearance": "primary",
+        "title": "主要填充"
+      },
+      {
+        "appearance": "secondary",
+        "title": "次要填充"
+      },
+      {
+        "appearance": "dropdown",
+        "title": "下拉按钮"
+      },
+      {
+        "appearance": "text",
+        "title": "操作文字"
+      },
+      {
+        "appearance": "drilldown",
+        "title": "下钻文字"
+      },
+      {
+        "appearance": "icon",
+        "title": "图标按钮"
+      }
+    ],
+    "sizes": [
+      {
+        "appearance": "primary",
+        "sizes": [
+          "36",
+          "32",
+          "28"
+        ],
+        "title": "填充按钮"
+      },
+      {
+        "appearance": "text",
+        "sizes": [
+          "32",
+          "28"
+        ],
+        "title": "文字按钮"
+      },
+      {
+        "appearance": "icon",
+        "sizes": [
+          "32",
+          "24"
+        ],
+        "title": "图标按钮"
+      }
+    ],
+    "states": [
+      {
+        "id": "default",
+        "title": "默认"
+      },
+      {
+        "id": "hover",
+        "title": "悬停"
+      },
+      {
+        "id": "pressed",
+        "title": "按下"
+      },
+      {
+        "id": "focus",
+        "title": "聚焦"
+      },
+      {
+        "id": "disabled",
+        "title": "禁用"
+      }
+    ]
+  },
+  "dynamicBindings": [],
+  "explicitCaseIds": [],
+  "loopExpressions": [
+    "item in types",
+    "family in sizes",
+    "size in family.sizes",
+    "item in states"
+  ]
+}
+```
+
+## 使用场景
+
+[在 Studio 中查看](http://localhost:4173/preview/WB-BUTTON-V1/button?view=scenes)
+
+**适用**：操作入口；更多、展开与收起入口
+
+**不适用**：未经验证的内部框架生产实现；以颜色代替权限或错误说明
+
+官方来源 SFC：supported。
+
+### 示例：主要操作按钮
+
+id：`primary-action` · portability：`portable` · owner：`wb-button`
+
+最小可运行的创建操作示例，应用状态由调用方管理。
+
+Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import { WorkbenchButton } from '@workbench/ui-vue3'
+const created = ref(false)
+function createApplication() { created.value = true }
+</script>
+<template>
+  <WorkbenchButton :disabled="created" @click="createApplication">{{ created ? '已创建' : '创建申请' }}</WorkbenchButton>
+  <output aria-live="polite">{{ created ? '申请已创建' : '等待操作' }}</output>
+</template>
+```
+
+## 使用规范与API
+
+[在 Studio 中查看](http://localhost:4173/preview/WB-BUTTON-V1/button?view=usage)
+
+| 名称 | 类型 | 默认 | 可选值 | 说明 |
+| --- | --- | --- | --- | --- |
+| appearance | String | primary | primary / secondary / text / icon | 选择primary、secondary、text或icon外观。 |
+| ariaLabel | String |  |  | 提供纯图标按钮的可访问名称。 |
+| disabled | Boolean | false |  | 禁用原生按钮交互。 |
+| drilldown | String | more | more / expand / collapse | 披露箭头方向：more、expand或collapse。 |
+| intent | String | action | action / drilldown | text外观的action或drilldown语义。 |
+| previewState | String | default |  | Studio状态预览值；业务交互应由真实DOM状态和调用方逻辑管理。 |
+| size | String | 32 |  | 按钮尺寸字符串；当前组件默认32，填充按钮支持28、32、36，文字与图标尺寸按组件契约使用。 |
+
+### Slots
+
+- `icon`：无；primary / secondary 使用前置图标，text 使用尾部图标，icon 使用主体图标；drilldown 箭头由组件管理。省略 icon 插槽会移除图标占位，按钮仍遵循原有最小宽度。
+
+- `default`：无；按钮可见文案。
+
+### 规则
+
+### 32px 默认高度
+
+id：`wb-button-height` · default / confirmed
+
+默认高度32px；填充按钮36px用于全局操作，28px用于复合组件的紧凑操作。尺寸选择与文字字号分别判断。
+
+**适用条件**：使用按钮
+
+### 14px 默认文字字号
+
+id：`wb-button-text-size` · default / confirmed
+
+列表、表格操作列及卡片右上角的操作和下钻默认使用14px，不因处于复合组件内部自动缩小。
+
+**适用条件**：使用按钮
+
+### 填充按钮三档最小宽度
+
+id：`wb-button-min-width` · must / confirmed
+
+填充按钮 S、M、L 分别对应28、32、36px高度，最小宽度分别为72、88、96px；内容超过最小宽度时允许按钮自然撑宽。该规则不扩展到文字按钮与图标按钮。
+
+**适用条件**：使用填充按钮
+
+**包内引用**：["wb-button-height"]
+
+### 12px 慎用
+
+id：`wb-button-small-text` · recommendation / confirmed
+
+14px文字按钮用于主要内容区、高频操作和标准卡片。12px仅建议用于高密度、次要辅助区或空间极受限的场景，如空状态轻量引导、极次要全局辅助状态栏；慎用并控制在2–4个汉字，点击区域不小于24×24px。
+
+**适用条件**：使用按钮
+
+### 颜色表达用途
+
+id：`wb-button-intent` · must / confirmed
+
+操作类文字默认蓝色；下钻/披露类默认黑色。两者Hover统一使用color-text-action-hover，Pressed/Expanded统一使用color-text-action-active；操作类禁用使用color-text-action-disabled，下钻/披露类禁用使用color-text-disabled。更多配右箭头、展开配下箭头、收起配上箭头。
+
+**适用条件**：使用按钮
+
+### 主要与次要外观
+
+id：`wb-button-border` · must / confirmed
+
+主要按钮纯色填充且无描边；次要按钮保留描边，主次不通过混用尺寸表达。
+
+**适用条件**：使用按钮
+
+### 填充按钮组合建议同宽
+
+id：`wb-button-equal-width` · recommendation / confirmed
+
+同组填充按钮字数不同时建议按最长内容等宽、同高；由父级布局实现，不靠空格、不要求全站统一宽度。
+
+**适用条件**：使用按钮
+
+### 图文与点击区域
+
+id：`wb-button-icon` · must / confirmed
+
+填充按钮L/M/S前置图标分别14/14/12px，图文间距4px。文字与下拉按钮尾部箭头统一10px、间距6px。纯图标按钮32/24px容器分别使用20/14px图标，并提供可访问名称。
+
+**适用条件**：使用按钮
+
+### 交互语义
+
+id：`wb-button-semantics` · must / confirmed
+
+状态操作使用按钮，真实地址下钻使用链接或路由语义；保留键盘、可见焦点和禁用行为，展开收起同步aria-expanded。
+
+**适用条件**：使用按钮
+
+### 已定稿的状态与图标映射
+
+id：`wb-button-state-mapping` · must / confirmed
+
+以Pixso组件变体为准：主要按钮Default/Pressed使用color-brand，Hover使用color-brand-hover，Disabled使用color-brand-disabled。次要按钮Hover/Pressed均保持color-fill-subtle-default，并将1px描边改为color-border-hover。图标按钮Hover/Pressed均透明，分别使用color-icon-hover和color-icon-active。操作类文字按钮使用color-text-action、color-text-action-hover、color-text-action-active、color-text-action-disabled；下钻类默认color-text-primary、禁用color-text-disabled，Hover/Pressed沿用文字操作状态链，aria-expanded=true持续使用active色。文字与下拉按钮箭头均10px、间距6px；纯图标按钮32/24px分别配20/14px图标。
+
+**适用条件**：精确状态色映射；描边粗细；文字图标尺寸
+
+### 本版本未支持的能力
+
+id：`wb-button-async` · must / confirmed
+
+Button提供主要、次要、文字、图标及次要下拉触发入口；下拉入口复用secondary外观、intent=drilldown与方向箭头，展开状态由调用方控制，菜单由独立Dropdown负责。当前版本不提供Loading、异步防重复提交或Danger；Pixso实际组件集中无告警变体，不依据残留标题推断实现。
+
+**适用条件**：加载中按钮；异步提交；危险操作
+
+### Pixso三档左右内边距
+
+id：`wb-button-padding` · must / confirmed
+
+填充按钮L/M/S左右内边距20/16/12px；文字按钮各尺寸均8px；图标按钮通过固定正方形容器居中。
+
+**适用条件**：使用按钮
+
+**包内引用**：["wb-button-height"]
+
+### Foundation 引用
+
+`color-brand`、`color-brand-hover`、`color-brand-focus`、`color-brand-disabled`、`color-fill-default`、`color-fill-subtle-default`、`color-fill-subtle-disabled`、`color-text-primary`、`color-text-inverse`、`color-text-action`、`color-text-action-hover`、`color-text-action-active`、`color-text-action-disabled`、`color-text-disabled`、`color-icon-primary`、`color-icon-hover`、`color-icon-active`、`color-icon-disabled`、`color-border-focus`、`color-border-separator`、`color-surface-card-default`、`color-info-primary-subtle`、`spacing-component-xs`、`spacing-component-sm`、`spacing-component-md`、`spacing-component-lg`、`radius-sm`、`radius-lg`、`radius-full`、`shadow-sm`、`font-body-s`、`font-body-m`、`font-headline-xs`、`font-headline-m`、`icon-size-12`、`icon-size-16`、`icon-size-20`、`color-border`、`color-border-hover`、`color-border-disabled`
+
+### 选型与文案
+
+主要按钮突出当前区块最重要的操作；次要按钮承载并列操作；文字按钮用于轻量动作或下钻；纯图标按钮只在图标含义明确且可访问名称完整时使用。
+
+- 同一操作组通常只突出一个主要动作。
+
+- 按钮宽度与位置由调用方布局决定；文案应以动作动词开头。
+
+### 尺寸与状态
+
+size选择已提供的按钮尺寸；primary、secondary、text、icon分别对应不同视觉职责。状态预览值previewState用于Studio检查，不代替真实禁用状态。
+
+- 异步提交、加载与危险操作不属于当前组件接口。
+
+- 披露状态由调用方通过aria-expanded表达，drilldown控制箭头方向。

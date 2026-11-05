@@ -10,7 +10,7 @@
 4. 执行 pnpm test、pnpm test:templates、pnpm verify:harness、pnpm build，按实际影响补包消费或浏览器检查；不删除断言或用定向通过冒充全量。运行完整 pnpm 工程当前需 Node22.13+；22.12声明差异仍待工具链项统一。
 5. 在三个全新消费会话重跑 T1–T3：协议 PRD→列表/详情/助手、两份 partner-ui-pages 原型→SFC、Pinia+axios+@alias+vue-i18n 现仓接入。仅使用当前独立 Skill 与目标仓。旧试验的来源锁不符时应拒绝复跑；为新包建立新的试验输入快照并适配，保留旧收据，不把改锁当作验收。完成类型/Lint/规则/单测/构建、相关 headless 行为、两尺寸 smoke；转换另做原型对照。修订绊点文档后复测。
 6. 为各功能更新真实 delivery.json，并从它生成人读 DELIVERY.md。文件路径、实际验证路由、包来源、耗时和限制逐项核对；未测保留 null 与原因，不把 QA 网络桩称为真实服务。
-7. 按变更更新各 Skill 的 skill.json 与 CHANGELOG.md；Skill版本、组件包版本和原型 runtimeVersion 独立管理。运行 pnpm package:release，得到两份带 Skill 版本的 ZIP 与 dist/release-manifest.json。校验 ZIP 中的 Skill 名称/版本、来源锁及 tar SHA；版本归档必须与普通构建归档字节相同。旧清单只属于对应字节。
+7. 按变更更新各 Skill 的 skill.json 与 CHANGELOG.md；Skill版本、组件包版本和原型 runtimeVersion 独立管理。运行 pnpm package:release，得到三份带 Skill 版本的 ZIP 与 dist/release-manifest.json。校验 ZIP 中的 Skill 名称/版本、来源锁及 tar SHA；版本归档必须与普通构建归档字节相同。旧清单只属于对应字节。
 8. 向用户交付本地候选归档、清单和实际验证结论。外部上传、推送、注册表发布或生产资格变更由当次授权决定，本命令不执行这些动作。
 
 ## 独立交付使用者

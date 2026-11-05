@@ -320,6 +320,59 @@ export function checkSource(
         (node.operator === ts.SyntaxKind.MinusToken ? -1 : 1)
       );
   }
+  // Only literal strings and frozen, shallow string maps are enumerable.
+  // Unknown keys remain unknown unless an explicit literal fallback is provided.
+  const unknownIcon = Symbol("unknown-icon-expression");
+  function iconValues(input, seen = new Set()) {
+    const node = unwrap(input);
+    if (!node || seen.has(node)) return new Set([unknownIcon]);
+    const next = new Set([...seen, node]);
+    if (ts.isStringLiteralLike(node)) return new Set([node.text]);
+    if (ts.isIdentifier(node)) {
+      const binding = lookup(node.text, scopeOf(node));
+      return stable(binding) && binding.initializer
+        ? iconValues(binding.initializer, next) : new Set([unknownIcon]);
+    }
+    if (ts.isConditionalExpression(node))
+      return new Set([...iconValues(node.whenTrue, next), ...iconValues(node.whenFalse, next)]);
+    if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken) {
+      const values = iconValues(node.left, next);
+      if (!values.has(undefined)) return values;
+      values.delete(undefined);
+      return new Set([...values, ...iconValues(node.right, next)]);
+    }
+    if (ts.isPropertyAccessExpression(node) || ts.isElementAccessExpression(node)) {
+      const base = resolveConstant(node.expression);
+      if (!base || !ts.isCallExpression(base) || base.arguments.length !== 1) return new Set([unknownIcon]);
+      const callee = base.expression;
+      if (!ts.isPropertyAccessExpression(callee) || callee.name.text !== "freeze" ||
+          !ts.isIdentifier(callee.expression) || callee.expression.text !== "Object" ||
+          lookup("Object", scopeOf(callee.expression))) return new Set([unknownIcon]);
+      const literal = unwrap(base.arguments[0]);
+      if (!ts.isObjectLiteralExpression(literal)) return new Set([unknownIcon]);
+      const entries = new Map();
+      let nullPrototype = false;
+      for (const entry of literal.properties) {
+        if (!ts.isPropertyAssignment(entry) || entry.name.kind === ts.SyntaxKind.ComputedPropertyName)
+          return new Set([unknownIcon]);
+        const key = propName(entry.name);
+        if (key === "__proto__" && entry.initializer.kind === ts.SyntaxKind.NullKeyword) { nullPrototype = true; continue; }
+        const values = iconValues(entry.initializer, next);
+        if (!key || key === "__proto__" || values.has(undefined) || values.has(unknownIcon)) return new Set([unknownIcon]);
+        entries.set(key, values);
+      }
+      const keys = ts.isPropertyAccessExpression(node) ? new Set([node.name.text]) : iconValues(node.argumentExpression, next);
+      const values = new Set();
+      for (const key of keys) {
+        if (key === unknownIcon || key === undefined) {
+          for (const entry of entries.values()) for (const value of entry) values.add(value);
+          values.add(nullPrototype ? undefined : unknownIcon);
+        } else for (const value of entries.get(key) ?? [undefined]) values.add(value);
+      }
+      return values;
+    }
+    return new Set([unknownIcon]);
+  }
   function importOrigin(input, seen = new Set()) {
     const node = unwrap(input);
     if (!node) return;
@@ -799,23 +852,15 @@ export function checkSource(
               prop.name === "bind" &&
               prop.arg?.content === "name"))
         ) {
-          const value =
-            prop.type === 6
-              ? prop.value?.content
-              : staticValue(expression(prop.exp?.content ?? "", scope));
-          if (typeof value === "string" && !iconNames.has(value))
-            add(
-              "ICON_REGISTERED",
-              `Unknown icon name ${JSON.stringify(value)} in the pinned icons.json.`,
-              line,
-            );
-          else if (typeof value !== "string")
-            add(
-              "ICON_DYNAMIC",
-              "Dynamic icon names require a registry-backed mapping; static analysis cannot enumerate this expression.",
-              line,
-              "warning",
-            );
+          const values = prop.type === 6
+            ? new Set([prop.value?.content])
+            : iconValues(expression(prop.exp?.content ?? "", scope));
+          for (const value of values) {
+            if (typeof value === "string" && !iconNames.has(value))
+              add("ICON_REGISTERED", `Unknown icon name ${JSON.stringify(value)} in the pinned icons.json.`, line);
+          }
+          if (values.has(undefined) || values.has(unknownIcon))
+            add("ICON_DYNAMIC", "Dynamic icon names require a frozen registry-backed mapping with an explicit fallback; static analysis cannot enumerate this expression.", line, "warning");
         }
       }
     }

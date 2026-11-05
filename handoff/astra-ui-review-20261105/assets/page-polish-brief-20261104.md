@@ -23,6 +23,9 @@ Goal: make each assigned demo page match its original design crop as closely as 
 9. Before finishing, run the demo tests that use their own server (safe in parallel): `cd /home/user/partner-workbench-scenarios/prototype && node tests/smoke.mjs && node tests/operations.mjs` (with node24 on PATH). They must print `PASS:`. If one fails because of your change, fix it; if it fails for an unrelated reason, report it.
 
 ## Report (final message, concise)
+
+Checks before you finish (2026-11-06): run `pnpm run check:ui` in `prototype/` and report its error/warning counts, together with the six required tests documented in the prototype README. A stale-source error remains a failing gate; do not suppress it. Use the current host toolchain and evidence paths instead of the historical machine paths above.
+
 - Per page: what you changed (1 line each), and remaining differences you could not fix and why (e.g. needs a component change).
 - Files you edited (full paths).
 - Console errors after your changes (must be 0) and test results.
