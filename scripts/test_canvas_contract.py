@@ -76,6 +76,47 @@ class CanvasContractTest(unittest.TestCase):
         self.data['generationPlan']['included'].append(review)
         self.rejects()
 
+    def test_entry_regions_and_references(self):
+        action = self.data['pages'][0]['sections'][0]['actions'][0]
+        action['evidence'] = {'region': [10, 20, 8, 4]}
+        self.assertTrue(validate(self.data)['ok'])
+        action['targetActionId'] = 'missing'
+        self.rejects()
+        del action['targetActionId']
+        action['evidence']['region'] = [98, 0, 5, 2]
+        self.rejects()
+
+    def test_endpoint_action_must_match_section(self):
+        self.data['edges'] = [{'id':'bad-owner', 'from':'home', 'to':'home', 'label':'入口',
+                               'fromActionId':'nav-home', 'fromSectionId':'home-calendar'}]
+        self.rejects()
+
+    def test_main_path_must_reference_confirmed_edge(self):
+        self.data['canvas'] = {'mainPathEdgeIds': ['nav-home']}
+        self.assertTrue(validate(self.data)['ok'])
+        self.data['canvas']['mainPathEdgeIds'] = ['missing-edge']
+        self.rejects()
+
+    def test_dialogue_requires_real_host_page(self):
+        import copy
+        host = self.data['pages'][0]
+        host['nodeType'] = 'page'
+        answer = {'id':'answer','title':'本页回答','role':'对话状态','nodeType':'dialogue',
+                  'ownerPageId':host['id'],'crop':copy.deepcopy(host['crop']),
+                  'sections':[{'id':'answer-content','title':'回答','evidence':{'sourceId':host['crop']['sourceId']},
+                               'fields':['答复内容'],'actions':[],'mappings':[]}],
+                  'requirementSummary':{'facts':['当前问题的完整回答'],'componentWork':[],
+                    'unknowns':['真实服务未接入'],'acceptance':['完整显示回答'],'scopeWorkItemIds':[]},
+                  'capture':{'mode':'content-crop'}}
+        self.data['pages'].append(answer)
+        self.assertTrue(validate(self.data)['ok'])
+        answer['ownerPageId'] = 'answer'
+        self.rejects()
+        answer['ownerPageId'] = 'missing'
+        self.rejects()
+        answer.pop('ownerPageId')
+        self.rejects()
+
     def test_report_only_base_remains_supported(self):
         from validate_manifest import validate as base
         del self.data['pages'][0]['requirementSummary']

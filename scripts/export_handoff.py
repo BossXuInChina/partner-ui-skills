@@ -37,14 +37,17 @@ def brief(data, manifest_hash):
                     preconditions.append({'workItemId': w['id'], 'pageId': page['id'], 'sectionId': s['id'],
                                           'title': w.get('title', w['id']), 'workKind': w.get('workKind'),
                                           'baseAssets': [assets[a].get('publicExport', a) for a in w.get('baseAssetIds', [])],
-                                          'reason': w['reason'], 'acceptance': w.get('acceptance', [])})
+                                          'reason': w['reason'], 'acceptance': w.get('acceptance', []),
+                                          'capabilityRefs': w.get('capabilityRefs', []),
+                                          'unknowns': w.get('unknowns', []),
+                                          'acceptanceStatus': w.get('acceptanceStatus')})
             sections.append({
                 'id': s['id'], 'title': s['title'],
                 'generation': 'exclude' if items and not build else 'after-component-verification' if any(w['lane'] == 'component-work' for w in build) else 'use-existing-components' if build else 'unscoped',
                 'region': s.get('evidence', {}).get('region'),
                 'facts': s.get('facts', []), 'fields': s.get('fields', []),
                 'referenceState': s.get('referenceState', {}), 'referenceDisplayData': s.get('referenceDisplayData', []),
-                'actions': [{'id': a['id'], 'label': a['label'], 'target': a.get('targetPageId'), 'targetStatus': a['targetStatus']} for a in s.get('actions', [])],
+                'actions': [{**a, 'target': a.get('targetPageId')} for a in s.get('actions', [])],
                 'components': [{
                     'mappingId': m['id'], 'assetId': m['assetId'],
                     'publicExport': assets.get(m['assetId'], {}).get('publicExport'),
@@ -53,12 +56,15 @@ def brief(data, manifest_hash):
                     'props': m.get('props', {}), 'slots': m.get('slots', {}), 'bindings': m.get('bindings', {}),
                     'events': m.get('events', {}), 'actionIds': m.get('actionIds', []), 'unknowns': m.get('unknowns', [])}
                     for m in s.get('mappings', [])],
-                'workItems': [{'id': w['id'], 'lane': w['lane'], 'reason': w['reason']} for w in build],
+                'workItems': [{'id': w['id'], 'lane': w['lane'], 'reason': w['reason'],
+                               'capabilityRefs': w.get('capabilityRefs', []), 'unknowns': w.get('unknowns', []),
+                               'acceptance': w.get('acceptance', []), 'acceptanceStatus': w.get('acceptanceStatus')} for w in build],
                 'excludedParts': [{'id': w['id'], 'title': w.get('title', w['id']), 'reason': w['reason']} for w in excluded],
                 'unknowns': s.get('unknowns', []), 'acceptance': s.get('acceptance', [])})
         pages.append({'id': page['id'], 'title': page['title'], 'role': page['role'], 'image': page.get('image'),
                       'description': page.get('description'),
-                      'links': [{'to': e['to'], 'label': e['label'], 'strength': e.get('strength', 'explicit')} for e in edges if e['from'] == page['id']],
+                      **{k: page[k] for k in ('nodeType', 'ownerPageId', 'context', 'capture') if k in page},
+                      'links': [{**e, 'strength': e.get('strength', 'explicit')} for e in edges if e['from'] == page['id']],
                       'summary': {k: page['requirementSummary'].get(k, []) for k in ('facts', 'unknowns', 'acceptance')},
                       'sections': sections})
     unconfigured = sum(1 for p in pages for s in p['sections'] if s['generation'] != 'exclude'
@@ -71,10 +77,12 @@ def brief(data, manifest_hash):
             'Build only sections whose generation is use-existing-components; after-component-verification waits for the listed preconditions.',
             'excludedParts and exclusions are review-only references: do not draw or approximate them.',
             'referenceDisplayData reproduces the screenshot sample values; it is not business data or a calculation rule.',
+            'Links with kind evidence describe supplementary screenshots or explanations, never business navigation.',
             'Actions with targetStatus unknown stay visible with an unresolved destination; never invent routes.',
             'Component configurationStatus candidate means props/slots/events still need checking against the locked package reference.',
             'Use existing component public APIs and styles; do not override component internals to match pixels.'],
         'assets': [{k: a.get(k) for k in ('id', 'publicExport', 'version', 'qualification', 'contractSource')} for a in data['assets']],
+        'capabilities': data.get('capabilities', []),
         'preconditions': preconditions, 'exclusions': exclusions, 'pages': pages,
         'stats': {'pages': len(pages), 'sections': sum(len(p['sections']) for p in pages),
                   'buildableSections': sum(1 for p in pages for s in p['sections'] if s['generation'] == 'use-existing-components'),

@@ -8,7 +8,7 @@
     "test": "npm run test:py && npm run test:dom && npm run test:browser",
     "test:py": "python3 -m unittest discover -s scripts -p 'test_*.py'",
     "test:dom": "node scripts/test_inspector.mjs --manifest tests/fixtures/demo-scenario/manifest.json",
-    "test:browser": "python3 scripts/build_canvas.py tests/fixtures/demo-scenario/manifest.json --out tests/.out/demo.html && node scripts/test_canvas_browser.mjs --html tests/.out/demo.html --manifest tests/fixtures/demo-scenario/manifest.json"
+    "test:browser": "python3 scripts/build_canvas.py tests/fixtures/demo-scenario/manifest.json --out tests/.out/demo.html && node scripts/test_canvas_browser.mjs --html tests/.out/demo.html --manifest tests/fixtures/demo-scenario/manifest.json && node scripts/test_entry_anchors.mjs"
   },
   "devDependencies": {
     "happy-dom": "21.0.4"

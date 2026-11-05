@@ -67,6 +67,33 @@ class CanvasChecks(unittest.TestCase):
 
 
 class Handoff(unittest.TestCase):
+    def test_dialogue_context_and_capture_survive_handoff(self):
+        data = load()
+        data['pages'][0]['nodeType'] = 'page'
+        answer = data['pages'][1]
+        answer.update(nodeType='dialogue', ownerPageId=data['pages'][0]['id'],
+                      context={'selectedProject': 'project-a'}, capture={'mode':'content-crop'})
+        answer['sections'][0]['actions'][0]['condition'] = '当前选中 project-a'
+        exported = brief(data, 'x')['pages'][1]
+        for key in ('nodeType', 'ownerPageId', 'context', 'capture'):
+            self.assertEqual(exported[key], answer[key])
+        self.assertEqual(exported['sections'][0]['actions'][0]['condition'], answer['sections'][0]['actions'][0]['condition'])
+
+    def test_capability_references_and_unknowns_survive_handoff(self):
+        data = load()
+        work = next(w for w in data['workItems'] if w['lane'] == 'component-work')
+        data['capabilities'] = [{'id': 'cap-demo', 'title': '候选能力', 'status': '待验证'}]
+        work.update(capabilityRefs=['cap-demo'], unknowns=['真实接口待确认'], acceptanceStatus='待确认')
+        self.assertTrue(validate(data)['ok'])
+        b = brief(data, 'x')
+        pre = next(p for p in b['preconditions'] if p['workItemId'] == work['id'])
+        self.assertEqual(pre['capabilityRefs'], ['cap-demo'])
+        self.assertEqual(pre['unknowns'], ['真实接口待确认'])
+        self.assertEqual(pre['acceptanceStatus'], '待确认')
+        self.assertEqual(b['capabilities'], data['capabilities'])
+        work['capabilityRefs'] = ['missing']
+        self.assertFalse(validate(data)['ok'])
+
     def test_review_items_never_buildable(self):
         b = brief(load(), 'x')
         review = {w['id'] for w in load()['workItems'] if w['lane'] == 'review'}

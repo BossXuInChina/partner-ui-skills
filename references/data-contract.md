@@ -44,6 +44,8 @@
 
 `generationPlan` 是 ID 索引：`included` 指向所有 reuse/component-work；`excludedPendingReview` 指向所有 review。混合区块为多个 workItem；排除只影响指定全新视觉部分，基础组件承载的数据仍可独立纳入。
 
+可选 `capabilities[]` 声明跨工作项的能力，使用唯一 `id`、名称、状态和资格说明；工作项的 `capabilityRefs[]` 必须引用已声明 ID。`unknowns`、`acceptance` 与 `acceptanceStatus` 保留业务和验证边界。导出交接时同步能力目录、工作项引用和这些字段；未声明能力的历史数据仍按原格式兼容。候选状态不代表锁包或生产可用。
+
 可执行验收与原图事实分开：例如“原图有金字塔”是事实；“用既有 Steps 呈现阶段，金字塔排除”才是本次执行指令。
 
 完整的合成示例见 [manifest-example.json](manifest-example.json)，仅说明数据关联，不代表任何实际项目或业务。
@@ -91,3 +93,35 @@ python3 scripts/validate_manifest.py /absolute/path/manifest.json
 ## 生成交接（design-handoff/1）
 
 `export_handoff.py` 从同一 manifest 派生，不另写事实：`pages[].sections[].generation` 为 `use-existing-components`、`after-component-verification`、`exclude` 或 `unscoped`；`preconditions` 为全部 component-work，`exclusions` 为全部 review。交接中 review 项只出现在 `excludedParts/exclusions`，不会进入可生成的 `workItems`。
+
+## 入口锚点（同页截图坐标）
+
+- `actions[].evidence.region: [left, top, width, height]` 为触发入口在当前页面裁剪图中的百分比矩形；不能从另一截图或滚动位置复制坐标。实际入口在滚动区外时补充对应截图状态，不能把隐藏入口猜到可见图上。
+- confirmed 动作可用 `targetActionId`、`targetSectionId`、`targetRegion` 指定目标页面内部的落点。没有明确目标入口时保持页级目标；打开说明、草稿等本地行为可记录效果，不能伪造跨页关系。
+- 根 `edges[]` 用 `fromActionId/toActionId` 引用两端入口，或用 `fromRegion/toRegion` 明确指定两端截图区域；保留 `fromSectionId/toSectionId` 表达区块归属。引用必须属于对应端点页面，且与区块一致。
+- 定位优先级：显式端点 region → action.evidence.region → section.evidence.region → 页面边框。降级分别显示 entry / section / page，未知入口不猜坐标。连线默认在页面卡片下层，数学端点仍落在入口区域朝向连线的边缘，双端高亮辅助确认入口。
+- 同一页面之间的多个入口即使同名也各自保留，按动作 ID 和区域区分；显式 edge 引用 `fromActionId` 时与对应自动动作连线合并。无入口 ID 的历史数据继续可用，但不宣称入口级定位。
+- 浏览器验收需检查实际 SVG 端点与图片入口矩形的偏差，覆盖缩放、重新布局、同页多个入口、返回连线及旧格式回退，不能只校验坐标字段存在。
+
+`actions[].effect` 可记录已知的本地状态变化；没有跨页目标时不伪造目标页面，交接保留 effect 与入口证据。
+
+## 关系渐进展示
+
+`canvas.mainPathEdgeIds` 是真实根 edge ID 或 confirmed action ID 的有序清单，仅用于总览主线。不能用页面数组顺序或自动最短路径猜主流程；未登记主线时总览不画线，提示选择页面。`canvas.defaultViewId` 可选定首屏视图，须引用已声明视图。
+
+默认“主线 / 当前页”：未选择时仅画主线；选择后仅画直接去向，可勾选“包含来自”。“全部关系”显示当前视图内完整边集，详情与导出始终保留全部事实。每节点分支数量含跨视图目标，跨视图关系仍可从右栏导航。关系栏显示当前/当前视图总数；悬停或键盘聚焦一条关系时淡化其他线并高亮两端，箭头按钮定位目标。共享浏览器测试应覆盖这些模式，不把隐藏分支误报为缺数据。
+
+证据从属关系以 `edges[].kind: evidence` 显式区分，原页面为 `from`、同页滚动截图或规则说明为 `to`；无箭头点线及连接文案必须表明非业务跳转。证据视图可设置 `showEvidence: true` 默认展示从属线，业务动作与证据关系都保留在导出数据中，不得将证据线当作路由。
+
+## 同页对话节点（可选扩展，兼容旧数据）
+
+`pages[]` 继续作为画布节点集合：
+
+- `nodeType`: `page`（真实业务页面）、`dialogue`（同页问题/回答）、`modal`（弹窗）、`reference`（资料说明）。不填写时按历史页面节点处理。
+- `ownerPageId`: dialogue/modal 必填，引用一个 nodeType=page 的宿主页；不得引用自身或另一个回答卡。它是所属关系，不是可点击的业务跳转。
+- `description`: 说明此状态的业务含义；`context` 可记录上一个话题、已选项目等上下文。实际动作的 `condition` 记录分支条件，不能把条件省略为无条件关系。
+- `capture`: `{mode: "expanded-scroll" | "content-crop" | "viewport", viewport: {width, height}, expandedSelectors: [...], note: "..."}`。完整展开捕获须记录具体滚动容器及原视口，不能声称产品本身无限高。
+
+对话卡的截图包括当前问题和完整回答；属于回答的表格、按钮必须保留，公共导航和左侧工作区只在宿主页显示。不同回答的截图尺寸可不同，所有 region 均以各自图像测量。行动与连接仍按已确认的 action/edge 登记，ownerPageId 不自动生成一条业务线。导出保留上述字段。
+
+全景视图可设置 `relationMode: all`，进入时自动显示视图内全部已确认连接；以所有节点各出现一次的分组组成。主题视图可设置 `relationMode: focus` 恢复按需展开。全景仍支持单线追踪、缩放和导出，不能因默认过滤误称全量关系。

@@ -33,6 +33,10 @@ def check_canvas(data, error, warnings):
                 if view['id'] in view_ids:
                     error(vpath + '.id', 'duplicate view id')
                 view_ids.add(view['id'])
+                if 'relationMode' in view and view['relationMode'] not in ('all', 'focus'):
+                    error(vpath + '.relationMode', 'expected all or focus')
+                if 'showEvidence' in view and not isinstance(view['showEvidence'], bool):
+                    error(vpath + '.showEvidence', 'expected boolean')
                 if not isinstance(view.get('groups'), list) or not view['groups']:
                     error(vpath + '.groups', 'expected nonempty group array')
                     continue
@@ -48,6 +52,39 @@ def check_canvas(data, error, warnings):
                         placed.add(pid)
             if views and pages - placed:
                 error('canvas.views', 'pages not placed in any view: ' + ', '.join(sorted(pages - placed)))
+    action_owners = {a['id']: (p['id'], s['id']) for p in data['pages'] for s in p['sections'] for a in s.get('actions', [])}
+    def check_region(value, path):
+        if not isinstance(value, list) or len(value) != 4 or any(isinstance(x, bool) or not isinstance(x, (int, float)) or not __import__('math').isfinite(x) for x in value):
+            error(path, 'expected finite [left, top, width, height] percentages')
+        elif value[0] < 0 or value[1] < 0 or value[2] <= 0 or value[3] <= 0 or value[0]+value[2] > 100 or value[1]+value[3] > 100:
+            error(path, 'region outside cropped screenshot or empty')
+    def endpoint(owner_page, section_id, action_id, region, path):
+        if any(x is not None for x in (section_id, action_id, region)) and owner_page not in pages:
+            error(path, 'endpoint details require a resolved page')
+        if section_id is not None and sections.get(section_id) != owner_page:
+            error(path, 'section must belong to endpoint page')
+        if action_id is not None:
+            owner = action_owners.get(action_id)
+            if not owner or owner[0] != owner_page or section_id is not None and owner[1] != section_id:
+                error(path, 'action must belong to endpoint page and section')
+        if region is not None: check_region(region, path + '.region')
+    for p in data['pages']:
+        for s in p['sections']:
+            for a in s.get('actions', []):
+                if 'region' in a.get('evidence', {}): check_region(a['evidence']['region'], 'actions.' + a['id'] + '.evidence.region')
+                endpoint(a.get('targetPageId'), a.get('targetSectionId'), a.get('targetActionId'), a.get('targetRegion'), 'actions.' + a['id'] + '.target')
+    page_map = {p['id']: p for p in data['pages']}
+    for p in data['pages']:
+        kind = p.get('nodeType', 'page')
+        if kind not in ('page', 'dialogue', 'modal', 'reference'):
+            error('pages.' + p['id'] + '.nodeType', 'unknown node type')
+        owner = p.get('ownerPageId')
+        if kind in ('dialogue', 'modal') and not owner:
+            error('pages.' + p['id'] + '.ownerPageId', 'dialogue/modal requires a host page')
+        if owner is not None and (owner == p['id'] or owner not in page_map or page_map[owner].get('nodeType', 'page') != 'page'):
+            error('pages.' + p['id'] + '.ownerPageId', 'must reference a distinct real page')
+        if 'capture' in p and (not isinstance(p['capture'], dict) or p['capture'].get('mode') not in ('expanded-scroll', 'content-crop', 'viewport')):
+            error('pages.' + p['id'] + '.capture', 'expected a supported capture mode')
     edge_ids = set()
     for i, edge in enumerate(data.get('edges', []) or []):
         epath = f'edges[{i}]'
@@ -59,14 +96,25 @@ def check_canvas(data, error, warnings):
                 error(epath + '.' + key, 'unresolved page')
         if not isinstance(edge.get('label'), str) or not edge['label'].strip():
             error(epath + '.label', 'edge needs the trigger text seen in the reference')
+        if edge.get('kind', 'navigation') not in ('navigation', 'evidence'):
+            error(epath + '.kind', 'expected navigation or evidence')
         if edge.get('strength', 'explicit') not in ('explicit', 'origin-only'):
             error(epath + '.strength', 'expected explicit or origin-only')
         if 'fromSectionId' in edge and sections.get(edge['fromSectionId']) != edge.get('from'):
             error(epath + '.fromSectionId', 'section must belong to the edge source page')
+        for side, pid in [('from', edge.get('from')), ('to', edge.get('to'))]:
+            endpoint(pid, edge.get(side+'SectionId'), edge.get(side+'ActionId'), edge.get(side+'Region'), epath+'.'+side)
         if edge.get('id'):
             if edge['id'] in edge_ids:
                 error(epath + '.id', 'duplicate edge id')
             edge_ids.add(edge['id'])
+    main = (data.get('canvas') or {}).get('mainPathEdgeIds', [])
+    known_edges = {ed.get('id') for ed in data.get('edges', [])} | {a['id'] for p in data['pages'] for s in p['sections'] for a in s.get('actions', []) if a.get('targetStatus') == 'confirmed'}
+    if not isinstance(main, list) or any(not isinstance(k, str) or k not in known_edges for k in main) or len(main) != len(set(main)):
+        error('canvas.mainPathEdgeIds', 'expected unique confirmed edge/action IDs; never infer a main business flow')
+    default_view = (data.get('canvas') or {}).get('defaultViewId')
+    if default_view is not None and default_view not in {v.get('id') for v in (data.get('canvas') or {}).get('views', [])}:
+        error('canvas.defaultViewId', 'unresolved view')
     for page in data['pages']:
         if 'image' in page and (not isinstance(page['image'], str) or not page['image'] or page['image'].startswith('/')):
             error('pages.' + page['id'] + '.image', 'expected crop image path relative to the manifest')
@@ -103,6 +151,22 @@ def validate(data):
 
     def error(path, text):
         errors.append({'path': path, 'message': text})
+
+    capabilities = data.get('capabilities', [])
+    if not isinstance(capabilities, list):
+        error('capabilities', 'expected array')
+        capabilities = []
+    capability_ids = set()
+    for i, capability in enumerate(capabilities):
+        cid = capability.get('id') if isinstance(capability, dict) else None
+        if not isinstance(cid, str) or not cid.strip() or cid in capability_ids:
+            error(f'capabilities[{i}].id', 'expected unique nonempty ID')
+        else:
+            capability_ids.add(cid)
+    for item in data['workItems']:
+        refs = item.get('capabilityRefs', [])
+        if not isinstance(refs, list) or any(not isinstance(ref, str) or ref not in capability_ids for ref in refs):
+            error('workItems.' + item['id'] + '.capabilityRefs', 'expected references to declared capabilities')
 
     def strings(value, path):
         if not isinstance(value, list) or any(not isinstance(s, str) or not s.strip() for s in value):

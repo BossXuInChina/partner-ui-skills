@@ -52,7 +52,7 @@ try {
     });
     await check(`${view}: edges drawn`, async () => {
       const n = await page.$$eval('path.dch-link', p => p.length);
-      const expected = await page.evaluate(v => { const c = window.__CANVAS__; const ids = new Set([...document.querySelectorAll('.dch-node')].map(n => n.dataset.pageId)); return c.edges.filter(e => ids.has(e.from) && ids.has(e.to)).length; }, view);
+      const expected = await page.evaluate(v => { const c = window.__CANVAS__; const ids = new Set([...document.querySelectorAll('.dch-node')].map(n => n.dataset.pageId)); return c.getVisibleEdges().filter(e => ids.has(e.from) && ids.has(e.to)).length; }, view);
       assert.equal(n, expected);
     });
   }
@@ -65,7 +65,10 @@ try {
       const before = await page.evaluate(([px, py, vx, vy]) => { const t = window.__CANVAS__.getTransform(); return {x:(px - vx - t.x) / t.s, y:(py - vy - t.y) / t.s}; }, [px, py, vp.x, vp.y]);
       await page.mouse.move(px, py); await page.mouse.wheel(0, -240); await page.waitForTimeout(50);
       const after = await page.evaluate(([px, py, vx, vy]) => { const t = window.__CANVAS__.getTransform(); return {x:(px - vx - t.x) / t.s, y:(py - vy - t.y) / t.s, s:t.s}; }, [px, py, vp.x, vp.y]);
-      assert.ok(Math.abs(before.x - after.x) < 1 && Math.abs(before.y - after.y) < 1, `drift ${(after.x - before.x).toFixed(2)},${(after.y - before.y).toFixed(2)}`);
+      // Wheel coordinates are rounded to CSS pixels by the browser. Measure visible drift,
+      // not world units that amplify subpixel rounding at an overview scale.
+      const dx=(after.x-before.x)*after.s, dy=(after.y-before.y)*after.s;
+      assert.ok(Math.abs(dx)<1 && Math.abs(dy)<1, `visible drift ${dx.toFixed(2)},${dy.toFixed(2)}px`);
     }
   });
   await check('drag on empty canvas pans', async () => {

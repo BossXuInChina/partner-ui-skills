@@ -85,3 +85,9 @@ inspector.select(pageId);
 共享 DOM 测试先在 Skill 根目录 `npm install`，再运行 `node scripts/test_inspector.mjs`（或用 `--dom-module` 指定 happy-dom），加 `--manifest /absolute/path/manifest.json` 逐页检查本次真实数据，而不是只跑合成样例。DOM 测试只验证渲染、事件与状态，不证明实际布局、图片加载或像素定位；实际浏览器行为用 `node scripts/test_canvas_browser.mjs --html <画布> --manifest <manifest>` 检查。离线与浏览器限制按工具规则处理；不能绕过拒绝，也不能用结构检查替代未完成的视觉/交互验收。修复一处不应停止其他可继续的内容与组件审查。
 
 可运行 `python3 scripts/build_inspector_demo.py /absolute/output/统一右侧面板-模板示例.html` 查看自包含的合成示例，检验结构、折叠、双向关系、关闭/选择、标签区域放大与导出。示例不是业务模板数据或完整无限画布，不得拿合成事实生成业务页面。
+
+### 入口定位补充
+
+有 `action.evidence.region` 的动作在区块常显入口标签中呈现；hover/focus 高亮实际入口，点击放大同一区域。区块原图定位按钮常显，不能依赖未核实的组件映射才能访问。箭头两端优先采用入口区域，区块与整页定位是显式降级。所有百分比均基于当前 crop 图像，运行时滚动截图的区域不能跨状态复制。
+
+已知本地行为且没有跨页目标时，可用 action.effect 说明效果，targetPageId 保持 null；右栏显示已知效果，不将保存草稿、弹窗、关闭面板等误报成未知业务行为。未确认效果仍按未知处理。
