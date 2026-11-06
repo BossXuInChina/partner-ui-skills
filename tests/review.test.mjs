@@ -1,7 +1,7 @@
 import test, { before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
-import { checkRecord, checkPage, compareComponent } from '../skills/partner-ui-review/scripts/rules.mjs';
+import { checkRecord, checkPage, checkLayout, compareComponent } from '../skills/partner-ui-review/scripts/rules.mjs';
 import { collectPage } from '../skills/partner-ui-review/scripts/measure.mjs';
 import { discoverRoutes } from '../skills/partner-ui-review/scripts/browser.mjs';
 import { checkSource } from '../skills/partner-ui-vue3/scripts/check_vue.mjs';
@@ -105,6 +105,72 @@ test('background gradients without semantic token expressions remain review cand
     const result = await page.evaluate(collectPage, {});
     assert.equal(checkRecord(result.records.find(r => r.selectorPath === '#token')).some(f => f.actual?.property === 'backgroundImage'), false);
     assert.ok(checkRecord(result.records.find(r => r.selectorPath === '#raw')).some(f => f.rule === 'R4_COLOUR_TOKEN' && f.actual?.property === 'backgroundImage'));
+  } finally { await page.close(); }
+});
+
+test('page slots stay strict while nested package internals keep their own spacing contract', async () => {
+  const page = await browser.newPage();
+  try {
+    await page.setContent(`<style data-vite-dev-id="/node_modules/huawei-partner-ai-ui/styles.css">.library-special.is-wide{padding:3px}</style>
+      <style>:root{--wb-spacing-component-xs:4px}.ops-content{padding:3px}.workspace-smart-card__number{margin-top:3px}</style>
+      <div class="partner-ai ops-page"><div class="ops-content">Business content
+        <section class="workspace-smart-card"><span class="workspace-smart-card__number">Library number</span><div class="ops-content" id="slot">Page slot
+          <button class="wb-button" style="padding:3px">Nested library button</button>
+        </div></section><div class="library-special">Metadata-discovered library</div><div class="is-wide" style="padding:3px">Page modifier</div></div></div>`);
+    const result = await page.evaluate(collectPage, { pageOwnedSelectors: ['[class^="ops-"]'] });
+    assert.ok(checkRecord(result.records.find(r => r.text === 'Business content')).some(f => f.rule === 'R1_SPACING_TOKEN'));
+    assert.ok(checkRecord(result.records.find(r => r.selectorPath === '#slot')).some(f => f.rule === 'R1_SPACING_TOKEN'));
+    assert.ok(checkRecord(result.records.find(r => r.text === 'Page modifier')).some(f => f.rule === 'R1_SPACING_TOKEN'));
+    for (const text of ['Library number','Nested library button','Metadata-discovered library']) assert.ok(!result.records.some(r => r.text === text), text);
+    assert.ok(result.ownershipCounts.package >= 4);
+  } finally { await page.close(); }
+});
+
+test('logical auto follows direction and cascade without hiding a later fixed margin', async () => {
+  const page = await browser.newPage();
+  try {
+    await page.setContent(`<style>:root{--wb-spacing-component-xs:4px}.row{display:flex;width:600px}.item{margin-inline-start:auto}#override{margin-left:13px!important}</style>
+      <div class="row"><div class="item" id="ltr">LTR</div></div><div class="row" dir="rtl"><div class="item" id="rtl">RTL</div></div><div class="row"><div class="item" id="override">Override</div></div>`);
+    const result = await page.evaluate(collectPage, {});
+    assert.ok(result.records.find(r => r.selectorPath === '#ltr').autoSpacing.includes('marginLeft'));
+    assert.ok(result.records.find(r => r.selectorPath === '#rtl').autoSpacing.includes('marginRight'));
+    assert.ok(!result.records.find(r => r.selectorPath === '#override').autoSpacing.includes('marginLeft'));
+    assert.ok(checkRecord(result.records.find(r => r.selectorPath === '#override')).some(f => f.actual?.value === '13px'));
+  } finally { await page.close(); }
+});
+
+test('composition contracts reject the wrong valid token and combined spacing across slot content', async () => {
+  const page = await browser.newPage();
+  try {
+    await page.setContent(`<style>:root{--wb-spacing-layout-card-gap:16px;--wb-spacing-layout-container-inline:24px;--wb-spacing-component-lg:16px}
+      .cards{display:flex;gap:var(--wb-spacing-layout-container-inline)}.card{width:100px;height:20px}
+      .business{display:flex;flex-direction:column}.business>header,.business>article{height:20px}.business>header{margin-bottom:16px}.business>article{margin-top:16px}</style>
+      <div class="cards"><div class="wb-card card">A</div><div class="wb-card card">B</div></div><section class="business"><header>Title</header><article>Content</article></section>`);
+    const config = { layoutContracts: [
+      { id:'cards',selector:'.cards',role:'card-grid',basis:'wb-card-spacing',properties:{columnGap:'--wb-spacing-layout-card-gap'} },
+      { id:'content',selector:'.business',role:'content-group',basis:'fixture confirmed content spacing',relations:[{from:':scope > header',to:':scope > article',axis:'y',token:'--wb-spacing-component-lg'}] }
+    ] };
+    let result = await page.evaluate(collectPage, config);
+    assert.equal(checkRecord(result.records.find(r => r.selectorPath.endsWith('div.cards'))).some(f => f.rule === 'R1_SPACING_TOKEN'), false);
+    assert.deepEqual(result.layoutSamples.flatMap(checkLayout).map(f => f.actual.value), ['24px','32px']);
+    assert.ok(result.layoutSamples.flatMap(checkLayout).every(f => f.severity === 'must-fix'));
+    await page.addStyleTag({ content: '.cards{gap:var(--wb-spacing-layout-card-gap)}.business>article{margin-top:0}' });
+    result = await page.evaluate(collectPage, config);
+    assert.deepEqual(result.layoutSamples.flatMap(checkLayout), []);
+  } finally { await page.close(); }
+});
+
+test('unclassified, missing and component-owned layout contracts cannot report verified success', async () => {
+  const page = await browser.newPage();
+  try {
+    await page.setContent('<style>:root{--wb-spacing-component-xs:4px}</style><div class="wb-card">Library</div>');
+    const contract={id:'card',selector:'.wb-card',role:'card',basis:'fixture',properties:{paddingTop:'--wb-spacing-component-xs'}};
+    let result=await page.evaluate(collectPage,{layoutContracts:[contract]});
+    assert.match(result.layoutSamples[0].notVerified,/Component-owned/);
+    result=await page.evaluate(collectPage,{layoutContracts:[{...contract,selector:'.missing'}]});
+    assert.match(result.layoutSamples[0].notVerified,/not rendered/);
+    await assert.rejects(page.evaluate(collectPage,{layoutContracts:[{...contract,basis:''}]}),/normative basis/);
+    await assert.rejects(page.evaluate(collectPage,{cardExceptions:[{selector:'.custom',reason:'business needs'}]}),/normative basis/);
   } finally { await page.close(); }
 });
 

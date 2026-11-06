@@ -1,4 +1,4 @@
-export const RULES = ['R1_SPACING_TOKEN', 'R2_CARD_PADDING', 'R3_FONT_BUNDLE', 'R4_COLOUR_TOKEN', 'R5_GRID', 'R6_OVERFLOW', 'R7_CONSOLE', 'R8_COMPONENT_OVERRIDE'];
+export const RULES = ['R1_SPACING_TOKEN', 'R2_CARD_PADDING', 'R3_FONT_BUNDLE', 'R4_COLOUR_TOKEN', 'R5_GRID', 'R6_OVERFLOW', 'R7_CONSOLE', 'R8_COMPONENT_OVERRIDE', 'R9_LAYOUT_SPACING'];
 const near = (a, b) => Number.isFinite(a) && Number.isFinite(b) && Math.abs(a - b) <= 0.05;
 const px = s => /^-?[\d.]+px$/.test(s) ? Number.parseFloat(s) : s === '0' ? 0 : NaN;
 
@@ -41,6 +41,15 @@ export function checkPage({ route, width, pageWidth, errors = [], overlaps = [] 
     ...errors.map(error => ({ ...base, rule: 'R7_CONSOLE', severity: 'must-fix', expected: 'no console errors, page errors or Vue warnings', actual: error })),
     ...overlaps.map(item => ({ ...base, rule: 'R6_OVERFLOW', severity: 'needs-review', selectorPath: item.target, screenshotBox: item.box, expected: 'interactive target reachable', actual: item }))
   ];
+}
+
+export function checkLayout(sample) {
+  if (sample.notVerified) return [];
+  return (sample.checks ?? []).filter(c => !c.notVerified && !near(px(c.expected), px(c.actual))).map(c => ({
+    rule: 'R9_LAYOUT_SPACING', severity: 'must-fix', selectorPath: sample.selectorPath,
+    screenshotBox: sample.screenshotBox, contract: sample.id, role: sample.role, basis: sample.basis,
+    expected: { token: c.token, value: c.expected }, actual: { property: c.property, value: c.actual, from: c.from, to: c.to, axis: c.axis }
+  }));
 }
 
 export function compareComponent(actual, baseline) {

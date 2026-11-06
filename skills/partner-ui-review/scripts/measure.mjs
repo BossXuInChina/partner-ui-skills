@@ -2,7 +2,7 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { resolve, relative } from 'node:path';
 import { options, visitRoutes, saveJSON, isMain } from './browser.mjs';
-import { checkRecord, checkPage, compareComponent, RULES } from './rules.mjs';
+import { checkRecord, checkPage, checkLayout, compareComponent, RULES } from './rules.mjs';
 
 // This function is serialized into the real browser, not a simulated DOM.
 export function collectPage(config = {}) {
@@ -10,14 +10,21 @@ export function collectPage(config = {}) {
   if (!root) throw new Error('Review root not found');
   const selectors = config.pageOwnedSelectors ?? [];
   const ignored = config.cardExceptions ?? [];
-  if (ignored.some(x => !x.selector || !x.reason)) throw new Error('Every card exception requires selector and reason');
-  const styleRules = [], tokenNames = new Set(), inaccessible = [];
+  if (ignored.some(x => !x.selector || !x.reason || !x.basis)) throw new Error('Every card exception requires selector, reason and a normative basis; business composition alone is not an exception.');
+  const styleRules = [], tokenNames = new Set(), inaccessible = [], packageClasses = new Set();
   function collect(rules, source) {
     for (const r of rules) {
       if (r.conditionText && r.constructor.name === 'CSSMediaRule' && !matchMedia(r.conditionText).matches) continue;
       if (r.style) {
         for (const key of r.style) if (key.startsWith('--wb-') || key.startsWith('--ai-') || key.startsWith('--partner-')) tokenNames.add(key);
         if (r.selectorText) styleRules.push({ selector: r.selectorText, style: r.style, source });
+        if (r.selectorText && /(?:@workbench|workbench[+_]ui-vue3|huawei-partner-ai-ui)/.test(source))
+          for (const selector of r.selectorText.split(',')) {
+            // Only the leading component class, never shared modifiers such as .is-wide.
+            const classes = [...selector.matchAll(/\.([a-zA-Z_][\w-]*)/g)].map(m => m[1]);
+            const candidate = classes.find(c => c !== 'partner-ai');
+            if (candidate && !/^(is-|has-)/.test(candidate)) packageClasses.add(candidate);
+          }
       }
       if (r.cssRules) collect(r.cssRules, source);
     }
@@ -43,14 +50,18 @@ export function collectPage(config = {}) {
     }
     return parts.join(' > ');
   };
-  const packageNode = el => [...el.classList].some(c => /^(wb-|partner-|tr-)/.test(c));
-  const owned = el => {
+  const packageNode = el => (config.packageRootSelectors ?? []).some(s => el.matches(s)) || [...el.classList].some(c => c !== 'partner-ai' && (packageClasses.has(c) || /^(wb-|partner-|tr-|workspace-smart-)/.test(c)));
+  const ownership = el => {
     for (let e = el; e && e !== root.parentElement; e = e.parentElement) {
-      if (packageNode(e)) return false;
-      if (selectors.some(s => e.matches(s))) return true;
+      // Nearest boundary wins: a page slot does not own nested library components.
+      if (packageNode(e)) return 'package';
+      if (selectors.some(s => e.matches(s))) return 'page-slot';
+      if (e.classList.contains('partner-ai')) return 'unclassified-ai';
     }
-    return true;
+    return 'page';
   };
+  const owned = el => ownership(el).startsWith('page');
+  const ownershipCounts = { page: 0, 'page-slot': 0, package: 0, 'unclassified-ai': 0 };
   const props = ['paddingTop','paddingBottom','paddingLeft','paddingRight','marginTop','marginBottom','marginLeft','marginRight','rowGap','columnGap'];
   const fontKeys = ['fontSize','fontWeight','lineHeight','letterSpacing'];
   const cssName = p => p.replace(/[A-Z]/g, c => '-' + c.toLowerCase());
@@ -61,7 +72,8 @@ export function collectPage(config = {}) {
     if (el === probe || ['SCRIPT','STYLE','SVG','PATH'].includes(el.tagName)) continue;
     const rect = el.getBoundingClientRect(), cs = getComputedStyle(el);
     if (rect.width <= 0 || rect.height <= 0 || cs.visibility !== 'visible' || cs.display === 'none' || el.closest('[hidden],[inert]')) continue;
-    if (!owned(el)) continue;
+    const owner = ownership(el); ownershipCounts[owner]++;
+    if (!owner.startsWith('page')) continue;
     const rules = matchesFor(el);
     const values = name => cs.getPropertyValue(name).trim();
     const spacingTokens = tokenList.filter(n => n.startsWith('--wb-spacing-')).map(n => normalLength(values(n))).filter(Boolean);
@@ -82,7 +94,8 @@ export function collectPage(config = {}) {
     const card = Boolean(config.cardSelector && el.matches(config.cardSelector));
     records.push({ selectorPath: path(el), owned: true, visible: true, box: { x: rect.x + scrollX, y: rect.y + scrollY, width: rect.width, height: rect.height },
       spacing: Object.fromEntries(props.map(p => [p, cs[p]])), spacingTokens,
-      autoSpacing: props.filter(p => rules.some(r => r.style.getPropertyValue(cssName(p)) === 'auto' || p.startsWith('margin') && /\bauto\b/.test(r.style.margin))),
+      // Typed OM preserves auto after logical-property resolution and the real CSS cascade.
+      autoSpacing: props.filter(p => String(el.computedStyleMap?.().get(cssName(p)) ?? cs[p]) === 'auto'),
       card, cardException: ignored.find(x => el.matches(x.selector)) ?? null,
       cardPadding: { block: normalLength(values('--wb-spacing-layout-container-block')), inline: normalLength(values('--wb-spacing-layout-container-inline')) },
       hasText: Boolean(text), text, font: Object.fromEntries(fontKeys.map(p => [p, p === 'letterSpacing' && cs[p] === 'normal' ? '0px' : cs[p]])), fontBundles,
@@ -95,6 +108,42 @@ export function collectPage(config = {}) {
       })),
       clipped: clip, fullTextAvailable: Boolean(text && (title.includes(text) || desc.includes(text))), scrollWidth: el.scrollWidth, clientWidth: el.clientWidth
     });
+  }
+  const layoutSamples = [];
+  const box = r => ({ x: r.x + scrollX, y: r.y + scrollY, width: r.width, height: r.height });
+  for (const contract of config.layoutContracts ?? []) {
+    if (!contract.id || !contract.selector || !contract.role || !contract.basis || (!Object.keys(contract.properties ?? {}).length && !contract.relations?.length))
+      throw new Error('Layout contracts require id, selector, role, normative basis and properties or relations.');
+    const entries = [...Object.entries(contract.properties ?? {}).map(([property, token]) => ({ property, token })), ...(contract.relations ?? [])];
+    for (const entry of entries) if (!/^--wb-(?:spacing-|layout-)/.test(entry.token ?? '') || (entry.property ? !props.includes(entry.property) : !entry.from || !entry.to || !['x','y'].includes(entry.axis)))
+      throw new Error(`Invalid layout contract ${contract.id}: use semantic token names and supported geometry/properties.`);
+    const targets = [...root.querySelectorAll(contract.selector)];
+    if (root.matches(contract.selector)) targets.unshift(root);
+    if (!targets.length) layoutSamples.push({ id: contract.id, role: contract.role, basis: contract.basis, selectorPath: contract.selector, notVerified: 'Contract target not rendered' });
+    for (const el of targets) {
+      const rect = el.getBoundingClientRect(), cs = getComputedStyle(el);
+      const sample = { id: contract.id, role: contract.role, basis: contract.basis, selectorPath: path(el), screenshotBox: box(rect), checks: [] };
+      if (!owned(el) || rect.width <= 0 || rect.height <= 0 || cs.visibility !== 'visible' || cs.display === 'none') {
+        layoutSamples.push({ ...sample, notVerified: !owned(el) ? 'Component-owned target requires its public contract/independent baseline' : 'Contract target not visible' }); continue;
+      }
+      for (const entry of entries) {
+        const expected = normalLength(cs.getPropertyValue(entry.token).trim());
+        const check = { token: entry.token, expected, property: entry.property, axis: entry.axis };
+        if (!expected) check.notVerified = 'Semantic token unavailable';
+        else if (entry.property) check.actual = cs[entry.property];
+        else {
+          const from = el.querySelectorAll(entry.from), to = el.querySelectorAll(entry.to);
+          if (from.length !== 1 || to.length !== 1) check.notVerified = 'Relation requires exactly one rendered source and target';
+          else {
+            const a = from[0].getBoundingClientRect(), b = to[0].getBoundingClientRect();
+            if (![from[0],to[0]].every(e => { const s=getComputedStyle(e), r=e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && s.visibility === 'visible' && s.display !== 'none'; })) check.notVerified = 'Relation endpoint not visible';
+            else { check.actual = (entry.axis === 'y' ? b.top - a.bottom : b.left - a.right) + 'px'; check.from = path(from[0]); check.to = path(to[0]); }
+          }
+        }
+        sample.checks.push(check);
+      }
+      layoutSamples.push(sample);
+    }
   }
   const components = (config.components ?? []).map(item => {
     const el = document.querySelector(item.selector); if (!el) return { ...item, missing: true };
@@ -113,8 +162,8 @@ export function collectPage(config = {}) {
       overlaps.push({ target: path(el), blocker: path(hit), box: { x: r.x + scrollX, y: r.y + scrollY, width: r.width, height: r.height } });
   }
   probe.remove();
-  return { records, components, overlaps, pageWidth: document.documentElement.scrollWidth, aiRoots: document.querySelectorAll('.partner-ai').length,
-    tokenCount: tokenList.length, inaccessible, skippedPackageDescendants: 'Package descendants excluded; page slot content requires pageOwnedSelectors.',
+  return { records, components, layoutSamples, ownershipCounts, typedSpacing: typeof root.computedStyleMap === 'function', overlaps, pageWidth: document.documentElement.scrollWidth, aiRoots: document.querySelectorAll('.partner-ai').length,
+    tokenCount: tokenList.length, inaccessible, skippedPackageDescendants: 'Nearest boundary wins: package internals are not page layout; explicit page slots stay checked, nested package components remain library-owned.',
     cards: config.cardSelector ? 'explicit selectors' : 'not verified: supply --card-selector; card appearance alone does not establish its contract' };
 }
 
@@ -135,11 +184,18 @@ export async function measure(opt) {
   const index = sourceIndex(opt.project);
   const baseline = opt.baseline ? JSON.parse(readFileSync(opt.baseline, 'utf8')) : [];
   const results = await visitRoutes(opt, async (page, ctx) => {
-    const sampled = await page.evaluate(collectPage, { ...opt.config, components: (opt.config.components ?? []).filter(c => !c.routes || c.routes.includes(ctx.route)), rootSelector: opt.rootSelector, cardSelector: opt.cardSelector });
-    const findings = [...sampled.records.flatMap(checkRecord), ...checkPage({ ...ctx, pageWidth: sampled.pageWidth, overlaps: sampled.overlaps })];
+    const sampled = await page.evaluate(collectPage, { ...opt.config, components: (opt.config.components ?? []).filter(c => !c.routes || c.routes.includes(ctx.route)), layoutContracts: (opt.config.layoutContracts ?? []).filter(c => !c.routes || c.routes.includes(ctx.route)), rootSelector: opt.rootSelector, cardSelector: opt.cardSelector });
+    const findings = [...sampled.records.flatMap(checkRecord), ...sampled.layoutSamples.flatMap(checkLayout), ...checkPage({ ...ctx, pageWidth: sampled.pageWidth, overlaps: sampled.overlaps })];
     const notVerified = [];
     if (!sampled.tokenCount) notVerified.push('R1–R4: loaded semantic tokens unavailable');
     if (!opt.cardSelector) notVerified.push('R2: explicit card selectors required');
+    if (!sampled.layoutSamples.length) notVerified.push('R9: semantic composition contracts not supplied for this route');
+    for (const sample of sampled.layoutSamples) {
+      if (sample.notVerified) notVerified.push(`R9 ${sample.id}: ${sample.notVerified}`);
+      for (const check of sample.checks ?? []) if (check.notVerified) notVerified.push(`R9 ${sample.id}: ${check.notVerified}`);
+    }
+    if (!sampled.typedSpacing) notVerified.push('Logical/auto spacing: Typed OM unavailable');
+    if (sampled.ownershipCounts['unclassified-ai']) notVerified.push('AI namespace contains elements without confirmed page-slot or component ownership');
     if (sampled.inaccessible.length) notVerified.push('Cross-origin stylesheets could not be inspected: ' + sampled.inaccessible.join(', '));
     if (!sampled.components.length) notVerified.push('R8: standalone component fixture/baseline not supplied');
     const componentSamples = sampled.components.map(c => ({ ...c, ...ctx, errors: ctx.errors }));
@@ -155,7 +211,7 @@ export async function measure(opt) {
       // A class search is a candidate mapping, not proof of the winning source line.
       if (candidates.length === 1) Object.assign(f, candidates[0]);
     }
-    return { findings, notVerified, componentSamples, coverage: { rules: RULES, sampledElements: sampled.records.length, aiRoots: sampled.aiRoots, tokenCount: sampled.tokenCount, slotBoundary: sampled.skippedPackageDescendants, tooltip: 'title and mounted aria-describedby only; lazy hover tooltips need interaction verification', cardExceptions: opt.config.cardExceptions ?? [] } };
+    return { findings, notVerified, componentSamples, layoutSamples: sampled.layoutSamples, coverage: { rules: RULES, sampledElements: sampled.records.length, ownership: sampled.ownershipCounts, aiRoots: sampled.aiRoots, tokenCount: sampled.tokenCount, slotBoundary: sampled.skippedPackageDescendants, tooltip: 'title and mounted aria-describedby only; lazy hover tooltips need interaction verification', cardExceptions: opt.config.cardExceptions ?? [] } };
   });
   saveJSON(resolve(opt.out, 'measure.json'), results);
   saveJSON(resolve(opt.out, 'findings.json'), results.flatMap(r => r.findings ?? []));

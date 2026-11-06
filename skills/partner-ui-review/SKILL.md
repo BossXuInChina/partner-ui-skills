@@ -7,6 +7,8 @@ description: 复查使用 Workbench 与 Huawei Partner AI UI 的消费页面、V
 
 面向消费工程，覆盖公开包的组合边界与页面效果。包源码、Catalog、审批和发布资格属于维护方；审查结果不授予生产资格。
 
+**间距先分责任层。** 正式组件/Block 内部按自身公开契约和变体核对，有意的内部 padding/光学间距不套用页面通用网格。页面排版、Demo 自建业务卡片、卡内多内容及 slot 拼装必须严格遵守现有布局规范；封装成组件不构成豁免。先读 [组合间距边界](references/composition.md)，建立有规范依据的角色/间距契约；既查 Token 合法性，也查使用位置和最终叠加距离。
+
 ## 工作流
 
 1. 读取目标工程约定和用户范围，记录 HEAD、dirty 文件、实际锁文件及安装包版本、Skill 的 `source.lock.json`。先核对锁文件和 `node_modules` 一致性；`static.mjs` 输出声明/安装/Skill pin 与项目锁哈希，完整锁解析按宿主包管理器完成。版本不一致时明确资料可能陈旧，不把宿主新包冒充 Skill 已批准锁包。
@@ -21,7 +23,7 @@ node scripts/measure.mjs --project <project> --url <dev-url> --out <evidence>/me
 # 可用 --manifest <manifest.json> --scenario home --legacy <legacyPages.json> 替代手填路由
 ```
 
-6. 按 [测量规则](references/rules.md) 核对 findings。包内部排除、页面插槽、无法读取的样式、未提供的组件独立样本必须出现在未验证清单。类名搜索只是源码候选，不猜唯一行号。
+6. 按 [测量规则](references/rules.md) 核对 findings。通过 `layoutContracts` 检查业务组合语义；仅 R1 数值合法或 R2 局部通过不能称全页间距合规。包内部、页面插槽、无法读取的样式、未提供的组件独立样本及未覆盖的布局角色必须出现在覆盖/未验证清单。类名搜索只是源码候选，不猜唯一行号。
 7. 存在设计图时执行对照，逐段查看头部、筛选、卡片、表格与弹层。差异标为布局/间距/字体/颜色/组件选择/缺失/多余/内容。相邻图像不等于自动视觉通过。
 
 ```sh
