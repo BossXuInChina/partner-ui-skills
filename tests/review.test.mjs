@@ -10,6 +10,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { capture } from '../skills/partner-ui-review/scripts/shots.mjs';
+import { collectText, checkText } from '../skills/partner-ui-review/scripts/text.mjs';
 
 const record = () => ({ selectorPath: '.page', box: { x: 0, y: 0, width: 120, height: 40 }, owned: true, visible: true, spacing: { paddingTop: '20px', paddingBottom: '20px', paddingLeft: '24px', paddingRight: '24px', marginTop: '0px' }, spacingTokens: ['4px','20px','24px'], autoSpacing: [], card: true, cardPadding: { block: '20px', inline: '24px' }, hasText: true, font: { fontSize: '14px', fontWeight: '400', lineHeight: '22px', letterSpacing: '0px' }, fontBundles: [{ fontSize: '14px', fontWeight: '400', lineHeight: '22px', letterSpacing: '0px' }], colours: { color: 'rgb(20, 20, 20)', backgroundColor: 'rgba(0, 0, 0, 0)' }, colourTokens: ['rgb(20, 20, 20)'], tokenExpressions: [], clipped: false, fullTextAvailable: false });
 const cases = [
@@ -202,6 +203,37 @@ test('zero external tabs-to-toolbar spacing is discovered without changing packa
     assert.equal(result.layoutSamples.flatMap(checkLayout).length,1);
     assert.equal(result.layoutSamples.flatMap(checkLayout)[0].severity,'must-fix');
   } finally {await page.close();}
+});
+
+test('explicit text contracts catch teleported font defaults and narrow-label stacking', async () => {
+  const page=await browser.newPage();
+  try {
+    await page.setContent(`<style>:root{--wb-font-body-m-font-size:14px;--wb-font-body-m-font-weight:400;--wb-font-body-m-line-height:22px;--wb-font-body-m-letter-spacing:0em}body{font-family:Arial}.item{width:18px}.label{display:block;font:14px/22px Arial}</style><div class="wb-menu"><button style="font:inherit">10 条/页</button></div><div class="item"><span class="label">公司信息管理</span></div>`);
+    const contracts=[{id:'menu',selector:'.wb-menu button',font:'--wb-font-body-m',familyFrom:'body',basis:'public menu body-m'}, {id:'label',selector:'.label',maxLines:2,within:'.item',basis:'business label fits in two horizontal lines'}];
+    let samples=await page.evaluate(collectText,contracts);
+    assert.deepEqual(samples.flatMap(checkText).map(f=>f.rule),['R3_FONT_BUNDLE','R6_OVERFLOW']);
+    await page.addStyleTag({content:'body{font:400 14px/22px Arial;letter-spacing:0}.item{width:100px}'});
+    samples=await page.evaluate(collectText,contracts);
+    assert.deepEqual(samples.flatMap(checkText),[]);
+    await page.locator('.wb-menu button').evaluate(el=>el.style.fontFamily='serif');
+    assert.equal((await page.evaluate(collectText,contracts)).flatMap(checkText)[0].actual.fontFamily,'serif');
+    const missing=await page.evaluate(collectText,[{...contracts[0],selector:'.missing'}]);
+    assert.match(missing[0].notVerified,/not rendered/);
+    assert.deepEqual(missing.flatMap(checkText),[]);
+  } finally {await page.close();}
+});
+
+test('route capture opens configured states and keeps separate evidence', async () => {
+  const out=mkdtempSync(resolve(tmpdir(),'partner-review-states-'));
+  const server=createServer((_request,response)=>{response.writeHead(200,{'content-type':'text/html'});response.end(`<button id="open" onclick="document.querySelector('#menu').hidden=false">Open</button><div id="menu" hidden>Choices</div>`);});
+  await new Promise(yes=>server.listen(0,'127.0.0.1',yes));
+  try {
+    const results=await capture({project:process.cwd(),url:`http://127.0.0.1:${server.address().port}/`,out,widths:[600],height:400,routes:['home'],readySelector:'#open',config:{states:[{id:'menu',routes:['home'],actions:[{click:'#open'}],readySelector:'#menu'}]}});
+    assert.deepEqual(results.map(r=>r.state),['default','menu']);
+    assert.ok(results.every(r=>!r.errors.length));
+    assert.ok(results[1].screenshot.endsWith('home-600-menu.png'));
+    assert.notEqual(results[0].screenshot,results[1].screenshot);
+  } finally {await new Promise(yes=>server.close(yes));rmSync(out,{recursive:true,force:true});}
 });
 
 test('route capture records real page errors and Vue warnings without losing successful route evidence', async () => {

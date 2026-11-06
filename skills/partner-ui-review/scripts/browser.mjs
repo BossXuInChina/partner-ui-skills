@@ -43,17 +43,24 @@ export function options(args) {
   return opt;
 }
 
-export const shotName = (route, width) => `${route.replace(/[^a-zA-Z0-9_-]/g, '_')}-${width}.png`;
+export const shotName = (route, width, state = 'default') => `${route.replace(/[^a-zA-Z0-9_-]/g, '_')}-${width}${state === 'default' ? '' : '-' + state}.png`;
 export function saveJSON(file, data) { mkdirSync(dirname(file), { recursive: true }); writeFileSync(file, JSON.stringify(data, null, 2) + '\n'); }
 export const isMain = url => process.argv[1] && resolve(process.argv[1]) === fileURLToPath(url);
 
 export async function visitRoutes(opt, visit) {
+  const states = opt.config?.states ?? [];
+  const ids = new Set(['default']);
+  for (const state of states) {
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(state.id ?? '') || ids.has(state.id) || !state.routes?.length || !state.actions?.length || state.actions.some(a => typeof a.click !== 'string' || !a.click))
+      throw new Error('Review states require a unique id, explicit routes and click actions.');
+    ids.add(state.id);
+  }
   const { chromium } = localPlaywright(opt.project);
   const browser = await chromium.launch();
   const results = [];
   mkdirSync(opt.out, { recursive: true });
   try {
-    for (const width of opt.widths) for (const route of opt.routes) {
+    for (const width of opt.widths) for (const route of opt.routes) for (const state of [{ id: 'default' }, ...states.filter(s => s.routes.includes(route))]) {
       const page = await browser.newPage({ viewport: { width, height: opt.height }, reducedMotion: 'reduce', locale: 'zh-CN', timezoneId: 'Asia/Shanghai' });
       const errors = [];
       page.on('pageerror', e => errors.push({ type: 'pageerror', message: e.message }));
@@ -63,14 +70,17 @@ export async function visitRoutes(opt, visit) {
         if (opt.readySelector) await page.locator(opt.readySelector).waitFor({ state: 'visible', timeout: 60000 });
         else await page.waitForLoadState('networkidle', { timeout: 60000 });
         await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.decode().catch(() => {}))); });
+        for (const action of state.actions ?? []) await page.locator(action.click).click();
+        if (state.readySelector) await page.locator(state.readySelector).waitFor({ state: 'visible' });
+        await page.evaluate(() => document.fonts.ready);
         // Two stable frames after fonts/images; disable CSS animation only in the capture.
         await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
-        const result = await visit(page, { route, width, errors });
-        const screenshot = resolve(opt.out, shotName(route, width));
+        const result = await visit(page, { route, width, state: state.id, errors });
+        const screenshot = resolve(opt.out, shotName(route, width, state.id));
         await page.screenshot({ path: screenshot, fullPage: true, animations: 'disabled' });
-        results.push({ route, width, screenshot, errors, ...result });
+        results.push({ route, width, state: state.id, screenshot, errors, ...result });
       } catch (error) {
-        results.push({ route, width, errors: [...errors, { type: 'capture', message: error.message }], notVerified: ['Route capture failed'] });
+        results.push({ route, width, state: state.id, errors: [...errors, { type: 'capture', message: error.message }], notVerified: ['Route capture failed'] });
       } finally { await page.close(); }
     }
   } finally { await browser.close(); }

@@ -6,10 +6,10 @@ Token 名从已加载 CSSOM 获取，值从每个待测元素的计算样式读�
 |---|---|
 | R1 SPACING_TOKEN | 页面自有元素的 padding/margin/gap 对照当前 spacing token 或 0；Typed OM 按真实级联识别 logical/physical auto，不按分配宽度判错，也不豁免被覆盖的 auto。数值合法不证明语义位置正确，后者由 R9 检查。 |
 | R2 CARD_PADDING | 显式 `--card-selector` 的标准无 actions 业务卡片对照 container block/inline padding；不能凭圆角/白底认定。明确变体按 R9 配置不同区域契约。例外必须有 selector、reason、规范 basis，业务组合本身不构成例外。 |
-| R3 FONT_BUNDLE | 有直接文本的页面元素同时比对 size/weight/line-height/letter-spacing；letter-spacing normal 等价于 0px，line-height normal 不等价于已知字号组合。缺失字体 Token 记未验证。 |
+| R3 FONT_BUNDLE | 页面文字比对 size/weight/line-height/letter-spacing；normal 字距等价于 0px，normal 行高不等价于字阶合同。`textContracts` 可按公开契约检查展开态组件文字，并对照显式字体族来源；明确违规为 must-fix，缺失 Token/目标记未验证。 |
 | R4 COLOUR_TOKEN | 比对浏览器规范化的颜色，保留 alpha；透明背景与无宽度/不可见边框无颜色违规。非 none 的背景图片/渐变若没有匹配的语义 Token 声明，输出 needs-review，不静默忽略。Token 的 color-mix、图片/渐变表达式为候选合法表达式，仍需确认生效规则及资源例外。 |
 | R5 GRID | 对未命中 Token 的页面间距检查 4px 网格；不把边框、字体、图表数据位置及响应式百分比尺寸全部套进网格。输出 warning，明确意图后在报告解释。 |
-| R6 OVERFLOW | 页面横向溢出为 must-fix；截断无 title/已挂载 description、交互中心点被另一交互遮挡为 needs-review。滚动区域、懒加载 tooltip、弹层、行数截断需交互复核，首屏不能作全覆盖。 |
+| R6 OVERFLOW | 页面横向溢出为 must-fix；截断无全文与交互遮挡为 needs-review。明确的 `textContracts.maxLines/within` 检查真实折行及项目边界，逐字挤成竖列、文字超出所属项目可失败。滚动、tooltip、弹层需真实进入状态，首屏不能作全覆盖。 |
 | R7 CONSOLE | console error、pageerror、Vue warning 为 must-fix；捕获失败也失败，不生成伪通过。 |
 | R8 COMPONENT_OVERRIDE | 只有独立 fixture 与宿主样本包/组件/props/state/theme/容器宽度相同才比较。差异为 needs-review，附匹配宿主 CSS；必须定位真正生效规则才能升为 must-fix。没有基线明确未验证。 |
 | R9 LAYOUT_SPACING | `layoutContracts` 把业务角色与规范/Token 对应，检查 CSS 属性和实际区域间距，包含错误的 0px。明确契约不符为 must-fix。页面容器内的 Tabs→Toolbar/Table、Toolbar→Table 自动发现为待复核候选，两端是组件不构成外部间距豁免；候选不能冒充显式契约覆盖。 |

@@ -174,7 +174,7 @@ test("all independent Skills declare their version and user-controlled releases"
       readFileSync(resolve(root, "skills", name, "skill.json"), "utf8"),
     );
     assert.equal(declaration.name, name);
-    assert.equal(declaration.version, { "partner-ui-pages": "0.1.0", "partner-ui-vue3": "0.1.1", "partner-ui-review": "0.1.2" }[name]);
+    assert.equal(declaration.version, { "partner-ui-pages": "0.1.0", "partner-ui-vue3": "0.1.1", "partner-ui-review": "0.1.3" }[name]);
     assert.equal(declaration.releasePolicy, "user-decides");
   }
 });

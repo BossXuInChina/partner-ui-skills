@@ -9,6 +9,6 @@ export async function capture(opt) {
 }
 if (isMain(import.meta.url)) {
   const result = await capture(options(process.argv.slice(2)));
-  console.log(JSON.stringify(result.map(({ route, width, errors, notVerified }) => ({ route, width, errors: errors.length, notVerified }))));
+  console.log(JSON.stringify(result.map(({ route, width, state, errors, notVerified }) => ({ route, width, state, errors: errors.length, notVerified }))));
   process.exitCode = result.some(r => r.errors.length || r.notVerified?.length) ? 1 : 0;
 }
