@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 悬浮按钮 FloatingButton — `WorkbenchFloatingButton`
 
 资产：`wb-floating-button` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -18,187 +18,11 @@
 
 ## 变体与状态
 
-状态：`supported`。Studio controls, not public component props
+状态：`unsupported`。声明值属于 Studio 案例数据，不自动等于公开组件 props。
 
 [在 Studio 中查看](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants)
 
-| 分组 | 案例 | id | Studio |
-| --- | --- | --- | --- |
-| 示例与状态 | 普通单按钮 | demoState-single | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 示例与状态 | AI单按钮 | demoState-single-ai | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 示例与状态 | 按钮组 | demoState-group | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 示例与状态 | 收起 | demoState-collapsed | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 示例与状态 | 含禁用项 | demoState-disabled | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 功能按钮数量 | 2 | button-count-2 | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 功能按钮数量 | 6 | button-count-6 | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 默认显示数量 | 0 | default-visible-count-0 | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 默认显示数量 | 2 | default-visible-count-2 | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 默认显示数量 | 6 | default-visible-count-6 | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 显示返回顶部 | 关闭 | show-back-to-top-false | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-| 显示返回顶部 | 开启 | show-back-to-top-true | [案例](http://localhost:4173/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants) |
-
-### Studio 案例值（不是 props 映射）
-
-```json
-[
-  {
-    "id": "demoState-single",
-    "group": "示例与状态",
-    "label": "普通单按钮",
-    "controls": {
-      "demoState": "single",
-      "button-count": 6,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "demoState-single-ai",
-    "group": "示例与状态",
-    "label": "AI单按钮",
-    "controls": {
-      "demoState": "single-ai",
-      "button-count": 6,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "demoState-group",
-    "group": "示例与状态",
-    "label": "按钮组",
-    "controls": {
-      "demoState": "group",
-      "button-count": 6,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "demoState-collapsed",
-    "group": "示例与状态",
-    "label": "收起",
-    "controls": {
-      "demoState": "collapsed",
-      "button-count": 6,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "demoState-disabled",
-    "group": "示例与状态",
-    "label": "含禁用项",
-    "controls": {
-      "demoState": "disabled",
-      "button-count": 6,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "button-count-2",
-    "group": "功能按钮数量",
-    "label": "2",
-    "controls": {
-      "demoState": "single",
-      "button-count": 2,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "button-count-6",
-    "group": "功能按钮数量",
-    "label": "6",
-    "controls": {
-      "demoState": "single",
-      "button-count": 6,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "default-visible-count-0",
-    "group": "默认显示数量",
-    "label": "0",
-    "controls": {
-      "demoState": "single",
-      "button-count": 6,
-      "default-visible-count": 0,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "default-visible-count-2",
-    "group": "默认显示数量",
-    "label": "2",
-    "controls": {
-      "demoState": "single",
-      "button-count": 6,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "default-visible-count-6",
-    "group": "默认显示数量",
-    "label": "6",
-    "controls": {
-      "demoState": "single",
-      "button-count": 6,
-      "default-visible-count": 6,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "show-back-to-top-false",
-    "group": "显示返回顶部",
-    "label": "关闭",
-    "controls": {
-      "demoState": "single",
-      "button-count": 6,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": false
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  },
-  {
-    "id": "show-back-to-top-true",
-    "group": "显示返回顶部",
-    "label": "开启",
-    "controls": {
-      "demoState": "single",
-      "button-count": 6,
-      "default-visible-count": 2,
-      "expanded": false,
-      "show-back-to-top": true
-    },
-    "studioPath": "/preview/WB-FLOATING-BUTTON-V1/floating-button?view=variants"
-  }
-]
-```
+unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery.
 
 ### 包内声明
 
@@ -362,6 +186,63 @@
     }
   ],
   "presets": []
+}
+```
+
+### 定制画廊来源清单（unsupported）
+
+```json
+{
+  "literalData": {
+    "items": [
+      {
+        "id": "support",
+        "label": "客服",
+        "iconType": "default",
+        "icon": "headset",
+        "popoverType": "info",
+        "title": "客服支持",
+        "description": "为您提供产品咨询与服务支持"
+      },
+      {
+        "id": "help",
+        "label": "帮助",
+        "iconType": "default",
+        "icon": "help",
+        "popoverType": "info",
+        "title": "帮助中心",
+        "description": "查找常见问题与使用指南"
+      },
+      {
+        "id": "policy",
+        "label": "政策",
+        "iconType": "default",
+        "icon": "policy",
+        "popoverType": "info",
+        "title": "政策中心",
+        "description": "查看合作伙伴政策"
+      },
+      {
+        "id": "rating",
+        "label": "评价",
+        "iconType": "default",
+        "icon": "rating",
+        "popoverType": "rating",
+        "title": "您对伙伴服务的整体评价是？"
+      }
+    ]
+  },
+  "dynamicBindings": [
+    "feedback",
+    "groupCount",
+    "samples"
+  ],
+  "explicitCaseIds": [
+    "sample.id"
+  ],
+  "loopExpressions": [
+    "sample in samples"
+  ]
 }
 ```
 

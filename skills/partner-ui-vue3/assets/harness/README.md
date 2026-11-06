@@ -16,7 +16,7 @@ pnpm smoke:fixtures
 
 预览浏览器复用生产构建验证基础空白路由；smoke 使用开发模式，访问六个 `/templates/<name>` 路由并检查 Vue 警告、AI scope 和面板高度。两者均 headless。`pnpm smoke:fixtures` 显式启用独立 QA 进程的网络桩；`pnpm smoke` 用实际配置的服务。默认成功不写截图，`--evidence` 才保存证据，失败保留诊断。
 
-开发使用 `pnpm dev`。两个组件包从 Skill 的 `vendor/` 安装；Vue 及其运行时/编译依赖固定为 3.5.13，Vite 配置 dedupe。样式在 `src/main.ts` 一次导入，顺序为 Workbench、TinyRobot 的公开 `dist/style.css`、AI UI，保证异步 AI 组件加载后样式仍一致。宿主通过 `--partner-ui-host-font-family` 提供批准字体，覆盖页面和 Teleport 弹层；此功能工程没有字体文件。
+开发使用 `pnpm dev`。两个组件包从 Skill 的 `vendor/` 安装；Vue 及其运行时/编译依赖固定为 3.5.42，Vite 配置 dedupe。样式在 `src/main.ts` 一次导入，顺序为 Workbench、TinyRobot 的公开 `dist/style.css`、AI UI，保证异步 AI 组件加载后样式仍一致。宿主通过 `--partner-ui-host-font-family` 提供批准字体，覆盖页面和 Teleport 弹层；此功能工程没有字体文件。
 
 开发 mock 需要显式设置 `VITE_ENABLE_MOCKS=true`，并从独立 mock 模块注入业务接口。任何构建模式都拒绝启用 mock 标志及实际导入的 `src/**/mocks/` 或 `*.mock.*` 模块；未导入的 fixture 文件不会阻止构建。根维护仓库的 `pnpm verify:harness` 在隔离副本中实际验证这些失败路径，不修改交付入口。
 

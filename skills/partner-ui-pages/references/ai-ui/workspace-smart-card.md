@@ -1,8 +1,8 @@
-<!-- Generated from huawei-partner-ai-ui@0.3.1-dev.20261031.1 (8d5f658b9152fecbe954840ac2f52a01c551636f) — do not edit. -->
+<!-- Generated from huawei-partner-ai-ui@0.3.1-dev.20261106.1 (16d91bbbede5006960cce5278b0e2cda88785393) — do not edit. -->
 
 # WorkspaceSmartCard — `WorkspaceSmartCard`
 
-包：`huawei-partner-ai-ui@0.3.1-dev.20261031.1` · commit：`8d5f658b9152fecbe954840ac2f52a01c551636f` · dirty：false
+包：`huawei-partner-ai-ui@0.3.1-dev.20261106.1` · commit：`16d91bbbede5006960cce5278b0e2cda88785393` · dirty：false
 
 资格（包内声明）：channel=unknown；stableEligible=unknown；targetProductionEligible=unknown。元数据和示例不授予发布或生产批准。
 
@@ -32,8 +32,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -204,8 +204,34 @@
       "parameters": []
     }
   },
-  "slots": [],
-  "slotDetails": {},
+  "slots": [
+    "body",
+    "footer"
+  ],
+  "slotDetails": {
+    "body": {
+      "type": null,
+      "typeStatus": "not-derived",
+      "bindings": {},
+      "unsupported": [
+        {
+          "code": "SLOT_TYPE_NOT_DECLARED",
+          "reason": "Slot body exists in the actual template/setup implementation but has no explicit defineSlots contract; binding expressions are recorded without inventing parameter types."
+        }
+      ]
+    },
+    "footer": {
+      "type": null,
+      "typeStatus": "not-derived",
+      "bindings": {},
+      "unsupported": [
+        {
+          "code": "SLOT_TYPE_NOT_DECLARED",
+          "reason": "Slot footer exists in the actual template/setup implementation but has no explicit defineSlots contract; binding expressions are recorded without inventing parameter types."
+        }
+      ]
+    }
+  },
   "exposed": []
 }
 ```

@@ -1,0 +1,148 @@
+{
+  "feature": "existing-host-integration",
+  "skillVersion": "0.2.0",
+  "generatedAt": "2026-11-06T13:16:34.714849+00:00",
+  "status": "pass",
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261106.7",
+      "tarball": "vendor/workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz",
+      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
+      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261106.1",
+      "tarball": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz",
+      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
+      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393"
+    }
+  ],
+  "vue": "3.5.42",
+  "checks": [
+    {
+      "name": "prepare",
+      "command": "/Users/bossxu/.cache/partner-toolchain/node-v24.21.0-darwin-arm64/bin/node ../prepare.mjs",
+      "startedAt": "2026-11-06T13:08:54.652Z",
+      "endedAt": "2026-11-06T13:08:54.700Z",
+      "durationMs": 48,
+      "exitCode": 0,
+      "log": "checks/prepare.log"
+    },
+    {
+      "name": "install",
+      "command": "pnpm install --frozen-lockfile",
+      "startedAt": "2026-11-06T13:08:54.700Z",
+      "endedAt": "2026-11-06T13:08:55.524Z",
+      "durationMs": 824,
+      "exitCode": 0,
+      "log": "checks/install.log"
+    },
+    {
+      "name": "browser-prepare",
+      "command": "pnpm exec playwright install --only-shell chromium",
+      "startedAt": "2026-11-06T13:08:55.524Z",
+      "endedAt": "2026-11-06T13:08:56.424Z",
+      "durationMs": 900,
+      "exitCode": 0,
+      "log": "checks/browser-prepare.log"
+    },
+    {
+      "name": "sources",
+      "command": "/Users/bossxu/.cache/partner-toolchain/node-v24.21.0-darwin-arm64/bin/node ../check-sources.mjs",
+      "startedAt": "2026-11-06T13:08:56.424Z",
+      "endedAt": "2026-11-06T13:08:56.541Z",
+      "durationMs": 118,
+      "exitCode": 0,
+      "log": "checks/sources.log"
+    },
+    {
+      "name": "vue-tree",
+      "command": "pnpm list vue --depth 10 --json",
+      "startedAt": "2026-11-06T13:08:56.542Z",
+      "endedAt": "2026-11-06T13:08:56.846Z",
+      "durationMs": 304,
+      "exitCode": 0,
+      "log": "checks/vue-tree.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "startedAt": "2026-11-06T13:08:56.846Z",
+      "endedAt": "2026-11-06T13:08:59.484Z",
+      "durationMs": 2638,
+      "exitCode": 0,
+      "log": "checks/typecheck.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "startedAt": "2026-11-06T13:08:59.484Z",
+      "endedAt": "2026-11-06T13:09:01.408Z",
+      "durationMs": 1925,
+      "exitCode": 0,
+      "log": "checks/lint.log"
+    },
+    {
+      "name": "format",
+      "command": "pnpm format:check",
+      "startedAt": "2026-11-06T13:09:01.409Z",
+      "endedAt": "2026-11-06T13:09:02.739Z",
+      "durationMs": 1331,
+      "exitCode": 0,
+      "log": "checks/format.log"
+    },
+    {
+      "name": "rules",
+      "command": "pnpm check:rules",
+      "startedAt": "2026-11-06T13:09:02.740Z",
+      "endedAt": "2026-11-06T13:09:03.320Z",
+      "durationMs": 580,
+      "exitCode": 0,
+      "log": "checks/rules.log"
+    },
+    {
+      "name": "unit",
+      "command": "pnpm test:unit",
+      "startedAt": "2026-11-06T13:09:03.320Z",
+      "endedAt": "2026-11-06T13:09:04.644Z",
+      "durationMs": 1324,
+      "exitCode": 0,
+      "log": "checks/unit.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "startedAt": "2026-11-06T13:09:04.644Z",
+      "endedAt": "2026-11-06T13:09:07.438Z",
+      "durationMs": 2794,
+      "exitCode": 0,
+      "log": "checks/build.log"
+    },
+    {
+      "name": "browser",
+      "command": "pnpm test:browser",
+      "startedAt": "2026-11-06T13:09:07.438Z",
+      "endedAt": "2026-11-06T13:09:11.335Z",
+      "durationMs": 3897,
+      "exitCode": 0,
+      "log": "checks/browser.log"
+    },
+    {
+      "name": "smoke",
+      "command": "/Users/bossxu/.cache/partner-toolchain/node-v24.21.0-darwin-arm64/bin/node tests/smoke.mjs",
+      "startedAt": "2026-11-06T13:09:11.335Z",
+      "endedAt": "2026-11-06T13:09:12.854Z",
+      "durationMs": 1519,
+      "exitCode": 0,
+      "log": "checks/smoke.log"
+    }
+  ],
+  "scope": "Pinia、axios、alias、vue-i18n 现仓：13项来源/冻结安装/静态/浏览器/两尺寸 smoke",
+  "knownLimits": [
+    "QA 使用受控测试网络桩，未验证真实后端及生产部署。",
+    "本批为现有需求的全新隔离消费快照复跑；无额外独立 Agent 或人工视觉验收。",
+    "AI UI 仍有6条传递依赖安全告警，保持开发预览资格。"
+  ]
+}

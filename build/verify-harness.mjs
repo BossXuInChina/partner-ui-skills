@@ -109,17 +109,17 @@ export async function verifyHarness(root = packRoot) {
   ];
   if (
     vue.length !== 1 ||
-    !/^vue@3\.5\.13(?:_|$)/.test(vue[0]) ||
+    !/^vue@3\.5\.42(?:_|$)/.test(vue[0]) ||
     vuePackages.some((name) => {
       const rows = installed.filter((row) => row.startsWith('@vue+' + name + '@'));
-      return rows.length !== 1 || !rows[0].startsWith('@vue+' + name + '@3.5.13');
+      return rows.length !== 1 || !rows[0].startsWith('@vue+' + name + '@3.5.42');
     })
   )
     throw new Error('HARNESS_SINGLE_VUE_CHECK_FAILED');
   checks.push({
     name: 'single-vue-install',
     status: 'PASS',
-    version: '3.5.13',
+    version: '3.5.42',
     packages: ['vue', ...vuePackages.map((name) => '@vue/' + name)],
   });
   save();

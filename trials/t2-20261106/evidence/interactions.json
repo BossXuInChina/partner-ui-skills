@@ -1,0 +1,29 @@
+[
+  {
+    "name": "workbench-list",
+    "step": "Vue runtime version",
+    "value": "3.5.42",
+    "passed": true
+  },
+  {
+    "name": "workbench-list",
+    "step": "filter five 华东 rows",
+    "passed": true
+  },
+  {
+    "name": "workbench-list",
+    "step": "create dialog",
+    "passed": true
+  },
+  {
+    "name": "ai-assistant-workspace",
+    "step": "Vue runtime version",
+    "value": "3.5.42",
+    "passed": true
+  },
+  {
+    "name": "ai-assistant-workspace",
+    "step": "AI structured agreement answer",
+    "passed": true
+  }
+]

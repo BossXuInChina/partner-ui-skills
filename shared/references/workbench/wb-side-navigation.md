@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 侧边导航 Side Navigation — `WorkbenchSideNavigation`
 
 资产：`wb-side-navigation` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -18,519 +18,11 @@
 
 ## 变体与状态
 
-状态：`supported`。Studio controls, not public component props
+状态：`unsupported`。声明值属于 Studio 案例数据，不自动等于公开组件 props。
 
 [在 Studio 中查看](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants)
 
-| 分组 | 案例 | id | Studio |
-| --- | --- | --- | --- |
-| 显示栅格 | 关闭 | showGrid-false | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 显示栅格 | 开启 | showGrid-true | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 展示类型 | 收起态 | displayType-collapsed | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 展示类型 | 展开态 | displayType-expanded | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 展示类型 | 二级菜单展开 | displayType-submenu-expanded | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 选中菜单 | 工作台首页 | selectedItem-home | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 选中菜单 | 商机管理 | selectedItem-opportunity-list | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 选中菜单 | 经营绩效 | selectedItem-performance | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 选中菜单 | 伙伴与成员管理 | selectedItem-partners | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 显示展开按钮 | 关闭 | collapsible-false | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 显示展开按钮 | 开启 | collapsible-true | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 深层面板 | 悬浮双列面板 | panelMode-flyout | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 深层面板 | 弹出菜单面板 | panelMode-popup | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 深层面板 | 四列搜索面板 | panelMode-columns | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 弹出面板密度 | 小尺寸 | panelDensity-small | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 弹出面板密度 | 默认尺寸 | panelDensity-default | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 弹出面板密度 | 大尺寸 | panelDensity-large | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 显示悬浮面板前缀图标 | 关闭 | showFlyoutIcons-false | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 显示悬浮面板前缀图标 | 开启 | showFlyoutIcons-true | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 显示侧栏右侧分割线 | 关闭 | showDivider-false | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 显示侧栏右侧分割线 | 开启 | showDivider-true | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 顶部展开按钮 | 关闭 | topToggle-false | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 顶部展开按钮 | 开启 | topToggle-true | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 侧栏标题 | 关闭 | showTitle-false | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-| 侧栏标题 | 开启 | showTitle-true | [案例](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=variants) |
-
-### Studio 案例值（不是 props 映射）
-
-```json
-[
-  {
-    "id": "showGrid-false",
-    "group": "显示栅格",
-    "label": "关闭",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "showGrid-true",
-    "group": "显示栅格",
-    "label": "开启",
-    "controls": {
-      "showGrid": true,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "displayType-collapsed",
-    "group": "展示类型",
-    "label": "收起态",
-    "controls": {
-      "showGrid": false,
-      "displayType": "collapsed",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "displayType-expanded",
-    "group": "展示类型",
-    "label": "展开态",
-    "controls": {
-      "showGrid": false,
-      "displayType": "expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "displayType-submenu-expanded",
-    "group": "展示类型",
-    "label": "二级菜单展开",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "selectedItem-home",
-    "group": "选中菜单",
-    "label": "工作台首页",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "home",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "selectedItem-opportunity-list",
-    "group": "选中菜单",
-    "label": "商机管理",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "selectedItem-performance",
-    "group": "选中菜单",
-    "label": "经营绩效",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "performance",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "selectedItem-partners",
-    "group": "选中菜单",
-    "label": "伙伴与成员管理",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "partners",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "collapsible-false",
-    "group": "显示展开按钮",
-    "label": "关闭",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": false,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "collapsible-true",
-    "group": "显示展开按钮",
-    "label": "开启",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "panelMode-flyout",
-    "group": "深层面板",
-    "label": "悬浮双列面板",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "panelMode-popup",
-    "group": "深层面板",
-    "label": "弹出菜单面板",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "popup",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "panelMode-columns",
-    "group": "深层面板",
-    "label": "四列搜索面板",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "columns",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "panelDensity-small",
-    "group": "弹出面板密度",
-    "label": "小尺寸",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "small",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "panelDensity-default",
-    "group": "弹出面板密度",
-    "label": "默认尺寸",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "panelDensity-large",
-    "group": "弹出面板密度",
-    "label": "大尺寸",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "large",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "showFlyoutIcons-false",
-    "group": "显示悬浮面板前缀图标",
-    "label": "关闭",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": false,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "showFlyoutIcons-true",
-    "group": "显示悬浮面板前缀图标",
-    "label": "开启",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "showDivider-false",
-    "group": "显示侧栏右侧分割线",
-    "label": "关闭",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": false,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "showDivider-true",
-    "group": "显示侧栏右侧分割线",
-    "label": "开启",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "topToggle-false",
-    "group": "顶部展开按钮",
-    "label": "关闭",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "topToggle-true",
-    "group": "顶部展开按钮",
-    "label": "开启",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": true,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "showTitle-false",
-    "group": "侧栏标题",
-    "label": "关闭",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": false,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  },
-  {
-    "id": "showTitle-true",
-    "group": "侧栏标题",
-    "label": "开启",
-    "controls": {
-      "showGrid": false,
-      "displayType": "submenu-expanded",
-      "selectedItem": "opportunity-list",
-      "collapsible": true,
-      "panelMode": "flyout",
-      "panelDensity": "default",
-      "showFlyoutIcons": true,
-      "showDivider": true,
-      "topToggle": false,
-      "showTitle": true,
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-SIDE-NAV-V1/side-navigation?view=variants"
-  }
-]
-```
+unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery.
 
 ### 包内声明
 
@@ -1010,6 +502,40 @@
 }
 ```
 
+### 定制画廊来源清单（unsupported）
+
+```json
+{
+  "literalData": {
+    "modes": [
+      {
+        "id": "collapsed",
+        "label": "收起态"
+      },
+      {
+        "id": "expanded",
+        "label": "展开态"
+      },
+      {
+        "id": "submenu-expanded",
+        "label": "二级菜单展开"
+      }
+    ]
+  },
+  "dynamicBindings": [
+    "samples",
+    "panel",
+    "density"
+  ],
+  "explicitCaseIds": [
+    "'displayType-' + item.id"
+  ],
+  "loopExpressions": [
+    "item in samples"
+  ]
+}
+```
+
 ## 使用场景
 
 包内未提供对应 Studio 路由。
@@ -1055,6 +581,8 @@ function selectItem(item) { activeItem.value = item.id }
 | expandedItems | Array | {"kind":"function"} |  | 受控已展开项标识数组。 |
 | items | Array | {"kind":"function"} |  | 层级导航数据；每项使用id、label及可选children。 |
 | panelDensity | String | default | small / default / large | 弹出菜单密度：small、default或large。 |
+| panelExpandAll | Boolean | false |  | 弹出菜单中保持全部层级展开；默认关闭，适用于固定对照预览。 |
+| panelItemId | String | {"kind":"undefined"} |  | 可选的受控深层面板触发项标识；空字符串关闭面板，未传时由组件管理。 |
 | panelMode | String | flyout | flyout / popup / columns | 深层面板模式：flyout、popup或columns。 |
 | showDivider | Boolean | true |  | 是否展示分隔线。 |
 | showFlyoutIcons | Boolean | true |  | 是否在flyout子菜单中展示图标。 |
@@ -1069,6 +597,8 @@ function selectItem(item) { activeItem.value = item.id }
 - `update:activeItem`：新的选中项标识。；用户选中导航项后发出。
 
 - `update:expandedItems`：新的展开项标识数组。；用户展开或收起层级时发出。
+
+- `update:panelItemId`：将要打开的二级菜单标识；请求关闭时为空字符串。；受控面板触发项被切换或请求关闭时发出。
 
 - `select`：被选中导航项。；用户激活导航项时发出。
 
@@ -1164,7 +694,7 @@ items定义导航层级；width可指定侧栏宽度，默认按布局栅格计�
 
 ### 交互与键盘
 
-collapsed、expandedItems与activeItem支持受控；展开父项不会清除已选叶子。
+collapsed、expandedItems、activeItem与panelItemId支持受控；展开父项不会清除已选叶子。
 
 - 方向键和Home/End移动同级焦点；Right展开、Left返回、Escape关闭面板。
 

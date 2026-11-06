@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 通知提醒 Notification — `WorkbenchNotification`
 
 资产：`wb-notification` · 类型：`component` · 资产合同版本：`1.1.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -18,379 +18,11 @@
 
 ## 变体与状态
 
-状态：`supported`。Studio controls, not public component props
+状态：`unsupported`。声明值属于 Studio 案例数据，不自动等于公开组件 props。
 
 [在 Studio 中查看](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants)
 
-| 分组 | 案例 | id | Studio |
-| --- | --- | --- | --- |
-| 组件状态 | 信息 | demoState-info | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 组件状态 | 成功 | demoState-success | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 组件状态 | 警告 | demoState-warning | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 组件状态 | 危险 | demoState-danger | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 组件状态 | 高危 | demoState-critical | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 组件状态 | 错误 | demoState-error | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 背景 | 白色 | surface-default | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 背景 | 语义浅色 | surface-subtle | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 自动关闭 | 5秒 | duration-5000 | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 自动关闭 | 关闭 | duration-0 | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示标题 | 关闭 | show-title-false | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示标题 | 开启 | show-title-true | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示辅助文本 | 关闭 | show-description-false | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示辅助文本 | 开启 | show-description-true | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示链接 | 关闭 | show-link-false | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示链接 | 开启 | show-link-true | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示图标 | 关闭 | show-icon-false | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示图标 | 开启 | show-icon-true | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示关闭按钮 | 关闭 | show-close-false | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-| 显示关闭按钮 | 开启 | show-close-true | [案例](http://localhost:4173/preview/WB-NOTIFICATION-V1/notification?view=variants) |
-
-### Studio 案例值（不是 props 映射）
-
-```json
-[
-  {
-    "id": "demoState-info",
-    "group": "组件状态",
-    "label": "信息",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "demoState-success",
-    "group": "组件状态",
-    "label": "成功",
-    "controls": {
-      "demoState": "success",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "demoState-warning",
-    "group": "组件状态",
-    "label": "警告",
-    "controls": {
-      "demoState": "warning",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "demoState-danger",
-    "group": "组件状态",
-    "label": "危险",
-    "controls": {
-      "demoState": "danger",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "demoState-critical",
-    "group": "组件状态",
-    "label": "高危",
-    "controls": {
-      "demoState": "critical",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "demoState-error",
-    "group": "组件状态",
-    "label": "错误",
-    "controls": {
-      "demoState": "error",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "surface-default",
-    "group": "背景",
-    "label": "白色",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "surface-subtle",
-    "group": "背景",
-    "label": "语义浅色",
-    "controls": {
-      "demoState": "info",
-      "surface": "subtle",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "duration-5000",
-    "group": "自动关闭",
-    "label": "5秒",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "duration-0",
-    "group": "自动关闭",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 0,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-title-false",
-    "group": "显示标题",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": false,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-title-true",
-    "group": "显示标题",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-description-false",
-    "group": "显示辅助文本",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": false,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-description-true",
-    "group": "显示辅助文本",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-link-false",
-    "group": "显示链接",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": false,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-link-true",
-    "group": "显示链接",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-icon-false",
-    "group": "显示图标",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": false,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-icon-true",
-    "group": "显示图标",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-close-false",
-    "group": "显示关闭按钮",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  },
-  {
-    "id": "show-close-true",
-    "group": "显示关闭按钮",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "default",
-      "duration": 5000,
-      "show-title": true,
-      "show-description": true,
-      "show-link": true,
-      "show-icon": true,
-      "show-close": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-NOTIFICATION-V1/notification?view=variants"
-  }
-]
-```
+unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery.
 
 ### 包内声明
 
@@ -737,6 +369,62 @@
       }
     }
   ]
+}
+```
+
+### 定制画廊来源清单（unsupported）
+
+```json
+{
+  "literalData": {
+    "labels": {
+      "info": "信息提示",
+      "success": "操作成功",
+      "warning": "风险提醒",
+      "danger": "危险提示",
+      "critical": "高危提示",
+      "error": "操作失败"
+    },
+    "descriptions": {
+      "info": "配置已更新，请确认最新信息。",
+      "success": "操作已经完成，结果已同步。",
+      "warning": "继续操作可能影响当前配置。",
+      "danger": "此操作可能造成数据变化。",
+      "critical": "此操作风险较高，需立即关注。",
+      "error": "操作未完成，请处理错误后重试。"
+    },
+    "contentOptions": [
+      {
+        "value": "complete",
+        "label": "标题、说明和链接"
+      },
+      {
+        "value": "title",
+        "label": "仅标题"
+      },
+      {
+        "value": "description",
+        "label": "仅说明"
+      }
+    ]
+  },
+  "dynamicBindings": [
+    "props",
+    "detailsId",
+    "type",
+    "content",
+    "items",
+    "message",
+    "serial",
+    "item",
+    "statusOptions",
+    "selectedType",
+    "selectedContent"
+  ],
+  "explicitCaseIds": [
+    "notification-live"
+  ],
+  "loopExpressions": []
 }
 ```
 

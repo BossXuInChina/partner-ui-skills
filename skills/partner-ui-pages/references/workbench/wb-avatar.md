@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 头像 Avatar — `WorkbenchAvatar`
 
 资产：`wb-avatar` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -64,6 +64,10 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
         {
           "value": "40",
           "label": "40"
+        },
+        {
+          "value": "48",
+          "label": "48"
         },
         {
           "value": "60",
@@ -187,6 +191,10 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
         {
           "value": "40",
           "label": "40"
+        },
+        {
+          "value": "48",
+          "label": "48"
         },
         {
           "value": "60",
@@ -375,6 +383,7 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
     "sizes": [
       24,
       40,
+      48,
       60,
       80,
       120
@@ -434,7 +443,7 @@ const reviewers = [
 | color | String | default |  | 已支持的背景颜色名称。 |
 | icon | Boolean |  |  | 显示内置或插槽人像图形。 |
 | label | String |  |  | 完整可访问名称；未传时使用文本或“用户头像”。 |
-| size | Number \| String | 60 |  | 头像尺寸24、40、60、80或120，默认60；可传对应数字字符串。 |
+| size | Number \| String | 60 |  | 头像尺寸24、40、48、60、80或120，默认60；可传对应数字字符串。 |
 | src | String |  |  | 可选图片地址；加载失败回退显示内容。 |
 | text | String | A |  | 调用方提供的1–2字素显示文本，默认A。 |
 
@@ -472,7 +481,7 @@ const reviewers = [
 
 ### 尺寸与组合
 
-单头像size支持24、40、60、80、120；color支持default、blue、cyan、indigo、green、orange、purple。
+单头像size支持24、40、48、60、80、120；48px为角色卡场景新增尺寸；color支持default、blue、cyan、indigo、green、orange、purple。
 
 - WorkbenchAvatarGroup是同族辅助组件：单行固定24px头像；multiline仅对3或4人启用。
 

@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 卡片 Card — `WorkbenchCard`
 
 资产：`wb-card` · 类型：`component` · 资产合同版本：`1.0.4`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -679,7 +679,7 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
 
 **适用**：展示一组独立内容；在卡片内部承载多个独立操作；整张卡片作为单一原生地址跳转入口
 
-**不适用**：在整卡跳转内部嵌套按钮、链接或其他交互控件；把Card尺寸用作非栅格环境中的固定像素宽度；未经验证的内部框架生产实现
+**不适用**：在整卡跳转内部嵌套按钮、链接或其他交互控件；把Card尺寸用作非栅格环境中的固定像素宽度；未经验证的内部框架生产实现；使用页面背景色color-surface-page代替灰色卡片的color-surface-card-tinted
 
 官方来源 SFC：partial。
 
@@ -799,7 +799,7 @@ unsupported：TARGET_NOT_RENDERED：The official SFC does not statically render 
 
 id：`wb-card-appearance` · must / confirmed
 
-display-white为白底无描边无阴影，display-tinted为灰底无描边无阴影，operation为白底1px描边无阴影，navigation为白底无描边并使用交互阴影。
+display-white为白底无描边无阴影；display-tinted使用color-surface-card-tinted浅灰表面且无描边无阴影；operation为白底1px描边无阴影；navigation为白底无描边并使用交互阴影。页面背景color-surface-page不作为灰色卡片默认背景。
 
 **适用条件**：选择Card外观
 

@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 文本输入 Input — `WorkbenchInput`
 
 资产：`wb-input` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -12,7 +12,7 @@
 
 [在 Studio 中查看](http://localhost:4173/preview/WB-INPUT-V1/input?view=preview)
 
-预览页聚焦一个可切换类型的输入实例，可试填、主动校验并查看事件反馈；变体页按输入类型和交互状态并排比较，原完整演示仍可展开查看。
+预览页聚焦一个可切换类型的输入实例，可试填、主动校验并查看事件反馈；变体页按输入类型和交互状态并排比较。
 
 公开入口：`@workbench/ui-vue3` → `WorkbenchInput`
 
@@ -427,12 +427,14 @@ const validateAccount = (value) => value ? "" : "请输入账号"
 | placeholder | String | 请输入 |  | 输入为空时显示的提示文案。 |
 | prefixDisabled | Boolean |  |  | 仅禁用前缀选项并关闭其面板。 |
 | prefixOptions | Array | {"kind":"function"} |  | 前缀单选项；为空时不显示前缀选择段。 |
+| prefixPlaceholder | String |  |  |  |
 | prefixValue | String |  |  | 前缀筛选受控值。 |
 | required | Boolean |  |  | 输入原生必填约束；字段提示与错误展示由FormItem统一负责。 |
 | resizable | Boolean | true |  | 多行文本是否可垂直调整高度，默认开启。 |
 | showPrefixIcon | Boolean | true |  | 是否显示前缀筛选图标。 |
 | showSuffixIcon | Boolean | true |  | 是否显示后缀单位图标。 |
 | showTrailingIcon | Boolean |  |  | 是否显示尾随图标；图标内容可由trailing-icon插槽提供。 |
+| size | String | 32 | 28 / 32 |  |
 | state | String | default |  | 输入状态展示参数；业务字段校验状态由validate与FormItem管理。 |
 | suffixDisabled | Boolean |  |  | 仅禁用后缀单位选项并关闭其面板。 |
 | type | String | text |  | text、textarea或password，分别对应单行、多行和掩码文本。 |

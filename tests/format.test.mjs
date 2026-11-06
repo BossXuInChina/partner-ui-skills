@@ -62,8 +62,8 @@ const ai = packages.find((pkg) => pkg.name === "huawei-partner-ai-ui");
 test("all locked assets get four Studio columns, declared API and genuine official SFCs", () => {
   const output = generateReferences({ packages, studioBaseURLs: bases });
   const contracts = wb.metadata.components.assets;
-  assert.equal(Object.keys(contracts).length, 60);
-  assert.equal(output.size, Object.keys(contracts).length + 8 + 17);
+  assert.equal(Object.keys(contracts).length, 73);
+  assert.equal(output.size, Object.keys(contracts).length + 8 + 19);
   assert.deepEqual([...output.keys()], [...output.keys()].sort());
   for (const [id, contract] of Object.entries(contracts)) {
     const page = output.get(`workbench/${id}.md`);
@@ -135,10 +135,10 @@ test("every shared case and unsupported custom gallery remains represented witho
       unavailable++;
     }
   }
-  assert.equal(cases, 377);
-  assert.equal(custom, 30);
-  assert.equal(unsupported, 34);
-  assert.equal(unavailable, 7);
+  assert.equal(cases, 212);
+  assert.equal(custom, 38);
+  assert.equal(unsupported, 42);
+  assert.equal(unavailable, 20);
 });
 
 test("configured Studio base is combined with package routes; output has no built-in endpoint", () => {
@@ -176,10 +176,10 @@ test("icons JSON retains all real family, native-size and exact public selector 
   const { _generated, ...icons } = JSON.parse(output.get("icons.json"));
   assert.match(_generated, /do not edit/);
   assert.deepEqual(icons, wb.metadata.icons);
-  assert.equal(icons.icons.length, 1196);
+  assert.equal(icons.icons.length, 1201);
   assert.equal(
     icons.families.reduce((sum, family) => sum + family.iconCount, 0),
-    1196,
+    1201,
   );
   for (const family of icons.families) {
     assert.ok(output.get("icons.md").includes(family.id));
@@ -223,7 +223,7 @@ test("all generated files carry package identity; sources record metadata availa
 test("AI index and component references preserve the public metadata and source", () => {
   const output = generateReferences({ packages, studioBaseURLs: bases });
   const assets = ai.metadata.components.assets;
-  assert.equal(Object.keys(assets).length, 16);
+  assert.equal(Object.keys(assets).length, 18);
   assert.equal(ai.metadata.components.publicHelpers.length, 4);
   for (const [id, asset] of Object.entries(assets)) {
     const page = output.get(`ai-ui/${id}.md`);

@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 按钮 Button — `WorkbenchButton`
 
 资产：`wb-button` · 类型：`component` · 资产合同版本：`1.7.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -155,6 +155,53 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
         }
       ],
       "group": "类型与尺寸"
+    },
+    {
+      "id": "textLayout",
+      "label": "文字按钮布局",
+      "description": "仅文字按钮生效；默认标准容器，无容器变体跟随文字行高，用于卡片或页签头部的下钻入口。",
+      "type": "select",
+      "default": "container",
+      "options": [
+        {
+          "value": "container",
+          "label": "标准容器"
+        },
+        {
+          "value": "inline",
+          "label": "无容器（随行高）"
+        }
+      ],
+      "group": "类型与尺寸",
+      "when": {
+        "appearance": [
+          "text",
+          "drilldown"
+        ]
+      }
+    },
+    {
+      "id": "iconLayout",
+      "label": "图标按钮布局",
+      "description": "默认无容器，贴合实际图标；需要标准点击区域时选容器（如导航）。",
+      "type": "select",
+      "default": "inline",
+      "options": [
+        {
+          "value": "inline",
+          "label": "无容器（贴合图标）"
+        },
+        {
+          "value": "container",
+          "label": "标准容器"
+        }
+      ],
+      "group": "类型与尺寸",
+      "when": {
+        "appearance": [
+          "icon"
+        ]
+      }
     },
     {
       "id": "label",
@@ -390,6 +437,7 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
   "explicitCaseIds": [],
   "loopExpressions": [
     "item in types",
+    "disabled in [false, true]",
     "family in sizes",
     "size in family.sizes",
     "item in states"
@@ -438,9 +486,12 @@ function createApplication() { created.value = true }
 | ariaLabel | String |  |  | 提供纯图标按钮的可访问名称。 |
 | disabled | Boolean | false |  | 禁用原生按钮交互。 |
 | drilldown | String | more | more / expand / collapse | 披露箭头方向：more、expand或collapse。 |
+| iconLayout | String | inline | inline / container | 图标按钮默认 inline 贴合实际图标；container 使用32/24px标准点击区域。 |
 | intent | String | action | action / drilldown | text外观的action或drilldown语义。 |
 | previewState | String | default |  | Studio状态预览值；业务交互应由真实DOM状态和调用方逻辑管理。 |
 | size | String | 32 |  | 按钮尺寸字符串；当前组件默认32，填充按钮支持28、32、36，文字与图标尺寸按组件契约使用。 |
+| textLayout | String | container | inline / container | 文字按钮默认 container，提供标准尺寸及透明内边距；inline 随行高且无内边距。 |
+| variant | String | default | default / dashed |  |
 
 ### Slots
 
@@ -454,7 +505,7 @@ function createApplication() { created.value = true }
 
 id：`wb-button-height` · default / confirmed
 
-默认高度32px；填充按钮36px用于全局操作，28px用于复合组件的紧凑操作。尺寸选择与文字字号分别判断。
+默认高度32px；填充按钮36px用于全局操作，28px用于复合组件的紧凑操作。尺寸选择与文字字号分别判断。文字按钮另有可选的无容器变体 textLayout=inline，高度随文字行高。
 
 **适用条件**：使用按钮
 
@@ -512,7 +563,7 @@ id：`wb-button-equal-width` · recommendation / confirmed
 
 id：`wb-button-icon` · must / confirmed
 
-填充按钮L/M/S前置图标分别14/14/12px，图文间距4px。文字与下拉按钮尾部箭头统一10px、间距6px。纯图标按钮32/24px容器分别使用20/14px图标，并提供可访问名称。
+填充按钮L/M/S前置图标分别14/14/12px，图文间距4px。文字与下拉按钮尾部箭头统一10px、间距6px。纯图标按钮默认无容器，贴合实际图标；导航等需要标准点击区域时使用 iconLayout=container，32/24px容器分别使用20/14px图标；均提供可访问名称。
 
 **适用条件**：使用按钮
 
@@ -528,7 +579,7 @@ id：`wb-button-semantics` · must / confirmed
 
 id：`wb-button-state-mapping` · must / confirmed
 
-以Pixso组件变体为准：主要按钮Default/Pressed使用color-brand，Hover使用color-brand-hover，Disabled使用color-brand-disabled。次要按钮Hover/Pressed均保持color-fill-subtle-default，并将1px描边改为color-border-hover。图标按钮Hover/Pressed均透明，分别使用color-icon-hover和color-icon-active。操作类文字按钮使用color-text-action、color-text-action-hover、color-text-action-active、color-text-action-disabled；下钻类默认color-text-primary、禁用color-text-disabled，Hover/Pressed沿用文字操作状态链，aria-expanded=true持续使用active色。文字与下拉按钮箭头均10px、间距6px；纯图标按钮32/24px分别配20/14px图标。
+以Pixso组件变体为准：主要按钮Default/Pressed使用color-brand，Hover使用color-brand-hover，Disabled使用color-brand-disabled。次要按钮Hover/Pressed均保持color-fill-subtle-default，并将1px描边改为color-border-hover。图标按钮Hover/Pressed均透明，分别使用color-icon-hover和color-icon-active。操作类文字按钮使用color-text-action、color-text-action-hover、color-text-action-active、color-text-action-disabled；下钻类默认color-text-primary、禁用color-text-disabled，Hover/Pressed沿用文字操作状态链，aria-expanded=true持续使用active色。文字与下拉按钮箭头均10px、间距6px；纯图标按钮默认贴合实际图标，container变体32/24px分别配20/14px图标。
 
 **适用条件**：精确状态色映射；描边粗细；文字图标尺寸
 
@@ -544,11 +595,19 @@ Button提供主要、次要、文字、图标及次要下拉触发入口；下�
 
 id：`wb-button-padding` · must / confirmed
 
-填充按钮L/M/S左右内边距20/16/12px；文字按钮各尺寸均8px；图标按钮通过固定正方形容器居中。
+填充按钮L/M/S左右内边距20/16/12px；文字按钮各尺寸均8px，无容器变体 textLayout=inline 为0；图标按钮默认贴合图标，container变体通过固定正方形容器居中。
 
 **适用条件**：使用按钮
 
 **包内引用**：["wb-button-height"]
+
+### 文字下钻入口与点击区域
+
+id：`wb-button-text-drilldown-usage` · recommendation / confirmed
+
+文字按钮默认使用标准容器（32/28px高、左右8px）；卡片或页签头部的操作、下钻入口可显式使用 textLayout=inline，仅占文字行高且无内边距。更多等操作使用 intent=drilldown、drilldown=more，保留键盘和焦点反馈；真实地址跳转使用链接组件。
+
+**适用条件**：卡片或页签头部下钻入口
 
 ### Foundation 引用
 
@@ -562,9 +621,17 @@ id：`wb-button-padding` · must / confirmed
 
 - 按钮宽度与位置由调用方布局决定；文案应以动作动词开头。
 
+### 文字下钻入口与点击区域
+
+卡片或页签头部的更多、查看历史等动作使用 appearance=text、intent=drilldown、drilldown=more。文字按钮默认保留标准容器；这类头部入口使用 textLayout=inline，仅占文字行高且无内边距。两者均保留悬停、按下和焦点反馈。
+
+- 需要真实地址跳转时使用链接组件。
+
+- 复用同一业务位置与事件时可组合为Block，组件本身仍由Button负责。
+
 ### 尺寸与状态
 
-size选择已提供的按钮尺寸；primary、secondary、text、icon分别对应不同视觉职责。状态预览值previewState用于Studio检查，不代替真实禁用状态。
+size选择已提供的按钮尺寸；图标按钮默认无容器，导航等需要标准点击区域时使用 iconLayout=container。primary、secondary、text、icon分别对应不同视觉职责。状态预览值previewState用于Studio检查，不代替真实禁用状态。
 
 - 异步提交、加载与危险操作不属于当前组件接口。
 

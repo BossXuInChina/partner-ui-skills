@@ -24,7 +24,7 @@ description: 用伙伴工作台 Workbench 与 AI UI 发布包，将 PRD、partne
 
 使用 AI 时读 [AI Vue 组合](references/ai-ui-vue.md)；[AI 包参考](references/ai-ui.md) 说明现有结构化元数据的实际范围。大图标表只做关键词过滤查询，核对 `key`/`alias` 与 family，不全量展开 [图标资料](references/icons.md) 或 JSON。
 
-默认 Vue 3.5.13、Vite、TS strict、vue-router 4、fetch、集中中文文案；已有 store 才复用 Pinia。依赖从 `vendor/` 与 `source.lock.json` 获取，保留 version、SHA-256、完整 commit 与包资格声明。更多已决策项及未验证契约见 [假设](references/assumptions.md)。消费工程不读取维护仓库内部，也不把其源码复制进参考。
+默认 Vue 3.5.42、Vite、TS strict、vue-router 4、fetch、集中中文文案；已有 store 才复用 Pinia。依赖从 `vendor/` 与 `source.lock.json` 获取，保留 version、SHA-256、完整 commit 与包资格声明。更多已决策项及未验证契约见 [假设](references/assumptions.md)。消费工程不读取维护仓库内部，也不把其源码复制进参考。
 
 ## 实现与交付
 
@@ -73,3 +73,11 @@ node scripts/smoke.mjs --project <harness-dir>
 生成器只创建源码起点，不安装或改宿主；转换器输出带 mount guard 的 `needs-review` 提取稿，按 [转换对照](references/conversion.md) 手工迁移完成后才能移除 guard。完整命令、检查层级和截图边界见 [测试](references/testing.md)。
 
 交付时先报告实际结果，给出可审查源码、清单、检查范围及未解决契约；不把定向通过写成全量通过。发布频率和外部操作按当次用户授权执行。
+
+## 当前消费约定
+
+- 组件内部有意设计的 padding 不统一抹平；页面排版、业务卡片内多内容拼装必须遵守命中规范。优先复用正式 Block/Pattern；新入库内容以锁包索引为准，剩余交易候选不视为公共资产。
+- 浮层需在宿主字体和层级中正确显示，验证弹窗滚动区内不裁剪；页签与内容留白由组合层控制。页面级基础页签使用 medium，卡片内沿用默认。
+- 同一操作组最多一个主要填充按钮；操作类用 Button 的 no-container 对应公开配置，页面跳转才用 Link。高级筛选使用标准 toolbar 行为与颜色。
+- 业务页签切换留在所属首页；无独立演示的模块保留可点击状态并给出未激活提示，不让用户落到无法返回的孤立页面。
+- 草稿安排可复用 useDraftThenCommit：确认/保存/通知由宿主提供，失败保留草稿；不要把本地演示成功写成服务端完成。新增数值进度支持当前与预计增量，预计值不能标成已达成。

@@ -1,8 +1,8 @@
-<!-- Generated from huawei-partner-ai-ui@0.3.1-dev.20261031.1 (8d5f658b9152fecbe954840ac2f52a01c551636f) — do not edit. -->
+<!-- Generated from huawei-partner-ai-ui@0.3.1-dev.20261106.1 (16d91bbbede5006960cce5278b0e2cda88785393) — do not edit. -->
 
 # Partner AI UI 组件索引
 
-包：`huawei-partner-ai-ui@0.3.1-dev.20261031.1` · commit：`8d5f658b9152fecbe954840ac2f52a01c551636f` · dirty：false
+包：`huawei-partner-ai-ui@0.3.1-dev.20261106.1` · commit：`16d91bbbede5006960cce5278b0e2cda88785393` · dirty：false
 
 资格（包内声明）：channel=unknown；stableEligible=unknown；targetProductionEligible=unknown。元数据和示例不授予发布或生产批准。
 
@@ -29,8 +29,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -62,8 +62,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -95,8 +95,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -128,8 +128,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -161,8 +161,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -194,8 +194,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -227,8 +227,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -260,8 +260,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   }
 }
 ```
@@ -287,8 +287,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -320,9 +320,42 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   }
+}
+```
+
+## [BusinessTable — BusinessTable](business-table.md)
+
+[Open in Studio](http://localhost:4178/overview.html?page=agreement-table#agreement-table-example)
+
+```json
+{
+  "id": "business-table",
+  "summary": null,
+  "group": "component",
+  "status": {
+    "maturity": null,
+    "deliveryEligibility": null,
+    "unsupported": [
+      {
+        "code": "AI_RELEASE_STATUS_UNDECLARED",
+        "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+      }
+    ]
+  },
+  "source": {
+    "package": "huawei-partner-ai-ui",
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
+  },
+  "unsupported": [
+    {
+      "code": "CATALOG_SUMMARY_UNAVAILABLE",
+      "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+    }
+  ]
 }
 ```
 
@@ -347,8 +380,35 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
+  }
+}
+```
+
+## [面板 · 侧栏、悬浮与全屏 — ConversationHistoryPanel](conversation-history-panel.md)
+
+[Open in Studio](http://localhost:4178/overview.html?page=panel#panel-advanced)
+
+```json
+{
+  "id": "conversation-history-panel",
+  "summary": "通用聊天呈现与可选宿主；消息、请求由业务控制器持有",
+  "group": "component",
+  "status": {
+    "maturity": null,
+    "deliveryEligibility": null,
+    "unsupported": [
+      {
+        "code": "AI_RELEASE_STATUS_UNDECLARED",
+        "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+      }
+    ]
+  },
+  "source": {
+    "package": "huawei-partner-ai-ui",
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   }
 }
 ```
@@ -374,8 +434,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   }
 }
 ```
@@ -401,8 +461,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -434,8 +494,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -467,8 +527,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -500,8 +560,8 @@
   },
   "source": {
     "package": "huawei-partner-ai-ui",
-    "version": "0.3.1-dev.20261031.1",
-    "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+    "version": "0.3.1-dev.20261106.1",
+    "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
   },
   "unsupported": [
     {
@@ -529,8 +589,8 @@
     "exposed": [],
     "source": {
       "package": "huawei-partner-ai-ui",
-      "version": "0.3.1-dev.20261031.1",
-      "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+      "version": "0.3.1-dev.20261106.1",
+      "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
     },
     "unsupported": [
       {
@@ -550,8 +610,8 @@
     "exposed": [],
     "source": {
       "package": "huawei-partner-ai-ui",
-      "version": "0.3.1-dev.20261031.1",
-      "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+      "version": "0.3.1-dev.20261106.1",
+      "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
     },
     "unsupported": [
       {
@@ -571,8 +631,8 @@
     "exposed": [],
     "source": {
       "package": "huawei-partner-ai-ui",
-      "version": "0.3.1-dev.20261031.1",
-      "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+      "version": "0.3.1-dev.20261106.1",
+      "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
     },
     "unsupported": [
       {
@@ -592,8 +652,8 @@
     "exposed": [],
     "source": {
       "package": "huawei-partner-ai-ui",
-      "version": "0.3.1-dev.20261031.1",
-      "commit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+      "version": "0.3.1-dev.20261106.1",
+      "commit": "16d91bbbede5006960cce5278b0e2cda88785393"
     },
     "unsupported": [
       {
@@ -628,8 +688,8 @@
     "@opentiny/tiny-robot": "0.5.1",
     "@opentiny/tiny-robot-kit": "0.4.0",
     "@opentiny/tiny-robot-svgs": "0.3.5",
-    "dompurify": "3.3.1",
-    "markdown-it": "14.1.0"
+    "dompurify": "3.4.17",
+    "markdown-it": "14.3.3"
   },
   "peerDependencies": {
     "vue": ">=3.5.13 <=3.5.42"

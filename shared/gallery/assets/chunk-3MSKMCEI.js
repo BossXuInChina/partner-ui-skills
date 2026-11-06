@@ -1,1 +1,0 @@
-import{r as l}from"./chunk-FRVCVL5C.js";import{L as t,M as o,O as r,P as n,d as e,j as a}from"./chunk-VSJSLDJY.js";var s={"aria-busy":"true"},c="正在读取账户信息",u={__name:"wb-loading",setup(i){return(_,p)=>(t(),o("section",s,[n(a(l),{size:24,"aria-label":c}),r("span",null,e(c))]))}};export{u as default};

@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 底托图标 — `WorkbenchPedestalIcon`
 
 资产：`wb-pedestal-icon` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -148,6 +148,7 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
 | --- | --- | --- | --- | --- |
 | label | String |  |  |  |
 | name * | String |  |  |  |
+| size | Number | {"kind":"undefined"} |  |  |
 
 ### 规则
 
@@ -155,6 +156,6 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
 
 id：`wb-pedestal-icon-native-artwork` · must / confirmed
 
-使用WorkbenchPedestalIcon按登记名称选择完整底托图标；保留原始40/48px设计框、SVG绘制、配色、透明留白与导出外溢，禁止缩放、改色或自行拼装底托和主体。
+使用 WorkbenchPedestalIcon 按登记名称选择完整原图；默认保留原始设计框及导出外溢。用户确认的 size=28 或 48 可适配完整原始画布，不复制资源，不改变 SVG 绘制和颜色。
 
 **适用条件**：底托图标；pedestal icon；WorkbenchPedestalIcon

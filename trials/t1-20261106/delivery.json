@@ -1,0 +1,97 @@
+{
+  "feature": "agreement-management",
+  "skillVersion": "0.2.0",
+  "generatedAt": "2026-11-06T13:16:34.713489+00:00",
+  "status": "pass",
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261106.7",
+      "tarball": "vendor/workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz",
+      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
+      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261106.1",
+      "tarball": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz",
+      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
+      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393"
+    }
+  ],
+  "vue": "3.5.42",
+  "checks": [
+    {
+      "name": "install",
+      "command": "pnpm install --frozen-lockfile",
+      "result": "pass",
+      "durationMs": 502
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm run typecheck",
+      "result": "pass",
+      "durationMs": 3353
+    },
+    {
+      "name": "lint",
+      "command": "pnpm run lint",
+      "result": "pass",
+      "durationMs": 2140
+    },
+    {
+      "name": "format",
+      "command": "pnpm run format:check",
+      "result": "pass",
+      "durationMs": 1892
+    },
+    {
+      "name": "rules",
+      "command": "pnpm run check:rules",
+      "result": "pass",
+      "durationMs": 409
+    },
+    {
+      "name": "unit",
+      "command": "pnpm run test:unit",
+      "result": "pass",
+      "durationMs": 9957
+    },
+    {
+      "name": "build",
+      "command": "pnpm run build",
+      "result": "pass",
+      "durationMs": 7670
+    },
+    {
+      "name": "vue-runtime",
+      "command": "node tests/feature/vue-runtime.mjs",
+      "result": "pass",
+      "durationMs": 44
+    },
+    {
+      "name": "smoke",
+      "command": "node tests/feature/smoke.mjs",
+      "result": "pass",
+      "durationMs": 1661
+    },
+    {
+      "name": "browser",
+      "command": "node tests/feature/qa.mjs",
+      "result": "pass",
+      "durationMs": 8417
+    },
+    {
+      "name": "mock-flag",
+      "command": "VITE_ENABLE_MOCKS=true pnpm run build",
+      "result": "expected-failure",
+      "durationMs": 342
+    }
+  ],
+  "scope": "协议列表/详情/AI助手，独立目录冻结安装、类型/Lint/格式/规则/单测/构建、浏览器、两尺寸 smoke 与生产 mock 拒绝",
+  "knownLimits": [
+    "QA 使用受控测试网络桩，未验证真实后端及生产部署。",
+    "本批为现有需求的全新隔离消费快照复跑；无额外独立 Agent 或人工视觉验收。",
+    "AI UI 仍有6条传递依赖安全告警，保持开发预览资格。"
+  ]
+}

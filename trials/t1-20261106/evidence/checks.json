@@ -1,0 +1,68 @@
+[
+  {
+    "name": "install",
+    "command": "pnpm install --frozen-lockfile",
+    "result": "pass",
+    "durationMs": 502
+  },
+  {
+    "name": "typecheck",
+    "command": "pnpm run typecheck",
+    "result": "pass",
+    "durationMs": 3353
+  },
+  {
+    "name": "lint",
+    "command": "pnpm run lint",
+    "result": "pass",
+    "durationMs": 2140
+  },
+  {
+    "name": "format",
+    "command": "pnpm run format:check",
+    "result": "pass",
+    "durationMs": 1892
+  },
+  {
+    "name": "rules",
+    "command": "pnpm run check:rules",
+    "result": "pass",
+    "durationMs": 409
+  },
+  {
+    "name": "unit",
+    "command": "pnpm run test:unit",
+    "result": "pass",
+    "durationMs": 9957
+  },
+  {
+    "name": "build",
+    "command": "pnpm run build",
+    "result": "pass",
+    "durationMs": 7670
+  },
+  {
+    "name": "vue-runtime",
+    "command": "node tests/feature/vue-runtime.mjs",
+    "result": "pass",
+    "durationMs": 44
+  },
+  {
+    "name": "smoke",
+    "command": "node tests/feature/smoke.mjs",
+    "result": "pass",
+    "durationMs": 1661
+  },
+  {
+    "name": "browser",
+    "command": "node tests/feature/qa.mjs",
+    "result": "pass",
+    "durationMs": 8417
+  },
+  {
+    "name": "mock-flag",
+    "command": "VITE_ENABLE_MOCKS=true pnpm run build",
+    "result": "expected-failure",
+    "durationMs": 342
+  }
+]

@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 级联选择 Cascader — `WorkbenchCascader`
 
 资产：`wb-cascader` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -18,323 +18,11 @@
 
 ## 变体与状态
 
-状态：`supported`。Studio controls, not public component props
+状态：`unsupported`。声明值属于 Studio 案例数据，不自动等于公开组件 props。
 
 [在 Studio 中查看](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states)
 
-| 分组 | 案例 | id | Studio |
-| --- | --- | --- | --- |
-| 组件状态 | 默认 | demoState-default | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 组件状态 | 初始展开 | demoState-expanded | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 组件状态 | 已选择 | demoState-selected | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 组件状态 | 悬浮 | demoState-hover | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 组件状态 | 聚焦 | demoState-focus | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 组件状态 | 禁用 | demoState-disabled | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 组件状态 | 超长文本 | demoState-long | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 组件状态 | 空数据 | demoState-empty | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 选择类型 | 单选 | mode-single | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 选择类型 | 多选末级复选 | mode-leaf | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 选择类型 | 多选全层复选 | mode-all | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 选择框尺寸 | 小28px | size-small | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 选择框尺寸 | 默认32px | size-medium | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 选择框尺寸 | 大40px | size-large | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 层级数量 | 2级 | depth-2 | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 层级数量 | 3级 | depth-3 | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 层级数量 | 4级 | depth-4 | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 标签可删除 | 关闭 | tagRemovable-false | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-| 标签可删除 | 开启 | tagRemovable-true | [案例](http://localhost:4173/preview/WB-CASCADER-V1/cascader?view=states) |
-
-### Studio 案例值（不是 props 映射）
-
-```json
-[
-  {
-    "id": "demoState-default",
-    "group": "组件状态",
-    "label": "默认",
-    "controls": {
-      "demoState": "default",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "demoState-expanded",
-    "group": "组件状态",
-    "label": "初始展开",
-    "controls": {
-      "demoState": "expanded",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "demoState-selected",
-    "group": "组件状态",
-    "label": "已选择",
-    "controls": {
-      "demoState": "selected",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "demoState-hover",
-    "group": "组件状态",
-    "label": "悬浮",
-    "controls": {
-      "demoState": "hover",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "demoState-focus",
-    "group": "组件状态",
-    "label": "聚焦",
-    "controls": {
-      "demoState": "focus",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "demoState-disabled",
-    "group": "组件状态",
-    "label": "禁用",
-    "controls": {
-      "demoState": "disabled",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "demoState-long",
-    "group": "组件状态",
-    "label": "超长文本",
-    "controls": {
-      "demoState": "long",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "demoState-empty",
-    "group": "组件状态",
-    "label": "空数据",
-    "controls": {
-      "demoState": "empty",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "mode-single",
-    "group": "选择类型",
-    "label": "单选",
-    "controls": {
-      "demoState": "default",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "mode-leaf",
-    "group": "选择类型",
-    "label": "多选末级复选",
-    "controls": {
-      "demoState": "default",
-      "mode": "leaf",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "mode-all",
-    "group": "选择类型",
-    "label": "多选全层复选",
-    "controls": {
-      "demoState": "default",
-      "mode": "all",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "size-small",
-    "group": "选择框尺寸",
-    "label": "小28px",
-    "controls": {
-      "demoState": "default",
-      "mode": "single",
-      "size": "small",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "size-medium",
-    "group": "选择框尺寸",
-    "label": "默认32px",
-    "controls": {
-      "demoState": "default",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "size-large",
-    "group": "选择框尺寸",
-    "label": "大40px",
-    "controls": {
-      "demoState": "default",
-      "mode": "single",
-      "size": "large",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "depth-2",
-    "group": "层级数量",
-    "label": "2级",
-    "controls": {
-      "demoState": "default",
-      "mode": "single",
-      "size": "medium",
-      "depth": "2",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "depth-3",
-    "group": "层级数量",
-    "label": "3级",
-    "controls": {
-      "demoState": "default",
-      "mode": "single",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "depth-4",
-    "group": "层级数量",
-    "label": "4级",
-    "controls": {
-      "demoState": "default",
-      "mode": "single",
-      "size": "medium",
-      "depth": "4",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "tagRemovable-false",
-    "group": "标签可删除",
-    "label": "关闭",
-    "controls": {
-      "demoState": "default",
-      "mode": "leaf",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  },
-  {
-    "id": "tagRemovable-true",
-    "group": "标签可删除",
-    "label": "开启",
-    "controls": {
-      "demoState": "default",
-      "mode": "leaf",
-      "size": "medium",
-      "depth": "3",
-      "showPanel": true,
-      "tagRemovable": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-CASCADER-V1/cascader?view=states"
-  }
-]
-```
+unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery.
 
 ### 包内声明
 
@@ -743,6 +431,23 @@
       }
     }
   ]
+}
+```
+
+### 定制画廊来源清单（unsupported）
+
+```json
+{
+  "literalData": {},
+  "dynamicBindings": [
+    "mode",
+    "depth",
+    "state"
+  ],
+  "explicitCaseIds": [
+    "expanded-comparison"
+  ],
+  "loopExpressions": []
 }
 ```
 

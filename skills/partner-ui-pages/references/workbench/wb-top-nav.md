@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 顶部导航 Top Navigation — `WorkbenchTopNav`
 
 资产：`wb-top-nav` · 类型：`component` · 资产合同版本：`1.0.2`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -18,383 +18,11 @@
 
 ## 变体与状态
 
-状态：`supported`。Studio controls, not public component props
+状态：`unsupported`。声明值属于 Studio 案例数据，不自动等于公开组件 props。
 
 [在 Studio 中查看](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants)
 
-| 分组 | 案例 | id | Studio |
-| --- | --- | --- | --- |
-| 导航身份与场景 | 门户官网 · 未登录 | navState-portal-guest | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 导航身份与场景 | 门户官网 · 已登录 | navState-portal-authenticated | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 导航身份与场景 | 伙伴工作台 · 已登录 | navState-workbench-authenticated | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 默认组合 | actionPreset-default | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 完整工作台组合 | actionPreset-full | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 待认证账户组合 | actionPreset-pending | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 门户登录注册组合 | actionPreset-guest | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 搜索 | actionPreset-search | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 语言 | actionPreset-language | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 登录注册图标 | actionPreset-login-register | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 已认证账户 | actionPreset-certified | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 收藏 | actionPreset-favorite | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 帮助 | actionPreset-help | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 消息 | actionPreset-message | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 智能助手 | actionPreset-assistant | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 菜单 | actionPreset-menu | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 关闭 | actionPreset-close | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 登录按钮 | actionPreset-login | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 右侧操作配置 | 注册按钮 | actionPreset-register | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 禁用右侧操作 | 关闭 | actionsDisabled-false | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 禁用右侧操作 | 开启 | actionsDisabled-true | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 通知角标 | 隐藏（0） | badgeValue-0 | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 通知角标 | 个位数（9） | badgeValue-9 | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 通知角标 | 两位数（99） | badgeValue-99 | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 通知角标 | 超限（150 / 99+） | badgeValue-150 | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-| 通知角标 | 红点 | badgeValue-dot | [案例](http://localhost:4173/preview/WB-TOP-NAV-V1/top-nav?view=variants) |
-
-### Studio 案例值（不是 props 映射）
-
-```json
-[
-  {
-    "id": "navState-portal-guest",
-    "group": "导航身份与场景",
-    "label": "门户官网 · 未登录",
-    "controls": {
-      "navState": "portal-guest",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "navState-portal-authenticated",
-    "group": "导航身份与场景",
-    "label": "门户官网 · 已登录",
-    "controls": {
-      "navState": "portal-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "navState-workbench-authenticated",
-    "group": "导航身份与场景",
-    "label": "伙伴工作台 · 已登录",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-default",
-    "group": "右侧操作配置",
-    "label": "默认组合",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-full",
-    "group": "右侧操作配置",
-    "label": "完整工作台组合",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "full",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-pending",
-    "group": "右侧操作配置",
-    "label": "待认证账户组合",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "pending",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-guest",
-    "group": "右侧操作配置",
-    "label": "门户登录注册组合",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "guest",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-search",
-    "group": "右侧操作配置",
-    "label": "搜索",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "search",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-language",
-    "group": "右侧操作配置",
-    "label": "语言",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "language",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-login-register",
-    "group": "右侧操作配置",
-    "label": "登录注册图标",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "login-register",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-certified",
-    "group": "右侧操作配置",
-    "label": "已认证账户",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "certified",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-favorite",
-    "group": "右侧操作配置",
-    "label": "收藏",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "favorite",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-help",
-    "group": "右侧操作配置",
-    "label": "帮助",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "help",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-message",
-    "group": "右侧操作配置",
-    "label": "消息",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "message",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-assistant",
-    "group": "右侧操作配置",
-    "label": "智能助手",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "assistant",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-menu",
-    "group": "右侧操作配置",
-    "label": "菜单",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "menu",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-close",
-    "group": "右侧操作配置",
-    "label": "关闭",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "close",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-login",
-    "group": "右侧操作配置",
-    "label": "登录按钮",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "login",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionPreset-register",
-    "group": "右侧操作配置",
-    "label": "注册按钮",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "register",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionsDisabled-false",
-    "group": "禁用右侧操作",
-    "label": "关闭",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "actionsDisabled-true",
-    "group": "禁用右侧操作",
-    "label": "开启",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": true,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "badgeValue-0",
-    "group": "通知角标",
-    "label": "隐藏（0）",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "0",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "badgeValue-9",
-    "group": "通知角标",
-    "label": "个位数（9）",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "9",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "badgeValue-99",
-    "group": "通知角标",
-    "label": "两位数（99）",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "99",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "badgeValue-150",
-    "group": "通知角标",
-    "label": "超限（150 / 99+）",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "150",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  },
-  {
-    "id": "badgeValue-dot",
-    "group": "通知角标",
-    "label": "红点",
-    "controls": {
-      "navState": "workbench-authenticated",
-      "actionPreset": "default",
-      "actionsDisabled": false,
-      "badgeValue": "dot",
-      "previewWidth": 1440
-    },
-    "studioPath": "/preview/WB-TOP-NAV-V1/top-nav?view=variants"
-  }
-]
-```
+unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery.
 
 ### 包内声明
 
@@ -886,6 +514,40 @@
         "badgeValue": "dot"
       }
     }
+  ]
+}
+```
+
+### 定制画廊来源清单（unsupported）
+
+```json
+{
+  "literalData": {
+    "states": [
+      {
+        "id": "portal-guest",
+        "label": "门户 · 未登录"
+      },
+      {
+        "id": "portal-authenticated",
+        "label": "门户 · 已登录"
+      },
+      {
+        "id": "workbench-authenticated",
+        "label": "工作台 · 已登录"
+      }
+    ]
+  },
+  "dynamicBindings": [
+    "samples",
+    "action",
+    "badge"
+  ],
+  "explicitCaseIds": [
+    "'navState-' + item.id"
+  ],
+  "loopExpressions": [
+    "item in samples"
   ]
 }
 ```

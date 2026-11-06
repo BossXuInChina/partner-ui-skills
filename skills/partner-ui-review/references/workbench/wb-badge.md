@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 徽标 Badge — `WorkbenchBadge`
 
 资产：`wb-badge` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -123,7 +123,35 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
 
 ```json
 {
-  "literalData": {},
+  "literalData": {
+    "visibilityExamples": [
+      {
+        "id": "positive",
+        "label": "3 条 · 可见",
+        "value": 3
+      },
+      {
+        "id": "zero",
+        "label": "0 条 · 隐藏",
+        "value": 0
+      },
+      {
+        "id": "negative",
+        "label": "−1 · 隐藏",
+        "value": -1
+      },
+      {
+        "id": "missing",
+        "label": "无值 · 隐藏"
+      },
+      {
+        "id": "hidden",
+        "label": "8 条 · 显式隐藏",
+        "value": 8,
+        "hidden": true
+      }
+    ]
+  },
   "dynamicBindings": [
     "dotVisible",
     "unreadCount",
@@ -131,7 +159,8 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
   ],
   "explicitCaseIds": [],
   "loopExpressions": [
-    "count in [99, 100]"
+    "count in [99, 100]",
+    "example in visibilityExamples"
   ]
 }
 ```

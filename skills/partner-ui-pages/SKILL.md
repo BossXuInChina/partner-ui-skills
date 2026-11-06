@@ -5,7 +5,7 @@ description: 用伙伴工作台的两套 UI 消费包（@workbench/ui-vue3 与 h
 
 # 伙伴工作台页面（Workbench + AI UI）
 
-本 skill 用于离线 HTML 演示原型。自带的**预编译运行时**包含 Vue 3.5.13 和两个消费包的公开运行时组件；页面引用运行时、写 Vue 模板即可双击打开，不需要 npm、构建或联网。产品 Vue 代码、依赖接入与正式模块交接转到 `partner-ui-vue3`，不要把原型 helpers 或模拟会话当成产品功能。包的资格状态以随包 release 元数据为准，运行时打包不等于生产批准。
+本 skill 用于离线 HTML 演示原型。自带的**预编译运行时**包含 Vue 3.5.42 和两个消费包的公开运行时组件；页面引用运行时、写 Vue 模板即可双击打开，不需要 npm、构建或联网。产品 Vue 代码、依赖接入与正式模块交接转到 `partner-ui-vue3`，不要把原型 helpers 或模拟会话当成产品功能。包的资格状态以随包 release 元数据为准，运行时打包不等于生产批准。
 
 ```
 references/workbench/index.md  Workbench 包参考索引
@@ -30,10 +30,10 @@ maintainer/         升级包后重建运行时与参考文档（维护者用，
 
 ## 通用规则（三种流程都适用）
 
-1. **能用包里的组件就必须用组件**。先从 `references/workbench/index.md` 与 `references/ai-ui.md` 查已发布包参考；选型看 `references/workbench/index.md`、`references/ai-ui.md`、`references/patterns.md`；选定后读对应组件文件核对 props / 事件 / 插槽 / 设计规则。不凭外观猜 API，不用原生 HTML 仿造已有控件。AI UI 当前没有已发布的 components 元数据；其参考只列已证实的包导出和缺口，不提供手写补全 API。缺少所需契约时明确标为待确认，不能把运行时导出名单当作 props/事件说明。
+1. **能用包里的组件就必须用组件**。先从 `references/workbench/index.md` 与 `references/ai-ui.md` 查已发布包参考；选型看 `references/workbench/index.md`、`references/ai-ui.md`、`references/patterns.md`；选定后读对应组件文件核对 props / 事件 / 插槽 / 设计规则。不凭外观猜 API，不用原生 HTML 仿造已有控件。AI UI 已提供 components 元数据；只使用当前锁包提取的 props、事件、插槽和公开类型，未提取的部分保留缺口。缺少所需契约时明确标为待确认，不能把运行时导出名单当作 props/事件说明。
 2. **基础规范不可改**：不写 CSS 覆盖组件内部（`.wb-*`、`.tr-*`、`.partner-ai *`）的颜色、字号、间距、边框、圆角、阴影、动效；不改、不替换、不手绘任何图标（含 AI 头像、发送、工具栏、✦ 智慧标识）。尺寸和变体只用组件公开 props。详见 `references/design-rules.md`。
 3. **包里没有才自建**：用原生 HTML + Foundation Token（`var(--wb-*)`，见 `references/tokens.md`）+ `.pui-*` 工具类；外层 `class="pui-custom" data-pui-name="名称"`，在页面“说明”里写明名称、原因、为何现有组件不满足；不出现新色值；图标仍只用 `references/icons.md` 里的名称。
-4. **页面结构用原生 HTML + Foundation 布局**：版心两侧 32px、24/12 列栅格、沟槽与卡片间距 16px、卡片内边距 20/24、间距为 4 的倍数。
+4. **页面组合遵守布局规范**：页面边距仅由宿主负责，避免嵌套容器重复留白；基础组件内部 padding 保留设计值，业务卡片拼装与模块间距按锁包规则。按可用容器宽度换列/折行，不能把标签挤成竖排；页头、正文与 footer 一起响应 AI 侧栏。
 5. **数据和逻辑归页面**：组件只发出意图（事件），页面负责状态、跳转、提示。演示数据合理自洽，并标注“演示数据 / 未连接真实服务”。
 6. **AI 组件两条硬要求**：外层要有 `.partner-ai`（`AgreementAssistantPanel`、`AssistantHostLayout` 自带；独立 `ChatPanel` 和卡片类需自己包）；聊天面板要有确定高度。
 7. **图表**：包里没有图表组件。保留原图表，或用 SVG/CSS 绘制，颜色只用 Token，标为 `pui-custom`。
@@ -107,8 +107,16 @@ maintainer/         升级包后重建运行时与参考文档（维护者用，
 - `references/design-rules.md` — 包内规则生成的适用边界与设计使用要求
 - `references/tokens.md` — 包内 Token、主题及字体映射
 - `references/patterns.md` — 包内组合与 Pattern 规则；六个起步模板见上文 A
-- `references/workbench/index.md` → `references/workbench/<asset>.md` — 60 个 Workbench 资产的 props/事件/插槽/设计规则/规格/官方示例
+- `references/workbench/index.md` → `references/workbench/<asset>.md` — 当前锁包的 Workbench 资产的 props/事件/插槽/设计规则/规格/官方示例
 - `references/ai-ui.md` — AI UI 已证实的公开导出、元数据缺口与使用限制；原型聊天 helpers 的契约见 runtime-api.md
 - `references/icons.md` — 已登记图标名称（系统、状态、底托、文件、空状态）
 - `references/restyle.md` — 改造已有 HTML 的转换器、选项与限制
 - 维护者重建：工作区使用根构建命令；独立安装包在 Skill 根安装随附维护依赖后运行 `node maintainer/build.mjs`。重建只读取随附锁定包，日期与版本取 `source.lock.json`；升级和发布由用户决定。
+
+## 当前消费约定
+
+- 组件内部有意设计的 padding 不统一抹平；页面排版、业务卡片内多内容拼装必须遵守命中规范。优先复用正式 Block/Pattern；新入库内容以锁包索引为准，剩余交易候选不视为公共资产。
+- 浮层需在宿主字体和层级中正确显示，验证弹窗滚动区内不裁剪；页签与内容留白由组合层控制。页面级基础页签使用 medium，卡片内沿用默认。
+- 同一操作组最多一个主要填充按钮；操作类用 Button 的 no-container 对应公开配置，页面跳转才用 Link。高级筛选使用标准 toolbar 行为与颜色。
+- 业务页签切换留在所属首页；无独立演示的模块保留可点击状态并给出未激活提示，不让用户落到无法返回的孤立页面。
+- 草稿安排可复用 useDraftThenCommit：确认/保存/通知由宿主提供，失败保留草稿；不要把本地演示成功写成服务端完成。新增数值进度支持当前与预计增量，预计值不能标成已达成。

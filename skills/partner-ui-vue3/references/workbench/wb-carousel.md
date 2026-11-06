@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 走马灯 Carousel — `WorkbenchCarousel`
 
 资产：`wb-carousel` · 类型：`component` · 资产合同版本：`1.0.1`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -108,6 +108,23 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
       "label": "显示栅格",
       "description": "显示统一栅格辅助层，检查调用方内容在12列与24列中的起始位置和跨度。",
       "default": false
+    },
+    {
+      "id": "indicatorPlacement",
+      "type": "select",
+      "label": "指示器位置",
+      "default": "overlay",
+      "options": [
+        {
+          "value": "overlay",
+          "label": "内容内叠加"
+        },
+        {
+          "value": "below",
+          "label": "内容下方"
+        }
+      ],
+      "group": "布局"
     }
   ],
   "presets": []
@@ -185,10 +202,14 @@ const items = [{ key: 'a', title: '服务公告', text: '本周服务时间调�
 | 名称 | 类型 | 默认 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
 | ariaLabel | String | 走马灯 |  | 轮播区域的可访问名称。 |
+| autoplay | Boolean | true |  | 是否自动播放，默认开启；关闭后保留手动切换。 |
 | contentMotion | Boolean | false |  | 是否启用内容切换动效；尊重减少动态效果偏好。 |
 | disabled | Boolean | false |  | 禁用用户切换操作。 |
+| indicatorPlacement | String | overlay | overlay / below | 指示器位置：overlay 位于内容内，below 位于内容下方并留出16px间距。 |
 | items | Array | {"kind":"function"} |  | 轮播内容集合；每项须有稳定唯一key。 |
 | modelValue | Number | 0 |  | 当前项目的零基索引，由父级通过update:modelValue接收切换。 |
+| showNavigation | Boolean | true |  | 是否展示左右翻页按钮；关闭时保留指示器和键盘切换。 |
+| transitionStyle | String | fade | fade / slide | 切换方式：fade为渐显，slide为水平滑动。 |
 
 ### Events
 
@@ -216,7 +237,7 @@ Carousel v1 每次只展示一个内容项，宽度由父页面容器决定，�
 
 id：`wb-carousel-rule-2` · must / confirmed
 
-v-model 使用零基索引；存在多个内容项时每5秒循环，悬停、焦点、页面不可见和减少动态效果偏好会暂停。箭头、分页点、ArrowLeft、ArrowRight、Home 和 End 均可切换；首尾循环。分页指示器位于内容区内部，距底部24px；可见标记间距恒为12px。每个轨道恰有一个16×8px选中胶囊，其余为8×8px圆点，因此内容总宽度在切换时不变：三项始终为56px。圆形翻页器定义为低强调导航图形：默认圆底为白色80%，悬停和按下为白色100%，禁用为白色50%；箭头默认使用 color-icon-secondary，悬停和按下使用 color-icon-primary，禁用使用 color-icon-disabled，并采用16px左右箭头图标。
+v-model 使用零基索引；存在多个内容项时每5秒循环，悬停、焦点、页面不可见和减少动态效果偏好会暂停。箭头、分页点、ArrowLeft、ArrowRight、Home 和 End 均可切换；首尾循环。分页指示器默认叠加在内容区内部，距底部24px；选择 below 变体时位于内容下方，间隔16px；可见标记间距恒为12px。每个轨道恰有一个16×8px选中胶囊，其余为8×8px圆点，因此内容总宽度在切换时不变：三项始终为56px。圆形翻页器定义为低强调导航图形：默认圆底为白色80%，悬停和按下为白色100%，禁用为白色50%；箭头默认使用 color-icon-secondary，悬停和按下使用 color-icon-primary，禁用使用 color-icon-disabled，并采用16px左右箭头图标。
 
 **适用条件**：循环展示多个图片或内容容器
 
@@ -242,7 +263,7 @@ items为稳定key的项目集合，modelValue是从0开始的当前索引。slid
 
 ### 交互与键盘
 
-提供轮播原生控制键；自动播放在鼠标悬停、键盘焦点、页面不可见或减少动态效果时暂停，手动切换重置计时。
+提供轮播原生控制键；autoplay默认开启，设为false后只允许手动切换。自动播放在鼠标悬停、键盘焦点、页面不可见或减少动态效果时暂停。
 
 ### 使用边界与职责
 

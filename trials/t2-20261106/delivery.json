@@ -1,0 +1,58 @@
+{
+  "feature": "prototype-to-vue",
+  "skillVersion": "0.2.0",
+  "generatedAt": "2026-11-06T13:16:34.714364+00:00",
+  "status": "pass",
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261106.7",
+      "tarball": "vendor/workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz",
+      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
+      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261106.1",
+      "tarball": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz",
+      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
+      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393"
+    }
+  ],
+  "vue": "3.5.42",
+  "checks": [
+    {
+      "name": "workbench-list",
+      "step": "Vue runtime version",
+      "value": "3.5.42",
+      "passed": true
+    },
+    {
+      "name": "workbench-list",
+      "step": "filter five 华东 rows",
+      "passed": true
+    },
+    {
+      "name": "workbench-list",
+      "step": "create dialog",
+      "passed": true
+    },
+    {
+      "name": "ai-assistant-workspace",
+      "step": "Vue runtime version",
+      "value": "3.5.42",
+      "passed": true
+    },
+    {
+      "name": "ai-assistant-workspace",
+      "step": "AI structured agreement answer",
+      "passed": true
+    }
+  ],
+  "scope": "两份当前原型与 SFC：类型/Lint/格式/规则/单测/构建、真实筛选/弹窗/AI结构化回复，1440与1280对照",
+  "knownLimits": [
+    "QA 使用受控测试网络桩，未验证真实后端及生产部署。",
+    "本批为现有需求的全新隔离消费快照复跑；无额外独立 Agent 或人工视觉验收。",
+    "AI UI 仍有6条传递依赖安全告警，保持开发预览资格。"
+  ]
+}

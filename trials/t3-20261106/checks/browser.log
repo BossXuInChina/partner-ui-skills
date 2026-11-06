@@ -1,0 +1,14 @@
+
+Running 2 tests using 2 workers
+
+  ✓  1 [chromium] › tests/browser/baseline.spec.ts:2:1 › existing home and Pinia behavior remain usable (215ms)
+  ✓  2 [chromium] › tests/browser/agreements.spec.ts:4:1 › filters, paging, retry, cancellation and route state (2.7s)
+
+  2 passed (3.4s)
+$ playwright test
+[WebServer] (node:43296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:43308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43307) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

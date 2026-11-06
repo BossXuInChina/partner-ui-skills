@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 表单 Form — `WorkbenchForm`
 
 资产：`wb-form` · 类型：`component` · 资产合同版本：`1.0.2`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -352,7 +352,7 @@ function showInvalid({ errors }) { notice.value = `请修正 ${errors.length} �
 
 | 名称 | 类型 | 默认 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
-| density | String | comfortable | comfortable / compact |  |
+| density | String | comfortable | comfortable / compact | comfortable或compact，默认comfortable；仅readonly模式的compact收紧字段行间距，保留32px首行槽、列间距、字体与动作热区。 |
 | disabled | Boolean |  |  | 禁用表单中的可编辑字段。 |
 | labelPosition | String | top | top / left | 字段标签置于top或left；left标签保留字段开头、超长时尾部省略，再将显示内容右对齐，悬浮或键盘聚焦查看全文。 |
 | labelWidth | String | var(--wb-asset-wb-form-label-width) |  | 左右标签使用的标签宽度。 |
@@ -361,7 +361,7 @@ function showInvalid({ errors }) { notice.value = `请修正 ${errors.length} �
 | showGrid | Boolean |  |  | Studio布局检查辅助项，不是业务视觉功能。 |
 | singleLine | Boolean |  |  | 调整字段排列为单行布局。 |
 | title * | String |  |  | 可选表单标题。 |
-| titleVisible | Boolean | true |  |  |
+| titleVisible | Boolean | true |  | 默认true；设为false时标题仅视觉隐藏，仍为表单提供可访问名称。 |
 
 ### Events
 

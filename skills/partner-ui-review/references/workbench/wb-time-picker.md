@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 时间选择 TimePicker — `WorkbenchTimePicker`
 
 资产：`wb-time-picker` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -218,13 +218,17 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
 {
   "literalData": {},
   "dynamicBindings": [
-    "examples"
+    "formats",
+    "range",
+    "disabled"
   ],
   "explicitCaseIds": [
-    "item.id"
+    "item.id",
+    "range",
+    "disabled"
   ],
   "loopExpressions": [
-    "item in examples"
+    "item in formats"
   ]
 }
 ```
@@ -269,6 +273,7 @@ const meetingTime = ref('09:30')
 | ariaLabel | String | 选择时间 |  | 控件的可访问名称。 |
 | defaultOpen | Boolean |  |  | 默认展开面板，主要用于演示或明确的嵌入交互。 |
 | disabled | Boolean |  |  | 禁用选择交互。 |
+| inline | Boolean |  |  | 面板常驻文档流；取消恢复草稿，确认提交后保持展开，优先于 teleportPanel。 |
 | invalid | Boolean |  |  | 声明控件存在错误状态。 |
 | modelValue | String \| Array |  |  | 受控时间字符串；range模式为起止时间字符串数组。 |
 | name | String |  |  | 设置确认后同步的隐藏表单字段名。 |
@@ -316,11 +321,13 @@ const meetingTime = ref('09:30')
 
 - teleportPanel用于被裁切容器内的面板展示；默认不传送。
 
+- inline使面板在文档流中常驻，适合同时对照不同时间格式；禁用时不显示面板。
+
 ### 交互与键盘
 
 修改仅写入面板草稿；点击确定后才发出新modelValue和change。
 
-- 取消、Escape、点外或焦点离开会撤销未提交草稿。
+- 取消和Escape撤销未提交草稿；普通浮层点击外部或焦点离开时也会撤销，inline面板保持显示。
 
 - 方向键、PageUp/PageDown、Home/End调整数值；左右键切换时间列。
 

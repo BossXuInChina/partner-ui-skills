@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 表格 Table — `WorkbenchTable`
 
 资产：`wb-table` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -813,6 +813,7 @@ function cancelEdit() { editingRowId.value = null; feedback.value = "已取消�
 | fullscreen | Boolean | false |  |  |
 | refreshing | Boolean | false |  |  |
 | showAdvancedFilter | Boolean | true |  |  |
+| showViewSwitch | Boolean | true |  |  |
 | title | String |  |  |  |
 | variant | String | compact | title / compact / complex |  |
 | viewMode | String | table | table / list / card |  |
@@ -918,6 +919,16 @@ TableScrollArea复用Scrollbar视口并计算固定列之间的轨道几何；�
 - 表格底栏与表格保持12px间隔，默认32px高；底栏选择摘要与分页器各自保留对齐关系。筛选字段和已生效条件在工具栏中独占完整行。
 
 - 表头、单元格分隔、固定列、行操作、展开详情、滚动条和列宽的完整数值规则仍以Catalog批准规范为准；此处不重新定义几何参数。
+
+### 分组表格的区域与分隔
+
+如身份差距表，左侧是跨行维度列；上层为列组表头，下层为组内叶子列表头，下面的对应数据组成表体分组。
+
+- 相邻叶子列设置相同的group.key和group.title形成列组；未分组列可形成跨行维度列。
+
+- 列组边界线贯穿表头和表体；叶子列之间使用组内短分隔线，不与列组边界叠加。
+
+- banded只控制数据列的浅色底纹，不改变列组身份或分隔线。窄容器保留表格内部横向滚动。
 
 ### 交互与键盘
 

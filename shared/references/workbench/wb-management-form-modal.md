@@ -1,16 +1,16 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
-# 管理表单 Modal Block — `WorkbenchManagementFormModal`
+# 必填编辑弹窗 · 校验与失败重试 — `WorkbenchManagementFormModal`
 
 资产：`wb-management-form-modal` · 类型：`block` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
 ## 组件预览
 
-[在 Studio 中查看](http://localhost:4173/preview/WB-P5-PATTERN-BLOCKS-20260929/p5-management-form-modal-candidate?view=preview)
+[在 Studio 中查看](http://localhost:4173/preview/WB-OPS-JOURNEY-CANDIDATES-20261105/ops-required-edit-modal-candidate?view=preview)
 
 公开入口：`@workbench/ui-vue3` → `WorkbenchManagementFormModal`
 
@@ -28,45 +28,15 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
 {
   "states": [
     {
-      "id": "closed",
-      "label": "关闭"
+      "id": "ready",
+      "label": "预填与清空"
     },
     {
-      "id": "empty",
-      "label": "空白表单"
-    },
-    {
-      "id": "invalid",
-      "label": "校验错误"
-    },
-    {
-      "id": "filled",
-      "label": "有效草稿"
+      "id": "validation-error",
+      "label": "必填校验失败"
     }
   ],
-  "controls": [
-    {
-      "id": "showNotice",
-      "type": "boolean",
-      "label": "显示表单前提醒",
-      "description": "演示可选 notice 插槽，由调用页决定是否提供和填写内容。",
-      "default": true
-    },
-    {
-      "id": "showSupplement",
-      "type": "boolean",
-      "label": "显示表单后补充内容",
-      "description": "演示可选 supplement 插槽；声明及同意规则仍由调用页负责。",
-      "default": true
-    },
-    {
-      "id": "showConditionalField",
-      "type": "boolean",
-      "label": "显示条件字段示例",
-      "description": "在默认内容中演示 Switch 开启后显示嵌套 FormGroup 与示例输入；后续可为任意正式 FormItem 录入组件，状态、校验及数据归调用页。",
-      "default": true
-    }
-  ],
+  "controls": [],
   "pilotControls": [],
   "presets": []
 }
@@ -90,6 +60,7 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
 | --- | --- | --- | --- | --- |
 | contentClass | String |  |  |  |
 | modelValue | Boolean |  |  |  |
+| size | String | l | m / l |  |
 | title * | String |  |  |  |
 
 ### Events
