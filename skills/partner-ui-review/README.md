@@ -2,7 +2,7 @@
 
 消费页面复查：共享静态检查、路由截图、真实 DOM 测量、设计图并排对照。使用入口和命令见 [SKILL.md](SKILL.md)。
 
-0.1.1 区分正式组件内部与页面业务组合：前者按自身契约核对，后者严格按布局规范检查。新增 R9 角色/Token/真实区域间距契约，修正 logical auto 和嵌套 AI 组件归属误报；规范配置见 [组合间距](references/composition.md)。未提供布局契约不能称语义间距已验证。
+0.1.2 区分正式组件内部与页面业务组合：前者按自身契约核对，后者严格按布局规范检查。新增 R9 角色/Token/真实区域间距契约，修正 logical auto 和嵌套 AI 组件归属误报；规范配置见 [组合间距](references/composition.md)。自动发现相邻页签/工具栏/表格的外部间距（含 0px），候选经确认后写入项目契约；未提供布局契约不能称语义间距已验证。
 
 浏览器工具优先使用目标工程 Playwright，也支持在解压 Skill 根执行 `pnpm install --frozen-lockfile`、`pnpm exec playwright install chromium`。Python 图像对照需 `python3 -m pip install -r scripts/requirements.txt`（建议使用虚拟环境）。所有参数使用当前工程路径，不要求固定机器目录。
 

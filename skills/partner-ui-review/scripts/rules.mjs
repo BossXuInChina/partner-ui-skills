@@ -46,7 +46,7 @@ export function checkPage({ route, width, pageWidth, errors = [], overlaps = [] 
 export function checkLayout(sample) {
   if (sample.notVerified) return [];
   return (sample.checks ?? []).filter(c => !c.notVerified && !near(px(c.expected), px(c.actual))).map(c => ({
-    rule: 'R9_LAYOUT_SPACING', severity: 'must-fix', selectorPath: sample.selectorPath,
+    rule: 'R9_LAYOUT_SPACING', severity: sample.inferred ? 'needs-review' : 'must-fix', selectorPath: sample.selectorPath,
     screenshotBox: sample.screenshotBox, contract: sample.id, role: sample.role, basis: sample.basis,
     expected: { token: c.token, value: c.expected }, actual: { property: c.property, value: c.actual, from: c.from, to: c.to, axis: c.axis }
   }));

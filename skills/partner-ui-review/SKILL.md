@@ -13,7 +13,7 @@ description: 复查使用 Workbench 与 Huawei Partner AI UI 的消费页面、V
 
 1. 读取目标工程约定和用户范围，记录 HEAD、dirty 文件、实际锁文件及安装包版本、Skill 的 `source.lock.json`。先核对锁文件和 `node_modules` 一致性；`static.mjs` 输出声明/安装/Skill pin 与项目锁哈希，完整锁解析按宿主包管理器完成。版本不一致时明确资料可能陈旧，不把宿主新包冒充 Skill 已批准锁包。
 2. 执行 `node scripts/static.mjs <project> --json`，分别保存 stdout 原始检查结果与 stderr 基线。规则来自共享生成器，不能手改生成的 `check_vue.mjs` 或图标表。
-3. 根据用户范围、router 或 manifest 选择路由。manifest 必须显式传 `--scenario`，不能把中文目录猜成路由 ID；传入工程的 legacy 表，跳过 legacy 与 navigation-only。用户指定路由优先，不扩大到无关页面。
+3. 根据用户范围、router 或 manifest 选择路由。manifest 必须显式传 `--scenario`，不能把中文目录猜成路由 ID；传入工程的 legacy 表，跳过 legacy 与 navigation-only。用户标注的路由、状态与实际宽度必须进入测量和回归，不能只做截图或用代表页面替代。
 4. 用工程自己的命令在空闲端口启动 dev 服务，保留进程句柄，结束只关闭自己启动的服务。不要修改全局 Node、杀通配进程或占用已有预览。
 5. 执行截图与测量。默认 1920×1080，可指定额外宽度。持续请求、流式生成的页面用 `--ready-selector` 指定生成结束后才出现的元素，按就绪条件拆分批次；networkidle 不代表流式内容完成。等待字体和图片就绪，保留 console/page error/Vue warning，失败不能作为空白的成功报告。
 
@@ -23,7 +23,7 @@ node scripts/measure.mjs --project <project> --url <dev-url> --out <evidence>/me
 # 可用 --manifest <manifest.json> --scenario home --legacy <legacyPages.json> 替代手填路由
 ```
 
-6. 按 [测量规则](references/rules.md) 核对 findings。通过 `layoutContracts` 检查业务组合语义；仅 R1 数值合法或 R2 局部通过不能称全页间距合规。包内部、页面插槽、无法读取的样式、未提供的组件独立样本及未覆盖的布局角色必须出现在覆盖/未验证清单。类名搜索只是源码候选，不猜唯一行号。
+6. 按 [测量规则](references/rules.md) 核对 findings。检查自动发现的相邻内容区域（含 0px），确认规范后将 `layoutContracts` 持久保存到项目，记录修复前失败和修复后通过。仅 R1 数值合法或 R2 局部通过不能称全页间距合规。包内部、页面插槽、无法读取的样式、未提供的组件独立样本及未覆盖的布局角色必须出现在覆盖/未验证清单。类名搜索只是源码候选，不猜唯一行号。
 7. 存在设计图时执行对照，逐段查看头部、筛选、卡片、表格与弹层。差异标为布局/间距/字体/颜色/组件选择/缺失/多余/内容。相邻图像不等于自动视觉通过。
 
 ```sh

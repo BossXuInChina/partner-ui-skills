@@ -12,7 +12,7 @@ Token 名从已加载 CSSOM 获取，值从每个待测元素的计算样式读�
 | R6 OVERFLOW | 页面横向溢出为 must-fix；截断无 title/已挂载 description、交互中心点被另一交互遮挡为 needs-review。滚动区域、懒加载 tooltip、弹层、行数截断需交互复核，首屏不能作全覆盖。 |
 | R7 CONSOLE | console error、pageerror、Vue warning 为 must-fix；捕获失败也失败，不生成伪通过。 |
 | R8 COMPONENT_OVERRIDE | 只有独立 fixture 与宿主样本包/组件/props/state/theme/容器宽度相同才比较。差异为 needs-review，附匹配宿主 CSS；必须定位真正生效规则才能升为 must-fix。没有基线明确未验证。 |
-| R9 LAYOUT_SPACING | `layoutContracts` 把业务布局角色与现有规范/语义 Token 对应，检查 CSS 属性和两个区域的实际边缘间距，发现合法数值用错位置或叠加留白。明确契约不符为 must-fix；规范、目标、Token 或归属缺失为未验证。 |
+| R9 LAYOUT_SPACING | `layoutContracts` 把业务角色与规范/Token 对应，检查 CSS 属性和实际区域间距，包含错误的 0px。明确契约不符为 must-fix。页面容器内的 Tabs→Toolbar/Table、Toolbar→Table 自动发现为待复核候选，两端是组件不构成外部间距豁免；候选不能冒充显式契约覆盖。 |
 
 所有权结合实际包样式类、已知组件类族与 `packageRootSelectors`；`.partner-ai` 仅作为待分类命名空间，不能将其中业务容器全部排除。`pageOwnedSelectors` 纳入页面 slot；最近边界优先，slot 内嵌套正式组件重新归组件内部。归属计数、未分类区域随结果输出。详见 [两层责任及语义配置](composition.md)。组件内部不套用页面通用网格，也不因此自动通过组件验收。
 

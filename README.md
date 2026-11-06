@@ -26,13 +26,13 @@ Vue 验证工程位于打包后的 `dist/partner-ui-vue3/assets/harness`。`pnpm
 
 ## 本地交付
 
-`pnpm package:release` 先校验生成漂移，再产出 `dist/partner-ui-pages-0.1.0.zip`、`dist/partner-ui-vue3-0.1.1.zip`、`dist/partner-ui-review-0.1.1.zip` 和 `dist/release-manifest.json`。清单记录实际字节 SHA-256、包版本及完整来源提交；普通 ZIP 与版本 ZIP 字节相同。该命令不推送或上传。
+`pnpm package:release` 先校验生成漂移，再产出 `dist/partner-ui-pages-0.1.0.zip`、`dist/partner-ui-vue3-0.1.1.zip`、`dist/partner-ui-review-0.1.2.zip` 和 `dist/release-manifest.json`。清单记录实际字节 SHA-256、包版本及完整来源提交；普通 ZIP 与版本 ZIP 字节相同。该命令不推送或上传。
 
 [维护升级](maintenance.md) 规定“升级公开包 → 再生成 → 新会话重跑 T1–T3 → 更新清单/归档”；[CHANGELOG](CHANGELOG.md) 记录本批内容。可审查试验与复跑入口位于 trials/t1、trials/t2、trials/t3，历史收据只支持其记录的来源，不代表真实公司环境。
 
 ## 页面复查候选 · 2026-11-06
 
-新增 `skills/partner-ui-review`，版本 0.1.1；Vue Skill 为 0.1.1，pages 保持 0.1.0。构建和本地交付生成三个独立 ZIP；发布清单记录各自版本和相同合格来源锁。静态引擎维护于 `shared/static`，生成器分发，禁止手改生成副本。
+新增 `skills/partner-ui-review`，版本 0.1.2；Vue Skill 为 0.1.1，pages 保持 0.1.0。构建和本地交付生成三个独立 ZIP；发布清单记录各自版本和相同合格来源锁。静态引擎维护于 `shared/static`，生成器分发，禁止手改生成副本。
 
 本批未升级来源锁：目标 Workbench `20261104.5` 的所有发布元数据均标记 `sourceHasLocalChanges=true`，无法通过既有验证。保留 Workbench/AI UI `20261031.1`；新包引用核对、模板/harness 与新锁 T1–T3 资格不可称完成。页面 Demo 的切换图标是已知陈旧资料错误，仍会导致 check:ui/verify 非零。
 

@@ -35,6 +35,8 @@
 
 R9 使用有依据的 `layoutContracts`，判断“合法 Token 用错位置”和“组合后实际间距错误”。以下选择器只是配置示例，不能直接套用到未知工程：
 
+在页面自有容器中，工具会自动发现纵向相邻的 Tabs → DataToolbar、Tabs → Table、DataToolbar → Table；即使两端都是正式组件，外部间距仍属于组合层。两端可各包一层单内容业务容器。缺少显式契约时，对照 content-gap 输出待复核候选，**0px 也要报告**；组件内部同类结构不套用此推断。确认适用规范后写入项目持久配置，将其升级为 must-fix。自动发现不能替代完整页面的角色映射。
+
 ```json
 {
   "pageOwnedSelectors": [".business-slot"],
@@ -58,6 +60,8 @@ R9 使用有依据的 `layoutContracts`，判断“合法 Token 用错位置”�
 ```
 
 `properties` 支持 padding/margin 的 Top/Bottom/Left/Right 以及 rowGap/columnGap；`relations` 测量两个唯一、可见节点的边缘间距，x/y 是物理坐标，RTL/纵向书写应明确节点顺序。可用 `routes` 限定适用路由。缺少规范、目标、Token 或归属确认，不输出伪通过；明确契约违反为 must-fix，命令退出非零。
+
+用户标注的每个间距问题必须登记 route、状态、实际 viewport，加入正式测量与可重复回归；不能以其他代表页面通过或同页截图已拍摄代替。项目布局契约应随项目提交，不只保存在临时证据目录。先记录修复前失败，再验证修复后通过。
 
 R9 验证角色对应的实际数值，不单独证明源码引用了正确的 Token 名称；同值别名仍需静态核对。包样式只用于识别组件主类，`.is-wide` 等通用修饰类不能把业务内容变成组件内部。
 

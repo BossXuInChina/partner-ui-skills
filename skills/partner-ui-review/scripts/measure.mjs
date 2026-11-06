@@ -145,6 +145,35 @@ export function collectPage(config = {}) {
       layoutSamples.push(sample);
     }
   }
+  // Discover external relations even when both endpoints are package components.
+  // These are review candidates until a project contract confirms the intended composition.
+  const roleOf = el => el.matches('.wb-tabs') ? 'tabs' : el.matches('.wb-data-toolbar') ? 'toolbar' : el.matches('.wb-table') ? 'table' : null;
+  const visible = el => { const s=getComputedStyle(el), r=el.getBoundingClientRect(); return r.width > 0 && r.height > 0 && s.visibility === 'visible' && s.display !== 'none'; };
+  const endpoint = el => {
+    if (roleOf(el)) return el;
+    if (!owned(el)) return null;
+    const children=[...el.children].filter(visible);
+    return children.length === 1 && roleOf(children[0]) ? children[0] : null;
+  };
+  for (const parent of [root, ...root.querySelectorAll('*')]) {
+    if (!owned(parent)) continue;
+    const children=[...parent.children].filter(visible);
+    for (let i=1;i<children.length;i++) {
+      const from=endpoint(children[i-1]), to=endpoint(children[i]);
+      if (!from || !to || !['tabs:toolbar','tabs:table','toolbar:table'].includes(`${roleOf(from)}:${roleOf(to)}`)) continue;
+      const a=from.getBoundingClientRect(), b=to.getBoundingClientRect();
+      // Horizontal controls and overlapping panels do not establish a vertical content relation.
+      if (b.top < a.bottom - 0.05 || Math.min(a.right,b.right) <= Math.max(a.left,b.left)) continue;
+      const fromPath=path(from), toPath=path(to);
+      if (layoutSamples.some(s => !s.inferred && s.checks?.some(c => c.from === fromPath && c.to === toPath))) continue;
+      const token='--wb-spacing-layout-content-gap';
+      const expected=normalLength(getComputedStyle(parent).getPropertyValue(token).trim());
+      layoutSamples.push({ id:`discovered-${roleOf(from)}-${roleOf(to)}`, inferred:true, role:'adjacent-content-regions',
+        basis:'Foundation content-gap candidate; confirm the page composition or provide an explicit normative contract',
+        selectorPath:path(parent), screenshotBox:box(parent.getBoundingClientRect()),
+        checks:[{token,expected,actual:(b.top-a.bottom)+'px',from:fromPath,to:toPath,axis:'y',...(!expected ? {notVerified:'Semantic token unavailable'} : {})}] });
+    }
+  }
   const components = (config.components ?? []).map(item => {
     const el = document.querySelector(item.selector); if (!el) return { ...item, missing: true };
     const cs = getComputedStyle(el), rect = el.getBoundingClientRect();
@@ -189,7 +218,7 @@ export async function measure(opt) {
     const notVerified = [];
     if (!sampled.tokenCount) notVerified.push('R1–R4: loaded semantic tokens unavailable');
     if (!opt.cardSelector) notVerified.push('R2: explicit card selectors required');
-    if (!sampled.layoutSamples.length) notVerified.push('R9: semantic composition contracts not supplied for this route');
+    if (!sampled.layoutSamples.some(s => !s.inferred)) notVerified.push('R9: explicit semantic composition contracts not supplied for this route; discovered relations are candidates only');
     for (const sample of sampled.layoutSamples) {
       if (sample.notVerified) notVerified.push(`R9 ${sample.id}: ${sample.notVerified}`);
       for (const check of sample.checks ?? []) if (check.notVerified) notVerified.push(`R9 ${sample.id}: ${check.notVerified}`);

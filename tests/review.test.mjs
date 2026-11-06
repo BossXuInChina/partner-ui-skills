@@ -174,6 +174,36 @@ test('unclassified, missing and component-owned layout contracts cannot report v
   } finally { await page.close(); }
 });
 
+test('zero external tabs-to-toolbar spacing is discovered without changing package-internal spacing', async () => {
+  const page=await browser.newPage();
+  try {
+    await page.setContent(`<style>:root{--wb-spacing-layout-content-gap:16px}.wb-tabs,.wb-data-toolbar{height:36px}</style>
+      <div class="wb-card"><div class="business"><div class="wb-tabs">Tabs</div><section class="wb-data-toolbar">Search</section></div></div>
+      <div class="wb-private"><div class="wb-tabs">Internal tabs</div><section class="wb-data-toolbar">Internal search</section></div>`);
+    const config={pageOwnedSelectors:['.business']};
+    let result=await page.evaluate(collectPage,config);
+    assert.equal(result.layoutSamples.flatMap(checkLayout).length,1);
+    assert.equal(result.layoutSamples.flatMap(checkLayout)[0].actual.value,'0px');
+    assert.equal(result.layoutSamples.flatMap(checkLayout)[0].severity,'needs-review');
+    config.layoutContracts=[{id:'tabs-query',selector:'.business',role:'query-content',basis:'confirmed Foundation content-gap',relations:[{from:':scope > .wb-tabs',to:':scope > .wb-data-toolbar',axis:'y',token:'--wb-spacing-layout-content-gap'}]}];
+    result=await page.evaluate(collectPage,config);
+    assert.equal(result.layoutSamples.flatMap(checkLayout).length,1);
+    assert.equal(result.layoutSamples.flatMap(checkLayout)[0].severity,'must-fix');
+    await page.locator('.business > .wb-tabs').evaluate(el=>{const wrapper=document.createElement('div');wrapper.className='query-tabs';wrapper.style.marginBottom='var(--wb-spacing-layout-content-gap)';el.before(wrapper);wrapper.append(el);});
+    result=await page.evaluate(collectPage,{pageOwnedSelectors:['.business']});
+    assert.equal(result.layoutSamples[0].checks[0].actual,'16px');
+    assert.deepEqual(result.layoutSamples.flatMap(checkLayout),[]);
+    config.layoutContracts[0].relations[0].from=':scope > .query-tabs > .wb-tabs';
+    result=await page.evaluate(collectPage,config);
+    assert.equal(result.layoutSamples.length,1,'explicit wrapped endpoint replaces the inferred candidate');
+    assert.deepEqual(result.layoutSamples.flatMap(checkLayout),[]);
+    await page.locator('.query-tabs').evaluate(el=>el.style.marginBottom='0px');
+    result=await page.evaluate(collectPage,config);
+    assert.equal(result.layoutSamples.flatMap(checkLayout).length,1);
+    assert.equal(result.layoutSamples.flatMap(checkLayout)[0].severity,'must-fix');
+  } finally {await page.close();}
+});
+
 test('route capture records real page errors and Vue warnings without losing successful route evidence', async () => {
   const out = mkdtempSync(resolve(tmpdir(), 'partner-review-capture-'));
   const server = createServer((_request, response) => { response.writeHead(200, { 'content-type': 'text/html' }); response.end('<div>Ready</div><script>if(location.hash.includes("broken")){console.warn("[Vue warn] fixture warning");throw new Error("fixture runtime failure")}</script>'); });
