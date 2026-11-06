@@ -43,7 +43,7 @@ export function options(args) {
   return opt;
 }
 
-export const shotName = (route, width, state = 'default') => `${route.replace(/[^a-zA-Z0-9_-]/g, '_')}-${width}${state === 'default' ? '' : '-' + state}.png`;
+export const shotName = (route, width, state = 'default', profile = '') => `${route.replace(/[^a-zA-Z0-9_-]/g, '_')}-${width}${state === 'default' ? '' : '-' + state}${profile ? '-' + profile : ''}.png`;
 export function saveJSON(file, data) { mkdirSync(dirname(file), { recursive: true }); writeFileSync(file, JSON.stringify(data, null, 2) + '\n'); }
 export const isMain = url => process.argv[1] && resolve(process.argv[1]) === fileURLToPath(url);
 
@@ -51,16 +51,25 @@ export async function visitRoutes(opt, visit) {
   const states = opt.config?.states ?? [];
   const ids = new Set(['default']);
   for (const state of states) {
-    if (!/^[a-z0-9][a-z0-9-]*$/.test(state.id ?? '') || ids.has(state.id) || !state.routes?.length || !state.actions?.length || state.actions.some(a => typeof a.click !== 'string' || !a.click))
-      throw new Error('Review states require a unique id, explicit routes and click actions.');
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(state.id ?? '') || ids.has(state.id) || !state.routes?.length || !state.actions?.length || state.actions.some(a => !((typeof a.click === 'string' && a.click && !a.scrollIntoView) || (typeof a.scrollIntoView === 'string' && a.scrollIntoView && !a.click))))
+      throw new Error('Review states require a unique id, explicit routes and click or scrollIntoView actions.');
     ids.add(state.id);
   }
+  const containers = opt.config?.containerProfiles ?? [];
+  const profileIds = new Set();
+  for (const profile of containers) {
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(profile.id ?? '') || profileIds.has(profile.id) || !profile.selector || !Number.isInteger(profile.width) || profile.width <= 0 || !Number.isInteger(profile.viewportWidth) || profile.viewportWidth < profile.width)
+      throw new Error('Container profiles require a unique id, selector, positive width and enclosing viewportWidth');
+    profileIds.add(profile.id);
+  }
+  const profiles = [...opt.widths.map(width=>({width})), ...containers.map(p=>({...p, containerWidth:p.width, width:p.viewportWidth}))];
   const { chromium } = localPlaywright(opt.project);
   const browser = await chromium.launch();
   const results = [];
   mkdirSync(opt.out, { recursive: true });
   try {
-    for (const width of opt.widths) for (const route of opt.routes) for (const state of [{ id: 'default' }, ...states.filter(s => s.routes.includes(route))]) {
+    for (const profile of profiles) for (const route of opt.routes.filter(r=>!profile.routes || profile.routes.includes(r))) for (const state of [{ id: 'default' }, ...states.filter(s => s.routes.includes(route))]) {
+      const { width, containerWidth } = profile;
       const page = await browser.newPage({ viewport: { width, height: opt.height }, reducedMotion: 'reduce', locale: 'zh-CN', timezoneId: 'Asia/Shanghai' });
       const errors = [];
       page.on('pageerror', e => errors.push({ type: 'pageerror', message: e.message }));
@@ -69,18 +78,26 @@ export async function visitRoutes(opt, visit) {
         await page.goto(new URL(`#${route}`, opt.url).href, { waitUntil: 'domcontentloaded', timeout: 60000 });
         if (opt.readySelector) await page.locator(opt.readySelector).waitFor({ state: 'visible', timeout: 60000 });
         else await page.waitForLoadState('networkidle', { timeout: 60000 });
+        if (containerWidth) {
+          if (await page.locator(profile.selector).count() !== 1) throw new Error('Container profile selector must resolve to exactly one host');
+          // Explicit test fixture only: emulate an inspector/side pane without editing product source.
+          await page.addStyleTag({content: `${profile.selector} { width: ${containerWidth}px; max-width: 100%; }`});
+        }
         await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.decode().catch(() => {}))); });
-        for (const action of state.actions ?? []) await page.locator(action.click).click();
+        for (const action of state.actions ?? []) {
+          if (action.click) await page.locator(action.click).click();
+          else await page.locator(action.scrollIntoView).scrollIntoViewIfNeeded();
+        }
         if (state.readySelector) await page.locator(state.readySelector).waitFor({ state: 'visible' });
         await page.evaluate(() => document.fonts.ready);
         // Two stable frames after fonts/images; disable CSS animation only in the capture.
         await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
-        const result = await visit(page, { route, width, state: state.id, errors });
-        const screenshot = resolve(opt.out, shotName(route, width, state.id));
+        const result = await visit(page, { route, width, state: state.id, containerWidth, profile: profile.id ?? '', errors });
+        const screenshot = resolve(opt.out, shotName(route, width, state.id, profile.id));
         await page.screenshot({ path: screenshot, fullPage: true, animations: 'disabled' });
-        results.push({ route, width, state: state.id, screenshot, errors, ...result });
+        results.push({ route, width, state: state.id, containerWidth, profile: profile.id ?? '', screenshot, errors, ...result });
       } catch (error) {
-        results.push({ route, width, state: state.id, errors: [...errors, { type: 'capture', message: error.message }], notVerified: ['Route capture failed'] });
+        results.push({ route, width, state: state.id, containerWidth, profile: profile.id ?? '', errors: [...errors, { type: 'capture', message: error.message }], notVerified: ['Route capture failed'] });
       } finally { await page.close(); }
     }
   } finally { await browser.close(); }

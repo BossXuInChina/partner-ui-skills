@@ -248,3 +248,34 @@ test('route capture records real page errors and Vue warnings without losing suc
     assert.ok(results[1].errors.some(e => e.message.includes('[Vue warn]')));
   } finally { await new Promise(yes => server.close(yes)); rmSync(out, { recursive: true, force: true }); }
 });
+
+test('responsive contracts catch constrained controls and noninteractive menu occluders', async () => {
+  const { collectResponsive, checkResponsive } = await import('../skills/partner-ui-review/scripts/responsive.mjs');
+  const page=await browser.newPage({viewport:{width:1000,height:600}});
+  try {
+    await page.setContent(`<style>.host{width:300px}.search{width:450px}.field{width:80px}.menu{position:absolute;top:100px;left:10px;z-index:3}.option{width:120px;height:32px}.advanced{position:absolute;top:110px;left:10px;width:200px;height:100px;z-index:5;background:white}</style><div class="host"><div class="search">Search</div><div class="field">Field</div></div><div class="menu"><button class="option">有效</button></div><div class="advanced">高级搜索</div>`);
+    const contracts=[{id:'search',selector:'.search',within:'.host',basis:'fixture business boundary'},{id:'field',selector:'.field',minInlineSize:200,basis:'fixture readable query width'},{id:'menu',selector:'.option',overlay:true,basis:'fixture expanded menu usable'}];
+    let samples=await page.evaluate(collectResponsive,contracts);
+    assert.deepEqual(samples.flatMap(checkResponsive).map(f=>f.actual.type),['container-overflow','unusable-width','overlay-occluded']);
+    await page.addStyleTag({content:'.search{width:100%}.field{width:200px}.menu{z-index:6}'});
+    samples=await page.evaluate(collectResponsive,contracts);
+    assert.deepEqual(samples.flatMap(checkResponsive),[]);
+    assert.equal(samples.some(s=>s.notVerified),false);
+    const missing=await page.evaluate(collectResponsive,[{...contracts[0],selector:'.missing'}]);
+    assert.match(missing[0].notVerified,/not rendered/);
+    await page.addStyleTag({content:'.menu{top:590px}'});
+    assert.match((await page.evaluate(collectResponsive,[contracts[2]]))[0].notVerified,/viewport/);
+  } finally {await page.close();}
+});
+
+test('container profiles preserve viewport and separate evidence from viewport-only captures', async () => {
+  const { visitRoutes } = await import('../skills/partner-ui-review/scripts/browser.mjs');
+  const server=createServer((_,res)=>{res.setHeader('Content-Type','text/html');res.end('<div id="host" style="container-type:inline-size"><div class="query" style="width:50cqw">搜索</div></div>')});
+  await new Promise(r=>server.listen(0,'127.0.0.1',r));const out=mkdtempSync(resolve(tmpdir(),'review-width-'));
+  const opt={project:process.cwd(),url:`http://127.0.0.1:${server.address().port}`,routes:['trade/home'],widths:[1000],height:600,out,config:{containerProfiles:[{id:'inspector',selector:'#host',width:400,viewportWidth:1000}]}};
+  try {
+    const rows=await visitRoutes(opt,async page=>({actual:await page.evaluate(()=>({viewport:innerWidth,host:document.querySelector('#host').getBoundingClientRect().width,search:document.querySelector('.query').getBoundingClientRect().width}))}));
+    assert.equal(rows.length,2);assert.ok(rows.every(r=>r.errors.length===0));assert.equal(rows[1].actual.viewport,1000);assert.equal(rows[1].actual.host,400);assert.equal(rows[1].actual.search,200);assert.notEqual(rows[0].screenshot,rows[1].screenshot);assert.equal(rows[1].profile,'inspector');
+    await assert.rejects(visitRoutes({...opt,config:{containerProfiles:[{id:'bad',selector:'#host',width:1200,viewportWidth:1000}]}},()=>{}),/Container profiles/);
+  }finally{await new Promise(r=>server.close(r));rmSync(out,{recursive:true,force:true});}
+});

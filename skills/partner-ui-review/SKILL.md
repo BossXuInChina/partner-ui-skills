@@ -32,7 +32,7 @@ python3 scripts/compare.py <crop> <shot> <comparison.png> [y0 y1] --design-width
 
 设计逻辑宽度需由输入确认。窄屏截图保持原像素宽度，不拉伸到桌面宽度；窄屏主要检查重排、可达性和溢出。Pillow 依赖见 `scripts/requirements.txt`，按宿主环境安装。
 
-8. 对真实交互补检查：页签、筛选、展开、弹层/tooltip、键盘及焦点。使用配置中的 `states` 实际打开浮层，并用 `textContracts` 核对完整字阶、字体族继承及标签行数/边界；关闭态不能代表展开态。Teleport 后先核对 body/宿主字体基线，不能只查组件源节点。窄容器优先让快捷项、指标项整体换行，不能靠逐字竖排、压缩字号或隐藏关键数值解决；规则和配置见 [文字与响应式检查](references/text-layout.md)。只运行相关既有测试；共享宿主样式变化须枚举跨模块消费者。
+8. 对真实交互补检查：页签、筛选、展开、弹层/tooltip、键盘及焦点。使用配置中的 `states` 实际打开浮层，并用 `textContracts` 核对完整字阶、字体族继承及标签行数/边界；关闭态不能代表展开态。Teleport 后先核对 body/宿主字体基线，不能只查组件源节点。还需用显式 `containerProfiles` 在宽窗口中压窄实际宿主，核对响应断点及 `cqw` 的命名容器；用 `responsiveContracts` 检查控件边界、可读最小宽度与展开菜单每一项的多点命中。只比较 z-index 或关闭态无法证明层级正确。窄容器优先让快捷项、指标项整体换行，不能靠逐字竖排、压缩字号或隐藏关键数值解决；规则和配置见 [文字与响应式检查](references/text-layout.md)。只运行相关既有测试；共享宿主样式变化须枚举跨模块消费者。
 9. 出现 `.partner-ai` 时，本技能检查宿主尺寸、可达性、横向溢出、挂载边界和错误日志；按 [AI 交接](references/ai-handoff.md) 提交库问题。技能不可用时保留交接材料与未验证状态，不虚称已调用。
 10. 按 [报告模板](references/report.md) 分类：must-fix / should-fix / component gap / accepted；自动测量的 needs-review 是待复核证据，不能计作已经确认的缺陷。接受项必须有来源或解释；异常清单不绕过静态门禁。
 11. 用户要求修复时，仅修改授权页面层，使用公开 API 与自有容器；补相应截图与行为验证。组件缺口不通过 deep CSS、内部类、`!important`、自绘图标或降低断言修补。

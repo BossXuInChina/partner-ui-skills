@@ -4,6 +4,7 @@ import { resolve, relative } from 'node:path';
 import { options, visitRoutes, saveJSON, isMain } from './browser.mjs';
 import { checkRecord, checkPage, checkLayout, compareComponent, RULES } from './rules.mjs';
 import { collectText, checkText } from './text.mjs';
+import { collectResponsive, checkResponsive } from './responsive.mjs';
 
 // This function is serialized into the real browser, not a simulated DOM.
 export function collectPage(config = {}) {
@@ -214,10 +215,12 @@ export async function measure(opt) {
   const index = sourceIndex(opt.project);
   const baseline = opt.baseline ? JSON.parse(readFileSync(opt.baseline, 'utf8')) : [];
   const results = await visitRoutes(opt, async (page, ctx) => {
+    const responsiveSamples = await page.evaluate(collectResponsive, (opt.config.responsiveContracts ?? []).filter(c => (!c.routes || c.routes.includes(ctx.route)) && (!c.states || c.states.includes(ctx.state))));
     const textSamples = await page.evaluate(collectText, (opt.config.textContracts ?? []).filter(c => (!c.routes || c.routes.includes(ctx.route)) && (!c.states || c.states.includes(ctx.state))));
     const sampled = await page.evaluate(collectPage, { ...opt.config, components: (opt.config.components ?? []).filter(c => !c.routes || c.routes.includes(ctx.route)), layoutContracts: (opt.config.layoutContracts ?? []).filter(c => !c.routes || c.routes.includes(ctx.route)), rootSelector: opt.rootSelector, cardSelector: opt.cardSelector });
-    const findings = [...sampled.records.flatMap(checkRecord), ...sampled.layoutSamples.flatMap(checkLayout), ...textSamples.flatMap(checkText), ...checkPage({ ...ctx, pageWidth: sampled.pageWidth, overlaps: sampled.overlaps })];
+    const findings = [...sampled.records.flatMap(checkRecord), ...sampled.layoutSamples.flatMap(checkLayout), ...textSamples.flatMap(checkText), ...responsiveSamples.flatMap(checkResponsive), ...checkPage({ ...ctx, pageWidth: sampled.pageWidth, overlaps: sampled.overlaps })];
     const notVerified = [];
+    for (const sample of responsiveSamples) if(sample.notVerified) notVerified.push(`Responsive ${sample.id}: ${sample.notVerified}`);
     if (!sampled.tokenCount) notVerified.push('R1–R4: loaded semantic tokens unavailable');
     if (!opt.cardSelector) notVerified.push('R2: explicit card selectors required');
     if (!sampled.layoutSamples.some(s => !s.inferred)) notVerified.push('R9: explicit semantic composition contracts not supplied for this route; discovered relations are candidates only');
@@ -232,18 +235,18 @@ export async function measure(opt) {
     for (const sample of textSamples) if (sample.notVerified) notVerified.push(`Text ${sample.id}: ${sample.notVerified}`);
     const componentSamples = sampled.components.map(c => ({ ...c, ...ctx, state: c.state, captureState: ctx.state, errors: ctx.errors }));
     for (const actual of componentSamples) {
-      const compared = compareComponent(actual, baseline.find(b => b.id === actual.id && b.width === ctx.width && (b.captureState ?? 'default') === ctx.state));
+      const compared = compareComponent(actual, baseline.find(b => b.id === actual.id && b.width === ctx.width && (b.profile ?? '') === ctx.profile && (b.captureState ?? 'default') === ctx.state));
       if (compared.notVerified) notVerified.push(compared.notVerified); else findings.push(...compared.findings);
     }
     for (const f of findings) {
-      Object.assign(f, { route: ctx.route, width: ctx.width, state: ctx.state });
+      Object.assign(f, { route: ctx.route, width: ctx.width, state: ctx.state, profile: ctx.profile, containerWidth: ctx.containerWidth });
       const classes = [...f.selectorPath.matchAll(/\.([a-zA-Z_][\w-]*)/g)].map(m => m[1]).reverse();
       const candidates = classes.map(c => index.get(c)).find(Boolean) ?? [];
       f.sourceCandidates = candidates.slice(0, 12);
       // A class search is a candidate mapping, not proof of the winning source line.
       if (candidates.length === 1) Object.assign(f, candidates[0]);
     }
-    return { findings, notVerified, componentSamples, layoutSamples: sampled.layoutSamples, textSamples, coverage: { rules: RULES, sampledElements: sampled.records.length, ownership: sampled.ownershipCounts, aiRoots: sampled.aiRoots, tokenCount: sampled.tokenCount, slotBoundary: sampled.skippedPackageDescendants, tooltip: 'title and mounted aria-describedby only; lazy hover tooltips need interaction verification', cardExceptions: opt.config.cardExceptions ?? [] } };
+    return { findings, notVerified, componentSamples, layoutSamples: sampled.layoutSamples, textSamples, responsiveSamples, coverage: { rules: RULES, sampledElements: sampled.records.length, ownership: sampled.ownershipCounts, aiRoots: sampled.aiRoots, tokenCount: sampled.tokenCount, slotBoundary: sampled.skippedPackageDescendants, tooltip: 'title and mounted aria-describedby only; lazy hover tooltips need interaction verification', cardExceptions: opt.config.cardExceptions ?? [] } };
   });
   saveJSON(resolve(opt.out, 'measure.json'), results);
   saveJSON(resolve(opt.out, 'findings.json'), results.flatMap(r => r.findings ?? []));
