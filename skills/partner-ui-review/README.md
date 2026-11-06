@@ -2,7 +2,7 @@
 
 消费页面复查：共享静态检查、路由截图、真实 DOM 测量、设计图并排对照。使用入口和命令见 [SKILL.md](SKILL.md)。
 
-0.1.4 区分正式组件内部与页面业务组合：前者按自身契约核对，后者严格按布局规范检查。新增 R9 角色/Token/真实区域间距契约，修正 logical auto 和嵌套 AI 组件归属误报；规范配置见 [组合间距](references/composition.md)。自动发现相邻页签/工具栏/表格的外部间距（含 0px），候选经确认后写入项目契约；未提供布局契约不能称语义间距已验证。
+0.1.5 区分正式组件内部与页面业务组合：前者按自身契约核对，后者严格按布局规范检查。新增 R9 角色/Token/真实区域间距契约，修正 logical auto 和嵌套 AI 组件归属误报；规范配置见 [组合间距](references/composition.md)。自动发现相邻页签/工具栏/表格的外部间距（含 0px），候选经确认后写入项目契约；未提供布局契约不能称语义间距已验证。
 
 浏览器工具优先使用目标工程 Playwright，也支持在解压 Skill 根执行 `pnpm install --frozen-lockfile`、`pnpm exec playwright install chromium`。Python 图像对照需 `python3 -m pip install -r scripts/requirements.txt`（建议使用虚拟环境）。所有参数使用当前工程路径，不要求固定机器目录。
 
@@ -12,4 +12,4 @@
 
 独立组件复查使用 `--config` 指定组件样本，再在独立 fixture 页面运行测量生成 `component-samples.json`，传给宿主页的 `--baseline`。两边必须声明相同包版本、props、state、theme 并实际使用相同容器宽度；差异先输出待复核，需定位生效规则才能判为必须修复。配置示例见 [规则](references/rules.md)。
 
-0.1.4 增加独立展开态采样，以及完整字阶/字体族/文本行数/所属项目边界契约。见 [文字与响应式检查](references/text-layout.md)。
+0.1.5 增加独立展开态采样，以及完整字阶/字体族/文本行数/所属项目边界契约。见 [文字与响应式检查](references/text-layout.md)。
