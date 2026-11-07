@@ -1,0 +1,125 @@
+
+.wb-tooltip-debug {
+  display: inline-flex;
+  min-width: 0;
+}
+.wb-tooltip-debug__panel {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 40;
+  top: var(--tooltip-top, -9999px);
+  left: var(--tooltip-left, -9999px);
+  width: var(--tooltip-content-width, max-content);
+  max-width: min(
+    var(--wb-asset-wb-popover-max-width),
+    calc(100vw - 2 * var(--wb-spacing-component-xs))
+  );
+  padding: var(--wb-spacing-component-xs) var(--wb-spacing-component-sm);
+  border-radius: var(--wb-radius-sm);
+  background: var(--wb-color-surface-overlay);
+  box-shadow: var(--wb-shadow-lg);
+  color: var(--wb-color-text-primary);
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+  overflow-wrap: anywhere;
+}
+.wb-tooltip-debug__panel.has-tags {
+  padding: var(--wb-spacing-component-xs);
+}
+.wb-tooltip__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--wb-spacing-component-xs);
+}
+.wb-tooltip-debug__arrow {
+  position: absolute;
+  display: block;
+  width: var(--wb-asset-wb-popover-arrow-width);
+  height: var(--wb-asset-wb-popover-arrow-height);
+  overflow: visible;
+}
+.wb-tooltip-debug__arrow path {
+  fill: var(--wb-color-surface-overlay);
+}
+.wb-tooltip-debug__panel[data-placement^='top'] .wb-tooltip-debug__arrow {
+  bottom: calc(var(--wb-asset-wb-popover-arrow-overlap) - var(--wb-asset-wb-popover-arrow-height));
+}
+.wb-tooltip-debug__panel[data-placement^='bottom'] .wb-tooltip-debug__arrow {
+  top: calc(var(--wb-asset-wb-popover-arrow-overlap) - var(--wb-asset-wb-popover-arrow-height));
+  transform: rotate(180deg);
+}
+.wb-tooltip-debug__panel[data-placement^='left'] .wb-tooltip-debug__arrow {
+  right: calc(var(--wb-asset-wb-popover-arrow-overlap) - var(--wb-asset-wb-popover-arrow-height));
+  transform: rotate(-90deg);
+}
+.wb-tooltip-debug__panel[data-placement^='right'] .wb-tooltip-debug__arrow {
+  left: calc(var(--wb-asset-wb-popover-arrow-overlap) - var(--wb-asset-wb-popover-arrow-height));
+  transform: rotate(90deg);
+}
+.wb-tooltip-debug__panel[data-placement^='top'][data-placement$='-start'] .wb-tooltip-debug__arrow,
+.wb-tooltip-debug__panel[data-placement^='bottom'][data-placement$='-start']
+  .wb-tooltip-debug__arrow {
+  left: calc(var(--wb-spacing-component-lg) - var(--wb-asset-wb-popover-arrow-width) / 2);
+}
+.wb-tooltip-debug__panel[data-placement^='top'][data-placement$='-end'] .wb-tooltip-debug__arrow,
+.wb-tooltip-debug__panel[data-placement^='bottom'][data-placement$='-end']
+  .wb-tooltip-debug__arrow {
+  right: calc(var(--wb-spacing-component-lg) - var(--wb-asset-wb-popover-arrow-width) / 2);
+}
+.wb-tooltip-debug__panel[data-placement^='left'][data-placement$='-start'] .wb-tooltip-debug__arrow,
+.wb-tooltip-debug__panel[data-placement^='right'][data-placement$='-start']
+  .wb-tooltip-debug__arrow {
+  top: calc(var(--wb-spacing-component-lg) - var(--wb-asset-wb-popover-arrow-height) / 2);
+}
+.wb-tooltip-debug__panel[data-placement^='left'][data-placement$='-end'] .wb-tooltip-debug__arrow,
+.wb-tooltip-debug__panel[data-placement^='right'][data-placement$='-end'] .wb-tooltip-debug__arrow {
+  top: auto;
+  bottom: calc(var(--wb-spacing-component-lg) - var(--wb-asset-wb-popover-arrow-height) / 2);
+}
+.wb-tooltip-debug__panel[data-placement='top'] .wb-tooltip-debug__arrow,
+.wb-tooltip-debug__panel[data-placement='bottom'] .wb-tooltip-debug__arrow {
+  left: var(--tooltip-arrow-left, calc(50% - var(--wb-asset-wb-popover-arrow-width) / 2));
+}
+.wb-tooltip-debug__panel[data-placement='left'] .wb-tooltip-debug__arrow,
+.wb-tooltip-debug__panel[data-placement='right'] .wb-tooltip-debug__arrow {
+  top: calc(50% - var(--wb-asset-wb-popover-arrow-height) / 2);
+}
+.wb-tooltip-debug__panel::before {
+  position: absolute;
+  content: '';
+  --tooltip-bridge: var(--wb-asset-wb-popover-trigger-gap);
+}
+.wb-tooltip-debug__panel.has-arrow::before {
+  --tooltip-bridge: calc(
+    var(--wb-asset-wb-popover-arrow-height) - var(--wb-asset-wb-popover-arrow-overlap) +
+      var(--wb-asset-wb-popover-trigger-gap)
+  );
+}
+.wb-tooltip-debug__panel[data-placement^='top']::before {
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: var(--tooltip-bridge);
+}
+.wb-tooltip-debug__panel[data-placement^='bottom']::before {
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: var(--tooltip-bridge);
+}
+.wb-tooltip-debug__panel[data-placement^='left']::before {
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  width: var(--tooltip-bridge);
+}
+.wb-tooltip-debug__panel[data-placement^='right']::before {
+  right: 100%;
+  top: 0;
+  bottom: 0;
+  width: var(--tooltip-bridge);
+}
+

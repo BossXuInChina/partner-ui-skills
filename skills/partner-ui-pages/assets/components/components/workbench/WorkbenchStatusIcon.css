@@ -1,0 +1,17 @@
+
+.workbench-status-icon[data-v-a8222e56] {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  vertical-align: middle;
+}
+.workbench-status-icon[data-v-a8222e56] svg {
+  display: block;
+  position: absolute !important;
+  left: var(--workbench-icon-canvas-left) !important;
+  top: var(--workbench-icon-canvas-top) !important;
+  width: var(--workbench-icon-canvas-width) !important;
+  height: var(--workbench-icon-canvas-height) !important;
+  overflow: visible;
+}
+

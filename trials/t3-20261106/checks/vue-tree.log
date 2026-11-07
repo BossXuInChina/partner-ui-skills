@@ -1,0 +1,284 @@
+[
+  {
+    "name": "existing-conventions-sample",
+    "version": "0.0.0",
+    "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host",
+    "private": true,
+    "dependencies": {
+      "vue": {
+        "from": "vue",
+        "version": "3.5.42",
+        "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+      },
+      "@workbench/ui-vue3": {
+        "from": "@workbench/ui-vue3",
+        "version": "0.2.0-prototype.20261106.7",
+        "resolved": "file:../vendor/workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz",
+        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@workbench+ui-vue3@file+..+vendor+workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz_vue@3.5.42_typescript@5.9.3_/node_modules/@workbench/ui-vue3",
+        "dependencies": {
+          "vue": {
+            "from": "vue",
+            "version": "3.5.42",
+            "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+          }
+        }
+      },
+      "pinia": {
+        "from": "pinia",
+        "version": "3.0.4",
+        "resolved": "https://registry.npmmirror.com/pinia/-/pinia-3.0.4.tgz",
+        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/pinia@3.0.4_typescript@5.9.3_vue@3.5.42_typescript@5.9.3_/node_modules/pinia",
+        "dependencies": {
+          "vue": {
+            "from": "vue",
+            "version": "3.5.42",
+            "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+          }
+        }
+      },
+      "vue-i18n": {
+        "from": "vue-i18n",
+        "version": "11.4.16",
+        "resolved": "https://registry.npmmirror.com/vue-i18n/-/vue-i18n-11.4.16.tgz",
+        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue-i18n@11.4.16_vue@3.5.42_typescript@5.9.3_/node_modules/vue-i18n",
+        "dependencies": {
+          "vue": {
+            "from": "vue",
+            "version": "3.5.42",
+            "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+          }
+        }
+      },
+      "vue-router": {
+        "from": "vue-router",
+        "version": "4.6.4",
+        "resolved": "https://registry.npmmirror.com/vue-router/-/vue-router-4.6.4.tgz",
+        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue-router@4.6.4_vue@3.5.42_typescript@5.9.3_/node_modules/vue-router",
+        "dependencies": {
+          "vue": {
+            "from": "vue",
+            "version": "3.5.42",
+            "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+          }
+        }
+      },
+      "@opentiny/tiny-robot": {
+        "from": "@opentiny/tiny-robot",
+        "version": "0.5.1",
+        "resolved": "https://registry.npmmirror.com/@opentiny/tiny-robot/-/tiny-robot-0.5.1.tgz",
+        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@opentiny+tiny-robot@0.5.1_dompurify@3.4.17_markdown-it@14.3.3_vue@3.5.42_typescript@5.9.3_/node_modules/@opentiny/tiny-robot",
+        "dependencies": {
+          "vue": {
+            "from": "vue",
+            "version": "3.5.42",
+            "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+          },
+          "@opentiny/tiny-robot-svgs": {
+            "from": "@opentiny/tiny-robot-svgs",
+            "version": "0.5.1",
+            "resolved": "https://registry.npmmirror.com/@opentiny/tiny-robot-svgs/-/tiny-robot-svgs-0.5.1.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@opentiny+tiny-robot-svgs@0.5.1_vue@3.5.42_typescript@5.9.3_/node_modules/@opentiny/tiny-robot-svgs",
+            "dependencies": {
+              "vue": {
+                "from": "vue",
+                "version": "3.5.42",
+                "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+              }
+            }
+          },
+          "@tiptap/vue-3": {
+            "from": "@tiptap/vue-3",
+            "version": "3.17.1",
+            "resolved": "https://registry.npmmirror.com/@tiptap/vue-3/-/vue-3-3.17.1.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@tiptap+vue-3@3.17.1_@floating-ui+dom@1.8.0_@tiptap+core@3.17.1_@tiptap+pm@3.17.1__@tip_116253ec6d4eceb90b9daa854361243b/node_modules/@tiptap/vue-3",
+            "dependencies": {
+              "vue": {
+                "from": "vue",
+                "version": "3.5.42",
+                "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+              }
+            }
+          },
+          "@vueuse/core": {
+            "from": "@vueuse/core",
+            "version": "13.1.0",
+            "resolved": "https://registry.npmmirror.com/@vueuse/core/-/core-13.1.0.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@vueuse+core@13.1.0_vue@3.5.42_typescript@5.9.3_/node_modules/@vueuse/core",
+            "dependencies": {
+              "vue": {
+                "from": "vue",
+                "version": "3.5.42",
+                "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+              },
+              "@vueuse/shared": {
+                "from": "@vueuse/shared",
+                "version": "13.1.0",
+                "resolved": "https://registry.npmmirror.com/@vueuse/shared/-/shared-13.1.0.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@vueuse+shared@13.1.0_vue@3.5.42_typescript@5.9.3_/node_modules/@vueuse/shared",
+                "dependencies": {
+                  "vue": {
+                    "from": "vue",
+                    "version": "3.5.42",
+                    "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                    "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "huawei-partner-ai-ui": {
+        "from": "huawei-partner-ai-ui",
+        "version": "0.3.1-dev.20261106.1",
+        "resolved": "file:../vendor/huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz",
+        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/huawei-partner-ai-ui@file+..+vendor+huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz_vue@3.5.42_typescript@5.9.3_/node_modules/huawei-partner-ai-ui",
+        "dependencies": {
+          "vue": {
+            "from": "vue",
+            "version": "3.5.42",
+            "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+          },
+          "@opentiny/tiny-robot-kit": {
+            "from": "@opentiny/tiny-robot-kit",
+            "version": "0.4.0",
+            "resolved": "https://registry.npmmirror.com/@opentiny/tiny-robot-kit/-/tiny-robot-kit-0.4.0.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@opentiny+tiny-robot-kit@0.4.0_vue@3.5.42_typescript@5.9.3_/node_modules/@opentiny/tiny-robot-kit",
+            "dependencies": {
+              "vue": {
+                "from": "vue",
+                "version": "3.5.42",
+                "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+              }
+            }
+          },
+          "@opentiny/tiny-robot-svgs": {
+            "from": "@opentiny/tiny-robot-svgs",
+            "version": "0.3.5",
+            "resolved": "https://registry.npmmirror.com/@opentiny/tiny-robot-svgs/-/tiny-robot-svgs-0.3.5.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@opentiny+tiny-robot-svgs@0.3.5_vue@3.5.42_typescript@5.9.3_/node_modules/@opentiny/tiny-robot-svgs",
+            "dependencies": {
+              "vue": {
+                "from": "vue",
+                "version": "3.5.42",
+                "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+              }
+            }
+          },
+          "@opentiny/tiny-robot": {
+            "from": "@opentiny/tiny-robot",
+            "version": "0.5.1",
+            "resolved": "https://registry.npmmirror.com/@opentiny/tiny-robot/-/tiny-robot-0.5.1.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@opentiny+tiny-robot@0.5.1_dompurify@3.4.17_markdown-it@14.3.3_vue@3.5.42_typescript@5.9.3_/node_modules/@opentiny/tiny-robot",
+            "dependencies": {
+              "vue": {
+                "from": "vue",
+                "version": "3.5.42",
+                "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+              },
+              "@opentiny/tiny-robot-svgs": {
+                "from": "@opentiny/tiny-robot-svgs",
+                "version": "0.5.1",
+                "resolved": "https://registry.npmmirror.com/@opentiny/tiny-robot-svgs/-/tiny-robot-svgs-0.5.1.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@opentiny+tiny-robot-svgs@0.5.1_vue@3.5.42_typescript@5.9.3_/node_modules/@opentiny/tiny-robot-svgs",
+                "dependencies": {
+                  "vue": {
+                    "from": "vue",
+                    "version": "3.5.42",
+                    "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                    "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+                  }
+                }
+              },
+              "@tiptap/vue-3": {
+                "from": "@tiptap/vue-3",
+                "version": "3.17.1",
+                "resolved": "https://registry.npmmirror.com/@tiptap/vue-3/-/vue-3-3.17.1.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@tiptap+vue-3@3.17.1_@floating-ui+dom@1.8.0_@tiptap+core@3.17.1_@tiptap+pm@3.17.1__@tip_116253ec6d4eceb90b9daa854361243b/node_modules/@tiptap/vue-3",
+                "dependencies": {
+                  "vue": {
+                    "from": "vue",
+                    "version": "3.5.42",
+                    "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                    "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+                  }
+                }
+              },
+              "@vueuse/core": {
+                "from": "@vueuse/core",
+                "version": "13.1.0",
+                "resolved": "https://registry.npmmirror.com/@vueuse/core/-/core-13.1.0.tgz",
+                "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@vueuse+core@13.1.0_vue@3.5.42_typescript@5.9.3_/node_modules/@vueuse/core",
+                "dependencies": {
+                  "vue": {
+                    "from": "vue",
+                    "version": "3.5.42",
+                    "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                    "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+                  },
+                  "@vueuse/shared": {
+                    "from": "@vueuse/shared",
+                    "version": "13.1.0",
+                    "resolved": "https://registry.npmmirror.com/@vueuse/shared/-/shared-13.1.0.tgz",
+                    "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@vueuse+shared@13.1.0_vue@3.5.42_typescript@5.9.3_/node_modules/@vueuse/shared",
+                    "dependencies": {
+                      "vue": {
+                        "from": "vue",
+                        "version": "3.5.42",
+                        "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+                        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "devDependencies": {
+      "@vitejs/plugin-vue": {
+        "from": "@vitejs/plugin-vue",
+        "version": "6.0.8",
+        "resolved": "https://registry.npmmirror.com/@vitejs/plugin-vue/-/plugin-vue-6.0.8.tgz",
+        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@vitejs+plugin-vue@6.0.8_vite@7.3.6_@types+node@24.10.0__vue@3.5.42_typescript@5.9.3_/node_modules/@vitejs/plugin-vue",
+        "dependencies": {
+          "vue": {
+            "from": "vue",
+            "version": "3.5.42",
+            "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+          }
+        }
+      },
+      "@vue/test-utils": {
+        "from": "@vue/test-utils",
+        "version": "2.5.1",
+        "resolved": "https://registry.npmmirror.com/@vue/test-utils/-/test-utils-2.5.1.tgz",
+        "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/@vue+test-utils@2.5.1_@vue+compiler-dom@3.5.42_@vue+server-renderer@3.5.42_vue@3.5.42_typescript@5.9.3_/node_modules/@vue/test-utils",
+        "dependencies": {
+          "vue": {
+            "from": "vue",
+            "version": "3.5.42",
+            "resolved": "https://registry.npmmirror.com/vue/-/vue-3.5.42.tgz",
+            "path": "/Users/bossxu/Desktop/huawei/Road2AGI/Design2Code/huawei-partner-project/partner-ui-skills/trials/t3-20261106/host/node_modules/.pnpm/vue@3.5.42_typescript@5.9.3/node_modules/vue"
+          }
+        }
+      }
+    }
+  }
+]

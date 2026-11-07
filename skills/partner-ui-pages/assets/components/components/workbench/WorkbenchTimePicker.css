@@ -1,0 +1,233 @@
+
+.wb-time-picker[data-v-de2c60b2] {
+  --time-width: var(--wb-asset-wb-time-picker-panel-width);
+  --time-height: var(--wb-asset-wb-time-picker-control-height);
+  --time-padding: var(--wb-asset-wb-time-picker-panel-inline-padding);
+  --time-selection-offset: var(--wb-asset-wb-time-picker-selection-offset);
+  position: relative;
+  width: var(--time-width);
+  max-width: 100%;
+  color: var(--wb-color-text-primary);
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+}
+.wb-time-picker.is-range[data-v-de2c60b2] {
+  width: var(--wb-asset-wb-time-picker-range-width);
+}
+.wb-time-picker__trigger[data-v-de2c60b2] {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  height: var(--time-height);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-spacing-component-sm);
+  padding: 0 var(--wb-asset-wb-time-picker-trigger-inline-padding);
+  border: 1px solid var(--wb-color-border);
+  border-radius: var(--wb-radius-sm);
+  background: var(--wb-color-surface-card-default);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.wb-time-picker__trigger[data-v-de2c60b2]:hover,
+.wb-time-picker[data-preview-state='hover'] .wb-time-picker__trigger[data-v-de2c60b2] {
+  border-color: var(--wb-color-border-hover);
+}
+.wb-time-picker__trigger[data-v-de2c60b2]:focus-visible,
+.wb-time-picker__range[data-v-de2c60b2]:focus-within,
+.is-open .wb-time-picker__trigger[data-v-de2c60b2],
+.wb-time-picker[data-preview-state='focused'] .wb-time-picker__trigger[data-v-de2c60b2] {
+  border-color: var(--wb-color-border-focus);
+  outline: none;
+}
+.is-placeholder[data-v-de2c60b2] {
+  color: var(--wb-color-text-placeholder);
+}
+.is-open .wb-time-picker__trigger .is-placeholder[data-v-de2c60b2],
+.wb-time-picker[data-preview-state='focused'] .wb-time-picker__trigger .is-placeholder[data-v-de2c60b2] {
+  color: var(--wb-color-text-primary);
+}
+.wb-time-picker__icon[data-v-de2c60b2] {
+  color: var(--wb-color-icon-tertiary);
+}
+.wb-time-picker__range[data-v-de2c60b2] {
+  display: grid;
+  padding-inline-start: var(--wb-spacing-component-xs);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
+}
+.wb-time-picker__endpoint[data-v-de2c60b2] {
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--wb-asset-wb-time-picker-endpoint-radius);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wb-time-picker__endpoint.is-placeholder[data-v-de2c60b2] {
+  color: var(--wb-color-text-placeholder);
+}
+.wb-time-picker__endpoint[data-v-de2c60b2]:first-child {
+  grid-column: 1;
+  box-sizing: border-box;
+  padding-inline-start: var(--wb-spacing-component-sm);
+}
+.wb-time-picker__endpoint[data-v-de2c60b2]:nth-child(2) {
+  grid-column: 3;
+}
+.wb-time-picker__separator[data-v-de2c60b2] {
+  grid-row: 1;
+  grid-column: 2;
+}
+.wb-time-picker__range .wb-time-picker__icon[data-v-de2c60b2] {
+  grid-row: 1;
+  grid-column: 4;
+}
+.wb-time-picker__endpoint:first-child.is-active[data-v-de2c60b2] {
+  background: var(--wb-color-fill-hover);
+}
+.wb-time-picker__endpoint[data-v-de2c60b2]:focus-visible {
+  outline: 1px solid var(--wb-color-border-focus);
+  outline-offset: 1px;
+}
+.is-disabled .wb-time-picker__trigger[data-v-de2c60b2] {
+  border-color: var(--wb-color-border);
+  background: var(--wb-color-fill-subtle-disabled);
+  color: var(--wb-color-text-disabled);
+  cursor: not-allowed;
+}
+.is-disabled .wb-time-picker__trigger .is-placeholder[data-v-de2c60b2] {
+  color: var(--wb-color-text-disabled);
+}
+.is-disabled .wb-time-picker__icon[data-v-de2c60b2] {
+  color: var(--wb-color-icon-disabled);
+}
+.is-disabled .wb-time-picker__endpoint[data-v-de2c60b2] {
+  background: transparent;
+  cursor: not-allowed;
+}
+.is-invalid .wb-time-picker__trigger[data-v-de2c60b2] {
+  border-color: var(--wb-color-error);
+}
+.wb-time-picker__panel[data-v-de2c60b2] {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + var(--wb-asset-wb-time-picker-panel-offset));
+  left: 0;
+  width: var(--time-width);
+  border: 0;
+  border-radius: var(--wb-radius-md);
+  background: var(--wb-color-surface-overlay);
+  box-shadow: var(--wb-asset-wb-time-picker-panel-shadow);
+}
+.wb-time-picker__panel.is-end[data-v-de2c60b2] {
+  right: 0;
+  left: auto;
+}
+.wb-time-picker__panel.is-inline[data-v-de2c60b2] {
+  position: static;
+  max-width: 100%;
+  margin-top: var(--wb-asset-wb-time-picker-panel-offset);
+}
+.wb-time-picker__panel.is-teleported[data-v-de2c60b2] {
+  --time-width: var(--wb-asset-wb-time-picker-panel-width);
+  --time-height: var(--wb-asset-wb-time-picker-control-height);
+  --time-padding: var(--wb-asset-wb-time-picker-panel-inline-padding);
+  --time-selection-offset: var(--wb-asset-wb-time-picker-selection-offset);
+  position: fixed;
+  right: auto;
+  color: var(--wb-color-text-primary);
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+}
+.wb-time-picker__columns[data-v-de2c60b2] {
+  display: flex;
+  gap: var(--wb-spacing-component-sm);
+  padding: var(--wb-spacing-component-lg) var(--time-padding);
+}
+.wb-time-picker__column[data-v-de2c60b2] {
+  position: relative;
+  box-sizing: border-box;
+  flex: 1 1 0;
+  min-width: 0;
+  height: var(--wb-asset-wb-time-picker-list-height);
+  padding-block: var(--time-selection-offset);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  scroll-snap-type: y proximity;
+}
+.wb-time-picker__column[data-v-de2c60b2]::-webkit-scrollbar {
+  display: none;
+}
+.wb-time-picker__column--period[data-v-de2c60b2] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--wb-spacing-component-xs);
+  padding-block: calc(var(--time-height) + var(--wb-spacing-component-xs)) 0;
+  overflow: hidden;
+}
+.wb-time-picker__option[data-v-de2c60b2] {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: var(--time-height);
+  padding: var(--wb-spacing-component-xs);
+  border: 1px solid transparent;
+  border-radius: var(--wb-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: center;
+}
+.wb-time-picker__option + .wb-time-picker__option[data-v-de2c60b2] {
+  margin-top: var(--wb-spacing-component-xs);
+}
+.wb-time-picker__column--period .wb-time-picker__option[data-v-de2c60b2] {
+  flex: none;
+  margin: 0;
+}
+.wb-time-picker__option[data-v-de2c60b2]:hover {
+  background: var(--wb-color-fill-hover);
+}
+.wb-time-picker__option[aria-selected='true'][data-v-de2c60b2] {
+  border-color: var(--wb-color-border-focus);
+}
+.wb-time-picker__option[data-v-de2c60b2]:focus-visible {
+  outline: 1px solid var(--wb-color-border-focus);
+  outline-offset: -1px;
+}
+.wb-time-picker__footer[data-v-de2c60b2] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--time-padding);
+  border-top: 1px solid var(--wb-color-border-separator);
+}
+.wb-time-picker__actions[data-v-de2c60b2] {
+  display: flex;
+  gap: var(--wb-spacing-component-sm);
+  margin-left: auto;
+}
+.wb-time-picker__error[data-v-de2c60b2] {
+  margin: 0;
+  padding: 0 var(--time-padding) var(--wb-spacing-component-xs);
+  color: var(--wb-color-error);
+}
+

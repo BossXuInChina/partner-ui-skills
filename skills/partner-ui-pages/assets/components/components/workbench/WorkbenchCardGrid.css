@@ -1,0 +1,62 @@
+
+.wb-card-grid-container {
+  container: wb-card-grid / inline-size;
+  min-width: 0;
+  width: 100%;
+}
+
+.wb-card-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--wb-spacing-layout-card-gap);
+  min-width: 0;
+  width: 100%;
+}
+
+.wb-card-grid__overlay {
+  --card-grid-guide-color: var(--wb-asset-wb-card-grid-guide-color-light);
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  grid-template-columns: inherit;
+  column-gap: inherit;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.wb-card-grid__overlay > i {
+  min-width: 0;
+  background: var(--wb-color-fill-selected);
+  border-inline-start: var(--wb-asset-wb-card-border-width) dashed var(--card-grid-guide-color);
+  font-style: normal;
+}
+
+.wb-card-grid__overlay > i:last-child {
+  border-inline-end: var(--wb-asset-wb-card-border-width) dashed var(--card-grid-guide-color);
+}
+
+.wb-card-grid__overlay span {
+  color: var(--card-grid-guide-color);
+  background: var(--wb-color-surface-card-default);
+  font-size: var(--wb-font-body-s-font-size);
+  font-weight: var(--wb-font-body-s-font-weight);
+  line-height: var(--wb-font-body-s-line-height);
+  letter-spacing: var(--wb-font-body-s-letter-spacing);
+}
+
+[data-wb-theme="dark"] .wb-card-grid__overlay { --card-grid-guide-color: var(--wb-asset-wb-card-grid-guide-color-dark); }
+
+@container wb-card-grid (width >= 768px) {
+  .wb-card-grid {
+    grid-template-columns: repeat(var(--wb-asset-wb-card-grid-columns-medium), minmax(0, 1fr));
+  }
+}
+
+@container wb-card-grid (width >= 1280px) {
+  .wb-card-grid {
+    grid-template-columns: repeat(var(--wb-asset-wb-card-grid-columns-wide), minmax(0, 1fr));
+  }
+}
+

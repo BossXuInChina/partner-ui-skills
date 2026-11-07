@@ -30,7 +30,7 @@ test('runtime build is byte-stable and derives date and versions from the lock a
   assert.deepEqual(first.versions, second.versions);
   assert.equal(first.versions.builtAt, lock.buildDate);
   assert.equal(first.versions.runtime, lock.runtimeVersion);
-  assert.equal(first.versions.vue, '3.5.13');
+  assert.equal(first.versions.vue, '3.5.42');
   for (const item of lock.packages) assert.equal(first.versions[item.name], item.version);
   assert.equal(Object.keys(first.versions)[0], '_generated');
   for (const item of lock.packages)
@@ -209,7 +209,7 @@ test('offline IIFE compiles page templates, handles chat state and forwards rest
         ),
       };
     });
-    assert.equal(result.vue, '3.5.13');
+    assert.equal(result.vue, '3.5.42');
     assert.equal(result.sameVue, true);
     assert.equal(result.buttonRegistered, true);
     assert.equal(result.aiRegistered, true);

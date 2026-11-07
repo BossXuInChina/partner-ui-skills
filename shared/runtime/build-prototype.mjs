@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
-const VUE_VERSION = '3.5.13';
+const VUE_VERSION = '3.5.42';
 const PACKAGES = ['@workbench/ui-vue3', 'huawei-partner-ai-ui'];
 const readJSON = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const inside = (root, file) => {

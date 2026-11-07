@@ -16,10 +16,17 @@ import { checkGenerated, writeGenerated } from "./generated.mjs";
 import { generateReferences } from "../shared/format/index.mjs";
 import { buildPrototypeRuntime } from "../shared/runtime/build-prototype.mjs";
 import { buildGallery } from "./build-gallery.mjs";
+import { projectAssets } from "./project-assets.mjs";
+import { componentAssets } from "./components/assets.mjs";
 
-const skills = ["partner-ui-pages", "partner-ui-vue3"];
+const skills = ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review"];
 export async function candidateFiles(root, lock, packages) {
   const files = new Map();
+  for (const [name, content] of await componentAssets(root)) files.set(name, content);
+  for (const [name, content] of await projectAssets(root, lock, packages)) files.set(name, content);
+  for (const skill of ["partner-ui-vue3", "partner-ui-review"])
+    for (const name of ["check_vue.mjs", "tooling.mjs"])
+      files.set(`skills/${skill}/scripts/${name}`, readFileSync(resolve(root, "shared/static", name)));
   const refs = generateReferences({
     packages,
     studioBaseURLs: lock.studioBaseURLs,

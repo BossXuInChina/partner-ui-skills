@@ -1,15 +1,15 @@
 {
-  "_generated": "Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit.",
+  "_generated": "Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit.",
   "schemaVersion": "1.0",
   "packageName": "@workbench/ui-vue3",
-  "version": "0.2.0-prototype.20261031.1",
-  "sourceCommit": "af939228028791e24280015c5d48a35a658d40f3",
+  "version": "0.2.0-prototype.20261106.7",
+  "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc",
   "sourceHasLocalChanges": false,
-  "iconCount": 1196,
+  "iconCount": 1201,
   "families": [
     {
       "id": "system",
-      "iconCount": 890,
+      "iconCount": 895,
       "components": [
         {
           "publicImport": {
@@ -215,6 +215,16 @@
             "label": {
               "type": "String",
               "default": ""
+            },
+            "size": {
+              "type": "Number",
+              "default": {
+                "kind": "undefined"
+              },
+              "validator": {
+                "kind": "unknown",
+                "expression": "(value) => [28, 48].includes(value)"
+              }
             }
           }
         }
@@ -11071,6 +11081,56 @@
           },
           "props": {
             "name": "/ic_public_sun_line#2766:555"
+          }
+        }
+      ]
+    },
+    {
+      "family": "system",
+      "kind": "system",
+      "key": "/ic_public_switchover",
+      "alias": "/ic_public_switchover_16px",
+      "name": "/ic_public_switchover",
+      "displayName": "/ic_public_switchover_16px",
+      "group": "",
+      "semantic": "ic_public_switchover",
+      "style": "unspecified",
+      "colorMode": "monochrome",
+      "size": null,
+      "native": {
+        "status": "confirmed",
+        "width": 16,
+        "height": 16
+      },
+      "exported": {
+        "width": 16,
+        "height": 16
+      },
+      "viewBox": "0 0 16 16",
+      "renderedCanvas": {
+        "width": 16,
+        "height": 16,
+        "viewBox": "0 0 16 16"
+      },
+      "replacementKey": null,
+      "registeredNativeStatus": "confirmed",
+      "components": [
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchIcon"
+          },
+          "props": {
+            "name": "/ic_public_switchover"
+          }
+        },
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchSystemIcon"
+          },
+          "props": {
+            "name": "/ic_public_switchover"
           }
         }
       ]
@@ -23021,6 +23081,156 @@
           },
           "props": {
             "name": "完成/尺寸=48"
+          }
+        }
+      ]
+    },
+    {
+      "family": "system",
+      "kind": "system",
+      "key": "定位/location",
+      "alias": "定位/location_16px",
+      "name": "定位/location",
+      "displayName": "定位/location_16px",
+      "group": "定位",
+      "semantic": "定位/location",
+      "style": "unspecified",
+      "colorMode": "multicolor",
+      "size": null,
+      "native": {
+        "status": "confirmed",
+        "width": 16,
+        "height": 16
+      },
+      "exported": {
+        "width": 16,
+        "height": 16
+      },
+      "viewBox": "0 0 16 16",
+      "renderedCanvas": {
+        "width": 16,
+        "height": 16,
+        "viewBox": "0 0 16 16"
+      },
+      "replacementKey": null,
+      "registeredNativeStatus": "confirmed",
+      "components": [
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchIcon"
+          },
+          "props": {
+            "name": "定位/location"
+          }
+        },
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchSystemIcon"
+          },
+          "props": {
+            "name": "定位/location"
+          }
+        }
+      ]
+    },
+    {
+      "family": "system",
+      "kind": "system",
+      "key": "定位/location-单色",
+      "alias": "定位/location-单色_16px",
+      "name": "定位/location-单色",
+      "displayName": "定位/location-单色_16px",
+      "group": "定位",
+      "semantic": "定位/location-单色",
+      "style": "unspecified",
+      "colorMode": "monochrome",
+      "size": null,
+      "native": {
+        "status": "confirmed",
+        "width": 16,
+        "height": 16
+      },
+      "exported": {
+        "width": 16,
+        "height": 16
+      },
+      "viewBox": "0 0 16 16",
+      "renderedCanvas": {
+        "width": 16,
+        "height": 16,
+        "viewBox": "0 0 16 16"
+      },
+      "replacementKey": null,
+      "registeredNativeStatus": "confirmed",
+      "components": [
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchIcon"
+          },
+          "props": {
+            "name": "定位/location-单色"
+          }
+        },
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchSystemIcon"
+          },
+          "props": {
+            "name": "定位/location-单色"
+          }
+        }
+      ]
+    },
+    {
+      "family": "system",
+      "kind": "system",
+      "key": "定位/指针",
+      "alias": "定位/指针_16px",
+      "name": "定位/指针",
+      "displayName": "定位/指针_16px",
+      "group": "定位",
+      "semantic": "定位/指针",
+      "style": "unspecified",
+      "colorMode": "multicolor",
+      "size": null,
+      "native": {
+        "status": "confirmed",
+        "width": 16,
+        "height": 16
+      },
+      "exported": {
+        "width": 16,
+        "height": 16
+      },
+      "viewBox": "0 0 16 16",
+      "renderedCanvas": {
+        "width": 16,
+        "height": 16,
+        "viewBox": "0 0 16 16"
+      },
+      "replacementKey": null,
+      "registeredNativeStatus": "confirmed",
+      "components": [
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchIcon"
+          },
+          "props": {
+            "name": "定位/指针"
+          }
+        },
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchSystemIcon"
+          },
+          "props": {
+            "name": "定位/指针"
           }
         }
       ]
@@ -44121,6 +44331,56 @@
           },
           "props": {
             "name": "饼图/尺寸=48,面性=on"
+          }
+        }
+      ]
+    },
+    {
+      "family": "system",
+      "kind": "system",
+      "key": "首页 时间/time",
+      "alias": "首页 时间/time_16px",
+      "name": "首页 时间/time",
+      "displayName": "首页 时间/time_16px",
+      "group": "首页 时间",
+      "semantic": "首页 时间/time",
+      "style": "unspecified",
+      "colorMode": "monochrome",
+      "size": null,
+      "native": {
+        "status": "confirmed",
+        "width": 16,
+        "height": 16
+      },
+      "exported": {
+        "width": 16,
+        "height": 16
+      },
+      "viewBox": "0 0 16 16",
+      "renderedCanvas": {
+        "width": 16,
+        "height": 16,
+        "viewBox": "0 0 16 16"
+      },
+      "replacementKey": null,
+      "registeredNativeStatus": "confirmed",
+      "components": [
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchIcon"
+          },
+          "props": {
+            "name": "首页 时间/time"
+          }
+        },
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchSystemIcon"
+          },
+          "props": {
+            "name": "首页 时间/time"
           }
         }
       ]

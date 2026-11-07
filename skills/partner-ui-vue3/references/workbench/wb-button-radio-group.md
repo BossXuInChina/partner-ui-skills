@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 按钮单选组 Button Radio Group — `WorkbenchButtonRadioGroup`
 
 资产：`wb-button-radio-group` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -182,6 +182,7 @@ function onChange(item) { console.log('筛选范围：', item.value) }
 | 名称 | 类型 | 默认 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
 | ariaLabel | String | 单选组 |  | radiogroup可访问名称。 |
+| fill | Boolean |  |  |  |
 | items * | Array |  |  | 必填选项数组；每项包含唯一value、label，可选disabled。 |
 | modelValue * | String \| Number |  |  | 当前选中的String或Number值，必填。 |
 | size | String | small | small / large | small或large尺寸。 |

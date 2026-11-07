@@ -10,7 +10,7 @@ import { resolve } from "node:path";
 import { buildConsumerPack } from "./consumer-pack.mjs";
 import { json, packRoot, sha256 } from "./verify-lock.mjs";
 
-const names = ["partner-ui-pages", "partner-ui-vue3"];
+const names = ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review"];
 const semver =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
 const dist = resolve(packRoot, "dist");

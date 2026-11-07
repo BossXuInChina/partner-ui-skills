@@ -1,0 +1,68 @@
+
+.wb-link {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: var(--wb-spacing-component-xs);
+  padding: 0;
+  color: var(--wb-color-link);
+  background: transparent;
+  border: 0;
+  border-radius: var(--wb-radius-sm);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-decoration-line: none;
+  text-decoration-thickness: var(--wb-asset-wb-link-underline-thickness);
+  text-underline-offset: var(--wb-asset-wb-link-underline-offset);
+  cursor: pointer;
+}
+
+.wb-link__icon {
+  display: inline-grid;
+  width: var(--wb-icon-size-12);
+  height: var(--wb-icon-size-12);
+  flex: 0 0 var(--wb-icon-size-12);
+  place-items: center;
+  color: currentColor;
+}
+
+.wb-link__icon :is(svg, img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.wb-link__icon svg {
+  fill: none;
+  stroke: currentColor;
+}
+
+.wb-link:hover,
+.wb-link.is-hover {
+  color: var(--wb-color-link-hover);
+  text-decoration-line: underline;
+}
+
+.wb-link:active,
+.wb-link.is-pressed {
+  color: var(--wb-color-link-active);
+  text-decoration-line: underline;
+}
+
+.wb-link:focus-visible,
+.wb-link.is-focus {
+  text-decoration-line: underline;
+  outline: var(--wb-asset-wb-link-focus-outline-width) solid var(--wb-color-border-focus);
+  outline-offset: var(--wb-asset-wb-link-focus-outline-offset);
+}
+
+.wb-link[aria-disabled='true'],
+.wb-link.is-disabled {
+  color: var(--wb-color-link-disabled);
+  text-decoration-line: underline;
+  cursor: not-allowed;
+}
+

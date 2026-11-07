@@ -1,0 +1,33 @@
+
+.workspace-smart-card[data-v-792c8c2c] { position:relative; isolation:isolate; width:100%; min-width:0; box-sizing:border-box; border-radius:var(--partner-ai-smart-card-radius); color:var(--partner-ai-text); }
+/* Each variant owns independent paint and background opacity. Only
+   this pseudo-element fades; title, text, icon and the existing ring keep theirs. */
+.workspace-smart-card[data-v-792c8c2c]::after { content:''; position:absolute; z-index:-2; inset:0; border-radius:inherit; pointer-events:none; }
+.workspace-smart-card--outlined[data-v-792c8c2c]::after { background:var(--partner-ai-smart-card-bg); opacity:var(--partner-ai-smart-card-bg-opacity); }
+.workspace-smart-card--embedded[data-v-792c8c2c]::after { background:var(--partner-ai-smart-embedded-bg); opacity:var(--partner-ai-smart-embedded-bg-opacity); }
+.workspace-smart-card--outlined[data-v-792c8c2c] { padding:var(--partner-ai-smart-card-padding-top) var(--partner-ai-smart-card-padding-inline) var(--partner-ai-smart-card-padding-bottom); background:var(--partner-ai-smart-card-base-bg); }
+/* Pixso conic-gradient ring, masked to 1px; no input glow. */
+.workspace-smart-card--outlined[data-v-792c8c2c]::before { content:''; position:absolute; z-index:-1; inset:0; border-radius:inherit; padding:var(--partner-ai-smart-card-stroke-width); background:var(--partner-ai-smart-card-stroke); opacity:var(--partner-ai-smart-card-stroke-opacity); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; }
+.workspace-smart-card--embedded[data-v-792c8c2c] { padding:var(--partner-ai-smart-embedded-padding-block) var(--partner-ai-smart-embedded-padding-inline); border:0; background:var(--partner-ai-smart-card-base-bg); }
+.workspace-smart-card__footer[data-v-792c8c2c] { margin-top:var(--partner-ai-smart-content-gap); }
+.workspace-smart-card__header[data-v-792c8c2c] { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; min-height:var(--partner-ai-smart-header-height); gap:var(--partner-ai-smart-title-gap) var(--partner-ai-smart-content-gap); }
+.workspace-smart-card__title[data-v-792c8c2c] { display:flex; align-items:center; min-width:0; gap:var(--partner-ai-smart-title-gap); }
+.workspace-smart-card__title h3[data-v-792c8c2c] { margin:0; background:var(--partner-ai-smart-title-gradient); background-clip:text; -webkit-text-fill-color:transparent; font-size:var(--partner-ai-smart-title-size); line-height:var(--partner-ai-smart-title-line); font-weight:var(--partner-ai-smart-title-weight); overflow-wrap:anywhere; }
+.workspace-smart-card__header > .workspace-smart-tag[data-v-792c8c2c] { margin-left:auto; }
+.workspace-smart-card__list[data-v-792c8c2c] { display:flex; flex-wrap:wrap; gap:var(--partner-ai-smart-list-gap); list-style:none; margin:var(--partner-ai-smart-content-gap) 0 0; padding:0; }
+/* Content-sized horizontal items, never equal columns. Item-to-item gap12 is
+   independent from the existing number/text/action gaps16. */
+.workspace-smart-card__item[data-v-792c8c2c] { display:flex; align-items:flex-start; gap:var(--partner-ai-smart-content-gap); flex:0 1 auto; min-width:0; max-width:100%; }
+.workspace-smart-card--outlined .workspace-smart-card__sentence[data-v-792c8c2c] { flex:0 1 auto; }
+.workspace-smart-card--embedded .workspace-smart-card__list[data-v-792c8c2c] { flex-direction:column; }
+.workspace-smart-card--embedded .workspace-smart-card__item[data-v-792c8c2c] { flex:none; }
+.workspace-smart-card__number[data-v-792c8c2c] { display:inline-flex; align-items:center; justify-content:center; flex:none; width:var(--partner-ai-smart-number-size); height:var(--partner-ai-smart-number-size); margin-top:var(--partner-ai-smart-number-offset); border-radius:var(--partner-ai-smart-number-radius); background:var(--partner-ai-smart-number-bg); font-size:var(--partner-ai-smart-number-font-size); line-height:var(--partner-ai-smart-number-size); font-weight:var(--partner-ai-smart-number-weight); font-variant-numeric:tabular-nums; }
+.workspace-smart-card__sentence[data-v-792c8c2c] { flex:0 1 auto; min-width:0; margin:0; font-size:var(--partner-ai-body-size); line-height:var(--partner-ai-body-line); font-weight:var(--partner-ai-body-weight); overflow-wrap:anywhere; white-space:pre-wrap; }
+/* Consumer-owned WorkspaceNavigation uses a native keyboard-capable button
+   with link semantics; no invented href/URL. Inline flow keeps text/link gap16
+   and the label/arrow together, never pushes the link to the row's far edge. */
+.workspace-smart-card__action[data-v-792c8c2c] { display:inline-flex; vertical-align:baseline; align-items:center; gap:var(--partner-ai-smart-action-gap); margin-inline-start:var(--partner-ai-smart-content-gap); padding:0; border:0; background:transparent; color:var(--partner-ai-action-text); text-align:left; font-size:var(--partner-ai-body-size); line-height:var(--partner-ai-body-line); white-space:nowrap; cursor:pointer; }
+.workspace-smart-card__action[data-v-792c8c2c] svg { width:var(--partner-ai-smart-action-icon-size); height:var(--partner-ai-smart-action-icon-size); flex:none; }
+.workspace-smart-card__action[data-v-792c8c2c]:hover { color:var(--partner-ai-action-text-hover); }
+.workspace-smart-card__action[data-v-792c8c2c]:focus-visible { outline:var(--partner-ai-focus-width) solid var(--partner-ai-focus); outline-offset:var(--partner-ai-focus-offset); border-radius:var(--partner-ai-smart-action-radius); }
+

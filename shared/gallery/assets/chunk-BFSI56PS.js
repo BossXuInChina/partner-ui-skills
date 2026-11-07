@@ -1,0 +1,1 @@
+import{v as a,w as n}from"./chunk-OZUA467W.js";import{L as e,M as r,N as t,j as o}from"./chunk-AUW7O5KT.js";var c=!0,u={__name:"wb-skeleton",setup(l){return(k,s)=>(e(),r("section",{"aria-busy":c},[c?(e(),t(o(n),{key:0,variant:"media-text",lines:3,label:"正在加载项目详情"})):(e(),t(o(a),{key:1,radius:"lg",label:"媒体占位"}))]))}};export{u as default};

@@ -1,0 +1,80 @@
+.partner-ai {
+  .text-button{border:0;background:transparent;color:var(--partner-ai-link);padding:var(--partner-ai-text-button-padding);font-size:var(--partner-ai-caption-size);line-height:var(--partner-ai-caption-line);white-space:nowrap}
+}
+
+/* Read-only Workbench popover/search/message-motion references, copied only as
+   local CSS/value mappings. The search min-width296 cannot fit a268px menu body;
+   this consumer shrinks its native input while retaining32px/14px/radius4 paint.
+   6px motion displacement is a consumer choice; Workbench supplies200ms/curve. */
+.conversation-history-panel[data-v-1a517edf] { --history-motion-duration:var(--partner-ai-history-motion-duration,200ms); --history-motion-easing:var(--partner-ai-history-motion-easing,cubic-bezier(0.2,0,0,1)); position:fixed; inset:auto; margin:0; box-sizing:border-box; width:var(--partner-ai-history-width); max-height:var(--partner-ai-history-max-height); border:0; border-radius:var(--partner-ai-history-radius); background:var(--partner-ai-overlay-bg); color:var(--partner-ai-text); box-shadow:var(--partner-ai-overlay-shadow); font-family:var(--partner-ai-font-family,inherit); overflow:visible; }
+.conversation-history-panel[data-v-1a517edf]::backdrop { background:transparent; pointer-events:none; }
+.history-content[data-v-1a517edf] { display:flex; flex-direction:column; gap:var(--partner-ai-history-gap); padding:var(--partner-ai-history-padding); }
+/* Keep the public dropdown's Teleport targets mounted while confirmation changes
+   the visible pane; its0.5.1 detached renderer cleans up on a later Vue tick. */
+.history-browse[data-v-1a517edf] { display:flex; flex-direction:column; gap:var(--partner-ai-history-gap); min-height:0; flex:0 1 auto; }
+.history-heading[data-v-1a517edf] { display:flex; align-items:center; gap:var(--partner-ai-history-gap); height:var(--partner-ai-history-row-height); min-height:var(--partner-ai-history-row-height); flex:none; }
+.history-content h2[data-v-1a517edf] { margin:0; flex:1; font-size:var(--partner-ai-history-heading-size); line-height:var(--partner-ai-history-heading-line); font-weight:var(--partner-ai-heading-weight); }
+/* REQ-025: only local icon roots share 8px; preserve menu/search/row shells and
+   existing pin/search-clear backgrounds. These controls do not depend on Robot DOM. */
+.history-clear[data-v-1a517edf],.history-pin[data-v-1a517edf],.history-search-clear[data-v-1a517edf] { border-radius:var(--partner-ai-control-radius); }
+.history-clear[data-v-1a517edf] { display:flex; align-items:center; justify-content:center; width:var(--partner-ai-control-size); height:var(--partner-ai-control-size); flex:none; padding:var(--partner-ai-gap-sm); border:0; background:transparent; color:var(--partner-ai-icon-secondary); cursor:pointer; }
+.history-clear[data-v-1a517edf]:hover { background:var(--partner-ai-hover-bg); color:var(--partner-ai-icon-primary); }
+.history-clear[data-v-1a517edf] svg { width:var(--partner-ai-icon-size); height:var(--partner-ai-icon-size); }
+.history-search-core[data-v-1a517edf] { box-sizing:border-box; display:flex; align-items:center; height:var(--partner-ai-control-size); min-height:var(--partner-ai-control-size); flex:none; padding-left:var(--partner-ai-gap-lg); border:var(--partner-ai-border-width) solid var(--partner-ai-border); border-radius:var(--partner-ai-radius-sm); background:var(--partner-ai-subtle-bg); font-size:var(--partner-ai-body-size); line-height:var(--partner-ai-body-line); }
+.history-search-core[data-v-1a517edf]:hover { border-color:var(--partner-ai-border-hover); }
+.history-search-core[data-v-1a517edf]:focus-within { border-color:var(--partner-ai-focus); }
+.history-search-icon[data-v-1a517edf] { width:var(--partner-ai-history-search-icon-size); height:var(--partner-ai-history-search-icon-size); flex:none; margin-right:var(--partner-ai-gap-md); color:var(--partner-ai-icon-placeholder); }
+.history-search[data-v-1a517edf] { height:100%; min-width:0; width:100%; flex:1; padding:0 var(--partner-ai-gap-lg) 0 0; border:0; outline:0; background:transparent; color:var(--partner-ai-text); font:inherit; }
+.history-search[data-v-1a517edf]:focus-visible { outline:0; box-shadow:none; }
+.history-search[data-v-1a517edf]::placeholder { color:var(--partner-ai-placeholder); opacity:1; }
+.history-search[data-v-1a517edf]::-webkit-search-cancel-button { display:none; }
+.history-search-clear[data-v-1a517edf] { display:grid; place-items:center; align-self:stretch; flex:none; padding:0 var(--partner-ai-gap-lg); border:0; background:transparent; color:var(--partner-ai-icon-secondary); cursor:pointer; }
+.history-search-clear[data-v-1a517edf] svg { width:var(--partner-ai-history-search-icon-size); height:var(--partner-ai-history-search-icon-size); }
+/* REQ-016 v0.6: the row alone owns the4px outer right inset. The more
+   wrapper adds no padding; its button's4px padding belongs only to the24px SVG. */
+.history-list[data-v-1a517edf] { box-sizing:border-box; flex:0 1 auto; min-height:0; width:calc(100% + var(--history-scroll-extension,15px)); margin-right:calc(0px - var(--history-scroll-extension,15px)); padding-right:calc(var(--history-scroll-extension,15px) - var(--history-native-gutter,0px)); overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; --tr-history-group-title-color:var(--partner-ai-muted); --tr-history-group-title-font-size:var(--partner-ai-body-size); --tr-history-group-title-line-height:var(--partner-ai-body-line); --tr-history-item-color:var(--partner-ai-text); --tr-history-item-font-size:var(--partner-ai-body-size); --tr-history-item-line-height:var(--partner-ai-body-line); --tr-history-item-hover-bg:var(--partner-ai-hover-bg); --tr-history-item-selected-bg:var(--partner-ai-history-selected-bg); --tr-history-item-selected-color:var(--partner-ai-history-selected-text); --tr-history-item-border-radius:var(--partner-ai-radius-md); --tr-history-item-padding:0 var(--partner-ai-gap-sm) 0 var(--partner-ai-gap-md); --tr-history-group-title-padding:0 var(--partner-ai-gap-md); --tr-history-group-space-y:8px; --tr-history-item-space-y:0; }
+/* TinyRobot0.5.1 DOM adapters: row/title geometry and empty menu hiding; review on
+   upgrade. Public slots own native buttons and keep keyboard/touch paths available. */
+.history-list[data-v-1a517edf] .tr-history__item-actions { display:none; }
+.history-list[data-v-1a517edf] .tr-history__group-title { display:flex; align-items:center; height:var(--partner-ai-history-row-height); margin:0; padding:0 var(--partner-ai-gap-md); font-weight:var(--partner-ai-body-weight); }
+/* Keep the title spacing while the two action hit areas overlap by 4px, leaving
+   4px between their 24px SVG boxes. Review this row adapter on Robot upgrades. */
+.history-list[data-v-1a517edf] .tr-history__item { min-width:0; height:var(--partner-ai-history-row-height); box-sizing:border-box; gap:0; font-weight:var(--partner-ai-body-weight); }
+/* Shared useAutoScrollbars supplies alpha/hot state. This local port adapts only
+   native paint after the requested scroll boundary moved from panel to list. */
+@supports selector(::-webkit-scrollbar) {
+  .history-list[data-v-1a517edf] { scrollbar-width:auto; scrollbar-color:auto; }
+  .history-list[data-v-1a517edf]::-webkit-scrollbar { width:var(--partner-ai-scrollbar-size); }
+  .history-list[data-v-1a517edf]::-webkit-scrollbar-track { background:transparent; }
+  .history-list[data-v-1a517edf]::-webkit-scrollbar-thumb { background-color:var(--partner-ai-scrollbar-fill); border:var(--scrollbar-ai-safe,var(--partner-ai-scrollbar-safe)) solid transparent; background-clip:padding-box; border-radius:var(--partner-ai-scrollbar-radius); }
+  .history-list[data-ai-scrollbar-state='hidden'][data-ai-scrollbar-hot='false'][data-v-1a517edf]::-webkit-scrollbar-thumb { background-color:transparent; }
+}
+.history-pin[data-v-1a517edf],.history-title[data-v-1a517edf] { border:0; background:transparent; color:inherit; font:inherit; cursor:pointer; }
+.history-title[data-v-1a517edf] { order:-1; display:flex; align-items:center; min-width:0; flex:1; height:var(--partner-ai-history-row-height); padding:0; margin-right:var(--partner-ai-gap-md); text-align:left; }
+.history-title span[data-v-1a517edf] { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.history-pin[data-v-1a517edf] { position:relative; display:flex; align-items:center; justify-content:center; width:var(--partner-ai-control-size); height:var(--partner-ai-control-size); padding:var(--partner-ai-gap-sm); margin-right:calc(0px - var(--partner-ai-gap-sm)); flex:none; opacity:0; pointer-events:none; color:var(--partner-ai-icon-secondary); }
+/* Match the more action's 24px hover paint without shrinking its trigger. */
+.history-pin[data-v-1a517edf]::before { content:''; position:absolute; width:var(--partner-ai-icon-size); height:var(--partner-ai-icon-size); border-radius:var(--partner-ai-control-radius); pointer-events:none; }
+.history-pin[data-v-1a517edf]:hover:not(:disabled)::before { background:var(--partner-ai-hover-bg); }
+.history-pin[data-v-1a517edf] svg { position:relative; width:var(--partner-ai-icon-size); height:var(--partner-ai-icon-size); }
+.history-pin[aria-pressed="true"][data-v-1a517edf] { color:var(--partner-ai-accent); }
+/* REQ-016 v0.3: selected is the parent's actual activeId via TrHistory's public
+   selected prop. Keep the Pixso selection fill on hover/active, and make the
+   slotted pin inherit orange-60 instead of the normal muted/brand icon palette. */
+.history-list[data-v-1a517edf] .tr-history__item.selected { background:var(--tr-history-item-selected-bg); color:var(--tr-history-item-selected-color); }
+.history-list[data-v-1a517edf] .tr-history__item.selected .history-pin,.history-list[data-v-1a517edf] .tr-history__item.selected .history-row-menu { color:inherit; }
+.history-list[data-v-1a517edf] .tr-history__item:hover .history-pin,.history-pin[data-v-1a517edf]:focus-visible { opacity:1; pointer-events:auto; }
+@media (hover:none),(pointer:coarse) { .history-pin[data-v-1a517edf] { opacity:1; pointer-events:auto; } }
+.history-delete-title[data-v-1a517edf] { overflow-wrap:anywhere; }
+/* Equal columns size to the longer action while preserving right alignment. */
+.history-confirm-actions[data-v-1a517edf] { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); width:max-content; max-width:100%; align-self:flex-end; gap:var(--partner-ai-history-gap); }
+.history-content p[data-v-1a517edf] { margin:0; font-size:var(--partner-ai-body-size); line-height:var(--partner-ai-body-line); }
+.history-empty[data-v-1a517edf],.history-hint[data-v-1a517edf] { color:var(--partner-ai-muted); padding:var(--partner-ai-gap-md) 0; }
+.history-error[data-v-1a517edf] { color:var(--partner-ai-accent); }
+.history-earlier[data-v-1a517edf] { display:flex; align-items:center; height:var(--partner-ai-history-row-height); margin:0; padding:0; }
+.history-content button[data-v-1a517edf]:focus-visible { outline:var(--partner-ai-focus-width) solid var(--partner-ai-focus); outline-offset:var(--partner-ai-focus-near-offset); }
+.history-content button[data-v-1a517edf]:disabled { opacity:var(--partner-ai-disabled-opacity); cursor:not-allowed; }
+.conversation-history-panel[data-v-1a517edf] { transition:transform var(--history-motion-duration) var(--history-motion-easing),opacity var(--history-motion-duration) var(--history-motion-easing); transform:translateY(calc(0px - var(--partner-ai-history-motion-offset))); opacity:0; pointer-events:none; }
+.conversation-history-panel.is-visible[data-v-1a517edf] { transform:translateY(0); opacity:1; pointer-events:auto; }
+@media(prefers-reduced-motion:reduce) { .conversation-history-panel[data-v-1a517edf] { transition:none; transform:none; } }
+

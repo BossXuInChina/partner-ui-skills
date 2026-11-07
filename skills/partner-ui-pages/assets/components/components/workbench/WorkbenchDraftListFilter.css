@@ -1,0 +1,75 @@
+
+.wb-draft-list-filter {
+  display: block;
+  container-type: inline-size;
+  min-width: 0;
+}
+.wb-draft-list-filter__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--wb-spacing-component-lg);
+  min-width: 0;
+}
+.wb-draft-list-filter__fields {
+  display: grid;
+  grid-row: 1;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--wb-spacing-component-lg);
+  min-width: 0;
+}
+.wb-draft-list-filter__actions {
+  display: flex;
+  grid-column: -2 / -1;
+  grid-row: 2;
+  justify-self: end;
+  align-self: end;
+  align-items: center;
+  gap: var(--wb-spacing-component-sm);
+}
+@container (width >= 656px) {
+  .wb-draft-list-filter__layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .wb-draft-list-filter__layout:is(.has-two-fields, .has-three-fields, .has-four-fields)
+    .wb-draft-list-filter__fields {
+    grid-column: 1 / span 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .wb-draft-list-filter__layout:is(.has-one-fields, .has-three-fields)
+    .wb-draft-list-filter__actions {
+    grid-row: 1;
+  }
+}
+@container (width >= 968px) {
+  .wb-draft-list-filter__layout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .wb-draft-list-filter__layout:is(.has-three-fields, .has-four-fields)
+    .wb-draft-list-filter__fields {
+    grid-column: 1 / span 3;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .wb-draft-list-filter__layout:is(.has-two-fields, .has-four-fields)
+    .wb-draft-list-filter__actions {
+    grid-row: 1;
+  }
+  .wb-draft-list-filter__layout.has-three-fields .wb-draft-list-filter__actions {
+    grid-row: 2;
+  }
+}
+@container (width >= 1280px) {
+  .wb-draft-list-filter__layout {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .wb-draft-list-filter__layout.has-four-fields .wb-draft-list-filter__fields {
+    grid-column: 1 / span 4;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .wb-draft-list-filter__layout.has-three-fields .wb-draft-list-filter__actions {
+    grid-row: 1;
+  }
+  .wb-draft-list-filter__layout.has-four-fields .wb-draft-list-filter__actions {
+    grid-row: 2;
+  }
+}
+

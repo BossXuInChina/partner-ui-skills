@@ -1,114 +1,67 @@
 ---
 name: partner-ui-pages
-description: 用伙伴工作台的两套 UI 消费包（@workbench/ui-vue3 与 huawei-partner-ai-ui，含企业AI助手/智慧组件）制作可直接双击打开的 HTML 页面、演示原型和 PRD 需求页，或把已有静态 HTML 原型换成真实组件样式。适用于新建原型、PRD 转页面、按组件规范改造已有 HTML；需要可集成的 Vue 产品代码时使用 partner-ui-vue3。
+description: 用伙伴工作台 Workbench 与 AI UI 消费包制作离线演示原型。默认使用 Vue 3 多 JS 项目，按 components、blocks、pages 和 state 拆分，支持跨页状态、按需索引、共享资源离线目录及单 HTML 导出；也支持 PRD/截图转页面、改造已有 HTML。需要可集成的 Vue SFC 产品代码时使用 partner-ui-vue3。
 ---
 
-# 伙伴工作台页面（Workbench + AI UI）
+# 伙伴工作台离线原型
 
-本 skill 用于离线 HTML 演示原型。自带的**预编译运行时**包含 Vue 3.5.13 和两个消费包的公开运行时组件；页面引用运行时、写 Vue 模板即可双击打开，不需要 npm、构建或联网。产品 Vue 代码、依赖接入与正式模块交接转到 `partner-ui-vue3`，不要把原型 helpers 或模拟会话当成产品功能。包的资格状态以随包 release 元数据为准，运行时打包不等于生产批准。
+新建或持续迭代复杂 Demo，默认走 **JS 项目模式**：普通 ESM `.js` + Vue 3 `defineComponent/setup/template`，由随包工具生成可直接双击的离线页面。消费端只需 Node 22.12+，无需 npm install 或联网。已有单 HTML 流程保持可用。
 
-```
-references/workbench/index.md  Workbench 包参考索引
-references/ai-ui.md  AI UI 公开组件 API、缺口及来源说明
-assets/runtime/     partner-ui-runtime.js / .css / versions.json（全局 PartnerUI 与 Vue）
-assets/fonts/       HarmonyOS Sans 原件 + 许可（可选）
-assets/templates/   6 个起步页面
-scripts/            new_page.py、bundle_single.py（Python 3 标准库）；check_page.mjs（Node + Playwright，可选）
-references/         组件、规则、Token、图标、运行时 API（按需读取）
-maintainer/         升级包后重建运行时与参考文档（维护者用，页面作者不需要）
-```
+这是演示交付。真实 API、鉴权、产品工程与 SFC 模块交接使用 `partner-ui-vue3`；包资格以随附元数据为准，生成原型不授予生产资格。
 
-## 先判断任务类型
+## 选择入口
 
-| 用户要的 | 流程 |
+| 任务 | 读取 / 执行 |
 | --- | --- |
-| 新页面 / demo / 原型 / “做一个××页” | A. 新建页面 |
-| 给了 PRD、需求文档、截图，要变成页面 | B. 需求转页面（先拆需求，再走 A） |
-| 给了已有 HTML，要“换成组件”“按规范重做”“美化” | C. 改造已有页面 |
+| 新建 Demo、复杂单页、多页流程 | [references/project.md](references/project.md)，`scripts/new_project.mjs` |
+| 修改现有 JS 项目 | 先 `project_index.mjs --query` 或 `--changed`，再读命中源码与 API |
+| PRD / 截图转 Demo | 先列页面、状态、交互和资产映射；必要假设写入交付，随后走 JS 项目模式 |
+| 改造已有 HTML / 保留六个经典模板 | [references/html-workflow.md](references/html-workflow.md)；转换器细节见 [restyle.md](references/restyle.md) |
+| 查询组件、Block、Token 或图标 | `catalog.mjs` 定位条目，再读返回的 reference 路径 |
 
-分不清时问一句：新建，还是在原文件上改造？
+## JS 项目的默认流程
 
-## 通用规则（三种流程都适用）
+以下命令从 Skill 根目录执行；项目可以放在任意工作目录。
 
-1. **能用包里的组件就必须用组件**。先从 `references/workbench/index.md` 与 `references/ai-ui.md` 查已发布包参考；选型看 `references/workbench/index.md`、`references/ai-ui.md`、`references/patterns.md`；选定后读对应组件文件核对 props / 事件 / 插槽 / 设计规则。不凭外观猜 API，不用原生 HTML 仿造已有控件。AI UI 当前没有已发布的 components 元数据；其参考只列已证实的包导出和缺口，不提供手写补全 API。缺少所需契约时明确标为待确认，不能把运行时导出名单当作 props/事件说明。
-2. **基础规范不可改**：不写 CSS 覆盖组件内部（`.wb-*`、`.tr-*`、`.partner-ai *`）的颜色、字号、间距、边框、圆角、阴影、动效；不改、不替换、不手绘任何图标（含 AI 头像、发送、工具栏、✦ 智慧标识）。尺寸和变体只用组件公开 props。详见 `references/design-rules.md`。
-3. **包里没有才自建**：用原生 HTML + Foundation Token（`var(--wb-*)`，见 `references/tokens.md`）+ `.pui-*` 工具类；外层 `class="pui-custom" data-pui-name="名称"`，在页面“说明”里写明名称、原因、为何现有组件不满足；不出现新色值；图标仍只用 `references/icons.md` 里的名称。
-4. **页面结构用原生 HTML + Foundation 布局**：版心两侧 32px、24/12 列栅格、沟槽与卡片间距 16px、卡片内边距 20/24、间距为 4 的倍数。
-5. **数据和逻辑归页面**：组件只发出意图（事件），页面负责状态、跳转、提示。演示数据合理自洽，并标注“演示数据 / 未连接真实服务”。
-6. **AI 组件两条硬要求**：外层要有 `.partner-ai`（`AgreementAssistantPanel`、`AssistantHostLayout` 自带；独立 `ChatPanel` 和卡片类需自己包）；聊天面板要有确定高度。
-7. **图表**：包里没有图表组件。保留原图表，或用 SVG/CSS 绘制，颜色只用 Token，标为 `pui-custom`。
+```sh
+node scripts/new_project.mjs --out ./my-demo --title "伙伴经营工作台"
+node scripts/project_index.mjs ./my-demo --query 伙伴
+node scripts/catalog.mjs --name WorkbenchTable
+node scripts/check_project.mjs ./my-demo
+node scripts/emit_project.mjs ./my-demo
+node scripts/emit_project.mjs ./my-demo --single
+```
 
-## A. 新建页面
+得到可编辑的 `app.js / components/ / blocks/ / pages/ / state/ / fixtures/ / styles/`、`project.json` 和 `kit-lock.json`。`out/index.html` 引用独立的本地 JS；`out-single/index.html` 是从同一源码生成的单 HTML。工具不会执行作者源码来构建或生成索引。
 
-1. **定页面**：目的、用户、主要任务、区块，以及要覆盖的状态（空、加载、错误、禁用、确认、成功提示、AI 回复）。
-2. **选模板**（说明见 `references/patterns.md`）：`workbench-list`（列表管理）、`workbench-detail`（详情/编辑）、`workbench-dashboard`（工作台首页）、`ai-assistant-workspace`（业务页 + 企业AI助手）、`ai-chat`（独立 AI 问答）、`blank`。
-3. **生成页面文件夹**：
-   ```bash
-   python3 scripts/new_page.py --template workbench-list --out ./my-page --title "协议管理"
-   ```
-   得到 `my-page/index.html` + `runtime/` + `fonts/`（`--no-fonts` 不带字体）。没有 Python 时手动复制：模板 → `index.html`，`assets/runtime/` → `runtime/`，`assets/fonts/` → `fonts/`。
-4. **写页面**（`references/runtime-api.md`）：模板写在 `<script type="text/x-template" id="page">` 里，数据与方法写在 `PartnerUI.mount('#app', { template: '#page', setup() { … return {…} } })`；组件直接用 PascalCase 名称，无需 import。官方示例是 SFC 写法，按 runtime-api.md 改写。
-5. **自检并交付**（见下方）。需要单文件发送时：
-   ```bash
-   python3 scripts/bundle_single.py my-page/index.html my-page.html   # 内联运行时，不含字体
-   ```
+- **先查索引再读文件**：只读取相关页面、直接依赖及组件 API。不要把 runtime、工具链、生成目录或全部组件资料灌入上下文。
+- `components/` 管 props/emits 驱动的局部复用；`blocks/` 管完整业务区块；`pages/` 管页面编排；`state/` 管跨页状态。项目局部组件/Block 不自动成为设计系统公共资产。
+- 用 `project_index.mjs ./my-demo --changed blocks/PartnerList.js` 查看反向依赖和受影响页面；`--page partners` 定向检查/构建。交付前仍验证完整旅程。
+- 静态检查会提示超过 350 行或 18 KB 的业务模块，按职责拆分，不为满足阈值机械切碎。短入口、准确依赖和可执行检查有助于有限上下文工作，但不承诺 128k Agent 的成功率。
+- 输出是生成物，只改源码。已有输出被手改或包含额外文件时工具拒绝覆盖；改用新的输出目录或保留旧目录后再生成。
 
-## B. 需求转页面（PRD / 截图 / 文字需求）
+## 资产与视觉约束
 
-1. 整理**页面清单**：每页目标、入口、区块、字段、操作、状态、跳转。多页面用一个 HTML 内多个视图，或多个 HTML 共享 `runtime/` 互链。
-2. 写**组件映射**：区块 → 组件（或“自建：原因”）→ 关键 props/事件。先把映射表和不清楚处的假设发给用户。
-3. AI 能力：侧栏/悬浮助手 → `AssistantHostLayout` + `AgreementAssistantPanel`（协议领域）或 `ChatPanel` + `PartnerUI.createChatSession`（通用）；页面内洞察 → `WorkspaceSmartCard` / `WorkspaceSmartTag` / `AiSummaryCard`；回复中的业务卡片 → `PartnerUI.chatRenderers`（ai-summary、business-navigation、agreement-table、`pui-template` 任意模板）。演示回复用本地模拟，注明未连接真实服务。
-4. 按 A 的 3–5 步实现；页面末尾“说明”折叠区加**需求对照**：需求点 → 实现位置 → 状态（已实现 / 假设 / 待确认）。
+1. 先查询真实公开资产/API；包内已有控件优先复用。组件、业务 Block、Pattern 与页面保持各自边界。缺失契约明确记录，不猜 props、事件或插槽。
+2. 不覆盖 `.wb-*`、`.tr-*` 或 `.partner-ai *` 的内部颜色、字号、间距、圆角、图标和动效。组件内部 padding 保留；页面布局和业务组合间距遵守 Foundation Token 与命中规则。
+3. 缺失资产才自建；外层标 `pui-custom`、`data-pui-name`，写明原因，仍使用 Token 与已登记图标。不要把一般页面布局标成缺陷。
+4. AI 独立区域具有 `.partner-ai` 和明确高度。跨页保留会话的 Block 放在应用壳，收起使用 `v-show`；真正卸载时取消生成。helpers 仅作本地模拟。
+5. 图表优先查 `WorkbenchChart`（bar、line、area、bar-horizontal、donut、pie、gauge、radar）；超出公开能力才采用自建方案。`WorkbenchTabs.size` 只支持 `small / large`，默认 `small`，不用 `medium`。页签不是站点路由导航。
+6. 同一操作组最多一个主要填充按钮；操作与跳转使用正确语义。草稿由宿主管理，确认失败保留草稿；演示成功不能写成服务端完成。
+7. 业务页、页头和页脚一起响应助手侧栏；依据容器宽度换列/折行，避免组件样式覆盖和重复页面边距。
 
-## C. 改造已有 HTML 页面
+## 验证与交付
 
-目标：保留原页面全部文字、数字、图表、交互流程和脚本，只把界面换成组件与 Token。完整说明见 `references/restyle.md`。
+- `check_project.mjs` 校验锁、静态依赖、导出、Vue 模板及已知字面量枚举；不等于 JS 语义、动态 props、完整 API、交互或视觉验收。详见 project.md 的边界。
+- 浏览器真实打开两种 `file://` 交付，检查控制台与外部请求，并走通导航/深链/返回、筛选、草稿、保存/取消、AI 发送/停止/重试/收起。较小视口检查溢出；仅声称实际执行的覆盖。
+- 有 Playwright 时可补运行 `node scripts/check_page.mjs my-demo/out/index.html --out shots/`；该工具不会自动遍历多页旅程。
+- 交付可编辑源码、需要的离线输出、`delivery.json` 来源/hash 清单和实际验证结果。共享版分发完整 out 目录；单 HTML 可单独转发 index.html。注明本地数据、未连接服务及待确认项。
 
-1. 复制原文件到新文件夹并放好 `runtime/`；读结构：产品画面根节点、不改的标注区、原脚本如何响应点击和取值。
-2. **语义盘点（关键）**：静态 HTML 只是元素拼接，不能只转换“看得出是控件”的部分。逐屏列出每个可见模块，按它表达的意思映射到组件：提示句 → Alert；带圆点/编号的阶段或核对项 → Steps / Timeline；“查看… →” → 下钻文字按钮；带按钮的描边盒子 → operation 卡片；数字+标签 → 指标卡；AI 回答 → ChatPanel 气泡 + 回复操作区；横条 → meter（自建）；纯分栏 → layout。映射表见 `references/restyle.md`。没有对应组件的才标 `custom` 并写原因。
-3. 在 `</body>` 前加入运行时与配置：
-   ```html
-   <link rel="stylesheet" href="runtime/partner-ui-runtime.css">
-   <script src="runtime/partner-ui-runtime.js"></script>
-   <script>
-     PartnerUI.restyle({
-       root: '.product', skip: '.annotation', tokens: true,
-       rules: [
-         { selector: '.site-nav', as: 'topnav', top: '.site-top', menu: '.site-menu', items: 'span' },
-         { selector: '.crumb', as: 'breadcrumb' },
-         { selector: '.tabs', as: 'tabs' },
-         { selector: 'table', as: 'table' },
-         { selector: '.tag', as: 'tag', statusByClass: { amber: 'warning' } },
-         { selector: 'button.primary', as: 'button', appearance: 'primary' },
-         { selector: 'button.link', as: 'button', appearance: 'text' },
-         { selector: 'input[type=text]', as: 'input' }, { selector: 'select', as: 'select' },
-       ],
-     })
-   </script>
-   ```
-   组件挂在原元素前，原元素隐藏保留，点击/取值转发回原元素，原脚本流程不受影响；原脚本重绘后自动再转换。`tokens: true` 同时按语义角色统一字阶（标题 / 正文 14 / 辅助 12，AI 区域用 AI UI 字阶）并把原型灰色改为文本 Token。
-4. 原页面的弹窗/提示函数改接 `PartnerUI.overlays.modal()` / `.message()`；弹窗带表单或多种确认分支时用 restyle.md 的“镜像”写法，确认逻辑仍由原脚本执行。完整的多画面示例见 restyle.md。
-5. 原型里的 AI 面板：结构简单时换成真实 `ChatPanel` + `createChatSession`；与原脚本耦合深时保留原 DOM，用 `ai-panel`（ChatPanel 外观，含发送器布局、`replyActions` 回复操作区、`notes`/`cards`）、`ai-surface`（AI 总结/建议块）、`ai-launcher` 转换，并在交付说明写清。卡片和统计块用 `card` 换成 Workbench 卡片外观。
-6. 运行 `check_page.mjs`，**unadapted modules 必须为 0**（每项按含义映射，或标 `layout` / `custom`）；统一页面节奏（面包屑 → 提示 → 卡片用 Foundation 间距，去掉原型叠加的边距）；逐屏截图核对：文字数字不缺，跳转、弹窗、面板开关、发送等流程都能走通。
+## 按需参考
 
-## 交付前检查
-
-- 浏览器打开无报错。有 Node + Playwright 时运行：
-  `node scripts/check_page.mjs my-page/index.html --out shots/`（控制台错误、未注册组件、AI 作用域/高度、写死颜色、自建块清单、改造页面的未覆盖模块 + 截图）。运行时是生产构建，Vue 不输出警告，所以“未注册组件”检查很重要。
-- 可见控件都是包组件；改造页面 unadapted modules 为 0；自建块都有 `pui-custom` 并在说明里列出；没有覆盖组件样式、没有改图标、没有写死颜色。
-- 状态齐全；主要交互逐一点过（筛选、分页、弹窗、确认、保存、AI 发送/停止/收起）。
-- 交付时告诉用户：文件夹位置与打开方式（双击 index.html，`runtime/`、`fonts/` 需与之同级）、演示数据范围、新建组件与待确认项。
-
-## 参考文件（按需读）
-
-当前未提供独立组件图库；以下参考来自已锁定发布包。
-
-- `references/runtime-api.md` — 页面写法、PartnerUI API、模板语法要点、常见问题
-- `references/design-rules.md` — 包内规则生成的适用边界与设计使用要求
-- `references/tokens.md` — 包内 Token、主题及字体映射
-- `references/patterns.md` — 包内组合与 Pattern 规则；六个起步模板见上文 A
-- `references/workbench/index.md` → `references/workbench/<asset>.md` — 60 个 Workbench 资产的 props/事件/插槽/设计规则/规格/官方示例
-- `references/ai-ui.md` — AI UI 已证实的公开导出、元数据缺口与使用限制；原型聊天 helpers 的契约见 runtime-api.md
-- `references/icons.md` — 已登记图标名称（系统、状态、底托、文件、空状态）
-- `references/restyle.md` — 改造已有 HTML 的转换器、选项与限制
-- 维护者重建：工作区使用根构建命令；独立安装包在 Skill 根安装随附维护依赖后运行 `node maintainer/build.mjs`。重建只读取随附锁定包，日期与版本取 `source.lock.json`；升级和发布由用户决定。
+- [project.md](references/project.md)：项目合同、命令、模块实例/路由、资产、导出与检查边界。
+- [runtime-api.md](references/runtime-api.md)：现有 PartnerUI helpers、聊天模拟与旧模板写法。
+- [workbench/index.md](references/workbench/index.md)、[ai-ui.md](references/ai-ui.md)：从锁包生成的组件资料；先用 catalog 定位目标。
+- [design-rules.md](references/design-rules.md)、[patterns.md](references/patterns.md)、[tokens.md](references/tokens.md)、[icons.md](references/icons.md)：只读任务相关部分。
+- 随包 `assets/gallery` 提供元数据生成图库，`node scripts/serve_gallery.mjs` 启动本地浏览；缺失案例保留说明，不推测补全。
+- `scripts/toolchain` 是随包编译工具，不进入 Demo 或 Agent 业务上下文。`maintainer/` 和 vendor 仅用于维护重建，普通消费不用读取。

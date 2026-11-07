@@ -1,0 +1,143 @@
+
+.wb-popconfirm {
+  display: inline-flex;
+}
+.wb-popconfirm__panel {
+  --popconfirm-arrow-width: var(--wb-asset-wb-popover-arrow-width);
+  --popconfirm-arrow-height: var(--wb-asset-wb-popover-arrow-height);
+  --popconfirm-arrow-overlap: var(--wb-asset-wb-popover-arrow-overlap);
+  --popconfirm-trigger-gap: var(--wb-asset-wb-popover-trigger-gap);
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 40;
+  top: var(--popconfirm-top, -9999px);
+  left: var(--popconfirm-left, -9999px);
+  width: max-content;
+  max-width: min(
+    var(--wb-asset-wb-popover-max-width),
+    calc(100vw - 2 * var(--wb-spacing-component-xs))
+  );
+  padding: var(--wb-spacing-component-lg);
+  border-radius: var(--wb-radius-md);
+  background: var(--wb-color-surface-overlay);
+  box-shadow: var(--wb-shadow-lg);
+  color: var(--wb-color-text-primary);
+}
+.wb-popconfirm__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-spacing-component-sm);
+}
+.wb-popconfirm__content {
+  max-height: calc(
+    100vh - 2 * var(--wb-spacing-component-xs) - 2 * var(--wb-spacing-component-lg) -
+      var(--popconfirm-arrow-height) + var(--popconfirm-arrow-overlap)
+  );
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.wb-popconfirm__icon {
+  width: var(--wb-icon-size-16);
+  height: var(--wb-icon-size-16);
+  flex: 0 0 var(--wb-icon-size-16);
+}
+.wb-popconfirm__icon--info {
+  color: var(--wb-color-info-primary);
+}
+.wb-popconfirm__icon--warning {
+  color: var(--wb-color-warning);
+}
+.wb-popconfirm__icon--danger {
+  color: var(--wb-color-alert);
+}
+.wb-popconfirm__icon--critical,
+.wb-popconfirm__icon--error {
+  color: var(--wb-color-error);
+}
+.wb-popconfirm__icon-fill {
+  fill: currentColor;
+}
+.wb-popconfirm__icon-mark {
+  fill: none;
+  stroke: var(--wb-color-text-inverse);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wb-popconfirm__icon--warning .wb-popconfirm__icon-mark {
+  stroke: var(--wb-color-text-primary);
+}
+.wb-popconfirm__title {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: var(--wb-font-headline-s-font-size);
+  font-weight: var(--wb-font-headline-s-font-weight);
+  line-height: var(--wb-font-headline-s-line-height);
+  letter-spacing: var(--wb-font-headline-s-letter-spacing);
+}
+.wb-popconfirm__message {
+  margin: var(--wb-spacing-component-sm) 0 0;
+  overflow-wrap: anywhere;
+  color: var(--wb-color-text-secondary);
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+}
+.wb-popconfirm__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--wb-spacing-component-sm);
+  margin-top: var(--wb-spacing-component-lg);
+}
+.wb-popconfirm__arrow {
+  position: absolute;
+  display: block;
+  width: var(--popconfirm-arrow-width);
+  height: var(--popconfirm-arrow-height);
+  overflow: visible;
+}
+.wb-popconfirm__arrow path {
+  fill: var(--wb-color-surface-overlay);
+}
+.wb-popconfirm__panel[data-placement^='top'] .wb-popconfirm__arrow {
+  bottom: calc(-1 * var(--popconfirm-arrow-height) + var(--popconfirm-arrow-overlap));
+}
+.wb-popconfirm__panel[data-placement^='bottom'] .wb-popconfirm__arrow {
+  top: calc(-1 * var(--popconfirm-arrow-height) + var(--popconfirm-arrow-overlap));
+  transform: rotate(180deg);
+}
+.wb-popconfirm__panel[data-placement^='left'] .wb-popconfirm__arrow {
+  right: calc(-1 * var(--popconfirm-arrow-height) + var(--popconfirm-arrow-overlap));
+  transform: rotate(-90deg);
+}
+.wb-popconfirm__panel[data-placement^='right'] .wb-popconfirm__arrow {
+  left: calc(-1 * var(--popconfirm-arrow-height) + var(--popconfirm-arrow-overlap));
+  transform: rotate(90deg);
+}
+.wb-popconfirm__panel[data-placement^='top'][data-placement$='-start'] .wb-popconfirm__arrow,
+.wb-popconfirm__panel[data-placement^='bottom'][data-placement$='-start'] .wb-popconfirm__arrow {
+  left: calc(var(--wb-spacing-component-lg) - var(--popconfirm-arrow-width) / 2);
+}
+.wb-popconfirm__panel[data-placement^='top'][data-placement$='-end'] .wb-popconfirm__arrow,
+.wb-popconfirm__panel[data-placement^='bottom'][data-placement$='-end'] .wb-popconfirm__arrow {
+  right: calc(var(--wb-spacing-component-lg) - var(--popconfirm-arrow-width) / 2);
+}
+.wb-popconfirm__panel[data-placement^='left'][data-placement$='-start'] .wb-popconfirm__arrow,
+.wb-popconfirm__panel[data-placement^='right'][data-placement$='-start'] .wb-popconfirm__arrow {
+  top: calc(var(--wb-spacing-component-lg) - var(--popconfirm-arrow-height) / 2);
+}
+.wb-popconfirm__panel[data-placement^='left'][data-placement$='-end'] .wb-popconfirm__arrow,
+.wb-popconfirm__panel[data-placement^='right'][data-placement$='-end'] .wb-popconfirm__arrow {
+  top: auto;
+  bottom: calc(var(--wb-spacing-component-lg) - var(--popconfirm-arrow-height) / 2);
+}
+.wb-popconfirm__panel[data-placement='top'] .wb-popconfirm__arrow,
+.wb-popconfirm__panel[data-placement='bottom'] .wb-popconfirm__arrow {
+  left: calc(50% - var(--popconfirm-arrow-width) / 2);
+}
+.wb-popconfirm__panel[data-placement='left'] .wb-popconfirm__arrow,
+.wb-popconfirm__panel[data-placement='right'] .wb-popconfirm__arrow {
+  top: calc(50% - var(--popconfirm-arrow-height) / 2);
+}
+

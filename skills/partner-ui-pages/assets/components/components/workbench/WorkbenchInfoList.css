@@ -1,0 +1,10 @@
+
+.wb-info-list { margin: 0; padding: 0; list-style: none; }
+.wb-info-list__item { display: flex; flex-direction: column; gap: var(--wb-spacing-component-sm); padding: var(--wb-spacing-component-sm) 0; border-bottom: var(--wb-asset-wb-info-list-divider-width) solid var(--wb-color-border-separator-subtle); }
+/* Title 14px body-m, confirmed by the user on 2026-11-04. */
+.wb-info-list__title { overflow: hidden; color: var(--wb-color-text-primary); font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); text-decoration: none; text-overflow: ellipsis; white-space: nowrap; }
+.wb-info-list__title:hover { color: var(--wb-color-link-hover); }
+.wb-info-list__tags { display: flex; gap: var(--wb-spacing-component-xs); }
+.wb-info-list__time { display: inline-flex; align-items: center; gap: var(--wb-spacing-component-xs); color: var(--wb-color-text-secondary); font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); }
+.wb-info-list__time .workbench-icon { flex: 0 0 auto; }
+

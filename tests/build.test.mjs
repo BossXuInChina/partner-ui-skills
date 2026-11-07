@@ -236,7 +236,7 @@ test("self-contained archives keep source and lockfiles while excluding installe
     writeFileSync(resolve(root, "shared/gallery/assets/app.js"), "export {};");
     mkdirSync(resolve(root, "gallery"), { recursive: true });
     writeFileSync(resolve(root, "gallery/serve.mjs"), "export {};");
-    for (const skill of ["partner-ui-pages", "partner-ui-vue3"]) {
+    for (const skill of ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review"]) {
       const folder = resolve(root, "skills", skill);
       mkdirSync(resolve(folder, "assets/harness/src"), { recursive: true });
       writeFileSync(resolve(folder, "SKILL.md"), "# Skill");
@@ -258,7 +258,7 @@ test("self-contained archives keep source and lockfiles while excluding installe
       }
     }
     packageSkills(root, json(resolve(root, "source.lock.json")));
-    for (const skill of ["partner-ui-pages", "partner-ui-vue3"]) {
+    for (const skill of ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review"]) {
       const members = JSON.parse(
         execFileSync(
           "python3",

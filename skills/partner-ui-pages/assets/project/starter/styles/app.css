@@ -1,0 +1,21 @@
+/* 仅设置页面组合和局部组件布局；保留包内组件的视觉契约。 */
+body { margin: 0; }
+.demo-shell { min-height: 100vh; }
+.demo-header, .demo-page-head, .demo-nav { display: flex; align-items: center; gap: var(--wb-spacing-component-lg); flex-wrap: wrap; }
+.demo-header { padding: var(--wb-spacing-component-lg) var(--wb-spacing-layout-section-gap); background: var(--wb-color-surface-card-default); border-bottom: 1px solid var(--wb-color-border-separator); }
+.demo-nav { flex: 1; }
+.demo-layout { display: grid; grid-template-columns: minmax(0, 1fr); }
+.demo-layout--assistant { grid-template-columns: minmax(0, 1fr) minmax(360px, 400px); }
+.demo-main { min-width: 0; padding: var(--wb-spacing-layout-section-gap); }
+.demo-page-head { justify-content: space-between; }
+.demo-page-head h1, .demo-main h1, .demo-main h2 { margin: 0; }
+.demo-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--wb-spacing-component-lg); }
+.demo-metric { display: flex; flex-direction: column; gap: var(--wb-spacing-component-sm); }
+.demo-field { display: flex; flex-direction: column; gap: var(--wb-spacing-component-sm); max-width: 520px; }
+.demo-assistant { height: calc(100vh - 100px); min-height: 560px; position: sticky; top: 0; }
+.demo-footer { padding: var(--wb-spacing-component-lg) var(--wb-spacing-layout-section-gap); }
+@media (max-width: 1000px) {
+  .demo-layout--assistant { grid-template-columns: minmax(0, 1fr); }
+  .demo-assistant { height: 640px; position: static; }
+  .demo-metrics { grid-template-columns: minmax(0, 1fr); }
+}

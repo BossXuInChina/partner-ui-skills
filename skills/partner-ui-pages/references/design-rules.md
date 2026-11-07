@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 设计规则
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -112,7 +112,7 @@ id：`wb-breadcrumb-rule-3` · must / confirmed
 
 id：`wb-button-height` · default / confirmed
 
-默认高度32px；填充按钮36px用于全局操作，28px用于复合组件的紧凑操作。尺寸选择与文字字号分别判断。
+默认高度32px；填充按钮36px用于全局操作，28px用于复合组件的紧凑操作。尺寸选择与文字字号分别判断。文字按钮另有可选的无容器变体 textLayout=inline，高度随文字行高。
 
 **适用条件**：使用按钮
 
@@ -170,7 +170,7 @@ id：`wb-button-equal-width` · recommendation / confirmed
 
 id：`wb-button-icon` · must / confirmed
 
-填充按钮L/M/S前置图标分别14/14/12px，图文间距4px。文字与下拉按钮尾部箭头统一10px、间距6px。纯图标按钮32/24px容器分别使用20/14px图标，并提供可访问名称。
+填充按钮L/M/S前置图标分别14/14/12px，图文间距4px。文字与下拉按钮尾部箭头统一10px、间距6px。纯图标按钮默认无容器，贴合实际图标；导航等需要标准点击区域时使用 iconLayout=container，32/24px容器分别使用20/14px图标；均提供可访问名称。
 
 **适用条件**：使用按钮
 
@@ -186,7 +186,7 @@ id：`wb-button-semantics` · must / confirmed
 
 id：`wb-button-state-mapping` · must / confirmed
 
-以Pixso组件变体为准：主要按钮Default/Pressed使用color-brand，Hover使用color-brand-hover，Disabled使用color-brand-disabled。次要按钮Hover/Pressed均保持color-fill-subtle-default，并将1px描边改为color-border-hover。图标按钮Hover/Pressed均透明，分别使用color-icon-hover和color-icon-active。操作类文字按钮使用color-text-action、color-text-action-hover、color-text-action-active、color-text-action-disabled；下钻类默认color-text-primary、禁用color-text-disabled，Hover/Pressed沿用文字操作状态链，aria-expanded=true持续使用active色。文字与下拉按钮箭头均10px、间距6px；纯图标按钮32/24px分别配20/14px图标。
+以Pixso组件变体为准：主要按钮Default/Pressed使用color-brand，Hover使用color-brand-hover，Disabled使用color-brand-disabled。次要按钮Hover/Pressed均保持color-fill-subtle-default，并将1px描边改为color-border-hover。图标按钮Hover/Pressed均透明，分别使用color-icon-hover和color-icon-active。操作类文字按钮使用color-text-action、color-text-action-hover、color-text-action-active、color-text-action-disabled；下钻类默认color-text-primary、禁用color-text-disabled，Hover/Pressed沿用文字操作状态链，aria-expanded=true持续使用active色。文字与下拉按钮箭头均10px、间距6px；纯图标按钮默认贴合实际图标，container变体32/24px分别配20/14px图标。
 
 **适用条件**：精确状态色映射；描边粗细；文字图标尺寸
 
@@ -202,11 +202,19 @@ Button提供主要、次要、文字、图标及次要下拉触发入口；下�
 
 id：`wb-button-padding` · must / confirmed
 
-填充按钮L/M/S左右内边距20/16/12px；文字按钮各尺寸均8px；图标按钮通过固定正方形容器居中。
+填充按钮L/M/S左右内边距20/16/12px；文字按钮各尺寸均8px，无容器变体 textLayout=inline 为0；图标按钮默认贴合图标，container变体通过固定正方形容器居中。
 
 **适用条件**：使用按钮
 
 **包内引用**：["wb-button-height"]
+
+### 文字下钻入口与点击区域
+
+id：`wb-button-text-drilldown-usage` · recommendation / confirmed
+
+文字按钮默认使用标准容器（32/28px高、左右8px）；卡片或页签头部的操作、下钻入口可显式使用 textLayout=inline，仅占文字行高且无内边距。更多等操作使用 intent=drilldown、drilldown=more，保留键盘和焦点反馈；真实地址跳转使用链接组件。
+
+**适用条件**：卡片或页签头部下钻入口
 
 ## [wb-button-radio-group](workbench/wb-button-radio-group.md)
 
@@ -240,7 +248,7 @@ id：`wb-button-radio-group-rule-3` · must / confirmed
 
 id：`wb-card-appearance` · must / confirmed
 
-display-white为白底无描边无阴影，display-tinted为灰底无描边无阴影，operation为白底1px描边无阴影，navigation为白底无描边并使用交互阴影。
+display-white为白底无描边无阴影；display-tinted使用color-surface-card-tinted浅灰表面且无描边无阴影；operation为白底1px描边无阴影；navigation为白底无描边并使用交互阴影。页面背景color-surface-page不作为灰色卡片默认背景。
 
 **适用条件**：选择Card外观
 
@@ -316,7 +324,7 @@ Carousel v1 每次只展示一个内容项，宽度由父页面容器决定，�
 
 id：`wb-carousel-rule-2` · must / confirmed
 
-v-model 使用零基索引；存在多个内容项时每5秒循环，悬停、焦点、页面不可见和减少动态效果偏好会暂停。箭头、分页点、ArrowLeft、ArrowRight、Home 和 End 均可切换；首尾循环。分页指示器位于内容区内部，距底部24px；可见标记间距恒为12px。每个轨道恰有一个16×8px选中胶囊，其余为8×8px圆点，因此内容总宽度在切换时不变：三项始终为56px。圆形翻页器定义为低强调导航图形：默认圆底为白色80%，悬停和按下为白色100%，禁用为白色50%；箭头默认使用 color-icon-secondary，悬停和按下使用 color-icon-primary，禁用使用 color-icon-disabled，并采用16px左右箭头图标。
+v-model 使用零基索引；存在多个内容项时每5秒循环，悬停、焦点、页面不可见和减少动态效果偏好会暂停。箭头、分页点、ArrowLeft、ArrowRight、Home 和 End 均可切换；首尾循环。分页指示器默认叠加在内容区内部，距底部24px；选择 below 变体时位于内容下方，间隔16px；可见标记间距恒为12px。每个轨道恰有一个16×8px选中胶囊，其余为8×8px圆点，因此内容总宽度在切换时不变：三项始终为56px。圆形翻页器定义为低强调导航图形：默认圆底为白色80%，悬停和按下为白色100%，禁用为白色50%；箭头默认使用 color-icon-secondary，悬停和按下使用 color-icon-primary，禁用使用 color-icon-disabled，并采用16px左右箭头图标。
 
 **适用条件**：循环展示多个图片或内容容器
 
@@ -337,6 +345,34 @@ id：`wb-cascader-overlay-radius-20261025` · must / confirmed
 级联主面板主体使用radius-md（6px）；触发器与选项行保持各自既有圆角。+N明细依据tagRemovable区分：可删除时为radius-md（6px）的Popover，静态时为radius-sm（4px）的Tooltip。保留4px标签内容内距与间距、宽度收紧、箭头锚定和删除交互。
 
 **适用条件**：Cascader面板或标签溢出明细
+
+## [wb-certification-details](workbench/wb-certification-details.md)
+
+### 只读认证事实
+
+id：`wb-certification-details-structure` · must / confirmed
+
+白色内卡，16px内边距、6px圆角，12px字号；首行为认证类型（alert状态subtle标签）与归属代表处/系统部，第二行为认证开始、结束、能力复核三项日期；宽度不足时自动换行，长文本断行。
+
+**适用条件**：认证详情
+
+## [wb-chart](workbench/wb-chart.md)
+
+### 图表类型与数据合同
+
+id：`wb-chart-rule-1` · must / confirmed
+
+type支持bar/line/area/bar-horizontal/donut/pie/gauge/radar。直角坐标图使用categories+series[{name,data,type?,stack?,axis?,color?}]，同stack堆叠、axis=right使用右轴；环形与饼图使用series[{name,value,color?}]；仪表使用value/min/max，可选segments[{to,color}]分段色带与scaleLabels刻度；雷达使用indicators[{name,max}]与series[{name,data}]。
+
+**适用条件**：看板图表
+
+### 颜色与可访问
+
+id：`wb-chart-rule-2` · must / confirmed
+
+默认系列色按登记调色板循环，仅在业务需要时用series.color覆盖。图表整体为role=img并提供ariaLabel；关键数值同时在页面文字中呈现，悬浮提示不是唯一信息来源。
+
+**适用条件**：看板图表
 
 ## [wb-checkbox](workbench/wb-checkbox.md)
 
@@ -471,6 +507,10 @@ id：`wb-company-profile-shell-content-ownership` · must / confirmed
 Block 提供公司身份、导航、一级／二级页签和内容 Card；页签内容、权限与业务数据由调用方通过插槽和事件提供。
 
 **适用条件**：同一公司下多类资料维护
+
+## [wb-content-section](workbench/wb-content-section.md)
+
+包内未提供规则；不补写设计结论。
 
 ## [wb-date-picker](workbench/wb-date-picker.md)
 
@@ -612,6 +652,34 @@ id：`wb-empty-state-content` · must / confirmed
 
 **适用条件**：使用空状态；empty state；EmptyState
 
+## [wb-event-calendar](workbench/wb-event-calendar.md)
+
+### 日期面板与当日列表
+
+id：`wb-event-calendar-composition` · must / confirmed
+
+由DatePicker面板模式（inline、fluid、flatInline、showInput=false、dateMarkers、showEmptyMarkers）与当日日程列表组合；有日程日期显示品牌色圆点，其余为灰色圆点；圆点6px、位于日期控件下方4px，上一行圆点到下一行控件12px。
+
+**适用条件**：事件日历
+
+### 收起与日程列表
+
+id：`wb-event-calendar-agenda` · must / confirmed
+
+收起条高32px、距日历8px，文字与箭头居中，阴影只在收起条下方；日程列表距收起条16px，使用组件滚动条和subtle分隔线；每项标题14px regular与分类标签，时间与地点16px图标、14px文字、4px间距。点击日程触发open，业务跳转由宿主处理。 时间使用用户确认的「首页 时间/time」原始16px图标。地点使用「定位/location」原始16px图标。
+
+**适用条件**：事件日历
+
+## [wb-expand-card](workbench/wb-expand-card.md)
+
+### 摘要头与展开内容
+
+id：`wb-expand-card-structure` · must / confirmed
+
+浅灰背景（surface-card-tinted），头部上下8px、左右16px内边距：底座图标（建议PedestalIcon 28px）、标题（headline-xs）、右侧12px下箭头按钮；展开内容同样左右16px，展开/收起使用高度过渡且首帧不跳动，减少动效时关闭过渡。
+
+**适用条件**：展开卡片
+
 ## [wb-feedback-dialog](workbench/wb-feedback-dialog.md)
 
 ### 用途与边界
@@ -649,6 +717,16 @@ id：`wb-feedback-dialog-rule-3` · must / confirmed
 action 是点击意图通知，不等待事件监听器返回值。需要等待业务请求请使用 actionHandler，成功后再执行 beforeClose。处理期间防重复，失败保持上下文并交由调用方展示错误。
 
 **适用条件**：使用反馈对话框 Feedback Dialog
+
+## [wb-filter-chips](workbench/wb-filter-chips.md)
+
+### 可点击标签单选
+
+id：`wb-filter-chips-selection` · must / confirmed
+
+以可交互Tag表达单选筛选，选中态使用Tag selected；带数量时显示为“名称(数量)”；选项自动换行，间距8px，不收纳为更多。
+
+**适用条件**：业务筛选
 
 ## [wb-floating-button](workbench/wb-floating-button.md)
 
@@ -688,6 +766,10 @@ id：`wb-floating-button-rule-3` · must / confirmed
 评分支持方向键、Home/End和单一Tab入口；ratings可外部初始化、修改、清空。禁用项不打开气泡或触发评分。
 
 **适用条件**：使用悬浮按钮 FloatingButton
+
+## [wb-followup-rows](workbench/wb-followup-rows.md)
+
+包内未提供规则；不补写设计结论。
 
 ## [wb-footer](workbench/wb-footer.md)
 
@@ -746,6 +828,16 @@ FormItem内Select与日期选择器填满控件槽，独立使用保留自身默
 ## [wb-image-upload](workbench/wb-image-upload.md)
 
 包内未提供规则；不补写设计结论。
+
+## [wb-info-list](workbench/wb-info-list.md)
+
+### 标题/标签/时间三层
+
+id：`wb-info-list-structure` · must / confirmed
+
+每项依次为：标题链接（14px body-m，单行省略）、subtle状态标签（small）、时间行（16px时钟图标+14px文字，间距4px，垂直居中）；三层间距8px，项上下8px，项间subtle分隔线。 时间使用用户确认的「首页 时间/time」原始16px图标。
+
+**适用条件**：信息列表
 
 ## [wb-information-card](workbench/wb-information-card.md)
 
@@ -1249,6 +1341,16 @@ id：`wb-modal-rule-16` · must / confirmed
 
 **适用条件**：Modal首版
 
+## [wb-more-action](workbench/wb-more-action.md)
+
+### 无容器文字下钻
+
+id：`wb-more-action-style` · must / confirmed
+
+使用Button appearance=text、intent=drilldown、drilldown=more与textLayout=inline：仅占文字行高、无内边距，右侧箭头沿用Button规则；保留悬浮、按下、焦点与禁用状态。
+
+**适用条件**：卡片或页签头部下钻入口
+
 ## [wb-nested-confirmation](workbench/wb-nested-confirmation.md)
 
 ### 顶层对话框接收关闭意图
@@ -1368,9 +1470,19 @@ id：`wb-pagination-size-menu-selection` · must / confirmed
 
 id：`wb-pedestal-icon-native-artwork` · must / confirmed
 
-使用WorkbenchPedestalIcon按登记名称选择完整底托图标；保留原始40/48px设计框、SVG绘制、配色、透明留白与导出外溢，禁止缩放、改色或自行拼装底托和主体。
+使用 WorkbenchPedestalIcon 按登记名称选择完整原图；默认保留原始设计框及导出外溢。用户确认的 size=28 或 48 可适配完整原始画布，不复制资源，不改变 SVG 绘制和颜色。
 
 **适用条件**：底托图标；pedestal icon；WorkbenchPedestalIcon
+
+## [wb-policy-links](workbench/wb-policy-links.md)
+
+### 文档图标+名称+右箭头
+
+id：`wb-policy-links-structure` · must / confirmed
+
+每项为原生链接：14px文件图标、14px文字、12px右箭头，图文间距4px；多项横向排列并换行，行间距8px、项间距24px；整体为带可访问名称的nav。
+
+**适用条件**：政策链接
 
 ## [wb-popconfirm](workbench/wb-popconfirm.md)
 
@@ -1521,6 +1633,10 @@ id：`wb-rating-rule-2` · must / confirmed
 descriptionMode支持none/text/numeric/per-star，说明位于右侧或下方；name存在时通过隐藏输入参与FormData。disabled阻止选择并使用禁用图标色；readOnly阻止点击和键盘选择但保留正常评分颜色。星形复用WorkbenchIcon收藏实心图标，在13px槽内等比渲染；通过colorSplit接口在单个SVG内以同位置色标沿中心线硬分色，避免独立裁切与叠层在浏览器缩放时产生接缝。
 
 **适用条件**：评分伴随文字或表单提交
+
+## [wb-readonly-fields](workbench/wb-readonly-fields.md)
+
+包内未提供规则；不补写设计结论。
 
 ## [wb-scrollbar](workbench/wb-scrollbar.md)
 
@@ -2106,6 +2222,16 @@ id：`wb-tabs-rule-3` · must / confirmed
 
 **适用条件**：同一上下文内平级内容切换
 
+## [wb-tabs-header](workbench/wb-tabs-header.md)
+
+### 贯穿线页签与右侧操作
+
+id：`wb-tabs-header-structure` · must / confirmed
+
+使用Tabs的rail（贯穿线）变体，size为large（一级）或small（卡片内二级）；数量角标以Badge corner放在页签文字右上角；右侧extra插槽放文字下钻等操作，垂直居中，不占用页签宽度。
+
+**适用条件**：卡片页签头
+
 ## [wb-tag](workbench/wb-tag.md)
 
 ### 展示类归属
@@ -2225,6 +2351,10 @@ id：`wb-top-nav-menu-radius-20261025` · must / confirmed
 Top Navigation普通菜单主体与Mega菜单主体统一使用Foundation radius-md（6px）；站点切换面板及站点条目保持原值，菜单触发器保持原值。
 
 **适用条件**：显示Top Navigation语言、账户、更多或Mega菜单
+
+## [wb-transaction-stage-progress](workbench/wb-transaction-stage-progress.md)
+
+包内未提供规则；不补写设计结论。
 
 ## [wb-transfer](workbench/wb-transfer.md)
 

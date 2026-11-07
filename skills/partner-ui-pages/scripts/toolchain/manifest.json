@@ -1,0 +1,13 @@
+{
+  "typescript": "5.9.3",
+  "vue": "3.5.42",
+  "files": {
+    "typescript.cjs": "6ca55f037bebd061d3b1244ea6a2af5e3a26fe955f718697c125a272af7a9c8d",
+    "vue-compiler.cjs": "c840d507a08729f1a2dd5119203c2d8017adcc1affc71d112c60d6d3b58f6cba",
+    "TypeScript-LICENSE.txt": "a7d00bfd54525bc694b6e32f64c7ebcf5e6b7ae3657be5cc12767bce74654a47",
+    "TypeScript-NOTICES.txt": "1af3c68039c57e539422da82a4faada506ce6d0ea6f90e0b699d02dbcdb7a90c",
+    "Vue-LICENSE.txt": "1bb85cc9b13b81ef41c81c51866172fc345e0503c86726a6755b796590b70175",
+    "VueCompiler-NOTICES.txt": "d19d144e00f0ac8582943b30c46ab4c4a0ce2bb17e23bbc0266eccff06d0a779"
+  },
+  "purpose": "Bundled build-time JS tools; not included in demo output. Do not read as authoring context."
+}

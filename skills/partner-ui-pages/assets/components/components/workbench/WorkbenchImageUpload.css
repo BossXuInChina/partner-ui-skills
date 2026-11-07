@@ -1,0 +1,15 @@
+
+.wb-image-upload[data-v-b6ea00e8] { color: var(--wb-color-text-primary); font-family: inherit; font-size: var(--wb-font-body-s-font-size); font-weight: var(--wb-font-body-s-font-weight); line-height: var(--wb-font-body-s-line-height); letter-spacing: var(--wb-font-body-s-letter-spacing); }
+.wb-image-upload__toolbar[data-v-b6ea00e8] { display: flex; align-items: center; flex-wrap: wrap; gap: var(--wb-asset-wb-image-upload-toolbar-gap); margin-bottom: var(--wb-asset-wb-image-upload-list-gap); }
+.wb-image-upload__hint[data-v-b6ea00e8] { margin: 0; color: var(--wb-color-text-secondary); }
+.wb-image-upload__list[data-v-b6ea00e8] { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--wb-asset-wb-image-upload-list-gap); margin: 0; padding: 0; list-style: none; }
+.wb-image-upload__add-item[data-v-b6ea00e8] { flex: none; }
+.wb-image-upload__add[data-v-b6ea00e8] { box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--wb-asset-wb-image-upload-text-gap); width: var(--wb-asset-wb-image-upload-size); height: var(--wb-asset-wb-image-upload-size); padding: 0; border: var(--wb-asset-wb-image-upload-border-width) dashed var(--wb-color-border); border-radius: var(--wb-asset-wb-image-upload-radius); color: var(--wb-color-text-secondary); background: var(--wb-asset-wb-image-upload-add-fill); font-family: inherit; font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); cursor: pointer; }
+.wb-image-upload__add[data-v-b6ea00e8]:hover:enabled { border-color: var(--wb-color-text-secondary); }
+.wb-image-upload__add[data-v-b6ea00e8]:focus-visible { outline: 1px solid var(--wb-color-border-focus); outline-offset: 2px; }
+.wb-image-upload__add[data-v-b6ea00e8]:disabled { color: var(--wb-color-text-disabled); cursor: not-allowed; }
+.wb-image-upload__input[data-v-b6ea00e8] { display: none; }
+.wb-image-upload__error[data-v-b6ea00e8] { margin: var(--wb-asset-wb-image-upload-name-gap) 0 0; color: var(--wb-color-error); }
+.wb-image-upload__announcement[data-v-b6ea00e8] { position: absolute; width: var(--wb-asset-wb-image-upload-sr-size); height: var(--wb-asset-wb-image-upload-sr-size); padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.wb-image-upload__preview[data-v-b6ea00e8] { display: block; max-width: 100%; max-height: var(--wb-asset-wb-image-upload-preview-height); margin: auto; object-fit: contain; }
+

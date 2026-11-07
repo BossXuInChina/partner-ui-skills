@@ -1,0 +1,11 @@
+
+.wb-rating-wrap[data-v-936ffd86] { display: inline-flex; width: fit-content; align-items: center; }
+.wb-rating-wrap.is-right.has-description[data-v-936ffd86] { gap: var(--wb-asset-wb-rating-description-inline-gap); }
+.wb-rating-wrap.is-bottom[data-v-936ffd86] { flex-direction: column; align-items: center; }.wb-rating-wrap.is-bottom.has-description[data-v-936ffd86] { gap: var(--wb-asset-wb-rating-description-block-gap); }
+.wb-rating[data-v-936ffd86] { display: inline-flex; gap: var(--wb-spacing-component-sm); width: fit-content; }.wb-rating:not(.has-per-star-label) .wb-rating__entry[data-v-936ffd86] { display: contents; }.wb-rating.has-per-star-label[data-v-936ffd86] { gap: var(--wb-asset-wb-rating-per-star-group-gap); align-items: flex-start; }
+.wb-rating__entry[data-v-936ffd86] { display: inline-flex; flex-direction: column; align-items: center; gap: var(--wb-asset-wb-rating-description-block-gap); }.wb-rating__item[data-v-936ffd86] { position: relative; display: grid; width: var(--wb-asset-wb-rating-button-size); height: var(--wb-asset-wb-rating-button-size); padding: 0; place-items: center; overflow: hidden; border: 0; border-radius: var(--wb-radius-sm); background: transparent; color: var(--wb-asset-wb-rating-unselected-color); cursor: pointer; }
+.wb-rating__star[data-v-936ffd86] { position: relative; display: inline-flex;  pointer-events: none; }
+.wb-rating__item[data-v-936ffd86]:focus-visible { outline: var(--wb-asset-wb-rating-focus-outline-width) solid var(--wb-color-border-focus); outline-offset: var(--wb-asset-wb-rating-focus-outline-offset); }.wb-rating__item[data-v-936ffd86]:disabled { cursor: not-allowed; color: var(--wb-color-icon-disabled); }
+.wb-rating.is-readonly .wb-rating__item[data-v-936ffd86] { cursor: default; }
+.wb-rating__description[data-v-936ffd86], .wb-rating__label[data-v-936ffd86] { color: var(--wb-color-text-primary); font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); white-space: nowrap; }.wb-rating__label[data-v-936ffd86] { text-align: center; }
+

@@ -1,0 +1,19 @@
+
+.wb-message { --message-icon-space: 0; --message-close-space: 0; display: inline-flex; width: max-content; max-width: min(var(--wb-asset-wb-message-max-width), calc(100vw - var(--wb-spacing-component-lg) * 2)); align-items: flex-start; box-sizing: border-box; padding: var(--wb-spacing-component-md); border-radius: var(--wb-radius-lg); color: var(--wb-color-text-primary); background: var(--wb-color-surface-overlay); box-shadow: var(--wb-shadow-lg); }
+.wb-message.has-icon { --message-icon-space: calc(var(--wb-asset-wb-message-status-icon-size) + var(--wb-spacing-component-sm)); }
+.wb-message.has-close { --message-close-space: calc(var(--message-close-width) + var(--wb-spacing-component-lg)); }
+.wb-message--global { position: fixed; z-index: var(--wb-asset-wb-message-layer); top: var(--wb-asset-wb-message-global-top-offset); left: 50%; transform: translateX(-50%); }
+.wb-message--dialog { max-width: min(var(--wb-asset-wb-message-max-width), calc(100% - var(--wb-asset-wb-scrollbar-scrollbar-width))); position: absolute; z-index: var(--wb-asset-wb-message-dialog-layer); inset-block-start: 0; inset-inline-start: calc(50% - var(--wb-asset-wb-scrollbar-scrollbar-width) / 2); transform: translateX(-50%); }
+.wb-modal__content:has(.wb-message--dialog) { position: relative; overflow: visible; }
+.wb-message__main { display: inline-flex; min-width: 0; max-width: 100%; flex: 1 1 auto; align-items: flex-start; }
+.wb-message.has-icon .wb-message__main { gap: var(--wb-spacing-component-sm); }
+.wb-message__body { display: flex; min-width: 0; max-width: calc(min(var(--wb-asset-wb-message-max-width), calc(100vw - var(--wb-spacing-component-lg) - var(--wb-spacing-component-lg))) - var(--wb-spacing-component-md) - var(--wb-spacing-component-md) - var(--message-icon-space) - var(--message-close-space)); flex: 0 1 auto; align-items: center; flex-wrap: wrap; column-gap: var(--wb-spacing-component-lg); row-gap: var(--wb-spacing-component-sm); }
+.wb-message__icon { display: flex; flex: 0 0 auto; align-items: center; margin-block-start: calc((var(--wb-font-body-m-line-height) - var(--wb-asset-wb-message-status-icon-size)) / 2); }
+.wb-message__copy { min-width: 0; max-width: 100%; flex: 0 1 auto; margin: 0; overflow-wrap: anywhere; font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); }
+.wb-message__link { display: inline-flex; margin-inline-start: var(--wb-spacing-component-sm); white-space: nowrap; }
+.wb-message__checkbox { flex: 0 0 auto; }
+.wb-message__close { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; width: auto; height: var(--wb-font-body-m-line-height); margin-inline-start: var(--wb-spacing-component-lg); padding: 0; border: 0; color: var(--wb-color-icon-primary); background: transparent; cursor: pointer;  }
+.wb-message__close:hover { color: var(--wb-color-icon-hover); }
+.wb-message__close:active { color: var(--wb-color-icon-active); }
+.wb-message__close:focus-visible { outline: 1px solid var(--wb-color-border-focus); outline-offset: 2px; }
+

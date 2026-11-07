@@ -1,0 +1,5 @@
+
+.workspace-smart-icon[data-v-22ace8b0] { display:inline-flex; align-items:center; justify-content:center; flex:none; width:var(--partner-ai-smart-icon-size); height:var(--partner-ai-smart-icon-size); opacity:1; }
+.workspace-smart-icon > img[data-v-22ace8b0],.workspace-smart-icon[data-v-22ace8b0] svg { display:block; width:var(--partner-ai-smart-icon-artwork-size); height:var(--partner-ai-smart-icon-artwork-size); object-fit:contain; }
+.workspace-smart-icon__paint[data-v-22ace8b0] { width:100%; height:100%; background:var(--partner-ai-smart-icon-gradient); }
+

@@ -1,0 +1,21 @@
+
+.wb-popover { display: inline-flex; }
+.wb-popover__panel { --popover-arrow-width: var(--wb-asset-wb-popover-arrow-width); --popover-arrow-height: var(--wb-asset-wb-popover-arrow-height); --popover-arrow-overlap: var(--wb-asset-wb-popover-arrow-overlap); --popover-trigger-gap: var(--wb-asset-wb-popover-trigger-gap); box-sizing: border-box; position: fixed; z-index: 40; top: var(--popover-top, -9999px); left: var(--popover-left, -9999px); width: max-content; max-width: min(var(--wb-asset-wb-popover-max-width), calc(100vw - 2 * var(--wb-spacing-component-xs))); padding: var(--wb-spacing-component-lg); border-radius: var(--wb-radius-md); background: var(--wb-color-surface-overlay); box-shadow: var(--wb-shadow-lg); color: var(--wb-color-text-primary); }
+.wb-popover__title { margin: 0 0 var(--wb-spacing-component-sm); font-size: var(--wb-font-headline-s-font-size); font-weight: var(--wb-font-headline-s-font-weight); line-height: var(--wb-font-headline-s-line-height); letter-spacing: var(--wb-font-headline-s-letter-spacing); }
+.wb-popover__content { font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); }
+.wb-popover__panel.has-title .wb-popover__content { color: var(--wb-color-text-secondary); }
+.wb-popover__content :first-child { margin-top: 0; }.wb-popover__content :last-child { margin-bottom: 0; }
+.wb-popover__arrow { position: absolute; display: block; width: var(--popover-arrow-width); height: var(--popover-arrow-height); overflow: visible; }
+.wb-popover__panel[data-placement^='top'] .wb-popover__arrow { bottom: calc(-1 * var(--popover-arrow-height) + var(--popover-arrow-overlap)); }
+.wb-popover__panel[data-placement^='bottom'] .wb-popover__arrow { top: calc(-1 * var(--popover-arrow-height) + var(--popover-arrow-overlap)); transform: rotate(180deg); }
+.wb-popover__panel[data-placement^='left'] .wb-popover__arrow { right: calc(-1 * var(--popover-arrow-height) + var(--popover-arrow-overlap)); transform: rotate(-90deg); transform-origin: center; }
+.wb-popover__panel[data-placement^='right'] .wb-popover__arrow { left: calc(-1 * var(--popover-arrow-height) + var(--popover-arrow-overlap)); transform: rotate(90deg); transform-origin: center; }
+.wb-popover__panel[data-placement^='top'][data-placement$='-start'] .wb-popover__arrow, .wb-popover__panel[data-placement^='bottom'][data-placement$='-start'] .wb-popover__arrow { left: calc(var(--wb-spacing-component-lg) - var(--popover-arrow-width) / 2); }
+.wb-popover__panel[data-placement^='top'][data-placement$='-end'] .wb-popover__arrow, .wb-popover__panel[data-placement^='bottom'][data-placement$='-end'] .wb-popover__arrow { right: calc(var(--wb-spacing-component-lg) - var(--popover-arrow-width) / 2); }
+.wb-popover__panel[data-placement^='left'][data-placement$='-start'] .wb-popover__arrow { right: calc(-1 * var(--popover-arrow-height) + var(--popover-arrow-overlap)); top: calc(var(--wb-spacing-component-lg) - var(--popover-arrow-height) / 2); }
+.wb-popover__panel[data-placement^='left'][data-placement$='-end'] .wb-popover__arrow { right: calc(-1 * var(--popover-arrow-height) + var(--popover-arrow-overlap)); top: auto; bottom: calc(var(--wb-spacing-component-lg) - var(--popover-arrow-height) / 2); }
+.wb-popover__panel[data-placement^='right'][data-placement$='-start'] .wb-popover__arrow { left: calc(-1 * var(--popover-arrow-height) + var(--popover-arrow-overlap)); top: calc(var(--wb-spacing-component-lg) - var(--popover-arrow-height) / 2); }
+.wb-popover__panel[data-placement^='right'][data-placement$='-end'] .wb-popover__arrow { left: calc(-1 * var(--popover-arrow-height) + var(--popover-arrow-overlap)); top: auto; bottom: calc(var(--wb-spacing-component-lg) - var(--popover-arrow-height) / 2); }
+.wb-popover__panel[data-placement='top'] .wb-popover__arrow, .wb-popover__panel[data-placement='bottom'] .wb-popover__arrow { left: var(--popover-arrow-left, calc(50% - var(--popover-arrow-width) / 2)); }
+.wb-popover__panel[data-placement='left'] .wb-popover__arrow, .wb-popover__panel[data-placement='right'] .wb-popover__arrow { top: calc(50% - var(--popover-arrow-height) / 2); }
+

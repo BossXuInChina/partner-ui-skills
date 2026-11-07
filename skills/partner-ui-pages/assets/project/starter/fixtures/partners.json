@@ -1,0 +1,5 @@
+[
+  { "id": "P-001", "name": "示范伙伴一", "region": "华东", "revenue": 1280000, "owner": "张经理" },
+  { "id": "P-002", "name": "示范伙伴二", "region": "华南", "revenue": 960000, "owner": "李经理" },
+  { "id": "P-003", "name": "示范伙伴三", "region": "华北", "revenue": 740000, "owner": "王经理" }
+]

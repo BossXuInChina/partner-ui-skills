@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 时间轴 Timeline — `WorkbenchTimeline`
 
 资产：`wb-timeline` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -265,7 +265,7 @@ const items = [{ id: 'created', time: '09:00', title: '订单已创建', descrip
 
 ### 设计结构与排版
 
-items提供时间、标题、描述及可选图像等数据；nodeType选择点或图标节点。分区插槽可覆盖节点、时间、图片、标题和描述内容。
+items提供时间、标题、描述及可选图像等数据；nodeType选择点或图标节点。分区插槽可覆盖节点、时间、图片、标题和描述内容。时间轴填满父容器可用宽度，正文只在空间不足时自然换行；182px仅为规范样张宽度，不作为业务宽度上限。
 
 ### 交互与键盘
 

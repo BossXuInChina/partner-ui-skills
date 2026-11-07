@@ -1,0 +1,124 @@
+{
+  "startedAt": "2026-11-06T13:08:54.652Z",
+  "node": "v24.21.0",
+  "checks": [
+    {
+      "name": "prepare",
+      "command": "/Users/bossxu/.cache/partner-toolchain/node-v24.21.0-darwin-arm64/bin/node ../prepare.mjs",
+      "startedAt": "2026-11-06T13:08:54.652Z",
+      "endedAt": "2026-11-06T13:08:54.700Z",
+      "durationMs": 48,
+      "exitCode": 0,
+      "log": "checks/prepare.log"
+    },
+    {
+      "name": "install",
+      "command": "pnpm install --frozen-lockfile",
+      "startedAt": "2026-11-06T13:08:54.700Z",
+      "endedAt": "2026-11-06T13:08:55.524Z",
+      "durationMs": 824,
+      "exitCode": 0,
+      "log": "checks/install.log"
+    },
+    {
+      "name": "browser-prepare",
+      "command": "pnpm exec playwright install --only-shell chromium",
+      "startedAt": "2026-11-06T13:08:55.524Z",
+      "endedAt": "2026-11-06T13:08:56.424Z",
+      "durationMs": 900,
+      "exitCode": 0,
+      "log": "checks/browser-prepare.log"
+    },
+    {
+      "name": "sources",
+      "command": "/Users/bossxu/.cache/partner-toolchain/node-v24.21.0-darwin-arm64/bin/node ../check-sources.mjs",
+      "startedAt": "2026-11-06T13:08:56.424Z",
+      "endedAt": "2026-11-06T13:08:56.541Z",
+      "durationMs": 118,
+      "exitCode": 0,
+      "log": "checks/sources.log"
+    },
+    {
+      "name": "vue-tree",
+      "command": "pnpm list vue --depth 10 --json",
+      "startedAt": "2026-11-06T13:08:56.542Z",
+      "endedAt": "2026-11-06T13:08:56.846Z",
+      "durationMs": 304,
+      "exitCode": 0,
+      "log": "checks/vue-tree.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "startedAt": "2026-11-06T13:08:56.846Z",
+      "endedAt": "2026-11-06T13:08:59.484Z",
+      "durationMs": 2638,
+      "exitCode": 0,
+      "log": "checks/typecheck.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "startedAt": "2026-11-06T13:08:59.484Z",
+      "endedAt": "2026-11-06T13:09:01.408Z",
+      "durationMs": 1925,
+      "exitCode": 0,
+      "log": "checks/lint.log"
+    },
+    {
+      "name": "format",
+      "command": "pnpm format:check",
+      "startedAt": "2026-11-06T13:09:01.409Z",
+      "endedAt": "2026-11-06T13:09:02.739Z",
+      "durationMs": 1331,
+      "exitCode": 0,
+      "log": "checks/format.log"
+    },
+    {
+      "name": "rules",
+      "command": "pnpm check:rules",
+      "startedAt": "2026-11-06T13:09:02.740Z",
+      "endedAt": "2026-11-06T13:09:03.320Z",
+      "durationMs": 580,
+      "exitCode": 0,
+      "log": "checks/rules.log"
+    },
+    {
+      "name": "unit",
+      "command": "pnpm test:unit",
+      "startedAt": "2026-11-06T13:09:03.320Z",
+      "endedAt": "2026-11-06T13:09:04.644Z",
+      "durationMs": 1324,
+      "exitCode": 0,
+      "log": "checks/unit.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "startedAt": "2026-11-06T13:09:04.644Z",
+      "endedAt": "2026-11-06T13:09:07.438Z",
+      "durationMs": 2794,
+      "exitCode": 0,
+      "log": "checks/build.log"
+    },
+    {
+      "name": "browser",
+      "command": "pnpm test:browser",
+      "startedAt": "2026-11-06T13:09:07.438Z",
+      "endedAt": "2026-11-06T13:09:11.335Z",
+      "durationMs": 3897,
+      "exitCode": 0,
+      "log": "checks/browser.log"
+    },
+    {
+      "name": "smoke",
+      "command": "/Users/bossxu/.cache/partner-toolchain/node-v24.21.0-darwin-arm64/bin/node tests/smoke.mjs",
+      "startedAt": "2026-11-06T13:09:11.335Z",
+      "endedAt": "2026-11-06T13:09:12.854Z",
+      "durationMs": 1519,
+      "exitCode": 0,
+      "log": "checks/smoke.log"
+    }
+  ],
+  "endedAt": "2026-11-06T13:09:12.854Z"
+}

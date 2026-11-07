@@ -407,7 +407,7 @@ test("AI component identities come from the pinned public declarations, excludin
   assert.ok(names.includes("UiDialog"));
   assert.ok(names.includes("ChatPanel"));
   assert.ok(names.includes("AgreementAssistantPanel"));
-  assert.equal(names.length, 16);
+  assert.equal(names.length, 18);
   for (const name of [
     "AiChatPage",
     "AiAssistantWorkspacePage",

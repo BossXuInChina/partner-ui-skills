@@ -1,16 +1,16 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 图标
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
-包内图标：1196。完整可检索条目、别名和每项真实调用 props 见 [icons.json](icons.json)。
+包内图标：1201。完整可检索条目、别名和每项真实调用 props 见 [icons.json](icons.json)。
 
 ## system
 
-数量：890
+数量：895
 
 | 导出 | 公开 props |
 | --- | --- |
@@ -77,7 +77,7 @@
 
 | 导出 | 公开 props |
 | --- | --- |
-| WorkbenchPedestalIcon | {"name":{"type":"String","required":true},"label":{"type":"String","default":""}} |
+| WorkbenchPedestalIcon | {"name":{"type":"String","required":true},"label":{"type":"String","default":""},"size":{"type":"Number","default":{"kind":"undefined"},"validator":{"kind":"unknown","expression":"(value) => [28, 48].includes(value)"}}} |
 
 ```json
 {

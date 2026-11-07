@@ -1,0 +1,16 @@
+
+.workspace-smart-tabs[data-v-74c473d3] { min-width:0; width:100%; }
+.workspace-smart-tabs__viewport[data-v-74c473d3] { display:flex; overflow-x:auto; scrollbar-width:none; }
+.workspace-smart-tabs__viewport[data-v-74c473d3]::-webkit-scrollbar { display:none; }
+.workspace-smart-tabs__list[data-v-74c473d3] { position:relative; display:flex; flex:none; width:max-content; gap:var(--partner-ai-smart-tabs-gap); margin-inline:auto; }
+.workspace-smart-tabs--start .workspace-smart-tabs__list[data-v-74c473d3] { margin-inline:0; }
+.workspace-smart-tabs__tab[data-v-74c473d3] { display:flex; align-items:flex-start; flex:none; height:calc(var(--partner-ai-body-line) + var(--partner-ai-smart-tabs-indicator-gap) + var(--partner-ai-smart-tabs-indicator-height)); padding:0; margin:0; border:0; background:transparent; color:var(--partner-ai-muted); font-size:var(--partner-ai-body-size); line-height:var(--partner-ai-body-line); font-weight:var(--partner-ai-body-weight); white-space:nowrap; cursor:pointer; }
+.workspace-smart-tabs__label[data-v-74c473d3] { display:flex; align-items:center; height:var(--partner-ai-body-line); gap:var(--partner-ai-spacing-sm); }
+.workspace-smart-tabs__tab[aria-selected=true][data-v-74c473d3],.workspace-smart-tabs__tab[data-v-74c473d3]:hover:not(:disabled) { color:var(--partner-ai-text); }
+.workspace-smart-tabs__tab[data-v-74c473d3]:disabled { color:var(--partner-ai-muted); cursor:not-allowed; }
+.workspace-smart-tabs__tab[data-v-74c473d3]:focus-visible { outline:var(--partner-ai-focus-width) solid var(--partner-ai-focus); outline-offset:calc(-1 * var(--partner-ai-focus-width)); border-radius:var(--partner-ai-radius-xs); }
+.workspace-smart-tabs__indicator[data-v-74c473d3] { position:absolute; bottom:0; left:0; height:var(--partner-ai-smart-tabs-indicator-height); border-radius:var(--partner-ai-radius-xs); background:var(--partner-ai-color-brand-700); pointer-events:none; transition:transform var(--partner-ai-smart-tabs-motion-duration) ease-out,width var(--partner-ai-smart-tabs-motion-duration) ease-out; }
+.workspace-smart-tabs__panel[data-v-74c473d3] { min-width:0; }
+.workspace-smart-tabs__panel[data-v-74c473d3]:focus-visible { outline:var(--partner-ai-focus-width) solid var(--partner-ai-focus); outline-offset:calc(-1 * var(--partner-ai-focus-width)); }
+@media(prefers-reduced-motion:reduce) { .workspace-smart-tabs__indicator[data-v-74c473d3] { transition:none; } }
+

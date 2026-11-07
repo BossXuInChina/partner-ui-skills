@@ -40,7 +40,7 @@ test("gallery uses locked metadata, preserves case semantics and renders officia
       /组件图库|Partner UI 图库/,
     );
     const server = await startGalleryServer({ root: outDir, port: 0 });
-    assert.equal(result.metrics.runtime.version, "3.5.13");
+    assert.equal(result.metrics.runtime.version, "3.5.42");
     assert.equal(result.metrics.runtime.vueCopies, 1);
     const baseURL = `http://127.0.0.1:${server.address().port}/`;
     assert.equal((await fetch(new URL("/missing-file", baseURL))).status, 404);
@@ -63,7 +63,7 @@ test("gallery uses locked metadata, preserves case semantics and renders officia
       });
       await page.goto(`http://127.0.0.1:${server.address().port}/`);
       await page.getByText("付款方式将在本月底失效。").first().waitFor();
-      assert.match(await page.locator(".count").innerText(), /76 \/ 76 条资产/);
+      assert.match(await page.locator(".count").innerText(), /91 \/ 91 条资产/);
       assert.equal(
         await page
           .getByRole("link", { name: "Open in Studio ↗" })
@@ -102,7 +102,7 @@ test("gallery uses locked metadata, preserves case semantics and renders officia
         await page.locator("[role=tabpanel]").getAttribute("aria-labelledby"),
         await page.getByRole("tab", { name: "变体与状态" }).getAttribute("id"),
       );
-      assert.match(await page.locator(".panel").innerText(), /props 未推导/);
+      assert.match(await page.locator(".panel").innerText(), /案例未知：包内未声明/);
       await page.getByRole("tab", { name: "使用规范与API" }).focus();
       await page.keyboard.press("Enter");
       assert.equal(

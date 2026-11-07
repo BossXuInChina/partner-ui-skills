@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "scope": "one development smoke per route, two viewport visits",
+  "evidence": false,
+  "routes": [
+    {
+      "path": "/",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        }
+      ]
+    },
+    {
+      "path": "/agreements",
+      "status": "PASS",
+      "visits": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        },
+        {
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "status": "PASS",
+          "errors": [],
+          "ai": {
+            "ai": [],
+            "neutralHosts": [],
+            "scopes": []
+          }
+        }
+      ]
+    }
+  ],
+  "startedAt": "2026-11-06T13:09:11.358Z",
+  "aiComponentNames": [
+    "AgreementAssistantPanel",
+    "AgreementTable",
+    "AiAlert",
+    "AiIcon",
+    "AiIconProvider",
+    "AiSummaryCard",
+    "AiToast",
+    "AssistantHostLayout",
+    "BusinessNavigationCard",
+    "BusinessOverlayHost",
+    "BusinessTable",
+    "ChatPanel",
+    "ConversationHistoryPanel",
+    "UiDialog",
+    "WorkspaceSmartCard",
+    "WorkspaceSmartIcon",
+    "WorkspaceSmartTabs",
+    "WorkspaceSmartTag"
+  ],
+  "devLog": "9:09:11 PM [vite] (client) Re-optimizing dependencies because lockfile has changed\n\n  VITE v7.3.6  ready in 197 ms\n\n  ➜  Local:   http://127.0.0.1:55718/\n",
+  "finishedAt": "2026-11-06T13:09:12.816Z"
+}

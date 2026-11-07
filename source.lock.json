@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
-  "buildDate": "2026-10-31",
-  "runtimeVersion": "1.0.1-dev.20261031.1",
+  "buildDate": "2026-11-06",
+  "runtimeVersion": "1.1.0-dev.20261106.1",
   "releasePolicy": "user-decides",
   "studioBaseURLs": {
     "@workbench/ui-vue3": "http://localhost:4173",
@@ -10,17 +10,17 @@
   "packages": [
     {
       "name": "@workbench/ui-vue3",
-      "version": "0.2.0-prototype.20261031.1",
-      "tarball": "vendor/workbench-ui-vue3-0.2.0-prototype.20261031.1.tgz",
-      "sha256": "ec8ed28188210781fe9d8aab582e41f736a99efc0740a8f6e79deb94e98ba82a",
-      "sourceCommit": "af939228028791e24280015c5d48a35a658d40f3"
+      "version": "0.2.0-prototype.20261106.7",
+      "tarball": "vendor/workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz",
+      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
+      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
     },
     {
       "name": "huawei-partner-ai-ui",
-      "version": "0.3.1-dev.20261031.1",
-      "tarball": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261031.1.tgz",
-      "sha256": "69045605688b022f114788274991a36f3910eeadd92f876e5407b5b7f2cf75d7",
-      "sourceCommit": "8d5f658b9152fecbe954840ac2f52a01c551636f"
+      "version": "0.3.1-dev.20261106.1",
+      "tarball": "vendor/huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz",
+      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
+      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393"
     }
   ],
   "componentsSchemaSha256": "43dfeb418e57f1ab635eafbf5cc6e3c560b6448fc37ecf7b192026ada713faa1"

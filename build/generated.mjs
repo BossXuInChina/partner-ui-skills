@@ -63,7 +63,12 @@ export function checkGenerated(root, files) {
     "skills/partner-ui-vue3/references/workbench",
     "skills/partner-ui-pages/references/ai-ui",
     "skills/partner-ui-vue3/references/ai-ui",
+    "skills/partner-ui-review/references/workbench",
+    "skills/partner-ui-review/references/ai-ui",
     "skills/partner-ui-pages/assets/runtime",
+    "skills/partner-ui-pages/assets/components",
+    "skills/partner-ui-pages/scripts/component-toolchain",
+    "skills/partner-ui-pages/scripts/toolchain",
   ]) {
     for (const name of managedFiles(root, prefix))
       if (!files.has(name))

@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 页签 Tabs — `WorkbenchTabs`
 
 资产：`wb-tabs` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -18,259 +18,11 @@
 
 ## 变体与状态
 
-状态：`supported`。Studio controls, not public component props
+状态：`unsupported`。声明值属于 Studio 案例数据，不自动等于公开组件 props。
 
 [在 Studio 中查看](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants)
 
-| 分组 | 案例 | id | Studio |
-| --- | --- | --- | --- |
-| 组件状态 | 默认 | demoState-default | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 组件状态 | 含禁用项 | demoState-disabled | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 允许拓展 | 关闭 | addable-false | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 允许拓展 | 开启 | addable-true | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 允许关闭基础页签 | 关闭 | closable-false | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 允许关闭基础页签 | 开启 | closable-true | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 预览内容 | 单层页签 | composition-single | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 预览内容 | 卡片两级嵌套 | composition-nested | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 预览内容 | 页面三级嵌套 | composition-page-nested | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 预览内容 | 卡片三级嵌套 | composition-card-nested | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 类型 | 基础页签 | variant-basic | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 类型 | 分割线式页签 | variant-divider | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 类型 | 贯穿线式页签 | variant-rail | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 类型 | 单选块式页签 | variant-segment | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 尺寸 | 小号（默认） | size-small | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-| 尺寸 | 大号 | size-large | [案例](http://localhost:4173/preview/WB-TABS-V1/tabs?view=variants) |
-
-### Studio 案例值（不是 props 映射）
-
-```json
-[
-  {
-    "id": "demoState-default",
-    "group": "组件状态",
-    "label": "默认",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "demoState-disabled",
-    "group": "组件状态",
-    "label": "含禁用项",
-    "controls": {
-      "demoState": "disabled",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "addable-false",
-    "group": "允许拓展",
-    "label": "关闭",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "addable-true",
-    "group": "允许拓展",
-    "label": "开启",
-    "controls": {
-      "demoState": "default",
-      "addable": true,
-      "closable": false,
-      "composition": "single",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "closable-false",
-    "group": "允许关闭基础页签",
-    "label": "关闭",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "closable-true",
-    "group": "允许关闭基础页签",
-    "label": "开启",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": true,
-      "composition": "single",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "composition-single",
-    "group": "预览内容",
-    "label": "单层页签",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "composition-nested",
-    "group": "预览内容",
-    "label": "卡片两级嵌套",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "nested",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "composition-page-nested",
-    "group": "预览内容",
-    "label": "页面三级嵌套",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "page-nested",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "composition-card-nested",
-    "group": "预览内容",
-    "label": "卡片三级嵌套",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "card-nested",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "variant-basic",
-    "group": "类型",
-    "label": "基础页签",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "variant-divider",
-    "group": "类型",
-    "label": "分割线式页签",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "divider",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "variant-rail",
-    "group": "类型",
-    "label": "贯穿线式页签",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "rail",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "variant-segment",
-    "group": "类型",
-    "label": "单选块式页签",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "segment",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "size-small",
-    "group": "尺寸",
-    "label": "小号（默认）",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "basic",
-      "size": "small"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  },
-  {
-    "id": "size-large",
-    "group": "尺寸",
-    "label": "大号",
-    "controls": {
-      "demoState": "default",
-      "addable": false,
-      "closable": false,
-      "composition": "single",
-      "variant": "basic",
-      "size": "large"
-    },
-    "studioPath": "/preview/WB-TABS-V1/tabs?view=variants"
-  }
-]
-```
+unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery.
 
 ### 包内声明
 
@@ -472,6 +224,79 @@
 }
 ```
 
+### 定制画廊来源清单（unsupported）
+
+```json
+{
+  "literalData": {
+    "kinds": [
+      {
+        "id": "basic",
+        "label": "基础"
+      },
+      {
+        "id": "divider",
+        "label": "分割线"
+      },
+      {
+        "id": "rail",
+        "label": "贯穿线"
+      },
+      {
+        "id": "segment",
+        "label": "单选块"
+      }
+    ],
+    "nestedCases": [
+      {
+        "value": "nested",
+        "label": "卡片两级 · 基础 → 单选块",
+        "shortLabel": "嵌套页签",
+        "variant": "basic"
+      },
+      {
+        "value": "page-nested",
+        "label": "页面三级 · 基础 → 分割线 → 单选块",
+        "shortLabel": "页面三级嵌套",
+        "variant": "basic"
+      },
+      {
+        "value": "card-nested",
+        "label": "卡片三级 · 贯穿线 → 分割线 → 单选块",
+        "shortLabel": "卡片三级嵌套",
+        "variant": "rail"
+      }
+    ],
+    "items": [
+      {
+        "value": "summary",
+        "label": "申请摘要"
+      },
+      {
+        "value": "materials",
+        "label": "申请材料"
+      },
+      {
+        "value": "history",
+        "label": "处理记录"
+      }
+    ]
+  },
+  "dynamicBindings": [
+    "nestedSelection",
+    "sizes",
+    "selected"
+  ],
+  "explicitCaseIds": [
+    "'size-' + size"
+  ],
+  "loopExpressions": [
+    "(kind, index) in kinds",
+    "(size, index) in ['small', 'large']"
+  ]
+}
+```
+
 ## 使用场景
 
 包内未提供对应 Studio 路由。
@@ -515,6 +340,7 @@ const tabs = [
 | 名称 | 类型 | 默认 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
 | addable | Boolean | false |  | 显示可新增页签的入口；只支持basic、divider、rail。 |
+| align | String | start | start / center |  |
 | ariaLabel | String | 页签 |  | 页签列表可访问名称。 |
 | items * | Array |  |  | 必填页签数组；value唯一、label提供可访问名称，可选disabled与closable。 |
 | modelValue * | String \| Number |  |  | 当前唯一选中值，必填。 |

@@ -1,0 +1,70 @@
+
+.wb-scrollarea {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+.wb-scrollarea__viewport {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  box-sizing: border-box;
+}
+.wb-scrollarea__viewport::-webkit-scrollbar {
+  display: none;
+}
+.wb-scrollarea__viewport:focus-visible {
+  outline: 2px solid var(--wb-color-border-focus);
+  outline-offset: -2px;
+}
+.wb-scrollarea__content {
+  display: flow-root;
+  min-width: 100%;
+}
+.wb-scrollarea.is-horizontal .wb-scrollarea__content {
+  width: max-content;
+}
+.wb-scrollarea__track {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  width: var(--scrollbar-width);
+  touch-action: none;
+  user-select: none;
+}
+.wb-scrollarea__thumb {
+  position: absolute;
+  width: 100%;
+  height: var(--scrollbar-thumb-length);
+  top: var(--scrollbar-thumb-position);
+  border: var(--scrollbar-safe) solid transparent;
+  box-sizing: border-box;
+  border-radius: var(--wb-radius-full);
+  background: var(--scrollbar-fill);
+  background-clip: padding-box;
+}
+.wb-scrollarea__track:hover .wb-scrollarea__thumb,
+.wb-scrollarea.is-hover .wb-scrollarea__thumb,
+.wb-scrollarea.is-dragging .wb-scrollarea__thumb {
+  border-width: var(--scrollbar-safe-hover);
+  background-color: var(--wb-color-scrollbar-thumb-fill-hover);
+}
+.wb-scrollarea.is-horizontal .wb-scrollarea__track {
+  inset-block-start: auto;
+  inset-inline-start: 0;
+  width: auto;
+  height: var(--scrollbar-width);
+}
+.wb-scrollarea.is-horizontal .wb-scrollarea__thumb {
+  height: 100%;
+  width: var(--scrollbar-thumb-length);
+  left: var(--scrollbar-thumb-position);
+  top: 0;
+}
+.wb-scrollarea.is-horizontal .wb-scrollarea__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+

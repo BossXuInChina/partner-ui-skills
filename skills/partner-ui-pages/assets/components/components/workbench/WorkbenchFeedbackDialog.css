@@ -1,0 +1,77 @@
+
+.wb-modal:has(.feedback-dialog__message--with-icon) .wb-modal__header {
+  display: grid;
+  grid-template-columns: var(--wb-asset-wb-feedback-dialog-status-icon-size) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--wb-spacing-component-sm);
+}
+
+.wb-modal:has(.feedback-dialog__message--with-icon) .wb-modal__header::before,
+.wb-modal:has(.feedback-dialog__message--with-icon) .wb-modal__header::after {
+  width: var(--wb-asset-wb-feedback-dialog-status-icon-size);
+  height: var(--wb-asset-wb-feedback-dialog-status-icon-size);
+  grid-area: 1 / 1;
+  align-self: center;
+}
+
+.wb-modal:has(.feedback-dialog__message--with-icon) .wb-modal__title,
+.wb-modal:has(.feedback-dialog__message--with-icon) .wb-modal__close {
+  align-self: center;
+}
+
+.wb-modal:has(.feedback-dialog__message--with-icon) .wb-modal__header::before {
+  content: '';
+}
+
+.wb-modal:has(.feedback-dialog__message--with-icon) .feedback-dialog__status-icon {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: calc(var(--wb-spacing-layout-container-block) + (var(--wb-font-headline-s-line-height) - var(--wb-asset-wb-feedback-dialog-status-icon-size)) / 2);
+  inset-inline-start: var(--wb-spacing-layout-container-inline);
+  display: flex;
+  width: var(--wb-asset-wb-feedback-dialog-status-icon-size);
+  height: var(--wb-asset-wb-feedback-dialog-status-icon-size);
+  align-items: center;
+}
+
+.feedback-dialog__message {
+  color: var(--wb-color-text-secondary);
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+  white-space: pre-line;
+}
+
+.feedback-dialog__actions {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--wb-spacing-component-lg);
+}
+
+.feedback-dialog__message--with-icon,
+.feedback-dialog__actions--with-icon {
+  padding-inline-start: calc(var(--wb-asset-wb-feedback-dialog-status-icon-size) + var(--wb-spacing-component-sm));
+}
+
+.wb-modal:has(.feedback-dialog__message) .wb-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.wb-modal:has(.feedback-dialog__message--with-icon) .wb-modal__close {
+  width: auto;
+  height: auto;
+  flex-basis: auto;
+}
+
+
+
+.feedback-dialog__checkbox { min-width: 0; align-self: center; }
+.feedback-dialog__buttons { display: flex; flex: none; align-items: center; justify-content: flex-end; gap: var(--wb-spacing-component-sm); margin-inline-start: auto; }
+

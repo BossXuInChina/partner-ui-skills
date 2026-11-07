@@ -1,0 +1,63 @@
+
+.wb-badge[data-v-ed62a59a] {
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.wb-badge__mark[data-v-ed62a59a] {
+  position: absolute;
+  z-index: 1;
+  display: inline-flex;
+  box-sizing: content-box;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border: var(--wb-asset-wb-badge-border-width) solid var(--wb-color-text-inverse);
+  border-radius: var(--wb-radius-full);
+  background: var(--wb-color-error);
+  color: var(--wb-color-text-inverse);
+  pointer-events: none;
+}
+
+.wb-badge--dot .wb-badge__mark[data-v-ed62a59a] {
+  right: 0.5px;
+  bottom: 0.5px;
+  width: var(--wb-asset-wb-badge-dot-fill-size);
+  height: var(--wb-asset-wb-badge-dot-fill-size);
+}
+
+.wb-badge--number .wb-badge__mark[data-v-ed62a59a] {
+  top: 0;
+  right: var(--wb-asset-wb-badge-number-corner-right-offset);
+  min-width: var(--wb-asset-wb-badge-number-fill-size);
+  height: var(--wb-asset-wb-badge-number-fill-size);
+  padding-inline: var(--wb-asset-wb-badge-number-padding-inline);
+  transform: translateY(-50%);
+}
+
+.wb-badge.is-inline .wb-badge__mark[data-v-ed62a59a] {
+  position: relative;
+  inset: auto;
+  transform: none;
+}
+
+.wb-badge--number .wb-badge__mark.is-single-digit[data-v-ed62a59a] {
+  width: var(--wb-asset-wb-badge-number-fill-size);
+  padding-inline: 0;
+}
+
+.wb-badge__value[data-v-ed62a59a] {
+  position: relative;
+  z-index: 1;
+  color: var(--wb-color-text-inverse);
+  font-family: inherit;
+  font-size: var(--wb-font-body-s-font-size);
+  font-weight: var(--wb-font-body-s-font-weight);
+  line-height: var(--wb-asset-wb-badge-number-line-height);
+  letter-spacing: var(--wb-font-body-s-letter-spacing);
+  white-space: nowrap;
+}
+

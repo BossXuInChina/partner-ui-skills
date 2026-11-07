@@ -1,0 +1,17 @@
+
+.readonly-fields__full-row[data-v-ea6adc83] {
+  grid-column: 1 / -1;
+}
+.readonly-fields[data-v-ea6adc83] {
+  min-width: 0;
+}
+.transaction-field-value[data-v-ea6adc83] {
+  user-select: text;
+}
+.transaction-field-status[data-v-ea6adc83] {
+  display: inline-flex;
+  align-items: center;
+  block-size: var(--wb-font-body-m-line-height);
+  vertical-align: top;
+}
+

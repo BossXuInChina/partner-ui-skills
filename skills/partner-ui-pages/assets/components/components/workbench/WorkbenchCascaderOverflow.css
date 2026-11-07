@@ -1,0 +1,40 @@
+
+.wb-cascader__overflow-bubble[data-v-4e2a1494] {
+  position: fixed;
+  z-index: var(--wb-asset-wb-cascader-layer);
+  width: max-content;
+  max-width: var(--wb-asset-wb-cascader-tip-width);
+  border-radius: var(--wb-radius-sm);
+  box-shadow: var(--wb-shadow-base);
+}
+.wb-cascader__overflow-bubble.is-removable[data-v-4e2a1494] {
+  border-radius: var(--wb-radius-md);
+}
+.wb-cascader__overflow-details[data-v-4e2a1494] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-spacing-component-xs);
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--wb-asset-wb-cascader-inset);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border-radius: inherit;
+  background: var(--wb-color-surface-overlay);
+}
+.wb-cascader__overflow-arrow[data-v-4e2a1494] {
+  position: absolute;
+  display: block;
+  left: var(--cascader-overflow-arrow-left);
+  width: var(--wb-asset-wb-popover-arrow-width);
+  height: var(--wb-asset-wb-popover-arrow-height);
+}
+.wb-cascader__overflow-bubble[data-placement='top'] .wb-cascader__overflow-arrow[data-v-4e2a1494] {
+  bottom: calc(-1 * var(--wb-asset-wb-popover-arrow-height) + var(--wb-asset-wb-popover-arrow-overlap));
+}
+.wb-cascader__overflow-bubble[data-placement='bottom'] .wb-cascader__overflow-arrow[data-v-4e2a1494] {
+  top: calc(-1 * var(--wb-asset-wb-popover-arrow-height) + var(--wb-asset-wb-popover-arrow-overlap));
+  transform: rotate(180deg);
+}
+

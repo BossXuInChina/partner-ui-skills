@@ -1,0 +1,21 @@
+
+.transaction-stage-progress[data-v-07e923f2] {
+  min-width: 0;
+  padding: var(--wb-spacing-component-lg);
+  border-radius: var(--wb-radius-sm);
+  background: var(--wb-color-surface-card-tinted);
+}
+.transaction-stage-progress__title[data-v-07e923f2] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wb-spacing-component-sm);
+  min-width: 0;
+}
+.transaction-stage-progress__label[data-v-07e923f2] {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+

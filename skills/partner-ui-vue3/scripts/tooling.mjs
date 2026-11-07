@@ -11,6 +11,7 @@ export function requireProjectTool(names, project) {
       [
         project,
         process.cwd(),
+        resolve(scripts, ".."),
         resolve(scripts, "../assets/harness"),
         resolve(scripts, "../../.."),
       ]

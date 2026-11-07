@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261031.1 (af939228028791e24280015c5d48a35a658d40f3) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
 
 # 提示条 Alert — `WorkbenchAlert`
 
 资产：`wb-alert` · 类型：`component` · 资产合同版本：`1.1.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261031.1` · commit：`af939228028791e24280015c5d48a35a658d40f3` · dirty：false
+包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -18,433 +18,11 @@
 
 ## 变体与状态
 
-状态：`supported`。Studio controls, not public component props
+状态：`unsupported`。声明值属于 Studio 案例数据，不自动等于公开组件 props。
 
 [在 Studio 中查看](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants)
 
-| 分组 | 案例 | id | Studio |
-| --- | --- | --- | --- |
-| 组件状态 | 信息 | demoState-info | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 组件状态 | 成功 | demoState-success | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 组件状态 | 警告 | demoState-warning | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 组件状态 | 危险 | demoState-danger | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 组件状态 | 高危 | demoState-critical | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 组件状态 | 错误 | demoState-error | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 背景 | 语义浅色 | surface-semantic | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 背景 | Neutral灰色 | surface-neutral | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 使用场景 | 产品级 | placement-product | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 使用场景 | 全局级 | placement-global | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 使用场景 | 页面级 | placement-page | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 使用场景 | 卡片内 | placement-card | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 使用场景 | 弹窗级 | placement-dialog | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 显示图标 | 关闭 | show-icon-false | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 显示图标 | 开启 | show-icon-true | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 显示链接 | 关闭 | show-link-false | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 显示链接 | 开启 | show-link-true | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 显示复选框 | 关闭 | show-checkbox-false | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 显示复选框 | 开启 | show-checkbox-true | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 显示关闭按钮 | 关闭 | show-close-false | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 显示关闭按钮 | 开启 | show-close-true | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 长文本 | 关闭 | long-content-false | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-| 长文本 | 开启 | long-content-true | [案例](http://localhost:4173/preview/WB-ALERT-V1/alert?view=variants) |
-
-### Studio 案例值（不是 props 映射）
-
-```json
-[
-  {
-    "id": "demoState-info",
-    "group": "组件状态",
-    "label": "信息",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "demoState-success",
-    "group": "组件状态",
-    "label": "成功",
-    "controls": {
-      "demoState": "success",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "demoState-warning",
-    "group": "组件状态",
-    "label": "警告",
-    "controls": {
-      "demoState": "warning",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "demoState-danger",
-    "group": "组件状态",
-    "label": "危险",
-    "controls": {
-      "demoState": "danger",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "demoState-critical",
-    "group": "组件状态",
-    "label": "高危",
-    "controls": {
-      "demoState": "critical",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "demoState-error",
-    "group": "组件状态",
-    "label": "错误",
-    "controls": {
-      "demoState": "error",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "surface-semantic",
-    "group": "背景",
-    "label": "语义浅色",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "surface-neutral",
-    "group": "背景",
-    "label": "Neutral灰色",
-    "controls": {
-      "demoState": "info",
-      "surface": "neutral",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "placement-product",
-    "group": "使用场景",
-    "label": "产品级",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "product",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "placement-global",
-    "group": "使用场景",
-    "label": "全局级",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "global",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "placement-page",
-    "group": "使用场景",
-    "label": "页面级",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "placement-card",
-    "group": "使用场景",
-    "label": "卡片内",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "card",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "placement-dialog",
-    "group": "使用场景",
-    "label": "弹窗级",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "dialog",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "show-icon-false",
-    "group": "显示图标",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": false,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "show-icon-true",
-    "group": "显示图标",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "show-link-false",
-    "group": "显示链接",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": false,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "show-link-true",
-    "group": "显示链接",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "show-checkbox-false",
-    "group": "显示复选框",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": false,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "show-checkbox-true",
-    "group": "显示复选框",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "show-close-false",
-    "group": "显示关闭按钮",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": false,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "show-close-true",
-    "group": "显示关闭按钮",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "long-content-false",
-    "group": "长文本",
-    "label": "关闭",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": false,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  },
-  {
-    "id": "long-content-true",
-    "group": "长文本",
-    "label": "开启",
-    "controls": {
-      "demoState": "info",
-      "surface": "semantic",
-      "placement": "page",
-      "show-icon": true,
-      "show-link": true,
-      "show-checkbox": true,
-      "show-close": true,
-      "long-content": true,
-      "previewWidth": 1280
-    },
-    "studioPath": "/preview/WB-ALERT-V1/alert?view=variants"
-  }
-]
-```
+unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery.
 
 ### 包内声明
 
@@ -836,6 +414,44 @@
       }
     }
   ]
+}
+```
+
+### 定制画廊来源清单（unsupported）
+
+```json
+{
+  "literalData": {
+    "labels": {
+      "info": "系统将在本周末进行例行升级。",
+      "success": "新版服务已经发布。",
+      "warning": "当前配置即将到期。",
+      "danger": "部分业务能力将在近期调整。",
+      "critical": "检测到重要安全风险。",
+      "error": "部分服务当前不可用。"
+    }
+  },
+  "dynamicBindings": [
+    "props",
+    "type",
+    "placement",
+    "surface",
+    "dialogVisible",
+    "open",
+    "checked",
+    "message",
+    "body",
+    "typeOptions",
+    "placementOptions",
+    "surfaceOptions",
+    "selectedSurface",
+    "selectedType",
+    "selectedPlacement"
+  ],
+  "explicitCaseIds": [
+    "alert-live"
+  ],
+  "loopExpressions": []
 }
 ```
 
