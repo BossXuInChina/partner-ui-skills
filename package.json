@@ -1,6 +1,6 @@
 {
   "name": "partner-ui-skills",
-  "version": "0.2.0-dev.20261106.1",
+  "version": "0.3.0-dev.20261107.1",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@11.22.0",
@@ -12,25 +12,32 @@
     "build": "node build/consumer-pack.mjs",
     "check:generated": "node build/consumer-pack.mjs --check",
     "verify:lock": "node build/verify-lock.mjs",
-    "test": "node --test tests/build.test.mjs tests/format.test.mjs tests/runtime.test.mjs tests/vue-rules.test.mjs tests/smoke-options.test.mjs tests/harness-route-sizes.test.mjs tests/feature-tools.test.mjs tests/convert-prototype.test.mjs tests/gallery.test.mjs tests/review.test.mjs",
+    "test": "node --test tests/build.test.mjs tests/format.test.mjs tests/runtime.test.mjs tests/vue-rules.test.mjs tests/smoke-options.test.mjs tests/harness-route-sizes.test.mjs tests/feature-tools.test.mjs tests/convert-prototype.test.mjs tests/gallery.test.mjs tests/review.test.mjs tests/project.test.mjs tests/components.test.mjs",
+    "test:projects": "node --test tests/project.test.mjs",
     "test:templates": "node build/test-templates.mjs",
     "verify:harness": "node build/verify-harness.mjs",
     "test:harness-guard": "node --test tests/harness-guard.test.mjs",
     "gallery:serve": "node gallery/serve.mjs",
-    "package:release": "node build/package-release.mjs"
+    "package:release": "node build/package-release.mjs",
+    "test:components": "node --test tests/components.test.mjs"
   },
   "dependencies": {
-    "@workbench/ui-vue3": "file:vendor/workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz",
-    "huawei-partner-ai-ui": "file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz",
-    "vue": "3.5.42",
     "@opentiny/tiny-robot": "0.5.1",
     "@opentiny/tiny-robot-kit": "0.4.0",
+    "@workbench/ui-vue3": "file:vendor/workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz",
     "dompurify": "3.4.17",
-    "markdown-it": "14.3.3"
+    "huawei-partner-ai-ui": "file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz",
+    "markdown-it": "14.3.3",
+    "vue": "3.5.42"
   },
   "devDependencies": {
+    "@vue/compiler-sfc": "3.5.42",
     "esbuild": "0.25.12",
+    "esbuild-wasm": "0.25.12",
+    "fflate": "0.8.3",
+    "less": "4.2.2",
     "playwright": "1.63.0",
+    "postcss": "8.5.6",
     "typescript": "5.9.3"
   }
 }

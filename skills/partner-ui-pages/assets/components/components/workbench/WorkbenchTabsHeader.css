@@ -1,0 +1,5 @@
+
+.wb-tabs-header { position: relative; }
+.wb-tabs-header__tabs { width: 100%; }
+.wb-tabs-header__extra { position: absolute; top: 50%; right: 0; display: flex; align-items: center; gap: var(--wb-spacing-component-md); transform: translateY(-50%); }
+

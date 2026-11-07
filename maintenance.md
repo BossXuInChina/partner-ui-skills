@@ -1,6 +1,6 @@
 # 维护与升级
 
-发布频率由用户决定。本仓只消费公开 tarball，维护仓是组件事实源头；消费参考和图库不能反向成为组件 API 真值。
+发布频率由用户决定。组件参考和图库只消费发布 tarball，维护仓是组件事实源头；消费资料不能反向成为组件 API 真值。按需运行时额外使用 `build/components/sources.lock.json` 声明的源码补充归档：自有包严格对应干净发布的 sourceCommit，TinyRobot 对应 npm 发布记录的 gitHead。归档校验后只在本仓缓存中编译，不读取兄弟 checkout 的实时工作树。
 
 ## 升级一次包
 
@@ -15,6 +15,10 @@
 
 ## 独立交付使用者
 
-在完整 Skill 根查看 skill.json、source.lock.json 和 vendor。原型直接使用离线模板；Vue功能在 assets/harness 冻结安装（保留 workspace/vendor 相对布局）后验证。维护源仓的 package:release 与 T1–T3 位于独立 partner-ui-skills 仓，不要求业务项目复制整套维护工具。
+在完整 Skill 根查看 skill.json、source.lock.json 和 vendor。新建复杂原型默认使用 partner-ui-pages 的 JS 项目模式（Node 22.12+、无 npm install），旧离线模板仍可用；Vue 功能在 assets/harness 冻结安装（保留 workspace/vendor 相对布局）后验证。维护源仓的 package:release 与 T1–T3 位于独立 partner-ui-skills 仓，不要求业务项目复制整套维护工具。
+
+JS 项目工具维护在 Pages/scripts/project，生成编译器和公开 API 索引由 build/project-assets.mjs 管理。修改后执行 pnpm test:projects；它包含独立消费、依赖闭包、失败路径及两种 file:// 交付的实际浏览器旅程。再执行根测试、旧 HTML 模板检查、生成漂移与打包检查。新会话 128k 长程稳定性评估需另行建立基准，不能由静态检查或模块数推断通过。
+
+组件资源由 `build/components/build.mjs` 和 `assets.mjs` 生成，随 `pnpm generate` 更新，随 `pnpm check:generated` 校验。AI 聚合样式的归属合同同时锁住 CSS 和组件源码，改变来源必须复核 `ai-style-owners.json`；不得用当前 Demo 的 DOM 反推、删除组件状态样式。更新后运行 `pnpm test:components`、根测试和旧模板检查；报告源码闭包、真实 file:// 交互、截图对照及未执行的独立 Vue harness/T1–T3，不能相互替代。详见 [组件打包维护说明](build/components/README.md)。
 
 图标只查注册数据，字体由宿主按许可使用。HarmonyOS 字体不得转换、子集化；AI 产品模块不携带字体。图库需要本地 HTTP，node scripts/serve_gallery.mjs 不要求安装依赖。

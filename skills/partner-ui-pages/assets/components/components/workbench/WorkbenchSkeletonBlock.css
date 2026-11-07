@@ -1,0 +1,43 @@
+
+.wb-skeleton-block {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--wb-asset-wb-skeleton-text-height);
+  overflow: hidden;
+  background: var(--wb-color-fill-default);
+}
+.wb-skeleton-block--radius-sm {
+  border-radius: var(--wb-radius-sm);
+}
+.wb-skeleton-block--radius-lg {
+  border-radius: var(--wb-radius-lg);
+}
+.wb-skeleton-block::after {
+  position: absolute;
+  inset: calc(var(--wb-asset-wb-skeleton-shimmer-bleed) * -1);
+  content: '';
+  transform: translateX(-70%);
+  filter: blur(var(--wb-asset-wb-skeleton-shimmer-blur));
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    var(--wb-asset-wb-skeleton-shimmer-color) 50%,
+    transparent 80%
+  );
+}
+.wb-skeleton-block.is-animated::after {
+  animation: wb-skeleton-shimmer var(--wb-asset-wb-skeleton-shimmer-duration) linear infinite;
+}
+@keyframes wb-skeleton-shimmer {
+  to {
+    transform: translateX(70%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wb-skeleton-block.is-animated::after {
+    animation: none;
+    transform: translateX(0);
+  }
+}
+

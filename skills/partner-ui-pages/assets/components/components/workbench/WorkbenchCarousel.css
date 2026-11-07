@@ -1,0 +1,35 @@
+
+.wb-carousel { position: relative; display: grid; width: 100%; min-width: 0; }
+.wb-carousel__viewport { position: relative; min-width: 0; overflow: hidden; }
+.wb-carousel__slide { width: 100%; min-width: 0; }
+.wb-carousel { --carousel-navigation-default-fill: var(--wb-asset-wb-carousel-navigation-default-fill); --carousel-navigation-hover-fill: var(--wb-asset-wb-carousel-navigation-hover-fill); --carousel-navigation-disabled-fill: var(--wb-asset-wb-carousel-navigation-disabled-fill); }
+.wb-carousel__navigation { position: absolute; z-index: 1; top: 50%; display: inline-flex; width: var(--wb-asset-wb-carousel-navigation-size); height: var(--wb-asset-wb-carousel-navigation-size); align-items: center; justify-content: center; padding: 0; border: 0; border-radius: var(--wb-radius-full); background: var(--carousel-navigation-default-fill); color: var(--wb-color-icon-secondary); cursor: pointer; opacity: 0; transform: translateY(-50%); transition: opacity 160ms ease-out, background 160ms ease-out, color 160ms ease-out; }
+.wb-carousel:hover .wb-carousel__navigation, .wb-carousel:focus-within .wb-carousel__navigation { opacity: 1; }
+.wb-carousel__navigation:hover:not(:disabled), .wb-carousel__navigation:active:not(:disabled) { background: var(--carousel-navigation-hover-fill); color: var(--wb-color-icon-primary); }
+.wb-carousel__navigation:disabled { background: var(--carousel-navigation-disabled-fill); color: var(--wb-color-icon-disabled); }
+.wb-carousel__navigation:focus-visible, .wb-carousel__indicator:focus-visible { outline: 2px solid var(--wb-color-border-focus); outline-offset: 2px; }
+.wb-carousel__navigation:disabled, .wb-carousel__indicator:disabled { cursor: not-allowed; }
+.wb-carousel__navigation--previous { left: var(--wb-asset-wb-carousel-navigation-inset); }
+.wb-carousel__navigation--next { right: var(--wb-asset-wb-carousel-navigation-inset); }
+.wb-carousel__indicators { position: absolute; z-index: 2; bottom: var(--wb-asset-wb-carousel-indicator-bottom-inset); left: 50%; display: flex; width: max-content; max-width: calc(100% - (var(--wb-asset-wb-carousel-navigation-inset) * 2)); align-items: center; gap: var(--wb-spacing-component-md); transform: translateX(-50%); }
+.wb-carousel--indicators-below .wb-carousel__indicators { position: static; justify-self: center; max-width: 100%; margin-top: var(--wb-spacing-component-lg); transform: none; }
+.wb-carousel__indicator { position: relative; display: inline-flex; width: var(--wb-asset-wb-carousel-indicator-size); height: var(--wb-asset-wb-carousel-indicator-size); align-items: center; justify-content: center; box-sizing: content-box; margin-inline: calc(var(--wb-asset-wb-carousel-indicator-hit-size) / -4); padding: calc(var(--wb-asset-wb-carousel-indicator-hit-size) / 4); border: 0; background: transparent; cursor: pointer; transition: width var(--wb-asset-wb-carousel-indicator-motion-duration) var(--wb-asset-wb-carousel-indicator-motion-easing); }
+.wb-carousel__indicator-mark { display: block; flex: 0 0 auto; width: var(--wb-asset-wb-carousel-indicator-size); height: var(--wb-asset-wb-carousel-indicator-size); border-radius: var(--wb-radius-full); background: var(--wb-color-none); transition: width var(--wb-asset-wb-carousel-indicator-motion-duration) var(--wb-asset-wb-carousel-indicator-motion-easing), background var(--wb-asset-wb-carousel-indicator-motion-duration) var(--wb-asset-wb-carousel-indicator-motion-easing); }
+.wb-carousel__indicator:hover:not(:disabled) .wb-carousel__indicator-mark { background: var(--wb-color-icon-hover); }
+.wb-carousel__indicator.is-current { width: var(--wb-asset-wb-carousel-active-indicator-width); }
+.wb-carousel__indicator.is-current .wb-carousel__indicator-mark { width: var(--wb-asset-wb-carousel-active-indicator-width); background: var(--wb-color-icon-primary); }
+[data-wb-theme="dark"] .wb-carousel__indicator-mark, [data-wb-theme="dark"] .wb-carousel__indicator:hover:not(:disabled) .wb-carousel__indicator-mark, [data-wb-theme="dark"] .wb-carousel__indicator.is-current .wb-carousel__indicator-mark { background: var(--wb-color-text-inverse); }
+.wb-carousel-slide-enter-active { position: relative; z-index: 1; transition: opacity var(--wb-asset-wb-carousel-slide-motion-duration) var(--wb-asset-wb-carousel-slide-motion-easing); }
+.wb-carousel-slide-enter-from { opacity: 0; }
+.wb-carousel-slide-leave-active { position: absolute; inset: 0; animation: wb-carousel-slide-hold var(--wb-asset-wb-carousel-slide-motion-duration) var(--wb-asset-wb-carousel-slide-motion-easing); }
+@keyframes wb-carousel-slide-hold { from, to { opacity: 1; } }
+.wb-carousel-scroll-enter-active, .wb-carousel-scroll-leave-active { transition: transform var(--wb-asset-wb-carousel-slide-motion-duration) var(--wb-asset-wb-carousel-slide-motion-easing); }
+.wb-carousel-scroll-enter-active { position: relative; z-index: 1; }
+.wb-carousel-scroll-leave-active { position: absolute; inset: 0; }
+.wb-carousel-scroll-enter-from { transform: translateX(100%); }
+.is-slide-reverse .wb-carousel-scroll-enter-from { transform: translateX(-100%); }
+.wb-carousel-scroll-leave-to { transform: translateX(-100%); }
+.is-slide-reverse .wb-carousel-scroll-leave-to { transform: translateX(100%); }
+@media (prefers-reduced-motion: reduce) { .wb-carousel-scroll-enter-active, .wb-carousel-scroll-leave-active { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .wb-carousel__slide, .wb-carousel__navigation, .wb-carousel__indicator-mark, .wb-carousel-slide-enter-active, .wb-carousel-slide-leave-active { animation: none; transition: none; } }
+

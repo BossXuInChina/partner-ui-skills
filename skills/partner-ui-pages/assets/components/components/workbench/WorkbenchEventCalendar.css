@@ -1,0 +1,18 @@
+
+.wb-event-calendar { display: flex; flex-direction: column; }
+.wb-event-calendar > .wb-date-picker { align-self: stretch; }
+.wb-event-calendar__toggle { position: relative; z-index: 1; display: flex; height: var(--wb-asset-wb-button-height-32); align-items: center; justify-content: center; margin-top: var(--wb-spacing-component-sm); }
+.wb-event-calendar__toggle .wb-event-calendar__toggle-button, .wb-event-calendar__toggle .wb-event-calendar__toggle-button[aria-expanded="true"] { color: var(--wb-color-text-primary); }
+.wb-event-calendar__arrow { display: inline-flex; transition: transform var(--wb-asset-wb-event-calendar-motion-duration) ease; }
+.wb-event-calendar__arrow.is-expanded { transform: rotate(360deg); }
+@media (prefers-reduced-motion: reduce) { .wb-event-calendar__arrow { transition: none; } }
+.wb-event-calendar__toggle::after { position: absolute; inset: 0; box-shadow: var(--wb-asset-wb-event-calendar-toggle-shadow); clip-path: inset(100% 0 calc(-1 * var(--wb-asset-wb-button-height-32))); content: ''; pointer-events: none; }
+.wb-event-calendar__scroll { height: var(--wb-asset-wb-event-calendar-agenda-height); margin-top: var(--wb-spacing-component-lg); }
+.wb-event-calendar__agenda { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.wb-event-calendar__item { display: flex; width: 100%; flex-direction: column; gap: var(--wb-spacing-component-sm); padding: var(--wb-spacing-component-md) 0; border: 0; border-bottom: var(--wb-asset-wb-event-calendar-divider-width) solid var(--wb-color-border-separator-subtle); background: none; text-align: left; font-family: inherit; font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); cursor: pointer; }
+.wb-event-calendar__item:hover b { color: var(--wb-color-link); }
+.wb-event-calendar__title { display: flex; align-items: center; justify-content: flex-start; gap: var(--wb-spacing-component-sm); }
+.wb-event-calendar__title b { overflow: hidden; font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); text-overflow: ellipsis; white-space: nowrap; }
+.wb-event-calendar__meta { display: inline-flex; align-items: center; gap: var(--wb-spacing-component-xs); color: var(--wb-color-text-secondary); font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); }
+.wb-event-calendar__empty { padding: var(--wb-spacing-component-lg) 0; color: var(--wb-color-text-secondary); text-align: center; }
+

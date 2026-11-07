@@ -1,0 +1,15 @@
+
+.wb-collapse {
+  min-width: 0;
+}
+
+.wb-collapse > .wb-collapse-item + .wb-collapse-item {
+  margin-top: var(--wb-asset-wb-collapse-item-separator-gap);
+  padding-top: var(--wb-asset-wb-collapse-item-separator-gap);
+  border-top: 1px solid var(--wb-color-border-separator-subtle);
+}
+
+.wb-collapse > .wb-collapse-item.is-expanded + .wb-collapse-item {
+  margin-top: var(--wb-asset-wb-collapse-expanded-item-separator-gap);
+}
+

@@ -1,0 +1,22 @@
+
+.workbench-upload[data-v-870e9447] { width: var(--wb-asset-wb-upload-width); max-width: 100%; min-width: 0; display: flex; flex-direction: column; gap: var(--wb-asset-wb-upload-list-gap); color: var(--wb-color-text-primary);     font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); }
+.workbench-upload__input[data-v-870e9447] { display: none; }
+.workbench-upload[data-mode="click"][data-v-870e9447] { gap: 0; }
+.workbench-upload[data-mode="click"] .workbench-upload__attachments[data-v-870e9447] { margin-top: var(--wb-spacing-component-md); margin-bottom: var(--wb-spacing-component-xs); }
+.workbench-upload__divider[data-v-870e9447] { display: block; height: var(--wb-asset-wb-upload-divider-thickness); background: repeating-linear-gradient(to right, var(--wb-color-border-separator) 0 var(--wb-asset-wb-upload-divider-dash), transparent var(--wb-asset-wb-upload-divider-dash) calc(var(--wb-asset-wb-upload-divider-dash) * 2)); }
+.workbench-upload__trigger[data-v-870e9447] { display: flex; flex-wrap: wrap; gap: var(--wb-asset-wb-upload-list-gap); align-items: center; min-height: var(--wb-asset-wb-upload-trigger-height); }
+.workbench-upload__trigger[data-v-870e9447] .wb-button { flex: none; }
+.workbench-upload__hint[data-v-870e9447] { color: var(--wb-color-text-secondary);    font-size: var(--wb-font-body-s-font-size); font-weight: var(--wb-font-body-s-font-weight); line-height: var(--wb-font-body-s-line-height); letter-spacing: var(--wb-font-body-s-letter-spacing); }
+.workbench-upload__drop[data-v-870e9447] { box-sizing: border-box; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; height: var(--wb-asset-wb-upload-drop-height); border: 1px dashed var(--wb-color-border); border-radius: var(--wb-radius-sm); background: var(--wb-color-fill-hover); padding: var(--wb-asset-wb-upload-drop-top) var(--wb-asset-wb-upload-card-padding) 0; font: inherit; color: inherit; cursor: pointer; flex: none; }
+.workbench-upload__plus[data-v-870e9447] { margin-bottom: var(--wb-asset-wb-upload-list-gap); }
+.workbench-upload__drop-text[data-v-870e9447] { white-space: nowrap;   font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); }
+.workbench-upload__drop .workbench-upload__hint[data-v-870e9447] { margin-top: var(--wb-asset-wb-upload-compact-gap); }
+.workbench-upload__link[data-v-870e9447] { color: var(--wb-color-text-action); }
+.workbench-upload__drop[data-v-870e9447]:hover, .workbench-upload__drop[data-state="hover"][data-v-870e9447] { border-color: var(--wb-color-text-primary); }
+.workbench-upload__drop[data-v-870e9447]:focus-visible, .workbench-upload__drop[data-state="active"][data-v-870e9447] { border: 1px solid var(--wb-color-text-primary); background: var(--wb-color-surface-container); outline: none; }
+.workbench-upload__drop[data-v-870e9447]:disabled { cursor: not-allowed; color: var(--wb-color-text-disabled); border-color: var(--wb-color-border); }
+.workbench-upload[data-disabled="true"] .workbench-upload__link[data-v-870e9447] { color: var(--wb-color-text-disabled); }
+.workbench-upload__empty[data-v-870e9447] { margin: 0;   color: var(--wb-color-text-secondary);  font-size: var(--wb-font-body-s-font-size); font-weight: var(--wb-font-body-s-font-weight); line-height: var(--wb-font-body-s-line-height); letter-spacing: var(--wb-font-body-s-letter-spacing); }
+.workbench-upload__validation[data-v-870e9447] { color: var(--wb-color-error); margin: 0;    font-size: var(--wb-font-body-s-font-size); font-weight: var(--wb-font-body-s-font-weight); line-height: var(--wb-font-body-s-line-height); letter-spacing: var(--wb-font-body-s-letter-spacing); }
+.workbench-upload__announcement[data-v-870e9447] { position: absolute; width: 0; height: 0; overflow: hidden; clip-path: inset(50%); }
+

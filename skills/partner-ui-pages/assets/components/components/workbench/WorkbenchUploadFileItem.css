@@ -1,0 +1,261 @@
+
+.upload-file[data-v-e027e057] {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: var(--wb-asset-wb-upload-row-height);
+  border: 0;
+  box-shadow: var(--wb-asset-wb-upload-row-stroke);
+  border-radius: var(--wb-radius-sm);
+  padding: var(--wb-asset-wb-upload-row-padding-block) var(--wb-asset-wb-upload-row-padding-inline);
+  list-style: none;
+  color: var(--wb-color-text-primary);
+}
+.upload-file[data-v-e027e057]:not(.upload-file--card):not(.upload-file--compact):not([data-disabled='true']):is(
+    :hover,
+    :focus-within,
+    [data-preview-state='hover']
+  ) {
+  box-shadow: var(--wb-asset-wb-upload-row-hover-stroke);
+}
+.upload-file__content[data-v-e027e057] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--wb-asset-wb-upload-icon-gap);
+  min-width: 0;
+  height: 100%;
+}
+.upload-file__copy[data-v-e027e057] {
+  min-width: 0;
+  flex: 1;
+}
+.upload-file__title-row[data-v-e027e057] {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-asset-wb-upload-title-gap);
+  height: var(--wb-asset-wb-upload-title-height);
+}
+.upload-file button[data-v-e027e057] {
+  font: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+}
+.upload-file button[data-v-e027e057]:focus-visible {
+  outline: 1px solid var(--wb-color-border-focus);
+  outline-offset: 2px;
+}
+.upload-file button[data-v-e027e057]:disabled {
+  cursor: default;
+}
+.upload-file__name[data-v-e027e057] {
+  min-width: 0;
+  flex: 1;
+  color: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+}
+.upload-file__actions[data-v-e027e057] {
+  display: flex;
+  gap: var(--wb-asset-wb-upload-action-gap);
+  flex: none;
+  color: var(--wb-color-text-action);
+}
+.upload-file__actions button[data-v-e027e057] {
+  display: inline-flex;
+  align-items: center;
+  color: var(--wb-color-text-action);
+}
+.upload-file__actions--on-hover[data-v-e027e057] {
+  visibility: hidden;
+}
+.upload-file:hover .upload-file__actions[data-v-e027e057],
+.upload-file:focus-within .upload-file__actions[data-v-e027e057],
+.upload-file[data-preview-state='hover'] .upload-file__actions[data-v-e027e057] {
+  visibility: visible;
+}
+.upload-file__actions button[data-v-e027e057]:disabled {
+  color: var(--wb-color-text-disabled);
+}
+.upload-file__meta[data-v-e027e057] {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--wb-asset-wb-upload-action-gap);
+  color: var(--wb-color-text-secondary);
+  white-space: nowrap;
+  font-size: var(--wb-font-body-s-font-size);
+  font-weight: var(--wb-font-body-s-font-weight);
+  line-height: var(--wb-font-body-s-line-height);
+  letter-spacing: var(--wb-font-body-s-letter-spacing);
+}
+.upload-file__meta[data-v-e027e057] > :first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.upload-file__attribution[data-v-e027e057] {
+  display: inline-flex;
+  flex: none;
+  gap: var(--wb-asset-wb-upload-action-gap);
+}
+.upload-file__error[data-v-e027e057] {
+  color: var(--wb-color-error);
+}
+.upload-file--card[data-v-e027e057] {
+  display: flex;
+  align-items: center;
+  height: var(--wb-asset-wb-upload-drop-height);
+  background: var(--wb-asset-wb-upload-card-bg);
+  box-shadow: none;
+  padding: var(--wb-asset-wb-upload-card-padding);
+}
+.upload-file--card[data-v-e027e057]::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0;
+  border: 1px dashed var(--wb-color-border);
+  border-radius: var(--wb-asset-wb-upload-track-height);
+  pointer-events: none;
+}
+.upload-file--card[data-v-e027e057]:not([data-disabled='true']):is(
+    :hover,
+    :focus-within,
+    [data-preview-state='hover']
+  )::before {
+  border-color: var(--wb-color-border-hover);
+}
+.upload-file__card-surface[data-v-e027e057] {
+  position: absolute;
+  inset: var(--wb-asset-wb-upload-card-inset);
+  background: var(--wb-color-surface-container);
+  border-radius: var(--wb-radius-sm);
+}
+.upload-file--card .upload-file__content[data-v-e027e057] {
+  width: calc(100% - var(--wb-asset-wb-upload-card-inset));
+  height: auto;
+  align-items: flex-start;
+  gap: var(--wb-asset-wb-upload-action-gap);
+}
+.upload-file--card .upload-file__copy[data-v-e027e057] {
+  flex: 1;
+}
+.upload-file--card .upload-file__title-row[data-v-e027e057] {
+  padding-right: var(--wb-asset-wb-upload-percent-space);
+}
+.upload-file__progress-row[data-v-e027e057] {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-asset-wb-upload-action-gap);
+  height: var(--wb-asset-wb-upload-title-height);
+}
+.upload-file--card .upload-file__progress-row[data-v-e027e057] {
+  margin-top: var(--wb-asset-wb-upload-progress-gap);
+}
+.upload-file__track[data-v-e027e057] {
+  appearance: none;
+  display: block;
+  min-width: 0;
+  width: 0;
+  flex: 1;
+  height: var(--wb-asset-wb-upload-track-height);
+  border: 0;
+  background: var(--wb-asset-wb-upload-track-bg);
+  border-radius: var(--wb-asset-wb-upload-track-height);
+  overflow: hidden;
+}
+.upload-file__track[data-v-e027e057]::-webkit-progress-bar {
+  background: var(--wb-asset-wb-upload-track-bg);
+  border-radius: var(--wb-asset-wb-upload-track-height);
+}
+.upload-file__track[data-v-e027e057]::-webkit-progress-value {
+  background: var(--wb-color-text-primary);
+  border-radius: var(--wb-asset-wb-upload-track-height);
+}
+.upload-file__track[data-v-e027e057]::-moz-progress-bar {
+  background: var(--wb-color-text-primary);
+  border-radius: var(--wb-asset-wb-upload-track-height);
+}
+.upload-file[data-status='success'] .upload-file__track[data-v-e027e057]::-webkit-progress-value,
+.upload-file--compact .upload-file__track[data-v-e027e057]::-webkit-progress-value {
+  background: var(--wb-color-success);
+}
+.upload-file[data-status='success'] .upload-file__track[data-v-e027e057]::-moz-progress-bar,
+.upload-file--compact .upload-file__track[data-v-e027e057]::-moz-progress-bar {
+  background: var(--wb-color-success);
+}
+.upload-file[data-status='error'] .upload-file__track[data-v-e027e057]::-webkit-progress-value {
+  background: var(--wb-color-error);
+}
+.upload-file[data-status='error'] .upload-file__track[data-v-e027e057]::-moz-progress-bar {
+  background: var(--wb-color-error);
+}
+.upload-file__percent[data-v-e027e057] {
+  flex: none;
+}
+.upload-file--compact[data-v-e027e057] {
+  height: var(--wb-asset-wb-upload-compact-height);
+  border: 0;
+  box-shadow: none;
+  padding: var(--wb-asset-wb-upload-compact-padding-block)
+    var(--wb-asset-wb-upload-compact-padding-inline);
+}
+.upload-file--compact .upload-file__content[data-v-e027e057] {
+  gap: var(--wb-asset-wb-upload-compact-gap);
+}
+.upload-file--compact[data-v-e027e057]:hover,
+.upload-file--compact[data-v-e027e057]:focus-within,
+.upload-file--compact[data-preview-state='hover'][data-v-e027e057],
+.upload-file--background[data-v-e027e057] {
+  background: var(--wb-color-fill-hover);
+}
+.upload-file--compact .upload-file__progress-row[data-v-e027e057] {
+  position: absolute;
+  left: var(--wb-asset-wb-upload-compact-progress-left);
+  right: 0;
+  bottom: 0;
+  height: var(--wb-asset-wb-upload-compact-track-height);
+}
+.upload-file--compact .upload-file__track[data-v-e027e057] {
+  height: 100%;
+  border-radius: 0;
+}
+.upload-file--compact .upload-file__percent[data-v-e027e057] {
+  position: absolute;
+  right: 0;
+  bottom: var(--wb-asset-wb-upload-compact-percent-bottom);
+}
+.upload-file--compact[data-status='uploading'] .upload-file__actions[data-v-e027e057] {
+  visibility: hidden;
+}
+.upload-file--compact[data-status='uploading']:hover .upload-file__actions[data-v-e027e057],
+.upload-file--compact[data-status='uploading']:focus-within .upload-file__actions[data-v-e027e057] {
+  visibility: visible;
+}
+.upload-file--compact[data-status='uploading']:hover .upload-file__percent[data-v-e027e057],
+.upload-file--compact[data-status='uploading']:focus-within .upload-file__percent[data-v-e027e057] {
+  visibility: hidden;
+}
+.upload-file__sr-only[data-v-e027e057] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+@media (hover: none) {
+  .upload-file__actions--on-hover[data-v-e027e057] {
+    visibility: visible;
+  }
+}
+

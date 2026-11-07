@@ -1,0 +1,5 @@
+
+.wb-policy-links { display: flex; flex-wrap: wrap; gap: var(--wb-spacing-component-sm) var(--wb-spacing-component-xl); }
+.wb-policy-links__item { display: inline-flex; align-items: center; gap: var(--wb-spacing-component-xs); color: var(--wb-color-text-primary); font-size: var(--wb-font-body-m-font-size); font-weight: var(--wb-font-body-m-font-weight); line-height: var(--wb-font-body-m-line-height); letter-spacing: var(--wb-font-body-m-letter-spacing); text-decoration: none; }
+.wb-policy-links__item:hover { color: var(--wb-color-link-hover); }
+

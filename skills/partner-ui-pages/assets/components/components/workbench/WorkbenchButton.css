@@ -1,0 +1,272 @@
+
+.wb-button {
+  box-sizing: border-box;
+  --button-block-size: var(--wb-asset-wb-button-height-32);
+  --button-icon-size: var(--wb-icon-size-16);
+  --button-inline-padding: var(--wb-spacing-component-lg);
+  --button-min-inline-size: var(--wb-asset-wb-button-min-width-m);
+
+  display: inline-flex;
+  width: fit-content;
+  height: var(--button-block-size);
+  align-items: center;
+  justify-content: center;
+  gap: var(--wb-spacing-component-xs);
+  padding: 0 var(--button-inline-padding);
+  color: var(--wb-color-text-inverse);
+  background: var(--wb-color-brand);
+  border: 0;
+  border-radius: var(--wb-radius-sm);
+  font-family: inherit;
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.wb-button--size-36 {
+  --button-block-size: var(--wb-asset-wb-button-height-36);
+  --button-inline-padding: var(--wb-asset-wb-button-padding-inline-l);
+  --button-min-inline-size: var(--wb-asset-wb-button-min-width-l);
+}
+
+.wb-button--size-32 {
+  --button-block-size: var(--wb-asset-wb-button-height-32);
+  --button-inline-padding: var(--wb-spacing-component-lg);
+  --button-min-inline-size: var(--wb-asset-wb-button-min-width-m);
+}
+
+.wb-button--size-28 {
+  --button-block-size: var(--wb-asset-wb-button-height-28);
+  --button-inline-padding: var(--wb-spacing-component-md);
+  --button-min-inline-size: var(--wb-asset-wb-button-min-width-s);
+
+  font-size: var(--wb-font-body-s-font-size);
+  font-weight: var(--wb-font-body-s-font-weight);
+  line-height: var(--wb-font-body-s-line-height);
+  letter-spacing: var(--wb-font-body-s-letter-spacing);
+}
+
+.wb-button__icon {
+  display: inline-grid;
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+  flex: 0 0 var(--button-icon-size);
+  place-items: center;
+  color: currentColor;
+}
+
+.wb-button__icon--filled {
+  --button-icon-size: var(--wb-asset-wb-button-leading-icon-size);
+}
+
+.wb-button--size-28 .wb-button__icon--filled {
+  --button-icon-size: var(--wb-icon-size-12);
+}
+
+.wb-button__icon--trailing {
+  --button-icon-size: var(--wb-asset-wb-button-arrow-size);
+  transition: transform 160ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-button__icon--trailing {
+    transition: none;
+  }
+}
+
+.wb-button--with-arrow {
+  column-gap: var(--wb-asset-wb-button-arrow-gap);
+}
+
+.wb-button--with-arrow .wb-button__icon--filled {
+  margin-inline-end: calc(var(--wb-spacing-component-xs) - var(--wb-asset-wb-button-arrow-gap));
+}
+
+.wb-button__label {
+  --inline-label-optical-offset: var(--wb-asset-wb-button-label-optical-offset);
+}
+
+.wb-button--primary,
+.wb-button--secondary {
+  min-width: var(--button-min-inline-size);
+}
+
+.wb-button--primary:hover,
+.wb-button--primary.is-hover {
+  background: var(--wb-color-brand-hover);
+}
+
+.wb-button--primary:active,
+.wb-button--primary.is-pressed {
+  background: var(--wb-color-brand);
+}
+
+.wb-button--primary:focus-visible,
+.wb-button--primary.is-focus {
+  outline: 2px solid var(--wb-color-brand-focus);
+  outline-offset: 2px;
+}
+
+.wb-button--primary:disabled,
+.wb-button--primary.is-disabled {
+  color: var(--wb-color-text-inverse);
+  background: var(--wb-color-brand-disabled);
+}
+
+.wb-button--secondary {
+  border: 1px solid var(--wb-color-border);
+  color: var(--wb-color-text-primary);
+  background: var(--wb-color-fill-subtle-default);
+}
+
+.wb-button--secondary.wb-button--dashed {
+  border-style: dashed;
+  background: transparent;
+}
+
+.wb-button--secondary:hover,
+.wb-button--secondary.is-hover,
+.wb-button--secondary:active,
+.wb-button--secondary.is-pressed {
+  border-color: var(--wb-color-border-hover);
+}
+
+.wb-button--secondary:focus-visible,
+.wb-button--secondary.is-focus {
+  outline: 2px solid var(--wb-color-border-focus);
+  outline-offset: 2px;
+}
+
+.wb-button--secondary:disabled,
+.wb-button--secondary.is-disabled {
+  border-color: var(--wb-color-border-disabled);
+  color: var(--wb-color-text-disabled);
+  background: var(--wb-color-fill-subtle-disabled);
+}
+
+.wb-button--text {
+  min-width: 0;
+  --button-inline-padding: var(--wb-spacing-component-sm);
+
+  color: var(--wb-color-text-action);
+  background: transparent;
+}
+
+.wb-button--text-inline {
+  height: auto;
+  padding: 0;
+}
+
+.wb-button--text:hover,
+.wb-button--text.is-hover {
+  color: var(--wb-color-text-action-hover);
+}
+
+.wb-button--text:active,
+.wb-button--text.is-pressed,
+.wb-button--text:not(.wb-button--drilldown)[aria-expanded='true'] {
+  color: var(--wb-color-text-action-active);
+}
+
+.wb-button--text:focus-visible,
+.wb-button--text.is-focus {
+  outline: 2px solid var(--wb-color-border-focus);
+  outline-offset: 2px;
+}
+
+.wb-button--text:disabled,
+.wb-button--text.is-disabled {
+  color: var(--wb-color-text-action-disabled);
+}
+
+.wb-button--icon {
+  --button-inline-padding: 0;
+  --button-icon-size: var(--wb-icon-size-20);
+
+  width: var(--button-block-size);
+  color: var(--wb-color-icon-primary);
+  background: transparent;
+}
+
+.wb-button--icon.wb-button--size-24 {
+  --button-block-size: var(--wb-asset-wb-button-height-24);
+  --button-icon-size: var(--wb-asset-wb-button-icon-size-small);
+
+  font-size: var(--wb-font-body-s-font-size);
+  font-weight: var(--wb-font-body-s-font-weight);
+  line-height: var(--wb-font-body-s-line-height);
+  letter-spacing: var(--wb-font-body-s-letter-spacing);
+}
+
+.wb-button--icon-inline {
+  width: auto;
+  height: auto;
+}
+
+.wb-button--icon-inline .wb-button__icon--action {
+  width: auto;
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.wb-button--icon:hover,
+.wb-button--icon.is-hover {
+  color: var(--wb-color-icon-hover);
+}
+
+.wb-button--icon:active,
+.wb-button--icon.is-pressed {
+  color: var(--wb-color-icon-active);
+}
+
+.wb-button--icon:focus-visible,
+.wb-button--icon.is-focus {
+  outline: 2px solid var(--wb-color-border-focus);
+  outline-offset: 2px;
+}
+
+.wb-button--icon:disabled,
+.wb-button--icon.is-disabled {
+  color: var(--wb-color-icon-disabled);
+  background: transparent;
+}
+
+.wb-button--text.wb-button--drilldown {
+  color: var(--wb-color-text-primary);
+}
+.wb-button--text.wb-button--drilldown:hover,
+.wb-button--text.wb-button--drilldown.is-hover {
+  color: var(--wb-color-text-action-hover);
+}
+.wb-button--text.wb-button--drilldown:active,
+.wb-button--text.wb-button--drilldown.is-pressed,
+.wb-button--text.wb-button--drilldown[aria-expanded='true'] {
+  color: var(--wb-color-text-action-active);
+}
+.wb-button--text.wb-button--drilldown:disabled,
+.wb-button--text.wb-button--drilldown.is-disabled {
+  color: var(--wb-color-text-disabled);
+}
+.wb-button:disabled,
+.wb-button.is-disabled {
+  cursor: not-allowed;
+}
+.wb-button__icon--trailing {
+  transform: rotate(0deg);
+}
+.wb-button__icon--trailing.is-arrow-up {
+  transform: rotate(-90deg);
+}
+.wb-button__icon--trailing.is-arrow-down {
+  transform: rotate(90deg);
+}
+
+/* Opt-in optical correction: the owning component supplies its approved asset token. */
+.wb-inline-label {
+  position: relative;
+  top: var(--inline-label-optical-offset, 0);
+}
+

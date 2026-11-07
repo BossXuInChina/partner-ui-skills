@@ -1,0 +1,50 @@
+/* Legacy consumer overrides may still encode #191919. Imported monochrome
+   artwork already uses currentColor; original colors and gradient defs stay intact. */
+svg[data-ai-icon-color="inherit"] [fill="#191919"] { fill:currentColor; }
+svg[data-ai-icon-color="inherit"] [stroke="#191919"] { stroke:currentColor; }
+
+/* AI action ink: public TinyRobot icon variables are mapped within our panels.
+   ActionButton0.5.1 still reads text variables, so its public icon slot receives
+   color here through owned consumer classes. Labels, opacity, geometry and events
+   stay with their containers. Recheck upstream icon-variable adoption on upgrade.
+   The mode portal copies --partner-ai-* from its trigger; map Robot variables
+   again there. Do not recolor business cards, original paths or smart masks. */
+:is(.partner-ai .chat-panel,.partner-ai .conversation-history-panel,.composer-mode-panel) {
+  --tr-icon-color-default:var(--partner-ai-icon-default);
+  --tr-icon-color-hover:var(--partner-ai-icon-hover);
+  --tr-icon-color-active:var(--partner-ai-icon-active);
+  --tr-icon-color-disabled:var(--partner-ai-icon-disabled);
+  --tr-icon-color-link:var(--partner-ai-icon-link);
+}
+:is(.partner-ai .chat-panel,.partner-ai .conversation-history-panel,.composer-mode-panel)
+  :is(.chat-toolbar-action,.chat-close-action,.reply-actions button,.composer-icon-action,.composer-send-action,.composer-mode-trigger,.composer-mode-option,.message-prompt,.history-clear,.history-pin,.history-more,.history-search-clear) {
+  & :is([data-ai-icon],.composer-mode-icon) { color:var(--tr-icon-color-default); }
+  &:hover:not(:disabled):not(.disabled) :is([data-ai-icon],.composer-mode-icon) { color:var(--tr-icon-color-hover); }
+  &:is(:active,[aria-pressed="true"]):not(:disabled):not(.disabled) :is([data-ai-icon],.composer-mode-icon) { color:var(--tr-icon-color-active); }
+  &:is(:disabled,.disabled) :is([data-ai-icon],.composer-mode-icon) { color:var(--tr-icon-color-disabled); }
+}
+.partner-ai .chat-panel .composer-icon-action {
+  --tr-icon-color-default:var(--partner-ai-icon-muted);
+  --tr-icon-color-hover:var(--partner-ai-icon-muted-hover);
+  --tr-icon-color-active:var(--partner-ai-icon-muted-active);
+  --tr-icon-color-disabled:var(--partner-ai-icon-muted-disabled);
+}
+.partner-ai .chat-panel .composer-send-action {
+  --tr-icon-color-default:var(--partner-ai-send-icon-color);
+  --tr-icon-color-hover:var(--partner-ai-send-icon-color);
+  --tr-icon-color-active:var(--partner-ai-send-icon-color);
+  --tr-icon-color-disabled:var(--partner-ai-send-icon-color);
+}
+.composer-mode-panel .composer-mode-option { --tr-icon-color-disabled:var(--partner-ai-mode-disabled-icon-color); }
+.partner-ai .conversation-history-panel :is(.history-clear,.history-pin,.history-more,.history-search-clear) {
+  --tr-icon-color-default:var(--partner-ai-icon-secondary);
+  --tr-icon-color-hover:var(--tr-icon-color-default);
+  --tr-icon-color-active:var(--tr-icon-color-default);
+  --tr-icon-color-disabled:var(--tr-icon-color-default);
+}
+.partner-ai .conversation-history-panel .history-clear { --tr-icon-color-hover:var(--partner-ai-icon-primary); --tr-icon-color-active:var(--partner-ai-icon-primary); }
+.partner-ai .conversation-history-panel .history-pin[aria-pressed="true"] { --tr-icon-color-default:var(--partner-ai-icon-accent); }
+/* Existing History0.5.1 selected-row adapter: selection takes priority over pin.
+   Review the .selected class on upgrades; labels keep their separate text token. */
+.partner-ai .conversation-history-panel .tr-history__item.selected :is(.history-pin,.history-more) { --tr-icon-color-default:var(--partner-ai-history-selected-icon-color); }
+

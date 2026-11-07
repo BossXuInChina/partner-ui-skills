@@ -1,0 +1,9 @@
+
+.ai-toast[data-v-4b846c4b]{position:fixed;inset:var(--partner-ai-toast-top) auto auto 50%;z-index:var(--partner-ai-toast-z-index);box-sizing:border-box;display:flex;align-items:center;gap:var(--partner-ai-spacing-sm);width:max-content;max-width:calc(100% - var(--partner-ai-toast-viewport-gutter));min-height:var(--partner-ai-toast-min-height);margin:0;padding:var(--partner-ai-toast-padding);border:0;border-radius:var(--partner-ai-radius-lg);background:var(--partner-ai-toast-bg);color:var(--partner-ai-toast-text);box-shadow:var(--partner-ai-toast-shadow);font-family:var(--partner-ai-font-family,inherit);font-size:var(--partner-ai-body-size);font-weight:var(--partner-ai-body-weight);line-height:var(--partner-ai-body-line);letter-spacing:var(--partner-ai-body-letter-spacing);text-align:left;pointer-events:none;overflow:hidden;opacity:1;transform:translateX(-50%) scale(1);transition:transform var(--partner-ai-toast-motion-duration) var(--partner-ai-toast-motion-easing),opacity var(--partner-ai-toast-motion-duration) var(--partner-ai-toast-motion-easing)}
+/* Independent Workbench Message scale/fade values; Vue retains the DOM/text
+   through exit, without Popover API or discrete display/overlay transitions. */
+.ai-toast-enter-from[data-v-4b846c4b],.ai-toast-leave-to[data-v-4b846c4b]{opacity:0;transform:translateX(-50%) scale(var(--partner-ai-toast-entry-scale))}
+@media(prefers-reduced-motion:reduce){.ai-toast[data-v-4b846c4b]{transition:none}}
+.ai-toast__icon[data-v-4b846c4b]{display:block;flex:none;width:var(--partner-ai-toast-icon-size);height:var(--partner-ai-toast-icon-size)}
+.ai-toast__message[data-v-4b846c4b]{min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}
+

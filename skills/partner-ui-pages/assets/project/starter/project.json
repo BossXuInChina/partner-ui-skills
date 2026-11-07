@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "partner-demo",
+  "title": "伙伴经营工作台",
+  "entry": "app.js",
+  "startPage": "overview",
+  "pages": [
+    { "id": "overview", "label": "经营概览", "file": "pages/overview.js" },
+    { "id": "partners", "label": "伙伴管理", "file": "pages/partners.js" },
+    { "id": "detail", "label": "伙伴详情", "file": "pages/detail.js" }
+  ],
+  "styles": ["styles/app.css"]
+}

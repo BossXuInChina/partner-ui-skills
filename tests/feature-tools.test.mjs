@@ -114,7 +114,7 @@ test("all six source templates produce closed feature starts and truthful unveri
       const manifest = JSON.parse(
         readFileSync(resolve(result.directory, "delivery.json"), "utf8"),
       );
-      assert.equal(manifest.skillVersion, "0.2.0");
+      assert.equal(manifest.skillVersion, "0.2.1");
       assert.ok(
         manifest.knownLimits.every((limit) => !limit.includes("skillVersion is null")),
       );
@@ -174,7 +174,7 @@ test("all independent Skills declare their version and user-controlled releases"
       readFileSync(resolve(root, "skills", name, "skill.json"), "utf8"),
     );
     assert.equal(declaration.name, name);
-    assert.equal(declaration.version, { "partner-ui-pages": "0.2.0", "partner-ui-vue3": "0.2.0", "partner-ui-review": "0.1.6" }[name]);
+    assert.equal(declaration.version, { "partner-ui-pages": "0.3.0", "partner-ui-vue3": "0.2.1", "partner-ui-review": "0.1.6" }[name]);
     assert.equal(declaration.releasePolicy, "user-decides");
   }
 });
@@ -381,7 +381,7 @@ test("standalone CLI runs with only Node, without global tools or Skill root dep
     );
     assert.equal(result.status, 0, result.stderr);
     assert.equal(JSON.parse(result.stdout).manifest.feature, "standalone-chat");
-    assert.equal(JSON.parse(result.stdout).manifest.skillVersion, "0.2.0");
+    assert.equal(JSON.parse(result.stdout).manifest.skillVersion, "0.2.1");
     assert.equal(existsSync(resolve(portable, "node_modules")), false);
     const found = runScript(
       resolve(portable, "scripts/find_icon.mjs"),

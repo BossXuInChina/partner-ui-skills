@@ -1,0 +1,4 @@
+
+.upload-file-list[data-v-708489f4] { display: flex; flex-direction: column; gap: var(--wb-asset-wb-upload-row-gap); padding: 0; margin: 0; list-style: none; min-width: 0; }
+.upload-file-list[data-list-type="compact"][data-v-708489f4] { gap: var(--wb-asset-wb-upload-compact-gap); }
+

@@ -1,0 +1,64 @@
+
+.wb-transfer[data-v-a52b7be7] {
+  --transfer-panel-width: var(--wb-asset-wb-transfer-panel-width);
+  --transfer-height: var(--wb-asset-wb-transfer-height);
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  max-width: 100%;
+  color: var(--wb-color-text-primary);
+  font-family: var(--wb-font-family-sans-zh), var(--wb-font-family-sans-en);
+  font-size: var(--wb-font-body-m-font-size);
+  line-height: var(--wb-font-body-m-line-height);
+  font-weight: var(--wb-font-body-m-font-weight);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+}
+.wb-transfer.is-auto[data-v-a52b7be7] {
+  --transfer-height: var(--wb-asset-wb-transfer-auto-height);
+  gap: var(--wb-asset-wb-transfer-auto-gap);
+}
+.wb-transfer__actions[data-v-a52b7be7] {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wb-spacing-component-md);
+  width: var(--wb-asset-wb-transfer-actions-width);
+}
+.wb-transfer__actions button[data-v-a52b7be7] {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--wb-asset-wb-transfer-button);
+  height: var(--wb-asset-wb-transfer-button);
+  padding: 0;
+  border: 1px solid var(--wb-color-border);
+  border-radius: var(--wb-radius-sm);
+  background: var(--wb-color-surface-container);
+  color: var(--wb-color-icon-primary);
+  cursor: pointer;
+}
+.wb-transfer__actions button[data-v-a52b7be7]:hover:enabled {
+  background: var(--wb-color-fill-hover);
+  border-color: var(--wb-color-border-hover);
+}
+.wb-transfer__actions button[data-v-a52b7be7]:disabled {
+  color: var(--wb-color-text-disabled);
+  background: var(--wb-color-fill-subtle-disabled);
+  cursor: not-allowed;
+}
+.wb-transfer__actions button[data-v-a52b7be7]:focus-visible {
+  outline: 1px solid var(--wb-color-border-focus);
+  outline-offset: var(--wb-spacing-component-xs);
+}
+.wb-transfer__announcement[data-v-a52b7be7] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+

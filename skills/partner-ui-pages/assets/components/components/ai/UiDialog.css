@@ -1,0 +1,16 @@
+.partner-ai {
+  .ui-dialog{border:var(--partner-ai-border-width) solid var(--ai-line);background:var(--ai-panel);color:var(--ai-text);border-radius:var(--ai-radius);padding:0;max-width:calc(100vw - var(--partner-ai-dialog-viewport-gutter));width:var(--partner-ai-dialog-width);max-height:calc(100dvh - var(--partner-ai-dialog-viewport-gutter));box-shadow:var(--partner-ai-dialog-shadow);font:inherit}
+}
+.partner-ai {.ui-dialog::backdrop{background:var(--partner-ai-dialog-scrim)}
+}
+.partner-ai {.ui-dialog--drawer{margin:0 0 0 auto;width:var(--partner-ai-drawer-width);max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}
+}
+
+.partner-dialog-scope:not(.partner-region-dialog) { display:contents; }
+/* Native backdrop stays in top layer; its opacity shares the panel lifecycle. */
+.partner-dialog-scope .ui-dialog::backdrop { opacity:var(--partner-global-mask-opacity,1); }
+.partner-ai.partner-region-dialog { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:auto; background:var(--partner-ai-dialog-scrim); }
+.partner-region-dialog[inert] { pointer-events:none; }
+.partner-region-dialog .ui-dialog--region { position:relative; margin:auto; width:var(--partner-ai-dialog-width); max-width:calc(100% - var(--partner-ai-dialog-viewport-gutter)); max-height:calc(100% - var(--partner-ai-dialog-viewport-gutter)); }
+.partner-region-dialog .ui-dialog--region.ui-dialog--drawer { margin:0 0 0 auto; width:var(--partner-ai-drawer-width); max-width:100%; height:100%; max-height:100%; }
+

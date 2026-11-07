@@ -1,0 +1,21 @@
+
+.ai-summary-card[data-v-2aa2a03c] { position:relative; isolation:isolate; display:flex; align-items:flex-start; gap:var(--partner-ai-summary-gap); width:100%; min-width:0; box-sizing:border-box; margin:var(--partner-ai-summary-block-gap) 0 0; padding:var(--partner-ai-summary-padding); border:0; border-radius:var(--partner-ai-summary-radius); background:transparent; box-shadow:none; color:var(--partner-ai-text); }
+/* Independent paint layers preserve full-opacity content. Mask only the 1px
+   ring, as Sender does; card opacity is static and never follows editor focus.
+   Recheck mask support with the host browser matrix when upgrading the runtime. */
+.ai-summary-card[data-v-2aa2a03c]::before,.ai-summary-card[data-v-2aa2a03c]::after { content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none; }
+.ai-summary-card[data-v-2aa2a03c]::before { z-index:-2; background:var(--partner-ai-summary-bg); opacity:var(--partner-ai-summary-bg-opacity); }
+.ai-summary-card[data-v-2aa2a03c]::after { z-index:-1; box-sizing:border-box; padding:var(--partner-ai-summary-stroke-width); background:var(--partner-ai-summary-stroke-image); opacity:var(--partner-ai-summary-stroke-opacity); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; }
+.ai-summary-card__logo[data-v-2aa2a03c] { display:flex; align-items:center; justify-content:center; flex:none; width:var(--partner-ai-summary-logo-size); height:var(--partner-ai-summary-logo-size); color:var(--partner-ai-text); }
+.ai-summary-card__logo>img[data-v-2aa2a03c],.ai-summary-card__logo[data-v-2aa2a03c] svg { display:block; width:var(--partner-ai-smart-icon-artwork-size); height:var(--partner-ai-smart-icon-artwork-size); object-fit:contain; }
+.ai-summary-card__logo-paint[data-v-2aa2a03c] { width:100%; height:100%; background:var(--partner-ai-smart-icon-gradient); opacity:1; }
+.ai-summary-card__body[data-v-2aa2a03c] { flex:1; min-width:0; }
+.ai-summary-card__text[data-v-2aa2a03c] { margin:0 !important; color:var(--partner-ai-text); font-size:var(--partner-ai-body-size); font-weight:var(--partner-ai-body-weight); line-height:var(--partner-ai-body-line); white-space:pre-wrap; overflow-wrap:anywhere; }
+/* Keep the summary's no-tag spacing stable; Markdown paragraph spacing is scoped separately. */
+.partner-ai .chat-scroll { margin:0 !important; }
+.ai-summary-card__tags[data-v-2aa2a03c] { display:flex; flex-wrap:wrap; gap:var(--partner-ai-gap-sm); margin-top:var(--partner-ai-gap-md); }
+.partner-ai .chat-panel .chat-scroll .answer-content>.ai-summary-card:first-child { margin-top:0; }
+/* Only the new content block owns this adjacent business gap; existing cards,
+   Box dimensions and the shared action footer retain their current behavior. */
+.partner-ai .chat-panel .chat-scroll .answer-content>.ai-summary-card + .table-card,.partner-ai .chat-panel .chat-scroll .answer-content>.ai-summary-card + .markdown-body { margin-top:var(--partner-ai-summary-block-gap); }
+

@@ -1,0 +1,248 @@
+.partner-ai[data-ai-theme="aurora"] .assistant-avatar{border-radius:50%;background:linear-gradient(135deg,#9279e4,#4a338e)}
+@media(max-width:680px){.partner-ai .chat-header{padding:var(--partner-ai-gap-lg)}}
+@media(max-width:680px){.partner-ai .chat-scroll{padding:var(--partner-ai-message-scroll-padding-block) var(--partner-ai-gap-md)}}
+@media(max-width:680px){.partner-ai .composer{padding:var(--partner-ai-gap-md)}}
+@media(max-width:680px){.partner-ai .assistant-avatar{width:24px;height:24px}}
+@media(max-width:680px){.partner-ai .chat-header .assistant-avatar{width:32px;height:32px}}
+.partner-ai .chat-handle-area{height:var(--partner-chat-handle-height,var(--partner-ai-spacing-lg));display:flex;align-items:center;justify-content:center;cursor:default;user-select:none;flex:none}
+.partner-ai .chat-handle{width:calc(var(--partner-ai-spacing-lg) * 2);height:var(--partner-ai-spacing-xs);border-radius:var(--partner-ai-control-radius);background:var(--partner-ai-border);pointer-events:none}
+.partner-ai .chat-header{height:var(--partner-chat-toolbar-height,calc(var(--partner-ai-spacing-lg) * 2 + var(--partner-ai-spacing-md) * 2));padding:0 var(--partner-ai-spacing-md);justify-content:space-between;min-width:0;overflow:hidden}
+.partner-ai .chat-identity{display:flex;align-items:center;gap:var(--partner-ai-spacing-sm);min-width:0;flex:1}
+.partner-ai .chat-identity h2{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.partner-ai .chat-identity-avatar{width:calc(var(--partner-ai-spacing-lg) * 2);height:calc(var(--partner-ai-spacing-lg) * 2);object-fit:contain;flex:none}
+.partner-ai .chat-toolbar-actions{display:flex;align-items:center;gap:var(--partner-ai-spacing-xs);min-width:0;max-width:60%;flex:none}
+.partner-ai .chat-configurable-actions{display:flex;align-items:center;gap:var(--partner-ai-spacing-xs);min-width:0;overflow-x:auto;scrollbar-width:thin}
+.partner-ai .chat-toolbar-action{height:calc(var(--partner-ai-spacing-lg) * 2);border:0;background:transparent;border-radius:var(--partner-ai-radius-sm);padding:var(--partner-ai-spacing-xs) var(--partner-ai-spacing-sm);color:var(--ai-text);font-size:var(--partner-ai-caption-size);white-space:nowrap;flex:none}
+.partner-ai .chat-toolbar-action:hover:not(:disabled){background:var(--ai-page)}
+.partner-ai .chat-close-action{width:calc(var(--partner-ai-spacing-lg) * 2);height:calc(var(--partner-ai-spacing-lg) * 2);font-size:var(--partner-ai-icon-size);flex:none}
+.partner-ai .chat-main{display:flex;flex-direction:column;flex:1;min-width:0;min-height:0;overflow:hidden}
+.partner-ai .chat-footer{height:var(--partner-chat-footer-height,calc(var(--partner-ai-body-line) * 5 + var(--partner-ai-spacing-lg) * 2 + var(--partner-ai-caption-line) + var(--partner-ai-spacing-sm) * 5 + 2px));display:grid;grid-template-rows:minmax(0,1fr) var(--partner-ai-caption-line);gap:var(--partner-ai-spacing-sm);padding:var(--partner-ai-spacing-sm);min-width:0;min-height:0;overflow:hidden}
+.partner-ai .chat-footer .composer{padding:0;min-width:0;min-height:0;display:flex;overflow:hidden}
+.partner-ai .chat-footer .composer-note{text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:var(--partner-ai-caption-line)}
+.partner-ai .chat-scroll .tr-bubble__box{--tr-bubble-box-border:none;--tr-bubble-box-shadow:var(--partner-chat-bubble-shadow,var(--partner-ai-mode-panel-shadow))}
+.partner-ai .chat-scroll .tr-bubble__box[data-placement="end"]{--tr-bubble-box-bg:var(--partner-chat-user-bubble-bg,var(--ai-page));--tr-bubble-text-color:var(--ai-text)}
+.partner-ai .chat-scroll .tr-bubble__box[data-placement="start"]{--tr-bubble-box-bg:var(--partner-ai-agent-bubble-bg);--tr-bubble-text-color:var(--ai-text)}
+.partner-ai .chat-scroll .tr-bubble__box:has(>.table-card,>.empty-result,>.unknown-message){--tr-bubble-box-padding:0}
+.partner-ai .chat-scroll .tr-bubble__box>.table-card,.partner-ai .chat-scroll .tr-bubble__box>.empty-result,.partner-ai .chat-scroll .tr-bubble__box>.unknown-message{background:transparent;border:0;box-shadow:none;margin:0}
+.partner-ai .chat-footer{overflow:visible}
+.partner-ai .chat-footer .composer{overflow:visible;padding:var(--partner-ai-spacing-sm)}
+.partner-ai .chat-main{position:relative;isolation:isolate}
+.partner-ai .chat-main{--chat-fade-top:#000;--chat-fade-bottom:#000}
+.partner-ai .chat-main.can-scroll-up{--chat-fade-top:transparent}
+.partner-ai .chat-main.can-scroll-down{--chat-fade-bottom:transparent}
+.partner-ai .chat-main .chat-scroll{mask-image:linear-gradient(to bottom,var(--chat-fade-top),#000 var(--partner-ai-scroll-fade-size),#000 calc(100% - var(--partner-ai-scroll-fade-size)),var(--chat-fade-bottom))}
+.partner-ai .chat-main:has(.chat-scroll :focus-visible) .chat-scroll{mask-image:none}
+.partner-ai {
+  .chat-panel{border:var(--partner-ai-border-width) solid var(--ai-line);border-radius:var(--ai-radius);min-width:0;min-height:0;width:100%;height:100%;overflow:hidden;container-type:size;--tr-layout-main-min-width:0px;background-color:var(--partner-ai-sidebar-bg)}
+}
+.partner-ai {
+  .chat-panel .tr-layout__main{min-height:0;min-width:0;overflow:hidden;display:flex}
+}
+.partner-ai {.chat-panel .tr-layout__content{min-height:0}
+}
+.partner-ai {
+  .chat-header{display:flex;align-items:center;gap:10px;padding:var(--partner-ai-spacing-lg)}
+}
+.partner-ai {
+  .chat-header h2{font-size:var(--partner-ai-body-size);line-height:var(--partner-ai-body-line);font-weight:var(--partner-ai-heading-weight)}
+}
+.partner-ai {.chat-header p{font-size:var(--partner-ai-caption-size);line-height:var(--partner-ai-caption-line);color:var(--ai-muted)}
+}
+.partner-ai {
+  .assistant-avatar{display:grid;place-items:center;width:var(--partner-ai-control-size);height:var(--partner-ai-control-size);color:var(--partner-ai-on-accent);background:var(--ai-accent);border-radius:var(--partner-ai-control-radius);flex:none}
+}
+.partner-ai {.assistant-avatar svg{width:var(--partner-ai-auxiliary-icon-size);height:var(--partner-ai-auxiliary-icon-size)}
+}
+.partner-ai {
+  .chat-scroll{flex:1;min-height:0;min-width:0;overflow:auto;padding:var(--partner-ai-message-scroll-padding-block) var(--partner-ai-spacing-lg);scrollbar-width:thin;scrollbar-color:var(--partner-ai-border) transparent;overscroll-behavior:contain}
+}
+.partner-ai {
+  .chat-scroll .tr-bubble{min-width:0}
+}
+.partner-ai {.chat-scroll .tr-bubble__content{max-width:100%;min-width:0}
+}
+.partner-ai {.chat-scroll .tr-bubble__box{min-width:0}
+}
+.partner-ai {.chat-scroll .tr-bubble__avatar{flex:none}
+}
+.partner-ai {
+  .chat-scroll [data-type="text"],.chat-scroll .markdown-body{font-size:var(--partner-ai-body-size);line-height:var(--partner-ai-body-line)}
+}
+.partner-ai {.chat-scroll .tr-bubble__content .markdown-body p,.chat-scroll .tr-bubble__content p.tr-bubble__text{margin:0 0 var(--partner-ai-gap-md)}
+}
+.partner-ai {.chat-scroll .tr-bubble__content pre{white-space:pre-wrap}
+}
+/* REQ-001 v0.5: user paint preserves orange-05 as an independent AI default in aiTokens.css; native Box geometry stays unchanged. */
+/* REQ-015 v0.4: an occupying native track clips the last pixels of the unchanged
+   bubble/card shadow after safe-inset compensation. Reuse the existing read-only
+   shadow painter behind the scrollport, clipped to that missing strip only. Keep
+   native overflow, original shadows, width/padding and the same vertical feather. */
+.partner-ai .chat-panel .chat-main{position:relative;isolation:isolate}
+.partner-ai .chat-panel .content-edge-shadows{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;mask-image:linear-gradient(to bottom,var(--chat-fade-top),#000 var(--partner-ai-scroll-fade-size),#000 calc(100% - var(--partner-ai-scroll-fade-size)),var(--chat-fade-bottom))}
+.partner-ai .chat-panel .content-edge-shadows>span{position:absolute}
+.partner-ai .chat-panel .chat-main>.chat-scroll,.partner-ai .chat-panel .chat-main>.chat-welcome{position:relative;z-index:1}
+.partner-ai .chat-main:has(.chat-scroll :focus-visible) .content-edge-shadows{mask-image:none}
+.partner-ai .chat-main:has(.chat-welcome) .content-edge-shadows{mask-image:none}
+.partner-ai .chat-panel .chat-scroll{font-family:var(--partner-ai-font-family,inherit);color:var(--partner-ai-text);--tr-bubble-text-color:var(--partner-ai-text);--tr-bubble-text-font-size:var(--partner-ai-body-size);--tr-bubble-text-line-height:var(--partner-ai-body-line);--tr-bubble-list-gap:var(--partner-ai-message-gap);gap:var(--partner-ai-message-gap)}
+.partner-ai .chat-panel .chat-scroll .tr-bubble__box{--tr-bubble-box-border:none;--tr-bubble-box-shape-rounded-radius:var(--partner-ai-bubble-radius)}
+.partner-ai .chat-panel .chat-scroll .tr-bubble__box[data-placement=end]{--tr-bubble-box-bg:var(--partner-ai-user-bubble-bg);--tr-bubble-box-padding:var(--partner-ai-message-padding);--tr-bubble-box-shadow:none;--tr-bubble-box-shape-corner-radius:0px;--tr-bubble-text-color:var(--partner-ai-text)}
+.partner-ai .chat-panel .chat-scroll .tr-bubble__box[data-placement=start]{--tr-bubble-box-bg:var(--partner-ai-agent-bubble-bg);--tr-bubble-box-shadow:var(--partner-ai-agent-bubble-shadow);--tr-bubble-text-color:var(--partner-ai-text)}
+/* Four-sided16px belongs to the native Box. Neutral content wrapper has0 padding; footer shares this same inset. */
+.partner-ai .chat-panel .chat-scroll .answer-box{--tr-bubble-box-padding:var(--partner-ai-message-padding);--tr-bubble-box-shape-corner-radius:var(--partner-ai-bubble-radius);max-width:100%;width:100%;min-width:180px}
+.partner-ai .chat-panel .chat-scroll .answer-content{padding:0;color:var(--partner-ai-text);font-size:var(--partner-ai-body-size);font-weight:var(--partner-ai-body-weight);line-height:var(--partner-ai-body-line);overflow-wrap:anywhere}
+/* Consumer renderers explicitly opt in; inherit each surrounding text size. */
+.partner-ai .chat-panel .chat-scroll .answer-content .agent-core-data{color:var(--partner-ai-agent-core-data-color);font-size:inherit;font-weight:500}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body{color:var(--partner-ai-text);font-size:var(--partner-ai-body-size);line-height:var(--partner-ai-body-line)}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body h1{font-size:var(--partner-ai-message-title-size);font-weight:var(--partner-ai-heading-weight);line-height:var(--partner-ai-message-title-line);margin:0 0 var(--partner-ai-gap-md);color:var(--partner-ai-text)}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body h2{font-size:var(--partner-ai-message-h1-size);font-weight:var(--partner-ai-heading-weight);line-height:var(--partner-ai-message-h1-line);margin:var(--partner-ai-message-gap) 0 var(--partner-ai-gap-md);color:var(--partner-ai-text)}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body h3{font-size:var(--partner-ai-message-h2-size);font-weight:var(--partner-ai-heading-weight);line-height:var(--partner-ai-message-h2-line);margin:var(--partner-ai-message-gap) 0 var(--partner-ai-gap-md);color:var(--partner-ai-text)}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body h4{font-size:var(--partner-ai-message-h3-size);font-weight:var(--partner-ai-heading-weight);line-height:var(--partner-ai-message-h3-line);margin:var(--partner-ai-message-gap) 0 var(--partner-ai-gap-md);color:var(--partner-ai-text)}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body p{margin:0 0 var(--partner-ai-gap-md);line-height:var(--partner-ai-body-line)}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body>:first-child{margin-top:0}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body>:last-child{margin-bottom:0}
+/* Suggested list values await visual acceptance: indent24, item8, marker8, nested4, block8. */
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body ol,.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body ul{padding-left:var(--partner-ai-message-gap);margin:var(--partner-ai-gap-md) 0;list-style-position:outside}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body li{padding-left:var(--partner-ai-gap-md);margin:0 0 var(--partner-ai-gap-md)}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body li:last-child{margin-bottom:0}
+.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body li>ul,.partner-ai .chat-panel .chat-scroll .answer-content .markdown-body li>ol{margin:var(--partner-ai-gap-sm) 0 0}
+.partner-ai .chat-panel .chat-scroll .answer-content .message-note{font-size:var(--partner-ai-caption-size);line-height:var(--partner-ai-caption-line);color:var(--partner-ai-muted);margin:var(--partner-ai-gap-md) 0 0}
+.partner-ai .chat-panel .chat-scroll .loading-line{font-size:var(--partner-ai-body-size);font-weight:var(--partner-ai-heading-weight);line-height:var(--partner-ai-body-line);color:var(--partner-ai-text)}
+/* REQ-020: result-card spacing20px; the table's own inner clip owns its8px radius.
+   Outer overflow remains visible so it cannot cut native Box/host card shadows. */
+.partner-ai .chat-panel .chat-scroll .answer-content>.table-card{margin:var(--partner-ai-message-business-gap) 0 0;border:0;background:transparent;box-shadow:none;overflow:visible}
+.partner-ai .chat-panel .chat-scroll .answer-content>.empty-result,.partner-ai .chat-panel .chat-scroll .answer-content>.unknown-message{margin:var(--partner-ai-gap-md) 0 0;background:transparent;border:0;box-shadow:none}
+.partner-ai .chat-panel .chat-scroll .reply-actions{height:var(--partner-ai-reply-action-size);display:flex;justify-content:flex-end;align-items:center;gap:0;padding:0;border:0;position:relative}
+/* REQ-020: all five public ActionButton icons inherit primary text, including
+   pressed/hover states. Keep geometry and focus rules; do not add orange ink. */
+.partner-ai .chat-panel .chat-scroll .reply-actions button{width:var(--partner-ai-reply-action-size);height:var(--partner-ai-reply-action-size);min-width:var(--partner-ai-reply-action-size);border:0;background:transparent;border-radius:var(--partner-ai-control-radius);padding:var(--partner-ai-reply-action-inset);color:var(--partner-ai-text);display:grid;place-items:center;flex:none}
+.partner-ai .chat-panel .chat-scroll .reply-actions button svg{width:var(--partner-ai-icon-size);height:var(--partner-ai-icon-size)}
+.partner-ai .chat-panel .chat-scroll .reply-actions button:hover:not(:disabled){background:var(--partner-ai-page-bg)}
+.partner-ai .chat-panel .chat-scroll .reply-actions button[aria-pressed=true]{color:var(--partner-ai-text)}
+
+/* Format Markdown tables only. AgreementTable and other business renderers own
+   their typography/cells; broad answer-content rules override their scoped CSS. */
+.partner-ai .chat-panel .answer-content .markdown-body table{font-family:inherit;font-size:var(--partner-ai-body-size);line-height:var(--partner-ai-body-line);color:var(--partner-ai-text)}
+.partner-ai .chat-panel .answer-content .markdown-body th,.partner-ai .chat-panel .answer-content .markdown-body td{font-size:var(--partner-ai-body-size);font-weight:var(--partner-ai-body-weight);line-height:var(--partner-ai-body-line);padding:0 var(--partner-ai-gap-lg);height:var(--partner-ai-table-row-height);color:var(--partner-ai-text)}
+.partner-ai .chat-panel .answer-content .markdown-body td small{font-size:var(--partner-ai-caption-size);line-height:var(--partner-ai-caption-line);color:var(--partner-ai-muted)}
+
+.partner-ai .chat-panel .answer-content .muted,.partner-ai .chat-panel .answer-content small,.partner-ai .chat-panel .answer-content .table-title>span{font-size:var(--partner-ai-caption-size);font-weight:var(--partner-ai-body-weight);line-height:var(--partner-ai-caption-line);color:var(--partner-ai-muted)}
+
+.partner-ai .chat-panel .reply-actions button:focus-visible{outline:var(--partner-ai-focus-width) solid var(--partner-ai-accent);outline-offset:var(--partner-ai-focus-inset)}
+
+/* TinyRobot0.5.1 DOM hook: keep grid min-size at0 so wide tables scroll internally. Recheck this class on upgrade. */
+.partner-ai .chat-panel .chat-scroll .tr-bubble__body{min-width:0;grid-template-columns:auto minmax(0,1fr)}
+.partner-ai .chat-panel .chat-scroll .tr-bubble[data-placement=end] .tr-bubble__body{grid-template-columns:minmax(0,1fr) auto}
+.partner-ai .chat-panel .answer-content{min-width:0}
+.partner-ai .chat-panel .answer-content>.table-card>.table-title{padding:0 0 var(--partner-ai-gap-md)}
+.partner-ai .chat-panel .answer-content .markdown-body .table-wrap{width:100%;max-width:100%;overflow-x:auto;min-width:0}
+.partner-ai .chat-panel .answer-content .markdown-body table{width:max-content;min-width:100%;table-layout:auto}
+.partner-ai .chat-panel .answer-content .markdown-body th,.partner-ai .chat-panel .answer-content .markdown-body td{white-space:nowrap;overflow:visible}
+/* REQ-029 supersedes REQ-028: status is unpainted content of the normal Box.
+   Public renderer slots/ActionButton keep the shell and icon actions unchanged. */
+.partner-ai .chat-panel .chat-scroll .answer-failure.has-output{margin-top:var(--partner-ai-message-padding)}
+.partner-ai .chat-panel .chat-scroll .reply-actions .reply-continue{margin-right:auto;display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:0;height:var(--partner-ai-control-size);padding:0 var(--partner-ai-gap-lg);border-radius:var(--partner-ai-control-radius);background:var(--partner-ai-fill);font:inherit;font-size:var(--partner-ai-body-size);line-height:var(--partner-ai-body-line);white-space:nowrap}
+.partner-ai .chat-panel .chat-scroll .reply-actions .reply-continue:hover:not(:disabled){background:var(--partner-ai-hover-bg)}
+
+/* REQ-001 v0.3: a plain user line is22+13+13=48px; no fixed height for wrapped text. */
+.partner-ai .chat-panel .chat-scroll .tr-bubble__box[data-placement=end]{--tr-bubble-box-padding:var(--partner-ai-user-padding-block) var(--partner-ai-message-padding)}
+/* TinyRobot Text renders a p; the shared paragraph spacing must not enlarge user bubbles. */
+.partner-ai .chat-panel .chat-scroll .tr-bubble__box[data-placement=end] .tr-bubble__text{margin:0}
+.partner-ai .chat-panel .chat-scroll .tr-bubble__box[data-placement=end] .markdown-body>:first-child{margin-top:0}
+.partner-ai .chat-panel .chat-scroll .tr-bubble__box[data-placement=end] .markdown-body>:last-child{margin-bottom:0}
+/* Business-to-business overrides the prose/table8px rule. The native agent shell still owns bottom16. */
+/* REQ-023: navigation is a business block; no added margin when it is alone. */
+.partner-ai .chat-panel .answer-content>*+.business-navigation-card,.partner-ai .chat-panel .answer-content>.business-navigation-card+*{margin-top:var(--partner-ai-message-business-gap)}
+/* REQ-023 v0.7: adjacent navigation cards form an8px group. Keep20px around
+   the group and between other business blocks; only this pair gets the override. */
+.partner-ai .chat-panel .answer-content>.business-navigation-card+.business-navigation-card{margin-top:var(--partner-ai-gap-md)}
+.partner-ai .chat-panel .chat-scroll .answer-content>.table-card+.table-card{margin-top:var(--partner-ai-message-business-gap)}
+.partner-ai .chat-panel .chat-scroll .reply-actions{margin-top:var(--partner-ai-message-padding);margin-bottom:0;column-gap:var(--partner-ai-reply-action-gap)}
+
+/* REQ-001 v0.4: progress shares the existing16px inset. Partial output separates by16px; no extra shell. */
+.partner-ai .chat-panel .chat-scroll .answer-progress{padding:0;margin:0}
+.partner-ai .chat-panel .chat-scroll .answer-progress.has-output{margin-bottom:var(--partner-ai-message-padding)}
+.partner-ai .chat-panel .chat-scroll .answer-content>.thinking-content:not(:last-child){margin-bottom:var(--partner-ai-message-padding)}
+
+/* REQ-029 AiAlert: stop uses neutral body typography and the same native16px inset/footer gap.
+   These are local content classes; no additional painted surface or TinyRobot DOM override. */
+.partner-ai .chat-panel .chat-scroll .answer-stopped{margin:0}
+.partner-ai .chat-panel .chat-scroll .answer-stopped.has-output{margin-top:var(--partner-ai-message-padding)}
+
+
+/* REQ-003: fixed header/footer geometry, with the existing main slot owning independent scroll.
+   Keep overrides local instead of changing shared Foundation tokens or message styles.
+   TrLayout slots and Sender radius/divider tokens are public API. :deep(.tr-*) below adapts
+   TinyRobot 0.5.1 internal DOM; on upgrades recheck shadow, long-input scroll and focus. */
+/* REQ-014 v0.4: reserve the full header row, but hover/focus/drag share only its
+   centered64x24px native target. Keep padding around the34/40px visual line and
+   existing events/capture; no private Robot DOM hooks or4px-only hit target. */
+.chat-panel .chat-handle-row[data-v-35395413] { height:var(--partner-chat-handle-height,var(--partner-ai-handle-area-height)); display:flex; align-items:center; justify-content:center; flex:none; }
+.chat-panel .chat-handle-area[data-v-35395413] { width:var(--partner-ai-handle-hit-width); max-width:100%; height:var(--partner-chat-handle-height,var(--partner-ai-handle-area-height)); }
+.chat-panel .chat-handle-area.is-draggable[data-v-35395413] { cursor:grab; touch-action:none; }
+.chat-panel .chat-handle-area.is-draggable[data-v-35395413]:active { cursor:grabbing; }
+.chat-panel .chat-handle-area.is-draggable[data-v-35395413]:focus-visible { outline:none; }
+.chat-panel .chat-handle-area.is-draggable:focus-visible .chat-handle[data-v-35395413] { outline:var(--partner-ai-focus-width) solid var(--partner-ai-focus); outline-offset:var(--partner-ai-focus-offset); }
+/* REQ-012 v0.2: resize only the centered visual grip inside the24px-high native
+   hit area. Use the independent handle motion token; Demo preserves its existing150ms override; no Robot DOM adapter. */
+.chat-panel .chat-handle[data-v-35395413] { width:var(--partner-ai-handle-width); height:var(--partner-ai-handle-height); border-radius:var(--partner-ai-full-radius); transition:width var(--partner-ai-handle-motion-duration,var(--partner-ai-control-motion-duration)) var(--partner-ai-control-motion-easing), height var(--partner-ai-handle-motion-duration,var(--partner-ai-control-motion-duration)) var(--partner-ai-control-motion-easing); }
+.chat-panel .chat-handle-area.is-draggable:is(:hover,:focus-visible) .chat-handle[data-v-35395413] { width:var(--partner-ai-handle-active-width); height:var(--partner-ai-handle-active-height); }
+@media(prefers-reduced-motion:reduce) { .chat-panel .chat-handle[data-v-35395413] { transition:none; } }
+.chat-panel .chat-main[data-v-35395413] .chat-scroll { padding-left:var(--partner-ai-layout-safe-inset); padding-right:max(0px,calc(var(--partner-ai-layout-safe-inset) - var(--partner-ai-native-scrollbar-gutter,0px))); }
+/* REQ-005: when progress disappears and follow-ups enter, browser scroll anchoring can
+   move scrollTop before our next frame and look like upward reading. Our bottom follow
+   owns anchoring only in this state; native anchoring remains available to readers above. */
+.chat-panel .chat-main[data-v-35395413] .chat-scroll.is-following { overflow-anchor:none; }
+.chat-panel .chat-header[data-v-35395413] { height:var(--partner-chat-toolbar-height,var(--partner-ai-header-height)); padding:0 var(--partner-ai-layout-safe-inset); gap:var(--partner-ai-gap-lg); overflow:visible; }
+.chat-panel .chat-header.is-welcome[data-v-35395413] { justify-content:flex-end; }
+.chat-panel .chat-header.is-welcome .chat-toolbar-actions[data-v-35395413] { max-width:100%; }
+.chat-panel .chat-identity[data-v-35395413] { gap:var(--partner-ai-gap-md); overflow:hidden; }
+.chat-panel .chat-identity-avatar[data-v-35395413],
+.chat-panel .chat-identity .assistant-avatar[data-v-35395413] { width:var(--partner-ai-header-avatar-size); height:var(--partner-ai-header-avatar-size); }
+.chat-panel .chat-identity h2[data-v-35395413] {
+  font-size:var(--partner-ai-header-title-size);
+  font-weight:var(--partner-ai-heading-weight);
+  line-height:var(--partner-ai-header-title-line);
+  letter-spacing:var(--partner-ai-heading-letter-spacing,0);
+}
+/* Title yields before controls: fixed-size icons stay usable in constrained embeds.
+   The configurable action API retains text labels and horizontal overflow for arbitrary labels. */
+.chat-panel .chat-toolbar-actions[data-v-35395413] { gap:var(--partner-ai-gap-lg); max-width:calc(100% - var(--partner-ai-header-avatar-size) - var(--partner-ai-gap-lg)); flex:0 0 auto; }
+.chat-panel .chat-configurable-actions[data-v-35395413] { gap:var(--partner-ai-gap-lg); overflow-y:hidden; }
+.chat-panel[data-v-35395413] .chat-toolbar-action,
+.chat-panel .chat-toolbar-actions[data-v-35395413] .chat-close-action {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:var(--partner-ai-control-size); height:var(--partner-ai-control-size); min-width:var(--partner-ai-control-size); padding:var(--partner-ai-gap-sm); flex:none;
+}
+.chat-panel[data-v-35395413] .chat-toolbar-action svg,
+.chat-panel .chat-toolbar-actions[data-v-35395413] .chat-close-action svg { width:var(--partner-ai-icon-size); height:var(--partner-ai-icon-size); }
+/* REQ-014: ActionButton public icon/disabled APIs retain native button roots and events.
+   Omit its built-in tooltip: the independent accessible Workbench port owns one portal.
+   Verify public Tooltip alternatives, accessible names and disabled controls on upgrades. */
+/* Preserve legacy caller icon paint; local resources use currentColor directly. */
+.chat-configurable-actions[data-v-35395413] .chat-toolbar-action svg[data-ai-icon-color="inherit"] [stroke="#191919"] { stroke:currentColor; }
+/* Scope to this native container (Layout/Provider do not forward this SFC's root scope).
+   REQ-014 keeps the ring inside the scrollport with native, unwrapped action roots.
+   Recheck public attribute forwarding when upgrading TinyRobot. */
+.chat-toolbar-actions[data-v-35395413] .chat-toolbar-action:focus-visible { outline:var(--partner-ai-focus-width) solid var(--partner-ai-focus); outline-offset:var(--partner-ai-focus-inset); }
+/* Existing host-supplied text actions keep their intrinsic label width and overflow protocol. */
+.chat-panel .chat-configurable-actions--custom[data-v-35395413] .chat-toolbar-action { width:auto; padding:var(--partner-ai-gap-sm) var(--partner-ai-gap-md); }
+.chat-panel .chat-footer[data-v-35395413] {
+  /* REQ-017: retain caller base-footer overrides, adding only Sender's measured
+     delta. Grid/footer grow upward in TrLayout's public footer slot; note stays put. */
+  height:calc(var(--partner-chat-footer-height,var(--partner-ai-footer-height)) + var(--composer-measured-height,132px) - 132px); padding:var(--partner-ai-footer-padding-block) var(--partner-ai-layout-safe-inset); grid-template-rows:minmax(0,1fr) var(--partner-ai-disclaimer-height); gap:var(--partner-ai-footer-gap); overflow:visible;
+}
+.chat-panel .chat-footer .composer[data-v-35395413] { padding:0; overflow:visible; align-items:end; }
+.chat-panel .chat-footer .composer-note[data-v-35395413] { color:var(--partner-ai-disclaimer-color); height:var(--partner-ai-disclaimer-height); line-height:var(--partner-ai-disclaimer-height); }
+/* Public Sender tokens remove its divider and set the requested radius. Outer gutters reserve
+   shadow/focus space; only the existing editor DOM clips/scrolls, not the Sender shadow. */
+/* Fullscreen consumes the same public Layout slots. Only owned classes change;
+   the centered column includes safe gutters and leaves the shell full workspace. */
+.chat-panel.is-fullscreen .chat-main[data-v-35395413] .chat-scroll,
+.chat-panel.is-fullscreen .chat-footer[data-v-35395413] {
+  box-sizing:border-box; width:100%; max-width:calc(var(--partner-ai-fullscreen-content-max-width,800px) + 2 * var(--partner-ai-layout-safe-inset)); align-self:center; margin-inline:auto;
+}
+/* Welcome has its own wider column; never inherit it into messages or Sender. */
+.chat-panel.is-fullscreen .chat-main[data-v-35395413] .chat-welcome {
+  box-sizing:border-box; width:100%; max-width:calc(var(--partner-ai-fullscreen-welcome-max-width,1040px) + 2 * var(--partner-ai-layout-safe-inset)); align-self:center; margin-inline:auto;
+}
+

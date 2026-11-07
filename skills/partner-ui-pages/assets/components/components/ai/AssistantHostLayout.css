@@ -1,0 +1,64 @@
+
+/* Same 200ms / easing as the existing consumer demo, with public host overrides.
+   Keep the aside mounted through exit and reversal; only captured gestures bypass motion.
+   Own direct workspace/window state: nested hosts and product .is-open/.is-floating
+   classes must not open or reposition another instance. Slot component roots use
+   :deep only for the existing panel-height contract; no Robot DOM adaptation. */
+.partner-assistant-host[data-v-db31e3e9] { --partner-host-motion-duration:200ms; --partner-host-motion-easing:cubic-bezier(0.2,0,0,1); --partner-host-shadow:0 0 48px rgba(0,0,0,.16); --partner-host-floating-shadow:0 8px 48px rgba(0,0,0,.16); --partner-host-entry-offset:24px; --partner-host-resize-inset:24px; --partner-host-focus:#191919; --partner-host-focus-width:2px; --partner-host-focus-inset:-2px; display:flex; flex-direction:column; height:100%; min-height:0; overflow:hidden; }
+.partner-assistant-host.is-flow[data-v-db31e3e9] { height:auto; overflow:visible; }
+.partner-assistant-host.is-flow > .partner-assistant-workspace[data-v-db31e3e9] { align-items:start; margin-bottom:calc(-1 * var(--partner-host-flow-trailing-space, 96px)); }
+.partner-assistant-host.is-flow > .partner-assistant-workspace > .partner-assistant-business[data-v-db31e3e9] { overflow:visible; padding-bottom:var(--partner-host-flow-trailing-space, 96px); }
+.partner-assistant-navigation[data-v-db31e3e9] { flex:none; position:relative; z-index:30; }
+.partner-assistant-workspace[data-v-db31e3e9] { display:grid; position:relative; flex:1; min-height:0; transition:grid-template-columns var(--partner-host-motion-duration) var(--partner-host-motion-easing); }
+.partner-assistant-business[data-v-db31e3e9] { min-width:0; min-height:0; position:relative; overflow:auto; }
+.partner-assistant-window[data-v-db31e3e9] { position:relative; z-index:25; min-width:0; min-height:0; box-sizing:border-box; display:flex; flex-direction:column; overflow:hidden; box-shadow:var(--partner-host-shadow); visibility:hidden; opacity:0; transform:translateX(calc(var(--partner-host-sidebar-entry-width,0px) + var(--partner-host-entry-offset))); pointer-events:none; transition:transform var(--partner-host-motion-duration) var(--partner-host-motion-easing),opacity var(--partner-host-motion-duration) var(--partner-host-motion-easing),visibility 0s linear var(--partner-host-motion-duration); }
+.partner-assistant-host.is-open > .partner-assistant-workspace > .partner-assistant-window[data-v-db31e3e9] { visibility:visible; opacity:1; transform:translateX(0); pointer-events:auto; transition-delay:0s; }
+.partner-assistant-window.is-moving[data-v-db31e3e9] { transition:none; transform:none; }
+.partner-assistant-window-content[data-v-db31e3e9] { flex:1; min-height:0; overflow:hidden; }
+.partner-assistant-window-content[data-v-db31e3e9] >  .agreement-assistant-panel { height:100%; }
+.partner-assistant-host.is-floating > .partner-assistant-workspace > .partner-assistant-window[data-v-db31e3e9] { position:absolute; box-shadow:var(--partner-host-floating-shadow); }
+.partner-assistant-host.is-floating > .partner-assistant-workspace > .partner-assistant-window > .partner-assistant-window-content[data-v-db31e3e9] >  .agreement-assistant-panel { min-height:var(--assistant-content-min-height); }
+.partner-assistant-host.is-floating.is-compact > .partner-assistant-workspace > .partner-assistant-window > .partner-assistant-window-content[data-v-db31e3e9] { overflow-y:auto; overscroll-behavior:contain; }
+/* Bottom-edge overlay consumes only footer padding; no visible grip/layout strip.
+   Keep the existing hook's min/max, capture and accessible keyboard separator. */
+.partner-assistant-resize[data-v-db31e3e9] { position:absolute; inset:auto var(--partner-host-resize-inset) 0; height:min(8px,var(--assistant-resize-handle-height)); cursor:ns-resize; touch-action:none; }
+.partner-assistant-resize[data-v-db31e3e9]:focus-visible { outline:var(--partner-host-focus-width) solid var(--partner-host-focus); outline-offset:var(--partner-host-focus-inset); }
+.partner-assistant-host.is-flow.is-fullscreen > .partner-assistant-workspace > .partner-assistant-window[data-v-db31e3e9] { position:fixed !important; inset:0 !important; width:100vw !important; height:100dvh !important; }
+.partner-assistant-host.is-fullscreen > .partner-assistant-workspace[data-v-db31e3e9] { transition:none; }
+.partner-assistant-host.is-open.is-fullscreen > .partner-assistant-workspace > .partner-assistant-business[data-v-db31e3e9] { visibility:hidden; }
+@media(prefers-reduced-motion:reduce) { .partner-assistant-workspace[data-v-db31e3e9],.partner-assistant-window[data-v-db31e3e9] { transition:none; transform:none; } }
+
+/* REQ-008 v0.5 / REQ-027 v0.5: the product host and company demo share one
+   consumer-owned shell contract. The shell alone clips the floating outline;
+   ChatPanel remains unchanged outside these owned data attributes. No Robot DOM
+   adapter or menu/card radius override; recheck both host consumers on upgrade. */
+[data-assistant-window][data-window-mode] {
+  --partner-host-floating-radius:24px;
+  --partner-host-surface:transparent;
+  border-radius:0;
+  background:var(--partner-host-surface);
+}
+/* Preserve the former white/dark surface when a consumer explicitly supplies
+   an AI scope; a standalone host keeps its existing transparent shell. */
+.partner-ai[data-assistant-window], .partner-ai [data-assistant-window] {
+  --partner-host-surface:var(--partner-ai-panel-bg);
+}
+[data-assistant-window][data-window-mode="floating"] {
+  border-radius:var(--partner-host-floating-radius);
+}
+/* Workspace expansion belongs to the existing shell. Keep navigation/portals at
+   their current layers; only fullscreen bypasses the 420/480px panel geometry. */
+[data-assistant-window][data-window-mode][data-fullscreen="true"] {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:0;
+  border-radius:0;
+  box-shadow:none;
+}
+[data-assistant-window][data-window-mode] .chat-panel {
+  border:0;
+  border-radius:0;
+}
+

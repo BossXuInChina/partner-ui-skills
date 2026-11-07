@@ -1,0 +1,40 @@
+
+.wb-chart { position: relative; display: flex; flex-direction: column; min-width: 0; margin: 0; color: var(--wb-color-text-secondary); font-family: inherit; font-size: var(--wb-font-body-s-font-size); font-weight: var(--wb-font-body-s-font-weight); line-height: var(--wb-font-body-s-line-height); letter-spacing: var(--wb-font-body-s-letter-spacing); }
+.wb-chart__units { display: flex; justify-content: space-between; padding-bottom: var(--wb-spacing-component-xs); color: var(--wb-color-text-secondary); }
+.wb-chart__svg { display: block; overflow: visible; }
+.wb-chart__grid line { stroke: var(--wb-color-border-separator); stroke-dasharray: 0; }
+.wb-chart__axis-label, .wb-chart__axis-label text, .wb-chart__scale, .wb-chart__callout text { fill: var(--wb-color-text-secondary); font-size: var(--wb-font-caption-m-font-size); font-weight: var(--wb-font-caption-m-font-weight); line-height: var(--wb-font-caption-m-line-height); letter-spacing: var(--wb-font-caption-m-letter-spacing); }
+.wb-chart__radar-label { fill: var(--wb-color-text-secondary); }
+.wb-chart__value { fill: var(--wb-color-text-primary); font-size: var(--wb-font-caption-m-font-size); font-weight: var(--wb-font-caption-m-font-weight); line-height: var(--wb-font-caption-m-line-height); letter-spacing: var(--wb-font-caption-m-letter-spacing); }
+.wb-chart__hover-band { fill: var(--wb-color-fill-hover); }
+.wb-chart__bar { rx: var(--wb-radius-xs); }
+.wb-chart__line { fill: transparent; stroke-width: 2; stroke-linecap: round; }
+.wb-chart__area { stroke: transparent; }
+.wb-chart__stop-top { stop-opacity: 0.28; }
+.wb-chart__stop-bottom { stop-opacity: 0.02; }
+.wb-chart__point { fill: var(--wb-color-surface-card-default); stroke-width: 2; opacity: 0; }
+.wb-chart__point.is-active { opacity: 1; }
+.wb-chart__track, .wb-chart__gauge-track { fill: transparent; stroke: var(--wb-color-none-subtle); }
+.wb-chart__arc { fill: transparent; stroke-linecap: butt; }
+.wb-chart--gauge .wb-chart__arc, .wb-chart--gauge .wb-chart__gauge-track { stroke-linecap: round; }
+.wb-chart__sector { stroke: var(--wb-color-surface-card-default); stroke-width: 1; }
+.wb-chart__marker.is-neutral { fill: var(--wb-color-text-primary); }
+.wb-chart__callout line { stroke: var(--wb-color-border-separator); }
+.wb-chart__radar-ring { fill: transparent; stroke: var(--wb-color-border-separator); }
+.wb-chart__radar-axis { stroke: var(--wb-color-border-separator); }
+.wb-chart__radar-shape { fill-opacity: 0.2; }
+.wb-chart__radar-outline { fill: transparent; stroke-width: 2; }
+.wb-chart__center { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; text-align: center; }
+.wb-chart__center--donut, .wb-chart__center--pie, .wb-chart__center--gauge { top: 0; height: calc(100% - var(--wb-asset-wb-chart-legend-height)); }
+.wb-chart__center-value { color: var(--wb-color-text-primary); font-size: var(--wb-font-display-xs-font-size); font-weight: var(--wb-font-display-xs-font-weight); line-height: var(--wb-font-display-xs-line-height); letter-spacing: var(--wb-font-display-xs-letter-spacing); }
+.wb-chart__center-value small { margin-inline: var(--wb-spacing-component-xs) 0; font-size: var(--wb-font-body-s-font-size); font-weight: var(--wb-font-body-s-font-weight); line-height: var(--wb-font-body-s-line-height); letter-spacing: var(--wb-font-body-s-letter-spacing); }
+.wb-chart__center-label { color: var(--wb-color-text-secondary); }
+.wb-chart__status { margin-block: var(--wb-spacing-component-sm) 0; padding-block: 0; padding-inline: var(--wb-spacing-component-md); border-radius: var(--wb-radius-full); background: var(--wb-color-none-subtle); color: var(--wb-color-text-primary); }
+.wb-chart__tooltip { position: absolute; z-index: 1; min-width: var(--wb-asset-wb-chart-tooltip-min-width); padding: var(--wb-spacing-component-sm) var(--wb-spacing-component-md); border-radius: var(--wb-radius-md); background: var(--wb-color-surface-overlay); box-shadow: var(--wb-shadow-base); color: var(--wb-color-text-primary); pointer-events: none; }
+.wb-chart__tooltip-title { padding-bottom: var(--wb-spacing-component-xs); color: var(--wb-color-text-secondary); }
+.wb-chart__tooltip-row { display: flex; align-items: center; gap: var(--wb-spacing-component-sm); }
+.wb-chart__tooltip-row strong { margin-inline: auto 0; font-size: var(--wb-font-body-s-font-size); font-weight: var(--wb-font-body-s-font-weight); line-height: var(--wb-font-body-s-line-height); letter-spacing: var(--wb-font-body-s-letter-spacing); }
+.wb-chart__legend { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--wb-spacing-component-xs) var(--wb-spacing-component-lg); padding-block: var(--wb-spacing-component-sm) 0; }
+.wb-chart__legend-item { display: inline-flex; align-items: center; gap: var(--wb-spacing-component-xs); }
+.wb-chart__dot { width: var(--wb-asset-wb-chart-dot-size); height: var(--wb-asset-wb-chart-dot-size); flex: none; }
+

@@ -1,0 +1,22 @@
+
+/* Values ported from WorkbenchTable.vue, TableScrollArea.vue and its generated
+   table/scrollbar tokens; keep this component self-contained and review on upgrade. */
+.table-clip[data-v-fd97b491] { position:relative; isolation:isolate; width:100%; max-width:100%; min-width:0; border-radius:var(--partner-ai-table-radius); overflow:hidden; }
+.agreement-table .agreement-table__viewport[data-v-fd97b491] { width:100%; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; overscroll-behavior-x:contain; }
+.agreement-table .agreement-table__viewport[data-v-fd97b491]::-webkit-scrollbar { display:none; }
+.agreement-table .agreement-table__viewport[data-v-fd97b491]:focus-visible { outline:var(--partner-ai-focus-width) solid var(--partner-ai-focus); outline-offset:var(--partner-ai-focus-inset); }
+.agreement-table table[data-v-fd97b491] { width:max-content; min-width:max(100%,var(--partner-ai-table-min-width)); border-spacing:0; border-collapse:separate; table-layout:fixed; color:var(--partner-ai-text); background:var(--partner-ai-panel-bg); font-size:var(--partner-ai-body-size); font-weight:var(--partner-ai-body-weight); line-height:var(--partner-ai-body-line); letter-spacing:var(--partner-ai-body-letter-spacing); }
+.agreement-table th[data-v-fd97b491],.agreement-table td[data-v-fd97b491] { box-sizing:border-box; height:var(--partner-ai-table-row-height); padding:0 var(--partner-ai-spacing-sm); border:0; border-bottom:var(--partner-ai-border-width) solid var(--partner-ai-divider); text-align:start; vertical-align:middle; white-space:nowrap; font:inherit; }
+.agreement-table th[data-v-fd97b491] { position:relative; color:var(--partner-ai-text); font-weight:var(--partner-ai-heading-weight); background-color:var(--partner-ai-panel-bg); background-image:linear-gradient(var(--partner-ai-table-header-bg),var(--partner-ai-table-header-bg)); }
+.agreement-table th[data-v-fd97b491]:not(:last-child)::after { content:''; position:absolute; top:50%; inset-inline-end:0; width:var(--partner-ai-border-width); height:var(--partner-ai-table-header-divider-height); background:var(--partner-ai-divider); transform:translateY(-50%); }
+.agreement-table td[data-v-fd97b491] { background:var(--partner-ai-panel-bg); border-bottom-color:var(--partner-ai-table-row-divider); }
+.agreement-table tbody tr:hover td[data-v-fd97b491] { background:var(--partner-ai-hover-bg); }
+.agreement-table .agreement-table__action[data-v-fd97b491] { border:0; padding:0; color:var(--partner-ai-action-text); background:transparent; font:inherit; text-align:start; cursor:pointer; }
+.agreement-table__action span[data-v-fd97b491] { position:relative; top:var(--partner-ai-table-action-label-offset); }
+.agreement-table .agreement-table__action[data-v-fd97b491]:hover { color:var(--partner-ai-action-text-hover); text-decoration:underline; }
+.agreement-table .agreement-table__action[data-v-fd97b491]:active { color:var(--partner-ai-table-action-active); text-decoration:underline; }
+.agreement-table .agreement-table__action[data-v-fd97b491]:focus-visible { outline:var(--partner-ai-border-width) solid var(--partner-ai-focus); outline-offset:var(--partner-ai-focus-control-offset); text-decoration:underline; }
+.agreement-table__track[data-v-fd97b491] { position:absolute; left:0; right:0; bottom:0; height:var(--partner-ai-scrollbar-size); z-index:4; touch-action:none; user-select:none; overflow:hidden; }
+.agreement-table__thumb[data-v-fd97b491] { position:absolute; bottom:0; height:calc(var(--partner-ai-scrollbar-size) - var(--partner-ai-scrollbar-safe) * 2); border-radius:var(--partner-ai-scrollbar-radius); background:var(--partner-ai-color-neutral-200); }
+.agreement-table__track:hover .agreement-table__thumb[data-v-fd97b491],.agreement-table__track.is-dragging .agreement-table__thumb[data-v-fd97b491] { height:calc(var(--partner-ai-scrollbar-size) - var(--partner-ai-scrollbar-safe-hover) * 2); background:var(--partner-ai-scrollbar-thumb-hover); }
+

@@ -1,0 +1,10 @@
+
+/* Consumer-owned classes only: tokens, public icon slot and inherited scope.
+   No background/border/padding: the surrounding TinyRobot Box owns the surface. */
+.ai-alert[data-v-89c3b567]{display:flex;align-items:flex-start;gap:var(--partner-ai-gap-md);min-width:0;margin:0;padding:0;border:0;background:transparent;box-shadow:none;color:var(--partner-ai-muted);font-family:var(--partner-ai-font-family,inherit);font-size:var(--partner-ai-body-size);font-weight:var(--partner-ai-body-weight);line-height:var(--partner-ai-body-line);overflow-wrap:anywhere}
+.ai-alert--error[data-v-89c3b567]{color:var(--partner-ai-error)}
+.ai-alert__icon[data-v-89c3b567]{display:flex;align-items:center;justify-content:center;flex:none;width:var(--partner-ai-small-icon-size);height:var(--partner-ai-body-line)}
+.ai-alert__icon[data-v-89c3b567] svg{display:block;width:var(--partner-ai-small-icon-size);height:var(--partner-ai-small-icon-size)}
+.ai-alert__content[data-v-89c3b567]{min-width:0}
+.ai-alert__description[data-v-89c3b567]{margin-top:var(--partner-ai-gap-sm);color:var(--partner-ai-muted)}
+

@@ -1,0 +1,10 @@
+
+.workspace-smart-tag[data-v-850d34cf] { position:relative; isolation:isolate; display:inline-flex; align-items:center; flex:none; max-width:100%; height:var(--partner-ai-smart-tag-height); padding:0 var(--partner-ai-smart-tag-padding-inline); gap:var(--partner-ai-smart-tag-gap); border:0; border-radius:var(--partner-ai-smart-tag-radius); color:var(--partner-ai-text); font-size:var(--partner-ai-body-size); line-height:var(--partner-ai-body-line); font-weight:var(--partner-ai-body-weight); text-align:left; cursor:pointer; }
+.workspace-smart-tag[data-v-850d34cf]:focus-visible { outline:var(--partner-ai-focus-width) solid var(--partner-ai-focus); outline-offset:var(--partner-ai-focus-control-offset); }
+/* A contained, out-of-flow paint layer lets cqw resolve against this tag
+   without applying size containment to the naturally content-sized button. */
+.workspace-smart-tag__paint[data-v-850d34cf] { position:absolute; z-index:-1; inset:0; container-type:inline-size; border-radius:inherit; pointer-events:none; }
+.workspace-smart-tag__paint[data-v-850d34cf]::before { content:''; position:absolute; inset:0; border-radius:inherit; background:var(--ov-smart-tag-bg-resolved,var(--partner-ai-smart-tag-bg)); opacity:var(--partner-ai-smart-tag-bg-opacity); pointer-events:none; }
+.workspace-smart-tag[data-v-850d34cf]::after { content:''; position:absolute; inset:0; border:var(--partner-ai-smart-tag-stroke-width) solid var(--partner-ai-smart-tag-stroke); border-radius:inherit; pointer-events:none; }
+.workspace-smart-tag__text[data-v-850d34cf] { min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+

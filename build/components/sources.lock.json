@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Immutable source supplement for component-owned offline artifacts; does not replace published package lock or release qualification.",
+  "sources": [
+    {
+      "id": "workbench",
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261106.7",
+      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc",
+      "archive": "vendor/offline-workbench-6dad97e7a215.tar.gz",
+      "sha256": "8b8df8d5057315574d08d566cab014e8f7238954deae70686e9a83c7034f4114",
+      "files": 1398,
+      "origin": "git archive at published release sourceCommit; sourceHasLocalChanges=false"
+    },
+    {
+      "id": "ai",
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261106.1",
+      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393",
+      "archive": "vendor/offline-ai-16d91bbbede5.tar.gz",
+      "sha256": "ad059bdf29418d565c156bd8c85a87ba035d78450802d34566edd1db9a7670bd",
+      "files": 137,
+      "origin": "git archive at published release sourceCommit; sourceHasLocalChanges=false"
+    },
+    {
+      "id": "robot",
+      "name": "@opentiny/tiny-robot",
+      "version": "0.5.1",
+      "sourceCommit": "2cb6596e8c02593ddf98851b18aae7a07fc98af1",
+      "archive": "vendor/offline-robot-2cb6596e8c02.tar.gz",
+      "sha256": "2712e4d4a0b558bd84dfde22cdf12928e587126a539e597bc753e685b88bb81a",
+      "files": 275,
+      "origin": "https://github.com/opentiny/tiny-robot/tree/2cb6596e8c02593ddf98851b18aae7a07fc98af1"
+    }
+  ]
+}

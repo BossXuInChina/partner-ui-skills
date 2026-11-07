@@ -1,0 +1,71 @@
+
+.wb-profile-shell {
+  min-height: 100vh;
+  color: var(--wb-color-text-primary);
+  background: var(--wb-color-surface-page);
+}
+.wb-profile-shell .wb-profile-shell__main {
+  box-sizing: border-box;
+  display: grid;
+  width: 100%;
+  max-width: calc(
+    var(--wb-asset-wb-top-nav-grid-max-width) + var(--wb-spacing-screen-edge-expanded) +
+      var(--wb-spacing-screen-edge-expanded)
+  );
+  gap: var(--wb-spacing-layout-content-gap);
+  margin-inline: auto;
+  padding: 0 var(--wb-spacing-screen-edge-expanded) var(--wb-spacing-layout-container-block);
+  /* The page supplies its own navigation-to-content interval; this Block defaults to zero. */
+  padding-block-start: var(--company-profile-shell-content-start, 0);
+}
+.wb-profile-shell .wb-profile-shell__heading {
+  display: grid;
+  gap: var(--wb-spacing-component-sm);
+  margin-bottom: var(--wb-spacing-component-sm);
+}
+.wb-profile-shell .wb-profile-shell__identity,
+.wb-profile-shell .wb-profile-shell__identity-details,
+.wb-profile-shell .wb-profile-shell__identity-details > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--wb-spacing-component-sm);
+  margin: 0;
+}
+.wb-profile-shell .wb-profile-shell__identity {
+  min-height: var(--wb-asset-wb-form-control-height);
+  gap: var(--wb-spacing-component-lg);
+}
+.wb-profile-shell .wb-profile-shell__heading h1 {
+  margin: 0;
+  font-size: var(--wb-font-headline-s-font-size);
+  font-weight: var(--wb-font-headline-s-font-weight);
+  line-height: var(--wb-font-headline-s-line-height);
+  letter-spacing: var(--wb-font-headline-s-letter-spacing);
+}
+.wb-profile-shell .wb-profile-shell__identity-details {
+  min-height: var(--wb-asset-wb-form-control-height);
+  gap: var(--wb-spacing-component-xl);
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+}
+.wb-profile-shell .wb-profile-shell__identity-details dt {
+  color: var(--wb-color-text-secondary);
+}
+.wb-profile-shell .wb-profile-shell__identity-details dd {
+  margin: 0;
+}
+.wb-profile-shell .wb-profile-shell__content-card {
+  container-type: inline-size;
+  min-width: 0;
+  overflow: visible;
+}
+.wb-profile-shell .wb-profile-shell__footer {
+  padding: var(--wb-spacing-layout-container-block) var(--wb-spacing-screen-edge-expanded);
+  border-top: 1px solid var(--wb-color-border-separator);
+  color: var(--wb-color-text-secondary);
+  text-align: center;
+}
+

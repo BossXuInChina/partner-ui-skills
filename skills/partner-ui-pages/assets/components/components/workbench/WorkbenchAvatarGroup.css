@@ -1,0 +1,63 @@
+
+.wb-avatar-group[data-v-7e2145d7] {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  position: relative;
+  vertical-align: middle;
+}
+.wb-avatar-group__member[data-v-7e2145d7] {
+  display: inline-flex;
+  flex: none;
+  position: relative;
+}
+.wb-avatar-group[data-layout='row'] .wb-avatar-group__member + .wb-avatar-group__member[data-v-7e2145d7] {
+  margin-inline-start: var(--wb-asset-wb-avatar-group-overlap);
+}
+.wb-avatar-group[data-layout='row'] .wb-avatar-group__member[data-v-7e2145d7]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: var(--wb-asset-wb-avatar-group-border) solid var(--wb-color-text-inverse);
+  border-radius: var(--wb-radius-full);
+}
+.wb-avatar-group[data-layout='multiline'][data-v-7e2145d7] {
+  width: var(--wb-asset-wb-avatar-group-width);
+  height: var(--wb-asset-wb-avatar-group-height-four);
+}
+.wb-avatar-group[data-layout='multiline'] .wb-avatar-group__member[data-v-7e2145d7] {
+  position: absolute;
+}
+.wb-avatar-group[data-layout='multiline'][data-count='3'][data-v-7e2145d7] {
+  height: var(--wb-asset-wb-avatar-group-height-three);
+}
+.wb-avatar-group[data-layout='multiline'][data-count='3'] .wb-avatar-group__member[data-v-7e2145d7]:nth-child(1) {
+  left: var(--wb-asset-wb-avatar-group-center);
+  top: 0;
+}
+.wb-avatar-group[data-layout='multiline'][data-count='3'] .wb-avatar-group__member[data-v-7e2145d7]:nth-child(2) {
+  left: 0;
+  top: var(--wb-asset-wb-avatar-size-24);
+}
+.wb-avatar-group[data-layout='multiline'][data-count='3'] .wb-avatar-group__member[data-v-7e2145d7]:nth-child(3) {
+  left: var(--wb-asset-wb-avatar-group-step);
+  top: var(--wb-asset-wb-avatar-size-24);
+}
+.wb-avatar-group[data-layout='multiline'][data-count='4'] .wb-avatar-group__member[data-v-7e2145d7]:nth-child(1) {
+  left: 0;
+  top: 0;
+}
+.wb-avatar-group[data-layout='multiline'][data-count='4'] .wb-avatar-group__member[data-v-7e2145d7]:nth-child(2) {
+  left: var(--wb-asset-wb-avatar-group-step);
+  top: 0;
+}
+.wb-avatar-group[data-layout='multiline'][data-count='4'] .wb-avatar-group__member[data-v-7e2145d7]:nth-child(3) {
+  left: 0;
+  top: var(--wb-asset-wb-avatar-group-step);
+}
+.wb-avatar-group[data-layout='multiline'][data-count='4'] .wb-avatar-group__member[data-v-7e2145d7]:nth-child(4) {
+  left: var(--wb-asset-wb-avatar-group-step);
+  top: var(--wb-asset-wb-avatar-group-step);
+}
+

@@ -1,0 +1,155 @@
+
+.wb-alert {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  align-items: flex-start;
+  column-gap: var(--wb-spacing-component-lg);
+  padding: var(--wb-spacing-component-md) var(--wb-spacing-component-lg);
+  border-radius: var(--wb-radius-lg);
+  color: var(--wb-color-text-primary);
+}
+.wb-alert.is-product-placement {
+  border-radius: 0;
+}
+.wb-alert.is-neutral {
+  background: var(--wb-color-none-subtle);
+}
+.wb-alert.is-semantic.wb-alert--info {
+  background: var(--wb-color-info-secondary-subtle);
+}
+.wb-alert.is-semantic.wb-alert--success {
+  background: var(--wb-color-success-primary-subtle);
+}
+.wb-alert.is-semantic.wb-alert--warning {
+  background: var(--wb-color-warning-subtle);
+}
+.wb-alert.is-semantic.wb-alert--danger {
+  background: var(--wb-color-alert-subtle);
+}
+.wb-alert.is-semantic.wb-alert--critical,
+.wb-alert.is-semantic.wb-alert--error {
+  background: var(--wb-color-error-subtle);
+}
+.wb-alert__main {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: flex-start;
+}
+.wb-alert.has-icon .wb-alert__main {
+  gap: var(--wb-spacing-component-sm);
+}
+.wb-alert__icon {
+  display: flex;
+  width: var(--wb-asset-wb-alert-status-icon-size);
+  height: var(--wb-asset-wb-alert-status-icon-size);
+  flex: 0 0 var(--wb-asset-wb-alert-status-icon-size);
+  margin-block-start: calc(
+    (var(--wb-font-body-m-line-height) - var(--wb-asset-wb-alert-status-icon-size)) / 2
+  );
+  align-items: center;
+}
+.wb-alert__copy {
+  display: flex;
+  min-width: 0;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: var(--wb-spacing-component-sm);
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: nowrap;
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+}
+.wb-alert__link {
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+.wb-alert__checkbox {
+  flex: 0 0 auto;
+  align-items: flex-start;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.wb-alert__close {
+  display: flex;
+  width: var(--wb-icon-size-16);
+  height: var(--wb-font-body-m-line-height);
+  flex: 0 0 var(--wb-icon-size-16);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  color: var(--wb-color-icon-primary);
+  background: transparent;
+  cursor: pointer;
+}
+.wb-alert__close:hover {
+  color: var(--wb-color-icon-hover);
+}
+.wb-alert__close:active {
+  color: var(--wb-color-icon-active);
+}
+.wb-alert__close:focus-visible {
+  outline: 1px solid var(--wb-color-border-focus);
+  outline-offset: 2px;
+}
+.wb-alert__measure {
+  position: fixed;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  display: inline-flex;
+  width: max-content;
+  align-items: baseline;
+  gap: var(--wb-spacing-component-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  font-size: var(--wb-font-body-m-font-size);
+  font-weight: var(--wb-font-body-m-font-weight);
+  line-height: var(--wb-font-body-m-line-height);
+  letter-spacing: var(--wb-font-body-m-letter-spacing);
+}
+.wb-alert.is-wrapped {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--wb-icon-size-16);
+  row-gap: var(--wb-spacing-component-sm);
+}
+.wb-alert.is-wrapped:not(:has(.wb-alert__close)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.wb-alert.is-wrapped .wb-alert__main {
+  grid-column: 1;
+  grid-row: 1;
+}
+.wb-alert.is-wrapped .wb-alert__copy {
+  flex-wrap: wrap;
+  white-space: normal;
+}
+.wb-alert.is-wrapped .wb-alert__checkbox {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+  margin-inline-start: 0;
+}
+.wb-alert.is-wrapped.has-icon .wb-alert__checkbox {
+  margin-inline-start: calc(
+    var(--wb-asset-wb-alert-status-icon-size) + var(--wb-spacing-component-sm)
+  );
+  max-width: calc(
+    100% - var(--wb-asset-wb-alert-status-icon-size) - var(--wb-spacing-component-sm)
+  );
+}
+.wb-alert.is-wrapped .wb-alert__close {
+  grid-column: 2;
+  grid-row: 1;
+  margin-inline-start: 0;
+}
+

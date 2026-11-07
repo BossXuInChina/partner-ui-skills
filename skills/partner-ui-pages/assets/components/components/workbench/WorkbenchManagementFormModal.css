@@ -1,0 +1,11 @@
+
+.wb-management-form-modal__content {
+  display: grid;
+  gap: var(--wb-spacing-layout-content-gap);
+  min-width: 0;
+}
+.wb-modal__content:has(.wb-management-form-modal__content) {
+  margin-inline-start: calc(0px - var(--wb-spacing-layout-container-inline));
+  padding-inline-start: var(--wb-spacing-layout-container-inline);
+}
+

@@ -1,0 +1,7365 @@
+{
+  "schemaVersion": 1,
+  "runtimeVersion": "1.1.0-dev.20261106.1",
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261106.7",
+      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
+      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261106.1",
+      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
+      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393"
+    }
+  ],
+  "exports": {
+    "vue": [
+      "BaseTransition",
+      "BaseTransitionPropsValidators",
+      "Comment",
+      "DeprecationTypes",
+      "EffectScope",
+      "ErrorCodes",
+      "ErrorTypeStrings",
+      "Fragment",
+      "KeepAlive",
+      "ReactiveEffect",
+      "Static",
+      "Suspense",
+      "Teleport",
+      "Text",
+      "TrackOpTypes",
+      "Transition",
+      "TransitionGroup",
+      "TriggerOpTypes",
+      "VueElement",
+      "assertNumber",
+      "callWithAsyncErrorHandling",
+      "callWithErrorHandling",
+      "camelize",
+      "capitalize",
+      "cloneVNode",
+      "compatUtils",
+      "compile",
+      "computed",
+      "createApp",
+      "createBlock",
+      "createCommentVNode",
+      "createElementBlock",
+      "createElementVNode",
+      "createHydrationRenderer",
+      "createPropsRestProxy",
+      "createRenderer",
+      "createSSRApp",
+      "createSlots",
+      "createStaticVNode",
+      "createTextVNode",
+      "createVNode",
+      "customRef",
+      "defineAsyncComponent",
+      "defineComponent",
+      "defineCustomElement",
+      "defineEmits",
+      "defineExpose",
+      "defineModel",
+      "defineOptions",
+      "defineProps",
+      "defineSSRCustomElement",
+      "defineSlots",
+      "devtools",
+      "effect",
+      "effectScope",
+      "getCurrentInstance",
+      "getCurrentScope",
+      "getCurrentWatcher",
+      "getTransitionRawChildren",
+      "guardReactiveProps",
+      "h",
+      "handleError",
+      "hasInjectionContext",
+      "hydrate",
+      "hydrateOnIdle",
+      "hydrateOnInteraction",
+      "hydrateOnMediaQuery",
+      "hydrateOnVisible",
+      "initCustomFormatter",
+      "initDirectivesForSSR",
+      "inject",
+      "isMemoSame",
+      "isProxy",
+      "isReactive",
+      "isReadonly",
+      "isRef",
+      "isRuntimeOnly",
+      "isShallow",
+      "isVNode",
+      "markRaw",
+      "mergeDefaults",
+      "mergeModels",
+      "mergeProps",
+      "nextTick",
+      "nodeOps",
+      "normalizeClass",
+      "normalizeProps",
+      "normalizeStyle",
+      "onActivated",
+      "onBeforeMount",
+      "onBeforeUnmount",
+      "onBeforeUpdate",
+      "onDeactivated",
+      "onErrorCaptured",
+      "onMounted",
+      "onRenderTracked",
+      "onRenderTriggered",
+      "onScopeDispose",
+      "onServerPrefetch",
+      "onUnmounted",
+      "onUpdated",
+      "onWatcherCleanup",
+      "openBlock",
+      "patchProp",
+      "popScopeId",
+      "provide",
+      "proxyRefs",
+      "pushScopeId",
+      "queuePostFlushCb",
+      "reactive",
+      "readonly",
+      "ref",
+      "registerRuntimeCompiler",
+      "render",
+      "renderList",
+      "renderSlot",
+      "resolveComponent",
+      "resolveDirective",
+      "resolveDynamicComponent",
+      "resolveFilter",
+      "resolveTransitionHooks",
+      "setBlockTracking",
+      "setDevtoolsHook",
+      "setTransitionHooks",
+      "shallowReactive",
+      "shallowReadonly",
+      "shallowRef",
+      "ssrContextKey",
+      "ssrUtils",
+      "stop",
+      "toDisplayString",
+      "toHandlerKey",
+      "toHandlers",
+      "toRaw",
+      "toRef",
+      "toRefs",
+      "toValue",
+      "transformVNodeArgs",
+      "triggerRef",
+      "unref",
+      "useAttrs",
+      "useCssModule",
+      "useCssVars",
+      "useHost",
+      "useId",
+      "useModel",
+      "useSSRContext",
+      "useShadowRoot",
+      "useSlots",
+      "useTemplateRef",
+      "useTransitionState",
+      "vModelCheckbox",
+      "vModelDynamic",
+      "vModelRadio",
+      "vModelSelect",
+      "vModelText",
+      "vShow",
+      "version",
+      "warn",
+      "watch",
+      "watchEffect",
+      "watchPostEffect",
+      "watchSyncEffect",
+      "withAsyncContext",
+      "withCtx",
+      "withDefaults",
+      "withDirectives",
+      "withKeys",
+      "withMemo",
+      "withModifiers",
+      "withScopeId"
+    ],
+    "@workbench/ui-vue3": [
+      "GlobalMessageStack",
+      "WorkbenchAlert",
+      "WorkbenchAvatar",
+      "WorkbenchAvatarGroup",
+      "WorkbenchBadge",
+      "WorkbenchBreadcrumb",
+      "WorkbenchButton",
+      "WorkbenchButtonRadioGroup",
+      "WorkbenchCard",
+      "WorkbenchCardGrid",
+      "WorkbenchCarousel",
+      "WorkbenchCascader",
+      "WorkbenchCascaderOverflow",
+      "WorkbenchCascaderPanel",
+      "WorkbenchCertificationDetails",
+      "WorkbenchChart",
+      "WorkbenchCheckbox",
+      "WorkbenchCollapse",
+      "WorkbenchCollapseItem",
+      "WorkbenchCompanyProfileShell",
+      "WorkbenchContentSection",
+      "WorkbenchDataToolbar",
+      "WorkbenchDatePanel",
+      "WorkbenchDatePicker",
+      "WorkbenchDraftListFilter",
+      "WorkbenchDrawer",
+      "WorkbenchDropdown",
+      "WorkbenchEmptyIcon",
+      "WorkbenchEmptyState",
+      "WorkbenchEventCalendar",
+      "WorkbenchExpandCard",
+      "WorkbenchFeedbackDialog",
+      "WorkbenchFileIcon",
+      "WorkbenchFilterChips",
+      "WorkbenchFloatingButton",
+      "WorkbenchFollowupRows",
+      "WorkbenchFooter",
+      "WorkbenchForm",
+      "WorkbenchFormGroup",
+      "WorkbenchFormItem",
+      "WorkbenchIcon",
+      "WorkbenchImageUpload",
+      "WorkbenchImageUploadTile",
+      "WorkbenchInfoList",
+      "WorkbenchInformationCard",
+      "WorkbenchInput",
+      "WorkbenchLink",
+      "WorkbenchLoading",
+      "WorkbenchManagementFormModal",
+      "WorkbenchMediaCard",
+      "WorkbenchMessage",
+      "WorkbenchMetricCard",
+      "WorkbenchModal",
+      "WorkbenchMoreAction",
+      "WorkbenchNestedConfirmation",
+      "WorkbenchNotification",
+      "WorkbenchNumberCount",
+      "WorkbenchPagination",
+      "WorkbenchPedestalIcon",
+      "WorkbenchPolicyLinks",
+      "WorkbenchPopconfirm",
+      "WorkbenchPopover",
+      "WorkbenchQuickAppCard",
+      "WorkbenchRadio",
+      "WorkbenchRating",
+      "WorkbenchReadonlyFields",
+      "WorkbenchScrollbar",
+      "WorkbenchSearch",
+      "WorkbenchSelect",
+      "WorkbenchSideNavigation",
+      "WorkbenchSkeleton",
+      "WorkbenchSkeletonBlock",
+      "WorkbenchSlider",
+      "WorkbenchStatusIcon",
+      "WorkbenchSteps",
+      "WorkbenchSwitch",
+      "WorkbenchSystemIcon",
+      "WorkbenchTable",
+      "WorkbenchTableActionsSelection",
+      "WorkbenchTabs",
+      "WorkbenchTabsHeader",
+      "WorkbenchTag",
+      "WorkbenchTimePicker",
+      "WorkbenchTimeline",
+      "WorkbenchTooltip",
+      "WorkbenchTopNav",
+      "WorkbenchTransactionStageProgress",
+      "WorkbenchTransfer",
+      "WorkbenchTransferPanel",
+      "WorkbenchTree",
+      "WorkbenchUpload",
+      "WorkbenchUploadFileItem",
+      "WorkbenchUploadFileList",
+      "resolveContentState",
+      "useDraftThenCommit",
+      "useEditTransaction",
+      "useQueryTransaction",
+      "useScopedSelection",
+      "useStageBrowsing",
+      "workbenchVue3Registry"
+    ],
+    "huawei-partner-ai-ui": [
+      "AgreementAssistantPanel",
+      "AgreementTable",
+      "AiAlert",
+      "AiIcon",
+      "AiIconProvider",
+      "AiSummaryCard",
+      "AiToast",
+      "AssistantHostLayout",
+      "BusinessNavigationCard",
+      "BusinessOverlayHost",
+      "BusinessTable",
+      "ChatPanel",
+      "ConversationHistoryPanel",
+      "UiDialog",
+      "WorkspaceSmartCard",
+      "WorkspaceSmartIcon",
+      "WorkspaceSmartTabs",
+      "WorkspaceSmartTag",
+      "defaultAiIcons",
+      "resolveChatContent",
+      "useAssistantHostLayout",
+      "useAssistantWindow"
+    ]
+  },
+  "assets": [
+    {
+      "id": "wb-alert",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchAlert",
+      "label": "提示条 Alert",
+      "kind": "component",
+      "summary": "在页面上下文中持续呈现需要用户阅读的状态、风险或操作说明，直到用户关闭或宿主更新状态。",
+      "props": {
+        "modelValue": {
+          "type": "Boolean",
+          "default": true
+        },
+        "type": {
+          "type": "String",
+          "default": "info",
+          "enum": [
+            "info",
+            "success",
+            "warning",
+            "danger",
+            "critical",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "String",
+          "required": true
+        },
+        "linkLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "linkHref": {
+          "type": "String",
+          "default": ""
+        },
+        "showIcon": {
+          "type": "Boolean",
+          "default": true
+        },
+        "showClose": {
+          "type": "Boolean",
+          "default": true
+        },
+        "checkboxLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "checkboxChecked": {
+          "type": "Boolean",
+          "default": false
+        },
+        "surface": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          },
+          "enum": [
+            "semantic",
+            "neutral"
+          ]
+        },
+        "placement": {
+          "type": "String",
+          "default": "page",
+          "enum": [
+            "product",
+            "global",
+            "page",
+            "card",
+            "dialog"
+          ]
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:checkboxChecked",
+        "link",
+        "close"
+      ],
+      "slots": [],
+      "useWhen": [
+        "页面、卡片、对话框、产品区的持续提示；内容留在页面流中。"
+      ],
+      "avoidWhen": [
+        "瞬时操作结果使用 Message；需要显式确认使用 Feedback Dialog。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-alert.md"
+    },
+    {
+      "id": "wb-avatar",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchAvatar",
+      "label": "头像 Avatar",
+      "kind": "component",
+      "summary": "用于呈现用户或事物身份标识。点击、菜单和导航行为由外围具名按钮或链接负责。",
+      "props": {
+        "size": {
+          "type": [
+            "Number",
+            "String"
+          ],
+          "default": 60
+        },
+        "color": {
+          "type": "String",
+          "default": "default"
+        },
+        "text": {
+          "type": "String",
+          "default": "A"
+        },
+        "src": {
+          "type": "String",
+          "default": ""
+        },
+        "icon": {
+          "type": "Boolean"
+        },
+        "label": {
+          "type": "String",
+          "default": ""
+        }
+      },
+      "events": [
+        "error"
+      ],
+      "slots": [
+        "icon"
+      ],
+      "useWhen": [
+        "以文字、图标或图片标识用户和事物",
+        "通讯录、表格或顶部导航的头像与头像组"
+      ],
+      "avoidWhen": [
+        "用头像代替有明确名称的交互按钮",
+        "未经生产接入验证直接作为生产包交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-avatar.md"
+    },
+    {
+      "id": "wb-badge",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchBadge",
+      "label": "徽标 Badge",
+      "kind": "component",
+      "summary": "在头像、图标或按钮附近提示未读数或存在新内容；徽标依附于默认插槽中的主体。",
+      "props": {
+        "variant": {
+          "type": "String",
+          "default": "dot",
+          "enum": [
+            "dot",
+            "number"
+          ]
+        },
+        "value": {
+          "type": "Number",
+          "default": {
+            "kind": "undefined"
+          },
+          "validator": {
+            "kind": "unknown",
+            "expression": "value => Number.isInteger(value)"
+          }
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "hidden": {
+          "type": "Boolean",
+          "default": false
+        },
+        "placement": {
+          "type": "String",
+          "default": "corner",
+          "enum": [
+            "corner",
+            "inline"
+          ]
+        }
+      },
+      "events": [],
+      "slots": [
+        "default"
+      ],
+      "useWhen": [
+        "附着在宿主上提示新状态或数量；内联筛选计数"
+      ],
+      "avoidWhen": [
+        "代替操作按钮或承载完整业务状态说明",
+        "未经验证的生产目标"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-badge.md"
+    },
+    {
+      "id": "wb-breadcrumb",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchBreadcrumb",
+      "label": "面包屑 Breadcrumb",
+      "kind": "component",
+      "summary": "用于展示当前页面在系统层级中的位置，并支持返回可导航的祖先页面。",
+      "props": {
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "collapseThreshold": {
+          "type": "Number",
+          "default": 6
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "面包屑"
+        }
+      },
+      "events": [
+        "navigate"
+      ],
+      "slots": [],
+      "useWhen": [
+        "页面层级路径与祖先导航"
+      ],
+      "avoidWhen": [
+        "侧栏树导航、业务步骤状态",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-breadcrumb.md"
+    },
+    {
+      "id": "wb-button",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchButton",
+      "label": "按钮 Button",
+      "kind": "component",
+      "summary": "用于提交、创建、编辑、取消与轻量披露等明确操作。按钮承载动作，不代替链接导航、互斥选择或内容页签。",
+      "props": {
+        "appearance": {
+          "type": "String",
+          "default": "primary",
+          "enum": [
+            "primary",
+            "secondary",
+            "text",
+            "icon"
+          ]
+        },
+        "variant": {
+          "type": "String",
+          "default": "default",
+          "enum": [
+            "default",
+            "dashed"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "32"
+        },
+        "textLayout": {
+          "type": "String",
+          "default": "container",
+          "enum": [
+            "inline",
+            "container"
+          ]
+        },
+        "iconLayout": {
+          "type": "String",
+          "default": "inline",
+          "enum": [
+            "inline",
+            "container"
+          ]
+        },
+        "disabled": {
+          "type": "Boolean",
+          "default": false
+        },
+        "intent": {
+          "type": "String",
+          "default": "action",
+          "enum": [
+            "action",
+            "drilldown"
+          ]
+        },
+        "drilldown": {
+          "type": "String",
+          "default": "more",
+          "enum": [
+            "more",
+            "expand",
+            "collapse"
+          ]
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "previewState": {
+          "type": "String",
+          "default": "default"
+        }
+      },
+      "events": [],
+      "slots": [
+        "icon",
+        "default"
+      ],
+      "useWhen": [
+        "操作入口",
+        "更多、展开与收起入口"
+      ],
+      "avoidWhen": [
+        "未经验证的内部框架生产实现",
+        "以颜色代替权限或错误说明"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-button.md"
+    },
+    {
+      "id": "wb-button-radio-group",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchButtonRadioGroup",
+      "label": "按钮单选组 Button Radio Group",
+      "kind": "component",
+      "summary": "用于在当前上下文内选择一个互斥值，例如筛选条件、显示方式或配置选项。切换关联内容面板时使用Tabs。",
+      "props": {
+        "modelValue": {
+          "type": [
+            "String",
+            "Number"
+          ],
+          "required": true
+        },
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "size": {
+          "type": "String",
+          "default": "small",
+          "enum": [
+            "small",
+            "large"
+          ]
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "单选组"
+        },
+        "fill": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": [
+        "item"
+      ],
+      "useWhen": [
+        "在当前上下文中选择一个互斥值",
+        "筛选条件、展示模式或配置选项使用按钮式单选"
+      ],
+      "avoidWhen": [
+        "切换具有关联关系的平级内容面板",
+        "选项需要自动收纳为更多菜单",
+        "未经验证的内部UI框架生产实现"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-button-radio-group.md"
+    },
+    {
+      "id": "wb-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCard",
+      "label": "卡片 Card",
+      "kind": "component",
+      "summary": "用边界清晰的容器组织相关内容、元信息和操作；展示、运营操作与导航卡片有各自明确语义。",
+      "props": {
+        "variant": {
+          "type": "String",
+          "default": "display-white",
+          "enum": [
+            "display-white",
+            "display-tinted",
+            "operation",
+            "navigation"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "xxxl",
+          "enum": [
+            "s",
+            "m",
+            "l",
+            "xl",
+            "xxl",
+            "xxxl"
+          ]
+        },
+        "href": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "target": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "rel": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [],
+      "slots": [
+        "header",
+        "default",
+        "footer",
+        "actions"
+      ],
+      "useWhen": [
+        "展示一组独立内容",
+        "在卡片内部承载多个独立操作",
+        "整张卡片作为单一原生地址跳转入口"
+      ],
+      "avoidWhen": [
+        "在整卡跳转内部嵌套按钮、链接或其他交互控件",
+        "把Card尺寸用作非栅格环境中的固定像素宽度",
+        "未经验证的内部框架生产实现",
+        "使用页面背景色color-surface-page代替灰色卡片的color-surface-card-tinted"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-card.md"
+    },
+    {
+      "id": "wb-carousel",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCarousel",
+      "label": "走马灯 Carousel",
+      "kind": "component",
+      "summary": "在一个内容区域轮播少量相互相关的内容项，当前索引受控并提供键盘与自动轮播行为。",
+      "props": {
+        "modelValue": {
+          "type": "Number",
+          "default": 0
+        },
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "走马灯"
+        },
+        "disabled": {
+          "type": "Boolean",
+          "default": false
+        },
+        "autoplay": {
+          "type": "Boolean",
+          "default": true
+        },
+        "contentMotion": {
+          "type": "Boolean",
+          "default": false
+        },
+        "showNavigation": {
+          "type": "Boolean",
+          "default": true
+        },
+        "indicatorPlacement": {
+          "type": "String",
+          "default": "overlay",
+          "enum": [
+            "overlay",
+            "below"
+          ]
+        },
+        "transitionStyle": {
+          "type": "String",
+          "default": "fade",
+          "enum": [
+            "fade",
+            "slide"
+          ]
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": [
+        "slide",
+        "empty"
+      ],
+      "useWhen": [
+        "在固定页面容器内循环展示多个图片或内容容器"
+      ],
+      "avoidWhen": [
+        "需要同时展示多张内容、触控拖拽、懒加载或生产运行时交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-carousel.md"
+    },
+    {
+      "id": "wb-cascader",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCascader",
+      "label": "级联选择 Cascader",
+      "kind": "component",
+      "summary": "用于从多层级选项中选择末级值；支持单选、末级多选和全层级多选。",
+      "props": {
+        "options": {
+          "type": "Array",
+          "required": true
+        },
+        "modelValue": {
+          "type": [
+            "String",
+            "Number",
+            "Array"
+          ],
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "defaultValue": {
+          "type": [
+            "String",
+            "Number",
+            "Array"
+          ],
+          "default": null
+        },
+        "mode": {
+          "type": "String",
+          "default": "single",
+          "enum": [
+            "single",
+            "leaf",
+            "all"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "medium"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "label": {
+          "type": "String",
+          "default": "级联选择器"
+        },
+        "placeholder": {
+          "type": "String",
+          "default": "请选择"
+        },
+        "open": {
+          "type": "Boolean",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "defaultOpen": {
+          "type": "Boolean"
+        },
+        "defaultExpandedKeys": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "inlinePanel": {
+          "type": "Boolean"
+        },
+        "clearable": {
+          "type": "Boolean"
+        },
+        "tagRemovable": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:open",
+        "change",
+        "expand",
+        "remove",
+        "clear"
+      ],
+      "slots": [],
+      "useWhen": [
+        "级联选择器 Cascader相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-cascader.md"
+    },
+    {
+      "id": "wb-certification-details",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCertificationDetails",
+      "label": "认证详情 CertificationDetails Block",
+      "kind": "block",
+      "summary": "身份达标等状态卡片底部展示认证类型、归属与关键日期的只读信息",
+      "props": {
+        "details": {
+          "type": "Object",
+          "required": true
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "认证详情"
+        }
+      },
+      "events": [],
+      "slots": [],
+      "useWhen": [
+        "身份达标等状态卡片底部展示认证类型、归属与关键日期的只读信息"
+      ],
+      "avoidWhen": [
+        "可编辑字段（使用Form）",
+        "超过五项或需要分组的详情（使用描述列表或表格）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-certification-details.md"
+    },
+    {
+      "id": "wb-chart",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchChart",
+      "label": "图表 Chart",
+      "kind": "component",
+      "summary": "工作台看板中的数值分布、趋势、占比、达成度与多维对比",
+      "props": {
+        "type": {
+          "type": "String",
+          "default": "bar",
+          "enum": [
+            "bar",
+            "line",
+            "area",
+            "bar-horizontal",
+            "donut",
+            "pie",
+            "gauge",
+            "radar"
+          ]
+        },
+        "categories": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "series": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "height": {
+          "type": "Number",
+          "default": 240
+        },
+        "unit": {
+          "type": "String",
+          "default": ""
+        },
+        "unitRight": {
+          "type": "String",
+          "default": ""
+        },
+        "max": {
+          "type": "Number"
+        },
+        "maxRight": {
+          "type": "Number"
+        },
+        "ticks": {
+          "type": "Number",
+          "default": 5
+        },
+        "barWidth": {
+          "type": "Number",
+          "default": 12
+        },
+        "showValues": {
+          "type": "Boolean"
+        },
+        "legend": {
+          "type": "Boolean",
+          "default": true
+        },
+        "tooltip": {
+          "type": "Boolean",
+          "default": true
+        },
+        "formatter": {
+          "type": "Function",
+          "default": null
+        },
+        "labelRotate": {
+          "type": "Boolean"
+        },
+        "centerValue": {
+          "type": [
+            "String",
+            "Number"
+          ],
+          "default": ""
+        },
+        "centerUnit": {
+          "type": "String",
+          "default": ""
+        },
+        "centerLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "showPercent": {
+          "type": "Boolean"
+        },
+        "thickness": {
+          "type": "Number",
+          "default": 0
+        },
+        "value": {
+          "type": "Number",
+          "default": 0
+        },
+        "min": {
+          "type": "Number",
+          "default": 0
+        },
+        "color": {
+          "type": "String",
+          "default": ""
+        },
+        "segments": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "scaleLabels": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "status": {
+          "type": "String",
+          "default": ""
+        },
+        "indicators": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "图表"
+        }
+      },
+      "events": [],
+      "slots": [],
+      "useWhen": [
+        "工作台看板中的数值分布、趋势、占比、达成度与多维对比"
+      ],
+      "avoidWhen": [
+        "需要地图、桑基、漏斗等非登记图形",
+        "需要大数据量交互缩放或实时流式刷新"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-chart.md"
+    },
+    {
+      "id": "wb-checkbox",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCheckbox",
+      "label": "复选框 Checkbox",
+      "kind": "component",
+      "summary": "用于独立的布尔选择；半选状态由父级汇总并传入，组件本身不计算父子关系。",
+      "props": {
+        "modelValue": {
+          "type": "Boolean"
+        },
+        "indeterminate": {
+          "type": "Boolean"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "hover": {
+          "type": "Boolean"
+        },
+        "label": {
+          "type": "String",
+          "default": ""
+        },
+        "ariaLabel": {
+          "type": "String"
+        },
+        "description": {
+          "type": "String"
+        },
+        "noWrap": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:indeterminate"
+      ],
+      "slots": [],
+      "useWhen": [
+        "独立多项选择与父级半选状态"
+      ],
+      "avoidWhen": [
+        "未经验证的内部框架生产实现"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-checkbox.md"
+    },
+    {
+      "id": "wb-collapse",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCollapse",
+      "label": "折叠面板 Collapse",
+      "kind": "component",
+      "summary": "将同一内容区内次要、可按需查看的信息折叠展示。每项独立控制，可同时展开。",
+      "props": {},
+      "events": [],
+      "slots": [
+        "default"
+      ],
+      "useWhen": [
+        "内容分组、独立展开多项"
+      ],
+      "avoidWhen": [
+        "手风琴模式、动画、自动保留插槽内部状态及未经验证的内部框架生产场景"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-collapse.md"
+    },
+    {
+      "id": "wb-company-profile-shell",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCompanyProfileShell",
+      "label": "公司资料外壳 Block",
+      "kind": "block",
+      "summary": "同一业务对象下的资料维护页共享身份区和两级栏目导航",
+      "props": {
+        "primaryItems": {
+          "type": "Array",
+          "required": true
+        },
+        "secondaryItems": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "secondaryParent": {
+          "type": "String",
+          "default": ""
+        },
+        "initialPrimary": {
+          "type": "String",
+          "default": ""
+        },
+        "initialSecondary": {
+          "type": "String",
+          "default": ""
+        },
+        "navigation": {
+          "type": "Object",
+          "required": true
+        },
+        "breadcrumbs": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "identity": {
+          "type": "Object",
+          "required": true
+        },
+        "primaryLabel": {
+          "type": "String",
+          "default": "一级栏目"
+        },
+        "secondaryLabel": {
+          "type": "String",
+          "default": "二级栏目"
+        },
+        "contentLabel": {
+          "type": "String",
+          "default": "资料内容"
+        },
+        "contentClass": {
+          "type": [
+            "String",
+            "Array",
+            "Object",
+            "Function"
+          ],
+          "default": ""
+        }
+      },
+      "events": [
+        "update:primary",
+        "update:secondary",
+        "navigation-action",
+        "breadcrumb-navigate"
+      ],
+      "slots": [
+        "secondary-content",
+        "primary-content",
+        "hint",
+        "footer"
+      ],
+      "useWhen": [
+        "同一业务对象下的资料维护页共享身份区和两级栏目导航"
+      ],
+      "avoidWhen": [
+        "跨产品导航、权限裁决或真实路由必须由区块承担",
+        "单页表单无需身份区或共享栏目导航"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-company-profile-shell.md"
+    },
+    {
+      "id": "wb-content-section",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchContentSection",
+      "label": "内容分区 ContentSection",
+      "kind": "block",
+      "summary": "内容分区的受控业务组合",
+      "props": {
+        "title": {
+          "type": "String",
+          "default": ""
+        },
+        "headingLevel": {
+          "type": "Number",
+          "default": 2
+        }
+      },
+      "events": [],
+      "slots": [
+        "heading",
+        "actions",
+        "meta",
+        "default",
+        "footer"
+      ],
+      "useWhen": [
+        "内容分区的受控业务组合"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-content-section.md"
+    },
+    {
+      "id": "wb-date-picker",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchDatePicker",
+      "label": "日期选择 DatePicker",
+      "kind": "component",
+      "summary": "用于选择日期、月份、年份或日期时间；支持单值与日期范围。值通过受控modelValue提交。",
+      "props": {
+        "modelValue": {
+          "type": [
+            "String",
+            "Array"
+          ],
+          "default": ""
+        },
+        "type": {
+          "type": "String",
+          "default": "date",
+          "enum": [
+            "date",
+            "month",
+            "year",
+            "datetime"
+          ]
+        },
+        "range": {
+          "type": "Boolean"
+        },
+        "showTime": {
+          "type": "Boolean"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "size": {
+          "type": "String",
+          "default": "default"
+        },
+        "name": {
+          "type": "String"
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "选择日期"
+        },
+        "ariaDescribedby": {
+          "type": "String"
+        },
+        "invalid": {
+          "type": "Boolean"
+        },
+        "placeholder": {
+          "type": "String"
+        },
+        "min": {
+          "type": "String"
+        },
+        "max": {
+          "type": "String"
+        },
+        "disabledDate": {
+          "type": "Function"
+        },
+        "shortcuts": {
+          "type": [
+            "Boolean",
+            "Array"
+          ],
+          "default": false
+        },
+        "inline": {
+          "type": "Boolean"
+        },
+        "defaultOpen": {
+          "type": "Boolean"
+        },
+        "dateMarkers": {
+          "type": "Object",
+          "default": null
+        },
+        "showEmptyMarkers": {
+          "type": "Boolean"
+        },
+        "fluid": {
+          "type": "Boolean"
+        },
+        "flatInline": {
+          "type": "Boolean"
+        },
+        "showInput": {
+          "type": "Boolean",
+          "default": true
+        },
+        "previewState": {
+          "type": "String",
+          "default": "default"
+        },
+        "today": {
+          "type": "Date",
+          "default": {
+            "kind": "function"
+          }
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change",
+        "clear",
+        "openChange"
+      ],
+      "slots": [],
+      "useWhen": [
+        "日期选择器 DatePicker相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-date-picker.md"
+    },
+    {
+      "id": "wb-draft-list-filter",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchDraftListFilter",
+      "label": "草稿筛选 Pattern",
+      "kind": "pattern",
+      "summary": "管理列表提供显式查询按钮，用户先编辑筛选草稿再提交",
+      "props": {
+        "fieldCount": {
+          "type": "Number",
+          "default": 1,
+          "validator": {
+            "kind": "unknown",
+            "expression": "(value) => Number.isInteger(value) && value >= 1 && value <= 4"
+          }
+        },
+        "applyLabel": {
+          "type": "String",
+          "default": "查询"
+        },
+        "resetLabel": {
+          "type": "String",
+          "default": "重置"
+        }
+      },
+      "events": [
+        "apply",
+        "reset"
+      ],
+      "slots": [
+        "default",
+        "actions"
+      ],
+      "useWhen": [
+        "管理列表提供显式查询按钮，用户先编辑筛选草稿再提交"
+      ],
+      "avoidWhen": [
+        "输入后立即过滤的即时搜索",
+        "筛选由服务端自动触发且无显式提交动作"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-draft-list-filter.md"
+    },
+    {
+      "id": "wb-drawer",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchDrawer",
+      "label": "抽屉 Drawer",
+      "kind": "component",
+      "summary": "在页面边缘承载一项可独立完成的任务、扩展信息或配置内容；内容区可滚动，面板关闭受控。",
+      "props": {
+        "modelValue": {
+          "type": "Boolean",
+          "default": false
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "placement": {
+          "type": "String",
+          "default": "right",
+          "enum": [
+            "right",
+            "bottom"
+          ]
+        },
+        "modal": {
+          "type": "Boolean",
+          "default": true
+        },
+        "panelSize": {
+          "type": [
+            "String",
+            "Number"
+          ],
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "closeOnMask": {
+          "type": "Boolean",
+          "default": true
+        },
+        "closeOnEsc": {
+          "type": "Boolean",
+          "default": true
+        },
+        "actions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "beforeClose": {
+          "type": "Function",
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "close",
+        "action"
+      ],
+      "slots": [
+        "default",
+        "footer"
+      ],
+      "useWhen": [
+        "Drawer首版容器"
+      ],
+      "avoidWhen": [
+        "嵌套、拖拽、手势及未经验证的内部框架生产场景"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-drawer.md"
+    },
+    {
+      "id": "wb-dropdown",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchDropdown",
+      "label": "下拉菜单 Dropdown",
+      "kind": "component",
+      "summary": "用于组合操作项、单选配置项和复选配置项的菜单。字段选择、复杂筛选或月份面板使用专门选择器或组合面板。",
+      "props": {
+        "size": {
+          "type": "String",
+          "default": "default",
+          "enum": [
+            "small",
+            "default",
+            "large"
+          ]
+        },
+        "triggerType": {
+          "type": "String",
+          "default": "button",
+          "enum": [
+            "button",
+            "text",
+            "icon"
+          ]
+        },
+        "textIntent": {
+          "type": "String",
+          "default": "drilldown",
+          "enum": [
+            "action",
+            "drilldown"
+          ]
+        },
+        "textLayout": {
+          "type": "String",
+          "default": "container",
+          "enum": [
+            "container",
+            "inline"
+          ]
+        },
+        "panelWidth": {
+          "type": "String",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "min",
+            "max"
+          ]
+        },
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "radioValues": {
+          "type": "Object",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "checkboxValues": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "open": {
+          "type": "Boolean",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "下拉菜单"
+        }
+      },
+      "events": [
+        "action",
+        "update:radio",
+        "update:checked",
+        "update:open"
+      ],
+      "slots": [
+        "trigger"
+      ],
+      "useWhen": [
+        "操作与单选、复选配置混合菜单"
+      ],
+      "avoidWhen": [
+        "表单字段选择、异步搜索、嵌套子菜单",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-dropdown.md"
+    },
+    {
+      "id": "wb-empty-state",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchEmptyState",
+      "label": "空状态 EmptyState",
+      "kind": "component",
+      "summary": "在局部、卡片或页面没有可展示内容时解释原因，并提供恢复操作。",
+      "props": {
+        "type": {
+          "type": "String",
+          "default": "no-data",
+          "enum": [
+            "no-data",
+            "no-results",
+            "network-error",
+            "load-failed",
+            "forbidden",
+            "removed",
+            "expired",
+            "coming-soon"
+          ]
+        },
+        "level": {
+          "type": "String",
+          "default": "card",
+          "enum": [
+            "local",
+            "card",
+            "page"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "small",
+            "default",
+            "large"
+          ]
+        },
+        "locale": {
+          "type": "String",
+          "default": "zh-CN",
+          "enum": [
+            "zh-CN",
+            "en-US"
+          ]
+        },
+        "title": {
+          "type": "String",
+          "default": ""
+        },
+        "description": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "primaryText": {
+          "type": "String",
+          "default": ""
+        },
+        "secondaryText": {
+          "type": "String",
+          "default": ""
+        },
+        "retry": {
+          "type": "Boolean",
+          "default": true
+        },
+        "busy": {
+          "type": "Boolean",
+          "default": false
+        },
+        "live": {
+          "type": "String",
+          "default": "off",
+          "enum": [
+            "off",
+            "polite"
+          ]
+        }
+      },
+      "events": [
+        "retry",
+        "primary",
+        "secondary"
+      ],
+      "slots": [
+        "illustration",
+        "title",
+        "description",
+        "actions"
+      ],
+      "useWhen": [
+        "空状态 Empty / EmptyState：局部信息、卡片或页面当前没有可展示内容",
+        "暂无数据、搜索无结果、网络异常、加载失败、无权限、内容已下架、内容已失效、敬请期待"
+      ],
+      "avoidWhen": [
+        "请求仍在加载时应使用Loading或Skeleton",
+        "已有有效内容时不以空状态覆盖现有数据",
+        "未经生产接入验证作为生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-empty-state.md"
+    },
+    {
+      "id": "wb-event-calendar",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchEventCalendar",
+      "label": "事件日历与日程列表 EventCalendar Block",
+      "kind": "block",
+      "summary": "工作台侧栏按日期查看活动、日程或待办，并需要日期事件标记与当日列表联动",
+      "props": {
+        "events": {
+          "type": "Array",
+          "required": true
+        },
+        "initialDate": {
+          "type": "String",
+          "required": true
+        },
+        "today": {
+          "type": "Date",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "活动日历"
+        },
+        "agendaLabel": {
+          "type": "String",
+          "default": "当日活动"
+        },
+        "emptyText": {
+          "type": "String",
+          "default": "当日暂无活动"
+        }
+      },
+      "events": [
+        "open",
+        "select"
+      ],
+      "slots": [],
+      "useWhen": [
+        "工作台侧栏按日期查看活动、日程或待办，并需要日期事件标记与当日列表联动"
+      ],
+      "avoidWhen": [
+        "只需选择日期的表单字段（使用DatePicker）",
+        "跨模块日程编辑、提醒与持久化（由宿主或Pattern负责）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-event-calendar.md"
+    },
+    {
+      "id": "wb-expand-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchExpandCard",
+      "label": "展开卡片 ExpandCard Block",
+      "kind": "block",
+      "summary": "列表中的每项需要以图标与摘要标题呈现，并通过右侧箭头展开详情（如伙伴身份差距）",
+      "props": {
+        "expanded": {
+          "type": "Boolean",
+          "default": false
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        }
+      },
+      "events": [
+        "update:expanded"
+      ],
+      "slots": [
+        "icon",
+        "title",
+        "default"
+      ],
+      "useWhen": [
+        "列表中的每项需要以图标与摘要标题呈现，并通过右侧箭头展开详情（如伙伴身份差距）"
+      ],
+      "avoidWhen": [
+        "同一区域只能展开一项且需手风琴语义（使用Collapse）",
+        "整卡跳转或含主要操作的卡片（使用Card Blocks）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-expand-card.md"
+    },
+    {
+      "id": "wb-feedback-dialog",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFeedbackDialog",
+      "label": "反馈对话框 Feedback Dialog",
+      "kind": "component",
+      "summary": "围绕一项操作反馈结果、补充信息并提供一个主要动作及可选次要动作；关闭与异步动作通过受控契约管理。",
+      "props": {
+        "modelValue": {
+          "type": "Boolean",
+          "default": false
+        },
+        "type": {
+          "type": "String",
+          "default": "info",
+          "enum": [
+            "info",
+            "success",
+            "warning",
+            "danger",
+            "critical",
+            "error"
+          ]
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "message": {
+          "type": "String",
+          "required": true
+        },
+        "showIcon": {
+          "type": "Boolean",
+          "default": true
+        },
+        "checkboxLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "checkboxChecked": {
+          "type": "Boolean",
+          "default": false
+        },
+        "primaryAction": {
+          "type": "Object",
+          "required": true
+        },
+        "secondaryAction": {
+          "type": "Object",
+          "default": null
+        },
+        "pending": {
+          "type": "Boolean",
+          "default": false
+        },
+        "actionHandler": {
+          "type": "Function",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "beforeClose": {
+          "type": "Function",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "showGrid": {
+          "type": "Boolean",
+          "default": false
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:checkboxChecked",
+        "action",
+        "close",
+        "action-error",
+        "close-error"
+      ],
+      "slots": [],
+      "useWhen": [
+        "需要用户阅读结果并作出明确决定的反馈对话框。"
+      ],
+      "avoidWhen": [
+        "非阻断反馈优先 Message/Notification；一般表单弹窗使用 Modal。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-feedback-dialog.md"
+    },
+    {
+      "id": "wb-filter-chips",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFilterChips",
+      "label": "业务筛选 FilterChips Block",
+      "kind": "block",
+      "summary": "列表上方需要十项以上的单选业务筛选，并希望一眼看到全部选项与数量",
+      "props": {
+        "modelValue": {
+          "type": "String",
+          "required": true
+        },
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "筛选"
+        }
+      },
+      "events": [
+        "update:modelValue"
+      ],
+      "slots": [],
+      "useWhen": [
+        "列表上方需要十项以上的单选业务筛选，并希望一眼看到全部选项与数量"
+      ],
+      "avoidWhen": [
+        "多选或带复杂条件的筛选（使用查询表单或Select）",
+        "两到五项互斥切换（使用ButtonRadioGroup）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-filter-chips.md"
+    },
+    {
+      "id": "wb-floating-button",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFloatingButton",
+      "label": "悬浮按钮 FloatingButton",
+      "kind": "component",
+      "summary": "用于帮助、反馈、评价或返回顶部等全局辅助入口。不要替代主业务提交操作或持久化导航。",
+      "props": {
+        "variant": {
+          "type": "String",
+          "default": "single",
+          "enum": [
+            "single",
+            "group"
+          ]
+        },
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "expanded": {
+          "type": "Boolean",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "ratings": {
+          "type": "Object",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "defaultVisibleCount": {
+          "type": "Number",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "showBackToTop": {
+          "type": "Boolean",
+          "default": false
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "悬浮快捷操作"
+        }
+      },
+      "events": [
+        "update:expanded",
+        "action",
+        "back-to-top",
+        "rating-change",
+        "update:ratings"
+      ],
+      "slots": [
+        "icon"
+      ],
+      "useWhen": [
+        "全局辅助入口、帮助、评分和返回顶部。"
+      ],
+      "avoidWhen": [
+        "主业务提交放在页面操作区；不要用此组件替代导航或持久化业务状态。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-floating-button.md"
+    },
+    {
+      "id": "wb-followup-rows",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFollowupRows",
+      "label": "新增遗留任务行",
+      "kind": "block",
+      "summary": "遗留任务行的受控业务组合",
+      "props": {
+        "rows": {
+          "type": "Array",
+          "required": true
+        },
+        "members": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        }
+      },
+      "events": [
+        "add",
+        "delete",
+        "update-field"
+      ],
+      "slots": [],
+      "useWhen": [
+        "遗留任务行的受控业务组合"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-followup-rows.md"
+    },
+    {
+      "id": "wb-footer",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFooter",
+      "label": "页脚 Footer",
+      "kind": "component",
+      "summary": "展示页面级版权、备案和法律入口；链接导航由浏览器处理，宿主可监听条目选择。",
+      "props": {
+        "copyright": {
+          "type": "String",
+          "default": {
+            "kind": "reference",
+            "name": "footerCopyright"
+          }
+        },
+        "registration": {
+          "type": "Object",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "links": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "disabled": {
+          "type": "Boolean",
+          "default": false
+        }
+      },
+      "events": [
+        "select"
+      ],
+      "slots": [
+        "copyright"
+      ],
+      "useWhen": [
+        "页脚 Footer相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-footer.md"
+    },
+    {
+      "id": "wb-form",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchForm",
+      "label": "表单 Form",
+      "kind": "component",
+      "summary": "用于编排字段、同步校验与提交。业务model始终由调用方持有；WorkbenchFormItem统一负责字段标签、必填语义与反馈。",
+      "props": {
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "titleVisible": {
+          "type": "Boolean",
+          "default": true
+        },
+        "model": {
+          "type": "Object",
+          "required": true
+        },
+        "density": {
+          "type": "String",
+          "default": "comfortable",
+          "enum": [
+            "comfortable",
+            "compact"
+          ]
+        },
+        "mode": {
+          "type": "String",
+          "default": "editable",
+          "enum": [
+            "readonly",
+            "editable",
+            "mixed"
+          ]
+        },
+        "labelPosition": {
+          "type": "String",
+          "default": "top",
+          "enum": [
+            "top",
+            "left"
+          ]
+        },
+        "labelWidth": {
+          "type": "String",
+          "default": "var(--wb-asset-wb-form-label-width)"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "singleLine": {
+          "type": "Boolean"
+        },
+        "showGrid": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "submit",
+        "invalid"
+      ],
+      "slots": [
+        "default",
+        "actions"
+      ],
+      "useWhen": [
+        "需要编排结构化字段、同步校验反馈、只读展示和提交操作的表单。"
+      ],
+      "avoidWhen": [
+        "异步远程校验、多步骤流程编排或由组件内部持有业务值。"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-form.md"
+    },
+    {
+      "id": "wb-image-upload",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchImageUpload",
+      "label": "图片上传 ImageUpload",
+      "kind": "component",
+      "summary": "用于选择与展示图片缩略图，支持多图、数量与大小限制、预览、单张下载及批量下载。",
+      "props": {
+        "modelValue": {
+          "type": "Array",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "defaultValue": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "multiple": {
+          "type": "Boolean",
+          "default": true
+        },
+        "maxCount": {
+          "type": "Number",
+          "default": 5
+        },
+        "maxSize": {
+          "type": "Number",
+          "default": {
+            "kind": "unknown",
+            "expression": "500 * 1024"
+          }
+        },
+        "accept": {
+          "type": "String",
+          "default": "image/jpeg,image/png"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "showNames": {
+          "type": "Boolean",
+          "default": true
+        },
+        "downloadable": {
+          "type": "Boolean"
+        },
+        "batchDownload": {
+          "type": "Boolean"
+        },
+        "hint": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "label": {
+          "type": "String",
+          "default": "图片上传"
+        },
+        "uploadRequest": {
+          "type": "Function",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "previewState": {
+          "type": "String",
+          "default": "default"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change",
+        "reject",
+        "progress",
+        "success",
+        "error",
+        "cancel",
+        "remove",
+        "retry",
+        "preview",
+        "download",
+        "batch-download"
+      ],
+      "slots": [],
+      "useWhen": [
+        "图片上传 ImageUpload相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-image-upload.md"
+    },
+    {
+      "id": "wb-info-list",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchInfoList",
+      "label": "信息列表 InfoList Block",
+      "kind": "block",
+      "summary": "公告、资讯等信息流需要标题、状态标签与发布时间三层展示",
+      "props": {
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "href": {
+          "type": "String",
+          "default": "#"
+        }
+      },
+      "events": [],
+      "slots": [],
+      "useWhen": [
+        "公告、资讯等信息流需要标题、状态标签与发布时间三层展示"
+      ],
+      "avoidWhen": [
+        "需要排序、分页或批量操作的数据（使用Table）",
+        "带封面图的内容（使用MediaCard）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-info-list.md"
+    },
+    {
+      "id": "wb-information-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchInformationCard",
+      "label": "信息卡片 Block",
+      "kind": "block",
+      "summary": "需要以稳定数据接口复用信息卡片结构、布局和独立底部区域",
+      "props": {
+        "title": {
+          "type": "String",
+          "default": ""
+        },
+        "variant": {
+          "type": "String",
+          "default": "display-white",
+          "enum": [
+            "display-white",
+            "display-tinted",
+            "operation",
+            "navigation"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "xxxl",
+          "enum": [
+            "s",
+            "m",
+            "l",
+            "xl",
+            "xxl",
+            "xxxl"
+          ]
+        },
+        "href": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "target": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "rel": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "headerActions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "footer": {
+          "type": "Object",
+          "default": null
+        },
+        "actions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "bodySize": {
+          "type": "Number",
+          "default": 14,
+          "validator": {
+            "kind": "unknown",
+            "expression": "(value: number) => [14].includes(value)"
+          }
+        },
+        "description": {
+          "type": "String",
+          "default": ""
+        },
+        "tags": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "structure": {
+          "type": "String",
+          "default": "icon",
+          "enum": [
+            "icon",
+            "text-action"
+          ]
+        }
+      },
+      "events": [
+        "action"
+      ],
+      "slots": [
+        "header",
+        "icon",
+        "header-actions",
+        "footer",
+        "actions",
+        "content"
+      ],
+      "useWhen": [
+        "需要以稳定数据接口复用信息卡片结构、布局和独立底部区域"
+      ],
+      "avoidWhen": [
+        "跨卡片业务流程、持久化与编排应由宿主/Pattern管理",
+        "未经人工视觉签收或生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-information-card.md"
+    },
+    {
+      "id": "wb-input",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchInput",
+      "label": "文本输入 Input",
+      "kind": "component",
+      "summary": "预览页聚焦一个可切换类型的输入实例，可试填、主动校验并查看事件反馈；变体页按输入类型和交互状态并排比较。",
+      "props": {
+        "modelValue": {
+          "type": "String",
+          "default": ""
+        },
+        "type": {
+          "type": "String",
+          "default": "text"
+        },
+        "size": {
+          "type": "String",
+          "default": "32",
+          "enum": [
+            "28",
+            "32"
+          ]
+        },
+        "placeholder": {
+          "type": "String",
+          "default": "请输入"
+        },
+        "resizable": {
+          "type": "Boolean",
+          "default": true
+        },
+        "required": {
+          "type": "Boolean"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "name": {
+          "type": "String"
+        },
+        "ariaLabel": {
+          "type": "String"
+        },
+        "state": {
+          "type": "String",
+          "default": "default"
+        },
+        "maxLength": {
+          "type": "Number"
+        },
+        "validate": {
+          "type": "Function"
+        },
+        "prefixValue": {
+          "type": "String"
+        },
+        "prefixPlaceholder": {
+          "type": "String"
+        },
+        "prefixOptions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "prefixDisabled": {
+          "type": "Boolean"
+        },
+        "showPrefixIcon": {
+          "type": "Boolean",
+          "default": true
+        },
+        "suffixDisabled": {
+          "type": "Boolean"
+        },
+        "showSuffixIcon": {
+          "type": "Boolean",
+          "default": true
+        },
+        "unit": {
+          "type": "String"
+        },
+        "unitFilterLabel": {
+          "type": "String",
+          "default": "筛选"
+        },
+        "unitOptions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "showTrailingIcon": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:unit",
+        "update:prefixValue",
+        "validation"
+      ],
+      "slots": [
+        "prefix-icon",
+        "trailing-icon",
+        "suffix-icon"
+      ],
+      "useWhen": [
+        "单行、多行、密码及单位输入"
+      ],
+      "avoidWhen": [
+        "未经适配验证的内部框架生产实现"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-input.md"
+    },
+    {
+      "id": "wb-link",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchLink",
+      "label": "文字链接 Link",
+      "kind": "component",
+      "summary": "用于跳转到页面、资源或地址。提交、切换、展开和收起等状态操作应使用Button。",
+      "props": {
+        "href": {
+          "type": "String",
+          "required": true
+        },
+        "target": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "rel": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "disabled": {
+          "type": "Boolean",
+          "default": false
+        }
+      },
+      "events": [
+        "click"
+      ],
+      "slots": [
+        "icon",
+        "default"
+      ],
+      "useWhen": [
+        "表格中的页面或资源跳转",
+        "正文中的内嵌链接",
+        "独立文字链接"
+      ],
+      "avoidWhen": [
+        "提交、切换、展开收起或其他状态操作",
+        "未经验证的内部框架生产实现"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-link.md"
+    },
+    {
+      "id": "wb-loading",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchLoading",
+      "label": "加载 Loading",
+      "kind": "component",
+      "summary": "在请求或内容准备期间显示轻量加载指示；组件只表达进行中状态，不管理请求生命周期。",
+      "props": {
+        "size": {
+          "type": "Number",
+          "default": 20,
+          "validator": {
+            "kind": "unknown",
+            "expression": "(value) => [64, 48, 24, 20, 14, 12].includes(value)"
+          }
+        },
+        "inverse": {
+          "type": "Boolean",
+          "default": false
+        },
+        "label": {
+          "type": "String",
+          "default": ""
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": ""
+        }
+      },
+      "events": [],
+      "slots": [],
+      "useWhen": [
+        "已知操作正在处理中，内容结构未知或适合用进度标识时。"
+      ],
+      "avoidWhen": [
+        "已知内容结构优先 Skeleton；不要把 Loading 当作禁用逻辑。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-loading.md"
+    },
+    {
+      "id": "wb-management-form-modal",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchManagementFormModal",
+      "label": "必填编辑弹窗 · 校验与失败重试",
+      "kind": "block",
+      "summary": "管理资料以单层 Modal 承载字段表单并需要稳定的提醒、补充内容和操作区插槽",
+      "props": {
+        "modelValue": {
+          "type": "Boolean"
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "size": {
+          "type": "String",
+          "default": "l",
+          "enum": [
+            "m",
+            "l"
+          ]
+        },
+        "contentClass": {
+          "type": "String",
+          "default": ""
+        }
+      },
+      "events": [
+        "update:modelValue"
+      ],
+      "slots": [
+        "notice",
+        "default",
+        "supplement",
+        "footer"
+      ],
+      "useWhen": [
+        "管理资料以单层 Modal 承载字段表单并需要稳定的提醒、补充内容和操作区插槽"
+      ],
+      "avoidWhen": [
+        "嵌套确认或跨步骤提交流程",
+        "表单字段、必填规则或真实保存行为应被区块固定"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-management-form-modal.md"
+    },
+    {
+      "id": "wb-media-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchMediaCard",
+      "label": "图文卡片 Block",
+      "kind": "block",
+      "summary": "需要以稳定数据接口复用图文卡片结构、布局和独立底部区域",
+      "props": {
+        "title": {
+          "type": "String",
+          "default": ""
+        },
+        "variant": {
+          "type": "String",
+          "default": "display-white",
+          "enum": [
+            "display-white",
+            "display-tinted",
+            "operation",
+            "navigation"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "xxxl",
+          "enum": [
+            "s",
+            "m",
+            "l",
+            "xl",
+            "xxl",
+            "xxxl"
+          ]
+        },
+        "href": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "target": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "rel": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "headerActions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "footer": {
+          "type": "Object",
+          "default": null
+        },
+        "actions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "bodySize": {
+          "type": "Number",
+          "default": 14,
+          "validator": {
+            "kind": "unknown",
+            "expression": "(value: number) => [14].includes(value)"
+          }
+        },
+        "description": {
+          "type": "String",
+          "default": ""
+        },
+        "tags": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "mediaKind": {
+          "type": "String",
+          "default": "image",
+          "enum": [
+            "image",
+            "video"
+          ]
+        },
+        "mediaLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "badge": {
+          "type": "String",
+          "default": ""
+        }
+      },
+      "events": [
+        "action"
+      ],
+      "slots": [
+        "header",
+        "footer",
+        "actions",
+        "media",
+        "content",
+        "header-actions"
+      ],
+      "useWhen": [
+        "需要以稳定数据接口复用图文卡片结构、布局和独立底部区域"
+      ],
+      "avoidWhen": [
+        "跨卡片业务流程、持久化与编排应由宿主/Pattern管理",
+        "未经人工视觉签收或生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-media-card.md"
+    },
+    {
+      "id": "wb-message",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchMessage",
+      "label": "全局提示 Message",
+      "kind": "component",
+      "summary": "先用单条代表消息试用全局或对话框内位置，再并列比较七种语义与附件；此页保留完整公开API、业务边界和原专题说明。",
+      "props": {
+        "modelValue": {
+          "type": "Boolean",
+          "default": false
+        },
+        "type": {
+          "type": "String",
+          "default": "info",
+          "enum": [
+            "info",
+            "success",
+            "warning",
+            "danger",
+            "critical",
+            "error",
+            "loading"
+          ]
+        },
+        "message": {
+          "type": "String",
+          "required": true
+        },
+        "messageKey": {
+          "type": [
+            "String",
+            "Number"
+          ],
+          "default": ""
+        },
+        "linkLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "linkHref": {
+          "type": "String",
+          "default": ""
+        },
+        "checkboxLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "checkboxChecked": {
+          "type": "Boolean",
+          "default": false
+        },
+        "showIcon": {
+          "type": "Boolean",
+          "default": true
+        },
+        "showClose": {
+          "type": "Boolean",
+          "default": true
+        },
+        "placement": {
+          "type": "String",
+          "default": "global",
+          "enum": [
+            "global",
+            "dialog"
+          ]
+        },
+        "autoClose": {
+          "type": "Number",
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:checkboxChecked",
+        "close",
+        "link"
+      ],
+      "slots": [],
+      "useWhen": [
+        "用户操作后的短暂成功、错误或处理中反馈，无标题。"
+      ],
+      "avoidWhen": [
+        "长期内容使用 Alert；右上角多条通知使用 Notification。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-message.md"
+    },
+    {
+      "id": "wb-metric-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchMetricCard",
+      "label": "数值卡片 Block",
+      "kind": "block",
+      "summary": "需要以稳定数据接口复用数值卡片结构、布局和独立底部区域",
+      "props": {
+        "title": {
+          "type": "String",
+          "default": ""
+        },
+        "variant": {
+          "type": "String",
+          "default": "display-white",
+          "enum": [
+            "display-white"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "xxxl",
+          "enum": [
+            "s",
+            "m",
+            "l",
+            "xl",
+            "xxl",
+            "xxxl"
+          ]
+        },
+        "href": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "target": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "rel": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "headerActions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "footer": {
+          "type": "Object",
+          "default": null
+        },
+        "actions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "layout": {
+          "type": "String",
+          "default": "row",
+          "enum": [
+            "row",
+            "multi",
+            "column"
+          ]
+        },
+        "labelPosition": {
+          "type": "String",
+          "default": "below",
+          "enum": [
+            "above",
+            "below"
+          ]
+        },
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        }
+      },
+      "events": [
+        "action"
+      ],
+      "slots": [
+        "header",
+        "header-actions",
+        "footer",
+        "actions",
+        "item",
+        "icon",
+        "empty"
+      ],
+      "useWhen": [
+        "需要以稳定数据接口复用数值卡片结构、布局和独立底部区域"
+      ],
+      "avoidWhen": [
+        "跨卡片业务流程、持久化与编排应由宿主/Pattern管理",
+        "未经人工视觉签收或生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-metric-card.md"
+    },
+    {
+      "id": "wb-modal",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchModal",
+      "label": "对话框 Modal",
+      "kind": "component",
+      "summary": "在当前页面上方集中处理需要明确确认的短流程；通过尺寸和插槽承载内容，打开时管理模态焦点与背景。",
+      "props": {
+        "modelValue": {
+          "type": "Boolean",
+          "default": false
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "ariaDescribedby": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "size": {
+          "type": "String",
+          "default": "m",
+          "enum": [
+            "s",
+            "m",
+            "l",
+            "xl"
+          ]
+        },
+        "readonly": {
+          "type": "Boolean",
+          "default": false
+        },
+        "topNavigationHeight": {
+          "type": [
+            "String",
+            "Number"
+          ],
+          "default": 0
+        },
+        "closeOnMask": {
+          "type": "Boolean",
+          "default": true
+        },
+        "closeOnEsc": {
+          "type": "Boolean",
+          "default": true
+        },
+        "actions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "beforeClose": {
+          "type": "Function",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "showGrid": {
+          "type": "Boolean",
+          "default": false
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "close",
+        "action"
+      ],
+      "slots": [
+        "close-icon",
+        "default",
+        "footer"
+      ],
+      "useWhen": [
+        "Modal首版容器"
+      ],
+      "avoidWhen": [
+        "嵌套、拖拽、手势及未经验证的内部框架生产场景"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-modal.md"
+    },
+    {
+      "id": "wb-more-action",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchMoreAction",
+      "label": "文字下钻 MoreAction Block",
+      "kind": "block",
+      "summary": "卡片标题或页签头右侧的“更多”“查看历史”等下钻入口",
+      "props": {
+        "label": {
+          "type": "String",
+          "default": "更多"
+        },
+        "disabled": {
+          "type": "Boolean",
+          "default": false
+        }
+      },
+      "events": [
+        "click"
+      ],
+      "slots": [],
+      "useWhen": [
+        "卡片标题或页签头右侧的“更多”“查看历史”等下钻入口"
+      ],
+      "avoidWhen": [
+        "跳转到真实地址且无需按钮语义（使用Link）",
+        "主要操作（使用填充按钮）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-more-action.md"
+    },
+    {
+      "id": "wb-nested-confirmation",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchNestedConfirmation",
+      "label": "嵌套确认 Pattern",
+      "kind": "pattern",
+      "summary": "父级确认流程需要在子对话框收集补充信息，且子层结果先回填父层草稿",
+      "props": {
+        "parentOpen": {
+          "type": "Boolean",
+          "required": true
+        },
+        "childOpen": {
+          "type": "Boolean",
+          "required": true
+        },
+        "parentTitle": {
+          "type": "String",
+          "required": true
+        },
+        "childTitle": {
+          "type": "String",
+          "required": true
+        },
+        "parentSize": {
+          "type": "String",
+          "default": "l"
+        },
+        "childSize": {
+          "type": "String",
+          "default": "m"
+        },
+        "parentBusy": {
+          "type": "Boolean",
+          "default": false
+        },
+        "childBusy": {
+          "type": "Boolean",
+          "default": false
+        }
+      },
+      "events": [
+        "request-close-parent",
+        "request-close-child"
+      ],
+      "slots": [
+        "parent",
+        "parent-footer",
+        "child",
+        "child-footer"
+      ],
+      "useWhen": [
+        "父级确认流程需要在子对话框收集补充信息，且子层结果先回填父层草稿"
+      ],
+      "avoidWhen": [
+        "普通单层确认或表单",
+        "子层操作必须独立持久化或页面没有父级草稿"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-nested-confirmation.md"
+    },
+    {
+      "id": "wb-notification",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchNotification",
+      "label": "通知提醒 Notification",
+      "kind": "component",
+      "summary": "在页面固定通知区域呈现需要用户留意的异步事件，支持短时自动消失、链接和队列管理。",
+      "props": {
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "surface": {
+          "type": "String",
+          "default": "default",
+          "enum": [
+            "default",
+            "subtle"
+          ]
+        },
+        "duration": {
+          "type": "Number",
+          "default": 5000
+        }
+      },
+      "events": [
+        "dismiss",
+        "link"
+      ],
+      "slots": [],
+      "useWhen": [
+        "右上角非阻断操作通知，可以包含标题、描述和链接。"
+      ],
+      "avoidWhen": [
+        "阻断确认使用 Feedback Dialog；只需短句操作结果使用 Message。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-notification.md"
+    },
+    {
+      "id": "wb-number-count",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchNumberCount",
+      "label": "数字计数器 NumberCount",
+      "kind": "component",
+      "summary": "用于有明确步长与上下界的数量录入。数值和业务提交由调用方控制。",
+      "props": {
+        "modelValue": {
+          "type": "Number",
+          "default": 0
+        },
+        "step": {
+          "type": "Number",
+          "default": 1
+        },
+        "min": {
+          "type": "Number",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "max": {
+          "type": "Number",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "name": {
+          "type": "String"
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "数量"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": [],
+      "useWhen": [
+        "在明确上下限与步长内录入数量"
+      ],
+      "avoidWhen": [
+        "普通文本、金额格式化、异步校验或高精度计算"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-number-count.md"
+    },
+    {
+      "id": "wb-pagination",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPagination",
+      "label": "分页器 Pagination",
+      "kind": "component",
+      "summary": "用于在有明确总量的数据集中切换页码和每页数量。分页控件发出请求意图，数据加载由调用方管理。",
+      "props": {
+        "variant": {
+          "type": "String",
+          "default": "default",
+          "enum": [
+            "default",
+            "full",
+            "simple"
+          ]
+        },
+        "total": {
+          "type": "Number",
+          "required": true
+        },
+        "modelValue": {
+          "type": "Number",
+          "default": 1
+        },
+        "pageSize": {
+          "type": "Number",
+          "default": 10
+        },
+        "pageSizeOptions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "middlePageCount": {
+          "type": "Number",
+          "default": 3,
+          "validator": {
+            "kind": "unknown",
+            "expression": "(value) => Number.isInteger(value) && value > 0"
+          }
+        },
+        "simpleMode": {
+          "type": "String",
+          "default": "click",
+          "enum": [
+            "click",
+            "select",
+            "input"
+          ]
+        },
+        "simpleEditable": {
+          "type": "Boolean",
+          "default": false
+        },
+        "disabled": {
+          "type": "Boolean",
+          "default": false
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "分页"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:pageSize",
+        "change",
+        "page-size-change"
+      ],
+      "slots": [],
+      "useWhen": [
+        "已知总量列表的分页与每页数量切换"
+      ],
+      "avoidWhen": [
+        "未知总量无限加载、服务端请求调度",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-pagination.md"
+    },
+    {
+      "id": "wb-pedestal-icon",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPedestalIcon",
+      "label": "底托图标",
+      "kind": "component",
+      "summary": "底托图标 PedestalIcon：使用Pixso已定义的圆形或圆角矩形底托及高低饱和度变体；状态分类、资源类型和默认人像需要带底托图标",
+      "props": {
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "label": {
+          "type": "String",
+          "default": ""
+        },
+        "size": {
+          "type": "Number",
+          "default": {
+            "kind": "undefined"
+          },
+          "validator": {
+            "kind": "unknown",
+            "expression": "(value) => [28, 48].includes(value)"
+          }
+        }
+      },
+      "events": [],
+      "slots": [],
+      "useWhen": [
+        "底托图标 PedestalIcon：使用Pixso已定义的圆形或圆角矩形底托及高低饱和度变体",
+        "状态分类、资源类型和默认人像需要带底托图标"
+      ],
+      "avoidWhen": [
+        "需要纯系统图标或状态提示图标时使用对应独立图标组件",
+        "将占位咖啡杯解释为已确认业务语义",
+        "未经生产接入验证作为生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-pedestal-icon.md"
+    },
+    {
+      "id": "wb-policy-links",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPolicyLinks",
+      "label": "政策链接 PolicyLinks Block",
+      "kind": "block",
+      "summary": "页签下方列出与当前分类相关的规则、政策或评估文档链接",
+      "props": {
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "href": {
+          "type": "String",
+          "default": "#"
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "规则与政策"
+        }
+      },
+      "events": [],
+      "slots": [],
+      "useWhen": [
+        "页签下方列出与当前分类相关的规则、政策或评估文档链接"
+      ],
+      "avoidWhen": [
+        "正文中的普通文字链接（使用Link）",
+        "需要下载、预览等文件操作（使用Upload文件列表）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-policy-links.md"
+    },
+    {
+      "id": "wb-popconfirm",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPopconfirm",
+      "label": "气泡确认 Popconfirm",
+      "kind": "component",
+      "summary": "在触发元素附近确认一项轻量、局部且可立即判定的操作，用户确认后才由宿主执行业务动作。",
+      "props": {
+        "placement": {
+          "type": "String",
+          "default": "top",
+          "enum": [
+            "top-start",
+            "top",
+            "top-end",
+            "right-start",
+            "right",
+            "right-end",
+            "bottom-start",
+            "bottom",
+            "bottom-end",
+            "left-start",
+            "left",
+            "left-end"
+          ]
+        },
+        "open": {
+          "type": "Boolean",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "type": {
+          "type": "String",
+          "default": "info",
+          "enum": [
+            "info",
+            "warning",
+            "danger",
+            "critical",
+            "error"
+          ]
+        },
+        "showIcon": {
+          "type": "Boolean",
+          "default": true
+        },
+        "showCancel": {
+          "type": "Boolean",
+          "default": true
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "message": {
+          "type": "String",
+          "default": ""
+        },
+        "confirmText": {
+          "type": "String",
+          "default": "确认"
+        },
+        "cancelText": {
+          "type": "String",
+          "default": "取消"
+        },
+        "confirmDisabled": {
+          "type": "Boolean"
+        },
+        "cancelDisabled": {
+          "type": "Boolean"
+        },
+        "pending": {
+          "type": "Boolean"
+        },
+        "beforeConfirm": {
+          "type": "Function",
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [
+        "update:open",
+        "confirm",
+        "cancel",
+        "confirm-error"
+      ],
+      "slots": [
+        "trigger"
+      ],
+      "useWhen": [
+        "触发器附近的简单确认，可用一段正文说明影响。"
+      ],
+      "avoidWhen": [
+        "复杂表单、长文本、高风险必须阅读的信息使用 Modal/Feedback Dialog。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-popconfirm.md"
+    },
+    {
+      "id": "wb-popover",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPopover",
+      "label": "气泡框 Popover",
+      "kind": "component",
+      "summary": "在触发元素附近展示需要阅读的补充说明，可包含正文链接；不用于操作菜单或确认任务。",
+      "props": {
+        "placement": {
+          "type": "String",
+          "default": "top",
+          "enum": [
+            "top-start",
+            "top",
+            "top-end",
+            "right-start",
+            "right",
+            "right-end",
+            "bottom-start",
+            "bottom",
+            "bottom-end",
+            "left-start",
+            "left",
+            "left-end"
+          ]
+        },
+        "title": {
+          "type": "String",
+          "default": ""
+        },
+        "open": {
+          "type": "Boolean",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "说明气泡"
+        }
+      },
+      "events": [
+        "update:open"
+      ],
+      "slots": [
+        "trigger",
+        "default"
+      ],
+      "useWhen": [
+        "在触发元素附近提供可含链接的补充说明"
+      ],
+      "avoidWhen": [
+        "仅需纯文本悬停提示",
+        "需要点击触发的菜单或确认操作",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-popover.md"
+    },
+    {
+      "id": "wb-quick-app-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchQuickAppCard",
+      "label": "快捷应用卡片 Block",
+      "kind": "block",
+      "summary": "需要以稳定数据接口复用快捷应用卡片结构、布局和独立底部区域",
+      "props": {
+        "title": {
+          "type": "String",
+          "default": ""
+        },
+        "variant": {
+          "type": "String",
+          "default": "display-white",
+          "enum": [
+            "display-white"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "xxxl",
+          "enum": [
+            "s",
+            "m",
+            "l",
+            "xl",
+            "xxl",
+            "xxxl"
+          ]
+        },
+        "href": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "target": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "rel": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "headerActions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "footer": {
+          "type": "Object",
+          "default": null
+        },
+        "actions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "layout": {
+          "type": "String",
+          "default": "row",
+          "enum": [
+            "row",
+            "multi",
+            "column"
+          ]
+        },
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        }
+      },
+      "events": [
+        "action",
+        "activate"
+      ],
+      "slots": [
+        "header",
+        "header-actions",
+        "footer",
+        "actions",
+        "item",
+        "empty"
+      ],
+      "useWhen": [
+        "需要以稳定数据接口复用快捷应用卡片结构、布局和独立底部区域"
+      ],
+      "avoidWhen": [
+        "跨卡片业务流程、持久化与编排应由宿主/Pattern管理",
+        "未经人工视觉签收或生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-quick-app-card.md"
+    },
+    {
+      "id": "wb-radio",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchRadio",
+      "label": "单选框 Radio",
+      "kind": "component",
+      "summary": "用于从互斥选项中选择一个值。多个Radio共享name和v-model状态，由调用方提供选项布局。",
+      "props": {
+        "modelValue": {
+          "type": "String"
+        },
+        "value": {
+          "type": "String",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "hover": {
+          "type": "Boolean"
+        },
+        "label": {
+          "type": "String",
+          "default": ""
+        },
+        "ariaLabel": {
+          "type": "String"
+        },
+        "description": {
+          "type": "String"
+        },
+        "noWrap": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "update:modelValue"
+      ],
+      "slots": [],
+      "useWhen": [
+        "互斥选择"
+      ],
+      "avoidWhen": [
+        "未经验证的内部框架生产实现"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-radio.md"
+    },
+    {
+      "id": "wb-rating",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchRating",
+      "label": "评分 Rating",
+      "kind": "component",
+      "summary": "用于表达等级、满意度或服务反馈。支持整分与半分、数值或文字说明，也可在只读界面展示已有评分。",
+      "props": {
+        "modelValue": {
+          "type": "Number",
+          "default": 0
+        },
+        "max": {
+          "type": "Number",
+          "default": 5,
+          "validator": {
+            "kind": "unknown",
+            "expression": "value => Number.isInteger(value) && value > 0"
+          }
+        },
+        "step": {
+          "type": "Number",
+          "default": 1,
+          "validator": {
+            "kind": "unknown",
+            "expression": "value => value === 1 || value === 0.5"
+          }
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "name": {
+          "type": "String"
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "评分"
+        },
+        "ariaDescribedby": {
+          "type": "String"
+        },
+        "invalid": {
+          "type": "Boolean"
+        },
+        "readOnly": {
+          "type": "Boolean"
+        },
+        "descriptionMode": {
+          "type": "String",
+          "default": "per-star",
+          "enum": [
+            "none",
+            "text",
+            "numeric",
+            "per-star"
+          ]
+        },
+        "descriptionPlacement": {
+          "type": "String",
+          "default": "right",
+          "enum": [
+            "right",
+            "bottom"
+          ]
+        },
+        "descriptions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        }
+      },
+      "events": [
+        "update:modelValue"
+      ],
+      "slots": [],
+      "useWhen": [
+        "以五级星形表达主观评分"
+      ],
+      "avoidWhen": [
+        "精确数值录入或超过半分精度"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-rating.md"
+    },
+    {
+      "id": "wb-readonly-fields",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchReadonlyFields",
+      "label": "静态字段组 ReadonlyFields",
+      "kind": "block",
+      "summary": "静态字段组的受控业务组合",
+      "props": {
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "titleVisible": {
+          "type": "Boolean",
+          "default": false
+        },
+        "model": {
+          "type": "Object",
+          "required": true
+        },
+        "fields": {
+          "type": "Array",
+          "required": true
+        },
+        "columns": {
+          "type": "Number",
+          "default": 3
+        },
+        "labelPosition": {
+          "type": "String",
+          "default": "left"
+        },
+        "labelWidth": {
+          "type": "String",
+          "default": "224px"
+        },
+        "density": {
+          "type": "String",
+          "default": "compact"
+        }
+      },
+      "events": [
+        "copy"
+      ],
+      "slots": [],
+      "useWhen": [
+        "静态字段组的受控业务组合"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-readonly-fields.md"
+    },
+    {
+      "id": "wb-scrollbar",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchScrollbar",
+      "label": "滚动条 Scrollbar",
+      "kind": "component",
+      "summary": "用于为受限内容区域提供覆盖式滚动指示与拖动控制。滚动内容仍由浏览器原生滚动机制处理。",
+      "props": {
+        "label": {
+          "type": "String",
+          "required": true
+        },
+        "describedby": {
+          "type": "String"
+        },
+        "axis": {
+          "type": "String",
+          "default": "vertical"
+        },
+        "size": {
+          "type": "String",
+          "default": "default"
+        },
+        "state": {
+          "type": "String"
+        }
+      },
+      "events": [],
+      "slots": [
+        "default"
+      ],
+      "useWhen": [
+        "小尺寸适用于空间受限、需要弱化视觉干扰或辅助性质的微型滚动场景，例如下拉选择框菜单、多行输入框、弹出气泡框内的滚动。",
+        "默认尺寸适用于全屏／主页面滚动、主体内容列表、表格的主体滚动区域、中大型弹窗、侧边抽屉等尺寸较大的独立层级，以及用户需要频繁拖拽或观察滚动位置的区域。"
+      ],
+      "avoidWhen": [
+        "未经适配验证的内部框架生产实现"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-scrollbar.md"
+    },
+    {
+      "id": "wb-search",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSearch",
+      "label": "搜索 Search",
+      "kind": "component",
+      "summary": "用于提交文本搜索，可组合单侧或双侧单选筛选。搜索文本即时受控；是否执行查询由search事件触发。",
+      "props": {
+        "conditions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "fields": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "wrapConditions": {
+          "type": "Boolean"
+        },
+        "helpText": {
+          "type": "String"
+        },
+        "modelValue": {
+          "type": "String",
+          "default": ""
+        },
+        "searchIconPosition": {
+          "type": "String",
+          "default": "left",
+          "enum": [
+            "left",
+            "right"
+          ]
+        },
+        "variant": {
+          "type": "String",
+          "default": "outlined",
+          "enum": [
+            "outlined",
+            "filled"
+          ]
+        },
+        "appearance": {
+          "type": "String",
+          "default": "standard",
+          "enum": [
+            "standard",
+            "global"
+          ]
+        },
+        "type": {
+          "type": "String",
+          "default": "basic"
+        },
+        "placeholder": {
+          "type": "String",
+          "default": "请输入搜索内容"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "prefixDisabled": {
+          "type": "Boolean"
+        },
+        "suffixDisabled": {
+          "type": "Boolean"
+        },
+        "showPrefixIcon": {
+          "type": "Boolean",
+          "default": true
+        },
+        "showSuffixIcon": {
+          "type": "Boolean",
+          "default": true
+        },
+        "previewState": {
+          "type": "String",
+          "default": "default"
+        },
+        "filterValue": {
+          "type": "String",
+          "default": ""
+        },
+        "filterOptions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "prefixValue": {
+          "type": "String",
+          "default": ""
+        },
+        "suffixValue": {
+          "type": "String",
+          "default": ""
+        },
+        "prefixOptions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "suffixOptions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "showPanel": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:filterValue",
+        "update:prefixValue",
+        "update:suffixValue",
+        "search",
+        "clear",
+        "filter-change",
+        "update:conditions",
+        "condition-change"
+      ],
+      "slots": [
+        "prefix-icon",
+        "filter-icon",
+        "suffix-icon"
+      ],
+      "useWhen": [
+        "文本搜索及前后缀筛选",
+        "多字段条件与关键字组合的综合搜索，字段菜单复用级联选择面板"
+      ],
+      "avoidWhen": [
+        "本版本范围外的交互或未经验证的内部框架生产实现"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-search.md"
+    },
+    {
+      "id": "wb-select",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSelect",
+      "label": "选择器 Select",
+      "kind": "component",
+      "summary": "用于从有限的候选项中选择一个或多个值。正式WorkbenchSelect v1保持已批准的基础合同；搜索、清除、标签删除和尺寸扩展只属于Studio候选验证。",
+      "props": {
+        "modelValue": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "multiple": {
+          "type": "Boolean"
+        },
+        "label": {
+          "type": "String"
+        },
+        "required": {
+          "type": "Boolean"
+        },
+        "state": {
+          "type": "String",
+          "default": "default"
+        },
+        "showPanel": {
+          "type": "Boolean"
+        },
+        "options": {
+          "type": "Array",
+          "required": true
+        },
+        "teleportPanel": {
+          "type": "Boolean"
+        },
+        "panelClass": {
+          "type": "String",
+          "default": ""
+        },
+        "placeholder": {
+          "type": "String",
+          "default": "请选择"
+        }
+      },
+      "events": [
+        "update:modelValue"
+      ],
+      "slots": [],
+      "useWhen": [
+        "单选或多选已有选项"
+      ],
+      "avoidWhen": [
+        "本版本范围外的交互或未经验证的内部框架生产实现"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-select.md"
+    },
+    {
+      "id": "wb-side-navigation",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSideNavigation",
+      "label": "侧边导航 Side Navigation",
+      "kind": "component",
+      "summary": "用于页面内的一级、二级导航及更深层级展开。当前选中页面由消费方控制；折叠与展开状态可受控。",
+      "props": {
+        "title": {
+          "type": "String",
+          "default": ""
+        },
+        "topToggle": {
+          "type": "Boolean",
+          "default": false
+        },
+        "width": {
+          "type": "String",
+          "default": ""
+        },
+        "panelMode": {
+          "type": "String",
+          "default": "flyout",
+          "enum": [
+            "flyout",
+            "popup",
+            "columns"
+          ]
+        },
+        "panelDensity": {
+          "type": "String",
+          "default": "default",
+          "enum": [
+            "small",
+            "default",
+            "large"
+          ]
+        },
+        "showFlyoutIcons": {
+          "type": "Boolean",
+          "default": true
+        },
+        "showDivider": {
+          "type": "Boolean",
+          "default": true
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "侧边导航"
+        },
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "collapsed": {
+          "type": "Boolean",
+          "default": false
+        },
+        "activeItem": {
+          "type": "String",
+          "default": ""
+        },
+        "expandedItems": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "panelItemId": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "panelExpandAll": {
+          "type": "Boolean",
+          "default": false
+        },
+        "collapsible": {
+          "type": "Boolean",
+          "default": true
+        }
+      },
+      "events": [
+        "update:collapsed",
+        "update:activeItem",
+        "update:expandedItems",
+        "update:panelItemId",
+        "select"
+      ],
+      "slots": [],
+      "useWhen": [
+        "管理应用多层级与频繁切换导航",
+        "可收起侧栏及三级四级面板"
+      ],
+      "avoidWhen": [
+        "移动端正式导航",
+        "超过四级或跨刷新持久化需求",
+        "未经验证的Vue2或内部框架生产调用"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-side-navigation.md"
+    },
+    {
+      "id": "wb-skeleton",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSkeleton",
+      "label": "骨架屏 Skeleton",
+      "kind": "component",
+      "summary": "在数据加载期间预留真实内容的结构与空间，降低页面布局跳动；请求状态仍由宿主管理。",
+      "props": {
+        "variant": {
+          "type": "String",
+          "default": "title-text",
+          "enum": [
+            "title-text",
+            "text",
+            "media-text",
+            "item-text",
+            "hero-text"
+          ]
+        },
+        "showTitle": {
+          "type": "Boolean",
+          "default": true
+        },
+        "lines": {
+          "type": "Number",
+          "default": 3,
+          "validator": {
+            "kind": "unknown",
+            "expression": "value => Number.isInteger(value) && value >= 1 && value <= 5"
+          }
+        },
+        "animated": {
+          "type": "Boolean",
+          "default": true
+        },
+        "label": {
+          "type": "String",
+          "default": ""
+        }
+      },
+      "events": [],
+      "slots": [],
+      "useWhen": [
+        "加载前已知内容结构，以稳定骨架占位减少跳动。"
+      ],
+      "avoidWhen": [
+        "未知进度用 Loading；静态布局说明不要被播报为正在加载。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-skeleton.md"
+    },
+    {
+      "id": "wb-slider",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSlider",
+      "label": "滑动条 Slider",
+      "kind": "component",
+      "summary": "用于在连续或离散数值范围内调节单值，也支持不交叉的离散区间。",
+      "props": {
+        "modelValue": {
+          "type": [
+            "Number",
+            "Array"
+          ],
+          "default": 0
+        },
+        "min": {
+          "type": "Number",
+          "default": 0
+        },
+        "max": {
+          "type": "Number",
+          "default": 100
+        },
+        "step": {
+          "type": "Number",
+          "default": 1
+        },
+        "type": {
+          "type": "String",
+          "default": "continuous",
+          "enum": [
+            "continuous",
+            "discrete"
+          ]
+        },
+        "range": {
+          "type": "Boolean"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "name": {
+          "type": "String"
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "滑动条"
+        },
+        "ariaDescribedby": {
+          "type": "String"
+        },
+        "invalid": {
+          "type": "Boolean"
+        },
+        "showValue": {
+          "type": "Boolean"
+        },
+        "showTicks": {
+          "type": "Boolean"
+        },
+        "showTickLabels": {
+          "type": "Boolean"
+        },
+        "tickLabelMode": {
+          "type": "String",
+          "default": "all",
+          "enum": [
+            "all",
+            "endpoints"
+          ]
+        },
+        "showInput": {
+          "type": "Boolean"
+        },
+        "wideInput": {
+          "type": "Boolean"
+        },
+        "unit": {
+          "type": "String"
+        },
+        "tickLabels": {
+          "type": [
+            "Array",
+            "Object"
+          ],
+          "default": {
+            "kind": "function"
+          }
+        },
+        "showTooltip": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "update:modelValue"
+      ],
+      "slots": [],
+      "useWhen": [
+        "在连续值、离散值或离散区间内快速选择"
+      ],
+      "avoidWhen": [
+        "要求精确键入且范围未知或区间端点可交叉"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-slider.md"
+    },
+    {
+      "id": "wb-steps",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSteps",
+      "label": "步骤条 Steps",
+      "kind": "component",
+      "summary": "用于展示多阶段任务的流程进度，并按业务需要允许回看可导航步骤。",
+      "props": {
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "modelValue": {
+          "type": "Number",
+          "default": 0
+        },
+        "current": {
+          "type": "Number"
+        },
+        "variant": {
+          "type": "String",
+          "default": "horizontal"
+        },
+        "size": {
+          "type": "String",
+          "default": "medium"
+        },
+        "nodeType": {
+          "type": "String",
+          "default": "number"
+        },
+        "readonly": {
+          "type": "Boolean",
+          "default": true
+        },
+        "disabled": {
+          "type": "Boolean",
+          "default": false
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "流程步骤"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": [
+        "icon",
+        "title",
+        "description"
+      ],
+      "useWhen": [
+        "步骤条 Steps相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-steps.md"
+    },
+    {
+      "id": "wb-switch",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSwitch",
+      "label": "开关 Switch",
+      "kind": "component",
+      "summary": "用于即时切换一个布尔设置。切换后由调用方保存状态并决定后续业务影响。",
+      "props": {
+        "modelValue": {
+          "type": "Boolean"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "loading": {
+          "type": "Boolean"
+        },
+        "name": {
+          "type": "String"
+        },
+        "value": {
+          "type": "String",
+          "default": "on"
+        },
+        "label": {
+          "type": "String",
+          "default": ""
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "ariaDescribedby": {
+          "type": "String"
+        },
+        "invalid": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "update:modelValue"
+      ],
+      "slots": [],
+      "useWhen": [
+        "即时开启或关闭一个布尔配置"
+      ],
+      "avoidWhen": [
+        "提交后才生效的多项选择或不可立即撤销的操作"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-switch.md"
+    },
+    {
+      "id": "wb-table",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTable",
+      "label": "表格 Table",
+      "kind": "component",
+      "summary": "用于伙伴业务管理数据的结构化查看与操作。WorkbenchTable展示调用方提供的行并发出受控意图；WorkbenchDataToolbar负责可复用的表格、列表和卡片操作区。",
+      "props": {
+        "title": {
+          "type": "String",
+          "default": ""
+        },
+        "caption": {
+          "type": "String",
+          "default": ""
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "columns": {
+          "type": "Array",
+          "required": true
+        },
+        "rows": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "rowKey": {
+          "type": [
+            "String",
+            "Function"
+          ],
+          "required": true
+        },
+        "selectedRowKeys": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "sort": {
+          "type": "Object",
+          "default": null
+        },
+        "page": {
+          "type": "Number",
+          "default": 1
+        },
+        "pageSize": {
+          "type": "Number",
+          "default": 10
+        },
+        "pageSizeOptions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "total": {
+          "type": "Number",
+          "default": null
+        },
+        "loading": {
+          "type": "Boolean",
+          "default": false
+        },
+        "errorMessage": {
+          "type": "String",
+          "default": ""
+        },
+        "emptyKind": {
+          "type": "String",
+          "default": "initial",
+          "enum": [
+            "initial",
+            "filtered"
+          ]
+        },
+        "selectable": {
+          "type": "Boolean",
+          "default": false
+        },
+        "selectionFixed": {
+          "type": "Boolean",
+          "default": false
+        },
+        "actionsFixed": {
+          "type": "Boolean",
+          "default": false
+        },
+        "expandable": {
+          "type": "Boolean",
+          "default": false
+        },
+        "expandedRowKeys": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "isRowExpandable": {
+          "type": "Function",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "isRowSelectable": {
+          "type": "Function",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "rowActions": {
+          "type": [
+            "Array",
+            "Function"
+          ],
+          "default": {
+            "kind": "function"
+          }
+        },
+        "striped": {
+          "type": "Boolean",
+          "default": false
+        },
+        "resizable": {
+          "type": "Boolean",
+          "default": false
+        },
+        "columnWidths": {
+          "type": "Object",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "columnFilters": {
+          "type": "Object",
+          "default": {
+            "kind": "function"
+          }
+        }
+      },
+      "events": [
+        "update:selectedRowKeys",
+        "selection-change",
+        "update:sort",
+        "sort-change",
+        "column-filter",
+        "update:columnFilters",
+        "column-filter-change",
+        "update:page",
+        "page-change",
+        "update:pageSize",
+        "page-size-change",
+        "update:expandedRowKeys",
+        "expand-change",
+        "row-action",
+        "retry",
+        "update:columnWidths",
+        "column-width-change"
+      ],
+      "slots": [
+        "toolbar-leading",
+        "toolbar-actions",
+        "error",
+        "empty",
+        "row-actions",
+        "expanded-content",
+        "expanded-actions",
+        "batch-actions"
+      ],
+      "useWhen": [
+        "展示、选择、排序、筛选或展开伙伴业务管理数据"
+      ],
+      "avoidWhen": [
+        "移动端卡片转换、虚拟滚动、树形表格或需要内置编辑引擎的表格",
+        "未经验证的生产目标"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-table.md"
+    },
+    {
+      "id": "wb-table-actions-selection",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTableActionsSelection",
+      "label": "表格操作与跨页选择 Block",
+      "kind": "block",
+      "summary": "表格需将稳定行 ID 的选择状态保留跨页，并由页面提供批量操作和行操作处理",
+      "props": {
+        "caption": {
+          "type": "String",
+          "default": ""
+        },
+        "columns": {
+          "type": "Array",
+          "required": true
+        },
+        "rows": {
+          "type": "Array",
+          "required": true
+        },
+        "selectedIds": {
+          "type": "Array",
+          "required": true
+        },
+        "rowKey": {
+          "type": [
+            "String",
+            "Function"
+          ],
+          "default": "id"
+        },
+        "sort": {
+          "type": "Object",
+          "default": null
+        },
+        "page": {
+          "type": "Number",
+          "default": 1
+        },
+        "pageSize": {
+          "type": "Number",
+          "default": 10
+        },
+        "total": {
+          "type": "Number",
+          "default": null
+        },
+        "selectionFixed": {
+          "type": "Boolean",
+          "default": false
+        },
+        "actionsFixed": {
+          "type": "Boolean",
+          "default": false
+        },
+        "rowActions": {
+          "type": [
+            "Array",
+            "Function"
+          ],
+          "default": {
+            "kind": "function"
+          }
+        }
+      },
+      "events": [
+        "update:selectedIds",
+        "selection-change",
+        "update:sort",
+        "sort-change",
+        "column-filter",
+        "update:page",
+        "page-change",
+        "update:pageSize",
+        "page-size-change",
+        "row-action"
+      ],
+      "slots": [
+        "toolbar-leading",
+        "toolbar-actions",
+        "row-actions"
+      ],
+      "useWhen": [
+        "表格需将稳定行 ID 的选择状态保留跨页，并由页面提供批量操作和行操作处理"
+      ],
+      "avoidWhen": [
+        "仅当前页选择已满足需求",
+        "服务端全量选择、权限过滤或业务删除语义需要统一由 Block 决定"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-table-actions-selection.md"
+    },
+    {
+      "id": "wb-tabs",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTabs",
+      "label": "页签 Tabs",
+      "kind": "component",
+      "summary": "用于切换相互关联的平级内容面板。需要互斥设置值但不切换内容面板时使用ButtonRadioGroup。",
+      "props": {
+        "modelValue": {
+          "type": [
+            "String",
+            "Number"
+          ],
+          "required": true
+        },
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "variant": {
+          "type": "String",
+          "default": "basic",
+          "enum": [
+            "basic",
+            "divider",
+            "rail",
+            "segment"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "small",
+          "enum": [
+            "small",
+            "large"
+          ]
+        },
+        "align": {
+          "type": "String",
+          "default": "start",
+          "enum": [
+            "start",
+            "center"
+          ]
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "页签"
+        },
+        "addable": {
+          "type": "Boolean",
+          "default": false
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change",
+        "add",
+        "remove"
+      ],
+      "slots": [
+        "tab",
+        "panel"
+      ],
+      "useWhen": [
+        "同一上下文内平级内容切换"
+      ],
+      "avoidWhen": [
+        "站点路由导航、异步加载时直接自动激活",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-tabs.md"
+    },
+    {
+      "id": "wb-tabs-header",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTabsHeader",
+      "label": "页签头 TabsHeader Block",
+      "kind": "block",
+      "summary": "卡片内一级页签需要贯穿线样式、页签数量角标或右侧下钻操作",
+      "props": {
+        "modelValue": {
+          "type": [
+            "String",
+            "Number"
+          ],
+          "required": true
+        },
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "size": {
+          "type": "String",
+          "default": "large",
+          "enum": [
+            "small",
+            "large"
+          ]
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "页签"
+        }
+      },
+      "events": [
+        "update:modelValue"
+      ],
+      "slots": [
+        "extra"
+      ],
+      "useWhen": [
+        "卡片内一级页签需要贯穿线样式、页签数量角标或右侧下钻操作"
+      ],
+      "avoidWhen": [
+        "页面级导航或需要内容面板关联之外的复杂页签行为（直接使用Tabs）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-tabs-header.md"
+    },
+    {
+      "id": "wb-tag",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTag",
+      "label": "标签 Tag",
+      "kind": "component",
+      "summary": "用短文本标记属性、状态、分类或运营信息；标签可为静态内容，也可明确设为可交互按钮。",
+      "props": {
+        "label": {
+          "type": [
+            "String",
+            "Number"
+          ],
+          "required": true
+        },
+        "variant": {
+          "type": "String",
+          "default": "basic",
+          "enum": [
+            "basic",
+            "status-subtle",
+            "status-dot",
+            "category",
+            "corner",
+            "status-primary"
+          ]
+        },
+        "size": {
+          "type": "String",
+          "default": "medium",
+          "enum": [
+            "small",
+            "medium",
+            "large"
+          ]
+        },
+        "status": {
+          "type": "String",
+          "default": "info",
+          "enum": [
+            "waiting",
+            "info",
+            "success",
+            "warning",
+            "alert",
+            "error",
+            "none"
+          ]
+        },
+        "categoryIndex": {
+          "type": "Number",
+          "default": 1,
+          "validator": {
+            "kind": "unknown",
+            "expression": "(value) => Number.isInteger(value) && value >= 1 && value <= 12"
+          }
+        },
+        "cornerTone": {
+          "type": "String",
+          "default": "new",
+          "enum": [
+            "new",
+            "hot",
+            "discount",
+            "off"
+          ]
+        },
+        "placement": {
+          "type": "String",
+          "default": "top-left",
+          "enum": [
+            "top-left",
+            "top-right"
+          ]
+        },
+        "action": {
+          "type": "String",
+          "default": "none",
+          "enum": [
+            "none",
+            "add",
+            "remove"
+          ]
+        },
+        "interactive": {
+          "type": "Boolean",
+          "default": false
+        },
+        "selected": {
+          "type": "Boolean",
+          "default": false
+        },
+        "disabled": {
+          "type": "Boolean",
+          "default": false
+        }
+      },
+      "events": [
+        "select",
+        "add",
+        "remove"
+      ],
+      "slots": [
+        "icon"
+      ],
+      "useWhen": [
+        "标记对象属性、短状态、分类或卡片运营信息"
+      ],
+      "avoidWhen": [
+        "表达长句、承载复杂操作或替代按钮",
+        "未经验证的生产目标"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-tag.md"
+    },
+    {
+      "id": "wb-time-picker",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTimePicker",
+      "label": "时间选择 TimePicker",
+      "kind": "component",
+      "summary": "用于选择单个时间或时间范围。面板中的修改作为草稿，点击确定后才更新modelValue。",
+      "props": {
+        "modelValue": {
+          "type": [
+            "String",
+            "Array"
+          ],
+          "default": ""
+        },
+        "range": {
+          "type": "Boolean"
+        },
+        "use12Hours": {
+          "type": "Boolean"
+        },
+        "showSeconds": {
+          "type": "Boolean",
+          "default": true
+        },
+        "showNow": {
+          "type": "Boolean"
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "name": {
+          "type": "String"
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "选择时间"
+        },
+        "ariaDescribedby": {
+          "type": "String"
+        },
+        "invalid": {
+          "type": "Boolean"
+        },
+        "placeholder": {
+          "type": "String",
+          "default": "请选择时间"
+        },
+        "previewState": {
+          "type": "String",
+          "default": "default"
+        },
+        "defaultOpen": {
+          "type": "Boolean"
+        },
+        "teleportPanel": {
+          "type": "Boolean"
+        },
+        "inline": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change",
+        "cancel"
+      ],
+      "slots": [],
+      "useWhen": [
+        "时间选择器 TimePicker相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-time-picker.md"
+    },
+    {
+      "id": "wb-timeline",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTimeline",
+      "label": "时间轴 Timeline",
+      "kind": "component",
+      "summary": "按先后顺序呈现多个相关事件及其时间、标题和说明，帮助阅读者理解过程与进展。",
+      "props": {
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "nodeType": {
+          "type": "String",
+          "default": "dot",
+          "enum": [
+            "dot",
+            "icon"
+          ]
+        },
+        "label": {
+          "type": "String",
+          "default": "事件时间轴"
+        }
+      },
+      "events": [],
+      "slots": [
+        "node",
+        "time",
+        "image",
+        "title",
+        "description"
+      ],
+      "useWhen": [
+        "时间轴 Timeline相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-timeline.md"
+    },
+    {
+      "id": "wb-tooltip",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTooltip",
+      "label": "文字提示 Tooltip",
+      "kind": "component",
+      "summary": "在控件附近补充简短、非必要的说明文字；不承载交互内容或关键信息。",
+      "props": {
+        "content": {
+          "type": "String",
+          "default": ""
+        },
+        "placement": {
+          "type": "String",
+          "default": "top",
+          "enum": [
+            "top-start",
+            "top",
+            "top-end",
+            "right-start",
+            "right",
+            "right-end",
+            "bottom-start",
+            "bottom",
+            "bottom-end",
+            "left-start",
+            "left",
+            "left-end"
+          ]
+        },
+        "open": {
+          "type": "Boolean",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "overflowOnly": {
+          "type": "Boolean"
+        },
+        "showArrow": {
+          "type": "Boolean",
+          "default": true
+        }
+      },
+      "events": [
+        "update:open"
+      ],
+      "slots": [
+        "trigger",
+        "content"
+      ],
+      "useWhen": [
+        "悬停或键盘聚焦时显示短文本、溢出内容全文或静态标签。"
+      ],
+      "avoidWhen": [
+        "需要链接使用Popover；操作确认使用Popconfirm；不要在Tooltip里放可交互元素。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-tooltip.md"
+    },
+    {
+      "id": "wb-top-nav",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTopNav",
+      "label": "顶部导航 Top Navigation",
+      "kind": "component",
+      "summary": "组织站点切换、业务页签、搜索、通知与账户入口，适配桌面、折叠桌面和移动宽度。",
+      "props": {
+        "mode": {
+          "type": "String",
+          "default": "workbench",
+          "enum": [
+            "portal",
+            "workbench"
+          ]
+        },
+        "userState": {
+          "type": "String",
+          "default": "authenticated",
+          "enum": [
+            "guest",
+            "authenticated"
+          ]
+        },
+        "activeTab": {
+          "type": "String",
+          "default": "home"
+        },
+        "currentSite": {
+          "type": "String",
+          "default": "partner"
+        },
+        "currentLanguage": {
+          "type": "String",
+          "default": "zh-CN"
+        },
+        "tabs": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "sites": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "languages": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "userMenuItems": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "tabMenus": {
+          "type": "Object",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "actions": {
+          "type": "Array",
+          "default": null
+        }
+      },
+      "events": [
+        "update:activeTab",
+        "select-site",
+        "select-language",
+        "select-user-action",
+        "select-tab-entry",
+        "navigate",
+        "search",
+        "notification",
+        "login",
+        "register",
+        "action"
+      ],
+      "slots": [],
+      "useWhen": [
+        "需要站点、业务页签、全局检索和账户入口的页首导航。"
+      ],
+      "avoidWhen": [
+        "局部卡片或页面内分段导航；使用 Tabs。"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-top-nav.md"
+    },
+    {
+      "id": "wb-transaction-stage-progress",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTransactionStageProgress",
+      "label": "交易阶段进度（Block 候选）",
+      "kind": "block",
+      "summary": "交易阶段进度的受控业务组合",
+      "props": {
+        "items": {
+          "type": "Array",
+          "required": true
+        },
+        "modelValue": {
+          "type": "Number",
+          "default": 0
+        },
+        "current": {
+          "type": "Number"
+        },
+        "readonly": {
+          "type": "Boolean",
+          "default": true
+        },
+        "ariaLabel": {
+          "type": "String",
+          "default": "交易进度"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": [],
+      "useWhen": [
+        "交易阶段进度的受控业务组合"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-transaction-stage-progress.md"
+    },
+    {
+      "id": "wb-transfer",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTransfer",
+      "label": "穿梭框 Transfer",
+      "kind": "component",
+      "summary": "用于在可选集合与已选集合之间转移项目，支持手动确认与自动移动模式。",
+      "props": {
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "modelValue": {
+          "type": "Array",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "defaultValue": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "checkedKeys": {
+          "type": "Object",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "defaultCheckedKeys": {
+          "type": "Object",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "mode": {
+          "type": "String",
+          "default": "manual",
+          "enum": [
+            "manual",
+            "auto"
+          ]
+        },
+        "titles": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "searchable": {
+          "type": "Boolean"
+        },
+        "pagination": {
+          "type": "Boolean",
+          "default": true
+        },
+        "pageSize": {
+          "type": "Number",
+          "default": 6
+        },
+        "defaultExpandedKeys": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "label": {
+          "type": "String",
+          "default": "穿梭框"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:checkedKeys",
+        "change",
+        "check",
+        "search",
+        "page-change"
+      ],
+      "slots": [
+        "item",
+        "empty"
+      ],
+      "useWhen": [
+        "穿梭框 Transfer相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-transfer.md"
+    },
+    {
+      "id": "wb-tree",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTree",
+      "label": "结构树 Tree",
+      "kind": "component",
+      "summary": "用于展示父子层级内容，支持单选、多选、搜索、展开及可配置的节点操作。",
+      "props": {
+        "items": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "modelValue": {
+          "type": [
+            "String",
+            "Number"
+          ],
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "expandedKeys": {
+          "type": "Array",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "defaultExpandedKeys": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "checkedKeys": {
+          "type": "Array",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "defaultCheckedKeys": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "title": {
+          "type": "String",
+          "default": "主标题"
+        },
+        "titleIcon": {
+          "type": "String",
+          "default": ""
+        },
+        "showCount": {
+          "type": "Boolean"
+        },
+        "searchable": {
+          "type": "Boolean",
+          "default": true
+        },
+        "search": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "placeholder": {
+          "type": "String",
+          "default": "请输入搜索内容"
+        },
+        "checkable": {
+          "type": "Boolean"
+        },
+        "checkStrictly": {
+          "type": "Boolean"
+        },
+        "showLine": {
+          "type": "Boolean"
+        },
+        "showIcons": {
+          "type": "Boolean"
+        },
+        "editable": {
+          "type": "Boolean",
+          "default": true
+        },
+        "showActions": {
+          "type": "Boolean",
+          "default": true
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "label": {
+          "type": "String",
+          "default": "结构树"
+        },
+        "emptyText": {
+          "type": "String",
+          "default": "暂无数据"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "update:expandedKeys",
+        "update:checkedKeys",
+        "update:search",
+        "select",
+        "expand",
+        "check",
+        "rename",
+        "delete",
+        "more"
+      ],
+      "slots": [
+        "title-actions",
+        "label"
+      ],
+      "useWhen": [
+        "结构树 Tree相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-tree.md"
+    },
+    {
+      "id": "wb-upload",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchUpload",
+      "label": "文件上传 Upload",
+      "kind": "component",
+      "summary": "用于选择并管理文件记录，支持点击或拖拽入口、文本/精简/卡片列表。上传传输由消费方提供或显式提交。",
+      "props": {
+        "modelValue": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "mode": {
+          "type": "String",
+          "default": "click",
+          "enum": [
+            "click",
+            "drag"
+          ]
+        },
+        "listType": {
+          "type": "String",
+          "default": "text",
+          "enum": [
+            "text",
+            "compact",
+            "card"
+          ]
+        },
+        "accept": {
+          "type": "String",
+          "default": ".doc,.xlsx,.pdf"
+        },
+        "maxSize": {
+          "type": "Number",
+          "default": {
+            "kind": "unknown",
+            "expression": "5 * 1024 * 1024"
+          }
+        },
+        "limit": {
+          "type": "Number",
+          "default": 0
+        },
+        "multiple": {
+          "type": "Boolean",
+          "default": true
+        },
+        "disabled": {
+          "type": "Boolean"
+        },
+        "background": {
+          "type": "Boolean"
+        },
+        "showTrigger": {
+          "type": "Boolean",
+          "default": true
+        },
+        "autoUpload": {
+          "type": "Boolean",
+          "default": true
+        },
+        "customRequest": {
+          "type": "Function",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "beforeUpload": {
+          "type": "Function",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "hint": {
+          "type": "String",
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "label": {
+          "type": "String",
+          "default": "文件上传"
+        },
+        "previewState": {
+          "type": "String",
+          "default": "default"
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change",
+        "select",
+        "progress",
+        "success",
+        "error",
+        "reject",
+        "remove",
+        "pause",
+        "resume",
+        "preview",
+        "download"
+      ],
+      "slots": [],
+      "useWhen": [
+        "文件上传 Upload相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-upload.md"
+    },
+    {
+      "id": "ai-summary-card",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiSummaryCard",
+      "label": "AiSummaryCard",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "logo": {
+          "type": "Component | string",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [],
+      "slots": [
+        "tags"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/ai-summary-card.md"
+    },
+    {
+      "id": "workspace-smart-icon",
+      "package": "huawei-partner-ai-ui",
+      "name": "WorkspaceSmartIcon",
+      "label": "WorkspaceSmartIcon",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "logo": {
+          "type": "IntelligenceLogo",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "Component | string"
+        }
+      },
+      "events": [],
+      "slots": [],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/workspace-smart-icon.md"
+    },
+    {
+      "id": "workspace-smart-tag",
+      "package": "huawei-partner-ai-ui",
+      "name": "WorkspaceSmartTag",
+      "label": "WorkspaceSmartTag",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "fragments": {
+          "type": "readonly IntelligenceFragment[]",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "logo": {
+          "type": "IntelligenceLogo",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "Component | string"
+        },
+        "autoFollowHighlight": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": true
+          }
+        }
+      },
+      "events": [
+        "activate",
+        "highlightCenter"
+      ],
+      "slots": [],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/workspace-smart-tag.md"
+    },
+    {
+      "id": "workspace-smart-card",
+      "package": "huawei-partner-ai-ui",
+      "name": "WorkspaceSmartCard",
+      "label": "WorkspaceSmartCard",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "title": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "items": {
+          "type": "readonly IntelligenceItem[]",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "variant": {
+          "type": "'outlined' | 'embedded'",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "outlined"
+          }
+        },
+        "tag": {
+          "type": "IntelligenceTag",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "{ fragments: readonly IntelligenceFragment[] }"
+        },
+        "logo": {
+          "type": "IntelligenceLogo",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "Component | string"
+        }
+      },
+      "events": [
+        "navigate",
+        "activate"
+      ],
+      "slots": [
+        "body",
+        "footer"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/workspace-smart-card.md"
+    },
+    {
+      "id": "workspace-smart-tabs",
+      "package": "huawei-partner-ai-ui",
+      "name": "WorkspaceSmartTabs",
+      "label": "WorkspaceSmartTabs",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "modelValue": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "items": {
+          "type": "readonly WorkspaceSmartTab[]",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "ariaLabel": {
+          "type": "string",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "智慧页签"
+          }
+        },
+        "align": {
+          "type": "'start'|'center'",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "center"
+          }
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "change"
+      ],
+      "slots": [
+        "panel"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/workspace-smart-tabs.md"
+    },
+    {
+      "id": "business-navigation-card",
+      "package": "huawei-partner-ai-ui",
+      "name": "BusinessNavigationCard",
+      "label": "BusinessNavigationCard",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "title": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "target": {
+          "type": "BusinessNavigationTarget",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [
+        "navigate"
+      ],
+      "slots": [],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/business-navigation-card.md"
+    },
+    {
+      "id": "agreement-table",
+      "package": "huawei-partner-ai-ui",
+      "name": "AgreementTable",
+      "label": "AgreementTable",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "agreements": {
+          "type": "Agreement[]",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [
+        "open"
+      ],
+      "slots": [
+        "status"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/agreement-table.md"
+    },
+    {
+      "id": "business-table",
+      "package": "huawei-partner-ai-ui",
+      "name": "BusinessTable",
+      "label": "BusinessTable",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "columns": {
+          "type": "BusinessColumn[]",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "rows": {
+          "type": "Record<string, unknown>[]",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "label": {
+          "type": "string",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "业务数据"
+          }
+        },
+        "rowKey": {
+          "type": "string",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "id"
+          }
+        },
+        "minWidth": {
+          "type": "number",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "fit": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        },
+        "ellipsis": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        },
+        "cellText": {
+          "type": "(row: Record<string, unknown>, column: BusinessColumn) => string",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [],
+      "slots": [
+        "cell"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/business-table.md"
+    },
+    {
+      "id": "conversation-history-panel",
+      "package": "huawei-partner-ai-ui",
+      "name": "ConversationHistoryPanel",
+      "label": "面板 · 侧栏、悬浮与全屏",
+      "kind": "component",
+      "summary": "通用聊天呈现与可选宿主；消息、请求由业务控制器持有",
+      "props": {
+        "anchor": {
+          "type": "HTMLElement",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "open": {
+          "type": "boolean",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "records": {
+          "type": "ConversationRecord[]",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "selected": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "busy": {
+          "type": "boolean",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "error": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "readFailed": {
+          "type": "boolean",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "blocked": {
+          "type": "boolean",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "clear": {
+          "type": "()=>Promise<boolean>",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "remove": {
+          "type": "(id:string)=>Promise<boolean>",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "select": {
+          "type": "(id:string)=>Promise<boolean>",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [
+        "close",
+        "closed",
+        "pin",
+        "reload"
+      ],
+      "slots": [],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [],
+      "reference": "references/ai-ui/conversation-history-panel.md"
+    },
+    {
+      "id": "chat-panel",
+      "package": "huawei-partner-ai-ui",
+      "name": "ChatPanel",
+      "label": "面板 · 侧栏、悬浮与全屏",
+      "kind": "component",
+      "summary": "通用聊天呈现与可选宿主；消息、请求由业务控制器持有",
+      "props": {
+        "icons": {
+          "type": "AiIconMap",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "Partial<Record<AiIconName, Component | AiIconDefinition>>"
+        },
+        "windowMode": {
+          "type": "ChatWindowMode",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "'sidebar' | 'floating'"
+        },
+        "fullscreen": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "messages": {
+          "type": "UIMessage[]",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "processing": {
+          "type": "boolean",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "continuationAvailable": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        },
+        "error": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "aborted": {
+          "type": "boolean",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "renderers": {
+          "type": "BubbleContentRendererMatch[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "() => []"
+          }
+        },
+        "avatarSrc": {
+          "type": "string",
+          "required": false,
+          "default": {
+            "kind": "expression",
+            "source": "assistantAvatar"
+          }
+        },
+        "toolbarActions": {
+          "type": "ChatToolbarAction[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "() => []"
+          }
+        },
+        "modeOptions": {
+          "type": "ComposerModeOption[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "() => []"
+          }
+        },
+        "welcomeEntries": {
+          "type": "WelcomeBusinessEntry[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "() => []"
+          }
+        },
+        "suggestionPills": {
+          "type": "ChatSuggestionPill[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "() => []"
+          }
+        },
+        "messagePrompts": {
+          "type": "MessagePromptsResolver",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "(message: UIMessage) => ChatSuggestion[]"
+        },
+        "requestContext": {
+          "type": "ComposerRequestContext",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "newConversationDisabled": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        },
+        "conversationId": {
+          "type": "string",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "conversationView": {
+          "type": "ConversationViewState",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "historyAvailable": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        },
+        "historyOpen": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        },
+        "closable": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        }
+      },
+      "events": [
+        "close",
+        "windowModeChange",
+        "fullscreenChange",
+        "windowDragStart",
+        "windowDragKeydown",
+        "send",
+        "abort",
+        "retry",
+        "event",
+        "toolbarAction",
+        "newConversation",
+        "historyOpen",
+        "conversationViewChange",
+        "composerChange",
+        "welcomeAction"
+      ],
+      "slots": [
+        "toolbar-end"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [],
+      "reference": "references/ai-ui/chat-panel.md"
+    },
+    {
+      "id": "ai-toast",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiToast",
+      "label": "AiToast",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "modelValue": {
+          "type": "boolean",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "message": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "type": {
+          "type": "AiToastType",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "success"
+          },
+          "resolvedType": "'success' | 'error'"
+        },
+        "duration": {
+          "type": "number",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": 2000
+          }
+        }
+      },
+      "events": [
+        "update:modelValue",
+        "close"
+      ],
+      "slots": [],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/ai-toast.md"
+    },
+    {
+      "id": "ai-alert",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiAlert",
+      "label": "AiAlert",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "type": {
+          "type": "AiAlertType",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "neutral"
+          },
+          "resolvedType": "'error' | 'neutral'"
+        },
+        "message": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": ""
+          }
+        }
+      },
+      "events": [],
+      "slots": [
+        "icon"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/ai-alert.md"
+    },
+    {
+      "id": "agreement-assistant-panel",
+      "package": "huawei-partner-ai-ui",
+      "name": "AgreementAssistantPanel",
+      "label": "AgreementAssistantPanel",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "icons": {
+          "type": "AiIconMap",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "Partial<Record<AiIconName, Component | AiIconDefinition>>"
+        },
+        "businessActionMode": {
+          "type": "BusinessActionMode",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "default"
+          },
+          "resolvedType": "'default' | 'host'"
+        },
+        "businessDialogScope": {
+          "type": "BusinessDialogScope",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "'region' | 'global'"
+        },
+        "windowMode": {
+          "type": "ChatWindowMode",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "'sidebar' | 'floating'"
+        },
+        "fullscreen": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "adapter": {
+          "type": "AgreementAssistantAdapter",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "theme": {
+          "type": "'workbench' | 'aurora'",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "workbench"
+          }
+        },
+        "autoStart": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        },
+        "avatarSrc": {
+          "type": "string",
+          "required": false,
+          "default": {
+            "kind": "expression",
+            "source": "assistantAvatar"
+          }
+        },
+        "toolbarActions": {
+          "type": "ChatToolbarAction[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "() => []"
+          }
+        },
+        "modeOptions": {
+          "type": "ComposerModeOption[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "()=>[]"
+          }
+        },
+        "welcomeEntries": {
+          "type": "WelcomeBusinessEntry[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "()=>[]"
+          }
+        },
+        "suggestionPills": {
+          "type": "ChatSuggestionPill[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "()=>[]"
+          }
+        },
+        "messagePrompts": {
+          "type": "MessagePromptsResolver",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "(message: UIMessage) => ChatSuggestion[]"
+        },
+        "historyOptions": {
+          "type": "ConversationHistoryOptions",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "contentRenderers": {
+          "type": "BubbleContentRendererMatch[]",
+          "required": false,
+          "default": {
+            "kind": "factory",
+            "source": "()=>[]"
+          }
+        }
+      },
+      "events": [
+        "businessAction",
+        "workspaceNavigate",
+        "windowModeChange",
+        "fullscreenChange",
+        "windowDragStart",
+        "windowDragKeydown",
+        "status",
+        "toolbarAction",
+        "composerChange",
+        "welcomeAction"
+      ],
+      "slots": [
+        "toolbar-end"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/agreement-assistant-panel.md"
+    },
+    {
+      "id": "assistant-host-layout",
+      "package": "huawei-partner-ai-ui",
+      "name": "AssistantHostLayout",
+      "label": "面板 · 侧栏、悬浮与全屏",
+      "kind": "component",
+      "summary": "通用聊天呈现与可选宿主；消息、请求由业务控制器持有",
+      "props": {
+        "open": {
+          "type": "boolean",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "windowMode": {
+          "type": "ChatWindowMode",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "sidebar"
+          },
+          "resolvedType": "'sidebar' | 'floating'"
+        },
+        "sidebarBehavior": {
+          "type": "ChatSidebarBehavior",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": "push"
+          },
+          "resolvedType": "'push' | 'overlay'"
+        },
+        "fullscreen": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        },
+        "viewportWidth": {
+          "type": "number",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "overlayLayer": {
+          "type": "number",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": 1000
+          }
+        },
+        "flow": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "literal",
+            "value": false
+          }
+        }
+      },
+      "events": [
+        "update:windowMode",
+        "update:fullscreen"
+      ],
+      "slots": [
+        "navigation",
+        "default",
+        "assistant"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [],
+      "reference": "references/ai-ui/assistant-host-layout.md"
+    },
+    {
+      "id": "business-overlay-host",
+      "package": "huawei-partner-ai-ui",
+      "name": "BusinessOverlayHost",
+      "label": "宿主 · Drawer / Modal 与作业区",
+      "kind": "component",
+      "summary": "区域模态和所属 document 全局模态有明确边界",
+      "props": {
+        "region": {
+          "type": "HTMLElement",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "layer": {
+          "type": "number",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [],
+      "slots": [
+        "default"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [],
+      "reference": "references/ai-ui/business-overlay-host.md"
+    },
+    {
+      "id": "ui-dialog",
+      "package": "huawei-partner-ai-ui",
+      "name": "UiDialog",
+      "label": "宿主 · Drawer / Modal 与作业区",
+      "kind": "component",
+      "summary": "区域模态和所属 document 全局模态有明确边界",
+      "props": {
+        "titleId": {
+          "type": "string",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "drawer": {
+          "type": "boolean",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        },
+        "scope": {
+          "type": "BusinessDialogScope",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          },
+          "resolvedType": "'region' | 'global'"
+        },
+        "theme": {
+          "type": "'workbench' | 'aurora'",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [
+        "close"
+      ],
+      "slots": [
+        "default"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [],
+      "reference": "references/ai-ui/ui-dialog.md"
+    },
+    {
+      "id": "ai-icon",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiIcon",
+      "label": "AiIcon",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "name": {
+          "type": "AiIconName",
+          "runtimeType": "String",
+          "required": true,
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [],
+      "slots": [],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/ai-icon.md"
+    },
+    {
+      "id": "ai-icon-provider",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiIconProvider",
+      "label": "AiIconProvider",
+      "kind": "component",
+      "summary": null,
+      "props": {
+        "icons": {
+          "type": "AiIconMap",
+          "runtimeType": "Object",
+          "required": false,
+          "default": {
+            "kind": "undefined"
+          }
+        }
+      },
+      "events": [],
+      "slots": [
+        "default"
+      ],
+      "useWhen": [],
+      "avoidWhen": [],
+      "status": {
+        "maturity": null,
+        "deliveryEligibility": null,
+        "unsupported": [
+          {
+            "code": "AI_RELEASE_STATUS_UNDECLARED",
+            "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
+          }
+        ]
+      },
+      "unsupported": [
+        {
+          "code": "CATALOG_SUMMARY_UNAVAILABLE",
+          "reason": "The owning overview catalog has no dedicated summary for this public export; no new prose is invented."
+        }
+      ],
+      "reference": "references/ai-ui/ai-icon-provider.md"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+
+/* Pixso5703:63: white default surface,1px inset border and a single5% hover
+   fill. Preserve the public target/event and natural wrapping; this native
+   business control has no Robot internal DOM adapter. */
+.business-navigation-card[data-v-1dec71f5] { display:flex; align-items:center; gap:var(--partner-ai-navigation-gap); width:100%; min-width:0; box-sizing:border-box; margin:0; padding:var(--partner-ai-navigation-padding-block) var(--partner-ai-navigation-padding-inline); border:0; border-radius:var(--partner-ai-navigation-radius); background:var(--partner-ai-navigation-bg); color:var(--partner-ai-text); font-family:inherit; text-align:left; cursor:pointer; }
+/* Paint the border inside the unchanged padding box so hover cannot move text. */
+.business-navigation-card[data-v-1dec71f5] { position:relative; isolation:isolate; }
+.business-navigation-card[data-v-1dec71f5]::before { content:""; position:absolute; inset:0; z-index:-1; border-radius:inherit; background:var(--partner-ai-navigation-hover-bg); opacity:0; pointer-events:none; transition:opacity var(--partner-ai-control-motion-duration) var(--partner-ai-control-motion-easing); }
+.business-navigation-card[data-v-1dec71f5]:hover::before { opacity:1; }
+.business-navigation-card[data-v-1dec71f5]::after { content:""; position:absolute; inset:0; box-sizing:border-box; border:var(--partner-ai-navigation-border-width) solid var(--partner-ai-navigation-border); border-radius:inherit; pointer-events:none; transition:border-color var(--partner-ai-control-motion-duration) var(--partner-ai-control-motion-easing); }
+.business-navigation-card[data-v-1dec71f5]:hover::after { border-color:var(--partner-ai-navigation-hover-border); }
+@media(prefers-reduced-motion:reduce) { .business-navigation-card[data-v-1dec71f5]::before,.business-navigation-card[data-v-1dec71f5]::after { transition:none; } }
+.business-navigation-card[data-v-1dec71f5]:focus-visible { outline:var(--partner-ai-focus-width) solid var(--partner-ai-focus); outline-offset:var(--partner-ai-focus-offset); }
+.business-navigation-card__content[data-v-1dec71f5] { flex:1; min-width:0; }
+.business-navigation-card__title[data-v-1dec71f5] { display:block; overflow-wrap:anywhere; font-size:var(--partner-ai-message-h3-size); font-weight:var(--partner-ai-heading-weight); line-height:var(--partner-ai-message-h3-line); }
+.business-navigation-card__description[data-v-1dec71f5] { display:block; margin-top:var(--partner-ai-gap-sm); overflow-wrap:anywhere; white-space:pre-wrap; font-size:var(--partner-ai-body-size); font-weight:var(--partner-ai-body-weight); line-height:var(--partner-ai-body-line); color:var(--partner-ai-text); }
+.business-navigation-card__arrow[data-v-1dec71f5] { flex:none; width:var(--partner-ai-navigation-icon-size); height:var(--partner-ai-navigation-icon-size); color:var(--partner-ai-text); }
+
