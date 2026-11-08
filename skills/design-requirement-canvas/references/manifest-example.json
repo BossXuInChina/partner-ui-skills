@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "design-evidence/1",
+  "exampleOnly": true,
+  "sources": [{"id":"reference-board","path":"example-board.png","width":1200,"height":900}],
+  "assets": [
+    {"id":"top-nav","version":"example-version","contractSource":"example-package/components.json#top-nav"},
+    {"id":"date-picker","version":"example-version","contractSource":"example-package/components.json#date-picker"}
+  ],
+  "pages": [{
+    "id":"home","title":"示例首页","role":"示例角色",
+    "crop":{"sourceId":"reference-board","x":0,"y":0,"width":1200,"height":900},
+    "sections":[
+      {"id":"home-nav","title":"顶部导航","evidence":{"sourceId":"reference-board","region":[0,0,100,8]},
+       "facts":["示例图可见导航与历史入口"],"referenceState":{"active":"home"},
+       "actions":[
+         {"id":"nav-home","label":"首页","visibleInReference":true,"evidenceSourceId":"reference-board","targetStatus":"confirmed","targetPageId":"home"},
+         {"id":"nav-history","label":"查看历史","visibleInReference":true,"evidenceSourceId":"reference-board","targetStatus":"unknown","targetPageId":null}
+       ],
+       "mappings":[{"id":"home-nav-instance","assetId":"top-nav","configurationStatus":"candidate","actionIds":["nav-home"],"props":{},"unknowns":["需从实际契约填写配置"]}]},
+      {"id":"home-calendar","title":"事件日历","evidence":{"sourceId":"reference-board","region":[70,10,30,50]},"facts":["示例日期格带事件标记"],"actions":[],"mappings":[]},
+      {"id":"home-graphic","title":"全新图形参考","evidence":{"sourceId":"reference-board","region":[0,60,60,30]},"facts":["仅为评审参考"],"actions":[],"mappings":[]}
+    ]
+  }],
+  "workItems":[
+    {"id":"reuse-navigation","sectionId":"home-nav","lane":"reuse","baseAssetIds":["top-nav"],"inPageRestoration":true,"pageGeneration":"use-existing-components","reason":"以既有导航公开样式组织示例内容"},
+    {"id":"adapt-calendar","sectionId":"home-calendar","lane":"component-work","workKind":"existing-adaptation","baseAssetIds":["date-picker"],"priority":1,"inPageRestoration":true,"pageGeneration":"after-component-verification","reason":"先核实事件标记和日程联动扩展点"},
+    {"id":"review-graphic","sectionId":"home-graphic","lane":"review","baseAssetIds":[],"inPageRestoration":false,"pageGeneration":"exclude","reason":"没有已确认的基础资产，新的视觉系统需评审"}
+  ],
+  "generationPlan":{"included":["reuse-navigation","adapt-calendar"],"excludedPendingReview":["review-graphic"]}
+}
