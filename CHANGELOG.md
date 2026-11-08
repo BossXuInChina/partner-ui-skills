@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 并入设计需求画布 · 2026-11-08
+
+- `design-requirement-canvas` 1.1.0 以 git subtree 并入 `skills/design-requirement-canvas`，保留原仓库提交历史；原仓库归档。
+- 构建与 `package:release` 产出第四个 ZIP；canvas 不消费锁定包，按原样打包并排除缓存、依赖与测试输出。根目录新增 `pnpm test:canvas`，happy-dom 改由根依赖提供。
+- 组件资源 `.pack.gz` 固定 gzip 头部 OS 字节：此前同一内容在 macOS 与 Linux 上字节不同，导致非 macOS 环境 `build` 报 GENERATED_DRIFT；已提交文件字节不变。
+
 ## 组件按需打包预览 · 2026-11-07
 
 - 组件资源公开层按 Workbench 和 AI UI 命名 JS/CSS，并提供小型组件索引。内部模块与共享样式分包存储，图标保存为索引资产，按需构建继续使用逻辑依赖图。

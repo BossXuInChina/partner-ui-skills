@@ -257,7 +257,33 @@ test("self-contained archives keep source and lockfiles while excluding installe
         );
       }
     }
+    const canvas = resolve(root, "skills/design-requirement-canvas");
+    mkdirSync(resolve(canvas, "scripts/__pycache__"), { recursive: true });
+    mkdirSync(resolve(canvas, "tests/.out"), { recursive: true });
+    mkdirSync(resolve(canvas, "node_modules"), { recursive: true });
+    writeFileSync(resolve(canvas, "SKILL.md"), "# Canvas");
+    writeFileSync(resolve(canvas, "package-lock.json"), "{}");
+    writeFileSync(resolve(canvas, "scripts/build_canvas.py"), "");
+    writeFileSync(resolve(canvas, "scripts/__pycache__/private-output.txt"), "cache");
+    writeFileSync(resolve(canvas, "tests/.out/private-output.txt"), "out");
+    writeFileSync(resolve(canvas, "node_modules/private-output.txt"), "dep");
     packageSkills(root, json(resolve(root, "source.lock.json")));
+    const canvasMembers = JSON.parse(
+      execFileSync(
+        "python3",
+        [
+          "-c",
+          "import json,sys,zipfile;print(json.dumps(zipfile.ZipFile(sys.argv[1]).namelist()))",
+          resolve(root, "dist", "design-requirement-canvas.zip"),
+        ],
+        { encoding: "utf8" },
+      ),
+    );
+    assert.deepEqual(canvasMembers.sort(), [
+      "design-requirement-canvas/SKILL.md",
+      "design-requirement-canvas/package-lock.json",
+      "design-requirement-canvas/scripts/build_canvas.py",
+    ]);
     for (const skill of ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review"]) {
       const members = JSON.parse(
         execFileSync(

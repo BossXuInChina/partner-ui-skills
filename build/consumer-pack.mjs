@@ -20,6 +20,20 @@ import { projectAssets } from "./project-assets.mjs";
 import { componentAssets } from "./components/assets.mjs";
 
 const skills = ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review"];
+// Self-contained skills that do not consume the locked packages: copied and zipped as-is.
+export const standaloneSkills = ["design-requirement-canvas"];
+const packageExcludes = [
+  "node_modules",
+  "dist",
+  "test-results",
+  "playwright-report",
+  ".artifacts",
+  ".cache",
+  ".git",
+  "__pycache__",
+  ".DS_Store",
+  "vendor",
+];
 export async function candidateFiles(root, lock, packages) {
   const files = new Map();
   for (const [name, content] of await componentAssets(root)) files.set(name, content);
@@ -128,18 +142,7 @@ export function packageSkills(root, lock) {
     cpSync(resolve(root, "skills", skill), target, {
       recursive: true,
       filter: (source) =>
-        ![
-          "node_modules",
-          "dist",
-          "test-results",
-          "playwright-report",
-          ".artifacts",
-          ".cache",
-          ".git",
-          "__pycache__",
-          ".DS_Store",
-          "vendor",
-        ].includes(source.split(/[\\/]/).at(-1)),
+        !packageExcludes.includes(source.split(/[\\/]/).at(-1)),
     });
     cpSync(resolve(root, "vendor"), resolve(target, "vendor"), {
       recursive: true,
@@ -186,22 +189,36 @@ export function packageSkills(root, lock) {
           recursive: true,
         },
       );
-    const files = sortedFiles(target);
-    const archive = resolve(dist, skill + ".zip");
-    // Python's standard library makes archive bytes reproducible without a zip dependency.
-    execFileSync(
-      "python3",
-      [
-        "-c",
-        'import json,pathlib,sys,zipfile\nr=pathlib.Path(sys.argv[1]);files=json.loads(sys.argv[4]);date=tuple(map(int,sys.argv[3].split("-")))+(0,0,0)\nwith zipfile.ZipFile(sys.argv[2],"w",compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:\n for p in files:\n  i=zipfile.ZipInfo(r.name+"/"+p,date);i.compress_type=zipfile.ZIP_DEFLATED;i.external_attr=0o100644<<16;z.writestr(i,(r/p).read_bytes())',
-        target,
-        archive,
-        lock.buildDate,
-        JSON.stringify(files),
-      ],
-      { stdio: "pipe" },
-    );
+    zipSkill(dist, skill, target, lock);
   }
+  for (const skill of standaloneSkills) {
+    const target = resolve(dist, skill);
+    rmSync(target, { recursive: true, force: true });
+    cpSync(resolve(root, "skills", skill), target, {
+      recursive: true,
+      filter: (source) =>
+        !packageExcludes.includes(source.split(/[\\/]/).at(-1)) &&
+        !/[\\/]tests[\\/]\.out$/.test(source),
+    });
+    zipSkill(dist, skill, target, lock);
+  }
+}
+function zipSkill(dist, skill, target, lock) {
+  const files = sortedFiles(target);
+  const archive = resolve(dist, skill + ".zip");
+  // Python's standard library makes archive bytes reproducible without a zip dependency.
+  execFileSync(
+    "python3",
+    [
+      "-c",
+      'import json,pathlib,sys,zipfile\nr=pathlib.Path(sys.argv[1]);files=json.loads(sys.argv[4]);date=tuple(map(int,sys.argv[3].split("-")))+(0,0,0)\nwith zipfile.ZipFile(sys.argv[2],"w",compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:\n for p in files:\n  i=zipfile.ZipInfo(r.name+"/"+p,date);i.compress_type=zipfile.ZIP_DEFLATED;i.external_attr=0o100644<<16;z.writestr(i,(r/p).read_bytes())',
+      target,
+      archive,
+      lock.buildDate,
+      JSON.stringify(files),
+    ],
+    { stdio: "pipe" },
+  );
 }
 export async function buildConsumerPack({
   root = packRoot,
@@ -217,7 +234,7 @@ export async function buildConsumerPack({
     status: "PASS",
     validationScope: "locked consumer pack",
     generatedFiles: files.size,
-    skills,
+    skills: [...skills, ...standaloneSkills],
     packaged: !checkOnly,
   };
 }
