@@ -1,5 +1,15 @@
 import { createHash } from 'node:crypto';
 import { gzipSync } from 'node:zlib';
+
+// zlib writes the host OS into gzip header byte 9 (macOS 0x13, Linux 0x03), so the
+// same content produced different bytes per platform and failed the drift check.
+// Pin the value already committed so builds are byte-identical on every OS.
+const GZIP_OS_BYTE = 0x13;
+function portableGzip(content) {
+  const bytes = gzipSync(content);
+  bytes[9] = GZIP_OS_BYTE;
+  return bytes;
+}
 import { transform } from 'esbuild';
 import { aiIconDefaults } from './prepare.mjs';
 
@@ -104,7 +114,7 @@ export async function writeComponentLayout(graph, files, directory, iconNames) {
   graph.storage = {};
   for (const [file, pack] of storage) {
     const content = Buffer.concat(pack.chunks, pack.bytes);
-    const bytes = file.endsWith('.gz') ? gzipSync(content) : content;
+    const bytes = file.endsWith('.gz') ? portableGzip(content) : content;
     files.set(directory + file, bytes);
     graph.storage[file] = { sha256: sha256(bytes), bytes: content.length };
   }

@@ -1,14 +1,15 @@
 # Partner UI Skills
 
-独立的伙伴工作台消费与复查仓库：`partner-ui-pages` 用多 JS 项目制作离线原型（保留单 HTML 导出），`partner-ui-vue3` 面向 Vue 3 业务模块，`partner-ui-review` 复查消费页面。组件 API 资料仍只由 `source.lock.json` 锁定的两个发布包生成；组件按需运行时另使用显式锁定的源码补充输入，见下文。已提供独立打包、共享资料、产品模块 scaffold、六份 Vue SFC 模板及验证工程；历史三项新会话交付试验不自动代表新功能验收；本地候选包的独立版本见各 Skill 的 skill.json。
+独立的伙伴工作台消费与复查仓库：`partner-ui-pages` 用多 JS 项目制作离线原型（保留单 HTML 导出），`partner-ui-vue3` 面向 Vue 3 业务模块，`partner-ui-review` 复查消费页面，`design-requirement-canvas` 将设计大图、截图或原型整理为需求画布与页面生成交接（2026-11-08 由独立仓库并入，保留提交历史）。组件 API 资料仍只由 `source.lock.json` 锁定的两个发布包生成；组件按需运行时另使用显式锁定的源码补充输入，见下文。已提供独立打包、共享资料、产品模块 scaffold、六份 Vue SFC 模板及验证工程；历史三项新会话交付试验不自动代表新功能验收；本地候选包的独立版本见各 Skill 的 skill.json。
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm verify:lock
 pnpm build
+pnpm test:canvas   # design-requirement-canvas：Python 单测 + DOM + 浏览器回归
 ```
 
-`build` 重新计算生成结果，发现手工修改、缺失文件或额外组件页就失败，不会悄悄覆盖。输出为 `dist/partner-ui-pages.zip`、`dist/partner-ui-vue3.zip` 和 `dist/partner-ui-review.zip`；解压后的每个文件夹可独立安装，随附锁定 tarball 和共享参考。原型 Skill 自带离线运行时；维护者可在其文件夹安装依赖后运行 `pnpm build:runtime`。
+`build` 重新计算生成结果，发现手工修改、缺失文件或额外组件页就失败，不会悄悄覆盖。输出为 `dist/partner-ui-pages.zip`、`dist/partner-ui-vue3.zip`、`dist/partner-ui-review.zip` 和 `dist/design-requirement-canvas.zip`；canvas 不消费锁定包，按原样打包，不附 tarball 与图库；解压后的每个文件夹可独立安装，随附锁定 tarball 和共享参考。原型 Skill 自带离线运行时；维护者可在其文件夹安装依赖后运行 `pnpm build:runtime`。
 
 维护升级时先更新 `vendor/`、锁中的版本/SHA-256/完整 commit 和根依赖路径，再运行 `pnpm install`、`pnpm generate`，评审生成差异并执行 `pnpm test`、`pnpm test:templates`、`pnpm verify:harness`、`pnpm build`。`generate` 是明确的再生成命令；普通构建只检查漂移。发布频率由用户决定，仓库没有推送、注册表发布或自动升级动作。
 
@@ -59,7 +60,7 @@ node scripts/emit_project.mjs ./my-demo --components --page partners
 
 ## 本地交付
 
-`pnpm package:release` 先校验生成漂移，再产出 `dist/partner-ui-pages-0.3.0.zip`、`dist/partner-ui-vue3-0.2.1.zip`、`dist/partner-ui-review-0.1.6.zip` 和 `dist/release-manifest.json`。清单记录实际字节 SHA-256、包版本及完整来源提交；普通 ZIP 与版本 ZIP 字节相同。该命令不推送或上传。
+`pnpm package:release` 先校验生成漂移，再产出 `dist/partner-ui-pages-0.3.0.zip`、`dist/partner-ui-vue3-0.2.1.zip`、`dist/partner-ui-review-0.1.6.zip`、`dist/design-requirement-canvas-1.1.0.zip` 和 `dist/release-manifest.json`。清单记录实际字节 SHA-256、包版本及完整来源提交；普通 ZIP 与版本 ZIP 字节相同。该命令不推送或上传。
 
 [维护升级](maintenance.md) 规定“升级公开包 → 再生成 → 新会话重跑 T1–T3 → 更新清单/归档”；[CHANGELOG](CHANGELOG.md) 记录本批内容。可审查试验与复跑入口位于 trials/t1、trials/t2、trials/t3，历史收据只支持其记录的来源，不代表真实公司环境。
 

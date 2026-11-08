@@ -19,7 +19,8 @@
     "test:harness-guard": "node --test tests/harness-guard.test.mjs",
     "gallery:serve": "node gallery/serve.mjs",
     "package:release": "node build/package-release.mjs",
-    "test:components": "node --test tests/components.test.mjs"
+    "test:components": "node --test tests/components.test.mjs",
+    "test:canvas": "cd skills/design-requirement-canvas && python3 -m unittest discover -s scripts -p 'test_*.py' && node scripts/test_inspector.mjs --manifest tests/fixtures/demo-scenario/manifest.json && python3 scripts/build_canvas.py tests/fixtures/demo-scenario/manifest.json --out tests/.out/demo.html && node scripts/test_canvas_browser.mjs --html tests/.out/demo.html --manifest tests/fixtures/demo-scenario/manifest.json && node scripts/test_entry_anchors.mjs"
   },
   "dependencies": {
     "@opentiny/tiny-robot": "0.5.1",
@@ -35,6 +36,7 @@
     "esbuild": "0.25.12",
     "esbuild-wasm": "0.25.12",
     "fflate": "0.8.3",
+    "happy-dom": "21.0.4",
     "less": "4.2.2",
     "playwright": "1.63.0",
     "postcss": "8.5.6",
