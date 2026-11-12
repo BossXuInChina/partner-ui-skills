@@ -28,11 +28,32 @@ const journeys = representativeIds.map(id => {
     searchPlusQuickBytes: Buffer.byteLength(search) + row.quick.utf8Bytes,
     note: 'Same new search response on both sides isolates reference-view savings; not a historical Agent trace.' };
 });
+// Natural PRD wording: does the expected asset appear in the top 5? Hits only, no quality claim.
+const naturalQueries = [
+  ['指标', 'wb-metric-card'], ['KPI', 'wb-metric-card'], ['metric card', 'wb-metric-card'],
+  ['数值 卡片', 'wb-metric-card'], ['经营数值卡片', 'wb-metric-card'], ['弹窗', 'wb-modal'],
+  ['摘要', 'ai-summary-card'], ['对话框', 'wb-modal'], ['日历', 'wb-event-calendar'],
+  ['表格', 'wb-table'], ['筛选', 'wb-filter-chips'], ['上传', 'wb-upload'], ['聊天', 'chat-panel'],
+  ['WorkbenchTable', 'wb-table'],
+];
+const naturalJourneys = naturalQueries.map(([query, id]) => {
+  const text = queryAssets(skill, ['search', '--query', query, '--limit', '5']);
+  const result = JSON.parse(text);
+  const position = result.items.findIndex(item => item.id === id);
+  const row = rows.find(e => e.id === id);
+  return { query, expectedId: id, hit: position >= 0, position: position >= 0 ? position + 1 : null,
+    matchMode: result.matchMode, total: result.total, search: size(text),
+    searchPlusQuickBytes: position >= 0 ? Buffer.byteLength(text) + row.quick.utf8Bytes : null };
+});
+const hits = naturalJourneys.filter(row => row.hit).length;
 console.log(JSON.stringify({
   schemaVersion: 1, method: 'UTF-8 bytes and Unicode code points; no token, cost, latency or Agent-quality inference',
   lockSha256: sha256(readFileSync(resolve(root, 'source.lock.json'))),
   assets: rows.length, totalFullBytes: total('full'), totalQuickBytes: total('quick'),
   totalByteReductionPercent: Number(((1 - total('quick') / total('full')) * 100).toFixed(2)),
   largerOrEqualQuickViews: rows.filter(row => row.quick.utf8Bytes >= row.full.utf8Bytes).map(row => row.id),
-  journeys, rows,
+  journeys,
+  naturalRecall: { hits, queries: naturalJourneys.length, topN: 5,
+    note: 'Expected asset among the first 5 search items for natural wording; not an Agent success rate.' },
+  naturalJourneys, rows,
 }, null, 2));

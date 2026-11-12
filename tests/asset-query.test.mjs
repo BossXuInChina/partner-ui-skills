@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { queryAssets } from '../shared/catalog/assets.mjs';
 
@@ -204,4 +204,88 @@ test('all three generated consumers have identical standalone tools and resolvab
     assert.equal(existsSync(resolve(isolated, 'assets/runtime')), false);
     assert.equal(existsSync(resolve(isolated, 'node_modules')), false);
   }
+});
+
+test('multi-term queries require every term and rank by the best term', () => {
+  const { root } = fixture([
+    entry('metric', { name: 'WidgetMetricCard', label: '数值卡片', summary: '经营概览', useWhen: [] }),
+    entry('chart', { name: 'WidgetChart', label: '图表', summary: '数值趋势', useWhen: [] }),
+  ]);
+  const search = query => JSON.parse(queryAssets(root, ['search', '--query', query]));
+  assert.deepEqual(search('metric card').items.map(item => item.id), ['metric']);
+  assert.deepEqual(search('数值 卡片').items.map(item => item.id), ['metric']);
+  assert.deepEqual(search('数值').items.map(item => [item.id, item.matchedBy]), [['metric', 'name'], ['chart', 'summary-or-useWhen']]);
+  assert.equal(search('数值 不存在').total, 0);
+  assert.equal(search('数值 卡片').matchMode, 'all-terms');
+});
+
+test('aliases match at name rank but are never printed', () => {
+  const { root, save } = fixture([
+    entry('modal', { label: '对话框', summary: '确认', useWhen: [], searchAliases: ['弹窗', 'KPI 面板'] }),
+    entry('scroll', { label: '滚动条', summary: '中大型弹窗', useWhen: [] }),
+  ]);
+  const result = JSON.parse(queryAssets(root, ['search', '--query', '弹窗']));
+  assert.deepEqual(result.items.map(item => [item.id, item.matchedBy]), [['modal', 'alias'], ['scroll', 'summary-or-useWhen']]);
+  assert.equal(JSON.parse(queryAssets(root, ['search', '--query', 'kpi'])).items[0].id, 'modal');
+  for (const item of result.items) assert.equal(Object.hasOwn(item, 'searchAliases'), false);
+  assert.doesNotMatch(queryAssets(root, ['search', '--query', '弹窗', '--paths']), /searchAliases|KPI 面板/);
+  for (const value of [null, '弹窗', {}, [1], [null]]) {
+    save([entry('a', { searchAliases: value })]);
+    assert.throws(() => queryAssets(root, ['search', '--query', '指标']), /invalid index/);
+  }
+});
+
+test('unspaced Chinese falls back to loose two-character pieces and says so', () => {
+  const { root } = fixture([
+    entry('metric', { label: '数值卡片', summary: '复用数值卡片结构', useWhen: [], searchAliases: ['经营数据'] }),
+    entry('card', { label: '卡片', summary: '容器', useWhen: [] }),
+  ]);
+  const result = JSON.parse(queryAssets(root, ['search', '--query', '经营数值卡片']));
+  assert.equal(result.matchMode, 'partial');
+  assert.deepEqual(result.items.map(item => [item.id, item.matchedBy]), [['metric', 'partial']]);
+  assert.equal(Object.hasOwn(result, 'hint'), false);
+  // One shared piece is not enough.
+  assert.equal(JSON.parse(queryAssets(root, ['search', '--query', '卡片组合'])).total, 0);
+});
+
+test('zero results carry a hint; compact items hide paths unless --paths', () => {
+  const { root } = fixture([entry('a', { summary: '经营指标', useWhen: ['经营指标'] }), entry('b')]);
+  const none = JSON.parse(queryAssets(root, ['search', '--query', 'zzqxv']));
+  assert.equal(none.total, 0); assert.equal(none.matchMode, 'none');
+  assert.match(none.hint, /does not prove the asset is missing/);
+  const found = JSON.parse(queryAssets(root, ['search', '--query', '指标']));
+  assert.equal(Object.hasOwn(found, 'hint'), false);
+  assert.equal(Object.hasOwn(found, 'referenceBase'), false);
+  const [a, b] = found.items;
+  assert.deepEqual(Object.keys(a), ['id', 'package', 'name', 'label', 'kind', 'summary', 'avoidWhen', 'exampleStatus', 'matchedBy']);
+  assert.ok(Object.hasOwn(b, 'useWhen'), 'useWhen kept when it differs from summary');
+  const withPaths = JSON.parse(queryAssets(root, ['search', '--query', '指标', '--paths']));
+  assert.equal(withPaths.referenceBase, 'references/');
+  assert.equal(withPaths.items[0].quickReference, 'quick/example.md');
+  assert.equal(withPaths.items[0].reference, 'full.md');
+  assert.throws(() => queryAssets(root, ['search', '--query', '指标', '--paths', '--paths']), /duplicate/);
+  assert.throws(() => queryAssets(root, ['show', '--id', 'a', '--paths']), /unknown/);
+});
+
+// Natural PRD wording against the real generated Pages index: expected id in the top 5.
+const recallTable = [
+  ['指标', 'wb-metric-card'], ['KPI', 'wb-metric-card'], ['metric card', 'wb-metric-card'],
+  ['数值 卡片', 'wb-metric-card'], ['经营数值卡片', 'wb-metric-card'], ['弹窗', 'wb-modal'],
+  ['摘要', 'ai-summary-card'], ['对话框', 'wb-modal'], ['日历', 'wb-event-calendar'],
+  ['表格', 'wb-table'], ['筛选', 'wb-filter-chips'], ['上传', 'wb-upload'], ['聊天', 'chat-panel'],
+];
+test('recall table: natural queries find the expected asset in the top 5 of the real Pages index', () => {
+  const skill = fileURLToPath(new URL('../skills/partner-ui-pages/', import.meta.url));
+  const misses = [];
+  for (const [query, id] of recallTable) {
+    const result = JSON.parse(queryAssets(skill, ['search', '--query', query, '--limit', '5']));
+    if (!result.items.some(item => item.id === id)) misses.push(`${query} -> ${id}: ${result.items.map(i => i.id).join(', ')}`);
+  }
+  assert.deepEqual(misses, []);
+  const exact = JSON.parse(queryAssets(skill, ['search', '--query', 'WorkbenchTable']));
+  assert.deepEqual([exact.items[0].id, exact.items[0].matchedBy], ['wb-table', 'exact-id-or-export']);
+  const nonsense = JSON.parse(queryAssets(skill, ['search', '--query', 'qzxv-nonexistent']));
+  assert.equal(nonsense.total, 0); assert.ok(nonsense.hint);
+  const show = queryAssets(skill, ['show', '--id', 'wb-table']);
+  assert.match(show, /requiredFields/); assert.match(show, /direction/);
 });

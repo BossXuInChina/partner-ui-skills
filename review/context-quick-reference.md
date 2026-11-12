@@ -12,7 +12,7 @@
 1. [生成器](../shared/format/index.mjs)从锁包的完整 contract + usage 生成 `references/quick/`，不从有损旧 catalog 猜补。
 2. 速查保留公开 API、必填/枚举、同族导出、动态 slots、事件细节、规则及适用条件、来源资格和未知项；去除 Studio controls/cases。仅展开首个有代码的官方 portable 示例，列出其余条目及完整资料路径。没有官方示例就明确缺失。
 3. [轻量查询](../shared/catalog/assets.mjs)生成到三个 Skill 的 `scripts/assets.mjs`。只依赖 Node 内置模块和本包参考，不读 runtime、不加载 compiler、不安装依赖、不联网。原 `catalog.mjs` 原样保留，包括旧输出形状和行为。
-4. `search` 显式要求关键词，默认最多 5 项、最多 50 项，支持 package/kind/offset；返回总数、下一页和匹配理由。优先精确 ID/导出，再名称，再摘要/适用场景。它是确定性字符串检索，不是语义搜索；查询失败不证明库里没有适用资产。
+4. `search` 显式要求关键词，默认最多 5 项、最多 50 项，支持 package/kind/offset；返回总数、下一页、匹配理由与 `matchMode`。空格分隔的多个词须全部命中（AND），每词按精确 ID/导出 > 名称/标签/维护者别名 > 摘要/适用场景排序。无结果且含中文时退回两字片段的宽松匹配（`matchMode: partial`，至少 2 个片段命中）；仍为 0 时返回 `hint`。别名来自 [search-aliases.json](../shared/catalog/search-aliases.json)，只进入 `quick/index.json`，不是组件契约；失效键使生成失败。默认条目只给 id/package/name/label/kind/summary/avoidWhen/exampleStatus/matchedBy（useWhen 仅在与 summary 不同时给出），路径需 `--paths`。它是确定性字符串检索，不是语义搜索；查询失败不证明库里没有适用资产。
 5. `show` 精确按 ID 查询，默认完整速查正文，`--view full` 返回原完整正文；多包同 ID 要求明确 package。show 未命中、无效参数、坏索引与越界路径非零退出；search 未命中则正常返回 total=0 和空 items，不冒充工具失败。查资料不等于运行时或项目锁通过验证。
 6. 原有完整文档的路径和字节由回归测试固定；新增消费速查也进入漂移检查，手改、缺失和额外伪造文件被拒绝。
 
@@ -37,7 +37,7 @@ node scripts/assets.mjs show --id wb-metric-card --view full
 node scripts/assets.mjs search --query Workbench --limit 5 --offset 5
 ```
 
-从别的工作目录调用请使用脚本绝对路径。search 返回的 reference 路径以该 Skill 的 `references/` 为基准；show 直接输出正文，内部相对链接仍以原参考文件位置为基准，并非当前 shell 目录。需要完整变体、更多示例时显式展开 full，不要从 Studio controls 推导 props。
+从别的工作目录调用请使用脚本绝对路径。search 加 `--paths` 时返回的 reference 路径以该 Skill 的 `references/` 为基准；show 直接输出正文，内部相对链接仍以原参考文件位置为基准，并非当前 shell 目录。需要完整变体、更多示例时显式展开 full，不要从 Studio controls 推导 props。
 
 ## 测量：字节，不是 token 或成功率
 
@@ -53,18 +53,29 @@ node build/measure-context.mjs > context-measurements.json
 
 | 项目 | 原 full | 新 quick |
 | --- | ---: | ---: |
-| UTF-8 总字节 | 1,030,828 | 683,474 |
+| UTF-8 总字节 | 1,030,828 | 646,778 |
 
-合计减少 **33.70%**。有 **21 个 quick 大于或等于 full**，不能说所有资产都更短：原文较短时，结构化 API、明确缺口与必要边界有额外开销。文件复制增加磁盘体积，并非模型读取量。
+合计减少 **37.26%**（首版候选为 683,474 / 33.70%；本轮在 quick 中新增 wb-table 来源补充结构约 5KB 后，再去除空字段、重复包身份与重复 useWhen）。仍有 **17 个 quick 大于或等于 full**（首版 21 个），均为原文很短的 Block/Pattern，不能说所有资产都更短：结构化 API、明确缺口与必要边界有固定开销。未为达标删减契约数据。文件复制增加磁盘体积，并非模型读取量。
 
 固定检索＋正文阅读路径（两侧采用同一个新 search 返回，以隔离正文差异，不是历史 Agent 轨迹）：
 
 | 查询资产 | search + full 字节 | search + quick 字节 |
 | --- | ---: | ---: |
-| 数值卡片 | 16,981 | 6,275 |
-| 事件日历 | 4,689 | 5,884 |
-| 表格 | 36,149 | 29,148 |
-| AI 摘要卡片 | 5,500 | 3,819 |
+| 数值卡片 | 16,642 | 5,484 |
+| 事件日历 | 4,311 | 5,058 |
+| 表格 | 35,539 | 32,635 |
+| AI 摘要卡片 | 5,291 | 3,080 |
+
+表格 quick 比首版大，是因为新增了包内 `usage` 补充结构（Column 字段、`sort` 形状、事件载荷、受控状态、动态 slots 与示例）；首版 quick 和 full 都缺这部分，Agent 只能猜 `{ key, direction }`。full 页面本轮不变（字节固定测试仍通过）。
+
+自然措辞检索（期望资产出现在前 5 项；仅命中率，不是 Agent 成功率；`naturalJourneys` 记录每条位置与字节）：
+
+| 版本 | 命中 / 查询 |
+| --- | ---: |
+| 首版候选 `cf2ee7b` | 7 / 14 |
+| 本轮 | 14 / 14 |
+
+首版未命中：指标、KPI、metric card、数值 卡片、经营数值卡片、弹窗、摘要。`search --query 卡片 --limit 5` 输出由 4,414 字节降为 2,764 字节。
 
 事件日历是明确的反向案例，应在复评中检查“多出的内容是否提高契约可靠性，是否值得默认读”。当前不宣称真实会话 token、费用、延迟或生成质量改善。format 测试使用不同 Studio base URL，打印的 full 字节会与真实包不同；本节以实际生成包测量为准。
 

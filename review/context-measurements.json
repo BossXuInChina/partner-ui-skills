@@ -4,26 +4,22 @@
   "lockSha256": "59e92398abb2bb877cd1efddea9322b4e5cb300e99450debbccd1bcca7ab25ad",
   "assets": 91,
   "totalFullBytes": 1030828,
-  "totalQuickBytes": 683474,
-  "totalByteReductionPercent": 33.7,
+  "totalQuickBytes": 646778,
+  "totalByteReductionPercent": 37.26,
   "largerOrEqualQuickViews": [
     "wb-certification-details",
     "wb-chart",
-    "wb-collapse",
     "wb-company-profile-shell",
     "wb-content-section",
-    "wb-draft-list-filter",
     "wb-event-calendar",
     "wb-expand-card",
     "wb-filter-chips",
     "wb-followup-rows",
     "wb-info-list",
-    "wb-link",
     "wb-management-form-modal",
     "wb-more-action",
     "wb-nested-confirmation",
     "wb-policy-links",
-    "wb-rating",
     "wb-readonly-fields",
     "wb-table-actions-selection",
     "wb-tabs-header",
@@ -34,45 +30,235 @@
       "id": "wb-metric-card",
       "query": "WorkbenchMetricCard",
       "search": {
-        "utf8Bytes": 1031,
-        "unicodeCodePoints": 829
+        "utf8Bytes": 692,
+        "unicodeCodePoints": 544
       },
-      "searchPlusFullBytes": 16981,
-      "searchPlusQuickBytes": 6275,
+      "searchPlusFullBytes": 16642,
+      "searchPlusQuickBytes": 5484,
       "note": "Same new search response on both sides isolates reference-view savings; not a historical Agent trace."
     },
     {
       "id": "wb-event-calendar",
       "query": "WorkbenchEventCalendar",
       "search": {
-        "utf8Bytes": 1176,
-        "unicodeCodePoints": 912
+        "utf8Bytes": 798,
+        "unicodeCodePoints": 604
       },
-      "searchPlusFullBytes": 4689,
-      "searchPlusQuickBytes": 5884,
+      "searchPlusFullBytes": 4311,
+      "searchPlusQuickBytes": 5058,
       "note": "Same new search response on both sides isolates reference-view savings; not a historical Agent trace."
     },
     {
       "id": "wb-table",
       "query": "WorkbenchTable",
       "search": {
-        "utf8Bytes": 1934,
-        "unicodeCodePoints": 1476
+        "utf8Bytes": 1324,
+        "unicodeCodePoints": 932
       },
-      "searchPlusFullBytes": 36149,
-      "searchPlusQuickBytes": 29148,
+      "searchPlusFullBytes": 35539,
+      "searchPlusQuickBytes": 32635,
       "note": "Same new search response on both sides isolates reference-view savings; not a historical Agent trace."
     },
     {
       "id": "ai-summary-card",
       "query": "AiSummaryCard",
       "search": {
-        "utf8Bytes": 668,
-        "unicodeCodePoints": 668
+        "utf8Bytes": 459,
+        "unicodeCodePoints": 459
       },
-      "searchPlusFullBytes": 5500,
-      "searchPlusQuickBytes": 3819,
+      "searchPlusFullBytes": 5291,
+      "searchPlusQuickBytes": 3080,
       "note": "Same new search response on both sides isolates reference-view savings; not a historical Agent trace."
+    }
+  ],
+  "naturalRecall": {
+    "hits": 14,
+    "queries": 14,
+    "topN": 5,
+    "note": "Expected asset among the first 5 search items for natural wording; not an Agent success rate."
+  },
+  "naturalJourneys": [
+    {
+      "query": "指标",
+      "expectedId": "wb-metric-card",
+      "hit": true,
+      "position": 1,
+      "matchMode": "all-terms",
+      "total": 1,
+      "search": {
+        "utf8Bytes": 666,
+        "unicodeCodePoints": 514
+      },
+      "searchPlusQuickBytes": 5458
+    },
+    {
+      "query": "KPI",
+      "expectedId": "wb-metric-card",
+      "hit": true,
+      "position": 1,
+      "matchMode": "all-terms",
+      "total": 1,
+      "search": {
+        "utf8Bytes": 663,
+        "unicodeCodePoints": 515
+      },
+      "searchPlusQuickBytes": 5455
+    },
+    {
+      "query": "metric card",
+      "expectedId": "wb-metric-card",
+      "hit": true,
+      "position": 1,
+      "matchMode": "all-terms",
+      "total": 1,
+      "search": {
+        "utf8Bytes": 670,
+        "unicodeCodePoints": 522
+      },
+      "searchPlusQuickBytes": 5462
+    },
+    {
+      "query": "数值 卡片",
+      "expectedId": "wb-metric-card",
+      "hit": true,
+      "position": 1,
+      "matchMode": "all-terms",
+      "total": 1,
+      "search": {
+        "utf8Bytes": 672,
+        "unicodeCodePoints": 516
+      },
+      "searchPlusQuickBytes": 5464
+    },
+    {
+      "query": "经营数值卡片",
+      "expectedId": "wb-metric-card",
+      "hit": true,
+      "position": 1,
+      "matchMode": "partial",
+      "total": 1,
+      "search": {
+        "utf8Bytes": 678,
+        "unicodeCodePoints": 518
+      },
+      "searchPlusQuickBytes": 5470
+    },
+    {
+      "query": "弹窗",
+      "expectedId": "wb-modal",
+      "hit": true,
+      "position": 3,
+      "matchMode": "all-terms",
+      "total": 6,
+      "search": {
+        "utf8Bytes": 2433,
+        "unicodeCodePoints": 1727
+      },
+      "searchPlusQuickBytes": 14873
+    },
+    {
+      "query": "摘要",
+      "expectedId": "ai-summary-card",
+      "hit": true,
+      "position": 1,
+      "matchMode": "all-terms",
+      "total": 2,
+      "search": {
+        "utf8Bytes": 980,
+        "unicodeCodePoints": 782
+      },
+      "searchPlusQuickBytes": 3601
+    },
+    {
+      "query": "对话框",
+      "expectedId": "wb-modal",
+      "hit": true,
+      "position": 2,
+      "matchMode": "all-terms",
+      "total": 6,
+      "search": {
+        "utf8Bytes": 2719,
+        "unicodeCodePoints": 1856
+      },
+      "searchPlusQuickBytes": 15159
+    },
+    {
+      "query": "日历",
+      "expectedId": "wb-event-calendar",
+      "hit": true,
+      "position": 1,
+      "matchMode": "all-terms",
+      "total": 1,
+      "search": {
+        "utf8Bytes": 768,
+        "unicodeCodePoints": 570
+      },
+      "searchPlusQuickBytes": 5028
+    },
+    {
+      "query": "表格",
+      "expectedId": "wb-table",
+      "hit": true,
+      "position": 1,
+      "matchMode": "all-terms",
+      "total": 7,
+      "search": {
+        "utf8Bytes": 2254,
+        "unicodeCodePoints": 1648
+      },
+      "searchPlusQuickBytes": 33565
+    },
+    {
+      "query": "筛选",
+      "expectedId": "wb-filter-chips",
+      "hit": true,
+      "position": 2,
+      "matchMode": "all-terms",
+      "total": 7,
+      "search": {
+        "utf8Bytes": 2787,
+        "unicodeCodePoints": 1873
+      },
+      "searchPlusQuickBytes": 5785
+    },
+    {
+      "query": "上传",
+      "expectedId": "wb-upload",
+      "hit": true,
+      "position": 2,
+      "matchMode": "all-terms",
+      "total": 2,
+      "search": {
+        "utf8Bytes": 1175,
+        "unicodeCodePoints": 847
+      },
+      "searchPlusQuickBytes": 12016
+    },
+    {
+      "query": "聊天",
+      "expectedId": "chat-panel",
+      "hit": true,
+      "position": 1,
+      "matchMode": "all-terms",
+      "total": 3,
+      "search": {
+        "utf8Bytes": 1221,
+        "unicodeCodePoints": 1004
+      },
+      "searchPlusQuickBytes": 8538
+    },
+    {
+      "query": "WorkbenchTable",
+      "expectedId": "wb-table",
+      "hit": true,
+      "position": 1,
+      "matchMode": "all-terms",
+      "total": 2,
+      "search": {
+        "utf8Bytes": 1324,
+        "unicodeCodePoints": 932
+      },
+      "searchPlusQuickBytes": 32635
     }
   ],
   "rows": [
@@ -84,12 +270,12 @@
         "unicodeCodePoints": 12722
       },
       "quick": {
-        "utf8Bytes": 9754,
-        "unicodeCodePoints": 7638
+        "utf8Bytes": 9212,
+        "unicodeCodePoints": 7028
       },
       "fullSha256": "04385d4c744f76d11ddfe060f52aad127d7ff8cfb436a45e1c3ec3e6dd2e103f",
-      "quickSha256": "60c973404731cf8dbdca8da0c478895f0776d56d57ed37131b5fcd7d4a1002c3",
-      "byteReductionPercent": 37.63
+      "quickSha256": "cb200a8a6feb168ab6c3de782ea01ddb51a789752b2bde899660f16d139856ea",
+      "byteReductionPercent": 41.1
     },
     {
       "id": "wb-avatar",
@@ -99,12 +285,12 @@
         "unicodeCodePoints": 9357
       },
       "quick": {
-        "utf8Bytes": 6107,
-        "unicodeCodePoints": 4743
+        "utf8Bytes": 5840,
+        "unicodeCodePoints": 4382
       },
       "fullSha256": "074376e86c654dbfbeba44473d9f850afb0bb7839e970353ca4d52278a70b3b3",
-      "quickSha256": "0389e21a7208f4b3c125bf924ced0f5efdc5c90ae30276bdc297c4b9de24e014",
-      "byteReductionPercent": 44.74
+      "quickSha256": "7c5c62edab42cd97c3e51909a5e325fbd4e654ce516945b3b298f57aa25e7ea3",
+      "byteReductionPercent": 47.15
     },
     {
       "id": "wb-badge",
@@ -114,12 +300,12 @@
         "unicodeCodePoints": 5925
       },
       "quick": {
-        "utf8Bytes": 7536,
-        "unicodeCodePoints": 5754
+        "utf8Bytes": 7059,
+        "unicodeCodePoints": 5181
       },
       "fullSha256": "6fa4e0d79977975dde54c40ea87a25ff1f5c7a3dccda4cc90407a717bf5a56ed",
-      "quickSha256": "ee25df157d4fcb76bf0adbc3ef2fa037c3169d73660ce1a39aef9263a222f8e3",
-      "byteReductionPercent": 4.6
+      "quickSha256": "4ad2fce41b8d9c47312598dd2c6c8b8128c41857a3579ae7186d77ca0e7a1b78",
+      "byteReductionPercent": 10.63
     },
     {
       "id": "wb-breadcrumb",
@@ -129,12 +315,12 @@
         "unicodeCodePoints": 6142
       },
       "quick": {
-        "utf8Bytes": 6964,
-        "unicodeCodePoints": 5358
+        "utf8Bytes": 6621,
+        "unicodeCodePoints": 4917
       },
       "fullSha256": "eacf4cdd45f8d09f6b9aa9cc3331e68de98e0bdc588516ae730a4b73eacd4801",
-      "quickSha256": "f5aa890331de9a22cea9cc0163903ce2aef65a9a28e5efe719b3bc81535b87fe",
-      "byteReductionPercent": 12.7
+      "quickSha256": "17eb84005c29b1e36605036ce7419ab0ba87011cface11aec22fd4bcfed03e17",
+      "byteReductionPercent": 17
     },
     {
       "id": "wb-button",
@@ -144,12 +330,12 @@
         "unicodeCodePoints": 14754
       },
       "quick": {
-        "utf8Bytes": 14711,
-        "unicodeCodePoints": 10728
+        "utf8Bytes": 13991,
+        "unicodeCodePoints": 9910
       },
       "fullSha256": "c6c31fef6f3e953f8cc63ff5d5faeda34610cb721186d5396714d53588e5eb79",
-      "quickSha256": "bbd5e402c92e464f16365120cae6ce337169d7604522a859d42c43f5248444c4",
-      "byteReductionPercent": 25.51
+      "quickSha256": "be3571374963a3e96453005dbb7aed057fe8b3db442853778d715ca60d8547a2",
+      "byteReductionPercent": 29.15
     },
     {
       "id": "wb-button-radio-group",
@@ -159,12 +345,12 @@
         "unicodeCodePoints": 5309
       },
       "quick": {
-        "utf8Bytes": 6850,
-        "unicodeCodePoints": 5376
+        "utf8Bytes": 6438,
+        "unicodeCodePoints": 4870
       },
       "fullSha256": "2592b1eccc35dac5ace8dcbf5eabe67a130ecd6711478571287b5d1d0d3217b4",
-      "quickSha256": "c69c971187b86cef0d6d8d867cd6cb6a2149a0d21f6245729a84e1fc6e9c0146",
-      "byteReductionPercent": 0.93
+      "quickSha256": "e775b6c409551896384bd59ea08fc6aec8b808ef339648310e1e992bb9df7635",
+      "byteReductionPercent": 6.88
     },
     {
       "id": "wb-card",
@@ -174,12 +360,12 @@
         "unicodeCodePoints": 22354
       },
       "quick": {
-        "utf8Bytes": 18099,
-        "unicodeCodePoints": 13704
+        "utf8Bytes": 17196,
+        "unicodeCodePoints": 12707
       },
       "fullSha256": "45118a2122b2c047d83f19977f02c3131711ec7cffc8d3f29758116e4cac5415",
-      "quickSha256": "be25faaa8fe51537fb1badd8617a692f79de6b0589672d5ad6456c1e78ce8718",
-      "byteReductionPercent": 36.85
+      "quickSha256": "26c20d4281242ab8081384348c19c584c84b839afea5360b9dd0693fd2147cab",
+      "byteReductionPercent": 40
     },
     {
       "id": "wb-carousel",
@@ -189,12 +375,12 @@
         "unicodeCodePoints": 7011
       },
       "quick": {
-        "utf8Bytes": 9575,
-        "unicodeCodePoints": 7067
+        "utf8Bytes": 9143,
+        "unicodeCodePoints": 6543
       },
       "fullSha256": "dec1e939889ad50b264667d7dc9e7355d4df35657b4d968910941e6641b36ace",
-      "quickSha256": "4c9d8ce262ba8ed0913b83e13b1bc9cfff2da91d644b532d82bb0965fad0eeeb",
-      "byteReductionPercent": 3.4
+      "quickSha256": "e913438fd76daf25e4c4683409d41cef09e11fe789d39213bcac1846f0af942f",
+      "byteReductionPercent": 7.76
     },
     {
       "id": "wb-cascader",
@@ -204,12 +390,12 @@
         "unicodeCodePoints": 12984
       },
       "quick": {
-        "utf8Bytes": 10801,
-        "unicodeCodePoints": 8633
+        "utf8Bytes": 10385,
+        "unicodeCodePoints": 8153
       },
       "fullSha256": "f5db75495ff4ead570e09d1f2efd3454b9bd84e6eba79c35d970c8809f4b098b",
-      "quickSha256": "5656dbe16e1bcba69700bfc121e15d3a84a7cdc13300cc3445e6b34843567db2",
-      "byteReductionPercent": 32.07
+      "quickSha256": "a24fcc6eca3dfa2e1f9da81c4fe1bcdcbd6d3e18f8eff61e37c8a1e9fb54d25f",
+      "byteReductionPercent": 34.69
     },
     {
       "id": "wb-certification-details",
@@ -219,12 +405,12 @@
         "unicodeCodePoints": 1911
       },
       "quick": {
-        "utf8Bytes": 3662,
-        "unicodeCodePoints": 2886
+        "utf8Bytes": 3213,
+        "unicodeCodePoints": 2431
       },
       "fullSha256": "18e44f2251ed4dbb4b57b0a1c05897fe352e622dcf16110d6fc1e3f22a909550",
-      "quickSha256": "bc969bb236c56dadbb9d9bbf4c74856a49585904b4727826f0f2426513a60901",
-      "byteReductionPercent": -38.82
+      "quickSha256": "09464412d735946dc46dcfba00d900238e688f574c05b15ebe5606d6f0ba274a",
+      "byteReductionPercent": -21.8
     },
     {
       "id": "wb-chart",
@@ -234,12 +420,12 @@
         "unicodeCodePoints": 3322
       },
       "quick": {
-        "utf8Bytes": 5688,
-        "unicodeCodePoints": 4868
+        "utf8Bytes": 5188,
+        "unicodeCodePoints": 4352
       },
       "fullSha256": "9d0b9614cb3c68049352c5d04eca902e388f432c285abdb56917c1696640f35e",
-      "quickSha256": "c06cc39ad2925c658a10d547131092ddc1ca25a24c17058661eafe44419af8b8",
-      "byteReductionPercent": -37.72
+      "quickSha256": "e5c719505eef8ea5f1356b84e639e5655f14163ec74ca6279979b6df80cdaf46",
+      "byteReductionPercent": -25.62
     },
     {
       "id": "wb-checkbox",
@@ -249,12 +435,12 @@
         "unicodeCodePoints": 7048
       },
       "quick": {
-        "utf8Bytes": 8433,
-        "unicodeCodePoints": 6462
+        "utf8Bytes": 7753,
+        "unicodeCodePoints": 5684
       },
       "fullSha256": "68a4bff2eaa4c35c7677040d1343f2d1d7e89c41b242fc77a03d8c4f4b75eb22",
-      "quickSha256": "0f1e3a3b256b15355b6d8be46eb085a4b3c650d55b064008ed92255abf26338f",
-      "byteReductionPercent": 10.34
+      "quickSha256": "79d54f1460c804862a4f656238bffbbfeac8606ac9ea5650222c79eba2734181",
+      "byteReductionPercent": 17.57
     },
     {
       "id": "wb-collapse",
@@ -264,12 +450,12 @@
         "unicodeCodePoints": 7150
       },
       "quick": {
-        "utf8Bytes": 10794,
-        "unicodeCodePoints": 8022
+        "utf8Bytes": 10348,
+        "unicodeCodePoints": 7478
       },
       "fullSha256": "80f641a474105ff1bad523b36d3812441f8892db8f25f3f8c19a8fe41fa5c90b",
-      "quickSha256": "04f618a641447b2915198dd91de62785d5293b160627fc65cd04dbb0ec9b2a11",
-      "byteReductionPercent": -3.91
+      "quickSha256": "d62507fc08f95015095dd4898b95e68b281f37e65a2ed6e2a46549ed08203bc4",
+      "byteReductionPercent": 0.39
     },
     {
       "id": "wb-company-profile-shell",
@@ -279,12 +465,12 @@
         "unicodeCodePoints": 2815
       },
       "quick": {
-        "utf8Bytes": 4447,
-        "unicodeCodePoints": 3727
+        "utf8Bytes": 4021,
+        "unicodeCodePoints": 3289
       },
       "fullSha256": "b0dd0f606bda7ae677dfd28628b95d1cfff485003b436e68a2ee9986813700b6",
-      "quickSha256": "e01fe9bb5b67ac4feed4720eb99ba29ac7af9bc4cbc8e7b5b9dc8e1585f580c0",
-      "byteReductionPercent": -25.55
+      "quickSha256": "58aeee8c6d78d041a064021ad95862caf9d4ddac3dff6b3048e8544b133787da",
+      "byteReductionPercent": -13.52
     },
     {
       "id": "wb-content-section",
@@ -294,12 +480,12 @@
         "unicodeCodePoints": 1507
       },
       "quick": {
-        "utf8Bytes": 2729,
-        "unicodeCodePoints": 2241
+        "utf8Bytes": 2389,
+        "unicodeCodePoints": 1853
       },
       "fullSha256": "a8d24b316d7561da51612b7d946d901933b4d39498e5b56869f830b68b2b73ea",
-      "quickSha256": "8500e57a631fd4554f1b10c98f5f687c3ba762b50be120db3a3678c3cacb5f1f",
-      "byteReductionPercent": -38.6
+      "quickSha256": "e276fe962e67fc203f3a75a2bf3bc296c28a9aec1eaf216b6bef3eb316d72b77",
+      "byteReductionPercent": -21.33
     },
     {
       "id": "wb-date-picker",
@@ -309,12 +495,12 @@
         "unicodeCodePoints": 7320
       },
       "quick": {
-        "utf8Bytes": 9270,
-        "unicodeCodePoints": 7300
+        "utf8Bytes": 9096,
+        "unicodeCodePoints": 7032
       },
       "fullSha256": "41386ca7537408ee96dbb2c80670dac13fe189246a461b466c7aae849b55c0b2",
-      "quickSha256": "cca2e0dfba133c08dace1498b703958869a38b0dc200d806d5d7dcf94ee77f0c",
-      "byteReductionPercent": 3.03
+      "quickSha256": "b4128e2c9f0453e76a9324940ac0f9623fa373298fb9e2dc1a82beada28ce911",
+      "byteReductionPercent": 4.85
     },
     {
       "id": "wb-draft-list-filter",
@@ -324,12 +510,12 @@
         "unicodeCodePoints": 2531
       },
       "quick": {
-        "utf8Bytes": 3785,
-        "unicodeCodePoints": 3047
+        "utf8Bytes": 3271,
+        "unicodeCodePoints": 2521
       },
       "fullSha256": "0eac7c1339d25a994709a9536f0b5ec3b32d6f42d87dcbad2adab11bfe2c0af3",
-      "quickSha256": "fb5286daa551a1af20939236ac61b0176e1f66cef8583794cdeaa9d25653cbbd",
-      "byteReductionPercent": -13.29
+      "quickSha256": "877f68ff69e3e968f63e5df0cbc3b81032b37f2bf99d2dc2b9455b76fea95c0e",
+      "byteReductionPercent": 2.1
     },
     {
       "id": "wb-drawer",
@@ -339,12 +525,12 @@
         "unicodeCodePoints": 21206
       },
       "quick": {
-        "utf8Bytes": 12273,
-        "unicodeCodePoints": 8959
+        "utf8Bytes": 11840,
+        "unicodeCodePoints": 8464
       },
       "fullSha256": "675d9a1307528013eb9934a2bbd73b6e9a269c6bdc79a3d78a2e99ae55a2bb94",
-      "quickSha256": "a1a08a18cffa89416ed5deb725e663ffedae5272d6131308fb39f7879655486b",
-      "byteReductionPercent": 52.64
+      "quickSha256": "500920c5806a5235c65ea2143b155cb719f1b026e4fd7c37d4d93957b80eb200",
+      "byteReductionPercent": 54.31
     },
     {
       "id": "wb-dropdown",
@@ -354,12 +540,12 @@
         "unicodeCodePoints": 20702
       },
       "quick": {
-        "utf8Bytes": 10049,
-        "unicodeCodePoints": 8013
+        "utf8Bytes": 9681,
+        "unicodeCodePoints": 7553
       },
       "fullSha256": "1cba1b901780c609771e111a9356134a34ba07bd1711b0addc2c2f882715394a",
-      "quickSha256": "8c328f9f282cabf0a60e3853ea262f341941c3dc6ba6dd052f810b8054b71eef",
-      "byteReductionPercent": 58.17
+      "quickSha256": "07efab5ab70d52851d722e2722245bd11607113255265001e4e1cd684ac6c140",
+      "byteReductionPercent": 59.7
     },
     {
       "id": "wb-empty-state",
@@ -369,12 +555,12 @@
         "unicodeCodePoints": 12620
       },
       "quick": {
-        "utf8Bytes": 7478,
-        "unicodeCodePoints": 5752
+        "utf8Bytes": 7065,
+        "unicodeCodePoints": 5287
       },
       "fullSha256": "e77dc754a2746bdf3496121d0507aa21aed4321d65262f8529e1ea3f68c7defa",
-      "quickSha256": "6cf9dccab258c515f78c64850294abc8bb27c66afa5122cd368e5b91c511cfb1",
-      "byteReductionPercent": 50.62
+      "quickSha256": "06886c9b46d498c7d74191e0ebfdd942e996ae7a28ca4534aaa408cda2333b3c",
+      "byteReductionPercent": 53.34
     },
     {
       "id": "wb-event-calendar",
@@ -384,12 +570,12 @@
         "unicodeCodePoints": 2461
       },
       "quick": {
-        "utf8Bytes": 4708,
-        "unicodeCodePoints": 3616
+        "utf8Bytes": 4260,
+        "unicodeCodePoints": 3174
       },
       "fullSha256": "1b2996d860e44b2c8d69f1cdd87bc9c51b7b78c24ce63e8cd454c6257e493e8e",
-      "quickSha256": "f6de649e112f5fb20216b8d105bcae86a04a2698458dedfab36485e689b2274e",
-      "byteReductionPercent": -34.02
+      "quickSha256": "bb507eb04d1b7f0530aabc4fa50c663e687a36c1150f05b7bca9d5592a7174a8",
+      "byteReductionPercent": -21.26
     },
     {
       "id": "wb-expand-card",
@@ -399,12 +585,12 @@
         "unicodeCodePoints": 2011
       },
       "quick": {
-        "utf8Bytes": 3768,
-        "unicodeCodePoints": 2946
+        "utf8Bytes": 3315,
+        "unicodeCodePoints": 2509
       },
       "fullSha256": "463782cd8f727b6bb218e40953e5dca67f45708faf019d152b94a828403f05fa",
-      "quickSha256": "5c60032cd003964ddaba8a307b1bcb2c3e4d8b03fad735240930ab89dc16f051",
-      "byteReductionPercent": -36.23
+      "quickSha256": "89ac1804741fdf10097b25a2052e2afac3bee890cd996e17576e53c2a2fe3336",
+      "byteReductionPercent": -19.85
     },
     {
       "id": "wb-feedback-dialog",
@@ -414,12 +600,12 @@
         "unicodeCodePoints": 21383
       },
       "quick": {
-        "utf8Bytes": 10304,
-        "unicodeCodePoints": 8028
+        "utf8Bytes": 9917,
+        "unicodeCodePoints": 7573
       },
       "fullSha256": "e36d117574621c20bbc11ec8f1acab212186a45168b36bed01ae6eba5922fc12",
-      "quickSha256": "b54a21d87e7a718791cc7c32f7e0f82502468ceb57765579386030cda6393c8e",
-      "byteReductionPercent": 58.98
+      "quickSha256": "4c848cc287e29fd3dfe758c0be3f19ffab6e378f98bd8afd4f5dec0b59e4e238",
+      "byteReductionPercent": 60.52
     },
     {
       "id": "wb-filter-chips",
@@ -429,12 +615,12 @@
         "unicodeCodePoints": 1745
       },
       "quick": {
-        "utf8Bytes": 3410,
-        "unicodeCodePoints": 2682
+        "utf8Bytes": 2998,
+        "unicodeCodePoints": 2270
       },
       "fullSha256": "27dd7787573f9524c52a1d6d3a2cfa4698e71a15fd8a2108add7beb06cf47bca",
-      "quickSha256": "1ff53084017d06fb0afe9bf219c491e7ee004e14bda0dccf82815f21c69c733d",
-      "byteReductionPercent": -41.85
+      "quickSha256": "36721b73af2f8c7f213dab89aac7e83bdbf9ec2ea5e32e0afb9c428aa657c75b",
+      "byteReductionPercent": -24.71
     },
     {
       "id": "wb-floating-button",
@@ -444,12 +630,12 @@
         "unicodeCodePoints": 9330
       },
       "quick": {
-        "utf8Bytes": 10097,
-        "unicodeCodePoints": 7663
+        "utf8Bytes": 9814,
+        "unicodeCodePoints": 7288
       },
       "fullSha256": "cd8beaec2d2cf4a56668be729866d81ff6f0da0076ae19a51acfda024f548367",
-      "quickSha256": "878904e6420fb8a33542bdc3eff49501f1fd1b5d56512a226aee5a842a980f67",
-      "byteReductionPercent": 19.57
+      "quickSha256": "a98e8c8ee1f22243f851e6c7493518d35e7aeaf72fdeb05311bb53f6541343c6",
+      "byteReductionPercent": 21.82
     },
     {
       "id": "wb-followup-rows",
@@ -459,12 +645,12 @@
         "unicodeCodePoints": 1535
       },
       "quick": {
-        "utf8Bytes": 2776,
-        "unicodeCodePoints": 2278
+        "utf8Bytes": 2426,
+        "unicodeCodePoints": 1884
       },
       "fullSha256": "4494419db457d25711abc5f8dfbcaeebc223279417264414c9b305e054a8c8f2",
-      "quickSha256": "5cc20faf8fd78f654d72c87a5beb52c195d4083a215c4d118dc70d0f2a19acf3",
-      "byteReductionPercent": -37.22
+      "quickSha256": "f1e2e7cbad6905f54a520f51afd81c7bea8f6083e3fe867c8165ebf4660c4b36",
+      "byteReductionPercent": -19.92
     },
     {
       "id": "wb-footer",
@@ -474,12 +660,12 @@
         "unicodeCodePoints": 6434
       },
       "quick": {
-        "utf8Bytes": 6066,
-        "unicodeCodePoints": 4733
+        "utf8Bytes": 5783,
+        "unicodeCodePoints": 4356
       },
       "fullSha256": "1fdcef527edd7101b4deb6d81038910d914a611b9e81d9d41bf809adeb0fa689",
-      "quickSha256": "bece5e94442d5fe6633c7dfed01a6e2651eda6adea2f79d10c3d55b7977823bf",
-      "byteReductionPercent": 25.91
+      "quickSha256": "27cc2bc6f8106204e72b36e5b9d5d3ba99b2cc3e8ff29020c480bc08da50db42",
+      "byteReductionPercent": 29.36
     },
     {
       "id": "wb-form",
@@ -489,12 +675,12 @@
         "unicodeCodePoints": 13036
       },
       "quick": {
-        "utf8Bytes": 14804,
-        "unicodeCodePoints": 11378
+        "utf8Bytes": 14441,
+        "unicodeCodePoints": 10955
       },
       "fullSha256": "a73827f6db247af55c3b0c53a0c5741b8d536b2102181fb8a02abbd826b7ce36",
-      "quickSha256": "bc84c90fbbd395743854c148b7934b851abf01e094b044d5193ea6a2558ffe19",
-      "byteReductionPercent": 14.74
+      "quickSha256": "b96a5fabbf1389b535facbd26fcf6d3a1a90f76335ef0482079d76a18d1c0bcd",
+      "byteReductionPercent": 16.83
     },
     {
       "id": "wb-image-upload",
@@ -504,12 +690,12 @@
         "unicodeCodePoints": 20619
       },
       "quick": {
-        "utf8Bytes": 9635,
-        "unicodeCodePoints": 7459
+        "utf8Bytes": 9382,
+        "unicodeCodePoints": 7114
       },
       "fullSha256": "db30636f7b81ff75cfa3b8083bcfb6679d5f5cdf22fbc8ae1931a967a066a461",
-      "quickSha256": "c85c4121811bc377a9223145c287322b5d8020425c5a06c24c300c2646ab3070",
-      "byteReductionPercent": 59.88
+      "quickSha256": "1293468bc036f5785aaae40feed004f33bbe0afe4525197cc97b81a83bff2b0c",
+      "byteReductionPercent": 60.93
     },
     {
       "id": "wb-info-list",
@@ -519,12 +705,12 @@
         "unicodeCodePoints": 1840
       },
       "quick": {
-        "utf8Bytes": 3556,
-        "unicodeCodePoints": 2790
+        "utf8Bytes": 3126,
+        "unicodeCodePoints": 2348
       },
       "fullSha256": "b6cbb80deddb93744b9bea249125adc5057328c9fa203b7a55051e424fa93a8f",
-      "quickSha256": "dbb00928ea00eb4dfba4b0bac8d980fc1d341a853f89c31b057b9f2684b79429",
-      "byteReductionPercent": -38.96
+      "quickSha256": "06eb16c912c045568f126ae59e7f9cc9a0ef078a11956bc296a282ed87d9ace2",
+      "byteReductionPercent": -22.16
     },
     {
       "id": "wb-information-card",
@@ -534,12 +720,12 @@
         "unicodeCodePoints": 14479
       },
       "quick": {
-        "utf8Bytes": 5576,
-        "unicodeCodePoints": 4807
+        "utf8Bytes": 5185,
+        "unicodeCodePoints": 4368
       },
       "fullSha256": "8e3cf50f84c67ee36ff4d1ddaed93aa968a4e1a830e0634e8e9285778cf9163f",
-      "quickSha256": "2cba51a7bdbd405880258c309788402ae250f111fe7279c174a678097a2413b7",
-      "byteReductionPercent": 66.44
+      "quickSha256": "686ae464be520d19c03dca8e6b7607149a0ac080514391983312f9d3ae4fa500",
+      "byteReductionPercent": 68.8
     },
     {
       "id": "wb-input",
@@ -549,12 +735,12 @@
         "unicodeCodePoints": 17345
       },
       "quick": {
-        "utf8Bytes": 24184,
-        "unicodeCodePoints": 17074
+        "utf8Bytes": 23413,
+        "unicodeCodePoints": 16241
       },
       "fullSha256": "18739dbd6dd710cbed512a2edec6a18be9626f8cccd77db065792d3041e08fe4",
-      "quickSha256": "3b8859952c463de6952129a2ee22448376e7b12246137d0b50bfd267bfd2f281",
-      "byteReductionPercent": 6.06
+      "quickSha256": "9d22a4058b80d7950452351c708f25e608e948f027899eb4453733cea4663a98",
+      "byteReductionPercent": 9.06
     },
     {
       "id": "wb-link",
@@ -564,12 +750,12 @@
         "unicodeCodePoints": 5360
       },
       "quick": {
-        "utf8Bytes": 7433,
-        "unicodeCodePoints": 5715
+        "utf8Bytes": 6905,
+        "unicodeCodePoints": 5093
       },
       "fullSha256": "f36dcf740d07dd6afc8867e999510ac3f10ab94b189d1756749c37376dedd301",
-      "quickSha256": "c6686b0ddcfa61624af3dd18512b02520dc0816a0a8ceda367119ba71d0ff5a7",
-      "byteReductionPercent": -1.78
+      "quickSha256": "e0d2fb9239a2559261055d995ba55bdc0888bac37bc4ac87aab71f0f96f43472",
+      "byteReductionPercent": 5.45
     },
     {
       "id": "wb-loading",
@@ -579,12 +765,12 @@
         "unicodeCodePoints": 6071
       },
       "quick": {
-        "utf8Bytes": 6957,
-        "unicodeCodePoints": 5365
+        "utf8Bytes": 6519,
+        "unicodeCodePoints": 4827
       },
       "fullSha256": "63b4419f0a430999cc4256347746e70c9e47895d9b9b434117f36461a0580adb",
-      "quickSha256": "453a7374c9b137e806d5c8c136692ddc78a1dbb6874996479f0383539e164e6e",
-      "byteReductionPercent": 11.17
+      "quickSha256": "a06aeff73c1a8a018a33276e1d4ab364f924135ba1b3906d28d53f57134c2d19",
+      "byteReductionPercent": 16.76
     },
     {
       "id": "wb-management-form-modal",
@@ -594,12 +780,12 @@
         "unicodeCodePoints": 2110
       },
       "quick": {
-        "utf8Bytes": 3882,
-        "unicodeCodePoints": 3087
+        "utf8Bytes": 3403,
+        "unicodeCodePoints": 2610
       },
       "fullSha256": "c8519e1038578b51f9edaaf9016256b6e025d2f399907391f78a5c395b3b4146",
-      "quickSha256": "ef4c56ead10256e900456d349e2101e13658bd3f143155788107fe3d9d5a3d41",
-      "byteReductionPercent": -35.59
+      "quickSha256": "2ad2f00299294d434cb56fb16397c7e181d67218a40c61eb2ccd48ba9298a6be",
+      "byteReductionPercent": -18.86
     },
     {
       "id": "wb-media-card",
@@ -609,12 +795,12 @@
         "unicodeCodePoints": 14375
       },
       "quick": {
-        "utf8Bytes": 5576,
-        "unicodeCodePoints": 4761
+        "utf8Bytes": 5124,
+        "unicodeCodePoints": 4261
       },
       "fullSha256": "646cf97f8c90a1a9c18fac4124f190baa7ba1a365ccb7081a9e5ad050d8c1e2f",
-      "quickSha256": "700f89704516d4e1224bf249051f351760f11b902a8129c9fb0eb3c5765a4201",
-      "byteReductionPercent": 66.33
+      "quickSha256": "fd603b476eed867952ff157ca025f65b4b9d9645e7a36104f8575df1390db093",
+      "byteReductionPercent": 69.06
     },
     {
       "id": "wb-message",
@@ -624,12 +810,12 @@
         "unicodeCodePoints": 13059
       },
       "quick": {
-        "utf8Bytes": 11004,
-        "unicodeCodePoints": 8338
+        "utf8Bytes": 10542,
+        "unicodeCodePoints": 7810
       },
       "fullSha256": "5235843477c71d29ea2fddae636c8ffd3413923af86820f958af59e3bc4059cb",
-      "quickSha256": "a69fca9b9cebcc875e9278a4fa9b2fc41c2aaa1181a2a75bcbc46add6475ffe3",
-      "byteReductionPercent": 33.71
+      "quickSha256": "ec8cf79c8aca3d0ca12954d89a4f6f4777ff2aa54526cda77ce695238a986a08",
+      "byteReductionPercent": 36.49
     },
     {
       "id": "wb-metric-card",
@@ -639,12 +825,12 @@
         "unicodeCodePoints": 13809
       },
       "quick": {
-        "utf8Bytes": 5244,
-        "unicodeCodePoints": 4471
+        "utf8Bytes": 4792,
+        "unicodeCodePoints": 3971
       },
       "fullSha256": "85fd5b225f9e62c4c205c08520ac0be488cc0b1d457d3c125f7b288166f6f334",
-      "quickSha256": "4d9aaebe7d8ddb6b15fadeb72211bb087a556c1cb412a3dba1cacd7bc8af9faf",
-      "byteReductionPercent": 67.12
+      "quickSha256": "9a293ca12c859064a89a16ea8f09e8a15ac86f13efe4cef43ba1f75893129e56",
+      "byteReductionPercent": 69.96
     },
     {
       "id": "wb-modal",
@@ -654,12 +840,12 @@
         "unicodeCodePoints": 21290
       },
       "quick": {
-        "utf8Bytes": 12862,
-        "unicodeCodePoints": 9562
+        "utf8Bytes": 12440,
+        "unicodeCodePoints": 9078
       },
       "fullSha256": "31dbaea06029517037e3d0ade99d5d93bc899a92463e9e2cf8abf9b13e3323c7",
-      "quickSha256": "635c7786106c42bfca32d252f8a852a9a07a05f044fb90f4e95af00ba3016779",
-      "byteReductionPercent": 50.43
+      "quickSha256": "de511ff5ad44a2917486d529d06339cc83c6d9a1a34f7a774f948cc05bbd9eb0",
+      "byteReductionPercent": 52.06
     },
     {
       "id": "wb-more-action",
@@ -669,12 +855,12 @@
         "unicodeCodePoints": 1683
       },
       "quick": {
-        "utf8Bytes": 3302,
-        "unicodeCodePoints": 2598
+        "utf8Bytes": 2922,
+        "unicodeCodePoints": 2204
       },
       "fullSha256": "6524e22ebf104fb09b9de38132075a0c421e89600e794f31f13ca347a58ac22a",
-      "quickSha256": "116830a88721bfe65d76da8ef4b05db2e538654f4ff3490e9c173691dbb85911",
-      "byteReductionPercent": -41.96
+      "quickSha256": "ab6de848d56b54f43eac2a14b3ab63d895ef65cfcda7539c1c6f07fdf42cdc45",
+      "byteReductionPercent": -25.62
     },
     {
       "id": "wb-nested-confirmation",
@@ -684,12 +870,12 @@
         "unicodeCodePoints": 2321
       },
       "quick": {
-        "utf8Bytes": 4149,
-        "unicodeCodePoints": 3325
+        "utf8Bytes": 3765,
+        "unicodeCodePoints": 2943
       },
       "fullSha256": "1a9e0ebd83c415c67b6838698048dea63853700c0b459027dd62eec97134f1c4",
-      "quickSha256": "7a9454b7aae8902310844097ea7331d8784dc7bebda7011fadda7f9928d59817",
-      "byteReductionPercent": -34.14
+      "quickSha256": "2f9b5809e4cdd7163ff9b0417ba484a193e29e682b22e9f6d8dd2c2d61fcf10c",
+      "byteReductionPercent": -21.73
     },
     {
       "id": "wb-notification",
@@ -699,12 +885,12 @@
         "unicodeCodePoints": 11496
       },
       "quick": {
-        "utf8Bytes": 8472,
-        "unicodeCodePoints": 6476
+        "utf8Bytes": 8008,
+        "unicodeCodePoints": 5944
       },
       "fullSha256": "3b24a771baaa4834000614cd135f43d2eea0691eeb16b124293f8e6d5d3fd6b5",
-      "quickSha256": "502b1e02a9d5db7ed9f1a5e0a0ec66969b64abf8f06f3e1b4ee6ef2725f6c834",
-      "byteReductionPercent": 40.78
+      "quickSha256": "c0b3a8a429f144862966d0340707c6a3e775f4c53d6194b18646bb2b42a3eb89",
+      "byteReductionPercent": 44.02
     },
     {
       "id": "wb-number-count",
@@ -714,12 +900,12 @@
         "unicodeCodePoints": 6492
       },
       "quick": {
-        "utf8Bytes": 6653,
-        "unicodeCodePoints": 5247
+        "utf8Bytes": 6331,
+        "unicodeCodePoints": 4827
       },
       "fullSha256": "2bcdf824bfd0ffb628c911be7bd3328d34825e909fd827d462cfb1bcf7bdcc1c",
-      "quickSha256": "1454af39e5acd9400e0b18d22d79d1ac36410d17edfbf2360e4e163d8fedd013",
-      "byteReductionPercent": 18.28
+      "quickSha256": "a7a55bd7a1b4d1e5a4b7dfc499b51afee45690cf095f355a8fd8a5108d146da4",
+      "byteReductionPercent": 22.23
     },
     {
       "id": "wb-pagination",
@@ -729,12 +915,12 @@
         "unicodeCodePoints": 8811
       },
       "quick": {
-        "utf8Bytes": 9686,
-        "unicodeCodePoints": 7394
+        "utf8Bytes": 9281,
+        "unicodeCodePoints": 6893
       },
       "fullSha256": "7f50bb23c8f41a1e9be63aa572ac08cf34ac047b87f4a9393862a5822bf0282d",
-      "quickSha256": "d59bc8e7b379a0d4ec81bc4d33686be913bb8ff072c06759f257e7a6750cda59",
-      "byteReductionPercent": 15.85
+      "quickSha256": "466cbd7e5ae8f33da430920decde68aa0735fdc09fd6f5ee427ef3999c4cd1e1",
+      "byteReductionPercent": 19.37
     },
     {
       "id": "wb-pedestal-icon",
@@ -744,12 +930,12 @@
         "unicodeCodePoints": 3529
       },
       "quick": {
-        "utf8Bytes": 3705,
-        "unicodeCodePoints": 2875
+        "utf8Bytes": 3379,
+        "unicodeCodePoints": 2479
       },
       "fullSha256": "1eb84c2373e495e2e0bdbd2da11a5d11f90de9b59d4da821e3a19f55a5098513",
-      "quickSha256": "352f012f54e00f9b3368065202e9fe984aa0391fa60ffb2a222e35e787fb130d",
-      "byteReductionPercent": 19.7
+      "quickSha256": "35c4cfd8ab181f618800e8bd8284ee1d3c9a281f8370c490d365e8b85e76d833",
+      "byteReductionPercent": 26.77
     },
     {
       "id": "wb-policy-links",
@@ -759,12 +945,12 @@
         "unicodeCodePoints": 1785
       },
       "quick": {
-        "utf8Bytes": 3506,
-        "unicodeCodePoints": 2776
+        "utf8Bytes": 3065,
+        "unicodeCodePoints": 2319
       },
       "fullSha256": "8f2b755545afb16a92e46a5ad9db9b03e8d9f1e4f9ae7add3c62e97bcd9e5289",
-      "quickSha256": "6b8c21e640aa9a3577383f6a9a94b405eea9e56a1e2c2159dda9288dd1b5c847",
-      "byteReductionPercent": -42.52
+      "quickSha256": "12a3d72f9b11bc4e4a0c228d7573fff2b3e85df67e0dec77f522c98762344ef9",
+      "byteReductionPercent": -24.59
     },
     {
       "id": "wb-popconfirm",
@@ -774,12 +960,12 @@
         "unicodeCodePoints": 31301
       },
       "quick": {
-        "utf8Bytes": 10118,
-        "unicodeCodePoints": 7744
+        "utf8Bytes": 9616,
+        "unicodeCodePoints": 7178
       },
       "fullSha256": "3f552ade0d5ea45268a4aea01dae41640609a427985aa40fa7a6d7d1b5fdfe85",
-      "quickSha256": "a793ea72a62b8181fee133856e6351021d4f65a1dd2882c2ddf19c8ca4b88fff",
-      "byteReductionPercent": 71.83
+      "quickSha256": "c1fd30aab5d01d9f2b52d55d153f219aac2979646bf11dc1427e332c8c2cae9a",
+      "byteReductionPercent": 73.23
     },
     {
       "id": "wb-popover",
@@ -789,12 +975,12 @@
         "unicodeCodePoints": 19313
       },
       "quick": {
-        "utf8Bytes": 7960,
-        "unicodeCodePoints": 5942
+        "utf8Bytes": 7465,
+        "unicodeCodePoints": 5383
       },
       "fullSha256": "cd88fdac1738282c6b32db61be458b843ab83dfc40bb84afd3348b34576e01ab",
-      "quickSha256": "ebfd592be6834e340b5b514d9e526f7b7557a513c248c9a07659713a78da69a8",
-      "byteReductionPercent": 65.37
+      "quickSha256": "a54e81204408974f4fa038b13ef7579b350bd34f996b98241a42a6e970a560b9",
+      "byteReductionPercent": 67.53
     },
     {
       "id": "wb-quick-app-card",
@@ -804,12 +990,12 @@
         "unicodeCodePoints": 13938
       },
       "quick": {
-        "utf8Bytes": 5319,
-        "unicodeCodePoints": 4542
+        "utf8Bytes": 4922,
+        "unicodeCodePoints": 4101
       },
       "fullSha256": "13cc275b04a5ed48ce098d99977f0ca101881ee1d535f9273c74ed1f92cfec38",
-      "quickSha256": "6ce03d0f1dd6676967faf9a3384a55d0022f128d7f2a75f40314e5dc8e64614c",
-      "byteReductionPercent": 66.94
+      "quickSha256": "e4370a4eb68e573dc5dae39108de502b464dd60335c794bd63b460a515fd9962",
+      "byteReductionPercent": 69.4
     },
     {
       "id": "wb-radio",
@@ -819,12 +1005,12 @@
         "unicodeCodePoints": 5947
       },
       "quick": {
-        "utf8Bytes": 7717,
-        "unicodeCodePoints": 6058
+        "utf8Bytes": 7063,
+        "unicodeCodePoints": 5306
       },
       "fullSha256": "e6d4ff5f97ddd0724633abf8f241426df6aa0b238c86fc85cbc95ca4999b6030",
-      "quickSha256": "71e48ca66939bae9d309313da8a6421a817dd88688e0cc32433aec348166d5de",
-      "byteReductionPercent": 1.59
+      "quickSha256": "45ed01f0e5f94f6355c1a77f1f6e90dc7bf9ce21f32790f94edd7a7da00d7e57",
+      "byteReductionPercent": 9.93
     },
     {
       "id": "wb-rating",
@@ -834,12 +1020,12 @@
         "unicodeCodePoints": 6797
       },
       "quick": {
-        "utf8Bytes": 9520,
-        "unicodeCodePoints": 6948
+        "utf8Bytes": 9131,
+        "unicodeCodePoints": 6463
       },
       "fullSha256": "eda3919fb504445f14fba62d88927a4557d369fbd9817ade0523e9f7b227b6ae",
-      "quickSha256": "7e14c06ed097b04af90483e50beb44771f75615690d9c2fafef8dabf29488a9c",
-      "byteReductionPercent": -0.12
+      "quickSha256": "28c3a93f95142169180e5a8fca10499ddc389e963a3fe776f999ceee8d830da9",
+      "byteReductionPercent": 3.98
     },
     {
       "id": "wb-readonly-fields",
@@ -849,12 +1035,12 @@
         "unicodeCodePoints": 1784
       },
       "quick": {
-        "utf8Bytes": 3156,
-        "unicodeCodePoints": 2662
+        "utf8Bytes": 2813,
+        "unicodeCodePoints": 2277
       },
       "fullSha256": "1f8031968c6d7e9da0905ec3a266e58a5e1fc531cd4eb47cc104325339e6ef52",
-      "quickSha256": "75da90374d310a72eb1190bbb5cb335a2d5eaf60856505c4d6028c2830f9e06d",
-      "byteReductionPercent": -37.7
+      "quickSha256": "e945ce51bc75699eb22c584a7c475287a903875ddf74acc4ddc63ca305313edd",
+      "byteReductionPercent": -22.73
     },
     {
       "id": "wb-scrollbar",
@@ -864,12 +1050,12 @@
         "unicodeCodePoints": 8815
       },
       "quick": {
-        "utf8Bytes": 12324,
-        "unicodeCodePoints": 8890
+        "utf8Bytes": 11867,
+        "unicodeCodePoints": 8337
       },
       "fullSha256": "c5fbd131ec0cc11cc6d29ea232eb3c56885b7a6c9622883f6d0266a13bc84c86",
-      "quickSha256": "9a0d609071c6cba2459fba5028432a0c26a86604c5b9adeec8eedc3167e3cfef",
-      "byteReductionPercent": 2.52
+      "quickSha256": "0194ad643bbb1cfc84ca9ea25ac13c010df68d63cf0205471b2ba4df7ab2336b",
+      "byteReductionPercent": 6.13
     },
     {
       "id": "wb-search",
@@ -879,12 +1065,12 @@
         "unicodeCodePoints": 32612
       },
       "quick": {
-        "utf8Bytes": 20409,
-        "unicodeCodePoints": 14693
+        "utf8Bytes": 19542,
+        "unicodeCodePoints": 13762
       },
       "fullSha256": "be7b9ff9b7dcc110e9df347667a5508a327869e3efd90de74583081b45307f9e",
-      "quickSha256": "4f5b13a87c029c62792b45a95573613bf2137c1faaf0eff49e78f24bcf5b93de",
-      "byteReductionPercent": 50.01
+      "quickSha256": "f55d902b96033b0828480bc7e3ef992a38b712d4b05976ffacc56c9a1579c68e",
+      "byteReductionPercent": 52.13
     },
     {
       "id": "wb-select",
@@ -894,12 +1080,12 @@
         "unicodeCodePoints": 13161
       },
       "quick": {
-        "utf8Bytes": 15177,
-        "unicodeCodePoints": 10478
+        "utf8Bytes": 14649,
+        "unicodeCodePoints": 9884
       },
       "fullSha256": "44679e93e9fe22c67300dc2d3dc0ced12084f27b84769bdfb6813d6fa981b149",
-      "quickSha256": "a198244eed460be96207bc4a99e9647b5ebb3d78232484feeab69d227ef544c1",
-      "byteReductionPercent": 18.51
+      "quickSha256": "e86379b7c3e224a739e3ee25fdea19b7f67e429ce6fea2db8d4aedee2e5c2079",
+      "byteReductionPercent": 21.34
     },
     {
       "id": "wb-side-navigation",
@@ -909,12 +1095,12 @@
         "unicodeCodePoints": 15771
       },
       "quick": {
-        "utf8Bytes": 12738,
-        "unicodeCodePoints": 9413
+        "utf8Bytes": 12343,
+        "unicodeCodePoints": 8952
       },
       "fullSha256": "c25874fd880c3ac3438b3fcfb5e1fd2a7db690d2f08025a4ba7de93ec53db608",
-      "quickSha256": "a711a644c6ac7d97e0faf648e1a22c213758e520fea64f374833192858a77bed",
-      "byteReductionPercent": 37.71
+      "quickSha256": "c333fbc6c9da865394da67fa3779ad0a4d9a3b97314e81739dcc88c238eeaf18",
+      "byteReductionPercent": 39.64
     },
     {
       "id": "wb-skeleton",
@@ -924,12 +1110,12 @@
         "unicodeCodePoints": 7259
       },
       "quick": {
-        "utf8Bytes": 7949,
-        "unicodeCodePoints": 6309
+        "utf8Bytes": 7443,
+        "unicodeCodePoints": 5705
       },
       "fullSha256": "c06e429f4d6b3b51bd0e508e1578514973cd470a3d9cfa4ec16c1508341651e3",
-      "quickSha256": "079478125458797d6e4bf09fd26379b47f59557b28ff8172432d81d6a7da745d",
-      "byteReductionPercent": 14.27
+      "quickSha256": "6ff9ba1d0d75076a2ad21a2bc0f2a8a61dc6aa882da013880c2d04ca5d7f3683",
+      "byteReductionPercent": 19.73
     },
     {
       "id": "wb-slider",
@@ -939,12 +1125,12 @@
         "unicodeCodePoints": 10078
       },
       "quick": {
-        "utf8Bytes": 8684,
-        "unicodeCodePoints": 6824
+        "utf8Bytes": 8360,
+        "unicodeCodePoints": 6404
       },
       "fullSha256": "65101b8d56daf630ca20e0436fb16c31c1f5635de53be9b5118d803d96b1ea4d",
-      "quickSha256": "1afdf6ee4d2948a8dcfdb3411f6e2cec11788fd6b72a491397ed2c399aaedb15",
-      "byteReductionPercent": 31.5
+      "quickSha256": "37729328043262d1078d5d58bcab991a726d7fd5aec04fb0b48ddfc23acce32d",
+      "byteReductionPercent": 34.06
     },
     {
       "id": "wb-steps",
@@ -954,12 +1140,12 @@
         "unicodeCodePoints": 10440
       },
       "quick": {
-        "utf8Bytes": 6541,
-        "unicodeCodePoints": 5149
+        "utf8Bytes": 6398,
+        "unicodeCodePoints": 4910
       },
       "fullSha256": "176147adfb24ca36ccd4d9d1034d58268d1565f44e5a333de30d557000195d98",
-      "quickSha256": "0097c98a2742580af10424032551bba06b38e1acae9b323b7336cbfaa7351684",
-      "byteReductionPercent": 46.69
+      "quickSha256": "fbbad1c978b75a279e4b41774b564bb9e42dfb992f8ce77e1be04625a786e5bd",
+      "byteReductionPercent": 47.86
     },
     {
       "id": "wb-switch",
@@ -969,12 +1155,12 @@
         "unicodeCodePoints": 4684
       },
       "quick": {
-        "utf8Bytes": 6056,
-        "unicodeCodePoints": 4828
+        "utf8Bytes": 5814,
+        "unicodeCodePoints": 4490
       },
       "fullSha256": "af54e63ee33948abab5640c57825098192a460083a9b31c8ec82a45477f458aa",
-      "quickSha256": "b3f0eaffdfaed8ac090ea72de1ea5a1bf3b46344b7316e7e377d6566ffdd58c4",
-      "byteReductionPercent": 0.43
+      "quickSha256": "1af4d43d7a2ca518e4e116f9e1a00fc549b5a8f02eb1815ca0f1dd78411a10a7",
+      "byteReductionPercent": 4.41
     },
     {
       "id": "wb-table",
@@ -984,12 +1170,12 @@
         "unicodeCodePoints": 25401
       },
       "quick": {
-        "utf8Bytes": 27214,
-        "unicodeCodePoints": 20216
+        "utf8Bytes": 31311,
+        "unicodeCodePoints": 24217
       },
       "fullSha256": "aaaba10c0d4a0c2f61069b3d4f9c4609c8223751446a639adab3dd0d37e0373e",
-      "quickSha256": "0c979544f9fada3879603e2c864f071b5d0c2d6fa847d95f99f3865b32d13a71",
-      "byteReductionPercent": 20.46
+      "quickSha256": "c037ab9cc5b5e0a59f5957111771f7874ea2c15ddbcc28c54245557de3e40958",
+      "byteReductionPercent": 8.49
     },
     {
       "id": "wb-table-actions-selection",
@@ -999,12 +1185,12 @@
         "unicodeCodePoints": 2625
       },
       "quick": {
-        "utf8Bytes": 4694,
-        "unicodeCodePoints": 3832
+        "utf8Bytes": 4257,
+        "unicodeCodePoints": 3401
       },
       "fullSha256": "1240aa9c35fd1f1233b3852651fcc3315fb0cd3473770ecf5a8df3185def07c5",
-      "quickSha256": "91628b4ae4641704db66dddd3d5454a26047c6e70faad6da5e3213c3e9017f4e",
-      "byteReductionPercent": -35.63
+      "quickSha256": "9c0ab07603131dc925edddda0fb580e09720d0117735a96a9b935c35d9ffbbeb",
+      "byteReductionPercent": -23
     },
     {
       "id": "wb-tabs",
@@ -1014,12 +1200,12 @@
         "unicodeCodePoints": 8889
       },
       "quick": {
-        "utf8Bytes": 8493,
-        "unicodeCodePoints": 6349
+        "utf8Bytes": 8170,
+        "unicodeCodePoints": 5932
       },
       "fullSha256": "13040092bc1e6b2f8250ecfe31dfd796ce20fbbff203379eee35b45a5746c764",
-      "quickSha256": "c4995a664b472a745b2055eb00f578d2fc8b82b1317d0b85a50f515999bff6be",
-      "byteReductionPercent": 26.51
+      "quickSha256": "ef28a10c6c99bfc9692efff596f2820474d4ab0e0162af11577329e20d206bcf",
+      "byteReductionPercent": 29.31
     },
     {
       "id": "wb-tabs-header",
@@ -1029,12 +1215,12 @@
         "unicodeCodePoints": 1842
       },
       "quick": {
-        "utf8Bytes": 3535,
-        "unicodeCodePoints": 2787
+        "utf8Bytes": 3163,
+        "unicodeCodePoints": 2409
       },
       "fullSha256": "40cafb6daacd00423a58447eafb3de685def336595a1f3b4fb00e52db430f6d6",
-      "quickSha256": "51eca9cf3ae8edfdca153424e95fb98e9c3789ace10f8c6d7a0578b82c99413e",
-      "byteReductionPercent": -39.78
+      "quickSha256": "2808276a48467189c375d5b592de5f4738abb75948dab7b36be0d364e2a28e2a",
+      "byteReductionPercent": -25.07
     },
     {
       "id": "wb-tag",
@@ -1044,12 +1230,12 @@
         "unicodeCodePoints": 13282
       },
       "quick": {
-        "utf8Bytes": 9265,
-        "unicodeCodePoints": 7123
+        "utf8Bytes": 8524,
+        "unicodeCodePoints": 6318
       },
       "fullSha256": "fa6a164dbf18c170ecf040dc13c237867961b590873a054698474c6a472a4261",
-      "quickSha256": "0c80ab6694514ffde03bf7b62f54547fbdd5593a5d050d265034b68d9859b4b4",
-      "byteReductionPercent": 43.08
+      "quickSha256": "6df9d332ce4f7a20739e4f3bbdd30abe13181a96956137ae86462d1fc3448f2e",
+      "byteReductionPercent": 47.63
     },
     {
       "id": "wb-time-picker",
@@ -1059,12 +1245,12 @@
         "unicodeCodePoints": 7221
       },
       "quick": {
-        "utf8Bytes": 7607,
-        "unicodeCodePoints": 5687
+        "utf8Bytes": 7341,
+        "unicodeCodePoints": 5325
       },
       "fullSha256": "4343d65698beb2fbc3671681ff79c9fcd2f4647e860ac62fe1cb229e16419c9e",
-      "quickSha256": "fad2abbc25403e25a33e1817b05dc390e48ac380349689999a28985f2dd61fd5",
-      "byteReductionPercent": 19.53
+      "quickSha256": "b25b0e2ecc9397908588458191b954ce2a2f28af7025a12730968c050c80735a",
+      "byteReductionPercent": 22.34
     },
     {
       "id": "wb-timeline",
@@ -1074,12 +1260,12 @@
         "unicodeCodePoints": 6060
       },
       "quick": {
-        "utf8Bytes": 6178,
-        "unicodeCodePoints": 4640
+        "utf8Bytes": 5897,
+        "unicodeCodePoints": 4261
       },
       "fullSha256": "e2c5e0d0613c89ac32e852905605cb5f132a4c3f3534e20283f4d63113cf8b21",
-      "quickSha256": "41b71f27b0fc3fe9372b33a71269a142e56ac2821a5a04f7445eb5ac4dfddd8b",
-      "byteReductionPercent": 21.58
+      "quickSha256": "5fdbf49d44b10ba6b60d99460949f86e2df0b22666417af3b1333fa5e8189ff3",
+      "byteReductionPercent": 25.15
     },
     {
       "id": "wb-tooltip",
@@ -1089,12 +1275,12 @@
         "unicodeCodePoints": 21486
       },
       "quick": {
-        "utf8Bytes": 8307,
-        "unicodeCodePoints": 6133
+        "utf8Bytes": 7853,
+        "unicodeCodePoints": 5615
       },
       "fullSha256": "939cfd7373ae354fe76696539d19be6f4b78b5142e70f0ec340018d115ed3bf9",
-      "quickSha256": "ccf11e0b26be63afe9ee044a02c14c4aabe5896777ccfbb3c6c6941ef23045d6",
-      "byteReductionPercent": 67.49
+      "quickSha256": "fca348e409e3ac0021f4760f3708065e93ed1d9b35744060042d0c9a78a187e1",
+      "byteReductionPercent": 69.27
     },
     {
       "id": "wb-top-nav",
@@ -1104,12 +1290,12 @@
         "unicodeCodePoints": 15732
       },
       "quick": {
-        "utf8Bytes": 11138,
-        "unicodeCodePoints": 8722
+        "utf8Bytes": 10460,
+        "unicodeCodePoints": 7976
       },
       "fullSha256": "d6cc19b2bd69d7037a166b813cf1d8c34b0dbd5db0d9e0d794f3a27bb3f112f6",
-      "quickSha256": "20fed1fb6e6d25e76832b217e9327f46489618373b4bd9ce138ca854736a573f",
-      "byteReductionPercent": 42.82
+      "quickSha256": "062cf651cdde0e2073f9657f169a6c2750b4fcb631aad99380d686048663c45e",
+      "byteReductionPercent": 46.3
     },
     {
       "id": "wb-transaction-stage-progress",
@@ -1119,12 +1305,12 @@
         "unicodeCodePoints": 1651
       },
       "quick": {
-        "utf8Bytes": 2957,
-        "unicodeCodePoints": 2441
+        "utf8Bytes": 2629,
+        "unicodeCodePoints": 2071
       },
       "fullSha256": "29914d145c96b7ebd1e17aca28618ad7fbcb09b64bf397cb6da3004be666dfc4",
-      "quickSha256": "7a78c0d3cfd0b29f5156991d6331d006188e32acb08b937dc2fcd068864501d2",
-      "byteReductionPercent": -37.6
+      "quickSha256": "e50f47861d2f9acab1800ea126c5c0ec975985c3296ac966e9d59c97984c95aa",
+      "byteReductionPercent": -22.34
     },
     {
       "id": "wb-transfer",
@@ -1134,12 +1320,12 @@
         "unicodeCodePoints": 14089
       },
       "quick": {
-        "utf8Bytes": 9325,
-        "unicodeCodePoints": 7405
+        "utf8Bytes": 8965,
+        "unicodeCodePoints": 6957
       },
       "fullSha256": "3bcd9adbcdca5009e930017361a2c500e345e7969511ebb2ff8404ec4d675acb",
-      "quickSha256": "0eb94b0e19f6d6f8b547a08179cc3d0912cf4de0fdbcef6573622e58414293ce",
-      "byteReductionPercent": 44.82
+      "quickSha256": "a1260248f9b6c2546ef603bdff00e3dfe433e8cd70c8f5bff15e1401e09ec5d0",
+      "byteReductionPercent": 46.95
     },
     {
       "id": "wb-tree",
@@ -1149,12 +1335,12 @@
         "unicodeCodePoints": 11937
       },
       "quick": {
-        "utf8Bytes": 10051,
-        "unicodeCodePoints": 7803
+        "utf8Bytes": 9602,
+        "unicodeCodePoints": 7264
       },
       "fullSha256": "1de55a75b0c0ad3fbcaf020c5001e692aee062a1c718046be45c3111d70b96d8",
-      "quickSha256": "ac8154a33f99f751fefb0ba985bf67eafe13a0492c3b998f469e86690ec827d7",
-      "byteReductionPercent": 32.28
+      "quickSha256": "db97ee05790e2fc79c74f608354aa7b2ba19fd23f4a8e81e6ca274c30e8b8dad",
+      "byteReductionPercent": 35.31
     },
     {
       "id": "wb-upload",
@@ -1164,12 +1350,12 @@
         "unicodeCodePoints": 20643
       },
       "quick": {
-        "utf8Bytes": 11251,
-        "unicodeCodePoints": 8789
+        "utf8Bytes": 10841,
+        "unicodeCodePoints": 8287
       },
       "fullSha256": "9595eb9b9a45f0466644828809f13a8855ec7a9364ef1a1cdffd0685f1593b84",
-      "quickSha256": "84bcd1ad2a1a3c15790d3832f161e4ecae431885037a6f35a919573fc8e4ab39",
-      "byteReductionPercent": 54.01
+      "quickSha256": "a93a7364753b06090fad51f3156352e7773ad59627330fc4e11a9eca99b5a2be",
+      "byteReductionPercent": 55.68
     },
     {
       "id": "agreement-assistant-panel",
@@ -1179,12 +1365,12 @@
         "unicodeCodePoints": 9033
       },
       "quick": {
-        "utf8Bytes": 7428,
-        "unicodeCodePoints": 7056
+        "utf8Bytes": 6528,
+        "unicodeCodePoints": 6086
       },
       "fullSha256": "ee875221b80184f9e2feae21b8ee01c0dbfed3b9a1d656490216033bcf71e9f3",
-      "quickSha256": "455e5dbf221c5a6bf49d39f83fe022d5c3288991f04dbfa8fc741a1992a5bb10",
-      "byteReductionPercent": 19.97
+      "quickSha256": "ab93c3c6a256db5a53b6e4e256f6275470e757f3c7e74b411bca573b0a23a70c",
+      "byteReductionPercent": 29.66
     },
     {
       "id": "agreement-table",
@@ -1194,12 +1380,12 @@
         "unicodeCodePoints": 4135
       },
       "quick": {
-        "utf8Bytes": 3263,
-        "unicodeCodePoints": 2891
+        "utf8Bytes": 2732,
+        "unicodeCodePoints": 2288
       },
       "fullSha256": "f48bb2419cf949972a27f7ff6d796b3a4037f820deecf8f554508a2dc62b8e3c",
-      "quickSha256": "5205319c870bb77dca79c3281d2aca6d7d2ac6b187a6c77ddf8cd83c75a8633b",
-      "byteReductionPercent": 25.55
+      "quickSha256": "d5392d6a4ce785f56a6e9f206c36ae8b736427c9a0c899764d4ada8fc07ce604",
+      "byteReductionPercent": 37.67
     },
     {
       "id": "ai-alert",
@@ -1209,12 +1395,12 @@
         "unicodeCodePoints": 3257
       },
       "quick": {
-        "utf8Bytes": 2990,
-        "unicodeCodePoints": 2618
+        "utf8Bytes": 2438,
+        "unicodeCodePoints": 1990
       },
       "fullSha256": "ee632d963128d21e2b56e0dc766e24688d2f01caa0285263bb75e86085806e98",
-      "quickSha256": "83b79c19764099bc644492b163aa1dee4336949ba92c7ff32f095888cac72ba4",
-      "byteReductionPercent": 14.69
+      "quickSha256": "b9bf4b10d01bfb72e34abeb1fca4bad1a66aecaba30c4cea025a129843c68983",
+      "byteReductionPercent": 30.44
     },
     {
       "id": "ai-icon",
@@ -1224,12 +1410,12 @@
         "unicodeCodePoints": 4031
       },
       "quick": {
-        "utf8Bytes": 2639,
-        "unicodeCodePoints": 2267
+        "utf8Bytes": 2101,
+        "unicodeCodePoints": 1649
       },
       "fullSha256": "cbe719051dba130aa21c6af3af97cfa91a3c88a848ec58d92f037a670770af35",
-      "quickSha256": "36e93c1993f8086fc128cd861fa15614092947226be5e10e7d6b57b77fc6fd74",
-      "byteReductionPercent": 38.33
+      "quickSha256": "74048c4422b5f2976dbc4b7b628e20b8f1440b999895f2e0ff05500cf6741bb2",
+      "byteReductionPercent": 50.9
     },
     {
       "id": "ai-icon-provider",
@@ -1239,12 +1425,12 @@
         "unicodeCodePoints": 3871
       },
       "quick": {
-        "utf8Bytes": 3094,
-        "unicodeCodePoints": 2722
+        "utf8Bytes": 2579,
+        "unicodeCodePoints": 2131
       },
       "fullSha256": "e487a1ac532eb729fb114fa22bfab88e10f1ab5b5770a34a1f297a93b34a19e5",
-      "quickSha256": "e00fd8a22385e65c4b3de84e9e9e43e61a5b9757794726d99e9851ad6c3798fb",
-      "byteReductionPercent": 24.88
+      "quickSha256": "2139148302ac2acc37a989036a0f0b0c93c29ebdc0b4270d08530a1cf7230792",
+      "byteReductionPercent": 37.39
     },
     {
       "id": "ai-summary-card",
@@ -1254,12 +1440,12 @@
         "unicodeCodePoints": 4584
       },
       "quick": {
-        "utf8Bytes": 3151,
-        "unicodeCodePoints": 2779
+        "utf8Bytes": 2621,
+        "unicodeCodePoints": 2173
       },
       "fullSha256": "b41aeadac69f9611ece7e256f9d27cea1ce383ae90160396148f729c5cc74846",
-      "quickSha256": "ac6ba1a6999e7a4217df4e42c620825a8196f3feb5ca80ce6a0989a7c8a776ce",
-      "byteReductionPercent": 34.79
+      "quickSha256": "1757c0b91a172095b48bc2db14f842f450c870b4b4930002985f5dacca1b3f15",
+      "byteReductionPercent": 45.76
     },
     {
       "id": "ai-toast",
@@ -1269,12 +1455,12 @@
         "unicodeCodePoints": 3036
       },
       "quick": {
-        "utf8Bytes": 3215,
-        "unicodeCodePoints": 2843
+        "utf8Bytes": 2648,
+        "unicodeCodePoints": 2200
       },
       "fullSha256": "5e6c0a9ac930ac0a72918a20d1b669476a2b99c2e279e95921b4be15cb44b77e",
-      "quickSha256": "b7eb26d48cc5881288464e9885f697e2f2b45138b2d98b9702b4639cdef3f222",
-      "byteReductionPercent": 2.1
+      "quickSha256": "3cadc6e1e2d08a82c9409748af82302491a63cd4ed99f195a221959830392b60",
+      "byteReductionPercent": 19.37
     },
     {
       "id": "assistant-host-layout",
@@ -1284,12 +1470,12 @@
         "unicodeCodePoints": 5669
       },
       "quick": {
-        "utf8Bytes": 5016,
-        "unicodeCodePoints": 4573
+        "utf8Bytes": 4561,
+        "unicodeCodePoints": 4046
       },
       "fullSha256": "53e1d8bd459075abb0c78cfefaf6b20b5113ddf1e828f5529ec2bb2c41741723",
-      "quickSha256": "7f2d7f3d3ac1aa525d39b54eb43e233b0c1d12452a2b067354337774e2bc83f3",
-      "byteReductionPercent": 16.53
+      "quickSha256": "3f14b3c97534727527f24fb7a499b72d8b8417133caee0417b3284e757b24865",
+      "byteReductionPercent": 24.1
     },
     {
       "id": "business-navigation-card",
@@ -1299,12 +1485,12 @@
         "unicodeCodePoints": 4072
       },
       "quick": {
-        "utf8Bytes": 3111,
-        "unicodeCodePoints": 2739
+        "utf8Bytes": 2566,
+        "unicodeCodePoints": 2118
       },
       "fullSha256": "3f2adabbf77a480cd4a27e9821345b02dadd8a350f74ec07dfd16301b0a7ce88",
-      "quickSha256": "b72285bf5809d8bb9b298d861823e87c449caf2a864960904b32e74a208a3503",
-      "byteReductionPercent": 27.99
+      "quickSha256": "1e507fa988f2608e2dd32df42d1834fc19c3771e9b4ed6401fa21db1a82babe9",
+      "byteReductionPercent": 40.6
     },
     {
       "id": "business-overlay-host",
@@ -1314,12 +1500,12 @@
         "unicodeCodePoints": 2630
       },
       "quick": {
-        "utf8Bytes": 2909,
-        "unicodeCodePoints": 2492
+        "utf8Bytes": 2587,
+        "unicodeCodePoints": 2094
       },
       "fullSha256": "b970c60c06990e84a54b1f494b0b084829ba3190787051cc866248b43ecce927",
-      "quickSha256": "c4b813d4b8930e7f1faead4e4106c5e5150748d35e71e17b97e6d561d9c31378",
-      "byteReductionPercent": 0.92
+      "quickSha256": "b3070edec44eedfec9b45558fcb69283a5275b59e69cd3185db2ab3bc83d2fc7",
+      "byteReductionPercent": 11.89
     },
     {
       "id": "business-table",
@@ -1329,12 +1515,12 @@
         "unicodeCodePoints": 4339
       },
       "quick": {
-        "utf8Bytes": 3829,
-        "unicodeCodePoints": 3449
+        "utf8Bytes": 3285,
+        "unicodeCodePoints": 2829
       },
       "fullSha256": "aec35c0ee57e05af85b595058eb28551e2abf3db47b185769515947484d64e1f",
-      "quickSha256": "2bef71ecc4a36f8f41e8339c15a761340ea6cb20a4a906d04b34b146ad813afd",
-      "byteReductionPercent": 16.67
+      "quickSha256": "385c559d0e49c049606bbc33566cfc8a14ec5879a666cacc66b9039a1d6099bd",
+      "byteReductionPercent": 28.51
     },
     {
       "id": "chat-panel",
@@ -1344,12 +1530,12 @@
         "unicodeCodePoints": 13955
       },
       "quick": {
-        "utf8Bytes": 7990,
-        "unicodeCodePoints": 7547
+        "utf8Bytes": 7317,
+        "unicodeCodePoints": 6804
       },
       "fullSha256": "32ef009fb5b2f5fd14bc892421a43af33b812cbbd8cf7f3f177d7d00be2df074",
-      "quickSha256": "86b68dca1b3da8dccdff34a5f35e7f8e10a93c50a99f6c8e72cea1396198c0ff",
-      "byteReductionPercent": 44.11
+      "quickSha256": "bf3a13ba72a2eb7320f10bad21991b67df17738c818b6539ee67d99566a7576b",
+      "byteReductionPercent": 48.81
     },
     {
       "id": "conversation-history-panel",
@@ -1359,12 +1545,12 @@
         "unicodeCodePoints": 5116
       },
       "quick": {
-        "utf8Bytes": 3674,
-        "unicodeCodePoints": 3231
+        "utf8Bytes": 3367,
+        "unicodeCodePoints": 2848
       },
       "fullSha256": "38c7e78c2417a597c28838c67f0130ae9c78d0c4f364b9723294b1995006fe1f",
-      "quickSha256": "e5e6fc8df05ca9541a7e07c32ed7c3600537d71376955db15f66db5cd41ff9e9",
-      "byteReductionPercent": 32.66
+      "quickSha256": "8e6909ee7cdf008763345e960448455593c18626328a1f243035f4154cd9f270",
+      "byteReductionPercent": 38.29
     },
     {
       "id": "ui-dialog",
@@ -1374,12 +1560,12 @@
         "unicodeCodePoints": 4820
       },
       "quick": {
-        "utf8Bytes": 3131,
-        "unicodeCodePoints": 2714
+        "utf8Bytes": 2838,
+        "unicodeCodePoints": 2349
       },
       "fullSha256": "e4a5832bfd6dd00565cfd69381552cee7ab505a83c8108d1d7880c6e9e283be3",
-      "quickSha256": "9a696cb2fc92855764e9fc987a44f9e745b500fb381374281b114a04e61ebd93",
-      "byteReductionPercent": 38.92
+      "quickSha256": "c36b0c2aaf6c9fdcfe52198d8ad5e237c1b88e30896ecee48695cd9bf1270652",
+      "byteReductionPercent": 44.64
     },
     {
       "id": "workspace-smart-card",
@@ -1389,12 +1575,12 @@
         "unicodeCodePoints": 6591
       },
       "quick": {
-        "utf8Bytes": 4294,
-        "unicodeCodePoints": 3922
+        "utf8Bytes": 3735,
+        "unicodeCodePoints": 3291
       },
       "fullSha256": "73818650e24dbb0f94425fe94faa936057f8d5d467a2892e8108846efaf0c3ad",
-      "quickSha256": "6ce6e4d399a6b8bc0be0d9c43b7bc16acb8160507a3c27234d0200815728e348",
-      "byteReductionPercent": 37.21
+      "quickSha256": "ff7e7001f77ffc703260d8f15dca842c07d074fe00ce8004add470b6381f5d01",
+      "byteReductionPercent": 45.39
     },
     {
       "id": "workspace-smart-icon",
@@ -1404,12 +1590,12 @@
         "unicodeCodePoints": 4123
       },
       "quick": {
-        "utf8Bytes": 2734,
-        "unicodeCodePoints": 2362
+        "utf8Bytes": 2205,
+        "unicodeCodePoints": 1753
       },
       "fullSha256": "81ab7717597237a08c7afa5d7c15203f3bc4807608d2feae0ae476feeed1f900",
-      "quickSha256": "875f5f5d0e4196b5017198988ae10796d0069151a32e7763017d5d35fcd2938b",
-      "byteReductionPercent": 37.45
+      "quickSha256": "236306f06d9dadce0ec3016efc75207ea6b1b7b44a3aac832fec13563f3760ea",
+      "byteReductionPercent": 49.55
     },
     {
       "id": "workspace-smart-tabs",
@@ -1419,12 +1605,12 @@
         "unicodeCodePoints": 4890
       },
       "quick": {
-        "utf8Bytes": 3771,
-        "unicodeCodePoints": 3391
+        "utf8Bytes": 3249,
+        "unicodeCodePoints": 2797
       },
       "fullSha256": "cf4b32e81eafebd1248f6d878976330cce0150494dadce9d79933bcae0af0123",
-      "quickSha256": "a1c48bb7e11ef1e491499117908edcd175b1e4b33454db93b3c293dffcc2e0fa",
-      "byteReductionPercent": 26.72
+      "quickSha256": "b255beebed2a57511cfe016e0818a6e0e687b99f6af38e2ffaa7dd9f8fdf600f",
+      "byteReductionPercent": 36.86
     },
     {
       "id": "workspace-smart-tag",
@@ -1434,12 +1620,12 @@
         "unicodeCodePoints": 5449
       },
       "quick": {
-        "utf8Bytes": 3232,
-        "unicodeCodePoints": 2860
+        "utf8Bytes": 2696,
+        "unicodeCodePoints": 2248
       },
       "fullSha256": "0489e3891c3df6cae72a2dded436e25c65629e5fd7a8cd098262451d00306875",
-      "quickSha256": "21b3165bfa2865177e817f1d59be4ffd211cbe58ea7ac8eec165bf80d2b720d0",
-      "byteReductionPercent": 43.27
+      "quickSha256": "445a6c7a58183b1e1462b1fd672ed93368f25820cc7c17bbeb660cac8b2e7899",
+      "byteReductionPercent": 52.68
     }
   ]
 }

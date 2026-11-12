@@ -711,3 +711,21 @@ test("wb-table quick page carries the declared Column fields, sort shape and exa
   if (typeof supplement.example === "string") assert.ok(page.includes(supplement.example));
   assert.doesNotMatch(output.get("workbench/wb-table.md"), /## 来源补充结构/, "full page unchanged (D2)");
 });
+
+test("search aliases reach only the quick index, and stale or malformed keys fail generation", () => {
+  const aliases = JSON.parse(readFileSync(new URL("shared/catalog/search-aliases.json", root), "utf8"));
+  const output = generateReferences({ packages, searchAliases: aliases });
+  const index = JSON.parse(output.get("quick/index.json"));
+  const metric = index.entries.find((entry) => entry.id === "wb-metric-card");
+  assert.deepEqual(metric.searchAliases, aliases.aliases[`${wbName}/wb-metric-card`]);
+  assert.ok(index.entries.every((entry) => Array.isArray(entry.searchAliases)));
+  // Pages are byte-identical with and without aliases: hints never become contract text.
+  const plain = generateReferences({ packages });
+  for (const [path, content] of output)
+    if (path !== "quick/index.json") assert.equal(content, plain.get(path), path);
+  assert.throws(() => generateReferences({ packages,
+    searchAliases: { aliases: { [`${wbName}/wb-removed`]: ["x"] } } }), /REFERENCE_SEARCH_ALIAS_STALE/);
+  for (const bad of [{}, { aliases: [] }, { aliases: { [`${wbName}/wb-modal`]: "弹窗" } },
+    { aliases: { [`${wbName}/wb-modal`]: [" "] } }])
+    assert.throws(() => generateReferences({ packages, searchAliases: bad }), /REFERENCE_SEARCH_ALIAS/);
+});
