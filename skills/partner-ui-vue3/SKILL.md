@@ -20,7 +20,7 @@ description: 用伙伴工作台 Workbench 与 AI UI 发布包，将 PRD、partne
 
 ## 读取与选型
 
-先按任务查 [Workbench 索引](references/workbench/index.md)，只读命中的组件页、相关 [设计规则](references/design-rules.md) 和 [Token](references/tokens.md) 段落，通常 3–8 个组件足够。规则有适用条件和强度，不能把建议升级为全局禁止。组件 API、使用场景及原生图标尺寸以当前锁包记录为准，不按截图猜 props。
+先用 `node scripts/assets.mjs search --query "关键词" --limit 5` 定位资产，再用 `node scripts/assets.mjs show --id <id>` 读取消费速查；需完整变体/更多示例时加 `--view full`。查询只读随包资料，不证明宿主版本一致或运行时通过验证；命令以 Skill 根为基准，其他工作目录请使用脚本绝对路径。无 Node 时用 [Workbench 索引](references/workbench/index.md)。只读命中的组件页、相关 [设计规则](references/design-rules.md) 和 [Token](references/tokens.md) 段落，通常 3–8 个组件足够。规则有适用条件和强度，不能把建议升级为全局禁止。组件 API、使用场景及原生图标尺寸以当前锁包记录为准，不按截图猜 props。
 
 使用 AI 时读 [AI Vue 组合](references/ai-ui-vue.md)；[AI 包参考](references/ai-ui.md) 说明现有结构化元数据的实际范围。大图标表只做关键词过滤查询，核对 `key`/`alias` 与 family，不全量展开 [图标资料](references/icons.md) 或 JSON。
 

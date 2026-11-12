@@ -529,6 +529,138 @@ function aiPage(pkg, packages, bases, nested = false) {
   return lines.join("\n\n") + "\n";
 }
 
+// Quick references are additive. Keep the full renderers above unchanged so existing
+// paths and their bytes remain compatible. Structured data stays fenced: a quick
+// view must not turn a missing signature or Studio control into a public contract.
+function quickData(value) {
+  // Compact short leaves without minifying a whole contract into one enormous line.
+  // Round-trip first to retain JSON.stringify's handling of optional/undefined fields.
+  const format = (item, depth = 0) => {
+    const compact = JSON.stringify(item);
+    if (compact.length <= 120 || item === null || typeof item !== "object") return compact;
+    const array = Array.isArray(item);
+    const rows = array
+      ? item.map((entry) => format(entry, depth + 1))
+      : Object.entries(item).map(([key, entry]) => JSON.stringify(key) + ": " + format(entry, depth + 1));
+    return (array ? "[" : "{") + "\n" + rows.map((row) => "  ".repeat(depth + 1) + row).join(",\n") +
+      "\n" + "  ".repeat(depth) + (array ? "]" : "}");
+  };
+  return fence(format(JSON.parse(JSON.stringify(value))), "json");
+}
+function quickExamples(usage, fullReference) {
+  const examples = usage?.usageExamples ?? [];
+  const selected = examples.find(
+    (example) => example.portability === "portable" &&
+      typeof example.code === "string" && example.code.trim().length > 0,
+  );
+  const lines = [
+    "## 官方示例",
+    `官方来源 SFC 状态：${tick(usage?.usageStatus ?? "unknown")}。仅展开首个可移植示例，不代表全部变体。`,
+  ];
+  if (selected) {
+    lines.push(
+      quickData({
+        id: selected.id,
+        title: selected.title,
+        portability: selected.portability,
+        source: selected.source,
+        description: selected.description,
+        dataBoundary: selected.dataBoundary,
+        unsupported: selected.unsupported,
+      }),
+      fence(selected.code, "vue"),
+    );
+  } else {
+    lines.push("包内未提供可展开的官方可移植示例；不以场景源码、Studio cases 或手写代码补齐。");
+  }
+  const remaining = examples.filter((example) => example !== selected);
+  if (remaining.length) {
+    lines.push(
+      "### 其他官方来源条目（未展开代码）",
+      quickData(remaining.map((example) => ({
+        id: example.id ?? null,
+        portability: example.portability ?? "unknown",
+        source: example.source ?? null,
+        unsupported: example.unsupported ?? [],
+      }))),
+      `以上条目的详细信息见[完整资料](<${fullReference}>)。`,
+    );
+  }
+  return lines.join("\n\n");
+}
+function quickAPI(contract, usage = {}) {
+  return quickData({
+    publicImport: contract.publicImport ?? null,
+    props: contract.props ?? null,
+    events: contract.events ?? null,
+    eventDetails: contract.eventDetails ?? null,
+    slots: contract.slots ?? null,
+    slotDetails: contract.slotDetails ?? null,
+    slotPatterns: contract.slotPatterns ?? null,
+    exposed: contract.exposed ?? null,
+    family: contract.family ?? null,
+    propNotes: usage.propNotes ?? null,
+    eventNotes: usage.eventNotes ?? null,
+    slotNotes: usage.slotNotes ?? null,
+  });
+}
+function quickPage(pkg, id, contract, usage, family) {
+  const fullReference = `../../${family}/${id}.md`;
+  const title = contract.label ?? usage?.title ?? contract.title ?? id;
+  const lines = [
+    header([pkg]),
+    `# ${aiText(title)} — ${tick(contract.publicImport?.exportName ?? id)}`,
+    qualification(pkg),
+    `完整资料：[${tick(id)}](<${fullReference}>)。本页省略 Studio controls/cases，不省略已声明的公开 API；预览配置不是 props。`,
+    "## 资产与已知边界",
+    quickData({
+      id,
+      kind: contract.kind ?? contract.group ?? null,
+      version: contract.version ?? null,
+      summary: contract.summary ?? null,
+      useWhen: contract.useWhen ?? null,
+      avoidWhen: contract.avoidWhen ?? null,
+      status: contract.status ?? null,
+      source: contract.source ?? null,
+      unsupported: contract.unsupported ?? null,
+      usageStatus: usage?.usageStatus ?? "unknown",
+      usageUnsupported: usage?.unsupported ?? null,
+      variantStatus: usage?.variants?.status ?? "unknown",
+      variantUnsupported: usage?.variants?.unsupported ?? null,
+      caseSemantics: usage?.variants?.caseSemantics ?? null,
+    }),
+    "## 公开 API",
+    "以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。",
+    quickAPI(contract, usage?.usage ?? {}),
+    "## 规则与适用条件",
+    quickData({
+      rules: contract.rules ?? null,
+      dependencies: contract.dependencies ?? null,
+      foundationKeys: contract.foundationKeys ?? null,
+      intro: usage?.usage?.intro ?? null,
+      sections: usage?.usage?.sections ?? null,
+      related: usage?.usage?.related ?? null,
+    }),
+    quickExamples(usage, fullReference),
+  ];
+  return lines.join("\n\n") + "\n";
+}
+function quickEntry(pkg, id, contract, usage, family) {
+  return {
+    id,
+    package: pkg.name,
+    name: contract.publicImport?.exportName ?? null,
+    label: contract.label ?? usage?.title ?? contract.title ?? id,
+    kind: contract.kind ?? contract.group ?? null,
+    summary: contract.summary ?? null,
+    useWhen: contract.useWhen ?? [],
+    avoidWhen: contract.avoidWhen ?? [],
+    quickReference: `quick/${family}/${id}.md`,
+    reference: `${family}/${id}.md`,
+    exampleStatus: usage?.usageStatus ?? "unknown",
+  };
+}
+
 export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
   if (!Array.isArray(packages) || !packages.length)
     throw new Error("REFERENCE_PACKAGES_REQUIRED");
@@ -539,6 +671,7 @@ export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
   if (!wb?.metadata.components)
     throw new Error("REFERENCE_WORKBENCH_METADATA_REQUIRED");
   const output = new Map();
+  const quickEntries = [];
   output.set("workbench/index.md", indexPage(wb, studioBaseURLs));
   for (const [id, contract] of entries(wb.metadata.components.assets)) {
     if (!/^[a-z0-9][a-z0-9-]*$/.test(id))
@@ -553,6 +686,9 @@ export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
         studioBaseURLs,
       ),
     );
+    const usage = wb.metadata.usage?.assets?.[id];
+    output.set(`quick/workbench/${id}.md`, quickPage(wb, id, contract, usage, "workbench"));
+    quickEntries.push(quickEntry(wb, id, contract, usage, "workbench"));
   }
   output.set("tokens.md", tokensPage(ordered));
   output.set("icons.md", iconsPage(wb));
@@ -580,9 +716,16 @@ export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
       if (!/^[a-z0-9][a-z0-9-]*$/.test(id))
         throw new Error("REFERENCE_ASSET_ID_INVALID");
       output.set(`ai-ui/${id}.md`, aiAssetPage(ai, id, asset, studioBaseURLs));
+      output.set(`quick/ai-ui/${id}.md`, quickPage(ai, id, asset, asset, "ai-ui"));
+      quickEntries.push(quickEntry(ai, id, asset, asset, "ai-ui"));
     }
     output.set("ai-ui/index.md", aiPage(ai, ordered, studioBaseURLs, true));
   }
+  output.set("quick/index.json", JSON.stringify({
+    _generated: provenance(ordered),
+    schemaVersion: 1,
+    entries: quickEntries.sort((a, b) => compare(a.package, b.package) || compare(a.id, b.id)),
+  }, null, 2) + "\n");
   output.set(
     "sources.json",
     JSON.stringify(

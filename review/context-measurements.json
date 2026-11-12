@@ -1,0 +1,1445 @@
+{
+  "schemaVersion": 1,
+  "method": "UTF-8 bytes and Unicode code points; no token, cost, latency or Agent-quality inference",
+  "lockSha256": "59e92398abb2bb877cd1efddea9322b4e5cb300e99450debbccd1bcca7ab25ad",
+  "assets": 91,
+  "totalFullBytes": 1030828,
+  "totalQuickBytes": 683474,
+  "totalByteReductionPercent": 33.7,
+  "largerOrEqualQuickViews": [
+    "wb-certification-details",
+    "wb-chart",
+    "wb-collapse",
+    "wb-company-profile-shell",
+    "wb-content-section",
+    "wb-draft-list-filter",
+    "wb-event-calendar",
+    "wb-expand-card",
+    "wb-filter-chips",
+    "wb-followup-rows",
+    "wb-info-list",
+    "wb-link",
+    "wb-management-form-modal",
+    "wb-more-action",
+    "wb-nested-confirmation",
+    "wb-policy-links",
+    "wb-rating",
+    "wb-readonly-fields",
+    "wb-table-actions-selection",
+    "wb-tabs-header",
+    "wb-transaction-stage-progress"
+  ],
+  "journeys": [
+    {
+      "id": "wb-metric-card",
+      "query": "WorkbenchMetricCard",
+      "search": {
+        "utf8Bytes": 1031,
+        "unicodeCodePoints": 829
+      },
+      "searchPlusFullBytes": 16981,
+      "searchPlusQuickBytes": 6275,
+      "note": "Same new search response on both sides isolates reference-view savings; not a historical Agent trace."
+    },
+    {
+      "id": "wb-event-calendar",
+      "query": "WorkbenchEventCalendar",
+      "search": {
+        "utf8Bytes": 1176,
+        "unicodeCodePoints": 912
+      },
+      "searchPlusFullBytes": 4689,
+      "searchPlusQuickBytes": 5884,
+      "note": "Same new search response on both sides isolates reference-view savings; not a historical Agent trace."
+    },
+    {
+      "id": "wb-table",
+      "query": "WorkbenchTable",
+      "search": {
+        "utf8Bytes": 1934,
+        "unicodeCodePoints": 1476
+      },
+      "searchPlusFullBytes": 36149,
+      "searchPlusQuickBytes": 29148,
+      "note": "Same new search response on both sides isolates reference-view savings; not a historical Agent trace."
+    },
+    {
+      "id": "ai-summary-card",
+      "query": "AiSummaryCard",
+      "search": {
+        "utf8Bytes": 668,
+        "unicodeCodePoints": 668
+      },
+      "searchPlusFullBytes": 5500,
+      "searchPlusQuickBytes": 3819,
+      "note": "Same new search response on both sides isolates reference-view savings; not a historical Agent trace."
+    }
+  ],
+  "rows": [
+    {
+      "id": "wb-alert",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 15639,
+        "unicodeCodePoints": 12722
+      },
+      "quick": {
+        "utf8Bytes": 9754,
+        "unicodeCodePoints": 7638
+      },
+      "fullSha256": "04385d4c744f76d11ddfe060f52aad127d7ff8cfb436a45e1c3ec3e6dd2e103f",
+      "quickSha256": "60c973404731cf8dbdca8da0c478895f0776d56d57ed37131b5fcd7d4a1002c3",
+      "byteReductionPercent": 37.63
+    },
+    {
+      "id": "wb-avatar",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 11051,
+        "unicodeCodePoints": 9357
+      },
+      "quick": {
+        "utf8Bytes": 6107,
+        "unicodeCodePoints": 4743
+      },
+      "fullSha256": "074376e86c654dbfbeba44473d9f850afb0bb7839e970353ca4d52278a70b3b3",
+      "quickSha256": "0389e21a7208f4b3c125bf924ced0f5efdc5c90ae30276bdc297c4b9de24e014",
+      "byteReductionPercent": 44.74
+    },
+    {
+      "id": "wb-badge",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 7899,
+        "unicodeCodePoints": 5925
+      },
+      "quick": {
+        "utf8Bytes": 7536,
+        "unicodeCodePoints": 5754
+      },
+      "fullSha256": "6fa4e0d79977975dde54c40ea87a25ff1f5c7a3dccda4cc90407a717bf5a56ed",
+      "quickSha256": "ee25df157d4fcb76bf0adbc3ef2fa037c3169d73660ce1a39aef9263a222f8e3",
+      "byteReductionPercent": 4.6
+    },
+    {
+      "id": "wb-breadcrumb",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 7977,
+        "unicodeCodePoints": 6142
+      },
+      "quick": {
+        "utf8Bytes": 6964,
+        "unicodeCodePoints": 5358
+      },
+      "fullSha256": "eacf4cdd45f8d09f6b9aa9cc3331e68de98e0bdc588516ae730a4b73eacd4801",
+      "quickSha256": "f5aa890331de9a22cea9cc0163903ce2aef65a9a28e5efe719b3bc81535b87fe",
+      "byteReductionPercent": 12.7
+    },
+    {
+      "id": "wb-button",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 19748,
+        "unicodeCodePoints": 14754
+      },
+      "quick": {
+        "utf8Bytes": 14711,
+        "unicodeCodePoints": 10728
+      },
+      "fullSha256": "c6c31fef6f3e953f8cc63ff5d5faeda34610cb721186d5396714d53588e5eb79",
+      "quickSha256": "bbd5e402c92e464f16365120cae6ce337169d7604522a859d42c43f5248444c4",
+      "byteReductionPercent": 25.51
+    },
+    {
+      "id": "wb-button-radio-group",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 6914,
+        "unicodeCodePoints": 5309
+      },
+      "quick": {
+        "utf8Bytes": 6850,
+        "unicodeCodePoints": 5376
+      },
+      "fullSha256": "2592b1eccc35dac5ace8dcbf5eabe67a130ecd6711478571287b5d1d0d3217b4",
+      "quickSha256": "c69c971187b86cef0d6d8d867cd6cb6a2149a0d21f6245729a84e1fc6e9c0146",
+      "byteReductionPercent": 0.93
+    },
+    {
+      "id": "wb-card",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 28661,
+        "unicodeCodePoints": 22354
+      },
+      "quick": {
+        "utf8Bytes": 18099,
+        "unicodeCodePoints": 13704
+      },
+      "fullSha256": "45118a2122b2c047d83f19977f02c3131711ec7cffc8d3f29758116e4cac5415",
+      "quickSha256": "be25faaa8fe51537fb1badd8617a692f79de6b0589672d5ad6456c1e78ce8718",
+      "byteReductionPercent": 36.85
+    },
+    {
+      "id": "wb-carousel",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 9912,
+        "unicodeCodePoints": 7011
+      },
+      "quick": {
+        "utf8Bytes": 9575,
+        "unicodeCodePoints": 7067
+      },
+      "fullSha256": "dec1e939889ad50b264667d7dc9e7355d4df35657b4d968910941e6641b36ace",
+      "quickSha256": "4c9d8ce262ba8ed0913b83e13b1bc9cfff2da91d644b532d82bb0965fad0eeeb",
+      "byteReductionPercent": 3.4
+    },
+    {
+      "id": "wb-cascader",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 15900,
+        "unicodeCodePoints": 12984
+      },
+      "quick": {
+        "utf8Bytes": 10801,
+        "unicodeCodePoints": 8633
+      },
+      "fullSha256": "f5db75495ff4ead570e09d1f2efd3454b9bd84e6eba79c35d970c8809f4b098b",
+      "quickSha256": "5656dbe16e1bcba69700bfc121e15d3a84a7cdc13300cc3445e6b34843567db2",
+      "byteReductionPercent": 32.07
+    },
+    {
+      "id": "wb-certification-details",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2638,
+        "unicodeCodePoints": 1911
+      },
+      "quick": {
+        "utf8Bytes": 3662,
+        "unicodeCodePoints": 2886
+      },
+      "fullSha256": "18e44f2251ed4dbb4b57b0a1c05897fe352e622dcf16110d6fc1e3f22a909550",
+      "quickSha256": "bc969bb236c56dadbb9d9bbf4c74856a49585904b4727826f0f2426513a60901",
+      "byteReductionPercent": -38.82
+    },
+    {
+      "id": "wb-chart",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 4130,
+        "unicodeCodePoints": 3322
+      },
+      "quick": {
+        "utf8Bytes": 5688,
+        "unicodeCodePoints": 4868
+      },
+      "fullSha256": "9d0b9614cb3c68049352c5d04eca902e388f432c285abdb56917c1696640f35e",
+      "quickSha256": "c06cc39ad2925c658a10d547131092ddc1ca25a24c17058661eafe44419af8b8",
+      "byteReductionPercent": -37.72
+    },
+    {
+      "id": "wb-checkbox",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 9406,
+        "unicodeCodePoints": 7048
+      },
+      "quick": {
+        "utf8Bytes": 8433,
+        "unicodeCodePoints": 6462
+      },
+      "fullSha256": "68a4bff2eaa4c35c7677040d1343f2d1d7e89c41b242fc77a03d8c4f4b75eb22",
+      "quickSha256": "0f1e3a3b256b15355b6d8be46eb085a4b3c650d55b064008ed92255abf26338f",
+      "byteReductionPercent": 10.34
+    },
+    {
+      "id": "wb-collapse",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 10388,
+        "unicodeCodePoints": 7150
+      },
+      "quick": {
+        "utf8Bytes": 10794,
+        "unicodeCodePoints": 8022
+      },
+      "fullSha256": "80f641a474105ff1bad523b36d3812441f8892db8f25f3f8c19a8fe41fa5c90b",
+      "quickSha256": "04f618a641447b2915198dd91de62785d5293b160627fc65cd04dbb0ec9b2a11",
+      "byteReductionPercent": -3.91
+    },
+    {
+      "id": "wb-company-profile-shell",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 3542,
+        "unicodeCodePoints": 2815
+      },
+      "quick": {
+        "utf8Bytes": 4447,
+        "unicodeCodePoints": 3727
+      },
+      "fullSha256": "b0dd0f606bda7ae677dfd28628b95d1cfff485003b436e68a2ee9986813700b6",
+      "quickSha256": "e01fe9bb5b67ac4feed4720eb99ba29ac7af9bc4cbc8e7b5b9dc8e1585f580c0",
+      "byteReductionPercent": -25.55
+    },
+    {
+      "id": "wb-content-section",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 1969,
+        "unicodeCodePoints": 1507
+      },
+      "quick": {
+        "utf8Bytes": 2729,
+        "unicodeCodePoints": 2241
+      },
+      "fullSha256": "a8d24b316d7561da51612b7d946d901933b4d39498e5b56869f830b68b2b73ea",
+      "quickSha256": "8500e57a631fd4554f1b10c98f5f687c3ba762b50be120db3a3678c3cacb5f1f",
+      "byteReductionPercent": -38.6
+    },
+    {
+      "id": "wb-date-picker",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 9560,
+        "unicodeCodePoints": 7320
+      },
+      "quick": {
+        "utf8Bytes": 9270,
+        "unicodeCodePoints": 7300
+      },
+      "fullSha256": "41386ca7537408ee96dbb2c80670dac13fe189246a461b466c7aae849b55c0b2",
+      "quickSha256": "cca2e0dfba133c08dace1498b703958869a38b0dc200d806d5d7dcf94ee77f0c",
+      "byteReductionPercent": 3.03
+    },
+    {
+      "id": "wb-draft-list-filter",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 3341,
+        "unicodeCodePoints": 2531
+      },
+      "quick": {
+        "utf8Bytes": 3785,
+        "unicodeCodePoints": 3047
+      },
+      "fullSha256": "0eac7c1339d25a994709a9536f0b5ec3b32d6f42d87dcbad2adab11bfe2c0af3",
+      "quickSha256": "fb5286daa551a1af20939236ac61b0176e1f66cef8583794cdeaa9d25653cbbd",
+      "byteReductionPercent": -13.29
+    },
+    {
+      "id": "wb-drawer",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 25915,
+        "unicodeCodePoints": 21206
+      },
+      "quick": {
+        "utf8Bytes": 12273,
+        "unicodeCodePoints": 8959
+      },
+      "fullSha256": "675d9a1307528013eb9934a2bbd73b6e9a269c6bdc79a3d78a2e99ae55a2bb94",
+      "quickSha256": "a1a08a18cffa89416ed5deb725e663ffedae5272d6131308fb39f7879655486b",
+      "byteReductionPercent": 52.64
+    },
+    {
+      "id": "wb-dropdown",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 24025,
+        "unicodeCodePoints": 20702
+      },
+      "quick": {
+        "utf8Bytes": 10049,
+        "unicodeCodePoints": 8013
+      },
+      "fullSha256": "1cba1b901780c609771e111a9356134a34ba07bd1711b0addc2c2f882715394a",
+      "quickSha256": "8c328f9f282cabf0a60e3853ea262f341941c3dc6ba6dd052f810b8054b71eef",
+      "byteReductionPercent": 58.17
+    },
+    {
+      "id": "wb-empty-state",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 15143,
+        "unicodeCodePoints": 12620
+      },
+      "quick": {
+        "utf8Bytes": 7478,
+        "unicodeCodePoints": 5752
+      },
+      "fullSha256": "e77dc754a2746bdf3496121d0507aa21aed4321d65262f8529e1ea3f68c7defa",
+      "quickSha256": "6cf9dccab258c515f78c64850294abc8bb27c66afa5122cd368e5b91c511cfb1",
+      "byteReductionPercent": 50.62
+    },
+    {
+      "id": "wb-event-calendar",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 3513,
+        "unicodeCodePoints": 2461
+      },
+      "quick": {
+        "utf8Bytes": 4708,
+        "unicodeCodePoints": 3616
+      },
+      "fullSha256": "1b2996d860e44b2c8d69f1cdd87bc9c51b7b78c24ce63e8cd454c6257e493e8e",
+      "quickSha256": "f6de649e112f5fb20216b8d105bcae86a04a2698458dedfab36485e689b2274e",
+      "byteReductionPercent": -34.02
+    },
+    {
+      "id": "wb-expand-card",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2766,
+        "unicodeCodePoints": 2011
+      },
+      "quick": {
+        "utf8Bytes": 3768,
+        "unicodeCodePoints": 2946
+      },
+      "fullSha256": "463782cd8f727b6bb218e40953e5dca67f45708faf019d152b94a828403f05fa",
+      "quickSha256": "5c60032cd003964ddaba8a307b1bcb2c3e4d8b03fad735240930ab89dc16f051",
+      "byteReductionPercent": -36.23
+    },
+    {
+      "id": "wb-feedback-dialog",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 25118,
+        "unicodeCodePoints": 21383
+      },
+      "quick": {
+        "utf8Bytes": 10304,
+        "unicodeCodePoints": 8028
+      },
+      "fullSha256": "e36d117574621c20bbc11ec8f1acab212186a45168b36bed01ae6eba5922fc12",
+      "quickSha256": "b54a21d87e7a718791cc7c32f7e0f82502468ceb57765579386030cda6393c8e",
+      "byteReductionPercent": 58.98
+    },
+    {
+      "id": "wb-filter-chips",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2404,
+        "unicodeCodePoints": 1745
+      },
+      "quick": {
+        "utf8Bytes": 3410,
+        "unicodeCodePoints": 2682
+      },
+      "fullSha256": "27dd7787573f9524c52a1d6d3a2cfa4698e71a15fd8a2108add7beb06cf47bca",
+      "quickSha256": "1ff53084017d06fb0afe9bf219c491e7ee004e14bda0dccf82815f21c69c733d",
+      "byteReductionPercent": -41.85
+    },
+    {
+      "id": "wb-floating-button",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 12553,
+        "unicodeCodePoints": 9330
+      },
+      "quick": {
+        "utf8Bytes": 10097,
+        "unicodeCodePoints": 7663
+      },
+      "fullSha256": "cd8beaec2d2cf4a56668be729866d81ff6f0da0076ae19a51acfda024f548367",
+      "quickSha256": "878904e6420fb8a33542bdc3eff49501f1fd1b5d56512a226aee5a842a980f67",
+      "byteReductionPercent": 19.57
+    },
+    {
+      "id": "wb-followup-rows",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2023,
+        "unicodeCodePoints": 1535
+      },
+      "quick": {
+        "utf8Bytes": 2776,
+        "unicodeCodePoints": 2278
+      },
+      "fullSha256": "4494419db457d25711abc5f8dfbcaeebc223279417264414c9b305e054a8c8f2",
+      "quickSha256": "5cc20faf8fd78f654d72c87a5beb52c195d4083a215c4d118dc70d0f2a19acf3",
+      "byteReductionPercent": -37.22
+    },
+    {
+      "id": "wb-footer",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 8187,
+        "unicodeCodePoints": 6434
+      },
+      "quick": {
+        "utf8Bytes": 6066,
+        "unicodeCodePoints": 4733
+      },
+      "fullSha256": "1fdcef527edd7101b4deb6d81038910d914a611b9e81d9d41bf809adeb0fa689",
+      "quickSha256": "bece5e94442d5fe6633c7dfed01a6e2651eda6adea2f79d10c3d55b7977823bf",
+      "byteReductionPercent": 25.91
+    },
+    {
+      "id": "wb-form",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 17364,
+        "unicodeCodePoints": 13036
+      },
+      "quick": {
+        "utf8Bytes": 14804,
+        "unicodeCodePoints": 11378
+      },
+      "fullSha256": "a73827f6db247af55c3b0c53a0c5741b8d536b2102181fb8a02abbd826b7ce36",
+      "quickSha256": "bc84c90fbbd395743854c148b7934b851abf01e094b044d5193ea6a2558ffe19",
+      "byteReductionPercent": 14.74
+    },
+    {
+      "id": "wb-image-upload",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 24015,
+        "unicodeCodePoints": 20619
+      },
+      "quick": {
+        "utf8Bytes": 9635,
+        "unicodeCodePoints": 7459
+      },
+      "fullSha256": "db30636f7b81ff75cfa3b8083bcfb6679d5f5cdf22fbc8ae1931a967a066a461",
+      "quickSha256": "c85c4121811bc377a9223145c287322b5d8020425c5a06c24c300c2646ab3070",
+      "byteReductionPercent": 59.88
+    },
+    {
+      "id": "wb-info-list",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2559,
+        "unicodeCodePoints": 1840
+      },
+      "quick": {
+        "utf8Bytes": 3556,
+        "unicodeCodePoints": 2790
+      },
+      "fullSha256": "b6cbb80deddb93744b9bea249125adc5057328c9fa203b7a55051e424fa93a8f",
+      "quickSha256": "dbb00928ea00eb4dfba4b0bac8d980fc1d341a853f89c31b057b9f2684b79429",
+      "byteReductionPercent": -38.96
+    },
+    {
+      "id": "wb-information-card",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 16616,
+        "unicodeCodePoints": 14479
+      },
+      "quick": {
+        "utf8Bytes": 5576,
+        "unicodeCodePoints": 4807
+      },
+      "fullSha256": "8e3cf50f84c67ee36ff4d1ddaed93aa968a4e1a830e0634e8e9285778cf9163f",
+      "quickSha256": "2cba51a7bdbd405880258c309788402ae250f111fe7279c174a678097a2413b7",
+      "byteReductionPercent": 66.44
+    },
+    {
+      "id": "wb-input",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 25745,
+        "unicodeCodePoints": 17345
+      },
+      "quick": {
+        "utf8Bytes": 24184,
+        "unicodeCodePoints": 17074
+      },
+      "fullSha256": "18739dbd6dd710cbed512a2edec6a18be9626f8cccd77db065792d3041e08fe4",
+      "quickSha256": "3b8859952c463de6952129a2ee22448376e7b12246137d0b50bfd267bfd2f281",
+      "byteReductionPercent": 6.06
+    },
+    {
+      "id": "wb-link",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 7303,
+        "unicodeCodePoints": 5360
+      },
+      "quick": {
+        "utf8Bytes": 7433,
+        "unicodeCodePoints": 5715
+      },
+      "fullSha256": "f36dcf740d07dd6afc8867e999510ac3f10ab94b189d1756749c37376dedd301",
+      "quickSha256": "c6686b0ddcfa61624af3dd18512b02520dc0816a0a8ceda367119ba71d0ff5a7",
+      "byteReductionPercent": -1.78
+    },
+    {
+      "id": "wb-loading",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 7832,
+        "unicodeCodePoints": 6071
+      },
+      "quick": {
+        "utf8Bytes": 6957,
+        "unicodeCodePoints": 5365
+      },
+      "fullSha256": "63b4419f0a430999cc4256347746e70c9e47895d9b9b434117f36461a0580adb",
+      "quickSha256": "453a7374c9b137e806d5c8c136692ddc78a1dbb6874996479f0383539e164e6e",
+      "byteReductionPercent": 11.17
+    },
+    {
+      "id": "wb-management-form-modal",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2863,
+        "unicodeCodePoints": 2110
+      },
+      "quick": {
+        "utf8Bytes": 3882,
+        "unicodeCodePoints": 3087
+      },
+      "fullSha256": "c8519e1038578b51f9edaaf9016256b6e025d2f399907391f78a5c395b3b4146",
+      "quickSha256": "ef4c56ead10256e900456d349e2101e13658bd3f143155788107fe3d9d5a3d41",
+      "byteReductionPercent": -35.59
+    },
+    {
+      "id": "wb-media-card",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 16560,
+        "unicodeCodePoints": 14375
+      },
+      "quick": {
+        "utf8Bytes": 5576,
+        "unicodeCodePoints": 4761
+      },
+      "fullSha256": "646cf97f8c90a1a9c18fac4124f190baa7ba1a365ccb7081a9e5ad050d8c1e2f",
+      "quickSha256": "700f89704516d4e1224bf249051f351760f11b902a8129c9fb0eb3c5765a4201",
+      "byteReductionPercent": 66.33
+    },
+    {
+      "id": "wb-message",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 16599,
+        "unicodeCodePoints": 13059
+      },
+      "quick": {
+        "utf8Bytes": 11004,
+        "unicodeCodePoints": 8338
+      },
+      "fullSha256": "5235843477c71d29ea2fddae636c8ffd3413923af86820f958af59e3bc4059cb",
+      "quickSha256": "a69fca9b9cebcc875e9278a4fa9b2fc41c2aaa1181a2a75bcbc46add6475ffe3",
+      "byteReductionPercent": 33.71
+    },
+    {
+      "id": "wb-metric-card",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 15950,
+        "unicodeCodePoints": 13809
+      },
+      "quick": {
+        "utf8Bytes": 5244,
+        "unicodeCodePoints": 4471
+      },
+      "fullSha256": "85fd5b225f9e62c4c205c08520ac0be488cc0b1d457d3c125f7b288166f6f334",
+      "quickSha256": "4d9aaebe7d8ddb6b15fadeb72211bb087a556c1cb412a3dba1cacd7bc8af9faf",
+      "byteReductionPercent": 67.12
+    },
+    {
+      "id": "wb-modal",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 25948,
+        "unicodeCodePoints": 21290
+      },
+      "quick": {
+        "utf8Bytes": 12862,
+        "unicodeCodePoints": 9562
+      },
+      "fullSha256": "31dbaea06029517037e3d0ade99d5d93bc899a92463e9e2cf8abf9b13e3323c7",
+      "quickSha256": "635c7786106c42bfca32d252f8a852a9a07a05f044fb90f4e95af00ba3016779",
+      "byteReductionPercent": 50.43
+    },
+    {
+      "id": "wb-more-action",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2326,
+        "unicodeCodePoints": 1683
+      },
+      "quick": {
+        "utf8Bytes": 3302,
+        "unicodeCodePoints": 2598
+      },
+      "fullSha256": "6524e22ebf104fb09b9de38132075a0c421e89600e794f31f13ca347a58ac22a",
+      "quickSha256": "116830a88721bfe65d76da8ef4b05db2e538654f4ff3490e9c173691dbb85911",
+      "byteReductionPercent": -41.96
+    },
+    {
+      "id": "wb-nested-confirmation",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 3093,
+        "unicodeCodePoints": 2321
+      },
+      "quick": {
+        "utf8Bytes": 4149,
+        "unicodeCodePoints": 3325
+      },
+      "fullSha256": "1a9e0ebd83c415c67b6838698048dea63853700c0b459027dd62eec97134f1c4",
+      "quickSha256": "7a9454b7aae8902310844097ea7331d8784dc7bebda7011fadda7f9928d59817",
+      "byteReductionPercent": -34.14
+    },
+    {
+      "id": "wb-notification",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 14306,
+        "unicodeCodePoints": 11496
+      },
+      "quick": {
+        "utf8Bytes": 8472,
+        "unicodeCodePoints": 6476
+      },
+      "fullSha256": "3b24a771baaa4834000614cd135f43d2eea0691eeb16b124293f8e6d5d3fd6b5",
+      "quickSha256": "502b1e02a9d5db7ed9f1a5e0a0ec66969b64abf8f06f3e1b4ee6ef2725f6c834",
+      "byteReductionPercent": 40.78
+    },
+    {
+      "id": "wb-number-count",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 8141,
+        "unicodeCodePoints": 6492
+      },
+      "quick": {
+        "utf8Bytes": 6653,
+        "unicodeCodePoints": 5247
+      },
+      "fullSha256": "2bcdf824bfd0ffb628c911be7bd3328d34825e909fd827d462cfb1bcf7bdcc1c",
+      "quickSha256": "1454af39e5acd9400e0b18d22d79d1ac36410d17edfbf2360e4e163d8fedd013",
+      "byteReductionPercent": 18.28
+    },
+    {
+      "id": "wb-pagination",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 11511,
+        "unicodeCodePoints": 8811
+      },
+      "quick": {
+        "utf8Bytes": 9686,
+        "unicodeCodePoints": 7394
+      },
+      "fullSha256": "7f50bb23c8f41a1e9be63aa572ac08cf34ac047b87f4a9393862a5822bf0282d",
+      "quickSha256": "d59bc8e7b379a0d4ec81bc4d33686be913bb8ff072c06759f257e7a6750cda59",
+      "byteReductionPercent": 15.85
+    },
+    {
+      "id": "wb-pedestal-icon",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 4614,
+        "unicodeCodePoints": 3529
+      },
+      "quick": {
+        "utf8Bytes": 3705,
+        "unicodeCodePoints": 2875
+      },
+      "fullSha256": "1eb84c2373e495e2e0bdbd2da11a5d11f90de9b59d4da821e3a19f55a5098513",
+      "quickSha256": "352f012f54e00f9b3368065202e9fe984aa0391fa60ffb2a222e35e787fb130d",
+      "byteReductionPercent": 19.7
+    },
+    {
+      "id": "wb-policy-links",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2460,
+        "unicodeCodePoints": 1785
+      },
+      "quick": {
+        "utf8Bytes": 3506,
+        "unicodeCodePoints": 2776
+      },
+      "fullSha256": "8f2b755545afb16a92e46a5ad9db9b03e8d9f1e4f9ae7add3c62e97bcd9e5289",
+      "quickSha256": "6b8c21e640aa9a3577383f6a9a94b405eea9e56a1e2c2159dda9288dd1b5c847",
+      "byteReductionPercent": -42.52
+    },
+    {
+      "id": "wb-popconfirm",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 35915,
+        "unicodeCodePoints": 31301
+      },
+      "quick": {
+        "utf8Bytes": 10118,
+        "unicodeCodePoints": 7744
+      },
+      "fullSha256": "3f552ade0d5ea45268a4aea01dae41640609a427985aa40fa7a6d7d1b5fdfe85",
+      "quickSha256": "a793ea72a62b8181fee133856e6351021d4f65a1dd2882c2ddf19c8ca4b88fff",
+      "byteReductionPercent": 71.83
+    },
+    {
+      "id": "wb-popover",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 22987,
+        "unicodeCodePoints": 19313
+      },
+      "quick": {
+        "utf8Bytes": 7960,
+        "unicodeCodePoints": 5942
+      },
+      "fullSha256": "cd88fdac1738282c6b32db61be458b843ab83dfc40bb84afd3348b34576e01ab",
+      "quickSha256": "ebfd592be6834e340b5b514d9e526f7b7557a513c248c9a07659713a78da69a8",
+      "byteReductionPercent": 65.37
+    },
+    {
+      "id": "wb-quick-app-card",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 16087,
+        "unicodeCodePoints": 13938
+      },
+      "quick": {
+        "utf8Bytes": 5319,
+        "unicodeCodePoints": 4542
+      },
+      "fullSha256": "13cc275b04a5ed48ce098d99977f0ca101881ee1d535f9273c74ed1f92cfec38",
+      "quickSha256": "6ce03d0f1dd6676967faf9a3384a55d0022f128d7f2a75f40314e5dc8e64614c",
+      "byteReductionPercent": 66.94
+    },
+    {
+      "id": "wb-radio",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 7842,
+        "unicodeCodePoints": 5947
+      },
+      "quick": {
+        "utf8Bytes": 7717,
+        "unicodeCodePoints": 6058
+      },
+      "fullSha256": "e6d4ff5f97ddd0724633abf8f241426df6aa0b238c86fc85cbc95ca4999b6030",
+      "quickSha256": "71e48ca66939bae9d309313da8a6421a817dd88688e0cc32433aec348166d5de",
+      "byteReductionPercent": 1.59
+    },
+    {
+      "id": "wb-rating",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 9509,
+        "unicodeCodePoints": 6797
+      },
+      "quick": {
+        "utf8Bytes": 9520,
+        "unicodeCodePoints": 6948
+      },
+      "fullSha256": "eda3919fb504445f14fba62d88927a4557d369fbd9817ade0523e9f7b227b6ae",
+      "quickSha256": "7e14c06ed097b04af90483e50beb44771f75615690d9c2fafef8dabf29488a9c",
+      "byteReductionPercent": -0.12
+    },
+    {
+      "id": "wb-readonly-fields",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2292,
+        "unicodeCodePoints": 1784
+      },
+      "quick": {
+        "utf8Bytes": 3156,
+        "unicodeCodePoints": 2662
+      },
+      "fullSha256": "1f8031968c6d7e9da0905ec3a266e58a5e1fc531cd4eb47cc104325339e6ef52",
+      "quickSha256": "75da90374d310a72eb1190bbb5cb335a2d5eaf60856505c4d6028c2830f9e06d",
+      "byteReductionPercent": -37.7
+    },
+    {
+      "id": "wb-scrollbar",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 12642,
+        "unicodeCodePoints": 8815
+      },
+      "quick": {
+        "utf8Bytes": 12324,
+        "unicodeCodePoints": 8890
+      },
+      "fullSha256": "c5fbd131ec0cc11cc6d29ea232eb3c56885b7a6c9622883f6d0266a13bc84c86",
+      "quickSha256": "9a0d609071c6cba2459fba5028432a0c26a86604c5b9adeec8eedc3167e3cfef",
+      "byteReductionPercent": 2.52
+    },
+    {
+      "id": "wb-search",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 40823,
+        "unicodeCodePoints": 32612
+      },
+      "quick": {
+        "utf8Bytes": 20409,
+        "unicodeCodePoints": 14693
+      },
+      "fullSha256": "be7b9ff9b7dcc110e9df347667a5508a327869e3efd90de74583081b45307f9e",
+      "quickSha256": "4f5b13a87c029c62792b45a95573613bf2137c1faaf0eff49e78f24bcf5b93de",
+      "byteReductionPercent": 50.01
+    },
+    {
+      "id": "wb-select",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 18624,
+        "unicodeCodePoints": 13161
+      },
+      "quick": {
+        "utf8Bytes": 15177,
+        "unicodeCodePoints": 10478
+      },
+      "fullSha256": "44679e93e9fe22c67300dc2d3dc0ced12084f27b84769bdfb6813d6fa981b149",
+      "quickSha256": "a198244eed460be96207bc4a99e9647b5ebb3d78232484feeab69d227ef544c1",
+      "byteReductionPercent": 18.51
+    },
+    {
+      "id": "wb-side-navigation",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 20448,
+        "unicodeCodePoints": 15771
+      },
+      "quick": {
+        "utf8Bytes": 12738,
+        "unicodeCodePoints": 9413
+      },
+      "fullSha256": "c25874fd880c3ac3438b3fcfb5e1fd2a7db690d2f08025a4ba7de93ec53db608",
+      "quickSha256": "a711a644c6ac7d97e0faf648e1a22c213758e520fea64f374833192858a77bed",
+      "byteReductionPercent": 37.71
+    },
+    {
+      "id": "wb-skeleton",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 9272,
+        "unicodeCodePoints": 7259
+      },
+      "quick": {
+        "utf8Bytes": 7949,
+        "unicodeCodePoints": 6309
+      },
+      "fullSha256": "c06e429f4d6b3b51bd0e508e1578514973cd470a3d9cfa4ec16c1508341651e3",
+      "quickSha256": "079478125458797d6e4bf09fd26379b47f59557b28ff8172432d81d6a7da745d",
+      "byteReductionPercent": 14.27
+    },
+    {
+      "id": "wb-slider",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 12678,
+        "unicodeCodePoints": 10078
+      },
+      "quick": {
+        "utf8Bytes": 8684,
+        "unicodeCodePoints": 6824
+      },
+      "fullSha256": "65101b8d56daf630ca20e0436fb16c31c1f5635de53be9b5118d803d96b1ea4d",
+      "quickSha256": "1afdf6ee4d2948a8dcfdb3411f6e2cec11788fd6b72a491397ed2c399aaedb15",
+      "byteReductionPercent": 31.5
+    },
+    {
+      "id": "wb-steps",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 12270,
+        "unicodeCodePoints": 10440
+      },
+      "quick": {
+        "utf8Bytes": 6541,
+        "unicodeCodePoints": 5149
+      },
+      "fullSha256": "176147adfb24ca36ccd4d9d1034d58268d1565f44e5a333de30d557000195d98",
+      "quickSha256": "0097c98a2742580af10424032551bba06b38e1acae9b323b7336cbfaa7351684",
+      "byteReductionPercent": 46.69
+    },
+    {
+      "id": "wb-switch",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 6082,
+        "unicodeCodePoints": 4684
+      },
+      "quick": {
+        "utf8Bytes": 6056,
+        "unicodeCodePoints": 4828
+      },
+      "fullSha256": "af54e63ee33948abab5640c57825098192a460083a9b31c8ec82a45477f458aa",
+      "quickSha256": "b3f0eaffdfaed8ac090ea72de1ea5a1bf3b46344b7316e7e377d6566ffdd58c4",
+      "byteReductionPercent": 0.43
+    },
+    {
+      "id": "wb-table",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 34215,
+        "unicodeCodePoints": 25401
+      },
+      "quick": {
+        "utf8Bytes": 27214,
+        "unicodeCodePoints": 20216
+      },
+      "fullSha256": "aaaba10c0d4a0c2f61069b3d4f9c4609c8223751446a639adab3dd0d37e0373e",
+      "quickSha256": "0c979544f9fada3879603e2c864f071b5d0c2d6fa847d95f99f3865b32d13a71",
+      "byteReductionPercent": 20.46
+    },
+    {
+      "id": "wb-table-actions-selection",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 3461,
+        "unicodeCodePoints": 2625
+      },
+      "quick": {
+        "utf8Bytes": 4694,
+        "unicodeCodePoints": 3832
+      },
+      "fullSha256": "1240aa9c35fd1f1233b3852651fcc3315fb0cd3473770ecf5a8df3185def07c5",
+      "quickSha256": "91628b4ae4641704db66dddd3d5454a26047c6e70faad6da5e3213c3e9017f4e",
+      "byteReductionPercent": -35.63
+    },
+    {
+      "id": "wb-tabs",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 11557,
+        "unicodeCodePoints": 8889
+      },
+      "quick": {
+        "utf8Bytes": 8493,
+        "unicodeCodePoints": 6349
+      },
+      "fullSha256": "13040092bc1e6b2f8250ecfe31dfd796ce20fbbff203379eee35b45a5746c764",
+      "quickSha256": "c4995a664b472a745b2055eb00f578d2fc8b82b1317d0b85a50f515999bff6be",
+      "byteReductionPercent": 26.51
+    },
+    {
+      "id": "wb-tabs-header",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2529,
+        "unicodeCodePoints": 1842
+      },
+      "quick": {
+        "utf8Bytes": 3535,
+        "unicodeCodePoints": 2787
+      },
+      "fullSha256": "40cafb6daacd00423a58447eafb3de685def336595a1f3b4fb00e52db430f6d6",
+      "quickSha256": "51eca9cf3ae8edfdca153424e95fb98e9c3789ace10f8c6d7a0578b82c99413e",
+      "byteReductionPercent": -39.78
+    },
+    {
+      "id": "wb-tag",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 16278,
+        "unicodeCodePoints": 13282
+      },
+      "quick": {
+        "utf8Bytes": 9265,
+        "unicodeCodePoints": 7123
+      },
+      "fullSha256": "fa6a164dbf18c170ecf040dc13c237867961b590873a054698474c6a472a4261",
+      "quickSha256": "0c80ab6694514ffde03bf7b62f54547fbdd5593a5d050d265034b68d9859b4b4",
+      "byteReductionPercent": 43.08
+    },
+    {
+      "id": "wb-time-picker",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 9453,
+        "unicodeCodePoints": 7221
+      },
+      "quick": {
+        "utf8Bytes": 7607,
+        "unicodeCodePoints": 5687
+      },
+      "fullSha256": "4343d65698beb2fbc3671681ff79c9fcd2f4647e860ac62fe1cb229e16419c9e",
+      "quickSha256": "fad2abbc25403e25a33e1817b05dc390e48ac380349689999a28985f2dd61fd5",
+      "byteReductionPercent": 19.53
+    },
+    {
+      "id": "wb-timeline",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 7878,
+        "unicodeCodePoints": 6060
+      },
+      "quick": {
+        "utf8Bytes": 6178,
+        "unicodeCodePoints": 4640
+      },
+      "fullSha256": "e2c5e0d0613c89ac32e852905605cb5f132a4c3f3534e20283f4d63113cf8b21",
+      "quickSha256": "41b71f27b0fc3fe9372b33a71269a142e56ac2821a5a04f7445eb5ac4dfddd8b",
+      "byteReductionPercent": 21.58
+    },
+    {
+      "id": "wb-tooltip",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 25554,
+        "unicodeCodePoints": 21486
+      },
+      "quick": {
+        "utf8Bytes": 8307,
+        "unicodeCodePoints": 6133
+      },
+      "fullSha256": "939cfd7373ae354fe76696539d19be6f4b78b5142e70f0ec340018d115ed3bf9",
+      "quickSha256": "ccf11e0b26be63afe9ee044a02c14c4aabe5896777ccfbb3c6c6941ef23045d6",
+      "byteReductionPercent": 67.49
+    },
+    {
+      "id": "wb-top-nav",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 19480,
+        "unicodeCodePoints": 15732
+      },
+      "quick": {
+        "utf8Bytes": 11138,
+        "unicodeCodePoints": 8722
+      },
+      "fullSha256": "d6cc19b2bd69d7037a166b813cf1d8c34b0dbd5db0d9e0d794f3a27bb3f112f6",
+      "quickSha256": "20fed1fb6e6d25e76832b217e9327f46489618373b4bd9ce138ca854736a573f",
+      "byteReductionPercent": 42.82
+    },
+    {
+      "id": "wb-transaction-stage-progress",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 2149,
+        "unicodeCodePoints": 1651
+      },
+      "quick": {
+        "utf8Bytes": 2957,
+        "unicodeCodePoints": 2441
+      },
+      "fullSha256": "29914d145c96b7ebd1e17aca28618ad7fbcb09b64bf397cb6da3004be666dfc4",
+      "quickSha256": "7a78c0d3cfd0b29f5156991d6331d006188e32acb08b937dc2fcd068864501d2",
+      "byteReductionPercent": -37.6
+    },
+    {
+      "id": "wb-transfer",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 16898,
+        "unicodeCodePoints": 14089
+      },
+      "quick": {
+        "utf8Bytes": 9325,
+        "unicodeCodePoints": 7405
+      },
+      "fullSha256": "3bcd9adbcdca5009e930017361a2c500e345e7969511ebb2ff8404ec4d675acb",
+      "quickSha256": "0eb94b0e19f6d6f8b547a08179cc3d0912cf4de0fdbcef6573622e58414293ce",
+      "byteReductionPercent": 44.82
+    },
+    {
+      "id": "wb-tree",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 14843,
+        "unicodeCodePoints": 11937
+      },
+      "quick": {
+        "utf8Bytes": 10051,
+        "unicodeCodePoints": 7803
+      },
+      "fullSha256": "1de55a75b0c0ad3fbcaf020c5001e692aee062a1c718046be45c3111d70b96d8",
+      "quickSha256": "ac8154a33f99f751fefb0ba985bf67eafe13a0492c3b998f469e86690ec827d7",
+      "byteReductionPercent": 32.28
+    },
+    {
+      "id": "wb-upload",
+      "package": "@workbench/ui-vue3",
+      "full": {
+        "utf8Bytes": 24462,
+        "unicodeCodePoints": 20643
+      },
+      "quick": {
+        "utf8Bytes": 11251,
+        "unicodeCodePoints": 8789
+      },
+      "fullSha256": "9595eb9b9a45f0466644828809f13a8855ec7a9364ef1a1cdffd0685f1593b84",
+      "quickSha256": "84bcd1ad2a1a3c15790d3832f161e4ecae431885037a6f35a919573fc8e4ab39",
+      "byteReductionPercent": 54.01
+    },
+    {
+      "id": "agreement-assistant-panel",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 9281,
+        "unicodeCodePoints": 9033
+      },
+      "quick": {
+        "utf8Bytes": 7428,
+        "unicodeCodePoints": 7056
+      },
+      "fullSha256": "ee875221b80184f9e2feae21b8ee01c0dbfed3b9a1d656490216033bcf71e9f3",
+      "quickSha256": "455e5dbf221c5a6bf49d39f83fe022d5c3288991f04dbfa8fc741a1992a5bb10",
+      "byteReductionPercent": 19.97
+    },
+    {
+      "id": "agreement-table",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 4383,
+        "unicodeCodePoints": 4135
+      },
+      "quick": {
+        "utf8Bytes": 3263,
+        "unicodeCodePoints": 2891
+      },
+      "fullSha256": "f48bb2419cf949972a27f7ff6d796b3a4037f820deecf8f554508a2dc62b8e3c",
+      "quickSha256": "5205319c870bb77dca79c3281d2aca6d7d2ac6b187a6c77ddf8cd83c75a8633b",
+      "byteReductionPercent": 25.55
+    },
+    {
+      "id": "ai-alert",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 3505,
+        "unicodeCodePoints": 3257
+      },
+      "quick": {
+        "utf8Bytes": 2990,
+        "unicodeCodePoints": 2618
+      },
+      "fullSha256": "ee632d963128d21e2b56e0dc766e24688d2f01caa0285263bb75e86085806e98",
+      "quickSha256": "83b79c19764099bc644492b163aa1dee4336949ba92c7ff32f095888cac72ba4",
+      "byteReductionPercent": 14.69
+    },
+    {
+      "id": "ai-icon",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 4279,
+        "unicodeCodePoints": 4031
+      },
+      "quick": {
+        "utf8Bytes": 2639,
+        "unicodeCodePoints": 2267
+      },
+      "fullSha256": "cbe719051dba130aa21c6af3af97cfa91a3c88a848ec58d92f037a670770af35",
+      "quickSha256": "36e93c1993f8086fc128cd861fa15614092947226be5e10e7d6b57b77fc6fd74",
+      "byteReductionPercent": 38.33
+    },
+    {
+      "id": "ai-icon-provider",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 4119,
+        "unicodeCodePoints": 3871
+      },
+      "quick": {
+        "utf8Bytes": 3094,
+        "unicodeCodePoints": 2722
+      },
+      "fullSha256": "e487a1ac532eb729fb114fa22bfab88e10f1ab5b5770a34a1f297a93b34a19e5",
+      "quickSha256": "e00fd8a22385e65c4b3de84e9e9e43e61a5b9757794726d99e9851ad6c3798fb",
+      "byteReductionPercent": 24.88
+    },
+    {
+      "id": "ai-summary-card",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 4832,
+        "unicodeCodePoints": 4584
+      },
+      "quick": {
+        "utf8Bytes": 3151,
+        "unicodeCodePoints": 2779
+      },
+      "fullSha256": "b41aeadac69f9611ece7e256f9d27cea1ce383ae90160396148f729c5cc74846",
+      "quickSha256": "ac6ba1a6999e7a4217df4e42c620825a8196f3feb5ca80ce6a0989a7c8a776ce",
+      "byteReductionPercent": 34.79
+    },
+    {
+      "id": "ai-toast",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 3284,
+        "unicodeCodePoints": 3036
+      },
+      "quick": {
+        "utf8Bytes": 3215,
+        "unicodeCodePoints": 2843
+      },
+      "fullSha256": "5e6c0a9ac930ac0a72918a20d1b669476a2b99c2e279e95921b4be15cb44b77e",
+      "quickSha256": "b7eb26d48cc5881288464e9885f697e2f2b45138b2d98b9702b4639cdef3f222",
+      "byteReductionPercent": 2.1
+    },
+    {
+      "id": "assistant-host-layout",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 6009,
+        "unicodeCodePoints": 5669
+      },
+      "quick": {
+        "utf8Bytes": 5016,
+        "unicodeCodePoints": 4573
+      },
+      "fullSha256": "53e1d8bd459075abb0c78cfefaf6b20b5113ddf1e828f5529ec2bb2c41741723",
+      "quickSha256": "7f2d7f3d3ac1aa525d39b54eb43e233b0c1d12452a2b067354337774e2bc83f3",
+      "byteReductionPercent": 16.53
+    },
+    {
+      "id": "business-navigation-card",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 4320,
+        "unicodeCodePoints": 4072
+      },
+      "quick": {
+        "utf8Bytes": 3111,
+        "unicodeCodePoints": 2739
+      },
+      "fullSha256": "3f2adabbf77a480cd4a27e9821345b02dadd8a350f74ec07dfd16301b0a7ce88",
+      "quickSha256": "b72285bf5809d8bb9b298d861823e87c449caf2a864960904b32e74a208a3503",
+      "byteReductionPercent": 27.99
+    },
+    {
+      "id": "business-overlay-host",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 2936,
+        "unicodeCodePoints": 2630
+      },
+      "quick": {
+        "utf8Bytes": 2909,
+        "unicodeCodePoints": 2492
+      },
+      "fullSha256": "b970c60c06990e84a54b1f494b0b084829ba3190787051cc866248b43ecce927",
+      "quickSha256": "c4b813d4b8930e7f1faead4e4106c5e5150748d35e71e17b97e6d561d9c31378",
+      "byteReductionPercent": 0.92
+    },
+    {
+      "id": "business-table",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 4595,
+        "unicodeCodePoints": 4339
+      },
+      "quick": {
+        "utf8Bytes": 3829,
+        "unicodeCodePoints": 3449
+      },
+      "fullSha256": "aec35c0ee57e05af85b595058eb28551e2abf3db47b185769515947484d64e1f",
+      "quickSha256": "2bef71ecc4a36f8f41e8339c15a761340ea6cb20a4a906d04b34b146ad813afd",
+      "byteReductionPercent": 16.67
+    },
+    {
+      "id": "chat-panel",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 14295,
+        "unicodeCodePoints": 13955
+      },
+      "quick": {
+        "utf8Bytes": 7990,
+        "unicodeCodePoints": 7547
+      },
+      "fullSha256": "32ef009fb5b2f5fd14bc892421a43af33b812cbbd8cf7f3f177d7d00be2df074",
+      "quickSha256": "86b68dca1b3da8dccdff34a5f35e7f8e10a93c50a99f6c8e72cea1396198c0ff",
+      "byteReductionPercent": 44.11
+    },
+    {
+      "id": "conversation-history-panel",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 5456,
+        "unicodeCodePoints": 5116
+      },
+      "quick": {
+        "utf8Bytes": 3674,
+        "unicodeCodePoints": 3231
+      },
+      "fullSha256": "38c7e78c2417a597c28838c67f0130ae9c78d0c4f364b9723294b1995006fe1f",
+      "quickSha256": "e5e6fc8df05ca9541a7e07c32ed7c3600537d71376955db15f66db5cd41ff9e9",
+      "byteReductionPercent": 32.66
+    },
+    {
+      "id": "ui-dialog",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 5126,
+        "unicodeCodePoints": 4820
+      },
+      "quick": {
+        "utf8Bytes": 3131,
+        "unicodeCodePoints": 2714
+      },
+      "fullSha256": "e4a5832bfd6dd00565cfd69381552cee7ab505a83c8108d1d7880c6e9e283be3",
+      "quickSha256": "9a696cb2fc92855764e9fc987a44f9e745b500fb381374281b114a04e61ebd93",
+      "byteReductionPercent": 38.92
+    },
+    {
+      "id": "workspace-smart-card",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 6839,
+        "unicodeCodePoints": 6591
+      },
+      "quick": {
+        "utf8Bytes": 4294,
+        "unicodeCodePoints": 3922
+      },
+      "fullSha256": "73818650e24dbb0f94425fe94faa936057f8d5d467a2892e8108846efaf0c3ad",
+      "quickSha256": "6ce6e4d399a6b8bc0be0d9c43b7bc16acb8160507a3c27234d0200815728e348",
+      "byteReductionPercent": 37.21
+    },
+    {
+      "id": "workspace-smart-icon",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 4371,
+        "unicodeCodePoints": 4123
+      },
+      "quick": {
+        "utf8Bytes": 2734,
+        "unicodeCodePoints": 2362
+      },
+      "fullSha256": "81ab7717597237a08c7afa5d7c15203f3bc4807608d2feae0ae476feeed1f900",
+      "quickSha256": "875f5f5d0e4196b5017198988ae10796d0069151a32e7763017d5d35fcd2938b",
+      "byteReductionPercent": 37.45
+    },
+    {
+      "id": "workspace-smart-tabs",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 5146,
+        "unicodeCodePoints": 4890
+      },
+      "quick": {
+        "utf8Bytes": 3771,
+        "unicodeCodePoints": 3391
+      },
+      "fullSha256": "cf4b32e81eafebd1248f6d878976330cce0150494dadce9d79933bcae0af0123",
+      "quickSha256": "a1c48bb7e11ef1e491499117908edcd175b1e4b33454db93b3c293dffcc2e0fa",
+      "byteReductionPercent": 26.72
+    },
+    {
+      "id": "workspace-smart-tag",
+      "package": "huawei-partner-ai-ui",
+      "full": {
+        "utf8Bytes": 5697,
+        "unicodeCodePoints": 5449
+      },
+      "quick": {
+        "utf8Bytes": 3232,
+        "unicodeCodePoints": 2860
+      },
+      "fullSha256": "0489e3891c3df6cae72a2dded436e25c65629e5fd7a8cd098262451d00306875",
+      "quickSha256": "21b3165bfa2865177e817f1d59be4ffd211cbe58ea7ac8eec165bf80d2b720d0",
+      "byteReductionPercent": 43.27
+    }
+  ]
+}

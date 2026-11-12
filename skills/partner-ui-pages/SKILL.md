@@ -17,16 +17,18 @@ description: 用伙伴工作台 Workbench 与 AI UI 消费包制作离线演示�
 | 修改现有 JS 项目 | 先 `project_index.mjs --query` 或 `--changed`，再读命中源码与 API |
 | PRD / 截图转 Demo | 先列页面、状态、交互和资产映射；必要假设写入交付，随后走 JS 项目模式 |
 | 改造已有 HTML / 保留六个经典模板 | [references/html-workflow.md](references/html-workflow.md)；转换器细节见 [restyle.md](references/restyle.md) |
-| 查询组件、Block、Token 或图标 | `catalog.mjs` 定位条目，再读返回的 reference 路径 |
+| 查询组件或 Block | `node scripts/assets.mjs search --query "关键词" --limit 5`，再 `show --id <id>` 读取速查；需变体/更多示例用 `--view full` |
+| 查询 Token 或图标 | 按需查 Token / 图标资料，不全量展开 |
 
 ## JS 项目的默认流程
 
-以下命令从 Skill 根目录执行；项目可以放在任意工作目录。
+以下命令从 Skill 根目录执行；项目可以放在任意工作目录，其他工作目录请使用脚本绝对路径。`assets.mjs` 是无需运行时的资料查询，不替代构建锁/运行时验证；旧 `catalog.mjs --name/--query` 的行为保留。
 
 ```sh
 node scripts/new_project.mjs --out ./my-demo --title "伙伴经营工作台"
 node scripts/project_index.mjs ./my-demo --query 伙伴
-node scripts/catalog.mjs --name WorkbenchTable
+node scripts/assets.mjs search --query WorkbenchTable --limit 5
+node scripts/assets.mjs show --id wb-table
 node scripts/check_project.mjs ./my-demo
 node scripts/emit_project.mjs ./my-demo
 node scripts/emit_project.mjs ./my-demo --single
@@ -61,7 +63,7 @@ node scripts/emit_project.mjs ./my-demo --single
 
 - [project.md](references/project.md)：项目合同、命令、模块实例/路由、资产、导出与检查边界。
 - [runtime-api.md](references/runtime-api.md)：现有 PartnerUI helpers、聊天模拟与旧模板写法。
-- [workbench/index.md](references/workbench/index.md)、[ai-ui.md](references/ai-ui.md)：从锁包生成的组件资料；先用 catalog 定位目标。
+- [workbench/index.md](references/workbench/index.md)、[ai-ui.md](references/ai-ui.md)：从锁包生成的完整组件资料；先用 `assets.mjs search/show` 定位并读速查，再按需展开完整资料。
 - [design-rules.md](references/design-rules.md)、[patterns.md](references/patterns.md)、[tokens.md](references/tokens.md)、[icons.md](references/icons.md)：只读任务相关部分。
 - 随包 `assets/gallery` 提供元数据生成图库，`node scripts/serve_gallery.mjs` 启动本地浏览；缺失案例保留说明，不推测补全。
 - `scripts/toolchain` 是随包编译工具，不进入 Demo 或 Agent 业务上下文。`maintainer/` 和 vendor 仅用于维护重建，普通消费不用读取。

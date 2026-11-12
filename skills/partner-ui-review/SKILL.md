@@ -9,6 +9,10 @@ description: 复查使用 Workbench 与 Huawei Partner AI UI 的消费页面、V
 
 **间距先分责任层。** 正式组件/Block 内部按自身公开契约和变体核对，有意的内部 padding/光学间距不套用页面通用网格。页面排版、Demo 自建业务卡片、卡内多内容及 slot 拼装必须严格遵守现有布局规范；封装成组件不构成豁免。先读 [组合间距边界](references/composition.md)，建立有规范依据的角色/间距契约；既查 Token 合法性，也查使用位置和最终叠加距离。
 
+## 按需核对资产
+
+使用 `node scripts/assets.mjs search --query "关键词" --limit 5` 定位组件/Block，再用 `node scripts/assets.mjs show --id <id>` 读取速查；核对变体、完整案例或更多示例时加 `--view full`。其他工作目录用脚本绝对路径。查询只读随包资料，不验证宿主版本或替代下列静态、行为和视觉检查；未知项不得猜测补齐。
+
 ## 工作流
 
 1. 读取目标工程约定和用户范围，记录 HEAD、dirty 文件、实际锁文件及安装包版本、Skill 的 `source.lock.json`。先核对锁文件和 `node_modules` 一致性；`static.mjs` 输出声明/安装/Skill pin 与项目锁哈希，完整锁解析按宿主包管理器完成。版本不一致时明确资料可能陈旧，不把宿主新包冒充 Skill 已批准锁包。

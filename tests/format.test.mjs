@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
+import { createHash } from "node:crypto";
 import { generateReferences } from "../shared/format/index.mjs";
 
 const root = new URL("../", import.meta.url);
@@ -59,11 +60,20 @@ const packages = packageInputs();
 const wb = packages.find((pkg) => pkg.name === wbName);
 const ai = packages.find((pkg) => pkg.name === "huawei-partner-ai-ui");
 
+test("all pre-existing reference paths and bytes remain unchanged", () => {
+  const legacy = [...generateReferences({ packages, studioBaseURLs: bases })]
+    .filter(([path]) => !path.startsWith("quick/"));
+  // Captured from the unmodified formatter against the same locked tarballs/bases.
+  assert.equal(createHash("sha256").update(JSON.stringify(legacy)).digest("hex"),
+    "92fc0661e9acc8830d6de3ebdbb0fb091df51fb8a8101d13fc2172d4ef68735e");
+});
+
 test("all locked assets get four Studio columns, declared API and genuine official SFCs", () => {
   const output = generateReferences({ packages, studioBaseURLs: bases });
   const contracts = wb.metadata.components.assets;
   assert.equal(Object.keys(contracts).length, 73);
-  assert.equal(output.size, Object.keys(contracts).length + 8 + 19);
+  assert.equal([...output.keys()].filter((path) => !path.startsWith("quick/")).length,
+    Object.keys(contracts).length + 8 + 19);
   assert.deepEqual([...output.keys()], [...output.keys()].sort());
   for (const [id, contract] of Object.entries(contracts)) {
     const page = output.get(`workbench/${id}.md`);
@@ -392,6 +402,185 @@ test("nonportable and missing examples never become invented public code; custom
   );
   assert.match(missing, /官方来源 SFC：unavailable/);
   assert.doesNotMatch(missing, /```vue/);
+});
+
+function fencedJSON(page) {
+  return [...page.matchAll(/^(`{3,})json\n([\s\S]*?)^\1$/gm)]
+    .map((match) => JSON.parse(match[2]));
+}
+
+test("quick index is lightweight, source-derived, ordered and references every asset", () => {
+  const output = generateReferences({ packages });
+  const index = JSON.parse(output.get("quick/index.json"));
+  assert.equal(Object.keys(index)[0], "_generated");
+  assert.equal(index.schemaVersion, 1);
+  const count = Object.keys(wb.metadata.components.assets).length +
+    Object.keys(ai.metadata.components.assets).length;
+  assert.equal(index.entries.length, count);
+  assert.equal([...output.keys()].filter((path) => path.startsWith("quick/")).length, count + 1);
+  assert.deepEqual(index.entries.map((entry) => entry.package + "/" + entry.id),
+    index.entries.map((entry) => entry.package + "/" + entry.id).sort());
+  for (const entry of index.entries) {
+    const pkg = packages.find((item) => item.name === entry.package);
+    const contract = pkg.metadata.components.assets[entry.id];
+    const usage = pkg.name === wbName ? pkg.metadata.usage.assets[entry.id] : contract;
+    assert.deepEqual(Object.keys(entry), ["id", "package", "name", "label", "kind",
+      "summary", "useWhen", "avoidWhen", "quickReference", "reference", "exampleStatus"]);
+    assert.equal(entry.name, contract.publicImport?.exportName ?? null);
+    assert.equal(entry.label, contract.label ?? usage?.title ?? contract.title ?? entry.id);
+    assert.equal(entry.kind, contract.kind ?? contract.group ?? null);
+    assert.equal(entry.summary, contract.summary ?? null);
+    assert.deepEqual(entry.useWhen, contract.useWhen ?? []);
+    assert.deepEqual(entry.avoidWhen, contract.avoidWhen ?? []);
+    assert.equal(entry.exampleStatus, usage?.usageStatus ?? "unknown");
+    assert.ok(output.has(entry.reference));
+    assert.ok(output.has(entry.quickReference));
+    assert.ok(output.get(entry.quickReference).includes(`(<../../${entry.reference}>)`));
+  }
+});
+
+test("quick pages retain complete declared API, rules, qualifications and unknowns without Studio payloads", () => {
+  const output = generateReferences({ packages });
+  for (const pkg of packages) {
+    const family = pkg.name === wbName ? "workbench" : "ai-ui";
+    for (const [id, contract] of Object.entries(pkg.metadata.components.assets)) {
+      const usage = pkg.name === wbName ? pkg.metadata.usage.assets[id] : contract;
+      const page = output.get(`quick/${family}/${id}.md`);
+      const [boundary, api, rules] = fencedJSON(page);
+      for (const key of ["publicImport", "props", "events", "eventDetails", "slots", "slotDetails",
+        "slotPatterns", "exposed", "family"]) {
+        assert.deepEqual(api[key], contract[key] ?? null, `${id}.${key}`);
+      }
+      for (const key of ["propNotes", "eventNotes", "slotNotes"])
+        assert.deepEqual(api[key], usage?.usage?.[key] ?? null, `${id}.${key}`);
+      for (const key of ["status", "source", "unsupported", "useWhen", "avoidWhen"])
+        assert.deepEqual(boundary[key], contract[key] ?? null, `${id}.${key}`);
+      assert.equal(boundary.usageStatus, usage?.usageStatus ?? "unknown");
+      assert.deepEqual(boundary.usageUnsupported, usage?.unsupported ?? null);
+      assert.equal(boundary.variantStatus, usage?.variants?.status ?? "unknown");
+      assert.deepEqual(boundary.variantUnsupported, usage?.variants?.unsupported ?? null);
+      for (const key of ["rules", "dependencies", "foundationKeys"])
+        assert.deepEqual(rules[key], contract[key] ?? null, `${id}.${key}`);
+      assert.deepEqual(rules.sections, usage?.usage?.sections ?? null);
+      assert.deepEqual(rules.related, usage?.usage?.related ?? null);
+      assert.ok(page.includes(pkg.sourceCommit));
+      assert.match(page, /不授予发布或生产批准/);
+      assert.equal(Object.hasOwn(boundary, "cases"), false);
+      assert.equal(Object.hasOwn(api, "controls"), false);
+    }
+  }
+});
+
+test("quick reference byte measurements exclude indexes and do not claim model token savings", (t) => {
+  const output = generateReferences({ packages });
+  const index = JSON.parse(output.get("quick/index.json"));
+  let fullBytes = 0, quickBytes = 0, largerQuickPages = 0;
+  for (const entry of index.entries) {
+    const full = Buffer.byteLength(output.get(entry.reference));
+    const quick = Buffer.byteLength(output.get(entry.quickReference));
+    fullBytes += full;
+    quickBytes += quick;
+    if (quick > full) largerQuickPages++;
+  }
+  assert.ok(quickBytes < fullBytes, "aggregate asset references are smaller without dropping contracts");
+  t.diagnostic(JSON.stringify({ assets: index.entries.length, fullBytes, quickBytes,
+    reductionPercent: Math.round((1 - quickBytes / fullBytes) * 10000) / 100,
+    largerQuickPages, scope: "UTF-8 asset reference bytes only, not model tokens" }));
+});
+
+test("quick example selection expands only the first usable portable source and preserves omissions", () => {
+  const inputs = structuredClone(packages);
+  const usage = inputs.find((pkg) => pkg.name === wbName).metadata.usage.assets["wb-alert"];
+  usage.usageStatus = "partial";
+  usage.unsupported = [{ code: "PARTIAL", reason: "Not all examples are portable" }];
+  usage.usageExamples = [
+    { id: "private-first", portability: "unsupported", code: "PRIVATE_SOURCE_SENTINEL",
+      source: { ownerAssetId: "private-owner" }, unsupported: [{ reason: "Private dependency" }] },
+    { id: "portable-first", portability: "portable", code: "<template>FIRST_SOURCE_SENTINEL</template>",
+      source: { ownerAssetId: "official-owner" }, dataBoundary: "Host owns navigation" },
+    { id: "portable-second", portability: "portable", code: "SECOND_SOURCE_SENTINEL" },
+  ];
+  usage.variants = { status: "unsupported", unsupported: [{ reason: "No portable variants" }],
+    cases: [{ id: "CASE_SENTINEL" }], declarations: { controls: ["CONTROL_SENTINEL"] } };
+  const page = generateReferences({ packages: inputs }).get("quick/workbench/wb-alert.md");
+  assert.ok(page.includes(usage.usageExamples[1].code));
+  assert.match(page, /Host owns navigation/);
+  for (const marker of ["private-first", "portable-second", "Private dependency", "official-owner",
+    "partial", "Not all examples are portable", "No portable variants"])
+    assert.ok(page.includes(marker));
+  assert.doesNotMatch(page, /PRIVATE_SOURCE_SENTINEL|SECOND_SOURCE_SENTINEL|CASE_SENTINEL|CONTROL_SENTINEL/);
+  assert.match(page, /完整资料.*\.\.\/\.\.\/workbench\/wb-alert\.md/);
+  usage.usageExamples = [usage.usageExamples[0]];
+  const nonportable = generateReferences({ packages: inputs }).get("quick/workbench/wb-alert.md");
+  assert.match(nonportable, /未提供可展开的官方可移植示例/);
+  assert.doesNotMatch(nonportable, /```vue|PRIVATE_SOURCE_SENTINEL/);
+  usage.usageExamples = [];
+  usage.usageStatus = "unavailable";
+  const missing = generateReferences({ packages: inputs }).get("quick/workbench/wb-alert.md");
+  assert.match(missing, /unavailable/);
+  assert.doesNotMatch(missing, /```vue/);
+});
+
+test("quick missing metadata stays unknown, and same IDs in different packages do not collide", () => {
+  const inputs = structuredClone(packages);
+  const packageWB = inputs.find((pkg) => pkg.name === wbName);
+  const packageAI = inputs.find((pkg) => pkg.name === ai.name);
+  delete packageWB.metadata.usage;
+  packageAI.metadata.components.assets["wb-alert"] = packageAI.metadata.components.assets["ai-summary-card"];
+  const output = generateReferences({ packages: inputs });
+  const page = output.get("quick/workbench/wb-alert.md");
+  assert.match(page, /官方来源 SFC 状态：`unknown`/);
+  assert.match(page, /未提供可展开的官方可移植示例/);
+  assert.doesNotMatch(page, /```vue/);
+  const matches = JSON.parse(output.get("quick/index.json")).entries.filter((entry) => entry.id === "wb-alert");
+  assert.equal(matches.length, 2);
+  assert.notEqual(matches[0].quickReference, matches[1].quickReference);
+  for (const entry of matches) assert.ok(output.has(entry.quickReference));
+  delete packageAI.metadata.components;
+  const wbOnly = JSON.parse(generateReferences({ packages: inputs }).get("quick/index.json"));
+  assert.ok(wbOnly.entries.every((entry) => entry.package === wbName));
+});
+
+test("quick structured unknowns, rule conditions and hostile fields survive safely without cases-to-API inference", () => {
+  const inputs = structuredClone(packages);
+  const contract = inputs.find((pkg) => pkg.name === wbName).metadata.components.assets["wb-alert"];
+  const usage = inputs.find((pkg) => pkg.name === wbName).metadata.usage.assets["wb-alert"];
+  contract.rules = [{ id: "conditional", strength: "must", status: "confirmed",
+    when: ["only-modal"], text: "<script>unsafe</script>\n```\nkeep this condition",
+    references: [{ id: "related" }] }];
+  contract.label = "<img src=x onerror=alert(1)> [title] | 中文";
+  usage.title = contract.label;
+  usage.usageExamples = [{ id: "fenced", portability: "portable",
+    code: "<template>```\n<script>literal</script></template>", source: { ownerAssetId: "wb-alert" } }];
+  const asset = inputs.find((pkg) => pkg.name === ai.name).metadata.components.assets["ai-summary-card"];
+  asset.label = "<img src=x onerror=alert(1)>";
+  asset.props.structured = { type: ["Object", "String"], required: true,
+    default: { kind: "undefined" }, enum: ["a|b", "`value`"] };
+  asset.eventDetails.unknown = { signature: null, unsupported: [{ reason: "not derived" }] };
+  asset.cases = [{ controls: { fakeProp: "NEVER_PUBLIC" }, propsStatus: "not-derived" }];
+  const output = generateReferences({ packages: inputs });
+  const wbPage = output.get("quick/workbench/wb-alert.md");
+  assert.deepEqual(fencedJSON(wbPage)[2].rules, contract.rules);
+  assert.ok(wbPage.includes(usage.usageExamples[0].code));
+  for (const page of [wbPage, output.get("quick/ai-ui/ai-summary-card.md")]) {
+    const outsideCode = page.replace(/^(`{3,})(?:json|vue)\n[\s\S]*?^\1$/gm, "");
+    assert.doesNotMatch(outsideCode, /<img|<script>/);
+    assert.match(page, /&lt;img/);
+  }
+  const aiPage = output.get("quick/ai-ui/ai-summary-card.md");
+  const [, api] = fencedJSON(aiPage);
+  assert.deepEqual(api.props.structured, asset.props.structured);
+  assert.deepEqual(api.eventDetails.unknown, asset.eventDetails.unknown);
+  assert.doesNotMatch(aiPage, /NEVER_PUBLIC|fakeProp/);
+});
+
+test("quick paths reject unsafe AI asset IDs as well as Workbench IDs", () => {
+  for (const id of ["../outside", "a/b", "a\\b", "/absolute", "x.md", "x%2fy", "x#anchor"]) {
+    const inputs = structuredClone(packages);
+    const assets = inputs.find((pkg) => pkg.name === ai.name).metadata.components.assets;
+    assets[id] = assets["ai-summary-card"];
+    assert.throws(() => generateReferences({ packages: inputs }), /REFERENCE_ASSET_ID_INVALID/);
+  }
 });
 
 test("generation is deterministic and does not mutate caller package objects", () => {
