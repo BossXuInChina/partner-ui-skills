@@ -41,6 +41,7 @@ test('archives independent versions with provenance, verifies integrity and perm
     const release = makeRelease(temp,'first','a'.repeat(40));
     assert.equal(archiveDelivery(release.dir,root).added,4);
     assert.equal(verifyDelivery(root).archives.length,4);
+    assert.ok(verifyDelivery(root).archives.every(entry => entry.origin === 'packaged-build'));
     assert.equal(archiveDelivery(release.dir,root).added,0);
     const entry = verifyDelivery(root).archives[0];
     writeFileSync(resolve(root,entry.file), 'tampered');

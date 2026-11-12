@@ -42,7 +42,7 @@ with zipfile.ZipFile(sys.argv[1]) as z:
     const target = resolve(root, relative);
     if (existing && (existing.sha256 !== item.sha256 || existing.version !== item.version)) throw new Error(`Version already exists with different content: ${relative}`);
     if (!existing && existsSync(target)) throw new Error(`Unindexed target already exists: ${relative}`);
-    if (!existing) planned.push({src, target, entry:{skill:item.name, version:item.version, file:relative, bytes:item.bytes, sha256:item.sha256, origin:'validated-build', provenance:`${metadataDir}/release-manifest.json`}});
+    if (!existing) planned.push({src, target, entry:{skill:item.name, version:item.version, file:relative, bytes:item.bytes, sha256:item.sha256, origin:'packaged-build', provenance:`${metadataDir}/release-manifest.json`}});
   }
   const metadata = ['release-manifest.json', 'SHA256SUMS', 'verify-installers.mjs'].map(file => ({src:resolve(input,file), target:resolve(root,metadataDir,file)}));
   for (const file of metadata) if (existsSync(file.target) && hashFile(file.target) !== hashFile(file.src)) throw new Error(`Provenance conflict: ${file.target}`);

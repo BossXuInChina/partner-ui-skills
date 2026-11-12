@@ -9,7 +9,7 @@
 - [partner-ui-review](partner-ui-review/partner-ui-review-0.1.7-preview.20261112.1.zip)
 - [design-requirement-canvas](design-requirement-canvas/design-requirement-canvas-1.1.1-preview.20261112.1.zip)
 
-完整历史和每个 ZIP 的 SHA-256、字节数与来源类别见 [index.json](index.json)。其中 `github-release` / `github-prerelease` 表示已核对 GitHub 对应 Release 资产的校验和；`local-history` 代表本机保留的历史包，不据此推断其曾公开发布或重新验收；`validated-build` 记录本次通过双系统冒烟验证的构建包。原始清单位于 [provenance](provenance/)，其中各批次清单中的文件名按原始交付保留，不因本目录布局或下述重命名而改写。
+完整历史和每个 ZIP 的 SHA-256、字节数与来源类别见 [index.json](index.json)。其中 `github-release` / `github-prerelease` 表示已核对 GitHub 对应 Release 资产的校验和；`local-history` 代表本机保留的历史包，不据此推断其曾公开发布或重新验收；`validated-build` 记录本次通过双系统冒烟验证的构建包；后续自动归档的 `packaged-build` 只表示通过归档完整性检查，验证结论以对应构建记录为准。原始清单位于 [provenance](provenance/)，其中各批次清单中的文件名按原始交付保留，不因本目录布局或下述重命名而改写。
 
 **Review 0.1.6 的两个原件不同：** `partner-ui-review-0.1.6.zip` 对应 2026-11-06 GitHub Release；`partner-ui-review-0.1.6-local-20261108.zip` 是 2026-11-08 本地包，其 ZIP 内声明仍为 0.1.6。两者分别保留、校验，不能视为同一构建。
 
