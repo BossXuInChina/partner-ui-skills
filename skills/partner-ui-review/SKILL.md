@@ -34,6 +34,8 @@ node scripts/measure.mjs --project <project> --url <dev-url> --out <evidence>/me
 python3 scripts/compare.py <crop> <shot> <comparison.png> [y0 y1] --design-width 1920
 ```
 
+Windows 没有 `python3` 时，可改用 `python` 或 `py -3`。
+
 设计逻辑宽度需由输入确认。窄屏截图保持原像素宽度，不拉伸到桌面宽度；窄屏主要检查重排、可达性和溢出。Pillow 依赖见 `scripts/requirements.txt`，按宿主环境安装。
 
 8. 对真实交互补检查：页签、筛选、展开、弹层/tooltip、键盘及焦点。使用配置中的 `states` 实际打开浮层，并用 `textContracts` 核对完整字阶、字体族继承及标签行数/边界；关闭态不能代表展开态。Teleport 后先核对 body/宿主字体基线，不能只查组件源节点。还需用显式 `containerProfiles` 在宽窗口中压窄实际宿主，核对响应断点及 `cqw` 的命名容器；用 `responsiveContracts` 检查控件边界、可读最小宽度与展开菜单每一项的多点命中。只比较 z-index 或关闭态无法证明层级正确。窄容器优先让快捷项、指标项整体换行，不能靠逐字竖排、压缩字号或隐藏关键数值解决；规则和配置见 [文字与响应式检查](references/text-layout.md)。还需按 [组合间距边界](references/composition.md#宿主基线与组件选中几何) 检查宿主盒模型、选中块几何与操作语义颜色；Token 合法不代表 props/用途正确。只运行相关既有测试；共享宿主样式变化须枚举跨模块消费者。

@@ -1,35 +1,114 @@
-# Builds the four consumable skills on Linux (the platform the build tooling supports)
-# and publishes dist/ as a downloadable artifact. Run it from the Actions tab or by pushing.
 name: Build skills
 
 on:
   workflow_dispatch:
   push:
-    branches: [main, fix/windows-tar-listing]
+    branches: [main, fix/windows-tar-listing, codex/skill-cross-platform-packaging-20261112]
 
 jobs:
-  build:
+  package:
     runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4   # version comes from package.json "packageManager"
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24.21.0
       - run: pnpm install --frozen-lockfile
       - run: pnpm verify:lock
-      - run: pnpm build
-      - name: Check every skill has SKILL.md
-        run: |
-          for s in partner-ui-pages partner-ui-vue3 partner-ui-review design-requirement-canvas; do
-            test -f "dist/$s/SKILL.md" || { echo "missing dist/$s/SKILL.md"; exit 1; }
-          done
+      - run: node --test tests/build.test.mjs tests/feature-tools.test.mjs
+      - run: python3 -m unittest discover -s skills/design-requirement-canvas/scripts -p 'test_*.py'
+      - run: pnpm package:release
+      - name: Verify checksums
+        working-directory: dist
+        run: node verify-installers.mjs
+      - name: Verify source provenance
+        run: node -e "const m=require('./dist/release-manifest.json');if(m.source.commit!==process.env.GITHUB_SHA||m.source.dirty!==false)process.exit(1)"
       - uses: actions/upload-artifact@v4
         with:
-          name: partner-ui-skills
+          name: skill-installers-internal
           path: |
-            dist/partner-ui-pages
-            dist/partner-ui-vue3
-            dist/partner-ui-review
-            dist/design-requirement-canvas
+            dist/partner-ui-pages-[0-9]*.zip
+            dist/partner-ui-vue3-[0-9]*.zip
+            dist/partner-ui-review-[0-9]*.zip
+            dist/design-requirement-canvas-[0-9]*.zip
+            dist/release-manifest.json
+            dist/SHA256SUMS
+            dist/verify-installers.mjs
+          if-no-files-found: error
+          retention-days: 1
+
+  standalone:
+    needs: package
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: skill-installers-internal
+          path: installers
+      - name: Verify checksums and extract independent skills
+        env:
+          SKILLS_DIST: ${{ runner.temp }}/isolated-skills
+        shell: bash
+        run: |
+          node build/verify-installers.mjs installers
+          python -c "import os,pathlib,zipfile; files=list(pathlib.Path('installers').glob('*.zip')); assert len(files)==4; [zipfile.ZipFile(p).extractall(os.environ['SKILLS_DIST']) for p in files]"
+      - name: Verify standalone usage
+        run: node tests/standalone-smoke.mjs
+        env:
+          SKILLS_DIST: ${{ runner.temp }}/isolated-skills
+          SKILLS_PYTHON: python
+          SKILLS_SMOKE_INSTALL_REVIEW: '1'
+          SKILLS_SMOKE_BROWSER: '1'
+
+  installers:
+    needs: [package, standalone]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: skill-installers-internal
+          path: installers
+      - uses: actions/upload-artifact@v4
+        with:
+          name: partner-ui-skills-installers
+          path: installers/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: partner-ui-pages-installer
+          path: installers/partner-ui-pages-*.zip
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: partner-ui-vue3-installer
+          path: installers/partner-ui-vue3-*.zip
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: partner-ui-review-installer
+          path: installers/partner-ui-review-*.zip
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: design-requirement-canvas-installer
+          path: installers/design-requirement-canvas-*.zip
+          if-no-files-found: error
           retention-days: 30

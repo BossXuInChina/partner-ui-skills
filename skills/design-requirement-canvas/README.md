@@ -17,6 +17,8 @@
 
 需要 Python 3.9+、Node 20+。裁剪需要 Pillow；DOM 测试需要 `npm install`（happy-dom）；浏览器测试需要 Playwright + Chromium。校验、构建、交接和批量索引只用 Python 标准库；其余依赖缺失时的降级方式见 SKILL.md 的“环境与降级”。Skill 可放在含空格或中文的路径下。
 
+Windows 上若没有 `python3` 命令，将下例中的 `python3` 换成 `python` 或 `py -3`；由 Node 调用 Python 的测试默认使用 `python`，可通过 `SKILLS_PYTHON` 指定可执行文件。命令输出使用 UTF-8。
+
 ## 单场景流水线
 
 ```bash

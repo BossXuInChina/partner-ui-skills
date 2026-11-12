@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
 import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
+import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 // Run against extracted, standalone consumer packages, outside the source tree.
 const dist = resolve(process.argv[2] ?? process.env.SKILLS_DIST ?? 'dist');
@@ -52,7 +54,9 @@ try {
   if (process.env.SKILLS_SMOKE_INSTALL_REVIEW === '1') {
     writeFileSync(join(feature, 'package.json'), JSON.stringify({name:'standalone-review-fixture', private:true}));
     const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-    const result = spawnSync(npm, ['install', '--no-save', '--no-package-lock', '--ignore-scripts', 'typescript@5.9.3', 'vue@3.5.42'], {cwd: feature, encoding:'utf8', shell: process.platform === 'win32', maxBuffer: 32 * 1024 * 1024});
+    const deps = ['typescript@5.9.3', 'vue@3.5.42'];
+    if (process.env.SKILLS_SMOKE_BROWSER === '1') deps.push('playwright@1.63.0');
+    const result = spawnSync(npm, ['install', '--no-save', '--no-package-lock', '--ignore-scripts', ...deps], {cwd: feature, encoding:'utf8', shell: process.platform === 'win32', maxBuffer: 32 * 1024 * 1024});
     if (result.error || result.status !== 0) throw new Error(`review dependency install failed\n${result.error ?? ''}\n${result.stdout}\n${result.stderr}`);
     node(join(review, 'scripts/static.mjs'), feature, '--json');
     console.log('PASS partner-ui-review: asset search and static analysis of generated feature');
@@ -66,12 +70,30 @@ try {
   const manifest = join(scenario, 'manifest.json');
   const html = join(scenario, 'dist', '画布.html');
   const handoff = join(scenario, 'dist', 'handoff');
+  node(join(canvas, 'scripts/python.mjs'), '--version');
   run(python, [join(canvas, 'scripts/validate_canvas_contract.py'), manifest]);
-  run(python, [join(canvas, 'scripts/build_canvas.py'), manifest, '--out', html]);
+  const built = JSON.parse(run(python, [join(canvas, 'scripts/build_canvas.py'), manifest, '--out', html]));
+  assert.ok(built.output.endsWith('画布.html'), 'Unicode output path should survive the CLI');
   run(python, [join(canvas, 'scripts/export_handoff.py'), manifest, '--out', handoff]);
   assert.ok(existsSync(html));
   assert.ok(existsSync(join(handoff, 'generation-brief.json')));
   console.log('PASS design-requirement-canvas: validate, build and export handoff');
+  if (process.env.SKILLS_SMOKE_BROWSER === '1') {
+    assert.equal(process.env.SKILLS_SMOKE_INSTALL_REVIEW, '1');
+    run(process.execPath, [join(feature, 'node_modules/playwright/cli.js'), 'install', 'chromium', '--only-shell'], feature);
+    const {chromium} = createRequire(join(feature, 'package.json'))('playwright');
+    const browser = await chromium.launch();
+    try {
+      const page = await browser.newPage();
+      const errors = [];
+      page.on('pageerror', error => errors.push(error.message));
+      await page.goto(pathToFileURL(join(demo, 'out-single/index.html')).href);
+      await page.waitForSelector('#app');
+      assert.deepEqual(errors, [], 'offline Pages HTML should load without JavaScript errors');
+    } finally { await browser.close(); }
+    run(process.execPath, [join(canvas, 'scripts/test_canvas_browser.mjs'), '--html', html, '--manifest', manifest], feature);
+    console.log('PASS browser: offline Pages and Canvas interactive checks');
+  }
 } finally {
   rmSync(work, {recursive:true, force:true});
 }
