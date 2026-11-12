@@ -99,6 +99,35 @@ node build/measure-context.mjs > context-measurements.json
 
 复现无 skip 的主套件前，先冻结安装 `dist/partner-ui-vue3/assets/harness` 的依赖，并将 `PARTNER_HARNESS_VITE_ROOT` 设为它的绝对路径。再次执行 build 会重建 dist 并移除其中已安装依赖；需要时重新安装，不能把这种环境缺失当作查询功能回归。未执行完整 `verify:harness`、Canvas 专项套件或业务视觉验收。
 
+## 跟进验证（2026-11-12，Linux x64，Node 24.21.0 / pnpm 11.22.0）
+
+跟进内容：多词 AND 检索、维护者别名、中文宽松片段回退与零结果提示；三个 SKILL.md 增加“未命中不代表缺失”规则；quick 页渲染 wb-table 来源补充结构并新增契约键守卫测试；去除空字段与重复信息。以下仅列实际运行的命令。
+
+| 命令 | 结果 |
+| --- | --- |
+| `pnpm install --frozen-lockfile` | 通过 |
+| `pnpm verify:lock` | 通过 |
+| `pnpm generate` 后工作区无差异；`pnpm check:generated` | 通过 |
+| `node --test tests/format.test.mjs tests/asset-query.test.mjs tests/build.test.mjs` | 47 pass、0 skip、0 fail |
+| `pnpm test` | 265 pass、1 skip、0 fail（skip 为未安装独立 harness 工具时的既有条件分支） |
+| `pnpm test:templates` | 6 个模板均 exit 0 |
+| `node build/measure-context.mjs > review/context-measurements.json` | 与提交内容一致 |
+| `pnpm build` | 通过，四个 ZIP 生成 |
+
+将 `dist/partner-ui-pages`、`dist/partner-ui-vue3`、`dist/partner-ui-review` 复制到含中文和空格、无 `node_modules` 的路径，从其他 cwd 用绝对路径调用，三者结果相同：
+
+- `search --query 指标`、`search --query "数值 卡片"`：首项 `wb-metric-card`，`matchMode: all-terms`。
+- `show --id wb-table`：含 `requiredFields`；`show --id wb-table --view full | head -3`：输出完整页头。
+- `search --query zzqxv`：`total: 0`，带 `hint`。
+- Pages `catalog.mjs --name WorkbenchTable` 与 `--query 表格`：与基线 `cf2ee7b` 输出逐字节一致，exit 0。
+
+未达成或未执行：
+
+- “quick ≥ full 降到 8 个以内”未达成，实际 17 个；剩余差距是短 Block 页的固定说明与 unsupported 原因，未为达标删减契约。
+- 计划 1b（从导出名派生英文词 `terms`）未加入：多词 AND 已对导出名做子串匹配，`metric card` 等查询结果相同，额外字段无检索收益。
+- 同模型 A/B Agent 试验（下文 B 节）未执行；合并判断仍需该结果。
+- 未执行 `verify:harness`、Canvas 专项套件和业务视觉验收；未在 Node 26 上复核生成漂移。
+
 ## 请 Claude 独立评估，而非复述实现说明
 
 ### A. 静态审查和回归
