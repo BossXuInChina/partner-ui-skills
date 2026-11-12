@@ -19,6 +19,20 @@ pnpm test:canvas   # design-requirement-canvas：Python 单测 + DOM + 浏览器
 
 Vue 验证工程位于打包后的 `dist/partner-ui-vue3/assets/harness`。`pnpm verify:harness` 使用它自己的冻结依赖，执行类型、Lint、格式、规则、组件与组合逻辑测试、生产构建、预览及六路双视口 smoke，并实际验证 mock 拒绝路径。QA 网络桩只在独立 Node 测试进程注入，生产导入图不含 mocks；公司的真实 API 仍未验证。普通参考/原型测试不重复安装此工程。
 
+## 上下文速查候选 · 独立分支评估
+
+Pages、Vue3、Review 新增同源生成的消费速查和轻量查询，不改组件来源锁、运行时或旧完整参考。消费包的 Skill 根目录内运行（无 npm 安装、无联网、无需加载原型 runtime）：
+
+```sh
+node scripts/assets.mjs search --query "数值" --kind block --limit 5
+node scripts/assets.mjs show --id wb-metric-card
+node scripts/assets.mjs show --id wb-metric-card --view full
+```
+
+查询不证明宿主版本、项目锁或运行时已验证。速查保留公开契约、规则和缺口，完整资料保留 Studio 案例与其余示例。旧 Pages `catalog.mjs` 原样保留。Canvas 本轮不改，也不因此增加兄弟 Skill 依赖。
+
+GitHub **Download ZIP 是维护源码**，不是独立消费包。按上方命令构建后，客户端应分别加载 `dist/<skill>/`（直接含 `SKILL.md` 的一层），不要把仓库根当作一个 Skill。仅分支候选，未提升发布版本、未创建 Release。评估方法及验证边界见 [复评说明](review/context-quick-reference.md)。
+
 ## 多 JS 离线项目 · Pages 0.3.0
 
 在独立 Skill 根目录执行，无需 npm install：
@@ -26,7 +40,9 @@ Vue 验证工程位于打包后的 `dist/partner-ui-vue3/assets/harness`。`pnpm
 ```sh
 node scripts/new_project.mjs --out ./my-demo --title "伙伴经营工作台"
 node scripts/project_index.mjs ./my-demo --query 伙伴
-node scripts/catalog.mjs --name WorkbenchTable
+node scripts/assets.mjs search --query 表格 --limit 5
+node scripts/assets.mjs show --id wb-table
+node scripts/catalog.mjs --name WorkbenchTable   # 旧接口，行为不变
 node scripts/check_project.mjs ./my-demo
 node scripts/emit_project.mjs ./my-demo
 node scripts/emit_project.mjs ./my-demo --single

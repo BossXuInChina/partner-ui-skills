@@ -1,0 +1,1861 @@
+{
+  "_generated": "Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc); huawei-partner-ai-ui@0.3.1-dev.20261106.1 (16d91bbbede5006960cce5278b0e2cda88785393) — do not edit.",
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "wb-alert",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchAlert",
+      "label": "提示条 Alert",
+      "kind": "component",
+      "summary": "在页面上下文中持续呈现需要用户阅读的状态、风险或操作说明，直到用户关闭或宿主更新状态。",
+      "useWhen": [
+        "页面、卡片、对话框、产品区的持续提示；内容留在页面流中。"
+      ],
+      "avoidWhen": [
+        "瞬时操作结果使用 Message；需要显式确认使用 Feedback Dialog。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-alert.md",
+      "reference": "workbench/wb-alert.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "警告条",
+        "提醒条",
+        "横幅提示"
+      ]
+    },
+    {
+      "id": "wb-avatar",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchAvatar",
+      "label": "头像 Avatar",
+      "kind": "component",
+      "summary": "用于呈现用户或事物身份标识。点击、菜单和导航行为由外围具名按钮或链接负责。",
+      "useWhen": [
+        "以文字、图标或图片标识用户和事物",
+        "通讯录、表格或顶部导航的头像与头像组"
+      ],
+      "avoidWhen": [
+        "用头像代替有明确名称的交互按钮",
+        "未经生产接入验证直接作为生产包交付"
+      ],
+      "quickReference": "quick/workbench/wb-avatar.md",
+      "reference": "workbench/wb-avatar.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-badge",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchBadge",
+      "label": "徽标 Badge",
+      "kind": "component",
+      "summary": "在头像、图标或按钮附近提示未读数或存在新内容；徽标依附于默认插槽中的主体。",
+      "useWhen": [
+        "附着在宿主上提示新状态或数量；内联筛选计数"
+      ],
+      "avoidWhen": [
+        "代替操作按钮或承载完整业务状态说明",
+        "未经验证的生产目标"
+      ],
+      "quickReference": "quick/workbench/wb-badge.md",
+      "reference": "workbench/wb-badge.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "红点",
+        "角标",
+        "未读数"
+      ]
+    },
+    {
+      "id": "wb-breadcrumb",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchBreadcrumb",
+      "label": "面包屑 Breadcrumb",
+      "kind": "component",
+      "summary": "用于展示当前页面在系统层级中的位置，并支持返回可导航的祖先页面。",
+      "useWhen": [
+        "页面层级路径与祖先导航"
+      ],
+      "avoidWhen": [
+        "侧栏树导航、业务步骤状态",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-breadcrumb.md",
+      "reference": "workbench/wb-breadcrumb.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-button",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchButton",
+      "label": "按钮 Button",
+      "kind": "component",
+      "summary": "用于提交、创建、编辑、取消与轻量披露等明确操作。按钮承载动作，不代替链接导航、互斥选择或内容页签。",
+      "useWhen": [
+        "操作入口",
+        "更多、展开与收起入口"
+      ],
+      "avoidWhen": [
+        "未经验证的内部框架生产实现",
+        "以颜色代替权限或错误说明"
+      ],
+      "quickReference": "quick/workbench/wb-button.md",
+      "reference": "workbench/wb-button.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-button-radio-group",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchButtonRadioGroup",
+      "label": "按钮单选组 Button Radio Group",
+      "kind": "component",
+      "summary": "用于在当前上下文内选择一个互斥值，例如筛选条件、显示方式或配置选项。切换关联内容面板时使用Tabs。",
+      "useWhen": [
+        "在当前上下文中选择一个互斥值",
+        "筛选条件、展示模式或配置选项使用按钮式单选"
+      ],
+      "avoidWhen": [
+        "切换具有关联关系的平级内容面板",
+        "选项需要自动收纳为更多菜单",
+        "未经验证的内部UI框架生产实现"
+      ],
+      "quickReference": "quick/workbench/wb-button-radio-group.md",
+      "reference": "workbench/wb-button-radio-group.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "分段控制",
+        "分段选择",
+        "segmented"
+      ]
+    },
+    {
+      "id": "wb-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCard",
+      "label": "卡片 Card",
+      "kind": "component",
+      "summary": "用边界清晰的容器组织相关内容、元信息和操作；展示、运营操作与导航卡片有各自明确语义。",
+      "useWhen": [
+        "展示一组独立内容",
+        "在卡片内部承载多个独立操作",
+        "整张卡片作为单一原生地址跳转入口"
+      ],
+      "avoidWhen": [
+        "在整卡跳转内部嵌套按钮、链接或其他交互控件",
+        "把Card尺寸用作非栅格环境中的固定像素宽度",
+        "未经验证的内部框架生产实现",
+        "使用页面背景色color-surface-page代替灰色卡片的color-surface-card-tinted"
+      ],
+      "quickReference": "quick/workbench/wb-card.md",
+      "reference": "workbench/wb-card.md",
+      "exampleStatus": "partial",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-carousel",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCarousel",
+      "label": "走马灯 Carousel",
+      "kind": "component",
+      "summary": "在一个内容区域轮播少量相互相关的内容项，当前索引受控并提供键盘与自动轮播行为。",
+      "useWhen": [
+        "在固定页面容器内循环展示多个图片或内容容器"
+      ],
+      "avoidWhen": [
+        "需要同时展示多张内容、触控拖拽、懒加载或生产运行时交付"
+      ],
+      "quickReference": "quick/workbench/wb-carousel.md",
+      "reference": "workbench/wb-carousel.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-cascader",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCascader",
+      "label": "级联选择 Cascader",
+      "kind": "component",
+      "summary": "用于从多层级选项中选择末级值；支持单选、末级多选和全层级多选。",
+      "useWhen": [
+        "级联选择器 Cascader相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-cascader.md",
+      "reference": "workbench/wb-cascader.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "多级选择",
+        "省市区"
+      ]
+    },
+    {
+      "id": "wb-certification-details",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCertificationDetails",
+      "label": "认证详情 CertificationDetails Block",
+      "kind": "block",
+      "summary": "身份达标等状态卡片底部展示认证类型、归属与关键日期的只读信息",
+      "useWhen": [
+        "身份达标等状态卡片底部展示认证类型、归属与关键日期的只读信息"
+      ],
+      "avoidWhen": [
+        "可编辑字段（使用Form）",
+        "超过五项或需要分组的详情（使用描述列表或表格）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-certification-details.md",
+      "reference": "workbench/wb-certification-details.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-chart",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchChart",
+      "label": "图表 Chart",
+      "kind": "component",
+      "summary": "工作台看板中的数值分布、趋势、占比、达成度与多维对比",
+      "useWhen": [
+        "工作台看板中的数值分布、趋势、占比、达成度与多维对比"
+      ],
+      "avoidWhen": [
+        "需要地图、桑基、漏斗等非登记图形",
+        "需要大数据量交互缩放或实时流式刷新"
+      ],
+      "quickReference": "quick/workbench/wb-chart.md",
+      "reference": "workbench/wb-chart.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "趋势图",
+        "柱状图",
+        "折线图",
+        "饼图",
+        "环形图",
+        "看板"
+      ]
+    },
+    {
+      "id": "wb-checkbox",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCheckbox",
+      "label": "复选框 Checkbox",
+      "kind": "component",
+      "summary": "用于独立的布尔选择；半选状态由父级汇总并传入，组件本身不计算父子关系。",
+      "useWhen": [
+        "独立多项选择与父级半选状态"
+      ],
+      "avoidWhen": [
+        "未经验证的内部框架生产实现"
+      ],
+      "quickReference": "quick/workbench/wb-checkbox.md",
+      "reference": "workbench/wb-checkbox.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-collapse",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCollapse",
+      "label": "折叠面板 Collapse",
+      "kind": "component",
+      "summary": "将同一内容区内次要、可按需查看的信息折叠展示。每项独立控制，可同时展开。",
+      "useWhen": [
+        "内容分组、独立展开多项"
+      ],
+      "avoidWhen": [
+        "手风琴模式、动画、自动保留插槽内部状态及未经验证的内部框架生产场景"
+      ],
+      "quickReference": "quick/workbench/wb-collapse.md",
+      "reference": "workbench/wb-collapse.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "手风琴",
+        "展开收起"
+      ]
+    },
+    {
+      "id": "wb-company-profile-shell",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchCompanyProfileShell",
+      "label": "公司资料外壳 Block",
+      "kind": "block",
+      "summary": "同一业务对象下的资料维护页共享身份区和两级栏目导航",
+      "useWhen": [
+        "同一业务对象下的资料维护页共享身份区和两级栏目导航"
+      ],
+      "avoidWhen": [
+        "跨产品导航、权限裁决或真实路由必须由区块承担",
+        "单页表单无需身份区或共享栏目导航"
+      ],
+      "quickReference": "quick/workbench/wb-company-profile-shell.md",
+      "reference": "workbench/wb-company-profile-shell.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "资料维护页",
+        "公司信息页",
+        "企业资料"
+      ]
+    },
+    {
+      "id": "wb-content-section",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchContentSection",
+      "label": "内容分区 ContentSection",
+      "kind": "block",
+      "summary": "内容分区的受控业务组合",
+      "useWhen": [
+        "内容分区的受控业务组合"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "quickReference": "quick/workbench/wb-content-section.md",
+      "reference": "workbench/wb-content-section.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "分区标题",
+        "区块标题"
+      ]
+    },
+    {
+      "id": "wb-date-picker",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchDatePicker",
+      "label": "日期选择 DatePicker",
+      "kind": "component",
+      "summary": "用于选择日期、月份、年份或日期时间；支持单值与日期范围。值通过受控modelValue提交。",
+      "useWhen": [
+        "日期选择器 DatePicker相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-date-picker.md",
+      "reference": "workbench/wb-date-picker.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-draft-list-filter",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchDraftListFilter",
+      "label": "草稿筛选 Pattern",
+      "kind": "pattern",
+      "summary": "管理列表提供显式查询按钮，用户先编辑筛选草稿再提交",
+      "useWhen": [
+        "管理列表提供显式查询按钮，用户先编辑筛选草稿再提交"
+      ],
+      "avoidWhen": [
+        "输入后立即过滤的即时搜索",
+        "筛选由服务端自动触发且无显式提交动作"
+      ],
+      "quickReference": "quick/workbench/wb-draft-list-filter.md",
+      "reference": "workbench/wb-draft-list-filter.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "查询表单",
+        "筛选表单",
+        "查询条件",
+        "高级筛选"
+      ]
+    },
+    {
+      "id": "wb-drawer",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchDrawer",
+      "label": "抽屉 Drawer",
+      "kind": "component",
+      "summary": "在页面边缘承载一项可独立完成的任务、扩展信息或配置内容；内容区可滚动，面板关闭受控。",
+      "useWhen": [
+        "Drawer首版容器"
+      ],
+      "avoidWhen": [
+        "嵌套、拖拽、手势及未经验证的内部框架生产场景"
+      ],
+      "quickReference": "quick/workbench/wb-drawer.md",
+      "reference": "workbench/wb-drawer.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "侧滑面板",
+        "侧边弹层"
+      ]
+    },
+    {
+      "id": "wb-dropdown",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchDropdown",
+      "label": "下拉菜单 Dropdown",
+      "kind": "component",
+      "summary": "用于组合操作项、单选配置项和复选配置项的菜单。字段选择、复杂筛选或月份面板使用专门选择器或组合面板。",
+      "useWhen": [
+        "操作与单选、复选配置混合菜单"
+      ],
+      "avoidWhen": [
+        "表单字段选择、异步搜索、嵌套子菜单",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-dropdown.md",
+      "reference": "workbench/wb-dropdown.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "操作菜单",
+        "更多操作"
+      ]
+    },
+    {
+      "id": "wb-empty-state",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchEmptyState",
+      "label": "空状态 EmptyState",
+      "kind": "component",
+      "summary": "在局部、卡片或页面没有可展示内容时解释原因，并提供恢复操作。",
+      "useWhen": [
+        "空状态 Empty / EmptyState：局部信息、卡片或页面当前没有可展示内容",
+        "暂无数据、搜索无结果、网络异常、加载失败、无权限、内容已下架、内容已失效、敬请期待"
+      ],
+      "avoidWhen": [
+        "请求仍在加载时应使用Loading或Skeleton",
+        "已有有效内容时不以空状态覆盖现有数据",
+        "未经生产接入验证作为生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-empty-state.md",
+      "reference": "workbench/wb-empty-state.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "无数据",
+        "暂无数据",
+        "缺省页"
+      ]
+    },
+    {
+      "id": "wb-event-calendar",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchEventCalendar",
+      "label": "事件日历与日程列表 EventCalendar Block",
+      "kind": "block",
+      "summary": "工作台侧栏按日期查看活动、日程或待办，并需要日期事件标记与当日列表联动",
+      "useWhen": [
+        "工作台侧栏按日期查看活动、日程或待办，并需要日期事件标记与当日列表联动"
+      ],
+      "avoidWhen": [
+        "只需选择日期的表单字段（使用DatePicker）",
+        "跨模块日程编辑、提醒与持久化（由宿主或Pattern负责）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-event-calendar.md",
+      "reference": "workbench/wb-event-calendar.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "日程",
+        "活动日历",
+        "待办日历",
+        "月历"
+      ]
+    },
+    {
+      "id": "wb-expand-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchExpandCard",
+      "label": "展开卡片 ExpandCard Block",
+      "kind": "block",
+      "summary": "列表中的每项需要以图标与摘要标题呈现，并通过右侧箭头展开详情（如伙伴身份差距）",
+      "useWhen": [
+        "列表中的每项需要以图标与摘要标题呈现，并通过右侧箭头展开详情（如伙伴身份差距）"
+      ],
+      "avoidWhen": [
+        "同一区域只能展开一项且需手风琴语义（使用Collapse）",
+        "整卡跳转或含主要操作的卡片（使用Card Blocks）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-expand-card.md",
+      "reference": "workbench/wb-expand-card.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-feedback-dialog",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFeedbackDialog",
+      "label": "反馈对话框 Feedback Dialog",
+      "kind": "component",
+      "summary": "围绕一项操作反馈结果、补充信息并提供一个主要动作及可选次要动作；关闭与异步动作通过受控契约管理。",
+      "useWhen": [
+        "需要用户阅读结果并作出明确决定的反馈对话框。"
+      ],
+      "avoidWhen": [
+        "非阻断反馈优先 Message/Notification；一般表单弹窗使用 Modal。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-feedback-dialog.md",
+      "reference": "workbench/wb-feedback-dialog.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "结果弹窗",
+        "反馈弹窗"
+      ]
+    },
+    {
+      "id": "wb-filter-chips",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFilterChips",
+      "label": "业务筛选 FilterChips Block",
+      "kind": "block",
+      "summary": "列表上方需要十项以上的单选业务筛选，并希望一眼看到全部选项与数量",
+      "useWhen": [
+        "列表上方需要十项以上的单选业务筛选，并希望一眼看到全部选项与数量"
+      ],
+      "avoidWhen": [
+        "多选或带复杂条件的筛选（使用查询表单或Select）",
+        "两到五项互斥切换（使用ButtonRadioGroup）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-filter-chips.md",
+      "reference": "workbench/wb-filter-chips.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "快捷筛选",
+        "筛选标签",
+        "分类筛选"
+      ]
+    },
+    {
+      "id": "wb-floating-button",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFloatingButton",
+      "label": "悬浮按钮 FloatingButton",
+      "kind": "component",
+      "summary": "用于帮助、反馈、评价或返回顶部等全局辅助入口。不要替代主业务提交操作或持久化导航。",
+      "useWhen": [
+        "全局辅助入口、帮助、评分和返回顶部。"
+      ],
+      "avoidWhen": [
+        "主业务提交放在页面操作区；不要用此组件替代导航或持久化业务状态。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-floating-button.md",
+      "reference": "workbench/wb-floating-button.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-followup-rows",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFollowupRows",
+      "label": "新增遗留任务行",
+      "kind": "block",
+      "summary": "遗留任务行的受控业务组合",
+      "useWhen": [
+        "遗留任务行的受控业务组合"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "quickReference": "quick/workbench/wb-followup-rows.md",
+      "reference": "workbench/wb-followup-rows.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-footer",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchFooter",
+      "label": "页脚 Footer",
+      "kind": "component",
+      "summary": "展示页面级版权、备案和法律入口；链接导航由浏览器处理，宿主可监听条目选择。",
+      "useWhen": [
+        "页脚 Footer相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-footer.md",
+      "reference": "workbench/wb-footer.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-form",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchForm",
+      "label": "表单 Form",
+      "kind": "component",
+      "summary": "用于编排字段、同步校验与提交。业务model始终由调用方持有；WorkbenchFormItem统一负责字段标签、必填语义与反馈。",
+      "useWhen": [
+        "需要编排结构化字段、同步校验反馈、只读展示和提交操作的表单。"
+      ],
+      "avoidWhen": [
+        "异步远程校验、多步骤流程编排或由组件内部持有业务值。"
+      ],
+      "quickReference": "quick/workbench/wb-form.md",
+      "reference": "workbench/wb-form.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-image-upload",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchImageUpload",
+      "label": "图片上传 ImageUpload",
+      "kind": "component",
+      "summary": "用于选择与展示图片缩略图，支持多图、数量与大小限制、预览、单张下载及批量下载。",
+      "useWhen": [
+        "图片上传 ImageUpload相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-image-upload.md",
+      "reference": "workbench/wb-image-upload.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-info-list",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchInfoList",
+      "label": "信息列表 InfoList Block",
+      "kind": "block",
+      "summary": "公告、资讯等信息流需要标题、状态标签与发布时间三层展示",
+      "useWhen": [
+        "公告、资讯等信息流需要标题、状态标签与发布时间三层展示"
+      ],
+      "avoidWhen": [
+        "需要排序、分页或批量操作的数据（使用Table）",
+        "带封面图的内容（使用MediaCard）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-info-list.md",
+      "reference": "workbench/wb-info-list.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "公告",
+        "资讯列表",
+        "新闻列表",
+        "消息列表"
+      ]
+    },
+    {
+      "id": "wb-information-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchInformationCard",
+      "label": "信息卡片 Block",
+      "kind": "block",
+      "summary": "需要以稳定数据接口复用信息卡片结构、布局和独立底部区域",
+      "useWhen": [
+        "需要以稳定数据接口复用信息卡片结构、布局和独立底部区域"
+      ],
+      "avoidWhen": [
+        "跨卡片业务流程、持久化与编排应由宿主/Pattern管理",
+        "未经人工视觉签收或生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-information-card.md",
+      "reference": "workbench/wb-information-card.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-input",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchInput",
+      "label": "文本输入 Input",
+      "kind": "component",
+      "summary": "预览页聚焦一个可切换类型的输入实例，可试填、主动校验并查看事件反馈；变体页按输入类型和交互状态并排比较。",
+      "useWhen": [
+        "单行、多行、密码及单位输入"
+      ],
+      "avoidWhen": [
+        "未经适配验证的内部框架生产实现"
+      ],
+      "quickReference": "quick/workbench/wb-input.md",
+      "reference": "workbench/wb-input.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-link",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchLink",
+      "label": "文字链接 Link",
+      "kind": "component",
+      "summary": "用于跳转到页面、资源或地址。提交、切换、展开和收起等状态操作应使用Button。",
+      "useWhen": [
+        "表格中的页面或资源跳转",
+        "正文中的内嵌链接",
+        "独立文字链接"
+      ],
+      "avoidWhen": [
+        "提交、切换、展开收起或其他状态操作",
+        "未经验证的内部框架生产实现"
+      ],
+      "quickReference": "quick/workbench/wb-link.md",
+      "reference": "workbench/wb-link.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-loading",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchLoading",
+      "label": "加载 Loading",
+      "kind": "component",
+      "summary": "在请求或内容准备期间显示轻量加载指示；组件只表达进行中状态，不管理请求生命周期。",
+      "useWhen": [
+        "已知操作正在处理中，内容结构未知或适合用进度标识时。"
+      ],
+      "avoidWhen": [
+        "已知内容结构优先 Skeleton；不要把 Loading 当作禁用逻辑。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-loading.md",
+      "reference": "workbench/wb-loading.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "加载中",
+        "spinner"
+      ]
+    },
+    {
+      "id": "wb-management-form-modal",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchManagementFormModal",
+      "label": "必填编辑弹窗 · 校验与失败重试",
+      "kind": "block",
+      "summary": "管理资料以单层 Modal 承载字段表单并需要稳定的提醒、补充内容和操作区插槽",
+      "useWhen": [
+        "管理资料以单层 Modal 承载字段表单并需要稳定的提醒、补充内容和操作区插槽"
+      ],
+      "avoidWhen": [
+        "嵌套确认或跨步骤提交流程",
+        "表单字段、必填规则或真实保存行为应被区块固定"
+      ],
+      "quickReference": "quick/workbench/wb-management-form-modal.md",
+      "reference": "workbench/wb-management-form-modal.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "编辑弹窗",
+        "表单弹窗"
+      ]
+    },
+    {
+      "id": "wb-media-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchMediaCard",
+      "label": "图文卡片 Block",
+      "kind": "block",
+      "summary": "需要以稳定数据接口复用图文卡片结构、布局和独立底部区域",
+      "useWhen": [
+        "需要以稳定数据接口复用图文卡片结构、布局和独立底部区域"
+      ],
+      "avoidWhen": [
+        "跨卡片业务流程、持久化与编排应由宿主/Pattern管理",
+        "未经人工视觉签收或生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-media-card.md",
+      "reference": "workbench/wb-media-card.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-message",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchMessage",
+      "label": "全局提示 Message",
+      "kind": "component",
+      "summary": "先用单条代表消息试用全局或对话框内位置，再并列比较七种语义与附件；此页保留完整公开API、业务边界和原专题说明。",
+      "useWhen": [
+        "用户操作后的短暂成功、错误或处理中反馈，无标题。"
+      ],
+      "avoidWhen": [
+        "长期内容使用 Alert；右上角多条通知使用 Notification。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-message.md",
+      "reference": "workbench/wb-message.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "轻提示",
+        "toast",
+        "操作反馈"
+      ]
+    },
+    {
+      "id": "wb-metric-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchMetricCard",
+      "label": "数值卡片 Block",
+      "kind": "block",
+      "summary": "需要以稳定数据接口复用数值卡片结构、布局和独立底部区域",
+      "useWhen": [
+        "需要以稳定数据接口复用数值卡片结构、布局和独立底部区域"
+      ],
+      "avoidWhen": [
+        "跨卡片业务流程、持久化与编排应由宿主/Pattern管理",
+        "未经人工视觉签收或生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-metric-card.md",
+      "reference": "workbench/wb-metric-card.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "指标",
+        "指标卡片",
+        "KPI",
+        "经营数据",
+        "统计卡片",
+        "数据卡片"
+      ]
+    },
+    {
+      "id": "wb-modal",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchModal",
+      "label": "对话框 Modal",
+      "kind": "component",
+      "summary": "在当前页面上方集中处理需要明确确认的短流程；通过尺寸和插槽承载内容，打开时管理模态焦点与背景。",
+      "useWhen": [
+        "Modal首版容器"
+      ],
+      "avoidWhen": [
+        "嵌套、拖拽、手势及未经验证的内部框架生产场景"
+      ],
+      "quickReference": "quick/workbench/wb-modal.md",
+      "reference": "workbench/wb-modal.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "弹窗",
+        "弹框",
+        "模态框",
+        "对话框"
+      ]
+    },
+    {
+      "id": "wb-more-action",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchMoreAction",
+      "label": "文字下钻 MoreAction Block",
+      "kind": "block",
+      "summary": "卡片标题或页签头右侧的“更多”“查看历史”等下钻入口",
+      "useWhen": [
+        "卡片标题或页签头右侧的“更多”“查看历史”等下钻入口"
+      ],
+      "avoidWhen": [
+        "跳转到真实地址且无需按钮语义（使用Link）",
+        "主要操作（使用填充按钮）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-more-action.md",
+      "reference": "workbench/wb-more-action.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "查看更多",
+        "查看历史"
+      ]
+    },
+    {
+      "id": "wb-nested-confirmation",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchNestedConfirmation",
+      "label": "嵌套确认 Pattern",
+      "kind": "pattern",
+      "summary": "父级确认流程需要在子对话框收集补充信息，且子层结果先回填父层草稿",
+      "useWhen": [
+        "父级确认流程需要在子对话框收集补充信息，且子层结果先回填父层草稿"
+      ],
+      "avoidWhen": [
+        "普通单层确认或表单",
+        "子层操作必须独立持久化或页面没有父级草稿"
+      ],
+      "quickReference": "quick/workbench/wb-nested-confirmation.md",
+      "reference": "workbench/wb-nested-confirmation.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "二级弹窗",
+        "嵌套弹窗"
+      ]
+    },
+    {
+      "id": "wb-notification",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchNotification",
+      "label": "通知提醒 Notification",
+      "kind": "component",
+      "summary": "在页面固定通知区域呈现需要用户留意的异步事件，支持短时自动消失、链接和队列管理。",
+      "useWhen": [
+        "右上角非阻断操作通知，可以包含标题、描述和链接。"
+      ],
+      "avoidWhen": [
+        "阻断确认使用 Feedback Dialog；只需短句操作结果使用 Message。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-notification.md",
+      "reference": "workbench/wb-notification.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-number-count",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchNumberCount",
+      "label": "数字计数器 NumberCount",
+      "kind": "component",
+      "summary": "用于有明确步长与上下界的数量录入。数值和业务提交由调用方控制。",
+      "useWhen": [
+        "在明确上下限与步长内录入数量"
+      ],
+      "avoidWhen": [
+        "普通文本、金额格式化、异步校验或高精度计算"
+      ],
+      "quickReference": "quick/workbench/wb-number-count.md",
+      "reference": "workbench/wb-number-count.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "步进器",
+        "数量输入"
+      ]
+    },
+    {
+      "id": "wb-pagination",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPagination",
+      "label": "分页器 Pagination",
+      "kind": "component",
+      "summary": "用于在有明确总量的数据集中切换页码和每页数量。分页控件发出请求意图，数据加载由调用方管理。",
+      "useWhen": [
+        "已知总量列表的分页与每页数量切换"
+      ],
+      "avoidWhen": [
+        "未知总量无限加载、服务端请求调度",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-pagination.md",
+      "reference": "workbench/wb-pagination.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "翻页",
+        "分页"
+      ]
+    },
+    {
+      "id": "wb-pedestal-icon",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPedestalIcon",
+      "label": "底托图标",
+      "kind": "component",
+      "summary": "底托图标 PedestalIcon：使用Pixso已定义的圆形或圆角矩形底托及高低饱和度变体；状态分类、资源类型和默认人像需要带底托图标",
+      "useWhen": [
+        "底托图标 PedestalIcon：使用Pixso已定义的圆形或圆角矩形底托及高低饱和度变体",
+        "状态分类、资源类型和默认人像需要带底托图标"
+      ],
+      "avoidWhen": [
+        "需要纯系统图标或状态提示图标时使用对应独立图标组件",
+        "将占位咖啡杯解释为已确认业务语义",
+        "未经生产接入验证作为生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-pedestal-icon.md",
+      "reference": "workbench/wb-pedestal-icon.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-policy-links",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPolicyLinks",
+      "label": "政策链接 PolicyLinks Block",
+      "kind": "block",
+      "summary": "页签下方列出与当前分类相关的规则、政策或评估文档链接",
+      "useWhen": [
+        "页签下方列出与当前分类相关的规则、政策或评估文档链接"
+      ],
+      "avoidWhen": [
+        "正文中的普通文字链接（使用Link）",
+        "需要下载、预览等文件操作（使用Upload文件列表）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-policy-links.md",
+      "reference": "workbench/wb-policy-links.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-popconfirm",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPopconfirm",
+      "label": "气泡确认 Popconfirm",
+      "kind": "component",
+      "summary": "在触发元素附近确认一项轻量、局部且可立即判定的操作，用户确认后才由宿主执行业务动作。",
+      "useWhen": [
+        "触发器附近的简单确认，可用一段正文说明影响。"
+      ],
+      "avoidWhen": [
+        "复杂表单、长文本、高风险必须阅读的信息使用 Modal/Feedback Dialog。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-popconfirm.md",
+      "reference": "workbench/wb-popconfirm.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "二次确认",
+        "删除确认"
+      ]
+    },
+    {
+      "id": "wb-popover",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchPopover",
+      "label": "气泡框 Popover",
+      "kind": "component",
+      "summary": "在触发元素附近展示需要阅读的补充说明，可包含正文链接；不用于操作菜单或确认任务。",
+      "useWhen": [
+        "在触发元素附近提供可含链接的补充说明"
+      ],
+      "avoidWhen": [
+        "仅需纯文本悬停提示",
+        "需要点击触发的菜单或确认操作",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-popover.md",
+      "reference": "workbench/wb-popover.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-quick-app-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchQuickAppCard",
+      "label": "快捷应用卡片 Block",
+      "kind": "block",
+      "summary": "需要以稳定数据接口复用快捷应用卡片结构、布局和独立底部区域",
+      "useWhen": [
+        "需要以稳定数据接口复用快捷应用卡片结构、布局和独立底部区域"
+      ],
+      "avoidWhen": [
+        "跨卡片业务流程、持久化与编排应由宿主/Pattern管理",
+        "未经人工视觉签收或生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-quick-app-card.md",
+      "reference": "workbench/wb-quick-app-card.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "快捷入口",
+        "应用入口"
+      ]
+    },
+    {
+      "id": "wb-radio",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchRadio",
+      "label": "单选框 Radio",
+      "kind": "component",
+      "summary": "用于从互斥选项中选择一个值。多个Radio共享name和v-model状态，由调用方提供选项布局。",
+      "useWhen": [
+        "互斥选择"
+      ],
+      "avoidWhen": [
+        "未经验证的内部框架生产实现"
+      ],
+      "quickReference": "quick/workbench/wb-radio.md",
+      "reference": "workbench/wb-radio.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-rating",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchRating",
+      "label": "评分 Rating",
+      "kind": "component",
+      "summary": "用于表达等级、满意度或服务反馈。支持整分与半分、数值或文字说明，也可在只读界面展示已有评分。",
+      "useWhen": [
+        "以五级星形表达主观评分"
+      ],
+      "avoidWhen": [
+        "精确数值录入或超过半分精度"
+      ],
+      "quickReference": "quick/workbench/wb-rating.md",
+      "reference": "workbench/wb-rating.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-readonly-fields",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchReadonlyFields",
+      "label": "静态字段组 ReadonlyFields",
+      "kind": "block",
+      "summary": "静态字段组的受控业务组合",
+      "useWhen": [
+        "静态字段组的受控业务组合"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "quickReference": "quick/workbench/wb-readonly-fields.md",
+      "reference": "workbench/wb-readonly-fields.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "详情字段",
+        "只读信息",
+        "描述列表"
+      ]
+    },
+    {
+      "id": "wb-scrollbar",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchScrollbar",
+      "label": "滚动条 Scrollbar",
+      "kind": "component",
+      "summary": "用于为受限内容区域提供覆盖式滚动指示与拖动控制。滚动内容仍由浏览器原生滚动机制处理。",
+      "useWhen": [
+        "小尺寸适用于空间受限、需要弱化视觉干扰或辅助性质的微型滚动场景，例如下拉选择框菜单、多行输入框、弹出气泡框内的滚动。",
+        "默认尺寸适用于全屏／主页面滚动、主体内容列表、表格的主体滚动区域、中大型弹窗、侧边抽屉等尺寸较大的独立层级，以及用户需要频繁拖拽或观察滚动位置的区域。"
+      ],
+      "avoidWhen": [
+        "未经适配验证的内部框架生产实现"
+      ],
+      "quickReference": "quick/workbench/wb-scrollbar.md",
+      "reference": "workbench/wb-scrollbar.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-search",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSearch",
+      "label": "搜索 Search",
+      "kind": "component",
+      "summary": "用于提交文本搜索，可组合单侧或双侧单选筛选。搜索文本即时受控；是否执行查询由search事件触发。",
+      "useWhen": [
+        "文本搜索及前后缀筛选",
+        "多字段条件与关键字组合的综合搜索，字段菜单复用级联选择面板"
+      ],
+      "avoidWhen": [
+        "本版本范围外的交互或未经验证的内部框架生产实现"
+      ],
+      "quickReference": "quick/workbench/wb-search.md",
+      "reference": "workbench/wb-search.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "搜索框",
+        "关键字搜索"
+      ]
+    },
+    {
+      "id": "wb-select",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSelect",
+      "label": "选择器 Select",
+      "kind": "component",
+      "summary": "用于从有限的候选项中选择一个或多个值。正式WorkbenchSelect v1保持已批准的基础合同；搜索、清除、标签删除和尺寸扩展只属于Studio候选验证。",
+      "useWhen": [
+        "单选或多选已有选项"
+      ],
+      "avoidWhen": [
+        "本版本范围外的交互或未经验证的内部框架生产实现"
+      ],
+      "quickReference": "quick/workbench/wb-select.md",
+      "reference": "workbench/wb-select.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "下拉框",
+        "下拉选择"
+      ]
+    },
+    {
+      "id": "wb-side-navigation",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSideNavigation",
+      "label": "侧边导航 Side Navigation",
+      "kind": "component",
+      "summary": "用于页面内的一级、二级导航及更深层级展开。当前选中页面由消费方控制；折叠与展开状态可受控。",
+      "useWhen": [
+        "管理应用多层级与频繁切换导航",
+        "可收起侧栏及三级四级面板"
+      ],
+      "avoidWhen": [
+        "移动端正式导航",
+        "超过四级或跨刷新持久化需求",
+        "未经验证的Vue2或内部框架生产调用"
+      ],
+      "quickReference": "quick/workbench/wb-side-navigation.md",
+      "reference": "workbench/wb-side-navigation.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "侧边栏",
+        "左侧菜单",
+        "导航菜单"
+      ]
+    },
+    {
+      "id": "wb-skeleton",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSkeleton",
+      "label": "骨架屏 Skeleton",
+      "kind": "component",
+      "summary": "在数据加载期间预留真实内容的结构与空间，降低页面布局跳动；请求状态仍由宿主管理。",
+      "useWhen": [
+        "加载前已知内容结构，以稳定骨架占位减少跳动。"
+      ],
+      "avoidWhen": [
+        "未知进度用 Loading；静态布局说明不要被播报为正在加载。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-skeleton.md",
+      "reference": "workbench/wb-skeleton.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-slider",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSlider",
+      "label": "滑动条 Slider",
+      "kind": "component",
+      "summary": "用于在连续或离散数值范围内调节单值，也支持不交叉的离散区间。",
+      "useWhen": [
+        "在连续值、离散值或离散区间内快速选择"
+      ],
+      "avoidWhen": [
+        "要求精确键入且范围未知或区间端点可交叉"
+      ],
+      "quickReference": "quick/workbench/wb-slider.md",
+      "reference": "workbench/wb-slider.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-steps",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSteps",
+      "label": "步骤条 Steps",
+      "kind": "component",
+      "summary": "用于展示多阶段任务的流程进度，并按业务需要允许回看可导航步骤。",
+      "useWhen": [
+        "步骤条 Steps相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-steps.md",
+      "reference": "workbench/wb-steps.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "流程进度",
+        "步骤"
+      ]
+    },
+    {
+      "id": "wb-switch",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSwitch",
+      "label": "开关 Switch",
+      "kind": "component",
+      "summary": "用于即时切换一个布尔设置。切换后由调用方保存状态并决定后续业务影响。",
+      "useWhen": [
+        "即时开启或关闭一个布尔配置"
+      ],
+      "avoidWhen": [
+        "提交后才生效的多项选择或不可立即撤销的操作"
+      ],
+      "quickReference": "quick/workbench/wb-switch.md",
+      "reference": "workbench/wb-switch.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-table",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTable",
+      "label": "表格 Table",
+      "kind": "component",
+      "summary": "用于伙伴业务管理数据的结构化查看与操作。WorkbenchTable展示调用方提供的行并发出受控意图；WorkbenchDataToolbar负责可复用的表格、列表和卡片操作区。",
+      "useWhen": [
+        "展示、选择、排序、筛选或展开伙伴业务管理数据"
+      ],
+      "avoidWhen": [
+        "移动端卡片转换、虚拟滚动、树形表格或需要内置编辑引擎的表格",
+        "未经验证的生产目标"
+      ],
+      "quickReference": "quick/workbench/wb-table.md",
+      "reference": "workbench/wb-table.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "数据表",
+        "数据列表",
+        "列表页"
+      ]
+    },
+    {
+      "id": "wb-table-actions-selection",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTableActionsSelection",
+      "label": "表格操作与跨页选择 Block",
+      "kind": "block",
+      "summary": "表格需将稳定行 ID 的选择状态保留跨页，并由页面提供批量操作和行操作处理",
+      "useWhen": [
+        "表格需将稳定行 ID 的选择状态保留跨页，并由页面提供批量操作和行操作处理"
+      ],
+      "avoidWhen": [
+        "仅当前页选择已满足需求",
+        "服务端全量选择、权限过滤或业务删除语义需要统一由 Block 决定"
+      ],
+      "quickReference": "quick/workbench/wb-table-actions-selection.md",
+      "reference": "workbench/wb-table-actions-selection.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "批量操作",
+        "跨页勾选"
+      ]
+    },
+    {
+      "id": "wb-tabs",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTabs",
+      "label": "页签 Tabs",
+      "kind": "component",
+      "summary": "用于切换相互关联的平级内容面板。需要互斥设置值但不切换内容面板时使用ButtonRadioGroup。",
+      "useWhen": [
+        "同一上下文内平级内容切换"
+      ],
+      "avoidWhen": [
+        "站点路由导航、异步加载时直接自动激活",
+        "未经验证的内部 UI 框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-tabs.md",
+      "reference": "workbench/wb-tabs.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "标签页",
+        "选项卡"
+      ]
+    },
+    {
+      "id": "wb-tabs-header",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTabsHeader",
+      "label": "页签头 TabsHeader Block",
+      "kind": "block",
+      "summary": "卡片内一级页签需要贯穿线样式、页签数量角标或右侧下钻操作",
+      "useWhen": [
+        "卡片内一级页签需要贯穿线样式、页签数量角标或右侧下钻操作"
+      ],
+      "avoidWhen": [
+        "页面级导航或需要内容面板关联之外的复杂页签行为（直接使用Tabs）",
+        "未经生产接入验证即宣称可生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-tabs-header.md",
+      "reference": "workbench/wb-tabs-header.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-tag",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTag",
+      "label": "标签 Tag",
+      "kind": "component",
+      "summary": "用短文本标记属性、状态、分类或运营信息；标签可为静态内容，也可明确设为可交互按钮。",
+      "useWhen": [
+        "标记对象属性、短状态、分类或卡片运营信息"
+      ],
+      "avoidWhen": [
+        "表达长句、承载复杂操作或替代按钮",
+        "未经验证的生产目标"
+      ],
+      "quickReference": "quick/workbench/wb-tag.md",
+      "reference": "workbench/wb-tag.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-time-picker",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTimePicker",
+      "label": "时间选择 TimePicker",
+      "kind": "component",
+      "summary": "用于选择单个时间或时间范围。面板中的修改作为草稿，点击确定后才更新modelValue。",
+      "useWhen": [
+        "时间选择器 TimePicker相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-time-picker.md",
+      "reference": "workbench/wb-time-picker.md",
+      "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-timeline",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTimeline",
+      "label": "时间轴 Timeline",
+      "kind": "component",
+      "summary": "按先后顺序呈现多个相关事件及其时间、标题和说明，帮助阅读者理解过程与进展。",
+      "useWhen": [
+        "时间轴 Timeline相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-timeline.md",
+      "reference": "workbench/wb-timeline.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "时间线",
+        "历程"
+      ]
+    },
+    {
+      "id": "wb-tooltip",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTooltip",
+      "label": "文字提示 Tooltip",
+      "kind": "component",
+      "summary": "在控件附近补充简短、非必要的说明文字；不承载交互内容或关键信息。",
+      "useWhen": [
+        "悬停或键盘聚焦时显示短文本、溢出内容全文或静态标签。"
+      ],
+      "avoidWhen": [
+        "需要链接使用Popover；操作确认使用Popconfirm；不要在Tooltip里放可交互元素。",
+        "未经验证的公司内部UI框架或生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-tooltip.md",
+      "reference": "workbench/wb-tooltip.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "悬停提示",
+        "提示气泡"
+      ]
+    },
+    {
+      "id": "wb-top-nav",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTopNav",
+      "label": "顶部导航 Top Navigation",
+      "kind": "component",
+      "summary": "组织站点切换、业务页签、搜索、通知与账户入口，适配桌面、折叠桌面和移动宽度。",
+      "useWhen": [
+        "需要站点、业务页签、全局检索和账户入口的页首导航。"
+      ],
+      "avoidWhen": [
+        "局部卡片或页面内分段导航；使用 Tabs。"
+      ],
+      "quickReference": "quick/workbench/wb-top-nav.md",
+      "reference": "workbench/wb-top-nav.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "顶栏",
+        "页头",
+        "头部导航"
+      ]
+    },
+    {
+      "id": "wb-transaction-stage-progress",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTransactionStageProgress",
+      "label": "交易阶段进度（Block 候选）",
+      "kind": "block",
+      "summary": "交易阶段进度的受控业务组合",
+      "useWhen": [
+        "交易阶段进度的受控业务组合"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "quickReference": "quick/workbench/wb-transaction-stage-progress.md",
+      "reference": "workbench/wb-transaction-stage-progress.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "阶段进度"
+      ]
+    },
+    {
+      "id": "wb-transfer",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTransfer",
+      "label": "穿梭框 Transfer",
+      "kind": "component",
+      "summary": "用于在可选集合与已选集合之间转移项目，支持手动确认与自动移动模式。",
+      "useWhen": [
+        "穿梭框 Transfer相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-transfer.md",
+      "reference": "workbench/wb-transfer.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "双栏选择"
+      ]
+    },
+    {
+      "id": "wb-tree",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchTree",
+      "label": "结构树 Tree",
+      "kind": "component",
+      "summary": "用于展示父子层级内容，支持单选、多选、搜索、展开及可配置的节点操作。",
+      "useWhen": [
+        "结构树 Tree相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-tree.md",
+      "reference": "workbench/wb-tree.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "组织树",
+        "层级树",
+        "树形"
+      ]
+    },
+    {
+      "id": "wb-upload",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchUpload",
+      "label": "文件上传 Upload",
+      "kind": "component",
+      "summary": "用于选择并管理文件记录，支持点击或拖拽入口、文本/精简/卡片列表。上传传输由消费方提供或显式提交。",
+      "useWhen": [
+        "文件上传 Upload相关交互与状态展示"
+      ],
+      "avoidWhen": [
+        "未经独立生产接入与设计验收直接用于生产交付"
+      ],
+      "quickReference": "quick/workbench/wb-upload.md",
+      "reference": "workbench/wb-upload.md",
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "附件",
+        "文件"
+      ]
+    },
+    {
+      "id": "agreement-assistant-panel",
+      "package": "huawei-partner-ai-ui",
+      "name": "AgreementAssistantPanel",
+      "label": "AgreementAssistantPanel",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/agreement-assistant-panel.md",
+      "reference": "ai-ui/agreement-assistant-panel.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "协议助手",
+        "合同助手"
+      ]
+    },
+    {
+      "id": "agreement-table",
+      "package": "huawei-partner-ai-ui",
+      "name": "AgreementTable",
+      "label": "AgreementTable",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/agreement-table.md",
+      "reference": "ai-ui/agreement-table.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "协议表格",
+        "协议列表"
+      ]
+    },
+    {
+      "id": "ai-alert",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiAlert",
+      "label": "AiAlert",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/ai-alert.md",
+      "reference": "ai-ui/ai-alert.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 提示",
+        "AI 警告"
+      ]
+    },
+    {
+      "id": "ai-icon",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiIcon",
+      "label": "AiIcon",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/ai-icon.md",
+      "reference": "ai-ui/ai-icon.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 图标"
+      ]
+    },
+    {
+      "id": "ai-icon-provider",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiIconProvider",
+      "label": "AiIconProvider",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/ai-icon-provider.md",
+      "reference": "ai-ui/ai-icon-provider.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "图标注册",
+        "图标提供"
+      ]
+    },
+    {
+      "id": "ai-summary-card",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiSummaryCard",
+      "label": "AiSummaryCard",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/ai-summary-card.md",
+      "reference": "ai-ui/ai-summary-card.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "摘要",
+        "AI 摘要",
+        "智能摘要",
+        "摘要卡片"
+      ]
+    },
+    {
+      "id": "ai-toast",
+      "package": "huawei-partner-ai-ui",
+      "name": "AiToast",
+      "label": "AiToast",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/ai-toast.md",
+      "reference": "ai-ui/ai-toast.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 轻提示",
+        "AI toast"
+      ]
+    },
+    {
+      "id": "assistant-host-layout",
+      "package": "huawei-partner-ai-ui",
+      "name": "AssistantHostLayout",
+      "label": "面板 · 侧栏、悬浮与全屏",
+      "kind": "component",
+      "summary": "通用聊天呈现与可选宿主；消息、请求由业务控制器持有",
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/assistant-host-layout.md",
+      "reference": "ai-ui/assistant-host-layout.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "助手布局",
+        "侧栏助手",
+        "悬浮助手"
+      ]
+    },
+    {
+      "id": "business-navigation-card",
+      "package": "huawei-partner-ai-ui",
+      "name": "BusinessNavigationCard",
+      "label": "BusinessNavigationCard",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/business-navigation-card.md",
+      "reference": "ai-ui/business-navigation-card.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "导航卡片",
+        "业务入口卡片",
+        "跳转卡片"
+      ]
+    },
+    {
+      "id": "business-overlay-host",
+      "package": "huawei-partner-ai-ui",
+      "name": "BusinessOverlayHost",
+      "label": "宿主 · Drawer / Modal 与作业区",
+      "kind": "component",
+      "summary": "区域模态和所属 document 全局模态有明确边界",
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/business-overlay-host.md",
+      "reference": "ai-ui/business-overlay-host.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "弹层宿主",
+        "区域模态"
+      ]
+    },
+    {
+      "id": "business-table",
+      "package": "huawei-partner-ai-ui",
+      "name": "BusinessTable",
+      "label": "BusinessTable",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/business-table.md",
+      "reference": "ai-ui/business-table.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "业务表格",
+        "AI 表格"
+      ]
+    },
+    {
+      "id": "chat-panel",
+      "package": "huawei-partner-ai-ui",
+      "name": "ChatPanel",
+      "label": "面板 · 侧栏、悬浮与全屏",
+      "kind": "component",
+      "summary": "通用聊天呈现与可选宿主；消息、请求由业务控制器持有",
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/chat-panel.md",
+      "reference": "ai-ui/chat-panel.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "对话",
+        "聊天",
+        "聊天面板",
+        "助手面板",
+        "AI 助手",
+        "智能助手"
+      ]
+    },
+    {
+      "id": "conversation-history-panel",
+      "package": "huawei-partner-ai-ui",
+      "name": "ConversationHistoryPanel",
+      "label": "面板 · 侧栏、悬浮与全屏",
+      "kind": "component",
+      "summary": "通用聊天呈现与可选宿主；消息、请求由业务控制器持有",
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/conversation-history-panel.md",
+      "reference": "ai-ui/conversation-history-panel.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "历史会话",
+        "对话历史",
+        "会话记录"
+      ]
+    },
+    {
+      "id": "ui-dialog",
+      "package": "huawei-partner-ai-ui",
+      "name": "UiDialog",
+      "label": "宿主 · Drawer / Modal 与作业区",
+      "kind": "component",
+      "summary": "区域模态和所属 document 全局模态有明确边界",
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/ui-dialog.md",
+      "reference": "ai-ui/ui-dialog.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "弹窗",
+        "对话框",
+        "AI 弹窗"
+      ]
+    },
+    {
+      "id": "workspace-smart-card",
+      "package": "huawei-partner-ai-ui",
+      "name": "WorkspaceSmartCard",
+      "label": "WorkspaceSmartCard",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/workspace-smart-card.md",
+      "reference": "ai-ui/workspace-smart-card.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 卡片",
+        "智能卡片",
+        "智能洞察"
+      ]
+    },
+    {
+      "id": "workspace-smart-icon",
+      "package": "huawei-partner-ai-ui",
+      "name": "WorkspaceSmartIcon",
+      "label": "WorkspaceSmartIcon",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/workspace-smart-icon.md",
+      "reference": "ai-ui/workspace-smart-icon.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 图标",
+        "智能图标"
+      ]
+    },
+    {
+      "id": "workspace-smart-tabs",
+      "package": "huawei-partner-ai-ui",
+      "name": "WorkspaceSmartTabs",
+      "label": "WorkspaceSmartTabs",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/workspace-smart-tabs.md",
+      "reference": "ai-ui/workspace-smart-tabs.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 页签",
+        "智能页签"
+      ]
+    },
+    {
+      "id": "workspace-smart-tag",
+      "package": "huawei-partner-ai-ui",
+      "name": "WorkspaceSmartTag",
+      "label": "WorkspaceSmartTag",
+      "kind": "component",
+      "summary": null,
+      "useWhen": [],
+      "avoidWhen": [],
+      "quickReference": "quick/ai-ui/workspace-smart-tag.md",
+      "reference": "ai-ui/workspace-smart-tag.md",
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 标签",
+        "智能标签"
+      ]
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import {createRequire} from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
 import {execSync} from 'node:child_process';
+import {fileURLToPath, pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 
 const arg = n => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };
@@ -15,7 +16,7 @@ const html = arg('--html'), manifestPath = arg('--manifest'), screens = arg('--s
 if (!html) { console.error('Usage: node test_canvas_browser.mjs --html /abs/canvas.html [--manifest manifest.json] [--screens dir]'); process.exit(2); }
 const require = createRequire(import.meta.url);
 let playwright;
-for (const base of [process.cwd(), path.dirname(new URL(import.meta.url).pathname), (() => { try { return execSync('npm root -g').toString().trim(); } catch { return null; } })()].filter(Boolean)) {
+for (const base of [process.cwd(), path.dirname(fileURLToPath(import.meta.url)), (() => { try { return execSync('npm root -g').toString().trim(); } catch { return null; } })()].filter(Boolean)) {
   try { playwright = require(require.resolve('playwright', {paths:[base]})); break; } catch {}
 }
 if (!playwright) { console.error('playwright not found; install it or run where it is available'); process.exit(2); }
@@ -30,7 +31,7 @@ try {
   page.on('pageerror', e => errors.push('pageerror ' + e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push('console ' + m.text()); });
   page.on('request', r => { if (!/^(data|blob|file):/.test(r.url())) errors.push('network ' + r.url()); });
-  await page.goto('file://' + path.resolve(html));
+  await page.goto(pathToFileURL(path.resolve(html)).href);
   await page.waitForSelector('.dch[data-ready="true"]', {timeout:15000});
   const data = manifestPath ? JSON.parse(fs.readFileSync(manifestPath, 'utf8')) : null;
   const views = await page.$$eval('[data-view-id]', els => els.map(e => e.dataset.viewId));

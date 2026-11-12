@@ -4,6 +4,8 @@
 
 - [Skill 指令](./SKILL.md)
 - [数据契约](./references/data-contract.md)
+- [合成示例 manifest](./references/manifest-example.json)（原样通过校验）
+- [原型、滚动页面与对话输入](./references/prototype-and-dialogue.md)
 - [画布面板模板](./references/canvas-template.md)
 - [画布交付与交互](./references/canvas-delivery.md)
 - [审查方法](./references/review-method.md)
@@ -13,7 +15,7 @@
 
 将本仓库内容放到 Agent 的 `skills/design-requirement-canvas/` 目录，在对话中调用 `design-requirement-canvas`。按任务所用设计系统，还需要相应的组件消费 Skill 或组件契约（Workbench 为 `partner-ui-pages` / `partner-ui-vue3`）。
 
-需要 Python 3.9+、Node 20+。裁剪需要 Pillow；DOM 测试需要 `npm install`（happy-dom）；浏览器测试需要 Playwright + Chromium。
+需要 Python 3.9+、Node 20+。裁剪需要 Pillow；DOM 测试需要 `npm install`（happy-dom）；浏览器测试需要 Playwright + Chromium。校验、构建、交接和批量索引只用 Python 标准库；其余依赖缺失时的降级方式见 SKILL.md 的“环境与降级”。Skill 可放在含空格或中文的路径下。
 
 ## 单场景流水线
 

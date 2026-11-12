@@ -59,6 +59,9 @@ export function checkGenerated(root, files) {
   for (const prefix of [
     "shared/references",
     "shared/gallery",
+    "skills/partner-ui-pages/references/quick",
+    "skills/partner-ui-vue3/references/quick",
+    "skills/partner-ui-review/references/quick",
     "skills/partner-ui-pages/references/workbench",
     "skills/partner-ui-vue3/references/workbench",
     "skills/partner-ui-pages/references/ai-ui",

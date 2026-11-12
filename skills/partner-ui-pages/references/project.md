@@ -96,8 +96,10 @@ node scripts/new_project.mjs --out ./my-demo --title "伙伴经营工作台"
 node scripts/project_index.mjs ./my-demo --query 伙伴
 node scripts/project_index.mjs ./my-demo --changed components/MetricTile.js
 
-# 查真实锁包契约；--name 返回 props/events/slots 和完整文档路径
-node scripts/catalog.mjs --query 表格
+# 查真实锁包契约：先 search 定位，再 show 读取速查（--view full 为完整资料）
+node scripts/assets.mjs search --query 表格 --limit 5
+node scripts/assets.mjs show --id wb-table
+# 旧接口保留：--name 返回 props/events/slots 和完整文档路径
 node scripts/catalog.mjs --name WorkbenchTable
 
 # 定向检查和交付；全量检查不带 --page

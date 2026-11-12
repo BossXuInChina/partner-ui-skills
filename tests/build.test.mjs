@@ -177,6 +177,23 @@ test("ordinary checks reject hand edits, missing files, unrecorded pages and can
     rmSync(target);
     assert.throws(() => checkGenerated(root, files), /GENERATED_DRIFT/);
   }));
+test("consumer quick references reject hand edits, missing and unrecorded files", () =>
+  fixture((root) => {
+    const name = "skills/partner-ui-pages/references/quick/workbench/example.md";
+    const files = new Map([[name, "source contract\n"]]);
+    writeGenerated(root, files);
+    checkGenerated(root, files);
+    writeFileSync(resolve(root, name), "edited");
+    assert.throws(() => checkGenerated(root, files), /GENERATED_DRIFT/);
+    writeGenerated(root, files);
+    const extra = resolve(root, "skills/partner-ui-pages/references/quick/forged.md");
+    writeFileSync(extra, "not from package");
+    assert.throws(() => checkGenerated(root, files), /unrecorded/);
+    rmSync(extra);
+    rmSync(resolve(root, name));
+    assert.throws(() => checkGenerated(root, files), /GENERATED_DRIFT/);
+  }));
+
 test("generation rejects escaping paths and protects edited retired generated files", () =>
   fixture((root) => {
     assert.throws(

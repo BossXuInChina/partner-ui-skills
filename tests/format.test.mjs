@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
+import { createHash } from "node:crypto";
 import { generateReferences } from "../shared/format/index.mjs";
 
 const root = new URL("../", import.meta.url);
@@ -59,11 +60,20 @@ const packages = packageInputs();
 const wb = packages.find((pkg) => pkg.name === wbName);
 const ai = packages.find((pkg) => pkg.name === "huawei-partner-ai-ui");
 
+test("all pre-existing reference paths and bytes remain unchanged", () => {
+  const legacy = [...generateReferences({ packages, studioBaseURLs: bases })]
+    .filter(([path]) => !path.startsWith("quick/"));
+  // Captured from the unmodified formatter against the same locked tarballs/bases.
+  assert.equal(createHash("sha256").update(JSON.stringify(legacy)).digest("hex"),
+    "92fc0661e9acc8830d6de3ebdbb0fb091df51fb8a8101d13fc2172d4ef68735e");
+});
+
 test("all locked assets get four Studio columns, declared API and genuine official SFCs", () => {
   const output = generateReferences({ packages, studioBaseURLs: bases });
   const contracts = wb.metadata.components.assets;
   assert.equal(Object.keys(contracts).length, 73);
-  assert.equal(output.size, Object.keys(contracts).length + 8 + 19);
+  assert.equal([...output.keys()].filter((path) => !path.startsWith("quick/")).length,
+    Object.keys(contracts).length + 8 + 19);
   assert.deepEqual([...output.keys()], [...output.keys()].sort());
   for (const [id, contract] of Object.entries(contracts)) {
     const page = output.get(`workbench/${id}.md`);
@@ -394,6 +404,216 @@ test("nonportable and missing examples never become invented public code; custom
   assert.doesNotMatch(missing, /```vue/);
 });
 
+function fencedJSON(page) {
+  return [...page.matchAll(/^(`{3,})json\n([\s\S]*?)^\1$/gm)]
+    .map((match) => JSON.parse(match[2]));
+}
+
+test("quick index is lightweight, source-derived, ordered and references every asset", () => {
+  const output = generateReferences({ packages });
+  const index = JSON.parse(output.get("quick/index.json"));
+  assert.equal(Object.keys(index)[0], "_generated");
+  assert.equal(index.schemaVersion, 1);
+  const count = Object.keys(wb.metadata.components.assets).length +
+    Object.keys(ai.metadata.components.assets).length;
+  assert.equal(index.entries.length, count);
+  assert.equal([...output.keys()].filter((path) => path.startsWith("quick/")).length, count + 1);
+  assert.deepEqual(index.entries.map((entry) => entry.package + "/" + entry.id),
+    index.entries.map((entry) => entry.package + "/" + entry.id).sort());
+  for (const entry of index.entries) {
+    const pkg = packages.find((item) => item.name === entry.package);
+    const contract = pkg.metadata.components.assets[entry.id];
+    const usage = pkg.name === wbName ? pkg.metadata.usage.assets[entry.id] : contract;
+    assert.deepEqual(Object.keys(entry), ["id", "package", "name", "label", "kind",
+      "summary", "useWhen", "avoidWhen", "quickReference", "reference", "exampleStatus", "searchAliases"]);
+    assert.equal(entry.name, contract.publicImport?.exportName ?? null);
+    assert.equal(entry.label, contract.label ?? usage?.title ?? contract.title ?? entry.id);
+    assert.equal(entry.kind, contract.kind ?? contract.group ?? null);
+    assert.equal(entry.summary, contract.summary ?? null);
+    assert.deepEqual(entry.useWhen, contract.useWhen ?? []);
+    assert.deepEqual(entry.avoidWhen, contract.avoidWhen ?? []);
+    assert.equal(entry.exampleStatus, usage?.usageStatus ?? "unknown");
+    assert.ok(output.has(entry.reference));
+    assert.ok(output.has(entry.quickReference));
+    assert.ok(output.get(entry.quickReference).includes(`(<../../${entry.reference}>)`));
+  }
+});
+
+// Quick JSON blocks omit empty top-level fields (null, [], {}) and list their names on a
+// "未声明或为空" line. Only the contract sections before the example section are searched.
+function quickContract(page) {
+  const head = page.split("\n## 官方示例")[0];
+  return {
+    blocks: fencedJSON(head).filter((block) => block && !Array.isArray(block)),
+    empty: [...head.matchAll(/^未声明或为空：(.*)（不代表支持）$/gm)].flatMap((match) => match[1].split("、")),
+  };
+}
+function quickEmptyValue(value) {
+  return value == null || (typeof value === "object" && Object.keys(value).length === 0);
+}
+function assertQuickField(page, key, expected, message) {
+  const { blocks, empty } = quickContract(page);
+  const block = blocks.find((item) => Object.hasOwn(item, key));
+  if (quickEmptyValue(expected)) {
+    assert.equal(block, undefined, message + " printed although empty");
+    assert.ok(empty.includes(key), message + " not listed as empty");
+  } else {
+    assert.ok(block, message + " missing");
+    assert.deepEqual(block[key], expected, message);
+    assert.ok(!empty.includes(key), message + " listed as empty");
+  }
+}
+
+test("quick pages retain complete declared API, rules, qualifications and unknowns without Studio payloads", () => {
+  const output = generateReferences({ packages });
+  for (const pkg of packages) {
+    const family = pkg.name === wbName ? "workbench" : "ai-ui";
+    for (const [id, contract] of Object.entries(pkg.metadata.components.assets)) {
+      const usage = pkg.name === wbName ? pkg.metadata.usage.assets[id] : contract;
+      const page = output.get(`quick/${family}/${id}.md`);
+      const field = (key, expected) => assertQuickField(page, key, expected, `${id}.${key}`);
+      for (const key of ["publicImport", "props", "events", "eventDetails", "slots", "slotDetails",
+        "slotPatterns", "exposed", "family", "status", "unsupported", "avoidWhen",
+        "rules", "dependencies", "foundationKeys"])
+        field(key, contract[key]);
+      for (const key of ["propNotes", "eventNotes", "slotNotes", "sections", "related"])
+        field(key, usage?.usage?.[key]);
+      // useWhen is dropped only when it repeats summary verbatim.
+      if (JSON.stringify(contract.useWhen) === JSON.stringify([contract.summary])) {
+        field("summary", contract.summary);
+        assert.ok(!quickContract(page).blocks.some((block) => Object.hasOwn(block, "useWhen")));
+      } else field("useWhen", contract.useWhen);
+      field("usageStatus", usage?.usageStatus ?? "unknown");
+      if (usage === contract)
+        assert.ok(!quickContract(page).blocks.some((block) => Object.hasOwn(block, "usageUnsupported")));
+      else field("usageUnsupported", usage?.unsupported);
+      field("variantStatus", usage?.variants?.status ?? "unknown");
+      field("variantUnsupported", usage?.variants?.unsupported);
+      // Package identity lives on the 包： line, not in a repeated source object.
+      assert.ok(!quickContract(page).blocks.some((block) => Object.hasOwn(block, "source")));
+      assert.ok(page.includes(`${contract.source.package}@${contract.source.version}`));
+      assert.ok(page.includes(pkg.sourceCommit));
+      assert.match(page, /不授予发布或生产批准/);
+      for (const block of quickContract(page).blocks) {
+        assert.equal(Object.hasOwn(block, "cases"), false);
+        assert.equal(Object.hasOwn(block, "controls"), false);
+      }
+    }
+  }
+});
+
+test("quick reference byte measurements exclude indexes and do not claim model token savings", (t) => {
+  const output = generateReferences({ packages });
+  const index = JSON.parse(output.get("quick/index.json"));
+  let fullBytes = 0, quickBytes = 0, largerQuickPages = 0;
+  for (const entry of index.entries) {
+    const full = Buffer.byteLength(output.get(entry.reference));
+    const quick = Buffer.byteLength(output.get(entry.quickReference));
+    fullBytes += full;
+    quickBytes += quick;
+    if (quick > full) largerQuickPages++;
+  }
+  assert.ok(quickBytes < fullBytes, "aggregate asset references are smaller without dropping contracts");
+  t.diagnostic(JSON.stringify({ assets: index.entries.length, fullBytes, quickBytes,
+    reductionPercent: Math.round((1 - quickBytes / fullBytes) * 10000) / 100,
+    largerQuickPages, scope: "UTF-8 asset reference bytes only, not model tokens" }));
+});
+
+test("quick example selection expands only the first usable portable source and preserves omissions", () => {
+  const inputs = structuredClone(packages);
+  const usage = inputs.find((pkg) => pkg.name === wbName).metadata.usage.assets["wb-alert"];
+  usage.usageStatus = "partial";
+  usage.unsupported = [{ code: "PARTIAL", reason: "Not all examples are portable" }];
+  usage.usageExamples = [
+    { id: "private-first", portability: "unsupported", code: "PRIVATE_SOURCE_SENTINEL",
+      source: { ownerAssetId: "private-owner" }, unsupported: [{ reason: "Private dependency" }] },
+    { id: "portable-first", portability: "portable", code: "<template>FIRST_SOURCE_SENTINEL</template>",
+      source: { ownerAssetId: "official-owner" }, dataBoundary: "Host owns navigation" },
+    { id: "portable-second", portability: "portable", code: "SECOND_SOURCE_SENTINEL" },
+  ];
+  usage.variants = { status: "unsupported", unsupported: [{ reason: "No portable variants" }],
+    cases: [{ id: "CASE_SENTINEL" }], declarations: { controls: ["CONTROL_SENTINEL"] } };
+  const page = generateReferences({ packages: inputs }).get("quick/workbench/wb-alert.md");
+  assert.ok(page.includes(usage.usageExamples[1].code));
+  assert.match(page, /Host owns navigation/);
+  for (const marker of ["private-first", "portable-second", "Private dependency", "official-owner",
+    "partial", "Not all examples are portable", "No portable variants"])
+    assert.ok(page.includes(marker));
+  assert.doesNotMatch(page, /PRIVATE_SOURCE_SENTINEL|SECOND_SOURCE_SENTINEL|CASE_SENTINEL|CONTROL_SENTINEL/);
+  assert.match(page, /完整资料.*\.\.\/\.\.\/workbench\/wb-alert\.md/);
+  usage.usageExamples = [usage.usageExamples[0]];
+  const nonportable = generateReferences({ packages: inputs }).get("quick/workbench/wb-alert.md");
+  assert.match(nonportable, /未提供可展开的官方可移植示例/);
+  assert.doesNotMatch(nonportable, /```vue|PRIVATE_SOURCE_SENTINEL/);
+  usage.usageExamples = [];
+  usage.usageStatus = "unavailable";
+  const missing = generateReferences({ packages: inputs }).get("quick/workbench/wb-alert.md");
+  assert.match(missing, /unavailable/);
+  assert.doesNotMatch(missing, /```vue/);
+});
+
+test("quick missing metadata stays unknown, and same IDs in different packages do not collide", () => {
+  const inputs = structuredClone(packages);
+  const packageWB = inputs.find((pkg) => pkg.name === wbName);
+  const packageAI = inputs.find((pkg) => pkg.name === ai.name);
+  delete packageWB.metadata.usage;
+  packageAI.metadata.components.assets["wb-alert"] = packageAI.metadata.components.assets["ai-summary-card"];
+  const output = generateReferences({ packages: inputs });
+  const page = output.get("quick/workbench/wb-alert.md");
+  assert.match(page, /官方来源 SFC 状态：`unknown`/);
+  assert.match(page, /未提供可展开的官方可移植示例/);
+  assert.doesNotMatch(page, /```vue/);
+  const matches = JSON.parse(output.get("quick/index.json")).entries.filter((entry) => entry.id === "wb-alert");
+  assert.equal(matches.length, 2);
+  assert.notEqual(matches[0].quickReference, matches[1].quickReference);
+  for (const entry of matches) assert.ok(output.has(entry.quickReference));
+  delete packageAI.metadata.components;
+  const wbOnly = JSON.parse(generateReferences({ packages: inputs }).get("quick/index.json"));
+  assert.ok(wbOnly.entries.every((entry) => entry.package === wbName));
+});
+
+test("quick structured unknowns, rule conditions and hostile fields survive safely without cases-to-API inference", () => {
+  const inputs = structuredClone(packages);
+  const contract = inputs.find((pkg) => pkg.name === wbName).metadata.components.assets["wb-alert"];
+  const usage = inputs.find((pkg) => pkg.name === wbName).metadata.usage.assets["wb-alert"];
+  contract.rules = [{ id: "conditional", strength: "must", status: "confirmed",
+    when: ["only-modal"], text: "<script>unsafe</script>\n```\nkeep this condition",
+    references: [{ id: "related" }] }];
+  contract.label = "<img src=x onerror=alert(1)> [title] | 中文";
+  usage.title = contract.label;
+  usage.usageExamples = [{ id: "fenced", portability: "portable",
+    code: "<template>```\n<script>literal</script></template>", source: { ownerAssetId: "wb-alert" } }];
+  const asset = inputs.find((pkg) => pkg.name === ai.name).metadata.components.assets["ai-summary-card"];
+  asset.label = "<img src=x onerror=alert(1)>";
+  asset.props.structured = { type: ["Object", "String"], required: true,
+    default: { kind: "undefined" }, enum: ["a|b", "`value`"] };
+  asset.eventDetails.unknown = { signature: null, unsupported: [{ reason: "not derived" }] };
+  asset.cases = [{ controls: { fakeProp: "NEVER_PUBLIC" }, propsStatus: "not-derived" }];
+  const output = generateReferences({ packages: inputs });
+  const wbPage = output.get("quick/workbench/wb-alert.md");
+  assert.deepEqual(fencedJSON(wbPage)[2].rules, contract.rules);
+  assert.ok(wbPage.includes(usage.usageExamples[0].code));
+  for (const page of [wbPage, output.get("quick/ai-ui/ai-summary-card.md")]) {
+    const outsideCode = page.replace(/^(`{3,})(?:json|vue)\n[\s\S]*?^\1$/gm, "");
+    assert.doesNotMatch(outsideCode, /<img|<script>/);
+    assert.match(page, /&lt;img/);
+  }
+  const aiPage = output.get("quick/ai-ui/ai-summary-card.md");
+  const [, api] = fencedJSON(aiPage);
+  assert.deepEqual(api.props.structured, asset.props.structured);
+  assert.deepEqual(api.eventDetails.unknown, asset.eventDetails.unknown);
+  assert.doesNotMatch(aiPage, /NEVER_PUBLIC|fakeProp/);
+});
+
+test("quick paths reject unsafe AI asset IDs as well as Workbench IDs", () => {
+  for (const id of ["../outside", "a/b", "a\\b", "/absolute", "x.md", "x%2fy", "x#anchor"]) {
+    const inputs = structuredClone(packages);
+    const assets = inputs.find((pkg) => pkg.name === ai.name).metadata.components.assets;
+    assets[id] = assets["ai-summary-card"];
+    assert.throws(() => generateReferences({ packages: inputs }), /REFERENCE_ASSET_ID_INVALID/);
+  }
+});
+
 test("generation is deterministic and does not mutate caller package objects", () => {
   const original = JSON.stringify(packages);
   const first = generateReferences({ packages, studioBaseURLs: bases });
@@ -437,4 +657,75 @@ test("unsafe generated paths, external Studio routes and escaping traversal are 
     () => generateReferences({ packages: [ai] }),
     /REFERENCE_WORKBENCH_METADATA_REQUIRED/,
   );
+});
+
+// Every contract key must reach the quick page or be excluded on purpose, so a new
+// upstream key fails here instead of being dropped silently.
+const quickExcludedContractKeys = new Set(["id", "cases", "caseCoverage", "studioPath", "component"]);
+const isEmpty = (value) => value == null || (typeof value === "object" &&
+  Object.keys(value).length === 0);
+function quickRendersContractKey(page, key, contract) {
+  const value = contract[key];
+  const blocks = fencedJSON(page);
+  const inBlocks = (name, expected) => blocks.some((block) =>
+    block && typeof block === "object" && Object.hasOwn(block, name) &&
+    JSON.stringify(block[name]) === JSON.stringify(expected));
+  const listedEmpty = (name) => quickContract(page).empty.includes(name);
+  if (key === "label") return page.split("\n").some((line) => line.startsWith("# ") &&
+    line.includes(value.replaceAll("&", "&amp;").replaceAll("<", "&lt;")));
+  if (key === "group") return inBlocks("kind", contract.kind ?? value) && (contract.kind ?? value) === value;
+  if (key === "source") return page.includes(`${value.package}@${value.version}`) && page.includes(value.commit);
+  if (key === "useWhen" && JSON.stringify(value) === JSON.stringify([contract.summary]))
+    return inBlocks("summary", contract.summary);
+  if (key === "usage") {
+    const { kind, example, ...rest } = value;
+    return page.includes("## 来源补充结构") && page.includes(String(kind)) &&
+      blocks.some((block) => JSON.stringify(block) === JSON.stringify(rest)) &&
+      (typeof example !== "string" || page.includes(example));
+  }
+  return inBlocks(key, value) || (isEmpty(value) && listedEmpty(key));
+}
+
+test("quick pages render or explicitly exclude every contract key from both packages", () => {
+  const output = generateReferences({ packages });
+  const missing = [];
+  for (const pkg of packages) {
+    const family = pkg.name === wbName ? "workbench" : "ai-ui";
+    for (const [id, contract] of Object.entries(pkg.metadata.components.assets)) {
+      const page = output.get(`quick/${family}/${id}.md`);
+      for (const key of Object.keys(contract))
+        if (!quickExcludedContractKeys.has(key) && !quickRendersContractKey(page, key, contract))
+          missing.push(`${pkg.name}/${id}.${key}`);
+    }
+  }
+  assert.deepEqual(missing, []);
+});
+
+test("wb-table quick page carries the declared Column fields, sort shape and example", () => {
+  const output = generateReferences({ packages });
+  const page = output.get("quick/workbench/wb-table.md");
+  const supplement = wb.metadata.components.assets["wb-table"].usage;
+  assert.match(page, /## 来源补充结构/);
+  assert.match(page, /requiredFields/);
+  assert.match(page, /direction/);
+  if (typeof supplement.example === "string") assert.ok(page.includes(supplement.example));
+  assert.doesNotMatch(output.get("workbench/wb-table.md"), /## 来源补充结构/, "full page unchanged (D2)");
+});
+
+test("search aliases reach only the quick index, and stale or malformed keys fail generation", () => {
+  const aliases = JSON.parse(readFileSync(new URL("shared/catalog/search-aliases.json", root), "utf8"));
+  const output = generateReferences({ packages, searchAliases: aliases });
+  const index = JSON.parse(output.get("quick/index.json"));
+  const metric = index.entries.find((entry) => entry.id === "wb-metric-card");
+  assert.deepEqual(metric.searchAliases, aliases.aliases[`${wbName}/wb-metric-card`]);
+  assert.ok(index.entries.every((entry) => Array.isArray(entry.searchAliases)));
+  // Pages are byte-identical with and without aliases: hints never become contract text.
+  const plain = generateReferences({ packages });
+  for (const [path, content] of output)
+    if (path !== "quick/index.json") assert.equal(content, plain.get(path), path);
+  assert.throws(() => generateReferences({ packages,
+    searchAliases: { aliases: { [`${wbName}/wb-removed`]: ["x"] } } }), /REFERENCE_SEARCH_ALIAS_STALE/);
+  for (const bad of [{}, { aliases: [] }, { aliases: { [`${wbName}/wb-modal`]: "弹窗" } },
+    { aliases: { [`${wbName}/wb-modal`]: [" "] } }])
+    assert.throws(() => generateReferences({ packages, searchAliases: bad }), /REFERENCE_SEARCH_ALIAS/);
 });

@@ -12,7 +12,7 @@
     "build": "node build/consumer-pack.mjs",
     "check:generated": "node build/consumer-pack.mjs --check",
     "verify:lock": "node build/verify-lock.mjs",
-    "test": "node --test tests/build.test.mjs tests/format.test.mjs tests/runtime.test.mjs tests/vue-rules.test.mjs tests/smoke-options.test.mjs tests/harness-route-sizes.test.mjs tests/feature-tools.test.mjs tests/convert-prototype.test.mjs tests/gallery.test.mjs tests/review.test.mjs tests/project.test.mjs tests/components.test.mjs",
+    "test": "node --test tests/build.test.mjs tests/format.test.mjs tests/runtime.test.mjs tests/vue-rules.test.mjs tests/smoke-options.test.mjs tests/harness-route-sizes.test.mjs tests/feature-tools.test.mjs tests/convert-prototype.test.mjs tests/gallery.test.mjs tests/review.test.mjs tests/project.test.mjs tests/components.test.mjs tests/asset-query.test.mjs",
     "test:projects": "node --test tests/project.test.mjs",
     "test:templates": "node build/test-templates.mjs",
     "verify:harness": "node build/verify-harness.mjs",

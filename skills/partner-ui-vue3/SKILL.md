@@ -16,11 +16,13 @@ description: 用伙伴工作台 Workbench 与 AI UI 发布包，将 PRD、partne
 | C. 现有产品仓库内修改               | 先读目标仓库规则、依赖、TS/Lint/路由/HTTP/测试约定；既有约定优先于本 Skill 默认值。发现运行时或 peer 不兼容时报告实际缺口，不擅自升级框架。          |
 | D. 复查代码                         | 运行类型、Lint 和静态规则，按规则与实际行为报告问题。仅要求审查时不重写；用户已要求修复时继续完成授权范围。                                          |
 
+输入含需求画布交接 `generation-brief.json`（`design-handoff/1`）时走 A，并以它为已确认范围：只实现 `generation: use-existing-components` 的区块；`after-component-verification` 先按 `preconditions` 核对组件能力，未证实不做；`excludedParts` / `exclusions` 不绘制也不近似实现；`candidate` 组件配置仍按锁包契约核对。
+
 任务已明确时直接选路；只有新功能、转换或现仓修改确实无法区分时问一个问题。非 `partner-ui-pages` 生成的 HTML 作为需求输入走 A，不使用运行时 restyle。只需离线演示则转到相邻 `partner-ui-pages`。
 
 ## 读取与选型
 
-先按任务查 [Workbench 索引](references/workbench/index.md)，只读命中的组件页、相关 [设计规则](references/design-rules.md) 和 [Token](references/tokens.md) 段落，通常 3–8 个组件足够。规则有适用条件和强度，不能把建议升级为全局禁止。组件 API、使用场景及原生图标尺寸以当前锁包记录为准，不按截图猜 props。
+先用 `node scripts/assets.mjs search --query "关键词" --limit 5` 定位资产，再用 `node scripts/assets.mjs show --id <id>` 读取消费速查；需完整变体/更多示例时加 `--view full`。查询只读随包资料，不证明宿主版本一致或运行时通过验证；命令以 Skill 根为基准，其他工作目录请使用脚本绝对路径。search 返回 0 或 `matchMode: partial` 不代表资产不存在：先换更短关键词或英文导出名重试，再查 [Workbench 索引](references/workbench/index.md) 与 [AI 包参考](references/ai-ui.md)；确认缺失后才自建并标 `pui-custom`。无 Node 时直接用这两个索引。只读命中的组件页、相关 [设计规则](references/design-rules.md) 和 [Token](references/tokens.md) 段落，通常 3–8 个组件足够。规则有适用条件和强度，不能把建议升级为全局禁止。组件 API、使用场景及原生图标尺寸以当前锁包记录为准，不按截图猜 props。
 
 使用 AI 时读 [AI Vue 组合](references/ai-ui-vue.md)；[AI 包参考](references/ai-ui.md) 说明现有结构化元数据的实际范围。大图标表只做关键词过滤查询，核对 `key`/`alias` 与 family，不全量展开 [图标资料](references/icons.md) 或 JSON。
 

@@ -6,14 +6,17 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {execFileSync} from 'node:child_process';
+import {fileURLToPath, pathToFileURL} from 'node:url';
 const require = createRequire(import.meta.url);
-const bases = [process.cwd(), path.dirname(new URL(import.meta.url).pathname)];
+// fileURLToPath, not URL.pathname: the Skill may live under a path with spaces or non-ASCII characters.
+const here = path.dirname(fileURLToPath(import.meta.url));
+const bases = [process.cwd(), here];
 try {bases.push(execFileSync('npm',['root','-g'],{encoding:'utf8'}).trim());} catch {}
 let playwright;
 for (const base of bases) {try {playwright=require(require.resolve('playwright',{paths:[base]}));break;} catch {}}
 if (!playwright) throw new Error('playwright not found; run where it is installed');
 const {chromium}=playwright;
-const skill = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const skill = path.resolve(here, '..');
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'entry-anchors-'));
 let browser;
 try {
@@ -35,7 +38,7 @@ try {
   fs.writeFileSync(file,JSON.stringify(data));
   execFileSync('python3',[path.join(skill,'scripts/build_canvas.py'),file,'--out',path.join(tmp,'canvas.html')]);
   browser=await chromium.launch(); const page=await browser.newPage({viewport:{width:1440,height:900}});
-  await page.goto('file://'+path.join(tmp,'canvas.html'));await page.waitForSelector('[data-ready="true"]');
+  await page.goto(pathToFileURL(path.join(tmp,'canvas.html')).href);await page.waitForSelector('[data-ready="true"]');
   assert.equal(await page.evaluate(()=>window.__CANVAS__.edges.length),3,'distinct same-label entrances must remain separate');
   assert.equal(await page.locator('path.dch-link').count(),1,'overview must show only declared main path');
   await page.evaluate(()=>window.__CANVAS__.select('demo-a'));

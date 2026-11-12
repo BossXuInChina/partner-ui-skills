@@ -41,9 +41,12 @@ export async function candidateFiles(root, lock, packages) {
   for (const skill of ["partner-ui-vue3", "partner-ui-review"])
     for (const name of ["check_vue.mjs", "tooling.mjs"])
       files.set(`skills/${skill}/scripts/${name}`, readFileSync(resolve(root, "shared/static", name)));
+  for (const skill of skills)
+    files.set(`skills/${skill}/scripts/assets.mjs`, readFileSync(resolve(root, "shared/catalog/assets.mjs")));
   const refs = generateReferences({
     packages,
     studioBaseURLs: lock.studioBaseURLs,
+    searchAliases: JSON.parse(readFileSync(resolve(root, "shared/catalog/search-aliases.json"), "utf8")),
   });
   for (const [name, content] of refs) {
     files.set("shared/references/" + name, content);

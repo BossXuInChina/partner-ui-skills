@@ -529,7 +529,190 @@ function aiPage(pkg, packages, bases, nested = false) {
   return lines.join("\n\n") + "\n";
 }
 
-export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
+// Quick references are additive. Keep the full renderers above unchanged so existing
+// paths and their bytes remain compatible. Structured data stays fenced: a quick
+// view must not turn a missing signature or Studio control into a public contract.
+function quickData(value) {
+  // Compact short leaves without minifying a whole contract into one enormous line.
+  // Round-trip first to retain JSON.stringify's handling of optional/undefined fields.
+  const format = (item, depth = 0) => {
+    const compact = JSON.stringify(item);
+    if (compact.length <= 200 || item === null || typeof item !== "object" ||
+      (Array.isArray(item) && item.every((entry) => entry === null || typeof entry !== "object")))
+      return compact;
+    const array = Array.isArray(item);
+    const rows = array
+      ? item.map((entry) => format(entry, depth + 1))
+      : Object.entries(item).map(([key, entry]) => JSON.stringify(key) + ": " + format(entry, depth + 1));
+    return (array ? "[" : "{") + "\n" + rows.map((row) => "  ".repeat(depth + 1) + row).join(",\n") +
+      "\n" + "  ".repeat(depth) + (array ? "]" : "}");
+  };
+  return fence(format(JSON.parse(JSON.stringify(value))), "json");
+}
+function quickExamples(usage, fullReference) {
+  const examples = usage?.usageExamples ?? [];
+  const selected = examples.find(
+    (example) => example.portability === "portable" &&
+      typeof example.code === "string" && example.code.trim().length > 0,
+  );
+  const status = `官方来源 SFC 状态：${tick(usage?.usageStatus ?? "unknown")}。`;
+  const lines = ["## 官方示例"];
+  if (selected) {
+    lines.push(
+      status + "仅展开首个可移植示例，不代表全部变体。",
+      quickData({
+        id: selected.id,
+        title: selected.title,
+        portability: selected.portability,
+        source: selected.source,
+        description: selected.description,
+        dataBoundary: selected.dataBoundary,
+        unsupported: selected.unsupported,
+      }),
+      fence(selected.code, "vue"),
+    );
+  } else {
+    lines.push(status + "包内未提供可展开的官方可移植示例；不以场景源码、Studio cases 或手写代码补齐。");
+  }
+  const remaining = examples.filter((example) => example !== selected);
+  if (remaining.length) {
+    lines.push(
+      "### 其他官方来源条目（未展开代码）",
+      quickData(remaining.map((example) => ({
+        id: example.id ?? null,
+        portability: example.portability ?? "unknown",
+        source: example.source ?? null,
+        unsupported: example.unsupported ?? [],
+      }))),
+      `以上条目的详细信息见[完整资料](<${fullReference}>)。`,
+    );
+  }
+  return lines.join("\n\n");
+}
+// Empty top-level fields (null, [], {}) are listed by name instead of printed as JSON,
+// so unknowns stay visible without padding. Nested values are never trimmed.
+const quickEmpty = (value) =>
+  value == null ||
+  (typeof value === "object" && Object.keys(value).length === 0);
+function quickBlock(value) {
+  const present = Object.fromEntries(
+    Object.entries(value).filter(([, item]) => !quickEmpty(item)),
+  );
+  const empty = Object.keys(value).filter((key) => quickEmpty(value[key]));
+  return [
+    ...(Object.keys(present).length ? [quickData(present)] : []),
+    ...(empty.length ? [`未声明或为空：${empty.join("、")}（不代表支持）`] : []),
+  ];
+}
+function quickAPI(contract, usage = {}) {
+  return quickBlock({
+    publicImport: contract.publicImport ?? null,
+    props: contract.props ?? null,
+    events: contract.events ?? null,
+    eventDetails: contract.eventDetails ?? null,
+    slots: contract.slots ?? null,
+    slotDetails: contract.slotDetails ?? null,
+    slotPatterns: contract.slotPatterns ?? null,
+    exposed: contract.exposed ?? null,
+    family: contract.family ?? null,
+    propNotes: usage.propNotes ?? null,
+    eventNotes: usage.eventNotes ?? null,
+    slotNotes: usage.slotNotes ?? null,
+  });
+}
+// Some contracts carry a source-bound usage supplement (e.g. table Column fields, sort
+// shape, event payloads). Render every key except the example, which gets its own fence,
+// so new upstream keys are not dropped silently.
+function quickSupplement(supplement) {
+  if (!supplement || typeof supplement !== "object" || Array.isArray(supplement)) return [];
+  const { kind, example, ...rest } = supplement;
+  const lines = [
+    "## 来源补充结构",
+    `来源：包内 components 契约的 usage 补充（kind=${tick(kind ?? "unknown")}）。`,
+    quickData(rest),
+  ];
+  if (typeof example === "string" && example.trim()) lines.push(fence(example, "vue"));
+  return lines;
+}
+function quickPage(pkg, id, contract, usage, family) {
+  const fullReference = `../../${family}/${id}.md`;
+  const title = contract.label ?? usage?.title ?? contract.title ?? id;
+  const lines = [
+    header([pkg]),
+    `# ${aiText(title)} — ${tick(contract.publicImport?.exportName ?? id)}`,
+    qualification(pkg),
+    `完整资料：[${tick(id)}](<${fullReference}>)。本页省略 Studio controls/cases，不省略已声明的公开 API；预览配置不是 props。`,
+    "## 资产与已知边界",
+    ...quickBlock({
+      id,
+      kind: contract.kind ?? contract.group ?? null,
+      version: contract.version ?? null,
+      summary: contract.summary ?? null,
+      // Omitted when it only repeats summary; package identity is on the 包： line.
+      ...(JSON.stringify(contract.useWhen) === JSON.stringify([contract.summary])
+        ? {}
+        : { useWhen: contract.useWhen ?? null }),
+      avoidWhen: contract.avoidWhen ?? null,
+      status: contract.status ?? null,
+      unsupported: contract.unsupported ?? null,
+      usageStatus: usage?.usageStatus ?? "unknown",
+      // AI assets pass the contract as its own usage; do not print unsupported twice.
+      ...(usage === contract ? {} : { usageUnsupported: usage?.unsupported ?? null }),
+      variantStatus: usage?.variants?.status ?? "unknown",
+      variantUnsupported: usage?.variants?.unsupported ?? null,
+      caseSemantics: usage?.variants?.caseSemantics ?? null,
+    }),
+    "## 公开 API",
+    "包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。",
+    ...quickAPI(contract, usage?.usage ?? {}),
+    ...quickSupplement(contract.usage),
+    "## 规则与适用条件",
+    ...quickBlock({
+      rules: contract.rules ?? null,
+      dependencies: contract.dependencies ?? null,
+      foundationKeys: contract.foundationKeys ?? null,
+      intro: usage?.usage?.intro ?? null,
+      sections: usage?.usage?.sections ?? null,
+      related: usage?.usage?.related ?? null,
+    }),
+    quickExamples(usage, fullReference),
+  ];
+  return lines.join("\n\n") + "\n";
+}
+function quickEntry(pkg, id, contract, usage, family) {
+  return {
+    id,
+    package: pkg.name,
+    name: contract.publicImport?.exportName ?? null,
+    label: contract.label ?? usage?.title ?? contract.title ?? id,
+    kind: contract.kind ?? contract.group ?? null,
+    summary: contract.summary ?? null,
+    useWhen: contract.useWhen ?? [],
+    avoidWhen: contract.avoidWhen ?? [],
+    quickReference: `quick/${family}/${id}.md`,
+    reference: `${family}/${id}.md`,
+    exampleStatus: usage?.usageStatus ?? "unknown",
+    searchAliases: [],
+  };
+}
+// Maintainer search hints (shared/catalog/search-aliases.json) only reach index.json.
+// Stale keys fail generation so a package upgrade cannot leave hints pointing nowhere.
+function applySearchAliases(quickEntries, searchAliases) {
+  if (searchAliases == null) return;
+  const aliases = searchAliases.aliases;
+  if (!aliases || typeof aliases !== "object" || Array.isArray(aliases))
+    throw new Error("REFERENCE_SEARCH_ALIASES_INVALID");
+  const byKey = new Map(quickEntries.map((entry) => [entry.package + "/" + entry.id, entry]));
+  for (const [key, values] of entries(aliases)) {
+    const entry = byKey.get(key);
+    if (!entry) throw new Error("REFERENCE_SEARCH_ALIAS_STALE: " + key);
+    if (!Array.isArray(values) || values.some((value) => typeof value !== "string" || !value.trim()))
+      throw new Error("REFERENCE_SEARCH_ALIASES_INVALID: " + key);
+    entry.searchAliases = [...new Set(values.map((value) => value.trim()))];
+  }
+}
+
+export function generateReferences({ packages, studioBaseURLs = {}, searchAliases } = {}) {
   if (!Array.isArray(packages) || !packages.length)
     throw new Error("REFERENCE_PACKAGES_REQUIRED");
   const ordered = [...packages].sort((a, b) => compare(a.name, b.name));
@@ -539,6 +722,7 @@ export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
   if (!wb?.metadata.components)
     throw new Error("REFERENCE_WORKBENCH_METADATA_REQUIRED");
   const output = new Map();
+  const quickEntries = [];
   output.set("workbench/index.md", indexPage(wb, studioBaseURLs));
   for (const [id, contract] of entries(wb.metadata.components.assets)) {
     if (!/^[a-z0-9][a-z0-9-]*$/.test(id))
@@ -553,6 +737,9 @@ export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
         studioBaseURLs,
       ),
     );
+    const usage = wb.metadata.usage?.assets?.[id];
+    output.set(`quick/workbench/${id}.md`, quickPage(wb, id, contract, usage, "workbench"));
+    quickEntries.push(quickEntry(wb, id, contract, usage, "workbench"));
   }
   output.set("tokens.md", tokensPage(ordered));
   output.set("icons.md", iconsPage(wb));
@@ -580,9 +767,17 @@ export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
       if (!/^[a-z0-9][a-z0-9-]*$/.test(id))
         throw new Error("REFERENCE_ASSET_ID_INVALID");
       output.set(`ai-ui/${id}.md`, aiAssetPage(ai, id, asset, studioBaseURLs));
+      output.set(`quick/ai-ui/${id}.md`, quickPage(ai, id, asset, asset, "ai-ui"));
+      quickEntries.push(quickEntry(ai, id, asset, asset, "ai-ui"));
     }
     output.set("ai-ui/index.md", aiPage(ai, ordered, studioBaseURLs, true));
   }
+  applySearchAliases(quickEntries, searchAliases);
+  output.set("quick/index.json", JSON.stringify({
+    _generated: provenance(ordered),
+    schemaVersion: 1,
+    entries: quickEntries.sort((a, b) => compare(a.package, b.package) || compare(a.id, b.id)),
+  }, null, 2) + "\n");
   output.set(
     "sources.json",
     JSON.stringify(

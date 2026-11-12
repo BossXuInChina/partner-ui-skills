@@ -5,6 +5,11 @@
 - 支持 HTML 原型的完整滚动页面、同页对话和弹窗状态，保留入口位置、上下文条件与交接数据。
 - 增加全景及局部关系查看、单线追踪与节点下方自然贝塞尔连线；完整连接仍可导出。
 - 增强节点归属、关系和截图坐标校验，增加入口定位及曲线交互回归。
+- `references/manifest-example.json` 补齐页面摘要、视图、入口级连线和公开符号，原样通过 `validate_canvas_contract.py` 并由单测固定；数据契约写明 `requirementSummary` 五个键与两个校验脚本的分工。
+- `crop_pages.py` 先整体检查再写入：缺字段、未知来源或越界矩形逐条报错，不再输出补黑边的图片或 Python 堆栈。
+- 浏览器测试脚本支持含空格/中文的 Skill 路径（`fileURLToPath` / `pathToFileURL`）。
+- SKILL.md 增加步骤 1–2 与“环境与降级”表，HTML 原型/滚动/对话输入的规则原文移到 `references/prototype-and-dialogue.md` 按需读取；画布交付只保留场景作者要登记的数据，走线规则在 `canvas-delivery.md` 合并去重。
+- `partner-ui-pages` / `partner-ui-vue3` 的 SKILL.md 说明如何消费 `generation-brief.json`。
 
 ## 1.1.0 · 2026-11-02
 
