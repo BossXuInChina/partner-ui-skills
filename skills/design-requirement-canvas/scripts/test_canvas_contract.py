@@ -7,8 +7,17 @@ from pathlib import Path
 from validate_canvas_contract import validate
 
 
+EXAMPLE = Path(__file__).resolve().parents[1] / 'references/manifest-example.json'
+
+
 def fixture():
-    data = json.loads((Path(__file__).resolve().parents[1] / 'references/manifest-example.json').read_text())
+    data = json.loads(EXAMPLE.read_text(encoding='utf-8'))
+    # These cases target summary/scope rules on one page; view placement and edges are covered
+    # by test_pipeline.py, so drop the example's second page, views and edges here.
+    data.pop('canvas', None)
+    data['edges'] = []
+    data['pages'] = data['pages'][:1]
+    data['pages'][0]['sections'][1]['actions'] = []
     for asset in data['assets']: asset['publicExport'] = 'ExamplePublicComponent'
     page = data['pages'][0]
     work = data['workItems']
@@ -19,6 +28,15 @@ def fixture():
         'componentWork': [{'workItemId': w['id'], 'lane': w['lane'], 'reason': w['reason']}
                           for w in work if w['lane'] != 'reuse']}
     return data
+
+
+class DocumentedExampleTest(unittest.TestCase):
+    def test_shipped_example_passes_unpatched(self):
+        # Agents copy this file as their starting shape; it must satisfy the validator they are told to run.
+        result = validate(json.loads(EXAMPLE.read_text(encoding='utf-8')))
+        self.assertEqual(result['errors'], [])
+        # placeholderLint is reported as a dict warning; summary gaps as strings naming requirementSummary.
+        self.assertFalse([w for w in result['warnings'] if isinstance(w, dict) or 'requirementSummary' in w])
 
 
 class CanvasContractTest(unittest.TestCase):

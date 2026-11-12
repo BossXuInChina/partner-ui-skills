@@ -48,19 +48,38 @@
 
 可执行验收与原图事实分开：例如“原图有金字塔”是事实；“用既有 Steps 呈现阶段，金字塔排除”才是本次执行指令。
 
-完整的合成示例见 [manifest-example.json](manifest-example.json)，仅说明数据关联，不代表任何实际项目或业务。
+完整的合成示例见 [manifest-example.json](manifest-example.json)：两个页面、一条入口级连线、三类工作项与页面摘要，原样通过 `validate_canvas_contract.py`（由单测固定）。它仅说明数据关联，不含截图，不能直接构建画布，也不代表任何实际项目或业务；不要沿用其中的 ID、版本或组件名。
 
 ## 校验与限制
 
 ```bash
-python3 scripts/validate_manifest.py /absolute/path/manifest.json
+python3 scripts/validate_canvas_contract.py /absolute/path/manifest.json   # 制作画布/交接：结构 + 画布合同，一次跑完
+python3 scripts/validate_manifest.py /absolute/path/manifest.json          # 只出报告、不建画布时的结构校验
 ```
 
-校验固定 ID、引用、裁剪范围、区域范围、动作目标、资产映射、工作项与生成索引。不识别图像、不证明资产样式/能力、不证明原图覆盖完整。旧格式先适配到该结构，不应将格式不符称为业务不完整。
+`validate_canvas_contract.py` 已包含 `validate_manifest.py` 的全部结构校验，制作画布时只跑前者；结构不通过时它先只返回结构错误，修完再出现画布合同错误，属正常分层。结构校验覆盖固定 ID、引用、裁剪范围、区域范围、动作目标、资产映射、工作项与生成索引。不识别图像、不证明资产样式/能力、不证明原图覆盖完整。旧格式先适配到该结构，不应将格式不符称为业务不完整。
 
 ## 用于交互画布的页面摘要
 
-画布还需按 [页面面板与场景交付模板](canvas-template.md) 的 `requirementSummary` 记录四组内容及本页工作项引用。`scripts/validate_canvas_contract.py` 在结构校验之上检查摘要遗漏、跨页引用、范围类型不一致及缓存计数错误。它不能识别泛化占位内容是否偷懒，不能证明摘要已在页面中渲染，仍需原图审查和浏览器验证。
+画布的每个页面（含 dialogue/modal 节点）都要有 `requirementSummary`，五个键缺一不可：
+
+```json
+"requirementSummary": {
+  "facts": ["本页原图可读的具体事实、字段与默认状态"],
+  "componentWork": [{"workItemId": "adapt-calendar", "lane": "component-work", "reason": "与该工作项一致的具体理由"}],
+  "unknowns": ["图和契约都无法确定的事项"],
+  "acceptance": ["可观察的还原结果"],
+  "scopeWorkItemIds": ["reuse-navigation", "adapt-calendar", "review-graphic"]
+}
+```
+
+- `scopeWorkItemIds`：恰好是 `sectionId` 属于本页区块的全部工作项 ID，不重复、不含他页；本页没有工作项时写 `[]`。
+- `componentWork`：本页每个 `component-work` 与 `review` 工作项各一条，`lane` 与工作项一致；`reuse` 不列入。没有时写 `[]`。
+- `facts/unknowns/acceptance`：数组，元素为非空字符串；确实没有时可为 `[]`，校验会给出警告，面板显示“未登记”，不代表完整。
+- 可选 `scopeCounts: {"reuse": n, "component-work": n, "review": n}` 只是缓存，必须与工作项一致，建议省略。
+- `assets[].publicExport` 填实际公开组件符号（如 `WorkbenchTable`），不能填包名或路径；未查证的资产不要登记。
+
+各组内容的写法见 [页面面板与场景交付模板](canvas-template.md) 的“内容与计数”。`scripts/validate_canvas_contract.py` 在结构校验之上检查摘要遗漏、跨页引用、范围类型不一致及缓存计数错误。它不能识别泛化占位内容是否偷懒，不能证明摘要已在页面中渲染，仍需原图审查和浏览器验证。
 
 ## 完整右栏的呈现数据
 

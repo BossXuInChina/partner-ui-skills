@@ -170,5 +170,60 @@ class Scaffold(unittest.TestCase):
             self.assertTrue(img.exists())
 
 
+try:
+    from PIL import Image
+except ImportError:  # cropping is optional tooling; the rest of the pipeline has no Pillow dependency
+    Image = None
+
+
+@unittest.skipIf(Image is None, 'Pillow not installed')
+class Crop(unittest.TestCase):
+    def scenario(self, tmp, pages):
+        root = Path(tmp) / '裁剪 场景'
+        root.mkdir()
+        Image.new('RGB', (40, 30), 'white').save(root / 'board.png')
+        manifest = root / 'manifest.json'
+        manifest.write_text(json.dumps({'sources': [{'id': 'board', 'path': 'board.png', 'width': 40, 'height': 30}],
+                                        'pages': pages}, ensure_ascii=False), encoding='utf-8')
+        return manifest
+
+    def run_crop(self, manifest, *extra):
+        return subprocess.run([sys.executable, str(HERE / 'crop_pages.py'), str(manifest), '--format', 'png', *extra],
+                              capture_output=True, text=True)
+
+    def test_crops_exact_rectangle_and_records_image(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest = self.scenario(tmp, [{'id': 'a', 'crop': {'sourceId': 'board', 'x': 10, 'y': 5, 'width': 20, 'height': 10}}])
+            done = self.run_crop(manifest)
+            self.assertEqual(done.returncode, 0, done.stderr)
+            page = json.loads(manifest.read_text(encoding='utf-8'))['pages'][0]
+            self.assertEqual(page['image'], 'crops/a.png')
+            with Image.open(manifest.parent / page['image']) as cropped:
+                self.assertEqual(cropped.size, (20, 10))
+
+    def test_bad_rectangles_are_reported_together_and_nothing_is_written(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest = self.scenario(tmp, [
+                {'id': 'ok', 'crop': {'sourceId': 'board', 'x': 0, 'y': 0, 'width': 40, 'height': 30}},
+                {'id': 'tall', 'crop': {'sourceId': 'board', 'x': 0, 'y': 0, 'width': 40, 'height': 31}},
+                {'id': 'flat', 'sourceId': 'board', 'crop': {'x': 0, 'y': 0, 'width': 1, 'height': 1}},
+                {'id': 'none'}])
+            before = manifest.read_text(encoding='utf-8')
+            done = self.run_crop(manifest)
+            self.assertNotEqual(done.returncode, 0)
+            self.assertNotIn('Traceback', done.stderr)
+            for needle in ('pages[1] (tall).crop: rectangle', 'pages[2] (flat).crop.sourceId', 'pages[3] (none).crop: expected'):
+                self.assertIn(needle, done.stderr)
+            self.assertEqual(manifest.read_text(encoding='utf-8'), before)
+            self.assertFalse((manifest.parent / 'crops').exists())
+
+    def test_unknown_only_id_is_an_error(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest = self.scenario(tmp, [{'id': 'a', 'crop': {'sourceId': 'board', 'x': 0, 'y': 0, 'width': 1, 'height': 1}}])
+            done = self.run_crop(manifest, '--only', 'ghost')
+            self.assertNotEqual(done.returncode, 0)
+            self.assertIn('--only ghost', done.stderr)
+
+
 if __name__ == '__main__':
     unittest.main()

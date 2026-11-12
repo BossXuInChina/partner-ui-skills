@@ -1,26 +1,70 @@
 {
   "schemaVersion": "design-evidence/1",
   "exampleOnly": true,
-  "sources": [{"id":"reference-board","path":"example-board.png","width":1200,"height":900}],
+  "meta": {"title":"合成示例","scopePolicy":"已有组件样式优先；能力缺失/场景改造为组件优先；全新视觉组合待评审并排除。","componentPackage":"example-package@example-version"},
+  "canvas": {
+    "title":"合成示例",
+    "scopeBanner":"还原基准：已有组件样式 · 能力缺失优先 · 全新组合待评审",
+    "views":[{"id":"example-role","title":"示例角色","groups":[
+      {"id":"entry","title":"首页入口","pageIds":["home"]},
+      {"id":"targets","title":"关联页面","pageIds":["schedule-detail"]}]}],
+    "mainPathEdgeIds":["home--schedule-detail"]
+  },
+  "sources": [
+    {"id":"reference-board","path":"example-board.png","width":1200,"height":900},
+    {"id":"reference-detail","path":"example-detail.png","width":1200,"height":900}
+  ],
   "assets": [
-    {"id":"top-nav","version":"example-version","contractSource":"example-package/components.json#top-nav"},
-    {"id":"date-picker","version":"example-version","contractSource":"example-package/components.json#date-picker"}
+    {"id":"top-nav","publicExport":"ExampleTopNav","version":"example-version","contractSource":"example-package/components.json#top-nav"},
+    {"id":"date-picker","publicExport":"ExampleDatePicker","version":"example-version","contractSource":"example-package/components.json#date-picker"}
   ],
   "pages": [{
     "id":"home","title":"示例首页","role":"示例角色",
     "crop":{"sourceId":"reference-board","x":0,"y":0,"width":1200,"height":900},
+    "requirementSummary":{
+      "facts":["顶部导航含首页与查看历史入口","右侧日期格带事件标记，点击当日活动进入日程详情"],
+      "componentWork":[
+        {"workItemId":"adapt-calendar","lane":"component-work","reason":"先核实事件标记和日程联动扩展点"},
+        {"workItemId":"review-graphic","lane":"review","reason":"没有已确认的基础资产，新的视觉系统需评审"}],
+      "unknowns":["查看历史的目标页面与打开方式","事件数据的接口和统计口径"],
+      "acceptance":["导航当前项为首页","选中日期后当日活动列表随之变化"],
+      "scopeWorkItemIds":["reuse-navigation","adapt-calendar","review-graphic"]
+    },
     "sections":[
       {"id":"home-nav","title":"顶部导航","evidence":{"sourceId":"reference-board","region":[0,0,100,8]},
-       "facts":["示例图可见导航与历史入口"],"referenceState":{"active":"home"},
+       "facts":["示例图可见导航与历史入口"],"fields":["首页","查看历史"],"referenceState":{"active":"home"},
        "actions":[
-         {"id":"nav-home","label":"首页","visibleInReference":true,"evidenceSourceId":"reference-board","targetStatus":"confirmed","targetPageId":"home"},
-         {"id":"nav-history","label":"查看历史","visibleInReference":true,"evidenceSourceId":"reference-board","targetStatus":"unknown","targetPageId":null}
+         {"id":"nav-home","label":"首页","visibleInReference":true,"evidenceSourceId":"reference-board","evidence":{"region":[4,2,6,4]},"targetStatus":"confirmed","targetPageId":"home"},
+         {"id":"nav-history","label":"查看历史","visibleInReference":true,"evidenceSourceId":"reference-board","evidence":{"region":[88,2,8,4]},"targetStatus":"unknown","targetPageId":null}
        ],
        "mappings":[{"id":"home-nav-instance","assetId":"top-nav","configurationStatus":"candidate","actionIds":["nav-home"],"props":{},"unknowns":["需从实际契约填写配置"]}]},
-      {"id":"home-calendar","title":"事件日历","evidence":{"sourceId":"reference-board","region":[70,10,30,50]},"facts":["示例日期格带事件标记"],"actions":[],"mappings":[]},
-      {"id":"home-graphic","title":"全新图形参考","evidence":{"sourceId":"reference-board","region":[0,60,60,30]},"facts":["仅为评审参考"],"actions":[],"mappings":[]}
+      {"id":"home-calendar","title":"事件日历","evidence":{"sourceId":"reference-board","region":[70,10,30,50]},
+       "facts":["示例日期格带事件标记"],"referenceDisplayData":{"selectedDate":"示例日期","agendaCount":2},
+       "actions":[
+         {"id":"calendar-open-schedule","label":"当日活动标题","visibleInReference":true,"evidenceSourceId":"reference-board","evidence":{"region":[72,42,24,5]},"targetStatus":"confirmed","targetPageId":"schedule-detail","targetSectionId":"schedule-detail-body"}
+       ],
+       "mappings":[]},
+      {"id":"home-graphic","title":"全新图形参考","evidence":{"sourceId":"reference-board","region":[0,60,60,30]},
+       "facts":["仅为评审参考"],"referenceDisplayData":{"note":"示例图形，无可读数值"},"actions":[],"mappings":[]}
+    ]
+  }, {
+    "id":"schedule-detail","title":"示例日程详情","role":"示例角色",
+    "crop":{"sourceId":"reference-detail","x":0,"y":0,"width":1200,"height":900},
+    "requirementSummary":{
+      "facts":["详情页显示活动标题、时间与地点"],
+      "componentWork":[],
+      "unknowns":["返回首页时是否保留选中日期"],
+      "acceptance":["从首页当日活动进入后显示对应活动"],
+      "scopeWorkItemIds":[]
+    },
+    "sections":[
+      {"id":"schedule-detail-body","title":"活动信息","evidence":{"sourceId":"reference-detail","region":[10,12,80,40]},
+       "facts":["示例图可见活动标题、时间、地点三行"],"fields":["活动标题","时间","地点"],"actions":[],"mappings":[]}
     ]
   }],
+  "edges": [
+    {"id":"home--schedule-detail","from":"home","to":"schedule-detail","label":"当日活动标题","fromSectionId":"home-calendar","fromActionId":"calendar-open-schedule","toSectionId":"schedule-detail-body","strength":"explicit","evidence":"示例图箭头"}
+  ],
   "workItems":[
     {"id":"reuse-navigation","sectionId":"home-nav","lane":"reuse","baseAssetIds":["top-nav"],"inPageRestoration":true,"pageGeneration":"use-existing-components","reason":"以既有导航公开样式组织示例内容"},
     {"id":"adapt-calendar","sectionId":"home-calendar","lane":"component-work","workKind":"existing-adaptation","baseAssetIds":["date-picker"],"priority":1,"inPageRestoration":true,"pageGeneration":"after-component-verification","reason":"先核实事件标记和日程联动扩展点"},

@@ -15,7 +15,7 @@ description: 将设计大图、页面关系图、截图集或 HTML 交互原型�
 |---|---|---|---|
 | 0 定产物 | 范围、角色、组件包版本、输出方式 | 读工程规则与锁定包 | 用户已确定的边界写入 `meta` |
 | 1 建场景 | 目录骨架、来源尺寸与 hash | `scripts/new_scenario.py --root R --name N --source id=path` | 骨架**故意不通过**校验 |
-| 2 页面清单与裁剪 | `pages[].crop`、`crops/<pageId>.jpg` | `scripts/crop_pages.py manifest.json`（需 Pillow） | 每页 `image` 可读，长表尾部/弹层完整 |
+| 2 页面清单与裁剪 | `pages[].crop`、`crops/<pageId>.jpg` | `scripts/crop_pages.py manifest.json`（需 Pillow）；HTML 原型/滚动/对话先读[专门说明](references/prototype-and-dialogue.md) | 每页 `image` 可读，长表尾部/弹层完整 |
 | 3 语义记录 | 区块、字段、状态、样例值、动作、连线 | 人工看原图 | 见“从原图建立语义记录” |
 | 4 组件与范围 | mappings、workItems、generationPlan | 组件消费 Skill / 锁包参考 | 见“以已有组件划定实施范围” |
 | 5 校验与画布 | 单文件离线 HTML | `validate_canvas_contract.py` → `build_canvas.py` | 校验无 error；占位提示逐条处理或说明 |
@@ -24,31 +24,39 @@ description: 将设计大图、页面关系图、截图集或 HTML 交互原型�
 
 只审查时交付带定位的发现，不擅自重建画布；只需报告时不强制生成 JSON 或网页。要求更新时改 `manifest.json` 再重建，不在生成的 HTML 上补文字，否则重建会丢失。
 
+### 环境与降级
+
+| 能力 | 需要 | 不可用时 |
+|---|---|---|
+| 校验、构建、交接、批量索引 | Python 3.9+，仅标准库 | 无法继续，说明原因 |
+| 裁剪 | Pillow | 用其他工具按同一矩形裁剪并手填 `page.image`，在 `review-log.md` 记录方式 |
+| `test_inspector.mjs` | Node 20+；在 Skill 目录 `npm install`（happy-dom），或 `--dom-module` 指向已有安装 | 记为未执行 |
+| `test_canvas_browser.mjs`、`test_entry_anchors.mjs` | Playwright + Chromium（当前目录、Skill 目录或全局可解析） | 记为未执行；在浏览器打开画布人工核对并写明核对范围 |
+
+需要联网安装依赖或改系统配置时先征得用户同意，不为让测试变绿而绕过。未执行的验证逐项写入 `review-log.md` 和最终报告，不写“通过”。
+
 ## 0. 先确定这次的产物
 
 沿用用户指定的场景、角色、项目、组件消费版本和输出方式。用户要求先打样时先完成指定角色与关联目标，未审查场景不能借样板结论宣称通过。
 
 先检查当地工程规则、现有产物和锁定包。使用实际 Catalog、公开入口、类型、实现及既有调用核对能力；区分“源码有”“锁包有”“消费接口可用”“页面已验证”。不要复制示例或旧样板的版本、数量或目录作为以后真值。
 
-若适用且可用，加载目标设计系统的组件消费 Skill：Workbench / 伙伴 AI UI 用 `partner-ui-pages` 或 `partner-ui-vue3` 的 `references/workbench/index.md`、`references/ai-ui.md`（旧称 `workbench-component-usage`）；没有时依据本项目官方资产与接口。该依赖只用于对应系统，不阻塞通用截图审查。
+若适用且可用，加载目标设计系统的组件消费 Skill：Workbench / 伙伴 AI UI 用 `partner-ui-pages` 或 `partner-ui-vue3` 的 `references/workbench/index.md`、`references/ai-ui.md`（旧称 `workbench-component-usage`）；该 Skill 带 `scripts/assets.mjs` 时先用 `node <该 Skill 根>/scripts/assets.mjs search --query "关键词"` 和 `show --id <id>` 查资产与公开契约，零结果不代表资产不存在，再查上述索引；没有时依据本项目官方资产与接口。该依赖只用于对应系统，不阻塞通用截图审查。
 
 已有用户确认的样板时，先实际打开它，把要保留的能力（详情面板、联动、导出、目录结构）写成简短对照表，改完逐项实测。样板用于能力基准，不能直接复制其业务内容、数量或组件结论。
 
-## 输入为可运行 HTML 原型时
+## 1–2. 建场景、页面清单与裁剪
 
-结合源码和实际运行记录状态，不能只抽取默认截图：确认最终生效的控制器、委托事件与组件包装后的入口，区分实际可达内容和残留脚本。按有限分支建立覆盖清单：触发入口或代表输入、前置状态、可观察结果、对应动作 ID 与证据；无需穷举无限文本组合，但每个已识别的规则分支都要有记录。
+```bash
+python3 scripts/new_scenario.py --root /abs/场景 --name 证书中心 --source board=/abs/大图.jpg
+python3 scripts/crop_pages.py /abs/场景/证书中心/manifest.json
+```
 
-滚动区外的入口优先通过完整展开捕获纳入同一页面，再标坐标；无法完整展开时补充截图证据并说明限制，不将滚动位置当新业务页；引导区、弹窗、局部保存/关闭/恢复也需登记。已知本地效果用 action.effect 表达，无跨页目标不等于行为未知。本次仅做交互梳理时可不做组件选型，不能为满足面板测试伪造组件映射；完整性由入口/分支覆盖核对，截图与动作数量仅是统计。
+脚手架记录来源尺寸与 hash。随后在 `pages[]` 为每个页面登记固定 `id`、`title`、`role` 和 `crop: {sourceId, x, y, width, height}`（原图像素，`sourceId` 写在 crop 内），再运行裁剪；矩形越界或缺字段时脚本逐条报错且不写任何文件。裁剪后逐张打开 `crops/` 回看边界、长表尾部和弹层。
 
-## 滚动页面与对话分支
+数据形状以[数据契约](references/data-contract.md)和可原样通过校验的[合成示例](references/manifest-example.json)为准，不凭记忆拼字段；示例里的 ID、版本和组件名不是真值。
 
-对“一个工作区承载多个回答”的原型，采用完整页面底图 + 对话状态分支：真实业务页面只保留一个 `nodeType: page` 节点；同页不同入口连接到 `dialogue` 回答卡，回答卡只截取当前问题与完整答复，不重复整张宿主页面。编辑弹窗用 `modal`。对话和弹窗均用 `ownerPageId` 指明宿主页。`pages` 仍是节点集合，具体字段见数据契约。
-
-有滚动时，按实际内容高度展开当前滚动容器后截图；顶部固定导航、输入框等只保留一次。记录原视口、展开容器和捕获方式，原图尺寸不等于产品设计视口。必须检查长内容尾部、表格、入口及弹层；有虚拟化或无法完整渲染时不能仅用 scrollHeight 宣称完整。新截图的入口坐标须重新测量，不能沿用旧视口百分比。
-
-对话不是一张无限长图。每个有分支价值的回答只保留一个状态卡，记录触发文字或代表问题、上下文条件及后续入口；回答截图必须逐张回看尾部，确保没有被固定引导、无关浮层或底层页面遮挡。可为捕获临时隔离目标容器并记录该调整，不能删去回答内控件或补绘缺失内容；相同内容由多个入口到达时共用卡片。同一入口在不同上下文结果不同时，连线标注条件。清空、收起/恢复、复制、反馈等本地操作以 action.effect 记录；只有需要对比的新内容状态才另建卡片。滚动位置变化不新增业务节点或业务箭头，旧证据仍可归档，但不能混在最终主流程中制造游离场景。
-
-首屏应看清一个宿主页与主要回答分支；用分组组织收益核查、诊断、项目建议和跟进，主流程仅保留已确认关系。真实新页面才作为新 page，状态卡、弹窗与跳转页面的身份必须可见。重建后在浏览器核对每张长图尾部、入口坐标、回答归属和条件、往返定位与完整数据导出。
+**输入是可运行 HTML 原型，或页面带滚动容器、同页对话回答、弹窗状态时，先读[原型、滚动页面与对话输入](references/prototype-and-dialogue.md)再建页面清单**：它规定完整展开捕获、`dialogue`/`modal` 节点、分支覆盖清单和入口坐标重测。纯截图或设计大图跳过。
 
 ## 3. 从原图建立语义记录
 
@@ -82,9 +90,15 @@ description: 将设计大图、页面关系图、截图集或 HTML 交互原型�
 
 ## 5. 画布交付
 
-数据结构见 [数据契约](references/data-contract.md)；面板与交互合同见 [页面面板模板](references/canvas-template.md) 和 [画布交付](references/canvas-delivery.md)。
+数据结构见 [数据契约](references/data-contract.md)（每页必填的 `requirementSummary` 五个键也在其中）；面板与交互合同见 [页面面板模板](references/canvas-template.md) 和 [画布交付](references/canvas-delivery.md)。
 
-画布一律由 `scripts/build_canvas.py manifest.json` 生成：它内联 `assets/page-review.js`、`inspector.js`、`canvas-host.js` 及样式和全部裁剪图，输出双击可用、CSP 禁止网络请求的单文件 HTML。**不要为单个场景手写画布或右栏**；需要新能力时改共享资源并跑全部测试，让所有场景一起受益。滚动状态截图及规则索引不是独立业务页面；若为定位需要保留节点，须用 `kind: evidence` 的无箭头点线表达所属页面，并标注非业务跳转，可通过 `view.showEvidence` 在证据视图默认显示。默认仅展示已明确登记的主线；选择页面时展开其直接去向，可单独包含来源；“全部关系”保留完整关系，不因隐藏连线删除数据。主线用 `canvas.mainPathEdgeIds` 明确引用真实 edge/action ID，不自动猜业务顺序。需要全局关系预览时增加包含全部节点的全景视图，并设置 `relationMode: all`；主题视图继续支持按需展开。高密度图用子视图阅读，悬停/聚焦关系时追踪单线和双端入口；连线直接采用单段三次贝塞尔曲线，自然连接入口落点；允许路径穿过其他节点的投影范围，默认绘制在页面卡片下层，不因避让页面产生绕行或多段回环。禁止折线和圆角折线回退。关系追踪仍高亮双端入口。视图与分组写在 `canvas.views`，布局自动计算（列 = 分组、长分组自动换列）。用户明确选择其他框架时才偏离，并说明不再受共享回归保护。
+画布一律由 `scripts/build_canvas.py manifest.json` 生成：它内联 `assets/page-review.js`、`inspector.js`、`canvas-host.js` 及样式和全部裁剪图，输出双击可用、CSP 禁止网络请求的单文件 HTML。**不要为单个场景手写画布或右栏**；需要新能力时改共享资源并跑全部测试，让所有场景一起受益。用户明确选择其他框架时才偏离，并说明不再受共享回归保护。
+
+场景作者只登记数据；布局自动计算（列 = 分组、长分组自动换列），连线由宿主绘制为直连曲线，可从其他卡片下方穿过，属预期，不要为“避让”改数据或样式（走线规则见[画布交付](references/canvas-delivery.md)）。
+
+- 视图与分组写在 `canvas.views`。需要全局关系预览时增加包含全部节点的全景视图并设 `relationMode: all`；主题视图继续按需展开，高密度图用子视图阅读。
+- 主线用 `canvas.mainPathEdgeIds` 明确引用真实 edge/action ID，不自动猜业务顺序。默认仅展示已登记主线；选择页面时展开其直接去向，可单独包含来源；“全部关系”保留完整关系，不因隐藏连线删除数据。悬停/聚焦一条关系时追踪单线并高亮双端入口。
+- 滚动状态截图及规则索引不是独立业务页面；若为定位需要保留节点，须用 `kind: evidence` 的无箭头点线表达所属页面，并标注非业务跳转，可通过 `view.showEvidence` 在证据视图默认显示。
 
 ## 6. 审查与完成条件
 
@@ -107,7 +121,7 @@ node scripts/test_canvas_browser.mjs --html <scenario>/dist/<name>-画布.html -
 
 ## 7. 交接给页面生成
 
-`scripts/export_handoff.py manifest.json` 生成 `design-handoff/1`：按页列出可直接生成的区块（`use-existing-components`）、等待组件前置的区块、组件前置清单、待评审排除清单、组件实例配置及其状态、样例值、动作与待确认项。它是 `partner-ui-pages` / `partner-ui-vue3` 或产品团队自有流水线的输入；截图通过 `image` 路径引用，交付时与场景 `crops/` 或画布 HTML 一起提供。
+`scripts/export_handoff.py manifest.json` 生成 `design-handoff/1`：按页列出可直接生成的区块（`use-existing-components`）、等待组件前置的区块、组件前置清单、待评审排除清单、组件实例配置及其状态、样例值、动作与待确认项。它是 `partner-ui-pages` / `partner-ui-vue3` 或产品团队自有流水线的输入；截图通过 `image` 路径引用，交付时与场景 `crops/` 或画布 HTML 一起提供。下游 Agent 读 `generation-brief.json`（`.md` 供人阅读）：只生成 `generation` 为 `use-existing-components` 的区块，`after-component-verification` 等 `preconditions` 验证后再做，区块内 `excludedParts` 与全局 `exclusions` 不绘制也不近似实现。
 
 ## 规模化（多场景）
 
