@@ -16,6 +16,7 @@ description: 用伙伴工作台 Workbench 与 AI UI 消费包制作离线演示�
 | 新建 Demo、复杂单页、多页流程 | [references/project.md](references/project.md)，`scripts/new_project.mjs` |
 | 修改现有 JS 项目 | 先 `project_index.mjs --query` 或 `--changed`，再读命中源码与 API |
 | PRD / 截图转 Demo | 先列页面、状态、交互和资产映射；必要假设写入交付，随后走 JS 项目模式 |
+| 需求画布交接 `generation-brief.json`（`design-handoff/1`） | 以它为范围和内容输入：只生成 `generation: use-existing-components` 的区块；`after-component-verification` 先按 `preconditions` 核对组件能力，未证实不做；`excludedParts` / `exclusions` 不绘制也不近似实现。组件配置为 `candidate` 时仍用 `assets.mjs` 核对公开契约，随后走 JS 项目模式 |
 | 改造已有 HTML / 保留六个经典模板 | [references/html-workflow.md](references/html-workflow.md)；转换器细节见 [restyle.md](references/restyle.md) |
 | 查询组件或 Block | `node scripts/assets.mjs search --query "关键词" --limit 5`，再 `show --id <id>` 读取速查；需变体/更多示例用 `--view full` |
 | 查询 Token 或图标 | [references/tokens.md](references/tokens.md)、[references/icons.md](references/icons.md)，关键词过滤，不全量展开 |

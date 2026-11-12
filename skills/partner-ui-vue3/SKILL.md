@@ -16,6 +16,8 @@ description: 用伙伴工作台 Workbench 与 AI UI 发布包，将 PRD、partne
 | C. 现有产品仓库内修改               | 先读目标仓库规则、依赖、TS/Lint/路由/HTTP/测试约定；既有约定优先于本 Skill 默认值。发现运行时或 peer 不兼容时报告实际缺口，不擅自升级框架。          |
 | D. 复查代码                         | 运行类型、Lint 和静态规则，按规则与实际行为报告问题。仅要求审查时不重写；用户已要求修复时继续完成授权范围。                                          |
 
+输入含需求画布交接 `generation-brief.json`（`design-handoff/1`）时走 A，并以它为已确认范围：只实现 `generation: use-existing-components` 的区块；`after-component-verification` 先按 `preconditions` 核对组件能力，未证实不做；`excludedParts` / `exclusions` 不绘制也不近似实现；`candidate` 组件配置仍按锁包契约核对。
+
 任务已明确时直接选路；只有新功能、转换或现仓修改确实无法区分时问一个问题。非 `partner-ui-pages` 生成的 HTML 作为需求输入走 A，不使用运行时 restyle。只需离线演示则转到相邻 `partner-ui-pages`。
 
 ## 读取与选型
