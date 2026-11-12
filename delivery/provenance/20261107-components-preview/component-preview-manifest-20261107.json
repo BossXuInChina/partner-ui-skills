@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "kind": "component-bundling-preview",
+  "date": "2026-11-07",
+  "skillRulesChanged": false,
+  "skillVersionsChanged": false,
+  "sourceLock": "59e92398abb2bb877cd1efddea9322b4e5cb300e99450debbccd1bcca7ab25ad",
+  "componentSourceLock": {
+    "schemaVersion": 1,
+    "purpose": "Immutable source supplement for component-owned offline artifacts; does not replace published package lock or release qualification.",
+    "sources": [
+      {
+        "id": "workbench",
+        "name": "@workbench/ui-vue3",
+        "version": "0.2.0-prototype.20261106.7",
+        "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc",
+        "archive": "vendor/offline-workbench-6dad97e7a215.tar.gz",
+        "sha256": "8b8df8d5057315574d08d566cab014e8f7238954deae70686e9a83c7034f4114",
+        "files": 1398,
+        "origin": "git archive at published release sourceCommit; sourceHasLocalChanges=false"
+      },
+      {
+        "id": "ai",
+        "name": "huawei-partner-ai-ui",
+        "version": "0.3.1-dev.20261106.1",
+        "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393",
+        "archive": "vendor/offline-ai-16d91bbbede5.tar.gz",
+        "sha256": "ad059bdf29418d565c156bd8c85a87ba035d78450802d34566edd1db9a7670bd",
+        "files": 137,
+        "origin": "git archive at published release sourceCommit; sourceHasLocalChanges=false"
+      },
+      {
+        "id": "robot",
+        "name": "@opentiny/tiny-robot",
+        "version": "0.5.1",
+        "sourceCommit": "2cb6596e8c02593ddf98851b18aae7a07fc98af1",
+        "archive": "vendor/offline-robot-2cb6596e8c02.tar.gz",
+        "sha256": "2712e4d4a0b558bd84dfde22cdf12928e587126a539e597bc753e685b88bb81a",
+        "files": 275,
+        "origin": "https://github.com/opentiny/tiny-robot/tree/2cb6596e8c02593ddf98851b18aae7a07fc98af1"
+      }
+    ]
+  },
+  "resourcePack": {
+    "schemaVersion": 1,
+    "sha256": "718a95c2cf3b3af7b0eb18a1feceed6f6c96e2b0c7138f9fad32ecfac0190100",
+    "graphSha256": "715d9153b2b576d4bbeb21e258821d250ac87172bb6999f58bcd052d28bd6d5e"
+  },
+  "validation": {
+    "tests": 237,
+    "passed": 236,
+    "skipped": 1,
+    "skippedReason": "Existing isolated Vue harness test has no installed harness Vite. Independent Vue harness/T1-T3 were not rerun.",
+    "legacyTemplatesPassed": 6,
+    "visualParity": {
+      "scope": "Three representative fixtures at 1440x900, complete interactions above; not an exhaustive all-state visual regression.",
+      "tolerance": {
+        "differentPixels": 16,
+        "maxChannelDifference": 30
+      },
+      "results": [
+        {
+          "name": "form",
+          "differentPixels": 0,
+          "maxChannelDifference": 0,
+          "totalPixels": 1296000
+        },
+        {
+          "name": "table",
+          "differentPixels": 0,
+          "maxChannelDifference": 0,
+          "totalPixels": 1296000
+        },
+        {
+          "name": "chat",
+          "differentPixels": 0,
+          "maxChannelDifference": 0,
+          "totalPixels": 1296000
+        }
+      ]
+    },
+    "offlineModes": [
+      "multi-js",
+      "single-html"
+    ],
+    "independentNoNpmConsumer": true,
+    "generatedDriftCheck": "PASS"
+  },
+  "runtimeBytes": {
+    "previousFull": {
+      "js": 7038218,
+      "css": 1986437
+    },
+    "form": {
+      "js": 304022,
+      "css": 77846
+    },
+    "table": {
+      "js": 440493,
+      "css": 126476
+    },
+    "chat": {
+      "js": 1397261,
+      "css": 277468
+    },
+    "threePageDemo": {
+      "js": 1746635,
+      "css": 406047
+    }
+  },
+  "closureHash": "e764a04db10f5d7a1acbbeac2e7fba01e51a3c1ce35249342aa4111bbf69358c",
+  "unchangedOriginalArchive": {
+    "file": "partner-ui-pages-0.3.0.zip",
+    "sha256": "add1541149907f7397a378c41b8a71bef239be91f332c32bfa5e2c85697e1fcc"
+  },
+  "limitations": [
+    "development/prototype qualification remains unchanged",
+    "Representative visual comparison, not exhaustive all-component/all-state certification",
+    "No 128k agent long-run benchmark",
+    "No remote publication"
+  ],
+  "archives": [
+    {
+      "file": "partner-ui-pages-components-preview-20261107.zip",
+      "bytes": 42455565,
+      "sha256": "f1341750ec9137b66bd7212606b5add55f847b7ae71e3380e98ad964d3434316"
+    },
+    {
+      "file": "partner-ui-components-demo-20261107.zip",
+      "bytes": 1703855,
+      "sha256": "7cd239b4a30d45cd2fe286c0dc945d0ffec2e43ace87d9030fde10576b006df3"
+    }
+  ],
+  "packagedConsumerValidation": {
+    "status": "PASS",
+    "archiveSha256": "f1341750ec9137b66bd7212606b5add55f847b7ae71e3380e98ad964d3434316",
+    "noNpmInstall": true,
+    "offlineBrowser": true,
+    "modes": 2,
+    "closureHash": "e764a04db10f5d7a1acbbeac2e7fba01e51a3c1ce35249342aa4111bbf69358c",
+    "receipt": ".artifacts/component-bundling/packaged-consumer.json"
+  }
+}

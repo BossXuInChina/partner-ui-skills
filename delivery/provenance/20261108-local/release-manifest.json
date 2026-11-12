@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0",
+  "releasePolicy": "user-decides",
+  "sourceLock": {
+    "buildDate": "2026-11-06",
+    "sha256": "59e92398abb2bb877cd1efddea9322b4e5cb300e99450debbccd1bcca7ab25ad"
+  },
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261106.7",
+      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
+      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261106.1",
+      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
+      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393"
+    }
+  ],
+  "skills": [
+    {
+      "name": "partner-ui-pages",
+      "version": "0.3.0",
+      "file": "partner-ui-pages-0.3.0.zip",
+      "sha256": "cc25687dcd9287b7dbee9945be7d0a10389c85df71e7c5c4594dfa9c335750f8",
+      "bytes": 39328759
+    },
+    {
+      "name": "partner-ui-vue3",
+      "version": "0.2.1",
+      "file": "partner-ui-vue3-0.2.1.zip",
+      "sha256": "287178ffc9e11a7b0c082e4eabe46637c570e42e75a34e9b1ccf637d269efcb5",
+      "bytes": 11826287
+    },
+    {
+      "name": "partner-ui-review",
+      "version": "0.1.6",
+      "file": "partner-ui-review-0.1.6.zip",
+      "sha256": "f6aa541dce3d0f49bdf5b9e5d5440f81d9cdfd00d1b6f14b3c5ed318de0d0dcd",
+      "bytes": 11495176
+    },
+    {
+      "name": "design-requirement-canvas",
+      "version": "1.1.0",
+      "file": "design-requirement-canvas-1.1.0.zip",
+      "sha256": "64322f08dd2f2b8bf6ec504c5d6f8075075e80f7753e45d842a834b313c70e58",
+      "bytes": 100996
+    }
+  ]
+}

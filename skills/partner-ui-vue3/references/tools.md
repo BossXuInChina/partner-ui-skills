@@ -11,7 +11,7 @@ node <Skill根>/scripts/new_feature.mjs --help
 
 `<name>` 为小写 kebab-case slug，最长64字符。`--template` 可选 `blank`（默认）、`workbench-list`、`workbench-detail`、`workbench-dashboard`、`ai-chat`、`ai-assistant-workspace`。省略 `--out` 时生成到当前目录下的 `<name>/`；`--json` 输出结果、文件清单和交付草稿。
 
-父目录必须已存在；目标目录、文件及悬空符号链接都不会被覆盖。输出不得覆盖或进入 Skill 本身及输入 vendor。工具先在同一父目录准备完整源码，独占预留目标后用目录 rename 发布；失败清理仅涉及自己的临时目录及空预留，不递归删除目标内容。并发写同一路径只有一个能成功。
+父目录必须已存在；目标目录、文件及悬空符号链接都不会被覆盖。输出不得覆盖或进入 Skill 本身及输入 vendor。工具先在同一父目录准备完整源码，再通过目录 rename 发布；Windows 会先移除自己创建的空预留，目标已存在时仍拒绝覆盖。失败清理仅涉及自己的临时目录及空预留，不递归删除目标内容。并发写同一路径只有一个能成功。
 
 生成内容：
 

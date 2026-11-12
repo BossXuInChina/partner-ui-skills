@@ -18,6 +18,7 @@ import { buildPrototypeRuntime } from "../shared/runtime/build-prototype.mjs";
 import { buildGallery } from "./build-gallery.mjs";
 import { projectAssets } from "./project-assets.mjs";
 import { componentAssets } from "./components/assets.mjs";
+import { installGuide } from "./install-guide.mjs";
 
 const skills = ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review"];
 // Self-contained skills that do not consume the locked packages: copied and zipped as-is.
@@ -192,6 +193,7 @@ export function packageSkills(root, lock) {
           recursive: true,
         },
       );
+    writeFileSync(resolve(target, "INSTALL.md"), installGuide(skill, json(resolve(target, "skill.json")).version));
     zipSkill(dist, skill, target, lock);
   }
   for (const skill of standaloneSkills) {
@@ -203,6 +205,7 @@ export function packageSkills(root, lock) {
         !packageExcludes.includes(source.split(/[\\/]/).at(-1)) &&
         !/[\\/]tests[\\/]\.out$/.test(source),
     });
+    writeFileSync(resolve(target, "INSTALL.md"), installGuide(skill, json(resolve(target, "skill.json")).version));
     zipSkill(dist, skill, target, lock);
   }
 }
@@ -211,7 +214,7 @@ function zipSkill(dist, skill, target, lock) {
   const archive = resolve(dist, skill + ".zip");
   // Python's standard library makes archive bytes reproducible without a zip dependency.
   execFileSync(
-    "python3",
+    process.env.SKILLS_PYTHON || (process.platform === "win32" ? "python" : "python3"),
     [
       "-c",
       'import json,pathlib,sys,zipfile\nr=pathlib.Path(sys.argv[1]);files=json.loads(sys.argv[4]);date=tuple(map(int,sys.argv[3].split("-")))+(0,0,0)\nwith zipfile.ZipFile(sys.argv[2],"w",compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:\n for p in files:\n  i=zipfile.ZipInfo(r.name+"/"+p,date);i.compress_type=zipfile.ZIP_DEFLATED;i.external_attr=0o100644<<16;z.writestr(i,(r/p).read_bytes())',

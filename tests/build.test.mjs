@@ -257,6 +257,7 @@ test("self-contained archives keep source and lockfiles while excluding installe
       const folder = resolve(root, "skills", skill);
       mkdirSync(resolve(folder, "assets/harness/src"), { recursive: true });
       writeFileSync(resolve(folder, "SKILL.md"), "# Skill");
+      writeFileSync(resolve(folder, "skill.json"), JSON.stringify({ name: skill, version: "1.0.0" }));
       writeFileSync(
         resolve(folder, "assets/harness/src/main.ts"),
         "export {};",
@@ -279,12 +280,15 @@ test("self-contained archives keep source and lockfiles while excluding installe
     mkdirSync(resolve(canvas, "tests/.out"), { recursive: true });
     mkdirSync(resolve(canvas, "node_modules"), { recursive: true });
     writeFileSync(resolve(canvas, "SKILL.md"), "# Canvas");
+    writeFileSync(resolve(canvas, "skill.json"), JSON.stringify({ name: "design-requirement-canvas", version: "1.0.0" }));
     writeFileSync(resolve(canvas, "package-lock.json"), "{}");
     writeFileSync(resolve(canvas, "scripts/build_canvas.py"), "");
     writeFileSync(resolve(canvas, "scripts/__pycache__/private-output.txt"), "cache");
     writeFileSync(resolve(canvas, "tests/.out/private-output.txt"), "out");
     writeFileSync(resolve(canvas, "node_modules/private-output.txt"), "dep");
     packageSkills(root, json(resolve(root, "source.lock.json")));
+    for (const skill of ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review", "design-requirement-canvas"])
+      assert.match(readFileSync(resolve(root, "dist", skill, "INSTALL.md"), "utf8"), /1\.0\.0/);
     const canvasMembers = JSON.parse(
       execFileSync(
         "python3",
@@ -297,9 +301,11 @@ test("self-contained archives keep source and lockfiles while excluding installe
       ),
     );
     assert.deepEqual(canvasMembers.sort(), [
+      "design-requirement-canvas/INSTALL.md",
       "design-requirement-canvas/SKILL.md",
       "design-requirement-canvas/package-lock.json",
       "design-requirement-canvas/scripts/build_canvas.py",
+      "design-requirement-canvas/skill.json",
     ]);
     for (const skill of ["partner-ui-pages", "partner-ui-vue3", "partner-ui-review"]) {
       const members = JSON.parse(

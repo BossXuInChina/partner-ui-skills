@@ -11,6 +11,14 @@ pnpm test:canvas   # design-requirement-canvas：Python 单测 + DOM + 浏览器
 
 `build` 重新计算生成结果，发现手工修改、缺失文件或额外组件页就失败，不会悄悄覆盖。输出为 `dist/partner-ui-pages.zip`、`dist/partner-ui-vue3.zip`、`dist/partner-ui-review.zip` 和 `dist/design-requirement-canvas.zip`；canvas 不消费锁定包，按原样打包，不附 tarball 与图库；解压后的每个文件夹可独立安装，随附锁定 tarball 和共享参考。原型 Skill 自带离线运行时；维护者可在其文件夹安装依赖后运行 `pnpm build:runtime`。
 
+## 获取独立安装包
+
+在仓库 [delivery](delivery/README.md) 按 Skill 查找当前包和历史版本，或在 GitHub Actions 的 **Build skills** 成功运行中下载单个 Skill 安装包，或下载 `partner-ui-skills-installers` 获取全部四包、`release-manifest.json` 和 `SHA256SUMS`。只有 Windows 和 macOS 独立使用冒烟验证均通过后才生成这些 Actions 交付产物；产物保留 30 天，仓库中的历史包持续保留。压缩包解开后，将直接包含 `SKILL.md` 的文件夹放入客户端 Skill 目录，具体依赖与 Windows 命令见每包的 `INSTALL.md`。当前包是预览候选，不构成生产资格。
+
+维护者在 Node 24.21.0、pnpm 11.22.0 和 Python 3 环境中运行 `pnpm install --frozen-lockfile`，再运行 `pnpm package:release`。该命令校验锁定来源和生成漂移，输出版本化 ZIP 与校验清单，不上传或发布；同版本文件已存在且内容不同时拒绝覆盖。Windows 构建时使用 `python`，需要其他 Python 路径可设置 `SKILLS_PYTHON`。在安装包所在目录执行 `node verify-installers.mjs` 可核对全部文件及清单。不同系统的功能依赖、浏览器和目标宿主仍需按各 Skill 说明配置。
+
+通过验证的包运行 `pnpm archive:delivery` 归档至四个 Skill 子目录，保留历史版本和构建清单；`pnpm verify:delivery` 校验整个归档。归档不会自动提交、推送或发布。
+
 维护升级时先更新 `vendor/`、锁中的版本/SHA-256/完整 commit 和根依赖路径，再运行 `pnpm install`、`pnpm generate`，评审生成差异并执行 `pnpm test`、`pnpm test:templates`、`pnpm verify:harness`、`pnpm build`。`generate` 是明确的再生成命令；普通构建只检查漂移。发布频率由用户决定，仓库没有推送、注册表发布或自动升级动作。
 
 `source.lock.json.studioBaseURLs` 是本机开发服务默认地址，可按实际服务修改后再生成；生成参考中的 Studio 路径来自包。两包当前处于开发通道，资料保留其资格声明。两包均发布结构化组件元数据；AI 参考记录16个组件及真实未知项，图库由公开元数据生成，不从源仓推测补齐。
@@ -76,7 +84,7 @@ node scripts/emit_project.mjs ./my-demo --components --page partners
 
 ## 本地交付
 
-`pnpm package:release` 先校验生成漂移，再产出 `dist/partner-ui-pages-0.3.0.zip`、`dist/partner-ui-vue3-0.2.1.zip`、`dist/partner-ui-review-0.1.6.zip`、`dist/design-requirement-canvas-1.1.0.zip` 和 `dist/release-manifest.json`。清单记录实际字节 SHA-256、包版本及完整来源提交；普通 ZIP 与版本 ZIP 字节相同。该命令不推送或上传。
+`pnpm package:release` 产出 4 个以各自 `skill.json` 版本命名的 ZIP、`dist/release-manifest.json` 和 `dist/SHA256SUMS`。清单记录 ZIP 校验和、源码提交及工作区是否有未提交变更、锁定组件包版本与来源；普通 ZIP 与版本 ZIP 字节相同。该命令不推送或上传。
 
 [维护升级](maintenance.md) 规定“升级公开包 → 再生成 → 新会话重跑 T1–T3 → 更新清单/归档”；[CHANGELOG](CHANGELOG.md) 记录本批内容。可审查试验与复跑入口位于 trials/t1、trials/t2、trials/t3，历史收据只支持其记录的来源，不代表真实公司环境。
 

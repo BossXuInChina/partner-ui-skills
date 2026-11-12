@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "archives": [
+    {
+      "skill": "design-requirement-canvas",
+      "version": "1.1.0",
+      "file": "design-requirement-canvas/design-requirement-canvas-1.1.0.zip",
+      "bytes": 100996,
+      "sha256": "64322f08dd2f2b8bf6ec504c5d6f8075075e80f7753e45d842a834b313c70e58",
+      "origin": "local-history",
+      "provenance": "provenance/20261108-local/release-manifest.json"
+    },
+    {
+      "skill": "design-requirement-canvas",
+      "version": "1.1.1-preview.20261112.1",
+      "file": "design-requirement-canvas/design-requirement-canvas-1.1.1-preview.20261112.1.zip",
+      "bytes": 109370,
+      "sha256": "4e73551c862ecf2a357e6e463afdcfa23de14847a01b00268bd63367f496acab",
+      "origin": "validated-build",
+      "provenance": "provenance/ad2b3867547d77fc70bad31b087d814c253a910b/release-manifest.json"
+    },
+    {
+      "skill": "partner-ui-pages",
+      "version": "0.1.0",
+      "file": "partner-ui-pages/partner-ui-pages-0.1.0.zip",
+      "bytes": 21612960,
+      "sha256": "ed9c2d8c11ab8845ac1103e5ea39eddd1fec47c11065748b6bdb2ab3e6390e81",
+      "origin": "local-history"
+    },
+    {
+      "skill": "partner-ui-pages",
+      "version": "0.2.0",
+      "file": "partner-ui-pages/partner-ui-pages-0.2.0.zip",
+      "bytes": 25317903,
+      "sha256": "c677d21bddbfebf7ccf72837af7da7b668932195c8f68250531cc64d8552fa57",
+      "origin": "github-release",
+      "provenance": "provenance/20261106-published/release-manifest.json"
+    },
+    {
+      "skill": "partner-ui-pages",
+      "version": "0.3.0",
+      "file": "partner-ui-pages/partner-ui-pages-0.3.0.zip",
+      "bytes": 39328759,
+      "sha256": "cc25687dcd9287b7dbee9945be7d0a10389c85df71e7c5c4594dfa9c335750f8",
+      "origin": "local-history",
+      "provenance": "provenance/20261108-local/release-manifest.json"
+    },
+    {
+      "skill": "partner-ui-pages",
+      "version": "0.3.1-preview.20261112.1",
+      "file": "partner-ui-pages/partner-ui-pages-0.3.1-preview.20261112.1.zip",
+      "bytes": 39648751,
+      "sha256": "7aac64bfe38ea07a0b7c030f9b14ef33713c67ec01d6ed4043865420993ef69e",
+      "origin": "validated-build",
+      "provenance": "provenance/ad2b3867547d77fc70bad31b087d814c253a910b/release-manifest.json"
+    },
+    {
+      "skill": "partner-ui-pages",
+      "version": "0.3.0",
+      "file": "partner-ui-pages/partner-ui-pages-component-layout-preview-20261107.zip",
+      "bytes": 39331746,
+      "sha256": "b08f1e64162410bed7e45849746e90632d0fd485f001370c746c1376df85e312",
+      "origin": "github-prerelease",
+      "provenance": "provenance/20261107-layout-preview/component-layout-preview-manifest-20261107.json"
+    },
+    {
+      "skill": "partner-ui-pages",
+      "version": "0.3.0",
+      "file": "partner-ui-pages/partner-ui-pages-components-preview-20261107.zip",
+      "bytes": 42455565,
+      "sha256": "f1341750ec9137b66bd7212606b5add55f847b7ae71e3380e98ad964d3434316",
+      "origin": "local-history",
+      "provenance": "provenance/20261107-components-preview/component-preview-manifest-20261107.json"
+    },
+    {
+      "skill": "partner-ui-review",
+      "version": "0.1.0",
+      "file": "partner-ui-review/partner-ui-review-0.1.0.zip",
+      "bytes": 4490324,
+      "sha256": "af88d35a1881486cb9d1f520399b6c520718981dbff63c96c0ad9bda4fa9f729",
+      "origin": "local-history"
+    },
+    {
+      "skill": "partner-ui-review",
+      "version": "0.1.1",
+      "file": "partner-ui-review/partner-ui-review-0.1.1.zip",
+      "bytes": 4496489,
+      "sha256": "1dfb634975a78c865c23343bc8c15c41dc0f0435b31780ae4367147108ad19f7",
+      "origin": "local-history"
+    },
+    {
+      "skill": "partner-ui-review",
+      "version": "0.1.2",
+      "file": "partner-ui-review/partner-ui-review-0.1.2.zip",
+      "bytes": 4497991,
+      "sha256": "acaa8068cbac5728c3d874469542fd00fda98539fa25a3b94d20386350074673",
+      "origin": "local-history"
+    },
+    {
+      "skill": "partner-ui-review",
+      "version": "0.1.3",
+      "file": "partner-ui-review/partner-ui-review-0.1.3.zip",
+      "bytes": 4502513,
+      "sha256": "d85783dd46e52636f83edce645c2bc5a5fb200a3b7607d7583a38293f581d724",
+      "origin": "local-history"
+    },
+    {
+      "skill": "partner-ui-review",
+      "version": "0.1.4",
+      "file": "partner-ui-review/partner-ui-review-0.1.4.zip",
+      "bytes": 4505965,
+      "sha256": "98d7591bd65580a79c50b4359eae487c8b8fbb5d7527f9460dcabf193220a834",
+      "origin": "local-history"
+    },
+    {
+      "skill": "partner-ui-review",
+      "version": "0.1.5",
+      "file": "partner-ui-review/partner-ui-review-0.1.5.zip",
+      "bytes": 4507044,
+      "sha256": "d5fd700430eb9522f9475d405fd27639e1109d196f72f754169a497b41a33e58",
+      "origin": "local-history"
+    },
+    {
+      "skill": "partner-ui-review",
+      "version": "0.1.6",
+      "file": "partner-ui-review/partner-ui-review-0.1.6-local-20261108.zip",
+      "bytes": 11495176,
+      "sha256": "f6aa541dce3d0f49bdf5b9e5d5440f81d9cdfd00d1b6f14b3c5ed318de0d0dcd",
+      "origin": "local-history",
+      "provenance": "provenance/20261108-local/release-manifest.json",
+      "originalFilename": "partner-ui-review-0.1.6.zip"
+    },
+    {
+      "skill": "partner-ui-review",
+      "version": "0.1.6",
+      "file": "partner-ui-review/partner-ui-review-0.1.6.zip",
+      "bytes": 8175662,
+      "sha256": "46b60e1849edeae7492a7d9e1df8660a8ed22850f26632b0048eff3373521a71",
+      "origin": "github-release",
+      "provenance": "provenance/20261106-published/release-manifest.json"
+    },
+    {
+      "skill": "partner-ui-review",
+      "version": "0.1.7-preview.20261112.1",
+      "file": "partner-ui-review/partner-ui-review-0.1.7-preview.20261112.1.zip",
+      "bytes": 11815133,
+      "sha256": "3f0406113baa66fffd13c7726a6ccae44b8cb87af29dd351dee0a9c95609ffce",
+      "origin": "validated-build",
+      "provenance": "provenance/ad2b3867547d77fc70bad31b087d814c253a910b/release-manifest.json"
+    },
+    {
+      "skill": "partner-ui-vue3",
+      "version": "0.1.0",
+      "file": "partner-ui-vue3/partner-ui-vue3-0.1.0.zip",
+      "bytes": 4836905,
+      "sha256": "a50db80ee8f580da86f152ffc7a8be94ead2328aa4deca40943e73767278a06e",
+      "origin": "local-history"
+    },
+    {
+      "skill": "partner-ui-vue3",
+      "version": "0.1.1",
+      "file": "partner-ui-vue3/partner-ui-vue3-0.1.1.zip",
+      "bytes": 4837720,
+      "sha256": "cbba8c3193aca7ea6eacb08439ee798454d9af0812098b220f2f9a4503211f2e",
+      "origin": "local-history"
+    },
+    {
+      "skill": "partner-ui-vue3",
+      "version": "0.2.0",
+      "file": "partner-ui-vue3/partner-ui-vue3-0.2.0.zip",
+      "bytes": 8506759,
+      "sha256": "c69cc252b5535022f21f421d3915ef91566b188c67bb77c4f9af8d3bb08a7045",
+      "origin": "github-release",
+      "provenance": "provenance/20261106-published/release-manifest.json"
+    },
+    {
+      "skill": "partner-ui-vue3",
+      "version": "0.2.1",
+      "file": "partner-ui-vue3/partner-ui-vue3-0.2.1.zip",
+      "bytes": 11826287,
+      "sha256": "287178ffc9e11a7b0c082e4eabe46637c570e42e75a34e9b1ccf637d269efcb5",
+      "origin": "local-history",
+      "provenance": "provenance/20261108-local/release-manifest.json"
+    },
+    {
+      "skill": "partner-ui-vue3",
+      "version": "0.2.2-preview.20261112.1",
+      "file": "partner-ui-vue3/partner-ui-vue3-0.2.2-preview.20261112.1.zip",
+      "bytes": 12146071,
+      "sha256": "5e2c3ac4a989e15195d690eaa2d981fba6a9564a0347fe18b0102db9e9750e2a",
+      "origin": "validated-build",
+      "provenance": "provenance/ad2b3867547d77fc70bad31b087d814c253a910b/release-manifest.json"
+    }
+  ]
+}

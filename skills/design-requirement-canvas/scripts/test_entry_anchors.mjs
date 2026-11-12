@@ -36,7 +36,7 @@ try {
   data.canvas.views[0].groups=[{id:'source',title:'来源',pageIds:['demo-a']},{id:'obstacle-group',title:'中间截图',pageIds:['obstacle']},{id:'target',title:'目标',pageIds:['demo-b']}];
   data.canvas.mainPathEdgeIds=['first-entry-edge'];
   fs.writeFileSync(file,JSON.stringify(data));
-  execFileSync('python3',[path.join(skill,'scripts/build_canvas.py'),file,'--out',path.join(tmp,'canvas.html')]);
+  execFileSync(process.env.SKILLS_PYTHON || (process.platform === 'win32' ? 'python' : 'python3'),[path.join(skill,'scripts/build_canvas.py'),file,'--out',path.join(tmp,'canvas.html')]);
   browser=await chromium.launch(); const page=await browser.newPage({viewport:{width:1440,height:900}});
   await page.goto(pathToFileURL(path.join(tmp,'canvas.html')).href);await page.waitForSelector('[data-ready="true"]');
   assert.equal(await page.evaluate(()=>window.__CANVAS__.edges.length),3,'distinct same-label entrances must remain separate');

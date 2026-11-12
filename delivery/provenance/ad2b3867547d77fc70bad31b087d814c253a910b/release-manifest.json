@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0",
+  "releasePolicy": "user-decides",
+  "source": {
+    "commit": "ad2b3867547d77fc70bad31b087d814c253a910b",
+    "dirty": false
+  },
+  "sourceLock": {
+    "buildDate": "2026-11-06",
+    "sha256": "59e92398abb2bb877cd1efddea9322b4e5cb300e99450debbccd1bcca7ab25ad"
+  },
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261106.7",
+      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
+      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261106.1",
+      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
+      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393"
+    }
+  ],
+  "skills": [
+    {
+      "name": "partner-ui-pages",
+      "version": "0.3.1-preview.20261112.1",
+      "file": "partner-ui-pages-0.3.1-preview.20261112.1.zip",
+      "sha256": "7aac64bfe38ea07a0b7c030f9b14ef33713c67ec01d6ed4043865420993ef69e",
+      "bytes": 39648751
+    },
+    {
+      "name": "partner-ui-vue3",
+      "version": "0.2.2-preview.20261112.1",
+      "file": "partner-ui-vue3-0.2.2-preview.20261112.1.zip",
+      "sha256": "5e2c3ac4a989e15195d690eaa2d981fba6a9564a0347fe18b0102db9e9750e2a",
+      "bytes": 12146071
+    },
+    {
+      "name": "partner-ui-review",
+      "version": "0.1.7-preview.20261112.1",
+      "file": "partner-ui-review-0.1.7-preview.20261112.1.zip",
+      "sha256": "3f0406113baa66fffd13c7726a6ccae44b8cb87af29dd351dee0a9c95609ffce",
+      "bytes": 11815133
+    },
+    {
+      "name": "design-requirement-canvas",
+      "version": "1.1.1-preview.20261112.1",
+      "file": "design-requirement-canvas-1.1.1-preview.20261112.1.zip",
+      "sha256": "4e73551c862ecf2a357e6e463afdcfa23de14847a01b00268bd63367f496acab",
+      "bytes": 109370
+    }
+  ]
+}

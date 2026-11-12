@@ -135,4 +135,6 @@ def main():
 
 
 if __name__ == '__main__':
+    from cli_encoding import configure_cli_encoding
+    configure_cli_encoding()
     main()

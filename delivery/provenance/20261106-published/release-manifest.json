@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0",
+  "releasePolicy": "user-decides",
+  "sourceLock": {
+    "buildDate": "2026-11-06",
+    "sha256": "59e92398abb2bb877cd1efddea9322b4e5cb300e99450debbccd1bcca7ab25ad"
+  },
+  "packages": [
+    {
+      "name": "@workbench/ui-vue3",
+      "version": "0.2.0-prototype.20261106.7",
+      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
+      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
+    },
+    {
+      "name": "huawei-partner-ai-ui",
+      "version": "0.3.1-dev.20261106.1",
+      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
+      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393"
+    }
+  ],
+  "skills": [
+    {
+      "name": "partner-ui-pages",
+      "version": "0.2.0",
+      "file": "partner-ui-pages-0.2.0.zip",
+      "sha256": "c677d21bddbfebf7ccf72837af7da7b668932195c8f68250531cc64d8552fa57",
+      "bytes": 25317903
+    },
+    {
+      "name": "partner-ui-vue3",
+      "version": "0.2.0",
+      "file": "partner-ui-vue3-0.2.0.zip",
+      "sha256": "c69cc252b5535022f21f421d3915ef91566b188c67bb77c4f9af8d3bb08a7045",
+      "bytes": 8506759
+    },
+    {
+      "name": "partner-ui-review",
+      "version": "0.1.6",
+      "file": "partner-ui-review-0.1.6.zip",
+      "sha256": "46b60e1849edeae7492a7d9e1df8660a8ed22850f26632b0048eff3373521a71",
+      "bytes": 8175662
+    }
+  ]
+}
