@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, realpathSync } from "node:fs";
-import { dirname, isAbsolute, relative, resolve } from "node:path";
+import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const packRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -14,7 +14,8 @@ const fail = (message) => {
 };
 export function inside(root, file) {
   const rel = relative(root, file);
-  return rel !== ".." && !rel.startsWith("../") && !isAbsolute(rel);
+  // relative() uses "\\" on Windows, so check the platform separator as well as "/".
+  return rel !== ".." && !rel.startsWith("../") && !rel.startsWith(".." + sep) && !isAbsolute(rel);
 }
 
 function archiveBytes(tarball, member, members) {
@@ -157,7 +158,8 @@ export function loadPinnedPackages(root = packRoot) {
         maxBuffer: 8 * 1024 * 1024,
       })
         .trim()
-        .split("\n"),
+        // Windows tar.exe prints CRLF; without \r? every member name ends in "\r" and no lookup matches.
+        .split(/\r?\n/),
     );
     for (const member of members)
       if (!member.startsWith("package/") || member.split("/").includes(".."))
