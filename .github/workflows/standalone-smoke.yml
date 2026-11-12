@@ -26,8 +26,6 @@ jobs:
       matrix:
         os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
-    env:
-      SKILLS_DIST: ${{ runner.temp }}/isolated-skills
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -42,9 +40,12 @@ jobs:
           path: archives
       - name: Extract independent skills
         shell: bash
+        env:
+          SKILLS_DIST: ${{ runner.temp }}/isolated-skills
         run: python -c "import os,pathlib,zipfile; [zipfile.ZipFile(p).extractall(os.environ['SKILLS_DIST']) for p in pathlib.Path('archives').glob('*.zip')]"
       - name: Verify standalone usage
         run: node tests/standalone-smoke.mjs
         env:
+          SKILLS_DIST: ${{ runner.temp }}/isolated-skills
           SKILLS_PYTHON: python
           SKILLS_SMOKE_INSTALL_REVIEW: '1'

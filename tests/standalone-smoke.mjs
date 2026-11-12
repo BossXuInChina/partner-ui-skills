@@ -42,7 +42,7 @@ try {
   if (process.env.SKILLS_SMOKE_INSTALL_REVIEW === '1') {
     writeFileSync(join(feature, 'package.json'), JSON.stringify({name:'standalone-review-fixture', private:true}));
     const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-    const result = spawnSync(npm, ['install', '--no-save', '--no-package-lock', '--ignore-scripts', 'typescript@5.9.3', '@vue/compiler-sfc@3.5.42'], {cwd: feature, encoding:'utf8', shell: process.platform === 'win32', maxBuffer: 32 * 1024 * 1024});
+    const result = spawnSync(npm, ['install', '--no-save', '--no-package-lock', '--ignore-scripts', 'typescript@5.9.3', 'vue@3.5.42'], {cwd: feature, encoding:'utf8', shell: process.platform === 'win32', maxBuffer: 32 * 1024 * 1024});
     if (result.error || result.status !== 0) throw new Error(`review dependency install failed\n${result.error ?? ''}\n${result.stdout}\n${result.stderr}`);
     node(join(review, 'scripts/static.mjs'), feature, '--json');
     console.log('PASS partner-ui-review: asset search and static analysis of generated feature');
