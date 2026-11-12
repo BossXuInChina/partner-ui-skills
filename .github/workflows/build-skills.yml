@@ -23,6 +23,7 @@ jobs:
       - run: node --test tests/archive-delivery.test.mjs
       - run: python3 -m unittest discover -s skills/design-requirement-canvas/scripts -p 'test_*.py'
       - run: pnpm package:release
+      - run: node build/check-delivery-release.mjs
       - name: Verify checksums
         working-directory: dist
         run: node verify-installers.mjs

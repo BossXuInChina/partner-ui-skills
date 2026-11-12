@@ -7,6 +7,7 @@ import { resolve } from 'node:path';
 import { zipSync, strToU8 } from 'fflate';
 import { archiveDelivery } from '../build/archive-delivery.mjs';
 import { verifyDelivery, SKILLS } from '../build/verify-delivery.mjs';
+import { checkDeliveryRelease } from '../build/check-delivery-release.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 function makeFixture() {
@@ -72,4 +73,12 @@ test('rejects altered release bytes before modifying the archive', () => {
     assert.throws(() => archiveDelivery(release.dir,root), /Checksum mismatch/);
     assert.equal(verifyDelivery(root).archives.length,0);
   } finally { rmSync(temp,{recursive:true,force:true}); }
+});
+
+test('checks existing versioned deliveries against a build while allowing new versions', () => {
+  const skill = {name:'partner-ui-pages', version:'1.0.0', file:'partner-ui-pages-1.0.0.zip', sha256:'a'.repeat(64), bytes:12};
+  const archived = {file:`${skill.name}/${skill.file}`, version:skill.version, sha256:skill.sha256, bytes:skill.bytes};
+  assert.deepEqual(checkDeliveryRelease({archives:[archived]}, {skills:[skill]}), {status:'PASS',compared:1,notYetArchived:0});
+  assert.throws(() => checkDeliveryRelease({archives:[archived]}, {skills:[{...skill,sha256:'b'.repeat(64)}]}), /differs from this build/);
+  assert.equal(checkDeliveryRelease({archives:[]}, {skills:[skill]}).notYetArchived, 1);
 });
