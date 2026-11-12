@@ -604,6 +604,20 @@ function quickAPI(contract, usage = {}) {
     slotNotes: usage.slotNotes ?? null,
   });
 }
+// Some contracts carry a source-bound usage supplement (e.g. table Column fields, sort
+// shape, event payloads). Render every key except the example, which gets its own fence,
+// so new upstream keys are not dropped silently.
+function quickSupplement(supplement) {
+  if (!supplement || typeof supplement !== "object" || Array.isArray(supplement)) return [];
+  const { kind, example, ...rest } = supplement;
+  const lines = [
+    "## 来源补充结构",
+    `来源：包内 components 契约的 usage 补充（kind=${tick(kind ?? "unknown")}）。`,
+    quickData(rest),
+  ];
+  if (typeof example === "string" && example.trim()) lines.push(fence(example, "vue"));
+  return lines;
+}
 function quickPage(pkg, id, contract, usage, family) {
   const fullReference = `../../${family}/${id}.md`;
   const title = contract.label ?? usage?.title ?? contract.title ?? id;
@@ -632,6 +646,7 @@ function quickPage(pkg, id, contract, usage, family) {
     "## 公开 API",
     "以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。",
     quickAPI(contract, usage?.usage ?? {}),
+    ...quickSupplement(contract.usage),
     "## 规则与适用条件",
     quickData({
       rules: contract.rules ?? null,

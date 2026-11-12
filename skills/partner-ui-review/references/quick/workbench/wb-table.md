@@ -210,6 +210,87 @@
 }
 ```
 
+## 来源补充结构
+
+来源：包内 components 契约的 usage 补充（kind=`explicit-source-bound-supplement`）。
+
+```json
+{
+  "structures": {
+    "columns": {
+      "type": "Array<Column>",
+      "requiredFields": ["key","title"],
+      "fields": {
+        "key": "nonempty string; identifies sort and cell-${key}",
+        "title": "nonempty string",
+        "field": "string key or (row) => value; defaults to column.key",
+        "group": "optional {key:string,title:string}; adjacent leaf columns form a two-level column group with continuous header/body boundaries; split at fixed boundaries",
+        "banded": "optional boolean; apply a subtle column background below hover and selected states",
+        "sortable": "boolean",
+        "filterable": "boolean",
+        "filtered": "boolean; active indication for external filtering without filterOptions",
+        "filterOptions": "Array<{value:string|number,label:string,disabled?:boolean}>; enables the optional standard column filter popup",
+        "filterMultiple": "boolean, default true; false renders a single-choice radio list",
+        "align": "start | center | end; left/right aliases are supported",
+        "primary": "boolean",
+        "ellipsis": "boolean; compatibility flag, ordinary data cells always truncate on one line and reveal full text only when overflowing",
+        "fluid": "boolean; explicit true takes priority over unspecified widths and absorbs remaining space",
+        "fixed": "left | right | undefined",
+        "width": "nonnegative number(px) or CSS px/rem/em/%/ch length",
+        "minWidth": "same as width; individual minimum, never copied to other columns",
+        "maxWidth": "same lengths as width; caps allocation and resizing; minimum wins inverted range",
+        "resizable": "boolean; false excludes this business column when Table.resizable is enabled"
+      }
+    },
+    "rowKey": "string row property or (row) => key; required; stable unique row identity",
+    "rows": "Array<Record>; caller supplies current page rows; Table does not sort or slice them",
+    "selectedRowKeys": "Array<rowKey>; controlled; selection disabled when selectable=false",
+    "columnFilters": "Record<column.key,Array<string|number>>; controlled, default {}; Table never filters rows",
+    "sort": "null | { key: column.key, direction: asc | desc }; controlled",
+    "page": "number, default 1; controlled",
+    "pageSize": "number, default 10; controlled",
+    "total": "finite nonnegative number enables pagination",
+    "resizable": "boolean, default false; enables business-column pointer/keyboard/button resizing",
+    "columnWidths": "optional Record<column.key,nonnegative pixel number>; supplied is controlled, omitted is instance-local; manual overrides fluid/equal allocation"
+  },
+  "eventPayloads": {
+    "update:selectedRowKeys": "Array<rowKey> filtered to visible rows",
+    "selection-change": "{ selectedRowKeys, selectedRows, source: row | page | clear | external-page-change | external-page-size-change }",
+    "update:sort": "null | { key, direction: asc | desc }",
+    "sort-change": "same as update:sort",
+    "update:columnFilters": "Record<column.key,Array<string|number>>; empty/reset keys are omitted",
+    "column-filter-change": "{key,column,values,columnFilters,source:option|reset-column|reset-all}",
+    "update:page": "number",
+    "page-change": "number",
+    "update:pageSize": "number",
+    "page-size-change": "number",
+    "update:columnWidths": "Record<column.key,pixel number> overrides; reset removes override keys",
+    "column-width-change": "{ key: string|null, width: number|null, columnWidths, source: pointer|keyboard|button|reset }"
+  },
+  "controlledState": [
+    "Caller handles updates, sorts the full data and supplies a page slice.",
+    "Ordinary text cells and display slots stay on one line with overflow-only full-text Tooltip. Editable controls retain their own feedback and overlays; expanded details may wrap.",
+    "Caller resets page and selection when pageSize changes; Table emits pageSize but does not own reset policy.",
+    "Changing page or pageSize requests clearing nonempty selection; caller applies update:selectedRowKeys.",
+    "columnWidths supplied is controlled; drag previews then commits on release, cancellation discards; resetColumnWidths(key?) restores original column definitions. Omitted map stores local overrides, cleared only for removed keys."
+  ],
+  "dynamicSlots": [
+    {
+      "name": "header-${column.key}",
+      "props": {"column":"Column; only replaces title content, never header controls or semantics"}
+    },
+    {
+      "name": "cell-${column.key}",
+      "props": {"row":"row record","value":"string cellValue","column":"Column","rowIndex":"zero-based index"}
+    }
+  ]
+}
+```
+
+```vue
+<WorkbenchTable caption="Technical example" :columns="columns" :rows="visibleRows" row-key="id" selectable v-model:selectedRowKeys="selected" v-model:sort="sort" v-model:page="page" :page-size="pageSize" :total="allRows.length" @update:pageSize="size => { pageSize = size; page = 1; selected = [] }"><template #cell-status="{ value, row }"><span :data-row="row.id">{{ value }}</span></template></WorkbenchTable>
+```
+
 ## 规则与适用条件
 
 ```json

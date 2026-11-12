@@ -446,7 +446,9 @@ test("quick pages retain complete declared API, rules, qualifications and unknow
     for (const [id, contract] of Object.entries(pkg.metadata.components.assets)) {
       const usage = pkg.name === wbName ? pkg.metadata.usage.assets[id] : contract;
       const page = output.get(`quick/${family}/${id}.md`);
-      const [boundary, api, rules] = fencedJSON(page);
+      const [boundary, api, ...rest] = fencedJSON(page);
+      // Optional supplement block sits between API and rules.
+      const rules = rest.find((block) => block && !Array.isArray(block) && Object.hasOwn(block, "intro"));
       for (const key of ["publicImport", "props", "events", "eventDetails", "slots", "slotDetails",
         "slotPatterns", "exposed", "family"]) {
         assert.deepEqual(api[key], contract[key] ?? null, `${id}.${key}`);
@@ -626,4 +628,56 @@ test("unsafe generated paths, external Studio routes and escaping traversal are 
     () => generateReferences({ packages: [ai] }),
     /REFERENCE_WORKBENCH_METADATA_REQUIRED/,
   );
+});
+
+// Every contract key must reach the quick page or be excluded on purpose, so a new
+// upstream key fails here instead of being dropped silently.
+const quickExcludedContractKeys = new Set(["id", "cases", "caseCoverage", "studioPath", "component"]);
+const isEmpty = (value) => value == null || (typeof value === "object" &&
+  Object.keys(value).length === 0);
+function quickRendersContractKey(page, key, contract) {
+  const value = contract[key];
+  const blocks = fencedJSON(page);
+  const inBlocks = (name, expected) => blocks.some((block) =>
+    block && typeof block === "object" && Object.hasOwn(block, name) &&
+    JSON.stringify(block[name]) === JSON.stringify(expected));
+  const listedEmpty = (name) => [...page.matchAll(/^未声明或为空：(.*)$/gm)]
+    .some((match) => match[1].split(/[、（]/).includes(name));
+  if (key === "label") return page.split("\n").some((line) => line.startsWith("# ") &&
+    line.includes(value.replaceAll("&", "&amp;").replaceAll("<", "&lt;")));
+  if (key === "group") return inBlocks("kind", contract.kind ?? value) && (contract.kind ?? value) === value;
+  if (key === "source") return page.includes(`${value.package}@${value.version}`) && page.includes(value.commit);
+  if (key === "usage") {
+    const { kind, example, ...rest } = value;
+    return page.includes("## 来源补充结构") && page.includes(String(kind)) &&
+      blocks.some((block) => JSON.stringify(block) === JSON.stringify(rest)) &&
+      (typeof example !== "string" || page.includes(example));
+  }
+  return inBlocks(key, value) || (isEmpty(value) && listedEmpty(key));
+}
+
+test("quick pages render or explicitly exclude every contract key from both packages", () => {
+  const output = generateReferences({ packages });
+  const missing = [];
+  for (const pkg of packages) {
+    const family = pkg.name === wbName ? "workbench" : "ai-ui";
+    for (const [id, contract] of Object.entries(pkg.metadata.components.assets)) {
+      const page = output.get(`quick/${family}/${id}.md`);
+      for (const key of Object.keys(contract))
+        if (!quickExcludedContractKeys.has(key) && !quickRendersContractKey(page, key, contract))
+          missing.push(`${pkg.name}/${id}.${key}`);
+    }
+  }
+  assert.deepEqual(missing, []);
+});
+
+test("wb-table quick page carries the declared Column fields, sort shape and example", () => {
+  const output = generateReferences({ packages });
+  const page = output.get("quick/workbench/wb-table.md");
+  const supplement = wb.metadata.components.assets["wb-table"].usage;
+  assert.match(page, /## 来源补充结构/);
+  assert.match(page, /requiredFields/);
+  assert.match(page, /direction/);
+  if (typeof supplement.example === "string") assert.ok(page.includes(supplement.example));
+  assert.doesNotMatch(output.get("workbench/wb-table.md"), /## 来源补充结构/, "full page unchanged (D2)");
 });
