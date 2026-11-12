@@ -13,9 +13,11 @@ pnpm test:canvas   # design-requirement-canvas：Python 单测 + DOM + 浏览器
 
 ## 获取独立安装包
 
-在 GitHub Actions 的 **Build skills** 中选择成功的运行，下载单个 Skill 安装包，或下载 `partner-ui-skills-installers` 获取全部四包、`release-manifest.json` 和 `SHA256SUMS`。只有 Windows 和 macOS 独立使用冒烟验证均通过后才生成这些交付产物；产物保留 30 天。压缩包解开后，将直接包含 `SKILL.md` 的文件夹放入客户端 Skill 目录，具体依赖与 Windows 命令见每包的 `INSTALL.md`。它们是预览候选，不构成生产资格。
+在仓库 [delivery](delivery/README.md) 按 Skill 查找当前包和历史版本，或在 GitHub Actions 的 **Build skills** 成功运行中下载单个 Skill 安装包，或下载 `partner-ui-skills-installers` 获取全部四包、`release-manifest.json` 和 `SHA256SUMS`。只有 Windows 和 macOS 独立使用冒烟验证均通过后才生成这些 Actions 交付产物；产物保留 30 天，仓库中的历史包持续保留。压缩包解开后，将直接包含 `SKILL.md` 的文件夹放入客户端 Skill 目录，具体依赖与 Windows 命令见每包的 `INSTALL.md`。当前包是预览候选，不构成生产资格。
 
 维护者在 Node 24.21.0、pnpm 11.22.0 和 Python 3 环境中运行 `pnpm install --frozen-lockfile`，再运行 `pnpm package:release`。该命令校验锁定来源和生成漂移，输出版本化 ZIP 与校验清单，不上传或发布；同版本文件已存在且内容不同时拒绝覆盖。Windows 构建时使用 `python`，需要其他 Python 路径可设置 `SKILLS_PYTHON`。在安装包所在目录执行 `node verify-installers.mjs` 可核对全部文件及清单。不同系统的功能依赖、浏览器和目标宿主仍需按各 Skill 说明配置。
+
+通过验证的包运行 `pnpm archive:delivery` 归档至四个 Skill 子目录，保留历史版本和构建清单；`pnpm verify:delivery` 校验整个归档。归档不会自动提交、推送或发布。
 
 维护升级时先更新 `vendor/`、锁中的版本/SHA-256/完整 commit 和根依赖路径，再运行 `pnpm install`、`pnpm generate`，评审生成差异并执行 `pnpm test`、`pnpm test:templates`、`pnpm verify:harness`、`pnpm build`。`generate` 是明确的再生成命令；普通构建只检查漂移。发布频率由用户决定，仓库没有推送、注册表发布或自动升级动作。
 

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "kind": "component-layout-preview",
+  "componentResources": {
+    "previous": {
+      "files": 5439,
+      "bytes": 31195009
+    },
+    "current": {
+      "files": 231,
+      "bytes": 11486184
+    },
+    "namedJs": 111,
+    "namedCss": 97
+  },
+  "demo": {
+    "closureHash": "88b045f87d3d4cad369cbc02ba4b84344e12f2bb81d0bbdd46adc36d573c2342",
+    "runtimeBytes": {
+      "js": 1746635,
+      "css": 406047
+    },
+    "sameDependencySelectionAsPrevious": true
+  },
+  "validation": {
+    "passed": 238,
+    "skipped": 1,
+    "legacyTemplatesPassed": 6,
+    "offlinePackagedConsumer": true,
+    "visualParity": {
+      "scope": "Three representative fixtures at 1440x900, complete interactions above; not an exhaustive all-state visual regression.",
+      "tolerance": {
+        "differentPixels": 16,
+        "maxChannelDifference": 30
+      },
+      "results": [
+        {
+          "name": "form",
+          "differentPixels": 4,
+          "maxChannelDifference": 1,
+          "totalPixels": 1296000
+        },
+        {
+          "name": "table",
+          "differentPixels": 0,
+          "maxChannelDifference": 0,
+          "totalPixels": 1296000
+        },
+        {
+          "name": "chat",
+          "differentPixels": 0,
+          "maxChannelDifference": 0,
+          "totalPixels": 1296000
+        }
+      ]
+    }
+  },
+  "archives": [
+    {
+      "file": "partner-ui-pages-component-layout-preview-20261107.zip",
+      "bytes": 39331746,
+      "sha256": "b08f1e64162410bed7e45849746e90632d0fd485f001370c746c1376df85e312"
+    },
+    {
+      "file": "partner-ui-components-layout-demo-20261107.zip",
+      "bytes": 1702932,
+      "sha256": "fd98909b4c31c3785eb6695af844f7f0044749a18566ab4b9956333c2b67e97a"
+    }
+  ]
+}
