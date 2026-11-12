@@ -1,0 +1,35 @@
+# Builds the four consumable skills on Linux (the platform the build tooling supports)
+# and publishes dist/ as a downloadable artifact. Run it from the Actions tab or by pushing.
+name: Build skills
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, fix/windows-tar-listing]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4   # version comes from package.json "packageManager"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm verify:lock
+      - run: pnpm build
+      - name: Check every skill has SKILL.md
+        run: |
+          for s in partner-ui-pages partner-ui-vue3 partner-ui-review design-requirement-canvas; do
+            test -f "dist/$s/SKILL.md" || { echo "missing dist/$s/SKILL.md"; exit 1; }
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: partner-ui-skills
+          path: |
+            dist/partner-ui-pages
+            dist/partner-ui-vue3
+            dist/partner-ui-review
+            dist/design-requirement-canvas
+          retention-days: 30
