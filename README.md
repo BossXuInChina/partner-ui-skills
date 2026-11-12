@@ -40,7 +40,9 @@ GitHub **Download ZIP 是维护源码**，不是独立消费包。按上方命�
 ```sh
 node scripts/new_project.mjs --out ./my-demo --title "伙伴经营工作台"
 node scripts/project_index.mjs ./my-demo --query 伙伴
-node scripts/catalog.mjs --name WorkbenchTable
+node scripts/assets.mjs search --query 表格 --limit 5
+node scripts/assets.mjs show --id wb-table
+node scripts/catalog.mjs --name WorkbenchTable   # 旧接口，行为不变
 node scripts/check_project.mjs ./my-demo
 node scripts/emit_project.mjs ./my-demo
 node scripts/emit_project.mjs ./my-demo --single

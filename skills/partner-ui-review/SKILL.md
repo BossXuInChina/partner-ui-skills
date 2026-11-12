@@ -11,7 +11,7 @@ description: 复查使用 Workbench 与 Huawei Partner AI UI 的消费页面、V
 
 ## 按需核对资产
 
-使用 `node scripts/assets.mjs search --query "关键词" --limit 5` 定位组件/Block，再用 `node scripts/assets.mjs show --id <id>` 读取速查；核对变体、完整案例或更多示例时加 `--view full`。其他工作目录用脚本绝对路径。查询只读随包资料，不验证宿主版本或替代下列静态、行为和视觉检查；未知项不得猜测补齐。
+使用 `node scripts/assets.mjs search --query "关键词" --limit 5` 定位组件/Block，再用 `node scripts/assets.mjs show --id <id>` 读取速查；核对变体、完整案例或更多示例时加 `--view full`。其他工作目录用脚本绝对路径。查询只读随包资料，不验证宿主版本或替代下列静态、行为和视觉检查；未知项不得猜测补齐。search 返回 0 或 `matchMode: partial` 不代表资产不存在：先换更短关键词或英文导出名重试，再查 [Workbench 索引](references/workbench/index.md) 与 [AI 包参考](references/ai-ui.md)；确认缺失后才认定页面自建合理（应标 `pui-custom`）。
 
 ## 工作流
 

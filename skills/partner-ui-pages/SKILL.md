@@ -18,11 +18,11 @@ description: 用伙伴工作台 Workbench 与 AI UI 消费包制作离线演示�
 | PRD / 截图转 Demo | 先列页面、状态、交互和资产映射；必要假设写入交付，随后走 JS 项目模式 |
 | 改造已有 HTML / 保留六个经典模板 | [references/html-workflow.md](references/html-workflow.md)；转换器细节见 [restyle.md](references/restyle.md) |
 | 查询组件或 Block | `node scripts/assets.mjs search --query "关键词" --limit 5`，再 `show --id <id>` 读取速查；需变体/更多示例用 `--view full` |
-| 查询 Token 或图标 | 按需查 Token / 图标资料，不全量展开 |
+| 查询 Token 或图标 | [references/tokens.md](references/tokens.md)、[references/icons.md](references/icons.md)，关键词过滤，不全量展开 |
 
 ## JS 项目的默认流程
 
-以下命令从 Skill 根目录执行；项目可以放在任意工作目录，其他工作目录请使用脚本绝对路径。`assets.mjs` 是无需运行时的资料查询，不替代构建锁/运行时验证；旧 `catalog.mjs --name/--query` 的行为保留。
+以下命令从 Skill 根目录执行；项目可以放在任意工作目录，其他工作目录请使用脚本绝对路径。`assets.mjs` 是无需运行时的资料查询，不替代构建锁/运行时验证；旧 `catalog.mjs --name/--query` 的行为保留。search 返回 0 或 `matchMode: partial` 不代表资产不存在：先换更短关键词或英文导出名重试，再查 [Workbench 索引](references/workbench/index.md) 与 [AI 包参考](references/ai-ui.md)；确认缺失后才自建并标 `pui-custom`。
 
 ```sh
 node scripts/new_project.mjs --out ./my-demo --title "伙伴经营工作台"
