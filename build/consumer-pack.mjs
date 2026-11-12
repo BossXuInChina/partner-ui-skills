@@ -46,6 +46,7 @@ export async function candidateFiles(root, lock, packages) {
   const refs = generateReferences({
     packages,
     studioBaseURLs: lock.studioBaseURLs,
+    searchAliases: JSON.parse(readFileSync(resolve(root, "shared/catalog/search-aliases.json"), "utf8")),
   });
   for (const [name, content] of refs) {
     files.set("shared/references/" + name, content);

@@ -658,10 +658,27 @@ function quickEntry(pkg, id, contract, usage, family) {
     quickReference: `quick/${family}/${id}.md`,
     reference: `${family}/${id}.md`,
     exampleStatus: usage?.usageStatus ?? "unknown",
+    searchAliases: [],
   };
 }
+// Maintainer search hints (shared/catalog/search-aliases.json) only reach index.json.
+// Stale keys fail generation so a package upgrade cannot leave hints pointing nowhere.
+function applySearchAliases(quickEntries, searchAliases) {
+  if (searchAliases == null) return;
+  const aliases = searchAliases.aliases;
+  if (!aliases || typeof aliases !== "object" || Array.isArray(aliases))
+    throw new Error("REFERENCE_SEARCH_ALIASES_INVALID");
+  const byKey = new Map(quickEntries.map((entry) => [entry.package + "/" + entry.id, entry]));
+  for (const [key, values] of entries(aliases)) {
+    const entry = byKey.get(key);
+    if (!entry) throw new Error("REFERENCE_SEARCH_ALIAS_STALE: " + key);
+    if (!Array.isArray(values) || values.some((value) => typeof value !== "string" || !value.trim()))
+      throw new Error("REFERENCE_SEARCH_ALIASES_INVALID: " + key);
+    entry.searchAliases = [...new Set(values.map((value) => value.trim()))];
+  }
+}
 
-export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
+export function generateReferences({ packages, studioBaseURLs = {}, searchAliases } = {}) {
   if (!Array.isArray(packages) || !packages.length)
     throw new Error("REFERENCE_PACKAGES_REQUIRED");
   const ordered = [...packages].sort((a, b) => compare(a.name, b.name));
@@ -721,6 +738,7 @@ export function generateReferences({ packages, studioBaseURLs = {} } = {}) {
     }
     output.set("ai-ui/index.md", aiPage(ai, ordered, studioBaseURLs, true));
   }
+  applySearchAliases(quickEntries, searchAliases);
   output.set("quick/index.json", JSON.stringify({
     _generated: provenance(ordered),
     schemaVersion: 1,

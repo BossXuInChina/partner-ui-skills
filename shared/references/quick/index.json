@@ -18,7 +18,12 @@
       ],
       "quickReference": "quick/workbench/wb-alert.md",
       "reference": "workbench/wb-alert.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "警告条",
+        "提醒条",
+        "横幅提示"
+      ]
     },
     {
       "id": "wb-avatar",
@@ -37,7 +42,8 @@
       ],
       "quickReference": "quick/workbench/wb-avatar.md",
       "reference": "workbench/wb-avatar.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-badge",
@@ -55,7 +61,12 @@
       ],
       "quickReference": "quick/workbench/wb-badge.md",
       "reference": "workbench/wb-badge.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "红点",
+        "角标",
+        "未读数"
+      ]
     },
     {
       "id": "wb-breadcrumb",
@@ -73,7 +84,8 @@
       ],
       "quickReference": "quick/workbench/wb-breadcrumb.md",
       "reference": "workbench/wb-breadcrumb.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-button",
@@ -92,7 +104,8 @@
       ],
       "quickReference": "quick/workbench/wb-button.md",
       "reference": "workbench/wb-button.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-button-radio-group",
@@ -112,7 +125,12 @@
       ],
       "quickReference": "quick/workbench/wb-button-radio-group.md",
       "reference": "workbench/wb-button-radio-group.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "分段控制",
+        "分段选择",
+        "segmented"
+      ]
     },
     {
       "id": "wb-card",
@@ -134,7 +152,8 @@
       ],
       "quickReference": "quick/workbench/wb-card.md",
       "reference": "workbench/wb-card.md",
-      "exampleStatus": "partial"
+      "exampleStatus": "partial",
+      "searchAliases": []
     },
     {
       "id": "wb-carousel",
@@ -151,7 +170,8 @@
       ],
       "quickReference": "quick/workbench/wb-carousel.md",
       "reference": "workbench/wb-carousel.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-cascader",
@@ -168,7 +188,11 @@
       ],
       "quickReference": "quick/workbench/wb-cascader.md",
       "reference": "workbench/wb-cascader.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "多级选择",
+        "省市区"
+      ]
     },
     {
       "id": "wb-certification-details",
@@ -187,7 +211,8 @@
       ],
       "quickReference": "quick/workbench/wb-certification-details.md",
       "reference": "workbench/wb-certification-details.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": []
     },
     {
       "id": "wb-chart",
@@ -205,7 +230,15 @@
       ],
       "quickReference": "quick/workbench/wb-chart.md",
       "reference": "workbench/wb-chart.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "趋势图",
+        "柱状图",
+        "折线图",
+        "饼图",
+        "环形图",
+        "看板"
+      ]
     },
     {
       "id": "wb-checkbox",
@@ -222,7 +255,8 @@
       ],
       "quickReference": "quick/workbench/wb-checkbox.md",
       "reference": "workbench/wb-checkbox.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-collapse",
@@ -239,7 +273,11 @@
       ],
       "quickReference": "quick/workbench/wb-collapse.md",
       "reference": "workbench/wb-collapse.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "手风琴",
+        "展开收起"
+      ]
     },
     {
       "id": "wb-company-profile-shell",
@@ -257,7 +295,12 @@
       ],
       "quickReference": "quick/workbench/wb-company-profile-shell.md",
       "reference": "workbench/wb-company-profile-shell.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "资料维护页",
+        "公司信息页",
+        "企业资料"
+      ]
     },
     {
       "id": "wb-content-section",
@@ -275,7 +318,11 @@
       ],
       "quickReference": "quick/workbench/wb-content-section.md",
       "reference": "workbench/wb-content-section.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "分区标题",
+        "区块标题"
+      ]
     },
     {
       "id": "wb-date-picker",
@@ -292,7 +339,8 @@
       ],
       "quickReference": "quick/workbench/wb-date-picker.md",
       "reference": "workbench/wb-date-picker.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-draft-list-filter",
@@ -310,7 +358,13 @@
       ],
       "quickReference": "quick/workbench/wb-draft-list-filter.md",
       "reference": "workbench/wb-draft-list-filter.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "查询表单",
+        "筛选表单",
+        "查询条件",
+        "高级筛选"
+      ]
     },
     {
       "id": "wb-drawer",
@@ -327,7 +381,11 @@
       ],
       "quickReference": "quick/workbench/wb-drawer.md",
       "reference": "workbench/wb-drawer.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "侧滑面板",
+        "侧边弹层"
+      ]
     },
     {
       "id": "wb-dropdown",
@@ -345,7 +403,11 @@
       ],
       "quickReference": "quick/workbench/wb-dropdown.md",
       "reference": "workbench/wb-dropdown.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "操作菜单",
+        "更多操作"
+      ]
     },
     {
       "id": "wb-empty-state",
@@ -365,7 +427,12 @@
       ],
       "quickReference": "quick/workbench/wb-empty-state.md",
       "reference": "workbench/wb-empty-state.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "无数据",
+        "暂无数据",
+        "缺省页"
+      ]
     },
     {
       "id": "wb-event-calendar",
@@ -384,7 +451,13 @@
       ],
       "quickReference": "quick/workbench/wb-event-calendar.md",
       "reference": "workbench/wb-event-calendar.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "日程",
+        "活动日历",
+        "待办日历",
+        "月历"
+      ]
     },
     {
       "id": "wb-expand-card",
@@ -403,7 +476,8 @@
       ],
       "quickReference": "quick/workbench/wb-expand-card.md",
       "reference": "workbench/wb-expand-card.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": []
     },
     {
       "id": "wb-feedback-dialog",
@@ -421,7 +495,11 @@
       ],
       "quickReference": "quick/workbench/wb-feedback-dialog.md",
       "reference": "workbench/wb-feedback-dialog.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "结果弹窗",
+        "反馈弹窗"
+      ]
     },
     {
       "id": "wb-filter-chips",
@@ -440,7 +518,12 @@
       ],
       "quickReference": "quick/workbench/wb-filter-chips.md",
       "reference": "workbench/wb-filter-chips.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "快捷筛选",
+        "筛选标签",
+        "分类筛选"
+      ]
     },
     {
       "id": "wb-floating-button",
@@ -458,7 +541,8 @@
       ],
       "quickReference": "quick/workbench/wb-floating-button.md",
       "reference": "workbench/wb-floating-button.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-followup-rows",
@@ -476,7 +560,8 @@
       ],
       "quickReference": "quick/workbench/wb-followup-rows.md",
       "reference": "workbench/wb-followup-rows.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": []
     },
     {
       "id": "wb-footer",
@@ -493,7 +578,8 @@
       ],
       "quickReference": "quick/workbench/wb-footer.md",
       "reference": "workbench/wb-footer.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-form",
@@ -510,7 +596,8 @@
       ],
       "quickReference": "quick/workbench/wb-form.md",
       "reference": "workbench/wb-form.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-image-upload",
@@ -527,7 +614,8 @@
       ],
       "quickReference": "quick/workbench/wb-image-upload.md",
       "reference": "workbench/wb-image-upload.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-info-list",
@@ -546,7 +634,13 @@
       ],
       "quickReference": "quick/workbench/wb-info-list.md",
       "reference": "workbench/wb-info-list.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "公告",
+        "资讯列表",
+        "新闻列表",
+        "消息列表"
+      ]
     },
     {
       "id": "wb-information-card",
@@ -564,7 +658,8 @@
       ],
       "quickReference": "quick/workbench/wb-information-card.md",
       "reference": "workbench/wb-information-card.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-input",
@@ -581,7 +676,8 @@
       ],
       "quickReference": "quick/workbench/wb-input.md",
       "reference": "workbench/wb-input.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-link",
@@ -601,7 +697,8 @@
       ],
       "quickReference": "quick/workbench/wb-link.md",
       "reference": "workbench/wb-link.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-loading",
@@ -619,7 +716,11 @@
       ],
       "quickReference": "quick/workbench/wb-loading.md",
       "reference": "workbench/wb-loading.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "加载中",
+        "spinner"
+      ]
     },
     {
       "id": "wb-management-form-modal",
@@ -637,7 +738,11 @@
       ],
       "quickReference": "quick/workbench/wb-management-form-modal.md",
       "reference": "workbench/wb-management-form-modal.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "编辑弹窗",
+        "表单弹窗"
+      ]
     },
     {
       "id": "wb-media-card",
@@ -655,7 +760,8 @@
       ],
       "quickReference": "quick/workbench/wb-media-card.md",
       "reference": "workbench/wb-media-card.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-message",
@@ -673,7 +779,12 @@
       ],
       "quickReference": "quick/workbench/wb-message.md",
       "reference": "workbench/wb-message.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "轻提示",
+        "toast",
+        "操作反馈"
+      ]
     },
     {
       "id": "wb-metric-card",
@@ -691,7 +802,15 @@
       ],
       "quickReference": "quick/workbench/wb-metric-card.md",
       "reference": "workbench/wb-metric-card.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "指标",
+        "指标卡片",
+        "KPI",
+        "经营数据",
+        "统计卡片",
+        "数据卡片"
+      ]
     },
     {
       "id": "wb-modal",
@@ -708,7 +827,13 @@
       ],
       "quickReference": "quick/workbench/wb-modal.md",
       "reference": "workbench/wb-modal.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "弹窗",
+        "弹框",
+        "模态框",
+        "对话框"
+      ]
     },
     {
       "id": "wb-more-action",
@@ -727,7 +852,11 @@
       ],
       "quickReference": "quick/workbench/wb-more-action.md",
       "reference": "workbench/wb-more-action.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "查看更多",
+        "查看历史"
+      ]
     },
     {
       "id": "wb-nested-confirmation",
@@ -745,7 +874,11 @@
       ],
       "quickReference": "quick/workbench/wb-nested-confirmation.md",
       "reference": "workbench/wb-nested-confirmation.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "二级弹窗",
+        "嵌套弹窗"
+      ]
     },
     {
       "id": "wb-notification",
@@ -763,7 +896,8 @@
       ],
       "quickReference": "quick/workbench/wb-notification.md",
       "reference": "workbench/wb-notification.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-number-count",
@@ -780,7 +914,11 @@
       ],
       "quickReference": "quick/workbench/wb-number-count.md",
       "reference": "workbench/wb-number-count.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "步进器",
+        "数量输入"
+      ]
     },
     {
       "id": "wb-pagination",
@@ -798,7 +936,11 @@
       ],
       "quickReference": "quick/workbench/wb-pagination.md",
       "reference": "workbench/wb-pagination.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "翻页",
+        "分页"
+      ]
     },
     {
       "id": "wb-pedestal-icon",
@@ -818,7 +960,8 @@
       ],
       "quickReference": "quick/workbench/wb-pedestal-icon.md",
       "reference": "workbench/wb-pedestal-icon.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": []
     },
     {
       "id": "wb-policy-links",
@@ -837,7 +980,8 @@
       ],
       "quickReference": "quick/workbench/wb-policy-links.md",
       "reference": "workbench/wb-policy-links.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": []
     },
     {
       "id": "wb-popconfirm",
@@ -855,7 +999,11 @@
       ],
       "quickReference": "quick/workbench/wb-popconfirm.md",
       "reference": "workbench/wb-popconfirm.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "二次确认",
+        "删除确认"
+      ]
     },
     {
       "id": "wb-popover",
@@ -874,7 +1022,8 @@
       ],
       "quickReference": "quick/workbench/wb-popover.md",
       "reference": "workbench/wb-popover.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-quick-app-card",
@@ -892,7 +1041,11 @@
       ],
       "quickReference": "quick/workbench/wb-quick-app-card.md",
       "reference": "workbench/wb-quick-app-card.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "快捷入口",
+        "应用入口"
+      ]
     },
     {
       "id": "wb-radio",
@@ -909,7 +1062,8 @@
       ],
       "quickReference": "quick/workbench/wb-radio.md",
       "reference": "workbench/wb-radio.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-rating",
@@ -926,7 +1080,8 @@
       ],
       "quickReference": "quick/workbench/wb-rating.md",
       "reference": "workbench/wb-rating.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-readonly-fields",
@@ -944,7 +1099,12 @@
       ],
       "quickReference": "quick/workbench/wb-readonly-fields.md",
       "reference": "workbench/wb-readonly-fields.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "详情字段",
+        "只读信息",
+        "描述列表"
+      ]
     },
     {
       "id": "wb-scrollbar",
@@ -962,7 +1122,8 @@
       ],
       "quickReference": "quick/workbench/wb-scrollbar.md",
       "reference": "workbench/wb-scrollbar.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-search",
@@ -980,7 +1141,11 @@
       ],
       "quickReference": "quick/workbench/wb-search.md",
       "reference": "workbench/wb-search.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "搜索框",
+        "关键字搜索"
+      ]
     },
     {
       "id": "wb-select",
@@ -997,7 +1162,11 @@
       ],
       "quickReference": "quick/workbench/wb-select.md",
       "reference": "workbench/wb-select.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "下拉框",
+        "下拉选择"
+      ]
     },
     {
       "id": "wb-side-navigation",
@@ -1017,7 +1186,12 @@
       ],
       "quickReference": "quick/workbench/wb-side-navigation.md",
       "reference": "workbench/wb-side-navigation.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "侧边栏",
+        "左侧菜单",
+        "导航菜单"
+      ]
     },
     {
       "id": "wb-skeleton",
@@ -1035,7 +1209,8 @@
       ],
       "quickReference": "quick/workbench/wb-skeleton.md",
       "reference": "workbench/wb-skeleton.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-slider",
@@ -1052,7 +1227,8 @@
       ],
       "quickReference": "quick/workbench/wb-slider.md",
       "reference": "workbench/wb-slider.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-steps",
@@ -1069,7 +1245,11 @@
       ],
       "quickReference": "quick/workbench/wb-steps.md",
       "reference": "workbench/wb-steps.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "流程进度",
+        "步骤"
+      ]
     },
     {
       "id": "wb-switch",
@@ -1086,7 +1266,8 @@
       ],
       "quickReference": "quick/workbench/wb-switch.md",
       "reference": "workbench/wb-switch.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-table",
@@ -1104,7 +1285,12 @@
       ],
       "quickReference": "quick/workbench/wb-table.md",
       "reference": "workbench/wb-table.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "数据表",
+        "数据列表",
+        "列表页"
+      ]
     },
     {
       "id": "wb-table-actions-selection",
@@ -1122,7 +1308,11 @@
       ],
       "quickReference": "quick/workbench/wb-table-actions-selection.md",
       "reference": "workbench/wb-table-actions-selection.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "批量操作",
+        "跨页勾选"
+      ]
     },
     {
       "id": "wb-tabs",
@@ -1140,7 +1330,11 @@
       ],
       "quickReference": "quick/workbench/wb-tabs.md",
       "reference": "workbench/wb-tabs.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "标签页",
+        "选项卡"
+      ]
     },
     {
       "id": "wb-tabs-header",
@@ -1158,7 +1352,8 @@
       ],
       "quickReference": "quick/workbench/wb-tabs-header.md",
       "reference": "workbench/wb-tabs-header.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": []
     },
     {
       "id": "wb-tag",
@@ -1176,7 +1371,8 @@
       ],
       "quickReference": "quick/workbench/wb-tag.md",
       "reference": "workbench/wb-tag.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-time-picker",
@@ -1193,7 +1389,8 @@
       ],
       "quickReference": "quick/workbench/wb-time-picker.md",
       "reference": "workbench/wb-time-picker.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": []
     },
     {
       "id": "wb-timeline",
@@ -1210,7 +1407,11 @@
       ],
       "quickReference": "quick/workbench/wb-timeline.md",
       "reference": "workbench/wb-timeline.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "时间线",
+        "历程"
+      ]
     },
     {
       "id": "wb-tooltip",
@@ -1228,7 +1429,11 @@
       ],
       "quickReference": "quick/workbench/wb-tooltip.md",
       "reference": "workbench/wb-tooltip.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "悬停提示",
+        "提示气泡"
+      ]
     },
     {
       "id": "wb-top-nav",
@@ -1245,7 +1450,12 @@
       ],
       "quickReference": "quick/workbench/wb-top-nav.md",
       "reference": "workbench/wb-top-nav.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "顶栏",
+        "页头",
+        "头部导航"
+      ]
     },
     {
       "id": "wb-transaction-stage-progress",
@@ -1263,7 +1473,10 @@
       ],
       "quickReference": "quick/workbench/wb-transaction-stage-progress.md",
       "reference": "workbench/wb-transaction-stage-progress.md",
-      "exampleStatus": "unavailable"
+      "exampleStatus": "unavailable",
+      "searchAliases": [
+        "阶段进度"
+      ]
     },
     {
       "id": "wb-transfer",
@@ -1280,7 +1493,10 @@
       ],
       "quickReference": "quick/workbench/wb-transfer.md",
       "reference": "workbench/wb-transfer.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "双栏选择"
+      ]
     },
     {
       "id": "wb-tree",
@@ -1297,7 +1513,12 @@
       ],
       "quickReference": "quick/workbench/wb-tree.md",
       "reference": "workbench/wb-tree.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "组织树",
+        "层级树",
+        "树形"
+      ]
     },
     {
       "id": "wb-upload",
@@ -1314,7 +1535,11 @@
       ],
       "quickReference": "quick/workbench/wb-upload.md",
       "reference": "workbench/wb-upload.md",
-      "exampleStatus": "supported"
+      "exampleStatus": "supported",
+      "searchAliases": [
+        "附件",
+        "文件"
+      ]
     },
     {
       "id": "agreement-assistant-panel",
@@ -1327,7 +1552,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/agreement-assistant-panel.md",
       "reference": "ai-ui/agreement-assistant-panel.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "协议助手",
+        "合同助手"
+      ]
     },
     {
       "id": "agreement-table",
@@ -1340,7 +1569,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/agreement-table.md",
       "reference": "ai-ui/agreement-table.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "协议表格",
+        "协议列表"
+      ]
     },
     {
       "id": "ai-alert",
@@ -1353,7 +1586,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/ai-alert.md",
       "reference": "ai-ui/ai-alert.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 提示",
+        "AI 警告"
+      ]
     },
     {
       "id": "ai-icon",
@@ -1366,7 +1603,10 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/ai-icon.md",
       "reference": "ai-ui/ai-icon.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 图标"
+      ]
     },
     {
       "id": "ai-icon-provider",
@@ -1379,7 +1619,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/ai-icon-provider.md",
       "reference": "ai-ui/ai-icon-provider.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "图标注册",
+        "图标提供"
+      ]
     },
     {
       "id": "ai-summary-card",
@@ -1392,7 +1636,13 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/ai-summary-card.md",
       "reference": "ai-ui/ai-summary-card.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "摘要",
+        "AI 摘要",
+        "智能摘要",
+        "摘要卡片"
+      ]
     },
     {
       "id": "ai-toast",
@@ -1405,7 +1655,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/ai-toast.md",
       "reference": "ai-ui/ai-toast.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 轻提示",
+        "AI toast"
+      ]
     },
     {
       "id": "assistant-host-layout",
@@ -1418,7 +1672,12 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/assistant-host-layout.md",
       "reference": "ai-ui/assistant-host-layout.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "助手布局",
+        "侧栏助手",
+        "悬浮助手"
+      ]
     },
     {
       "id": "business-navigation-card",
@@ -1431,7 +1690,12 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/business-navigation-card.md",
       "reference": "ai-ui/business-navigation-card.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "导航卡片",
+        "业务入口卡片",
+        "跳转卡片"
+      ]
     },
     {
       "id": "business-overlay-host",
@@ -1444,7 +1708,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/business-overlay-host.md",
       "reference": "ai-ui/business-overlay-host.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "弹层宿主",
+        "区域模态"
+      ]
     },
     {
       "id": "business-table",
@@ -1457,7 +1725,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/business-table.md",
       "reference": "ai-ui/business-table.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "业务表格",
+        "AI 表格"
+      ]
     },
     {
       "id": "chat-panel",
@@ -1470,7 +1742,15 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/chat-panel.md",
       "reference": "ai-ui/chat-panel.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "对话",
+        "聊天",
+        "聊天面板",
+        "助手面板",
+        "AI 助手",
+        "智能助手"
+      ]
     },
     {
       "id": "conversation-history-panel",
@@ -1483,7 +1763,12 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/conversation-history-panel.md",
       "reference": "ai-ui/conversation-history-panel.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "历史会话",
+        "对话历史",
+        "会话记录"
+      ]
     },
     {
       "id": "ui-dialog",
@@ -1496,7 +1781,12 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/ui-dialog.md",
       "reference": "ai-ui/ui-dialog.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "弹窗",
+        "对话框",
+        "AI 弹窗"
+      ]
     },
     {
       "id": "workspace-smart-card",
@@ -1509,7 +1799,12 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/workspace-smart-card.md",
       "reference": "ai-ui/workspace-smart-card.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 卡片",
+        "智能卡片",
+        "智能洞察"
+      ]
     },
     {
       "id": "workspace-smart-icon",
@@ -1522,7 +1817,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/workspace-smart-icon.md",
       "reference": "ai-ui/workspace-smart-icon.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 图标",
+        "智能图标"
+      ]
     },
     {
       "id": "workspace-smart-tabs",
@@ -1535,7 +1834,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/workspace-smart-tabs.md",
       "reference": "ai-ui/workspace-smart-tabs.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 页签",
+        "智能页签"
+      ]
     },
     {
       "id": "workspace-smart-tag",
@@ -1548,7 +1851,11 @@
       "avoidWhen": [],
       "quickReference": "quick/ai-ui/workspace-smart-tag.md",
       "reference": "ai-ui/workspace-smart-tag.md",
-      "exampleStatus": "unknown"
+      "exampleStatus": "unknown",
+      "searchAliases": [
+        "AI 标签",
+        "智能标签"
+      ]
     }
   ]
 }

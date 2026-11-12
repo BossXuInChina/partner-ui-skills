@@ -425,7 +425,7 @@ test("quick index is lightweight, source-derived, ordered and references every a
     const contract = pkg.metadata.components.assets[entry.id];
     const usage = pkg.name === wbName ? pkg.metadata.usage.assets[entry.id] : contract;
     assert.deepEqual(Object.keys(entry), ["id", "package", "name", "label", "kind",
-      "summary", "useWhen", "avoidWhen", "quickReference", "reference", "exampleStatus"]);
+      "summary", "useWhen", "avoidWhen", "quickReference", "reference", "exampleStatus", "searchAliases"]);
     assert.equal(entry.name, contract.publicImport?.exportName ?? null);
     assert.equal(entry.label, contract.label ?? usage?.title ?? contract.title ?? entry.id);
     assert.equal(entry.kind, contract.kind ?? contract.group ?? null);
