@@ -14,33 +14,22 @@
 {
   "id": "ui-dialog",
   "kind": "component",
-  "version": null,
   "summary": "区域模态和所属 document 全局模态有明确边界",
-  "useWhen": null,
-  "avoidWhen": null,
   "status": {
     "maturity": null,
     "deliveryEligibility": null,
-    "unsupported": [
-      {
-        "code": "AI_RELEASE_STATUS_UNDECLARED",
-        "reason": "The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."
-      }
-    ]
+    "unsupported": [{"code":"AI_RELEASE_STATUS_UNDECLARED","reason":"The owning AI UI release metadata declares version/source identity but no component maturity or delivery-eligibility status."}]
   },
-  "source": {"package":"huawei-partner-ai-ui","version":"0.3.1-dev.20261106.1","commit":"16d91bbbede5006960cce5278b0e2cda88785393"},
-  "unsupported": null,
   "usageStatus": "unknown",
-  "usageUnsupported": null,
-  "variantStatus": "unknown",
-  "variantUnsupported": null,
-  "caseSemantics": null
+  "variantStatus": "unknown"
 }
 ```
 
+未声明或为空：version、useWhen、avoidWhen、unsupported、variantUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -66,24 +55,16 @@
         }
       ]
     }
-  },
-  "slotPatterns": null,
-  "exposed": [],
-  "family": null,
-  "propNotes": null,
-  "eventNotes": null,
-  "slotNotes": null
+  }
 }
 ```
 
+未声明或为空：slotPatterns、exposed、family、propNotes、eventNotes、slotNotes（不代表支持）
+
 ## 规则与适用条件
 
-```json
-{"rules":null,"dependencies":null,"foundationKeys":null,"intro":null,"sections":null,"related":null}
-```
+未声明或为空：rules、dependencies、foundationKeys、intro、sections、related（不代表支持）
 
 ## 官方示例
 
-官方来源 SFC 状态：`unknown`。仅展开首个可移植示例，不代表全部变体。
-
-包内未提供可展开的官方可移植示例；不以场景源码、Studio cases 或手写代码补齐。
+官方来源 SFC 状态：`unknown`。包内未提供可展开的官方可移植示例；不以场景源码、Studio cases 或手写代码补齐。

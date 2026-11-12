@@ -19,72 +19,37 @@
   "useWhen": ["在触发元素附近提供可含链接的补充说明"],
   "avoidWhen": ["仅需纯文本悬停提示","需要点击触发的菜单或确认操作","未经验证的内部 UI 框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchPopover"},
   "props": {
-    "placement": {
-      "type": "String",
-      "default": "top",
-      "enum": [
-        "top-start",
-        "top",
-        "top-end",
-        "right-start",
-        "right",
-        "right-end",
-        "bottom-start",
-        "bottom",
-        "bottom-end",
-        "left-start",
-        "left",
-        "left-end"
-      ]
-    },
+    "placement": {"type":"String","default":"top","enum":["top-start","top","top-end","right-start","right","right-end","bottom-start","bottom","bottom-end","left-start","left","left-end"]},
     "title": {"type":"String","default":""},
     "open": {"type":"Boolean","default":{"kind":"undefined"}},
     "disabled": {"type":"Boolean"},
     "ariaLabel": {"type":"String","default":"说明气泡"}
   },
   "events": ["update:open"],
-  "eventDetails": null,
   "slots": ["trigger","default"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
-  "propNotes": {
-    "placement": "首选面板方向及对齐方式；空间不足会翻转或夹紧。",
-    "title": "可选说明标题；空字符串表示无标题。",
-    "open": "可选受控打开状态；不传时内部管理，传入时响应update:open。",
-    "disabled": "禁用并强制关闭气泡。",
-    "ariaLabel": "说明面板的可访问名称。"
-  },
+  "propNotes": {"placement":"首选面板方向及对齐方式；空间不足会翻转或夹紧。","title":"可选说明标题；空字符串表示无标题。","open":"可选受控打开状态；不传时内部管理，传入时响应update:open。","disabled":"禁用并强制关闭气泡。","ariaLabel":"说明面板的可访问名称。"},
   "eventNotes": {"update:open":{"payload":"新的打开状态。","timing":"受控或非受控打开状态发生变化时发出；受控调用方应同步更新open。"}},
-  "slotNotes": {
-    "trigger": {"scope":"触发气泡的元素；插槽参数含open与aria。","description":"将aria属性绑定到可操作触发元素以保持关联和状态。"},
-    "default": {"scope":"说明面板正文，可包含内嵌链接。","description":"提供可读说明内容；复杂操作请改用专门交互组件。"}
-  }
+  "slotNotes": {"trigger":{"scope":"触发气泡的元素；插槽参数含open与aria。","description":"将aria属性绑定到可操作触发元素以保持关联和状态。"},"default":{"scope":"说明面板正文，可包含内嵌链接。","description":"提供可读说明内容；复杂操作请改用专门交互组件。"}}
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、exposed、family（不代表支持）
 
 ## 规则与适用条件
 
@@ -120,38 +85,13 @@
     }
   ],
   "dependencies": ["wb-link"],
-  "foundationKeys": [
-    "color-surface-overlay",
-    "color-text-primary",
-    "color-text-secondary",
-    "font-headline-s",
-    "font-body-m",
-    "radius-md",
-    "shadow-lg",
-    "spacing-component-lg",
-    "spacing-component-sm"
-  ],
+  "foundationKeys": ["color-surface-overlay","color-text-primary","color-text-secondary","font-headline-s","font-body-m","radius-md","shadow-lg","spacing-component-lg","spacing-component-sm"],
   "intro": "在触发元素附近展示需要阅读的补充说明，可包含正文链接；不用于操作菜单或确认任务。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["内容较长、需要阅读或包含内嵌链接时用Popover；短文本提示用Tooltip；操作选择用菜单或Popconfirm。"],
-      "bullets": []
-    },
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["trigger插槽是触发元素，default插槽是说明面板；title可选。面板按指定方向展示，空间不足会翻转并保持在视口内。"],
-      "bullets": []
-    },
+    {"id":"selection","title":"选型","paragraphs":["内容较长、需要阅读或包含内嵌链接时用Popover；短文本提示用Tooltip；操作选择用菜单或Popconfirm。"],"bullets":[]},
+    {"id":"structure","title":"设计结构与排版","paragraphs":["trigger插槽是触发元素，default插槽是说明面板；title可选。面板按指定方向展示，空间不足会翻转并保持在视口内。"],"bullets":[]},
     {"id":"interaction","title":"交互与键盘","paragraphs":["触发器或面板悬停、聚焦时保持打开；Esc关闭并把焦点还给触发器。面板内链接可正常聚焦与导航。"],"bullets":[]},
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchPopover（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchPopover（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"气泡框 Popover组件规范","href":"#rules"}]
 }

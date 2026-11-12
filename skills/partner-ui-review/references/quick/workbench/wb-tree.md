@@ -19,28 +19,22 @@
   "useWhen": ["结构树 Tree相关交互与状态展示"],
   "avoidWhen": ["未经独立生产接入与设计验收直接用于生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -68,27 +62,9 @@
     "label": {"type":"String","default":"结构树"},
     "emptyText": {"type":"String","default":"暂无数据"}
   },
-  "events": [
-    "update:modelValue",
-    "update:expandedKeys",
-    "update:checkedKeys",
-    "update:search",
-    "select",
-    "expand",
-    "check",
-    "rename",
-    "delete",
-    "more"
-  ],
-  "eventDetails": null,
+  "events": ["update:modelValue","update:expandedKeys","update:checkedKeys","update:search","select","expand","check","rename","delete","more"],
   "slots": ["title-actions","label"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [
-    {"name":"focus","declaration":"focus(): Promise<void>;"},
-    {"name":"startEdit","declaration":"startEdit(key: string | number): void;"}
-  ],
-  "family": [],
+  "exposed": [{"name":"focus","declaration":"focus(): Promise<void>;"},{"name":"startEdit","declaration":"startEdit(key: string | number): void;"}],
   "propNotes": {
     "items": "递归节点数据；节点包含key、label和可选children。",
     "modelValue": "当前单选节点key。",
@@ -124,76 +100,40 @@
     "delete": {"payload":"待删除节点key及节点数据。","timing":"用户激活删除操作后发出。"},
     "more": {"payload":"节点key及节点数据。","timing":"用户激活更多操作后发出。"}
   },
-  "slotNotes": {
-    "title-actions": {"scope":"无插槽参数。","description":"在树标题区域放置消费方操作。"},
-    "label": {"scope":"{ node, level }；node为节点数据，level为从1开始的层级。","description":"自定义节点标签展示。"}
-  }
+  "slotNotes": {"title-actions":{"scope":"无插槽参数。","description":"在树标题区域放置消费方操作。"},"label":{"scope":"{ node, level }；node为节点数据，level为从1开始的层级。","description":"自定义节点标签展示。"}}
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、family（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
-  "rules": [],
   "dependencies": ["wb-checkbox"],
-  "foundationKeys": [
-    "color-text-primary",
-    "color-text-secondary",
-    "color-text-disabled",
-    "color-border",
-    "color-border-focus",
-    "color-border-separator",
-    "color-surface-container",
-    "color-fill-hover",
-    "color-text-placeholder",
-    "color-text-action",
-    "color-icon-secondary",
-    "color-icon-primary",
-    "color-error",
-    "font-body-m",
-    "font-body-s",
-    "font-headline-l",
-    "radius-sm"
-  ],
+  "foundationKeys": ["color-text-primary","color-text-secondary","color-text-disabled","color-border","color-border-focus","color-border-separator","color-surface-container","color-fill-hover","color-text-placeholder","color-text-action","color-icon-secondary","color-icon-primary","color-error","font-body-m","font-body-s","font-headline-l","radius-sm"],
   "intro": "用于展示父子层级内容，支持单选、多选、搜索、展开及可配置的节点操作。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["用于具有清晰父子关系的结构数据。若主要任务是从多级选项中提交末级值，使用Cascader。"],
-      "bullets": ["单选使用modelValue；多选启用checkable并使用checkedKeys。","数据量较大时开启searchable；标题、图标、统计及节点操作可按需呈现。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["用于具有清晰父子关系的结构数据。若主要任务是从多级选项中提交末级值，使用Cascader。"],"bullets":["单选使用modelValue；多选启用checkable并使用checkedKeys。","数据量较大时开启searchable；标题、图标、统计及节点操作可按需呈现。"]},
     {
       "id": "structure",
       "title": "设计结构与排版",
       "paragraphs": ["items递归描述节点，每个节点使用稳定key和label，可带children、disabled。"],
-      "bullets": [
-        "title与titleIcon控制树标题；emptyText定义无数据文案。",
-        "showLine、showIcons、showCount控制辅助层级线、节点图标及数量。",
-        "title-actions插槽用于标题区操作，label插槽用于自定义节点标签。"
-      ]
+      "bullets": ["title与titleIcon控制树标题；emptyText定义无数据文案。","showLine、showIcons、showCount控制辅助层级线、节点图标及数量。","title-actions插槽用于标题区操作，label插槽用于自定义节点标签。"]
     },
-    {
-      "id": "interaction",
-      "title": "交互与键盘",
-      "paragraphs": ["展开、选择、勾选及节点操作分别发出独立事件。"],
-      "bullets": ["多选默认父子联动；checkStrictly=true时父子勾选相互独立。","编辑节点需editable；showActions控制节点操作入口。","搜索受控时监听update:search同步search值。"]
-    },
+    {"id":"interaction","title":"交互与键盘","paragraphs":["展开、选择、勾选及节点操作分别发出独立事件。"],"bullets":["多选默认父子联动；checkStrictly=true时父子勾选相互独立。","编辑节点需editable；showActions控制节点操作入口。","搜索受控时监听update:search同步search值。"]},
     {
       "id": "responsibility",
       "title": "使用边界与职责",
       "paragraphs": ["组件负责树内展示和本地交互；消费方负责节点保存、删除确认及权限判断。"],
-      "bullets": [
-        "modelValue、expandedKeys、checkedKeys与search可受控；default* props提供非受控初值。",
-        "rename、delete、more仅发出用户动作，不自行保存后端数据。",
-        "节点计数、标题图标能力以正式API为准；Studio隐藏注释不构成新能力。"
-      ]
+      "bullets": ["modelValue、expandedKeys、checkedKeys与search可受控；default* props提供非受控初值。","rename、delete、more仅发出用户动作，不自行保存后端数据。","节点计数、标题图标能力以正式API为准；Studio隐藏注释不构成新能力。"]
     }
   ],
   "related": [{"label":"结构树规范","href":"#rules"}]
 }
 ```
+
+未声明或为空：rules（不代表支持）
 
 ## 官方示例
 
@@ -204,13 +144,7 @@
   "id": "controlled-tree",
   "title": "受控部门树",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-tree",
-    "scenarioId": "tree",
-    "exampleId": "controlled-tree",
-    "codeSha256": "sha256:895108ec4afcbe60ace1449106cf7db1f4b070e0e66d1a789207ef0990c8c2d5"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-tree","scenarioId":"tree","exampleId":"controlled-tree","codeSha256":"sha256:895108ec4afcbe60ace1449106cf7db1f4b070e0e66d1a789207ef0990c8c2d5"},
   "description": "完整定义树数据及当前选择，由消费方处理选择结果。",
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []

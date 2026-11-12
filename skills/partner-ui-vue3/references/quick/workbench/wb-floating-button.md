@@ -19,28 +19,22 @@
   "useWhen": ["全局辅助入口、帮助、评分和返回顶部。"],
   "avoidWhen": ["主业务提交放在页面操作区；不要用此组件替代导航或持久化业务状态。","未经验证的公司内部UI框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -55,12 +49,8 @@
     "ariaLabel": {"type":"String","default":"悬浮快捷操作"}
   },
   "events": ["update:expanded","action","back-to-top","rating-change","update:ratings"],
-  "eventDetails": null,
   "slots": ["icon"],
-  "slotDetails": null,
   "slotPatterns": [{"kind":"unknown","expression":"singleItem.popoverType"},{"kind":"unknown","expression":"item.popoverType"}],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "variant": "single或group；group少于两项时退回single表现。",
     "items": "悬浮入口项目数组；每项id唯一，包含label及icon等配置。",
@@ -85,20 +75,14 @@
 }
 ```
 
+未声明或为空：eventDetails、slotDetails、exposed、family（不代表支持）
+
 ## 规则与适用条件
 
 ```json
 {
   "rules": [
-    {
-      "id": "wb-floating-button-rule-1",
-      "title": "用途与边界",
-      "text": "全局辅助入口、帮助、评分和返回顶部。 主业务提交放在页面操作区；不要用此组件替代导航或持久化业务状态。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用悬浮按钮 FloatingButton"],
-      "references": []
-    },
+    {"id":"wb-floating-button-rule-1","title":"用途与边界","text":"全局辅助入口、帮助、评分和返回顶部。 主业务提交放在页面操作区；不要用此组件替代导航或持久化业务状态。","strength":"must","status":"confirmed","when":["使用悬浮按钮 FloatingButton"],"references":[]},
     {
       "id": "wb-floating-button-rule-2",
       "title": "交互与状态",
@@ -118,30 +102,7 @@
       "references": []
     }
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-surface-page",
-    "color-surface-overlay",
-    "color-surface-card-default",
-    "color-fill-hover",
-    "color-icon-primary",
-    "color-icon-disabled",
-    "color-text-primary",
-    "color-text-secondary",
-    "color-border-separator-subtle",
-    "color-border-focus",
-    "radius-lg",
-    "radius-sm",
-    "radius-full",
-    "shadow-sm",
-    "shadow-lg",
-    "font-body-s",
-    "font-body-m",
-    "font-headline-xxl",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-xl"
-  ],
+  "foundationKeys": ["color-surface-page","color-surface-overlay","color-surface-card-default","color-fill-hover","color-icon-primary","color-icon-disabled","color-text-primary","color-text-secondary","color-border-separator-subtle","color-border-focus","radius-lg","radius-sm","radius-full","shadow-sm","shadow-lg","font-body-s","font-body-m","font-headline-xxl","spacing-component-sm","spacing-component-md","spacing-component-xl"],
   "intro": "用于帮助、反馈、评价或返回顶部等全局辅助入口。不要替代主业务提交操作或持久化导航。",
   "sections": [
     {
@@ -156,10 +117,11 @@
       "paragraphs": ["expanded和ratings未传入时由组件内部维护；传入时调用方需响应对应update事件。禁用项目不触发操作或评分。"],
       "bullets": ["入口使用单一Tab点位；评分内部支持方向键、Home和End。","提供icon槽或按popoverType提供具名内容槽时，内容范围由调用方负责。"]
     }
-  ],
-  "related": null
+  ]
 }
 ```
+
+未声明或为空：dependencies、related（不代表支持）
 
 ## 官方示例
 

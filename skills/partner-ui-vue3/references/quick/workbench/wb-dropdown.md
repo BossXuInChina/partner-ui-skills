@@ -19,23 +19,17 @@
   "useWhen": ["操作与单选、复选配置混合菜单"],
   "avoidWhen": ["表单字段选择、异步搜索、嵌套子菜单","未经验证的内部 UI 框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -54,12 +48,7 @@
     "ariaLabel": {"type":"String","default":"下拉菜单"}
   },
   "events": ["action","update:radio","update:checked","update:open"],
-  "eventDetails": null,
   "slots": ["trigger"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "size": "small、default或large菜单尺寸。",
     "triggerType": "button、text或icon入口样式。",
@@ -82,20 +71,14 @@
 }
 ```
 
+未声明或为空：eventDetails、slotDetails、slotPatterns、exposed、family（不代表支持）
+
 ## 规则与适用条件
 
 ```json
 {
   "rules": [
-    {
-      "id": "wb-dropdown-rule-1",
-      "title": "选型边界",
-      "text": "操作与单选、复选配置混合菜单；不适用于表单字段选择、异步搜索、嵌套子菜单",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["操作与单选、复选配置混合菜单"],
-      "references": []
-    },
+    {"id":"wb-dropdown-rule-1","title":"选型边界","text":"操作与单选、复选配置混合菜单；不适用于表单字段选择、异步搜索、嵌套子菜单","strength":"must","status":"confirmed","when":["操作与单选、复选配置混合菜单"],"references":[]},
     {
       "id": "wb-dropdown-rule-2",
       "title": "交互与调用合同",
@@ -116,39 +99,7 @@
     }
   ],
   "dependencies": ["wb-button","wb-checkbox","wb-radio"],
-  "foundationKeys": [
-    "color-border",
-    "color-border-disabled",
-    "color-border-focus",
-    "color-border-hover",
-    "color-fill-hover",
-    "color-fill-subtle-default",
-    "color-fill-subtle-disabled",
-    "color-icon-active",
-    "color-icon-disabled",
-    "color-icon-hover",
-    "color-icon-primary",
-    "color-icon-tertiary",
-    "color-surface-overlay",
-    "color-text-action",
-    "color-text-action-hover",
-    "color-text-action-active",
-    "color-text-action-disabled",
-    "color-text-disabled",
-    "color-text-inverse",
-    "color-text-primary",
-    "color-text-secondary",
-    "font-body-m",
-    "font-body-s",
-    "font-caption-m",
-    "radius-full",
-    "radius-sm",
-    "shadow-sm",
-    "spacing-component-lg",
-    "spacing-component-md",
-    "spacing-component-sm",
-    "spacing-component-xs"
-  ],
+  "foundationKeys": ["color-border","color-border-disabled","color-border-focus","color-border-hover","color-fill-hover","color-fill-subtle-default","color-fill-subtle-disabled","color-icon-active","color-icon-disabled","color-icon-hover","color-icon-primary","color-icon-tertiary","color-surface-overlay","color-text-action","color-text-action-hover","color-text-action-active","color-text-action-disabled","color-text-disabled","color-text-inverse","color-text-primary","color-text-secondary","font-body-m","font-body-s","font-caption-m","radius-full","radius-sm","shadow-sm","spacing-component-lg","spacing-component-md","spacing-component-sm","spacing-component-xs"],
   "intro": "用于组合操作项、单选配置项和复选配置项的菜单。字段选择、复杂筛选或月份面板使用专门选择器或组合面板。",
   "sections": [
     {
@@ -157,16 +108,12 @@
       "paragraphs": ["items的id必须唯一；type可为action、radio、checkbox、label或separator。radio需要group和值，业务选择状态通过radioValues和checkboxValues由调用方持有。"],
       "bullets": ["action激活后关闭；radio和checkbox关闭时机依交互键而异。","disabled禁用整个菜单并强制关闭；open传入后成为受控状态。"]
     },
-    {
-      "id": "trigger",
-      "title": "触发器与回显",
-      "paragraphs": ["triggerType支持button、text、icon；textIntent声明操作或下钻语义。trigger插槽负责入口内容，配置摘要也可以由关联区域或完全不回显。"],
-      "bullets": ["菜单边界、尺寸和对齐由组件处理；每类项目使用menu语义及键盘导航。"]
-    }
-  ],
-  "related": null
+    {"id":"trigger","title":"触发器与回显","paragraphs":["triggerType支持button、text、icon；textIntent声明操作或下钻语义。trigger插槽负责入口内容，配置摘要也可以由关联区域或完全不回显。"],"bullets":["菜单边界、尺寸和对齐由组件处理；每类项目使用menu语义及键盘导航。"]}
+  ]
 }
 ```
+
+未声明或为空：related（不代表支持）
 
 ## 官方示例
 

@@ -19,28 +19,22 @@
   "useWhen": ["用户操作后的短暂成功、错误或处理中反馈，无标题。"],
   "avoidWhen": ["长期内容使用 Alert；右上角多条通知使用 Notification。","未经验证的公司内部UI框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -60,11 +54,6 @@
     "autoClose": {"type":"Number","default":{"kind":"undefined"}}
   },
   "events": ["update:modelValue","update:checkboxChecked","close","link"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
   "family": [
     {
       "assetId": "wb-message",
@@ -96,34 +85,19 @@
     "update:checkboxChecked": {"payload":"复选框新的布尔值。","timing":"用户切换“不再提示”选项时发出。"},
     "close": {"payload":"关闭原因timeout或button。","timing":"超时或用户关闭后发出。"},
     "link": {"payload":"包含href的导航信息对象。","timing":"用户激活链接时发出；不阻止浏览器原生导航。"}
-  },
-  "slotNotes": {}
+  }
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、exposed、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
   "rules": [
-    {
-      "id": "wb-message-rule-1",
-      "title": "用途与边界",
-      "text": "用户操作后的短暂成功、错误或处理中反馈，无标题。 长期内容使用 Alert；右上角多条通知使用 Notification。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用全局提示 Message"],
-      "references": []
-    },
-    {
-      "id": "wb-message-rule-2",
-      "title": "交互与状态",
-      "text": "悬停与焦点独立暂停计时，两者都离开才恢复剩余时间；更换消息内容、键、类型或时长重新计时。链接不关闭，卸载清理定时器。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用全局提示 Message"],
-      "references": []
-    },
+    {"id":"wb-message-rule-1","title":"用途与边界","text":"用户操作后的短暂成功、错误或处理中反馈，无标题。 长期内容使用 Alert；右上角多条通知使用 Notification。","strength":"must","status":"confirmed","when":["使用全局提示 Message"],"references":[]},
+    {"id":"wb-message-rule-2","title":"交互与状态","text":"悬停与焦点独立暂停计时，两者都离开才恢复剩余时间；更换消息内容、键、类型或时长重新计时。链接不关闭，卸载清理定时器。","strength":"must","status":"confirmed","when":["使用全局提示 Message"],"references":[]},
     {
       "id": "wb-message-rule-3",
       "title": "公开API",
@@ -144,46 +118,13 @@
     }
   ],
   "dependencies": ["wb-link","wb-scrollbar"],
-  "foundationKeys": [
-    "color-info-primary",
-    "color-success",
-    "color-warning",
-    "color-alert",
-    "color-error",
-    "color-surface-overlay",
-    "color-surface-page",
-    "color-text-primary",
-    "color-text-inverse",
-    "color-icon-primary",
-    "color-icon-hover",
-    "color-border-focus",
-    "radius-lg",
-    "radius-full",
-    "shadow-lg",
-    "font-body-m",
-    "font-body-s",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "icon-size-16",
-    "color-icon-active"
-  ],
+  "foundationKeys": ["color-info-primary","color-success","color-warning","color-alert","color-error","color-surface-overlay","color-surface-page","color-text-primary","color-text-inverse","color-icon-primary","color-icon-hover","color-border-focus","radius-lg","radius-full","shadow-lg","font-body-m","font-body-s","spacing-component-sm","spacing-component-md","spacing-component-lg","icon-size-16","color-icon-active"],
   "intro": "先用单条代表消息试用全局或对话框内位置，再并列比较七种语义与附件；此页保留完整公开API、业务边界和原专题说明。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["用于短时成功、错误或处理中反馈；持续可见的页面说明用Alert，右上角多条通知用Notification。"],"bullets":[]},
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["modelValue控制单条提示显示；GlobalMessageStack按id维护全局消息队列。链接需同时提供文案和真实地址，复选值由父级受控。"],
-      "bullets": []
-    },
+    {"id":"structure","title":"设计结构与排版","paragraphs":["modelValue控制单条提示显示；GlobalMessageStack按id维护全局消息队列。链接需同时提供文案和真实地址，复选值由父级受控。"],"bullets":[]},
     {"id":"interaction","title":"交互与键盘","paragraphs":["关闭按钮与链接使用原生键盘语义；悬停或焦点暂停计时，离开后继续剩余时间。链接保留浏览器导航。"],"bullets":[]},
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchMessage（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchMessage（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"全局提示 Message组件规范","href":"#rules"}]
 }

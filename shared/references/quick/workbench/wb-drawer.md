@@ -19,23 +19,17 @@
   "useWhen": ["Drawer首版容器"],
   "avoidWhen": ["嵌套、拖拽、手势及未经验证的内部框架生产场景"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -52,12 +46,8 @@
     "beforeClose": {"type":"Function","default":{"kind":"undefined"}}
   },
   "events": ["update:modelValue","close","action"],
-  "eventDetails": null,
   "slots": ["default","footer"],
-  "slotDetails": null,
-  "slotPatterns": [],
   "exposed": [{"name":"requestClose","declaration":"requestClose(reason?: string): Promise<boolean>;"}],
-  "family": [],
   "propNotes": {
     "modelValue": "面板是否打开；父级通过 update:modelValue 接收关闭请求并更新状态。",
     "title": "面板标题；必填，超长时组件保留全文提示。",
@@ -80,6 +70,8 @@
   }
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、family（不代表支持）
 
 ## 规则与适用条件
 
@@ -151,63 +143,13 @@
     }
   ],
   "dependencies": ["wb-button","wb-scrollbar"],
-  "foundationKeys": [
-    "color-surface-overlay",
-    "color-surface-page",
-    "color-scrim-modal",
-    "color-text-primary",
-    "color-text-secondary",
-    "color-icon-primary",
-    "color-icon-hover",
-    "color-border-focus",
-    "color-border-separator",
-    "color-scrollbar-thumb-fill-hover",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "spacing-layout-container-block",
-    "spacing-layout-container-inline",
-    "spacing-layout-content-gap",
-    "spacing-layout-action-gap",
-    "spacing-dialog-padding-block-end-with-actions",
-    "radius-none",
-    "radius-full",
-    "shadow-l-base",
-    "shadow-t-m",
-    "font-body-m",
-    "font-body-s",
-    "font-headline-m",
-    "font-headline-s",
-    "icon-size-16",
-    "color-icon-active"
-  ],
+  "foundationKeys": ["color-surface-overlay","color-surface-page","color-scrim-modal","color-text-primary","color-text-secondary","color-icon-primary","color-icon-hover","color-border-focus","color-border-separator","color-scrollbar-thumb-fill-hover","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg","spacing-layout-container-block","spacing-layout-container-inline","spacing-layout-content-gap","spacing-layout-action-gap","spacing-dialog-padding-block-end-with-actions","radius-none","radius-full","shadow-l-base","shadow-t-m","font-body-m","font-body-s","font-headline-m","font-headline-s","icon-size-16","color-icon-active"],
   "intro": "在页面边缘承载一项可独立完成的任务、扩展信息或配置内容；内容区可滚动，面板关闭受控。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["编辑任务需要较大连续空间并保留当前页面上下文时使用 Drawer；短确认或小型单步操作使用 Modal。右侧适合纵向表单，底部适合横向工具面板。"],
-      "bullets": []
-    },
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["标题、正文和可选操作区属于固定结构；右侧和底部位置共享内容层级。模态模式隔离背景并锁定页面滚动，非模态模式保留页面其余区域操作。"],
-      "bullets": []
-    },
-    {
-      "id": "interaction",
-      "title": "交互与键盘",
-      "paragraphs": ["关闭按钮与 Escape 可关闭；模态下焦点留在面板内，关闭后恢复触发点。遮罩关闭与 Action 关闭均先调用 beforeClose。"],
-      "bullets": []
-    },
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchDrawer（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"selection","title":"选型","paragraphs":["编辑任务需要较大连续空间并保留当前页面上下文时使用 Drawer；短确认或小型单步操作使用 Modal。右侧适合纵向表单，底部适合横向工具面板。"],"bullets":[]},
+    {"id":"structure","title":"设计结构与排版","paragraphs":["标题、正文和可选操作区属于固定结构；右侧和底部位置共享内容层级。模态模式隔离背景并锁定页面滚动，非模态模式保留页面其余区域操作。"],"bullets":[]},
+    {"id":"interaction","title":"交互与键盘","paragraphs":["关闭按钮与 Escape 可关闭；模态下焦点留在面板内，关闭后恢复触发点。遮罩关闭与 Action 关闭均先调用 beforeClose。"],"bullets":[]},
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchDrawer（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"抽屉 Drawer组件规范","href":"#rules"}]
 }

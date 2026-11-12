@@ -19,28 +19,22 @@
   "useWhen": ["在当前上下文中选择一个互斥值","筛选条件、展示模式或配置选项使用按钮式单选"],
   "avoidWhen": ["切换具有关联关系的平级内容面板","选项需要自动收纳为更多菜单","未经验证的内部UI框架生产实现"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -53,40 +47,21 @@
     "fill": {"type":"Boolean"}
   },
   "events": ["update:modelValue","change"],
-  "eventDetails": null,
   "slots": ["item"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
-  "propNotes": {
-    "modelValue": "当前选中的String或Number值，必填。",
-    "items": "必填选项数组；每项包含唯一value、label，可选disabled。",
-    "size": "small或large尺寸。",
-    "ariaLabel": "radiogroup可访问名称。"
-  },
-  "eventNotes": {
-    "update:modelValue": {"payload":"新选中的选项value。","timing":"选中值改变后发出。"},
-    "change": {"payload":"被选中的完整item对象。","timing":"选择有效项后发出；业务逻辑由调用方执行。"}
-  },
+  "propNotes": {"modelValue":"当前选中的String或Number值，必填。","items":"必填选项数组；每项包含唯一value、label，可选disabled。","size":"small或large尺寸。","ariaLabel":"radiogroup可访问名称。"},
+  "eventNotes": {"update:modelValue":{"payload":"新选中的选项value。","timing":"选中值改变后发出。"},"change":{"payload":"被选中的完整item对象。","timing":"选择有效项后发出；业务逻辑由调用方执行。"}},
   "slotNotes": {"item":{"scope":"{ item, selected }","description":"自定义项目内容；保留item.label对应的可访问语义。"}}
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、exposed、family（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
   "rules": [
-    {
-      "id": "wb-button-radio-group-rule-1",
-      "title": "选型边界",
-      "text": "用于在当前上下文选择一个互斥值；若切换具有关联关系的平级内容面板，使用Tabs。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["互斥选择"],
-      "references": []
-    },
+    {"id":"wb-button-radio-group-rule-1","title":"选型边界","text":"用于在当前上下文选择一个互斥值；若切换具有关联关系的平级内容面板，使用Tabs。","strength":"must","status":"confirmed","when":["互斥选择"],"references":[]},
     {
       "id": "wb-button-radio-group-rule-2",
       "title": "交互与可访问性",
@@ -96,47 +71,18 @@
       "when": ["互斥选择"],
       "references": []
     },
-    {
-      "id": "wb-button-radio-group-rule-3",
-      "title": "溢出边界",
-      "text": "组件不自动收纳为更多；选项较多、名称较长或需要关联内容面板时重新选择布局或使用Tabs。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["互斥选择"],
-      "references": []
-    }
+    {"id":"wb-button-radio-group-rule-3","title":"溢出边界","text":"组件不自动收纳为更多；选项较多、名称较长或需要关联内容面板时重新选择布局或使用Tabs。","strength":"must","status":"confirmed","when":["互斥选择"],"references":[]}
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-border-focus",
-    "color-fill-hover",
-    "color-surface-card-default",
-    "color-text-disabled",
-    "color-text-primary",
-    "color-text-secondary",
-    "font-body-l",
-    "font-body-m",
-    "radius-sm",
-    "shadow-sm"
-  ],
+  "foundationKeys": ["color-border-focus","color-fill-hover","color-surface-card-default","color-text-disabled","color-text-primary","color-text-secondary","font-body-l","font-body-m","radius-sm","shadow-sm"],
   "intro": "用于在当前上下文内选择一个互斥值，例如筛选条件、显示方式或配置选项。切换关联内容面板时使用Tabs。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选项结构",
-      "paragraphs": ["items中每个value唯一，label同时作为可访问名称；disabled项目不能选择。v-model持有唯一选中值。"],
-      "bullets": ["小号适合紧凑上下文，大号适合更醒目的配置选择。","选项较多或名称较长时重新选择布局，不会自动折叠为更多菜单。"]
-    },
-    {
-      "id": "keyboard",
-      "title": "键盘行为",
-      "paragraphs": ["组件使用radiogroup/radio语义和roving tabindex。左右、上下方向键循环切换，Home/End跳至首尾可用项，并跳过disabled项。"],
-      "bullets": []
-    }
-  ],
-  "related": null
+    {"id":"selection","title":"选项结构","paragraphs":["items中每个value唯一，label同时作为可访问名称；disabled项目不能选择。v-model持有唯一选中值。"],"bullets":["小号适合紧凑上下文，大号适合更醒目的配置选择。","选项较多或名称较长时重新选择布局，不会自动折叠为更多菜单。"]},
+    {"id":"keyboard","title":"键盘行为","paragraphs":["组件使用radiogroup/radio语义和roving tabindex。左右、上下方向键循环切换，Home/End跳至首尾可用项，并跳过disabled项。"],"bullets":[]}
+  ]
 }
 ```
+
+未声明或为空：dependencies、related（不代表支持）
 
 ## 官方示例
 

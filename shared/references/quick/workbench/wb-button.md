@@ -19,28 +19,22 @@
   "useWhen": ["操作入口","更多、展开与收起入口"],
   "avoidWhen": ["未经验证的内部框架生产实现","以颜色代替权限或错误说明"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -57,13 +51,7 @@
     "ariaLabel": {"type":"String","default":""},
     "previewState": {"type":"String","default":"default"}
   },
-  "events": [],
-  "eventDetails": null,
   "slots": ["icon","default"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "appearance": "选择primary、secondary、text或icon外观。",
     "size": "按钮尺寸字符串；当前组件默认32，填充按钮支持28、32、36，文字与图标尺寸按组件契约使用。",
@@ -75,16 +63,11 @@
     "ariaLabel": "提供纯图标按钮的可访问名称。",
     "previewState": "Studio状态预览值；业务交互应由真实DOM状态和调用方逻辑管理。"
   },
-  "eventNotes": {},
-  "slotNotes": {
-    "default": {"scope":"无","description":"按钮可见文案。"},
-    "icon": {
-      "scope": "无",
-      "description": "primary / secondary 使用前置图标，text 使用尾部图标，icon 使用主体图标；drilldown 箭头由组件管理。省略 icon 插槽会移除图标占位，按钮仍遵循原有最小宽度。"
-    }
-  }
+  "slotNotes": {"default":{"scope":"无","description":"按钮可见文案。"},"icon":{"scope":"无","description":"primary / secondary 使用前置图标，text 使用尾部图标，icon 使用主体图标；drilldown 箭头由组件管理。省略 icon 插槽会移除图标占位，按钮仍遵循原有最小宽度。"}}
 }
 ```
+
+未声明或为空：events、eventDetails、slotDetails、slotPatterns、exposed、family、eventNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -100,15 +83,7 @@
       "when": ["使用按钮"],
       "references": []
     },
-    {
-      "id": "wb-button-text-size",
-      "title": "14px 默认文字字号",
-      "text": "列表、表格操作列及卡片右上角的操作和下钻默认使用14px，不因处于复合组件内部自动缩小。",
-      "strength": "default",
-      "status": "confirmed",
-      "when": ["使用按钮"],
-      "references": []
-    },
+    {"id":"wb-button-text-size","title":"14px 默认文字字号","text":"列表、表格操作列及卡片右上角的操作和下钻默认使用14px，不因处于复合组件内部自动缩小。","strength":"default","status":"confirmed","when":["使用按钮"],"references":[]},
     {
       "id": "wb-button-min-width",
       "title": "填充按钮三档最小宽度",
@@ -136,24 +111,8 @@
       "when": ["使用按钮"],
       "references": []
     },
-    {
-      "id": "wb-button-border",
-      "title": "主要与次要外观",
-      "text": "主要按钮纯色填充且无描边；次要按钮保留描边，主次不通过混用尺寸表达。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用按钮"],
-      "references": []
-    },
-    {
-      "id": "wb-button-equal-width",
-      "title": "填充按钮组合建议同宽",
-      "text": "同组填充按钮字数不同时建议按最长内容等宽、同高；由父级布局实现，不靠空格、不要求全站统一宽度。",
-      "strength": "recommendation",
-      "status": "confirmed",
-      "when": ["使用按钮"],
-      "references": []
-    },
+    {"id":"wb-button-border","title":"主要与次要外观","text":"主要按钮纯色填充且无描边；次要按钮保留描边，主次不通过混用尺寸表达。","strength":"must","status":"confirmed","when":["使用按钮"],"references":[]},
+    {"id":"wb-button-equal-width","title":"填充按钮组合建议同宽","text":"同组填充按钮字数不同时建议按最长内容等宽、同高；由父级布局实现，不靠空格、不要求全站统一宽度。","strength":"recommendation","status":"confirmed","when":["使用按钮"],"references":[]},
     {
       "id": "wb-button-icon",
       "title": "图文与点击区域",
@@ -163,15 +122,7 @@
       "when": ["使用按钮"],
       "references": []
     },
-    {
-      "id": "wb-button-semantics",
-      "title": "交互语义",
-      "text": "状态操作使用按钮，真实地址下钻使用链接或路由语义；保留键盘、可见焦点和禁用行为，展开收起同步aria-expanded。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用按钮"],
-      "references": []
-    },
+    {"id":"wb-button-semantics","title":"交互语义","text":"状态操作使用按钮，真实地址下钻使用链接或路由语义；保留键盘、可见焦点和禁用行为，展开收起同步aria-expanded。","strength":"must","status":"confirmed","when":["使用按钮"],"references":[]},
     {
       "id": "wb-button-state-mapping",
       "title": "已定稿的状态与图标映射",
@@ -209,77 +160,27 @@
       "references": []
     }
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-brand",
-    "color-brand-hover",
-    "color-brand-focus",
-    "color-brand-disabled",
-    "color-fill-default",
-    "color-fill-subtle-default",
-    "color-fill-subtle-disabled",
-    "color-text-primary",
-    "color-text-inverse",
-    "color-text-action",
-    "color-text-action-hover",
-    "color-text-action-active",
-    "color-text-action-disabled",
-    "color-text-disabled",
-    "color-icon-primary",
-    "color-icon-hover",
-    "color-icon-active",
-    "color-icon-disabled",
-    "color-border-focus",
-    "color-border-separator",
-    "color-surface-card-default",
-    "color-info-primary-subtle",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "radius-sm",
-    "radius-lg",
-    "radius-full",
-    "shadow-sm",
-    "font-body-s",
-    "font-body-m",
-    "font-headline-xs",
-    "font-headline-m",
-    "icon-size-12",
-    "icon-size-16",
-    "icon-size-20",
-    "color-border",
-    "color-border-hover",
-    "color-border-disabled"
-  ],
+  "foundationKeys": ["color-brand","color-brand-hover","color-brand-focus","color-brand-disabled","color-fill-default","color-fill-subtle-default","color-fill-subtle-disabled","color-text-primary","color-text-inverse","color-text-action","color-text-action-hover","color-text-action-active","color-text-action-disabled","color-text-disabled","color-icon-primary","color-icon-hover","color-icon-active","color-icon-disabled","color-border-focus","color-border-separator","color-surface-card-default","color-info-primary-subtle","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg","radius-sm","radius-lg","radius-full","shadow-sm","font-body-s","font-body-m","font-headline-xs","font-headline-m","icon-size-12","icon-size-16","icon-size-20","color-border","color-border-hover","color-border-disabled"],
   "intro": "用于提交、创建、编辑、取消与轻量披露等明确操作。按钮承载动作，不代替链接导航、互斥选择或内容页签。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型与文案",
-      "paragraphs": ["主要按钮突出当前区块最重要的操作；次要按钮承载并列操作；文字按钮用于轻量动作或下钻；纯图标按钮只在图标含义明确且可访问名称完整时使用。"],
-      "bullets": ["同一操作组通常只突出一个主要动作。","按钮宽度与位置由调用方布局决定；文案应以动作动词开头。"]
-    },
+    {"id":"selection","title":"选型与文案","paragraphs":["主要按钮突出当前区块最重要的操作；次要按钮承载并列操作；文字按钮用于轻量动作或下钻；纯图标按钮只在图标含义明确且可访问名称完整时使用。"],"bullets":["同一操作组通常只突出一个主要动作。","按钮宽度与位置由调用方布局决定；文案应以动作动词开头。"]},
     {
       "id": "text-drilldown",
       "title": "文字下钻入口与点击区域",
-      "paragraphs": [
-        "卡片或页签头部的更多、查看历史等动作使用 appearance=text、intent=drilldown、drilldown=more。文字按钮默认保留标准容器；这类头部入口使用 textLayout=inline，仅占文字行高且无内边距。两者均保留悬停、按下和焦点反馈。"
-      ],
+      "paragraphs": ["卡片或页签头部的更多、查看历史等动作使用 appearance=text、intent=drilldown、drilldown=more。文字按钮默认保留标准容器；这类头部入口使用 textLayout=inline，仅占文字行高且无内边距。两者均保留悬停、按下和焦点反馈。"],
       "bullets": ["需要真实地址跳转时使用链接组件。","复用同一业务位置与事件时可组合为Block，组件本身仍由Button负责。"]
     },
     {
       "id": "states",
       "title": "尺寸与状态",
-      "paragraphs": [
-        "size选择已提供的按钮尺寸；图标按钮默认无容器，导航等需要标准点击区域时使用 iconLayout=container。primary、secondary、text、icon分别对应不同视觉职责。状态预览值previewState用于Studio检查，不代替真实禁用状态。"
-      ],
+      "paragraphs": ["size选择已提供的按钮尺寸；图标按钮默认无容器，导航等需要标准点击区域时使用 iconLayout=container。primary、secondary、text、icon分别对应不同视觉职责。状态预览值previewState用于Studio检查，不代替真实禁用状态。"],
       "bullets": ["异步提交、加载与危险操作不属于当前组件接口。","披露状态由调用方通过aria-expanded表达，drilldown控制箭头方向。"]
     }
-  ],
-  "related": null
+  ]
 }
 ```
+
+未声明或为空：dependencies、related（不代表支持）
 
 ## 官方示例
 
@@ -290,13 +191,7 @@
   "id": "primary-action",
   "title": "主要操作按钮",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-button",
-    "scenarioId": "button",
-    "exampleId": "primary-action",
-    "codeSha256": "sha256:90a538c0f3fc920c67e4e3620d8c90c3ce2a2e967b9e2313e4ec2005a35727ce"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-button","scenarioId":"button","exampleId":"primary-action","codeSha256":"sha256:90a538c0f3fc920c67e4e3620d8c90c3ce2a2e967b9e2313e4ec2005a35727ce"},
   "description": "最小可运行的创建操作示例，应用状态由调用方管理。",
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []

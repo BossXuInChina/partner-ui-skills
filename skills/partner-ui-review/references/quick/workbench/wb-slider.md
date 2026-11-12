@@ -19,28 +19,22 @@
   "useWhen": ["在连续值、离散值或离散区间内快速选择"],
   "avoidWhen": ["要求精确键入且范围未知或区间端点可交叉"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -68,12 +62,6 @@
     "showTooltip": {"type":"Boolean"}
   },
   "events": ["update:modelValue"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "modelValue": "单值Number或range模式下的双端点Array。",
     "min": "范围最小值，默认0。",
@@ -96,12 +84,11 @@
     "tickLabels": "刻度值到标签的数组或对象映射。",
     "showTooltip": "显示操作提示。"
   },
-  "eventNotes": {
-    "update:modelValue": {"payload":"单值模式为Number；range模式为[min, max] Number数组。","timing":"滑块、轨道或配套输入造成值变化时发出；边界与step规范化由组件执行。"}
-  },
-  "slotNotes": {}
+  "eventNotes": {"update:modelValue":{"payload":"单值模式为Number；range模式为[min, max] Number数组。","timing":"滑块、轨道或配套输入造成值变化时发出；边界与step规范化由组件执行。"}}
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、exposed、family、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -126,15 +113,7 @@
       "when": ["表单滑动选择"],
       "references": []
     },
-    {
-      "id": "wb-slider-rule-3",
-      "title": "交互与禁用",
-      "text": "原生range承载键盘与可访问语义；disabled同时阻止轨道、滑块和配套输入变化。提示只在键盘聚焦或指针操作期间展示。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["键盘或指针操作"],
-      "references": []
-    },
+    {"id":"wb-slider-rule-3","title":"交互与禁用","text":"原生range承载键盘与可访问语义；disabled同时阻止轨道、滑块和配套输入变化。提示只在键盘聚焦或指针操作期间展示。","strength":"must","status":"confirmed","when":["键盘或指针操作"],"references":[]},
     {
       "id": "wb-slider-tooltip-radius-20261025",
       "title": "Slider内置数值提示圆角",
@@ -146,26 +125,7 @@
     }
   ],
   "dependencies": ["wb-input","wb-popover"],
-  "foundationKeys": [
-    "color-border-disabled",
-    "color-fill-default",
-    "color-fill-disabled",
-    "color-icon-disabled",
-    "color-icon-primary",
-    "color-surface-overlay",
-    "color-text-disabled",
-    "color-text-placeholder",
-    "color-text-primary",
-    "font-body-m",
-    "font-body-s",
-    "radius-full",
-    "radius-md",
-    "radius-sm",
-    "shadow-lg",
-    "spacing-component-md",
-    "spacing-component-sm",
-    "spacing-component-xs"
-  ],
+  "foundationKeys": ["color-border-disabled","color-fill-default","color-fill-disabled","color-icon-disabled","color-icon-primary","color-surface-overlay","color-text-disabled","color-text-placeholder","color-text-primary","font-body-m","font-body-s","radius-full","radius-md","radius-sm","shadow-lg","spacing-component-md","spacing-component-sm","spacing-component-xs"],
   "intro": "用于在连续或离散数值范围内调节单值，也支持不交叉的离散区间。",
   "sections": [
     {
@@ -180,10 +140,11 @@
       "paragraphs": ["showTicks、showTickLabels、showInput、showValue和showTooltip分别控制辅助展示部件。tickLabelMode选择全部刻度标签或仅端点。"],
       "bullets": ["disabled同时禁用滑块、轨道和配套输入。","ariaDescribedby关联说明，invalid声明错误状态。"]
     }
-  ],
-  "related": null
+  ]
 }
 ```
+
+未声明或为空：related（不代表支持）
 
 ## 官方示例
 
@@ -194,13 +155,7 @@
   "id": "budget-range",
   "title": "项目预算范围",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-slider",
-    "scenarioId": "slider",
-    "exampleId": "budget-range",
-    "codeSha256": "sha256:742d92fa9495b8bcfd614e82756f7aec28390e8b59ea0bed1211d445358fd23f"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-slider","scenarioId":"slider","exampleId":"budget-range","codeSha256":"sha256:742d92fa9495b8bcfd614e82756f7aec28390e8b59ea0bed1211d445358fd23f"},
   "description": "离散区间示例；范围数据由调用方持有并可通过配套数值输入调整。",
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []

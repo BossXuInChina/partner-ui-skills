@@ -19,61 +19,44 @@
   "useWhen": ["内容分组、独立展开多项"],
   "avoidWhen": ["手风琴模式、动画、自动保留插槽内部状态及未经验证的内部框架生产场景"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchCollapse"},
-  "props": {},
-  "events": [],
-  "eventDetails": null,
   "slots": ["default"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
   "family": [
     {
       "assetId": "wb-collapse",
       "independentApproval": false,
       "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchCollapseItem"},
-      "props": {
-        "title": {"type":"String","required":true},
-        "showIcon": {"type":"Boolean","default":false},
-        "actionLabel": {"type":"String","default":""},
-        "actionDisabled": {"type":"Boolean","default":false}
-      },
+      "props": {"title":{"type":"String","required":true},"showIcon":{"type":"Boolean","default":false},"actionLabel":{"type":"String","default":""},"actionDisabled":{"type":"Boolean","default":false}},
       "events": ["action"],
       "slots": ["icon","default"],
       "slotPatterns": [],
       "exposed": []
     }
   ],
-  "propNotes": {},
-  "eventNotes": {},
   "slotNotes": {"default":{"scope":"容纳WorkbenchCollapseItem项的列表。","description":"组件不定义项目间的数据联动或手风琴状态。"}}
 }
 ```
+
+未声明或为空：props、events、eventDetails、slotDetails、slotPatterns、exposed、propNotes、eventNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -153,62 +136,19 @@
       "references": []
     }
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-text-primary",
-    "color-text-secondary",
-    "color-text-disabled",
-    "color-text-action",
-    "color-text-action-hover",
-    "color-text-action-active",
-    "color-text-action-disabled",
-    "color-icon-primary",
-    "color-icon-hover",
-    "color-icon-active",
-    "color-border",
-    "color-border-focus",
-    "color-border-separator-subtle",
-    "color-surface-card-default",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "font-body-m",
-    "font-headline-xs",
-    "font-headline-m",
-    "radius-sm",
-    "radius-lg"
-  ],
+  "foundationKeys": ["color-text-primary","color-text-secondary","color-text-disabled","color-text-action","color-text-action-hover","color-text-action-active","color-text-action-disabled","color-icon-primary","color-icon-hover","color-icon-active","color-border","color-border-focus","color-border-separator-subtle","color-surface-card-default","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg","font-body-m","font-headline-xs","font-headline-m","radius-sm","radius-lg"],
   "intro": "将同一内容区内次要、可按需查看的信息折叠展示。每项独立控制，可同时展开。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["内容存在明确标题且用户可延后阅读时使用；主要步骤、必须始终可见的信息不要折叠。需要互斥单开模式时当前组件不提供该行为。"],
-      "bullets": []
-    },
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["WorkbenchCollapse仅组织折叠项；WorkbenchCollapseItem提供标题、可选图标、正文和独立右侧操作。最多支持一层嵌套，收起时正文卸载。"],
-      "bullets": []
-    },
-    {
-      "id": "interaction",
-      "title": "交互与键盘",
-      "paragraphs": ["标题触发器使用原生按钮键盘操作；独立action按钮不会触发展开。actionDisabled时操作不进入Tab序列。"],
-      "bullets": []
-    },
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchCollapse（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"selection","title":"选型","paragraphs":["内容存在明确标题且用户可延后阅读时使用；主要步骤、必须始终可见的信息不要折叠。需要互斥单开模式时当前组件不提供该行为。"],"bullets":[]},
+    {"id":"structure","title":"设计结构与排版","paragraphs":["WorkbenchCollapse仅组织折叠项；WorkbenchCollapseItem提供标题、可选图标、正文和独立右侧操作。最多支持一层嵌套，收起时正文卸载。"],"bullets":[]},
+    {"id":"interaction","title":"交互与键盘","paragraphs":["标题触发器使用原生按钮键盘操作；独立action按钮不会触发展开。actionDisabled时操作不进入Tab序列。"],"bullets":[]},
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchCollapse（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"折叠面板 Collapse组件规范","href":"#rules"}]
 }
 ```
+
+未声明或为空：dependencies（不代表支持）
 
 ## 官方示例
 

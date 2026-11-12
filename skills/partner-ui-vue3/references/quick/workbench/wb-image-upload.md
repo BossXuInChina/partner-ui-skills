@@ -19,23 +19,17 @@
   "useWhen": ["图片上传 ImageUpload相关交互与状态展示"],
   "avoidWhen": ["未经独立生产接入与设计验收直接用于生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -56,24 +50,7 @@
     "uploadRequest": {"type":"Function","default":{"kind":"undefined"}},
     "previewState": {"type":"String","default":"default"}
   },
-  "events": [
-    "update:modelValue",
-    "change",
-    "reject",
-    "progress",
-    "success",
-    "error",
-    "cancel",
-    "remove",
-    "retry",
-    "preview",
-    "download",
-    "batch-download"
-  ],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
+  "events": ["update:modelValue","change","reject","progress","success","error","cancel","remove","retry","preview","download","batch-download"],
   "exposed": [
     {"name":"selectFiles","declaration":"selectFiles(): void;"},
     {"name":"retry","declaration":"retry(item: {id: string | number}): void;"},
@@ -126,35 +103,21 @@
     "preview": {"payload":"待预览图片项。","timing":"用户请求查看图片时发出。"},
     "download": {"payload":"待下载图片项。","timing":"用户请求下载时发出。"},
     "batch-download": {"payload":"批量下载所选图片项。","timing":"用户触发批量下载时发出。"}
-  },
-  "slotNotes": {}
+  }
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
-  "rules": [],
   "dependencies": ["wb-button","wb-modal"],
-  "foundationKeys": [
-    "color-text-primary",
-    "color-text-secondary",
-    "color-text-disabled",
-    "color-border",
-    "color-border-focus",
-    "color-error",
-    "font-body-s",
-    "font-body-m"
-  ],
+  "foundationKeys": ["color-text-primary","color-text-secondary","color-text-disabled","color-border","color-border-focus","color-error","font-body-s","font-body-m"],
   "intro": "用于选择与展示图片缩略图，支持多图、数量与大小限制、预览、单张下载及批量下载。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["图片网格上传使用WorkbenchImageUpload；通用附件列表使用WorkbenchUpload。"],
-      "bullets": ["默认多选最多5张，单图可设置multiple=false。","需要上传过程时通过uploadRequest接入消费方传输实现。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["图片网格上传使用WorkbenchImageUpload；通用附件列表使用WorkbenchUpload。"],"bullets":["默认多选最多5张，单图可设置multiple=false。","需要上传过程时通过uploadRequest接入消费方传输实现。"]},
     {
       "id": "structure",
       "title": "设计结构与排版",
@@ -177,6 +140,8 @@
   "related": [{"label":"图片上传规范","href":"#rules"},{"label":"图片项辅助组件API","href":"#family"}]
 }
 ```
+
+未声明或为空：rules（不代表支持）
 
 ## 官方示例
 

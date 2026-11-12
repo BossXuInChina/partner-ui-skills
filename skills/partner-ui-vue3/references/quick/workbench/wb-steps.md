@@ -19,28 +19,22 @@
   "useWhen": ["步骤条 Steps相关交互与状态展示"],
   "avoidWhen": ["未经独立生产接入与设计验收直接用于生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -57,12 +51,7 @@
     "ariaLabel": {"type":"String","default":"流程步骤"}
   },
   "events": ["update:modelValue","change"],
-  "eventDetails": null,
   "slots": ["icon","title","description"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "items": "必填StepItem数组：title必填；可选key、description、status、disabled、clickable。",
     "modelValue": "当前查看索引，0起始；-1可表示无选中。",
@@ -74,10 +63,7 @@
     "disabled": "禁用整个步骤条。",
     "ariaLabel": "有序步骤列表可访问名称。"
   },
-  "eventNotes": {
-    "update:modelValue": {"payload":"新选中步骤索引Number。","timing":"调用方允许跳转的步骤被选择时发出。"},
-    "change": {"payload":"(index, item)：新索引与对应StepItem。","timing":"用户选择可导航步骤时发出。"}
-  },
+  "eventNotes": {"update:modelValue":{"payload":"新选中步骤索引Number。","timing":"调用方允许跳转的步骤被选择时发出。"},"change":{"payload":"(index, item)：新索引与对应StepItem。","timing":"用户选择可导航步骤时发出。"}},
   "slotNotes": {
     "icon": {"scope":"{ item, index, status }","description":"图标节点为装饰内容，辅助技术名称由步骤标题、状态和描述提供。"},
     "title": {"scope":"{ item, index }","description":"自定义步骤标题内容。"},
@@ -86,12 +72,12 @@
 }
 ```
 
+未声明或为空：eventDetails、slotDetails、slotPatterns、exposed、family（不代表支持）
+
 ## 规则与适用条件
 
 ```json
 {
-  "rules": [],
-  "dependencies": [],
   "foundationKeys": ["font-body-m","font-body-s","radius-full","font-headline-xs","font-headline-xxs","font-body-l"],
   "intro": "用于展示多阶段任务的流程进度，并按业务需要允许回看可导航步骤。",
   "sections": [
@@ -107,10 +93,11 @@
       "paragraphs": ["horizontal用于页面顶部短流程，vertical用于长流程侧栏，arrow强调单向阶段推进。尺寸支持large、medium、small、mini；箭头型使用固定高度。"],
       "bullets": ["可操作步骤支持方向键及Home/End，Enter或Space确认。","溢出通过内部横向滚动和翻页控制处理；不会把流程变成卡片列表。"]
     }
-  ],
-  "related": null
+  ]
 }
 ```
+
+未声明或为空：rules、dependencies、related（不代表支持）
 
 ## 官方示例
 

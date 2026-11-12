@@ -19,28 +19,22 @@
   "useWhen": ["单选或多选已有选项"],
   "avoidWhen": ["本版本范围外的交互或未经验证的内部框架生产实现"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -58,12 +52,7 @@
     "placeholder": {"type":"String","default":"请选择"}
   },
   "events": ["update:modelValue"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
   "slotPatterns": [{"kind":"unknown","expression":"slotName"}],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "modelValue": "当前受控选值数组；单选同样使用数组。",
     "multiple": "开启后允许选择多个选项。",
@@ -75,10 +64,11 @@
     "teleportPanel": "控制浮层面板是否通过Teleport挂载。",
     "panelClass": "传递给面板的自定义类名。"
   },
-  "eventNotes": {"update:modelValue":{"payload":"新的选值数组；单选数组为零或一个值，多选为当前已选值。","timing":"用户选择可用选项后发出。正式WorkbenchSelect没有clear事件。"}},
-  "slotNotes": {}
+  "eventNotes": {"update:modelValue":{"payload":"新的选值数组；单选数组为零或一个值，多选为当前已选值。","timing":"用户选择可用选项后发出。正式WorkbenchSelect没有clear事件。"}}
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、exposed、family、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -177,79 +167,32 @@
     }
   ],
   "dependencies": ["wb-checkbox","wb-tooltip"],
-  "foundationKeys": [
-    "color-border",
-    "color-border-hover",
-    "color-border-focus",
-    "color-border-disabled",
-    "color-text-primary",
-    "color-text-placeholder",
-    "color-text-secondary",
-    "color-text-disabled",
-    "color-icon-disabled",
-    "color-fill-default",
-    "color-fill-hover",
-    "color-fill-subtle-disabled",
-    "color-surface-card-default",
-    "color-info-primary-subtle",
-    "color-text-action",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "radius-sm",
-    "radius-md",
-    "radius-lg",
-    "shadow-sm",
-    "font-body-m",
-    "font-body-s",
-    "font-headline-m",
-    "color-surface-overlay",
-    "shadow-base"
-  ],
+  "foundationKeys": ["color-border","color-border-hover","color-border-focus","color-border-disabled","color-text-primary","color-text-placeholder","color-text-secondary","color-text-disabled","color-icon-disabled","color-fill-default","color-fill-hover","color-fill-subtle-disabled","color-surface-card-default","color-info-primary-subtle","color-text-action","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg","radius-sm","radius-md","radius-lg","shadow-sm","font-body-m","font-body-s","font-headline-m","color-surface-overlay","shadow-base"],
   "intro": "用于从有限的候选项中选择一个或多个值。正式WorkbenchSelect v1保持已批准的基础合同；搜索、清除、标签删除和尺寸扩展只属于Studio候选验证。",
   "sections": [
     {
       "id": "selection",
       "title": "选型",
       "paragraphs": ["选项数量较少且需要直接比较时，优先使用单选框或复选框；候选较多或表单布局需要节省空间时使用Select。"],
-      "bullets": [
-        "单选和多选均以数组形式传递modelValue；单选数组最多包含一个值。",
-        "正式WorkbenchSelect不提供搜索、清空、全选、标签删除、远程选项或浮层翻转。",
-        "WorkbenchSelectExtensions.vue中的defaultValue、searchable、clearable、removable、size、tagsLayout、分组和缩略图等只服务于Studio候选演示，不属于公开WorkbenchSelect API。"
-      ]
+      "bullets": ["单选和多选均以数组形式传递modelValue；单选数组最多包含一个值。","正式WorkbenchSelect不提供搜索、清空、全选、标签删除、远程选项或浮层翻转。","WorkbenchSelectExtensions.vue中的defaultValue、searchable、clearable、removable、size、tagsLayout、分组和缩略图等只服务于Studio候选演示，不属于公开WorkbenchSelect API。"]
     },
     {
       "id": "structure",
       "title": "设计结构与排版",
       "paragraphs": ["正式选择框默认32px高，独立使用默认宽296px；296px不是最小宽度。Modal和Drawer中的字段填满可用宽度，Form/Grid父容器负责栅格宽度。"],
-      "bullets": [
-        "字段标签、必填标记、错误和辅助说明由WorkbenchFormItem负责；裸控件的label用于可访问名称。",
-        "选项使用value、label和可选disabled；整行只有一个选项交互入口。多选通过已批准复选标记表达选择。",
-        "正式组件按已批准规则收起溢出标签为+N并保留可访问的完整名称；不将Studio候选的多行、可删标签等行为描述为正式能力。",
-        "面板和字段沿用已批准的描边、状态色、圆角、阴影及图标规则；页面位置由容器决定，组件不自行推断。"
-      ]
+      "bullets": ["字段标签、必填标记、错误和辅助说明由WorkbenchFormItem负责；裸控件的label用于可访问名称。","选项使用value、label和可选disabled；整行只有一个选项交互入口。多选通过已批准复选标记表达选择。","正式组件按已批准规则收起溢出标签为+N并保留可访问的完整名称；不将Studio候选的多行、可删标签等行为描述为正式能力。","面板和字段沿用已批准的描边、状态色、圆角、阴影及图标规则；页面位置由容器决定，组件不自行推断。"]
     },
     {
       "id": "interaction",
       "title": "交互与键盘",
       "paragraphs": ["打开面板后使用方向键移动选项，Enter或Space选择；Escape关闭面板。焦点离开选择器或其字段区域时关闭面板。"],
-      "bullets": [
-        "单选选择后提交一个值的数组并关闭；多选选择后更新数组并保持多选流程。",
-        "整体禁用或单个选项disabled时不可选择；键盘移动跳过禁用项。",
-        "焦点和悬浮状态由真实交互产生；state=\"disabled\"用于禁用，不通过state伪造focus或hover。",
-        "showPanel仅供预览检查，不作为业务交互模式。"
-      ]
+      "bullets": ["单选选择后提交一个值的数组并关闭；多选选择后更新数组并保持多选流程。","整体禁用或单个选项disabled时不可选择；键盘移动跳过禁用项。","焦点和悬浮状态由真实交互产生；state=\"disabled\"用于禁用，不通过state伪造focus或hover。","showPanel仅供预览检查，不作为业务交互模式。"]
     },
     {
       "id": "responsibility",
       "title": "使用边界与职责",
       "paragraphs": ["WorkbenchSelect只发出modelValue更新意图，不排序或远程加载候选数据，也不承担表单提交和裸控件验证。调用方负责维护候选项、提交和业务校验。"],
-      "bullets": [
-        "多选标签删除、搜索、清空等额外交互属于独立Studio候选扩展；不得从正式WorkbenchSelect导入或依赖这些候选属性。",
-        "通过WorkbenchFormItem组合字段时由表单项绘制标签和说明；独立使用时提供label作为可访问名称。",
-        "WorkbenchSelect没有公开具名插槽；候选扩展也不改变正式Catalog API。"
-      ]
+      "bullets": ["多选标签删除、搜索、清空等额外交互属于独立Studio候选扩展；不得从正式WorkbenchSelect导入或依赖这些候选属性。","通过WorkbenchFormItem组合字段时由表单项绘制标签和说明；独立使用时提供label作为可访问名称。","WorkbenchSelect没有公开具名插槽；候选扩展也不改变正式Catalog API。"]
     }
   ],
   "related": [{"label":"已批准Select规范","href":"#rules"},{"label":"Studio候选扩展组件","href":"/preview/select?view=examples"}]
@@ -265,13 +208,7 @@
   "id": "formal-single",
   "title": "正式API：单选",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-select",
-    "scenarioId": "select",
-    "exampleId": "formal-single",
-    "codeSha256": "sha256:95e270ab0b6115ceddf4c174834c0e4a04b11164f87a5f1877c9e60430feea2b"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-select","scenarioId":"select","exampleId":"formal-single","codeSha256":"sha256:95e270ab0b6115ceddf4c174834c0e4a04b11164f87a5f1877c9e60430feea2b"},
   "description": "可直接运行的受控单选示例；值数组、候选项和显示结果均已定义。",
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []
@@ -305,13 +242,7 @@ const options = [
   {
     "id": "formal-multiple",
     "portability": "portable",
-    "source": {
-      "kind": "studio-official-usage",
-      "ownerAssetId": "wb-select",
-      "scenarioId": "select",
-      "exampleId": "formal-multiple",
-      "codeSha256": "sha256:0fe54f02571e09ed68d22586eb3f29f1b32707bbf773dd0ac156e118738659a3"
-    },
+    "source": {"kind":"studio-official-usage","ownerAssetId":"wb-select","scenarioId":"select","exampleId":"formal-multiple","codeSha256":"sha256:0fe54f02571e09ed68d22586eb3f29f1b32707bbf773dd0ac156e118738659a3"},
     "unsupported": []
   }
 ]

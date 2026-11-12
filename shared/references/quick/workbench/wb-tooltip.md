@@ -19,74 +19,38 @@
   "useWhen": ["悬停或键盘聚焦时显示短文本、溢出内容全文或静态标签。"],
   "avoidWhen": ["需要链接使用Popover；操作确认使用Popconfirm；不要在Tooltip里放可交互元素。","未经验证的公司内部UI框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchTooltip"},
   "props": {
     "content": {"type":"String","default":""},
-    "placement": {
-      "type": "String",
-      "default": "top",
-      "enum": [
-        "top-start",
-        "top",
-        "top-end",
-        "right-start",
-        "right",
-        "right-end",
-        "bottom-start",
-        "bottom",
-        "bottom-end",
-        "left-start",
-        "left",
-        "left-end"
-      ]
-    },
+    "placement": {"type":"String","default":"top","enum":["top-start","top","top-end","right-start","right","right-end","bottom-start","bottom","bottom-end","left-start","left","left-end"]},
     "open": {"type":"Boolean","default":{"kind":"undefined"}},
     "disabled": {"type":"Boolean"},
     "overflowOnly": {"type":"Boolean"},
     "showArrow": {"type":"Boolean","default":true}
   },
   "events": ["update:open"],
-  "eventDetails": null,
   "slots": ["trigger","content"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
-  "propNotes": {
-    "content": "提示文本；可由content插槽替代。",
-    "placement": "提示框优先方向及对齐方式。",
-    "open": "可选受控显示状态；变化通过update:open通知父级。",
-    "disabled": "禁用提示显示。",
-    "overflowOnly": "仅当触发内容发生文本溢出时显示。",
-    "showArrow": "是否显示指向触发器的箭头。"
-  },
+  "propNotes": {"content":"提示文本；可由content插槽替代。","placement":"提示框优先方向及对齐方式。","open":"可选受控显示状态；变化通过update:open通知父级。","disabled":"禁用提示显示。","overflowOnly":"仅当触发内容发生文本溢出时显示。","showArrow":"是否显示指向触发器的箭头。"},
   "eventNotes": {"update:open":{"payload":"新的显示状态。","timing":"受控或非受控显示状态发生变化时发出；受控调用方应同步更新open。"}},
-  "slotNotes": {
-    "trigger": {"scope":"被解释的控件或文字；参数为open与aria对象，其中aria含aria-describedby。","description":"提示不能替代控件可访问名称。"},
-    "content": {"scope":"自定义提示文案。","description":"保持简短纯说明；不放链接或交互按钮。"}
-  }
+  "slotNotes": {"trigger":{"scope":"被解释的控件或文字；参数为open与aria对象，其中aria含aria-describedby。","description":"提示不能替代控件可访问名称。"},"content":{"scope":"自定义提示文案。","description":"保持简短纯说明；不放链接或交互按钮。"}}
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、exposed、family（不代表支持）
 
 ## 规则与适用条件
 
@@ -122,31 +86,13 @@
     }
   ],
   "dependencies": ["wb-popover"],
-  "foundationKeys": [
-    "color-surface-overlay",
-    "color-text-primary",
-    "font-body-m",
-    "radius-sm",
-    "shadow-lg",
-    "spacing-component-xs",
-    "spacing-component-sm"
-  ],
+  "foundationKeys": ["color-surface-overlay","color-text-primary","font-body-m","radius-sm","shadow-lg","spacing-component-xs","spacing-component-sm"],
   "intro": "在控件附近补充简短、非必要的说明文字；不承载交互内容或关键信息。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["用于解释图标按钮或省略文本；说明内容较长、包含链接或必须主动阅读时使用Popover。"],"bullets":[]},
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["trigger插槽提供被说明对象；content可由字符串属性或content插槽提供。placement选择优先方向，showArrow控制箭头。"],
-      "bullets": []
-    },
+    {"id":"structure","title":"设计结构与排版","paragraphs":["trigger插槽提供被说明对象；content可由字符串属性或content插槽提供。placement选择优先方向，showArrow控制箭头。"],"bullets":[]},
     {"id":"interaction","title":"交互与键盘","paragraphs":["悬停或键盘聚焦触发对象时显示；Escape可关闭。overflowOnly仅在触发文本实际溢出时展示提示。"],"bullets":[]},
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchTooltip（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchTooltip（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"文字提示 Tooltip组件规范","href":"#rules"}]
 }

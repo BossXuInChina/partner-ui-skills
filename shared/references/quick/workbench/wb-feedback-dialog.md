@@ -19,23 +19,17 @@
   "useWhen": ["需要用户阅读结果并作出明确决定的反馈对话框。"],
   "avoidWhen": ["非阻断反馈优先 Message/Notification；一般表单弹窗使用 Modal。","未经验证的公司内部UI框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -56,12 +50,6 @@
     "showGrid": {"type":"Boolean","default":false}
   },
   "events": ["update:modelValue","update:checkboxChecked","action","close","action-error","close-error"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "modelValue": "对话框打开状态。",
     "type": "反馈语义类型。",
@@ -84,10 +72,11 @@
     "close": {"payload":"关闭原因。","timing":"关闭请求通过beforeClose后发出。"},
     "action-error": {"payload":"{action,error}对象。","timing":"actionHandler抛错或Promise拒绝时发出；返回false不视为错误。"},
     "close-error": {"payload":"关闭守卫错误。","timing":"beforeClose抛错或拒绝时发出，面板继续保持打开。"}
-  },
-  "slotNotes": {}
+  }
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、exposed、family、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -123,52 +112,13 @@
     }
   ],
   "dependencies": ["wb-button","wb-checkbox","wb-modal"],
-  "foundationKeys": [
-    "color-info-primary",
-    "color-success",
-    "color-warning",
-    "color-alert",
-    "color-error",
-    "color-surface-page",
-    "color-surface-overlay",
-    "color-text-primary",
-    "color-text-secondary",
-    "color-text-inverse",
-    "color-scrim-modal",
-    "color-icon-primary",
-    "color-icon-hover",
-    "color-border-focus",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-lg",
-    "spacing-layout-action-gap",
-    "radius-full",
-    "font-body-m",
-    "font-body-s",
-    "font-headline-s",
-    "icon-size-16"
-  ],
+  "foundationKeys": ["color-info-primary","color-success","color-warning","color-alert","color-error","color-surface-page","color-surface-overlay","color-text-primary","color-text-secondary","color-text-inverse","color-scrim-modal","color-icon-primary","color-icon-hover","color-border-focus","spacing-component-xs","spacing-component-sm","spacing-component-lg","spacing-layout-action-gap","radius-full","font-body-m","font-body-s","font-headline-s","icon-size-16"],
   "intro": "围绕一项操作反馈结果、补充信息并提供一个主要动作及可选次要动作；关闭与异步动作通过受控契约管理。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["适用于操作完成后的结果反馈、继续处理或关闭选择；一般确认用Popconfirm，编辑任务用Modal。"],"bullets":[]},
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["type决定反馈语义；title/message说明结果；primaryAction必填，secondaryAction可选。checkboxChecked受控，pending表示动作处理中。"],
-      "bullets": []
-    },
-    {
-      "id": "interaction",
-      "title": "交互与键盘",
-      "paragraphs": ["对话框遵循模态焦点管理；pending期间防止重复动作。异步业务用actionHandler，beforeClose控制关闭请求并可异步等待。"],
-      "bullets": []
-    },
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchFeedbackDialog（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"structure","title":"设计结构与排版","paragraphs":["type决定反馈语义；title/message说明结果；primaryAction必填，secondaryAction可选。checkboxChecked受控，pending表示动作处理中。"],"bullets":[]},
+    {"id":"interaction","title":"交互与键盘","paragraphs":["对话框遵循模态焦点管理；pending期间防止重复动作。异步业务用actionHandler，beforeClose控制关闭请求并可异步等待。"],"bullets":[]},
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchFeedbackDialog（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"反馈对话框 Feedback Dialog组件规范","href":"#rules"}]
 }

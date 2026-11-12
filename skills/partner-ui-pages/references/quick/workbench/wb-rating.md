@@ -19,39 +19,29 @@
   "useWhen": ["以五级星形表达主观评分"],
   "avoidWhen": ["精确数值录入或超过半分精度"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchRating"},
   "props": {
     "modelValue": {"type":"Number","default":0},
-    "max": {
-      "type": "Number",
-      "default": 5,
-      "validator": {"kind":"unknown","expression":"value => Number.isInteger(value) && value > 0"}
-    },
+    "max": {"type":"Number","default":5,"validator":{"kind":"unknown","expression":"value => Number.isInteger(value) && value > 0"}},
     "step": {"type":"Number","default":1,"validator":{"kind":"unknown","expression":"value => value === 1 || value === 0.5"}},
     "disabled": {"type":"Boolean"},
     "name": {"type":"String"},
@@ -64,12 +54,6 @@
     "descriptions": {"type":"Array","default":{"kind":"function"}}
   },
   "events": ["update:modelValue"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "modelValue": "当前受控分值；调用方应保持在0到max范围内。用户交互产生的更新会规范到此区间。",
     "max": "星级总数，必须为正整数。",
@@ -84,10 +68,11 @@
     "descriptionPlacement": "整体说明位于右侧或下方。",
     "descriptions": "逐星标签及文字说明的有序列表；自定义max时应匹配星级。"
   },
-  "eventNotes": {"update:modelValue":{"payload":"新的数字分值。","timing":"用户点击星形或在可编辑控件上使用方向键、Home、End改变分值后发出。"}},
-  "slotNotes": {}
+  "eventNotes": {"update:modelValue":{"payload":"新的数字分值。","timing":"用户点击星形或在可编辑控件上使用方向键、Home、End改变分值后发出。"}}
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、exposed、family、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -113,55 +98,29 @@
       "references": []
     }
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-border-focus",
-    "color-icon-disabled",
-    "color-text-primary",
-    "color-warning",
-    "font-body-m",
-    "radius-sm",
-    "spacing-component-sm"
-  ],
+  "foundationKeys": ["color-border-focus","color-icon-disabled","color-text-primary","color-warning","font-body-m","radius-sm","spacing-component-sm"],
   "intro": "用于表达等级、满意度或服务反馈。支持整分与半分、数值或文字说明，也可在只读界面展示已有评分。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["适合用户以星级表达有序评价的场景。需要精确填写任意数值时使用数字输入；需要解释原因时应另配文本字段。"],
-      "bullets": ["整分评分使用默认步长；需要半星反馈时将步长设为0.5。","详情页展示已有评分时使用只读模式；禁用模式用于当前不可操作的控件状态。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["适合用户以星级表达有序评价的场景。需要精确填写任意数值时使用数字输入；需要解释原因时应另配文本字段。"],"bullets":["整分评分使用默认步长；需要半星反馈时将步长设为0.5。","详情页展示已有评分时使用只读模式；禁用模式用于当前不可操作的控件状态。"]},
     {
       "id": "structure",
       "title": "设计结构与排版",
       "paragraphs": ["每颗星使用12px已登记原生图标和独立16px交互热区；半星由同一图标内的颜色分界呈现。保持图标原始绘制，不叠放或裁切两个星形。"],
-      "bullets": [
-        "descriptionMode支持无说明、整体文字、数值及逐星说明四类；整体说明可放在右侧或下方。",
-        "逐星说明按评分级别排列；自定义max时，descriptions应提供对应级数的文字。",
-        "只读评分保留正常评分颜色并声明只读；禁用评分使用禁用色。"
-      ]
+      "bullets": ["descriptionMode支持无说明、整体文字、数值及逐星说明四类；整体说明可放在右侧或下方。","逐星说明按评分级别排列；自定义max时，descriptions应提供对应级数的文字。","只读评分保留正常评分颜色并声明只读；禁用评分使用禁用色。"]
     },
-    {
-      "id": "interaction",
-      "title": "交互与键盘",
-      "paragraphs": ["点击星形更新受控分值；半星模式根据点击位置选择该星的半分或整分。焦点随当前分值定位。"],
-      "bullets": ["方向键按step增减；Home清零，End设为满分。","readOnly和disabled均阻止分值变化；readOnly仍可聚焦并保留正常颜色。"]
-    },
+    {"id":"interaction","title":"交互与键盘","paragraphs":["点击星形更新受控分值；半星模式根据点击位置选择该星的半分或整分。焦点随当前分值定位。"],"bullets":["方向键按step增减；Home清零，End设为满分。","readOnly和disabled均阻止分值变化；readOnly仍可聚焦并保留正常颜色。"]},
     {
       "id": "responsibility",
       "title": "使用边界与职责",
       "paragraphs": ["评分值由调用方通过modelValue持有并响应update:modelValue。组件不提供插槽；说明文字通过descriptionMode和descriptions配置。"],
-      "bullets": [
-        "max必须为正整数；step仅支持1或0.5。",
-        "name提供时组件加入同名隐藏表单输入；未提供name时不产生FormData字段。",
-        "ariaLabel提供可访问名称；ariaDescribedby可关联外部说明，invalid用于声明错误状态。",
-        "组件只表达评分，不定义评分提交、业务校验、统计或持久化流程。"
-      ]
+      "bullets": ["max必须为正整数；step仅支持1或0.5。","name提供时组件加入同名隐藏表单输入；未提供name时不产生FormData字段。","ariaLabel提供可访问名称；ariaDescribedby可关联外部说明，invalid用于声明错误状态。","组件只表达评分，不定义评分提交、业务校验、统计或持久化流程。"]
     }
   ],
   "related": [{"label":"已批准评分规范","href":"#rules"}]
 }
 ```
+
+未声明或为空：dependencies（不代表支持）
 
 ## 官方示例
 
@@ -206,13 +165,7 @@ const descriptions = ["很差", "较差", "一般", "较好", "很好"]
   {
     "id": "readonly-rating",
     "portability": "portable",
-    "source": {
-      "kind": "studio-official-usage",
-      "ownerAssetId": "wb-rating",
-      "scenarioId": "rating",
-      "exampleId": "readonly-rating",
-      "codeSha256": "sha256:a8e338bf88a923856c9ba85bbca8dbe2c992f1763317a7c40f33466676c7aa5a"
-    },
+    "source": {"kind":"studio-official-usage","ownerAssetId":"wb-rating","scenarioId":"rating","exampleId":"readonly-rating","codeSha256":"sha256:a8e338bf88a923856c9ba85bbca8dbe2c992f1763317a7c40f33466676c7aa5a"},
     "unsupported": []
   }
 ]

@@ -19,68 +19,41 @@
   "useWhen": ["页面层级路径与祖先导航"],
   "avoidWhen": ["侧栏树导航、业务步骤状态","未经验证的内部 UI 框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchBreadcrumb"},
-  "props": {
-    "items": {"type":"Array","default":{"kind":"function"}},
-    "collapseThreshold": {"type":"Number","default":6},
-    "ariaLabel": {"type":"String","default":"面包屑"}
-  },
+  "props": {"items":{"type":"Array","default":{"kind":"function"}},"collapseThreshold":{"type":"Number","default":6},"ariaLabel":{"type":"String","default":"面包屑"}},
   "events": ["navigate"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
-  "propNotes": {
-    "items": "按层级顺序排列的{id,label,href?,disabled?}项目数组，id必须唯一。",
-    "collapseThreshold": "折叠阈值，默认6且实际最小6。",
-    "ariaLabel": "导航区域可访问名称，默认“面包屑”。"
-  },
-  "eventNotes": {"navigate":{"payload":"(item, event)：被激活的祖先项目与原生事件。","timing":"激活没有href的祖先项时发出；路由调用方可preventDefault并处理导航。"}},
-  "slotNotes": {}
+  "propNotes": {"items":"按层级顺序排列的{id,label,href?,disabled?}项目数组，id必须唯一。","collapseThreshold":"折叠阈值，默认6且实际最小6。","ariaLabel":"导航区域可访问名称，默认“面包屑”。"},
+  "eventNotes": {"navigate":{"payload":"(item, event)：被激活的祖先项目与原生事件。","timing":"激活没有href的祖先项时发出；路由调用方可preventDefault并处理导航。"}}
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、exposed、family、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
   "rules": [
-    {
-      "id": "wb-breadcrumb-rule-1",
-      "title": "选型边界",
-      "text": "页面层级路径与祖先导航；不适用于侧栏树导航、业务步骤状态",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["页面层级路径与祖先导航"],
-      "references": []
-    },
+    {"id":"wb-breadcrumb-rule-1","title":"选型边界","text":"页面层级路径与祖先导航；不适用于侧栏树导航、业务步骤状态","strength":"must","status":"confirmed","when":["页面层级路径与祖先导航"],"references":[]},
     {
       "id": "wb-breadcrumb-rule-2",
       "title": "交互与调用合同",
@@ -100,35 +73,16 @@
       "references": []
     }
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-border-focus",
-    "color-fill-hover",
-    "color-surface-overlay",
-    "color-surface-page",
-    "color-text-disabled",
-    "color-text-primary",
-    "color-text-secondary",
-    "font-body-m",
-    "radius-sm",
-    "shadow-sm",
-    "spacing-component-md",
-    "spacing-component-sm",
-    "spacing-component-xs"
-  ],
+  "foundationKeys": ["color-border-focus","color-fill-hover","color-surface-overlay","color-surface-page","color-text-disabled","color-text-primary","color-text-secondary","font-body-m","radius-sm","shadow-sm","spacing-component-md","spacing-component-sm","spacing-component-xs"],
   "intro": "用于展示当前页面在系统层级中的位置，并支持返回可导航的祖先页面。",
   "sections": [
-    {
-      "id": "hierarchy",
-      "title": "层级与折叠",
-      "paragraphs": ["items按从根节点到当前页的顺序排列，id唯一；最后一项始终是不可交互的当前页。超过折叠阈值时保留首项和末四项，中间项进入菜单。"],
-      "bullets": ["祖先项提供href时保留原生链接；无href时通过navigate交给调用方。","collapseThreshold有效下限为6。"]
-    },
+    {"id":"hierarchy","title":"层级与折叠","paragraphs":["items按从根节点到当前页的顺序排列，id唯一；最后一项始终是不可交互的当前页。超过折叠阈值时保留首项和末四项，中间项进入菜单。"],"bullets":["祖先项提供href时保留原生链接；无href时通过navigate交给调用方。","collapseThreshold有效下限为6。"]},
     {"id":"keyboard","title":"键盘与职责","paragraphs":["折叠菜单由组件管理打开、方向键导航和焦点返回。路由状态及导航结果由调用方负责。"],"bullets":[]}
-  ],
-  "related": null
+  ]
 }
 ```
+
+未声明或为空：dependencies、related（不代表支持）
 
 ## 官方示例
 

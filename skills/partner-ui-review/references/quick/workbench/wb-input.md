@@ -19,28 +19,22 @@
   "useWhen": ["单行、多行、密码及单位输入"],
   "avoidWhen": ["未经适配验证的内部框架生产实现"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -71,12 +65,8 @@
     "showTrailingIcon": {"type":"Boolean"}
   },
   "events": ["update:modelValue","update:unit","update:prefixValue","validation"],
-  "eventDetails": null,
   "slots": ["prefix-icon","trailing-icon","suffix-icon"],
-  "slotDetails": null,
-  "slotPatterns": [],
   "exposed": [{"name":"validate","declaration":"validate(): boolean;"},{"name":"focus","declaration":"focus(): void;"}],
-  "family": [],
   "propNotes": {
     "modelValue": "受控文本值，通过update:modelValue同步更新。",
     "type": "text、textarea或password，分别对应单行、多行和掩码文本。",
@@ -106,13 +96,11 @@
     "update:prefixValue": {"payload":"新的前缀选择值。","timing":"用户选择或取消前缀选项后发出。"},
     "validation": {"payload":"{ valid, message }，分别表示校验是否通过及当前错误文案。","timing":"同步校验状态发生变化时通知字段层。"}
   },
-  "slotNotes": {
-    "prefix-icon": {"scope":"无插槽参数。","description":"替换前缀选择文字左侧图标。"},
-    "suffix-icon": {"scope":"无插槽参数。","description":"替换后缀选择文字左侧图标。"},
-    "trailing-icon": {"scope":"无插槽参数。","description":"提供单行输入的尾随图标。"}
-  }
+  "slotNotes": {"prefix-icon":{"scope":"无插槽参数。","description":"替换前缀选择文字左侧图标。"},"suffix-icon":{"scope":"无插槽参数。","description":"替换后缀选择文字左侧图标。"},"trailing-icon":{"scope":"无插槽参数。","description":"提供单行输入的尾随图标。"}}
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、family（不代表支持）
 
 ## 规则与适用条件
 
@@ -146,15 +134,7 @@
       "when": ["单行、多行、密码及单位输入"],
       "references": []
     },
-    {
-      "id": "wb-input-rule-4",
-      "title": "单行32px，多行88px。正文至少三行；独立滚动区不遮挡右下计",
-      "text": "单行32px，多行88px。正文至少三行；独立滚动区不遮挡右下计数器。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["单行、多行、密码及单位输入"],
-      "references": []
-    },
+    {"id":"wb-input-rule-4","title":"单行32px，多行88px。正文至少三行；独立滚动区不遮挡右下计","text":"单行32px，多行88px。正文至少三行；独立滚动区不遮挡右下计数器。","strength":"must","status":"confirmed","when":["单行、多行、密码及单位输入"],"references":[]},
     {
       "id": "wb-input-rule-5",
       "title": "`maxLength`仅用于计数和校验，不设置原生maxleng",
@@ -173,15 +153,7 @@
       "when": ["单行、多行、密码及单位输入"],
       "references": []
     },
-    {
-      "id": "wb-input-rule-7",
-      "title": "密码默认掩码，按钮切换显示/隐藏；disabled禁止编辑和按钮",
-      "text": "密码默认掩码，按钮切换显示/隐藏；disabled禁止编辑和按钮交互。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["单行、多行、密码及单位输入"],
-      "references": []
-    },
+    {"id":"wb-input-rule-7","title":"密码默认掩码，按钮切换显示/隐藏；disabled禁止编辑和按钮","text":"密码默认掩码，按钮切换显示/隐藏；disabled禁止编辑和按钮交互。","strength":"must","status":"confirmed","when":["单行、多行、密码及单位输入"],"references":[]},
     {
       "id": "wb-input-rule-8",
       "title": "`unit`显示外部固定单位；`unitOptions`提供单选",
@@ -200,15 +172,7 @@
       "when": ["单行、多行、密码及单位输入"],
       "references": []
     },
-    {
-      "id": "wb-input-rule-10",
-      "title": "当前为已批准设计与Vue 3原型验证；内部UI框架通过后续适配层",
-      "text": "当前为已批准设计与Vue 3原型验证；内部UI框架通过后续适配层实现以上API语义。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["单行、多行、密码及单位输入"],
-      "references": []
-    },
+    {"id":"wb-input-rule-10","title":"当前为已批准设计与Vue 3原型验证；内部UI框架通过后续适配层","text":"当前为已批准设计与Vue 3原型验证；内部UI框架通过后续适配层实现以上API语义。","strength":"must","status":"confirmed","when":["单行、多行、密码及单位输入"],"references":[]},
     {
       "id": "wb-input-rule-11",
       "title": "多行顶部内边距4px，与32px单行中的22px正文对齐；计数器",
@@ -299,24 +263,8 @@
       "when": ["单行、多行、密码及单位输入"],
       "references": []
     },
-    {
-      "id": "wb-input-rule-21",
-      "title": "滚动条滑块使用radius-full胶囊圆角，长度变化时两端保持",
-      "text": "滚动条滑块使用radius-full胶囊圆角，长度变化时两端保持半圆。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["单行、多行、密码及单位输入"],
-      "references": []
-    },
-    {
-      "id": "wb-input-rule-22",
-      "title": "支持`name`参与原生FormData；无可见标签时提供`ar",
-      "text": "支持`name`参与原生FormData；无可见标签时提供`ariaLabel`。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["单行、多行、密码及单位输入"],
-      "references": []
-    },
+    {"id":"wb-input-rule-21","title":"滚动条滑块使用radius-full胶囊圆角，长度变化时两端保持","text":"滚动条滑块使用radius-full胶囊圆角，长度变化时两端保持半圆。","strength":"must","status":"confirmed","when":["单行、多行、密码及单位输入"],"references":[]},
+    {"id":"wb-input-rule-22","title":"支持`name`参与原生FormData；无可见标签时提供`ar","text":"支持`name`参与原生FormData；无可见标签时提供`ariaLabel`。","strength":"must","status":"confirmed","when":["单行、多行、密码及单位输入"],"references":[]},
     {
       "id": "wb-input-rule-23",
       "title": "统一字段职责：validate(value)、requir",
@@ -391,49 +339,10 @@
     }
   ],
   "dependencies": ["wb-search","wb-scrollbar"],
-  "foundationKeys": [
-    "color-border",
-    "color-border-hover",
-    "color-border-focus",
-    "color-border-disabled",
-    "color-text-primary",
-    "color-text-placeholder",
-    "color-text-secondary",
-    "color-text-disabled",
-    "color-icon-placeholder",
-    "color-icon-secondary",
-    "color-icon-primary",
-    "color-icon-active",
-    "color-icon-disabled",
-    "color-fill-hover",
-    "color-fill-subtle-default",
-    "color-fill-subtle-disabled",
-    "color-surface-card-default",
-    "color-info-primary-subtle",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "spacing-layout-container-inline",
-    "radius-sm",
-    "radius-md",
-    "radius-lg",
-    "shadow-base",
-    "font-body-m",
-    "font-headline-m",
-    "color-error",
-    "font-body-s",
-    "color-scrollbar-thumb-fill-hover",
-    "radius-full"
-  ],
+  "foundationKeys": ["color-border","color-border-hover","color-border-focus","color-border-disabled","color-text-primary","color-text-placeholder","color-text-secondary","color-text-disabled","color-icon-placeholder","color-icon-secondary","color-icon-primary","color-icon-active","color-icon-disabled","color-fill-hover","color-fill-subtle-default","color-fill-subtle-disabled","color-surface-card-default","color-info-primary-subtle","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg","spacing-layout-container-inline","radius-sm","radius-md","radius-lg","shadow-base","font-body-m","font-headline-m","color-error","font-body-s","color-scrollbar-thumb-fill-hover","radius-full"],
   "intro": "预览页聚焦一个可切换类型的输入实例，可试填、主动校验并查看事件反馈；变体页按输入类型和交互状态并排比较。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["短文本使用 text；需要多行内容使用 textarea；敏感文本使用 password。独立筛选或搜索也可使用裸输入控件。"],
-      "bullets": ["需要统一标签、必填、说明或错误反馈时，将 Input 放入 WorkbenchFormItem。","成功与警告反馈不属于该输入校验状态。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["短文本使用 text；需要多行内容使用 textarea；敏感文本使用 password。独立筛选或搜索也可使用裸输入控件。"],"bullets":["需要统一标签、必填、说明或错误反馈时，将 Input 放入 WorkbenchFormItem。","成功与警告反馈不属于该输入校验状态。"]},
     {
       "id": "structure",
       "title": "设计结构与排版",
@@ -444,21 +353,13 @@
       "id": "interaction",
       "title": "交互与键盘",
       "paragraphs": ["密码默认掩码，可通过内置按钮切换显示；disabled会阻止输入及相关按钮操作。"],
-      "bullets": [
-        "同步validate(value)校验和required、maxLength接入原生约束；ref.validate()可主动校验并返回布尔值。",
-        "输入法组合期间不提交中间文本或校验，组合结束后提交完整文本。",
-        "前后缀和单位选项使用单选菜单；Escape关闭面板，独立禁用不影响正文输入或另一侧。"
-      ]
+      "bullets": ["同步validate(value)校验和required、maxLength接入原生约束；ref.validate()可主动校验并返回布尔值。","输入法组合期间不提交中间文本或校验，组合结束后提交完整文本。","前后缀和单位选项使用单选菜单；Escape关闭面板，独立禁用不影响正文输入或另一侧。"]
     },
     {
       "id": "responsibility",
       "title": "使用边界与职责",
       "paragraphs": ["WorkbenchInput只提供输入控件；字段标签、必填星、提示及错误文案由WorkbenchFormItem维护。"],
-      "bullets": [
-        "modelValue由调用方受控；组件不提供异步校验、输入掩码、文件输入或原生form.reset自动更新受控值。",
-        "validate(value)必须同步、无副作用并返回字符串；不支持Promise校验。",
-        "提供name可将值纳入原生FormData；无可见标签时提供ariaLabel。"
-      ]
+      "bullets": ["modelValue由调用方受控；组件不提供异步校验、输入掩码、文件输入或原生form.reset自动更新受控值。","validate(value)必须同步、无副作用并返回字符串；不支持Promise校验。","提供name可将值纳入原生FormData；无可见标签时提供ariaLabel。"]
     }
   ],
   "related": [{"label":"文本输入批准规范","href":"#rules"}]
@@ -474,13 +375,7 @@
   "id": "controlled-text",
   "title": "受控文本字段",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-input",
-    "scenarioId": "input",
-    "exampleId": "controlled-text",
-    "codeSha256": "sha256:c27f4b066de74c634e90f4a46369b059e7cdf0fa092a5226e535e8bdede011ab"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-input","scenarioId":"input","exampleId":"controlled-text","codeSha256":"sha256:c27f4b066de74c634e90f4a46369b059e7cdf0fa092a5226e535e8bdede011ab"},
   "description": "完整展示受控值、同步校验和字段语义；实际表单标签可由外层字段组件提供。",
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []

@@ -19,23 +19,17 @@
   "useWhen": ["穿梭框 Transfer相关交互与状态展示"],
   "avoidWhen": ["未经独立生产接入与设计验收直接用于生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -56,10 +50,7 @@
     "label": {"type":"String","default":"穿梭框"}
   },
   "events": ["update:modelValue","update:checkedKeys","change","check","search","page-change"],
-  "eventDetails": null,
   "slots": ["item","empty"],
-  "slotDetails": null,
-  "slotPatterns": [],
   "exposed": [{"name":"move","declaration":"move(side: 'source' | 'target', requested?: (string | number)[]): void;"}],
   "family": [
     {
@@ -107,56 +98,22 @@
     "search": {"payload":"侧别及搜索文本。","timing":"任一侧搜索内容变化时发出。"},
     "page-change": {"payload":"侧别及页码信息。","timing":"任一侧分页变化时发出。"}
   },
-  "slotNotes": {
-    "item": {"scope":"{ item, side }；side为source或target。","description":"自定义每个候选或已选项内容。"},
-    "empty": {"scope":"{ side, search }；side为source或target，search为该侧当前搜索文本。","description":"自定义某一侧无数据时的内容。"}
-  }
+  "slotNotes": {"item":{"scope":"{ item, side }；side为source或target。","description":"自定义每个候选或已选项内容。"},"empty":{"scope":"{ side, search }；side为source或target，search为该侧当前搜索文本。","description":"自定义某一侧无数据时的内容。"}}
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
-  "rules": [],
   "dependencies": ["wb-checkbox","wb-pagination"],
-  "foundationKeys": [
-    "color-text-primary",
-    "color-text-secondary",
-    "color-text-disabled",
-    "color-text-placeholder",
-    "color-text-action",
-    "color-border",
-    "color-border-hover",
-    "color-border-focus",
-    "color-border-disabled",
-    "color-border-separator",
-    "color-fill-hover",
-    "color-fill-disabled",
-    "color-surface-container",
-    "color-icon-primary",
-    "color-icon-secondary",
-    "font-body-m",
-    "font-body-s",
-    "radius-sm",
-    "radius-lg",
-    "font-headline-s",
-    "color-fill-subtle-disabled"
-  ],
+  "foundationKeys": ["color-text-primary","color-text-secondary","color-text-disabled","color-text-placeholder","color-text-action","color-border","color-border-hover","color-border-focus","color-border-disabled","color-border-separator","color-fill-hover","color-fill-disabled","color-surface-container","color-icon-primary","color-icon-secondary","font-body-m","font-body-s","radius-sm","radius-lg","font-headline-s","color-fill-subtle-disabled"],
   "intro": "用于在可选集合与已选集合之间转移项目，支持手动确认与自动移动模式。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["当用户需要同时查看候选项和已选项并进行迁移时使用Transfer。少量选项的直接选择优先使用多选控件。"],
-      "bullets": ["manual允许先勾选再确认移动；auto在勾选时立即移动。","items支持树形结构；searchable与pagination分别控制搜索和分页。"]
-    },
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["modelValue保存目标侧叶子key数组；面板标题由titles设置。"],
-      "bullets": ["默认页大小为6；pagination仅在manual模式中生效。","expandedKeys适用于树形数据的初始展开路径。","item与empty插槽可自定义行内容及空列表。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["当用户需要同时查看候选项和已选项并进行迁移时使用Transfer。少量选项的直接选择优先使用多选控件。"],"bullets":["manual允许先勾选再确认移动；auto在勾选时立即移动。","items支持树形结构；searchable与pagination分别控制搜索和分页。"]},
+    {"id":"structure","title":"设计结构与排版","paragraphs":["modelValue保存目标侧叶子key数组；面板标题由titles设置。"],"bullets":["默认页大小为6；pagination仅在manual模式中生效。","expandedKeys适用于树形数据的初始展开路径。","item与empty插槽可自定义行内容及空列表。"]},
     {
       "id": "interaction",
       "title": "交互与键盘",
@@ -167,16 +124,14 @@
       "id": "responsibility",
       "title": "使用边界与职责",
       "paragraphs": ["消费方提供稳定key与显示label，并持有目标值及可选的受控勾选状态。"],
-      "bullets": [
-        "modelValue省略时用defaultValue初始化非受控目标值；checkedKeys可单独受控。",
-        "组件不负责查询远程数据或持久化选择结果。",
-        "WorkbenchTransferPanel是辅助面板API，通常直接使用主组件。"
-      ]
+      "bullets": ["modelValue省略时用defaultValue初始化非受控目标值；checkedKeys可单独受控。","组件不负责查询远程数据或持久化选择结果。","WorkbenchTransferPanel是辅助面板API，通常直接使用主组件。"]
     }
   ],
   "related": [{"label":"穿梭框规范","href":"#rules"},{"label":"单侧面板API","href":"#family"}]
 }
 ```
+
+未声明或为空：rules（不代表支持）
 
 ## 官方示例
 
@@ -187,13 +142,7 @@
   "id": "team-transfer",
   "title": "团队成员选择",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-transfer",
-    "scenarioId": "transfer",
-    "exampleId": "team-transfer",
-    "codeSha256": "sha256:6050b7cdcbf3e2016570fbf085ef49b14a02cd8564f0fd8d2c11b58f5bb535b8"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-transfer","scenarioId":"transfer","exampleId":"team-transfer","codeSha256":"sha256:6050b7cdcbf3e2016570fbf085ef49b14a02cd8564f0fd8d2c11b58f5bb535b8"},
   "description": "受控的已选key数组和候选项本地定义。",
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []

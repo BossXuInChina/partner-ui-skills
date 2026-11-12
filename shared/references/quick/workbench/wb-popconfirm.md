@@ -19,46 +19,23 @@
   "useWhen": ["触发器附近的简单确认，可用一段正文说明影响。"],
   "avoidWhen": ["复杂表单、长文本、高风险必须阅读的信息使用 Modal/Feedback Dialog。","未经验证的公司内部UI框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchPopconfirm"},
   "props": {
-    "placement": {
-      "type": "String",
-      "default": "top",
-      "enum": [
-        "top-start",
-        "top",
-        "top-end",
-        "right-start",
-        "right",
-        "right-end",
-        "bottom-start",
-        "bottom",
-        "bottom-end",
-        "left-start",
-        "left",
-        "left-end"
-      ]
-    },
+    "placement": {"type":"String","default":"top","enum":["top-start","top","top-end","right-start","right","right-end","bottom-start","bottom","bottom-end","left-start","left","left-end"]},
     "open": {"type":"Boolean","default":{"kind":"undefined"}},
     "disabled": {"type":"Boolean"},
     "type": {"type":"String","default":"info","enum":["info","warning","danger","critical","error"]},
@@ -74,12 +51,7 @@
     "beforeConfirm": {"type":"Function","default":{"kind":"undefined"}}
   },
   "events": ["update:open","confirm","cancel","confirm-error"],
-  "eventDetails": null,
   "slots": ["trigger"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "placement": "确认面板优先展示方向。",
     "open": "可选受控打开状态。",
@@ -102,14 +74,11 @@
     "cancel": {"payload":"关闭原因字符串，例如cancel、escape或tab。","timing":"用户取消、按Escape或通过Tab离开确认面板时发出。"},
     "confirm-error": {"payload":"确认守卫或确认流程错误对象。","timing":"beforeConfirm抛错或Promise拒绝时发出；返回false只阻止确认，不发此事件。"}
   },
-  "slotNotes": {
-    "trigger": {
-      "scope": "触发确认面板的原始控件；参数为open与aria对象，aria含aria-expanded、aria-controls、aria-haspopup。",
-      "description": "保留原有按钮/链接语义，确认组件不代替业务操作。"
-    }
-  }
+  "slotNotes": {"trigger":{"scope":"触发确认面板的原始控件；参数为open与aria对象，aria含aria-expanded、aria-controls、aria-haspopup。","description":"保留原有按钮/链接语义，确认组件不代替业务操作。"}}
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、exposed、family（不代表支持）
 
 ## 规则与适用条件
 
@@ -145,43 +114,13 @@
     }
   ],
   "dependencies": ["wb-button","wb-popover"],
-  "foundationKeys": [
-    "color-surface-overlay",
-    "color-text-primary",
-    "color-text-secondary",
-    "color-info-primary",
-    "color-warning",
-    "color-alert",
-    "color-error",
-    "color-text-inverse",
-    "font-headline-s",
-    "font-body-m",
-    "radius-md",
-    "shadow-lg",
-    "spacing-component-lg",
-    "spacing-component-sm"
-  ],
+  "foundationKeys": ["color-surface-overlay","color-text-primary","color-text-secondary","color-info-primary","color-warning","color-alert","color-error","color-text-inverse","font-headline-s","font-body-m","radius-md","shadow-lg","spacing-component-lg","spacing-component-sm"],
   "intro": "在触发元素附近确认一项轻量、局部且可立即判定的操作，用户确认后才由宿主执行业务动作。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["用于删除单条、移除成员等明确的局部决定；高影响、不可逆或需要解释的决策应使用Modal。"],"bullets":[]},
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["trigger插槽保留原始操作入口；标题、说明和确认/取消按钮构成决策面板。pending表示业务确认处理中。"],
-      "bullets": []
-    },
-    {
-      "id": "interaction",
-      "title": "交互与键盘",
-      "paragraphs": ["确认与取消通过原生按钮操作；Escape关闭。disabled禁用整组，confirmDisabled/cancelDisabled可独立限制操作。"],
-      "bullets": []
-    },
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchPopconfirm（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"structure","title":"设计结构与排版","paragraphs":["trigger插槽保留原始操作入口；标题、说明和确认/取消按钮构成决策面板。pending表示业务确认处理中。"],"bullets":[]},
+    {"id":"interaction","title":"交互与键盘","paragraphs":["确认与取消通过原生按钮操作；Escape关闭。disabled禁用整组，confirmDisabled/cancelDisabled可独立限制操作。"],"bullets":[]},
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchPopconfirm（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"气泡确认 Popconfirm组件规范","href":"#rules"}]
 }

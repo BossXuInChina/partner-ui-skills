@@ -16,66 +16,38 @@
   "kind": "component",
   "version": "1.1.0",
   "summary": "用于为受限内容区域提供覆盖式滚动指示与拖动控制。滚动内容仍由浏览器原生滚动机制处理。",
-  "useWhen": [
-    "小尺寸适用于空间受限、需要弱化视觉干扰或辅助性质的微型滚动场景，例如下拉选择框菜单、多行输入框、弹出气泡框内的滚动。",
-    "默认尺寸适用于全屏／主页面滚动、主体内容列表、表格的主体滚动区域、中大型弹窗、侧边抽屉等尺寸较大的独立层级，以及用户需要频繁拖拽或观察滚动位置的区域。"
-  ],
+  "useWhen": ["小尺寸适用于空间受限、需要弱化视觉干扰或辅助性质的微型滚动场景，例如下拉选择框菜单、多行输入框、弹出气泡框内的滚动。","默认尺寸适用于全屏／主页面滚动、主体内容列表、表格的主体滚动区域、中大型弹窗、侧边抽屉等尺寸较大的独立层级，以及用户需要频繁拖拽或观察滚动位置的区域。"],
   "avoidWhen": ["未经适配验证的内部框架生产实现"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchScrollbar"},
-  "props": {
-    "label": {"type":"String","required":true},
-    "describedby": {"type":"String"},
-    "axis": {"type":"String","default":"vertical"},
-    "size": {"type":"String","default":"default"},
-    "state": {"type":"String"}
-  },
-  "events": [],
-  "eventDetails": null,
+  "props": {"label":{"type":"String","required":true},"describedby":{"type":"String"},"axis":{"type":"String","default":"vertical"},"size":{"type":"String","default":"default"},"state":{"type":"String"}},
   "slots": ["default"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [
-    {"name":"viewport","declaration":"viewport: HTMLElement | null | undefined;"},
-    {"name":"measure","declaration":"measure(): void;"}
-  ],
-  "family": [],
-  "propNotes": {
-    "label": "必填的滚动区域可访问名称。",
-    "describedby": "关联说明元素的ID。",
-    "axis": "滚动方向：vertical或horizontal，默认vertical。",
-    "size": "轨道尺寸：small或default；large作为default兼容别名。",
-    "state": "Studio状态预览值，用于展示hover态。"
-  },
-  "eventNotes": {},
+  "exposed": [{"name":"viewport","declaration":"viewport: HTMLElement | null | undefined;"},{"name":"measure","declaration":"measure(): void;"}],
+  "propNotes": {"label":"必填的滚动区域可访问名称。","describedby":"关联说明元素的ID。","axis":"滚动方向：vertical或horizontal，默认vertical。","size":"轨道尺寸：small或default；large作为default兼容别名。","state":"Studio状态预览值，用于展示hover态。"},
   "slotNotes": {"default":{"scope":"无","description":"提供需要滚动的全部内容；内容尺寸由宿主和内容自然决定。"}}
 }
 ```
+
+未声明或为空：events、eventDetails、slotDetails、slotPatterns、family、eventNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -191,59 +163,16 @@
       "references": []
     }
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-border",
-    "color-border-hover",
-    "color-border-focus",
-    "color-border-disabled",
-    "color-text-primary",
-    "color-text-placeholder",
-    "color-text-secondary",
-    "color-text-disabled",
-    "color-icon-placeholder",
-    "color-icon-secondary",
-    "color-icon-primary",
-    "color-icon-active",
-    "color-icon-disabled",
-    "color-fill-hover",
-    "color-fill-subtle-default",
-    "color-fill-subtle-disabled",
-    "color-surface-card-default",
-    "color-info-primary-subtle",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "spacing-layout-container-inline",
-    "radius-sm",
-    "radius-lg",
-    "shadow-base",
-    "font-body-m",
-    "font-headline-m",
-    "color-error",
-    "font-body-s",
-    "color-scrollbar-thumb-fill-hover",
-    "radius-full"
-  ],
+  "foundationKeys": ["color-border","color-border-hover","color-border-focus","color-border-disabled","color-text-primary","color-text-placeholder","color-text-secondary","color-text-disabled","color-icon-placeholder","color-icon-secondary","color-icon-primary","color-icon-active","color-icon-disabled","color-fill-hover","color-fill-subtle-default","color-fill-subtle-disabled","color-surface-card-default","color-info-primary-subtle","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg","spacing-layout-container-inline","radius-sm","radius-lg","shadow-base","font-body-m","font-headline-m","color-error","font-body-s","color-scrollbar-thumb-fill-hover","radius-full"],
   "intro": "用于为受限内容区域提供覆盖式滚动指示与拖动控制。滚动内容仍由浏览器原生滚动机制处理。",
   "sections": [
-    {
-      "id": "container",
-      "title": "容器与适用范围",
-      "paragraphs": ["宿主负责约束滚动视口尺寸、内容和边缘留白；Scrollbar覆盖轨道不参与排版。内容未溢出时不显示轨道。"],
-      "bullets": ["default适合主内容区，small适合下拉菜单、文本框等辅助小区域。","水平与垂直方向使用同一轴向参数；避免交互内容贴近滚动轨道。"]
-    },
-    {
-      "id": "keyboard",
-      "title": "键盘与可访问性",
-      "paragraphs": ["滚动区域可Tab聚焦；方向键、PageUp/PageDown、Home/End可控制滚动。触屏和滚轮继续使用浏览器原生滚动。"],
-      "bullets": ["label是必需的区域名称；describedby可关联补充说明。"]
-    }
-  ],
-  "related": null
+    {"id":"container","title":"容器与适用范围","paragraphs":["宿主负责约束滚动视口尺寸、内容和边缘留白；Scrollbar覆盖轨道不参与排版。内容未溢出时不显示轨道。"],"bullets":["default适合主内容区，small适合下拉菜单、文本框等辅助小区域。","水平与垂直方向使用同一轴向参数；避免交互内容贴近滚动轨道。"]},
+    {"id":"keyboard","title":"键盘与可访问性","paragraphs":["滚动区域可Tab聚焦；方向键、PageUp/PageDown、Home/End可控制滚动。触屏和滚轮继续使用浏览器原生滚动。"],"bullets":["label是必需的区域名称；describedby可关联补充说明。"]}
+  ]
 }
 ```
+
+未声明或为空：dependencies、related（不代表支持）
 
 ## 官方示例
 

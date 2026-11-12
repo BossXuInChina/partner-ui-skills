@@ -19,46 +19,29 @@
   "useWhen": ["时间轴 Timeline相关交互与状态展示"],
   "avoidWhen": ["未经独立生产接入与设计验收直接用于生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchTimeline"},
-  "props": {
-    "items": {"type":"Array","default":{"kind":"function"}},
-    "nodeType": {"type":"String","default":"dot","enum":["dot","icon"]},
-    "label": {"type":"String","default":"事件时间轴"}
-  },
-  "events": [],
-  "eventDetails": null,
+  "props": {"items":{"type":"Array","default":{"kind":"function"}},"nodeType":{"type":"String","default":"dot","enum":["dot","icon"]},"label":{"type":"String","default":"事件时间轴"}},
   "slots": ["node","time","image","title","description"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {"items":"按展示顺序排列的事件数据。","nodeType":"dot使用圆点节点；icon使用事件图标节点。","label":"时间轴区域的可访问名称。"},
-  "eventNotes": {},
   "slotNotes": {
     "node": {"scope":"每项节点内容；参数为item与零基index。","description":"只替换节点呈现，事件顺序仍由items决定。"},
     "time": {"scope":"每项时间内容；参数为item与零基index。","description":"保留清晰可读的时间文本。"},
@@ -69,44 +52,25 @@
 }
 ```
 
+未声明或为空：events、eventDetails、slotDetails、slotPatterns、exposed、family、eventNotes（不代表支持）
+
 ## 规则与适用条件
 
 ```json
 {
-  "rules": [],
-  "dependencies": [],
-  "foundationKeys": [
-    "font-body-m",
-    "font-body-s",
-    "radius-full",
-    "color-text-primary",
-    "color-text-secondary",
-    "color-icon-tertiary",
-    "color-info-primary",
-    "color-error",
-    "color-success",
-    "color-border-separator"
-  ],
+  "foundationKeys": ["font-body-m","font-body-s","radius-full","color-text-primary","color-text-secondary","color-icon-tertiary","color-info-primary","color-error","color-success","color-border-separator"],
   "intro": "按先后顺序呈现多个相关事件及其时间、标题和说明，帮助阅读者理解过程与进展。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["当事件顺序本身有意义时使用；若只需列举独立项目，使用列表；若强调必须完成的线性步骤，使用Steps。"],"bullets":[]},
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["items提供时间、标题、描述及可选图像等数据；nodeType选择点或图标节点。分区插槽可覆盖节点、时间、图片、标题和描述内容。时间轴填满父容器可用宽度，正文只在空间不足时自然换行；182px仅为规范样张宽度，不作为业务宽度上限。"],
-      "bullets": []
-    },
+    {"id":"structure","title":"设计结构与排版","paragraphs":["items提供时间、标题、描述及可选图像等数据；nodeType选择点或图标节点。分区插槽可覆盖节点、时间、图片、标题和描述内容。时间轴填满父容器可用宽度，正文只在空间不足时自然换行；182px仅为规范样张宽度，不作为业务宽度上限。"],"bullets":[]},
     {"id":"interaction","title":"交互与键盘","paragraphs":["时间轴为信息展示结构；插槽内若放交互内容，调用方需保证其键盘顺序和名称。"],"bullets":[]},
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchTimeline（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchTimeline（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"时间轴 Timeline组件规范","href":"#rules"}]
 }
 ```
+
+未声明或为空：rules、dependencies（不代表支持）
 
 ## 官方示例
 

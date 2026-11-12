@@ -19,23 +19,17 @@
   "useWhen": ["文件上传 Upload相关交互与状态展示"],
   "avoidWhen": ["未经独立生产接入与设计验收直接用于生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -58,24 +52,7 @@
     "label": {"type":"String","default":"文件上传"},
     "previewState": {"type":"String","default":"default"}
   },
-  "events": [
-    "update:modelValue",
-    "change",
-    "select",
-    "progress",
-    "success",
-    "error",
-    "reject",
-    "remove",
-    "pause",
-    "resume",
-    "preview",
-    "download"
-  ],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
+  "events": ["update:modelValue","change","select","progress","success","error","reject","remove","pause","resume","preview","download"],
   "exposed": [
     {"name":"selectFiles","declaration":"selectFiles(source?: Iterable<File> | ArrayLike<File> | null): Promise<void>;"},
     {"name":"submit","declaration":"submit(): Promise<void[]> | undefined;"},
@@ -89,12 +66,7 @@
       "assetId": "wb-upload",
       "independentApproval": false,
       "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchUploadFileItem"},
-      "props": {
-        "listType": {"type":"String","default":"text"},
-        "background": {"type":"Boolean"},
-        "disabled": {"type":"Boolean"},
-        "previewState": {"type":"String","default":"default"}
-      },
+      "props": {"listType":{"type":"String","default":"text"},"background":{"type":"Boolean"},"disabled":{"type":"Boolean"},"previewState":{"type":"String","default":"default"}},
       "events": ["remove","retry","pause","resume","preview","download"],
       "slots": [],
       "slotPatterns": [],
@@ -149,40 +121,21 @@
     "remove": {"payload":"被移除的文件记录。","timing":"用户移除文件时发出。"},
     "pause": {"payload":"暂停的文件记录。","timing":"上传任务暂停时发出。"},
     "resume": {"payload":"继续上传的文件记录。","timing":"上传任务继续时发出。"}
-  },
-  "slotNotes": {}
+  }
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
-  "rules": [],
   "dependencies": ["wb-button"],
-  "foundationKeys": [
-    "color-text-primary",
-    "color-text-secondary",
-    "color-text-disabled",
-    "color-text-action",
-    "color-border",
-    "color-border-focus",
-    "color-fill-hover",
-    "color-surface-container",
-    "color-error",
-    "color-success",
-    "font-body-m",
-    "font-body-s",
-    "radius-sm"
-  ],
+  "foundationKeys": ["color-text-primary","color-text-secondary","color-text-disabled","color-text-action","color-border","color-border-focus","color-fill-hover","color-surface-container","color-error","color-success","font-body-m","font-body-s","radius-sm"],
   "intro": "用于选择并管理文件记录，支持点击或拖拽入口、文本/精简/卡片列表。上传传输由消费方提供或显式提交。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["根据页面空间选择click或drag模式，并用listType选择text、compact或card列表。"],
-      "bullets": ["需要图片缩略图网格时使用WorkbenchImageUpload。","文件扩展名图形由独立WorkbenchFileIcon资源组件提供。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["根据页面空间选择click或drag模式，并用listType选择text、compact或card列表。"],"bullets":["需要图片缩略图网格时使用WorkbenchImageUpload。","文件扩展名图形由独立WorkbenchFileIcon资源组件提供。"]},
     {
       "id": "structure",
       "title": "设计结构与排版",
@@ -199,20 +152,14 @@
       "id": "responsibility",
       "title": "使用边界与职责",
       "paragraphs": ["消费方负责服务端上传、鉴权、断点续传以及成功后的预览和下载处理。"],
-      "bullets": [
-        "暂停会中止当前请求，继续时重新调用customRequest并传入已传输量；真正断点续传由服务实现。",
-        "组件不擅自打开外部预览或下载地址。",
-        "WorkbenchUpload、WorkbenchUploadFileItem/List及WorkbenchFileIcon资格和公开入口各自独立，勿以Studio演示替代正式API。"
-      ]
+      "bullets": ["暂停会中止当前请求，继续时重新调用customRequest并传入已传输量；真正断点续传由服务实现。","组件不擅自打开外部预览或下载地址。","WorkbenchUpload、WorkbenchUploadFileItem/List及WorkbenchFileIcon资格和公开入口各自独立，勿以Studio演示替代正式API。"]
     }
   ],
-  "related": [
-    {"label":"文件上传批准规范","href":"#rules"},
-    {"label":"文件图标资源","href":"/preview/upload?view=icons"},
-    {"label":"文件行与列表API","href":"#family"}
-  ]
+  "related": [{"label":"文件上传批准规范","href":"#rules"},{"label":"文件图标资源","href":"/preview/upload?view=icons"},{"label":"文件行与列表API","href":"#family"}]
 }
 ```
+
+未声明或为空：rules（不代表支持）
 
 ## 官方示例
 
@@ -223,13 +170,7 @@
   "id": "manual-upload",
   "title": "手动提交文件",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-upload",
-    "scenarioId": "upload",
-    "exampleId": "manual-upload",
-    "codeSha256": "sha256:abaf64d4279494c751c6f0accfa8edc6952baf126cdea6e8ef0cff9236582f19"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-upload","scenarioId":"upload","exampleId":"manual-upload","codeSha256":"sha256:abaf64d4279494c751c6f0accfa8edc6952baf126cdea6e8ef0cff9236582f19"},
   "description": "选择与传输分开：例子保留ready记录，不依赖未定义服务或模拟成功。",
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []

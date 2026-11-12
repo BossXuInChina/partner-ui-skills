@@ -19,23 +19,17 @@
   "useWhen": ["Modal首版容器"],
   "avoidWhen": ["嵌套、拖拽、手势及未经验证的内部框架生产场景"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "supported",
-  "variantUnsupported": [],
   "caseSemantics": "Studio controls, not public component props"
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、variantUnsupported（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -54,12 +48,8 @@
     "showGrid": {"type":"Boolean","default":false}
   },
   "events": ["update:modelValue","close","action"],
-  "eventDetails": null,
   "slots": ["close-icon","default","footer"],
-  "slotDetails": null,
-  "slotPatterns": [],
   "exposed": [{"name":"requestClose","declaration":"requestClose(reason?: string): Promise<boolean>;"}],
-  "family": [],
   "propNotes": {
     "modelValue": "对话框是否打开；父级响应update:modelValue同步关闭状态。",
     "title": "对话框标题，必填。",
@@ -73,11 +63,7 @@
     "beforeClose": "同步或异步关闭守卫，返回false则维持打开。",
     "showGrid": "仅显示布局检查网格，不改变Modal尺寸或交互。"
   },
-  "eventNotes": {
-    "update:modelValue": {"payload":"新的打开状态；关闭请求为false。","timing":"关闭通过守卫并实际生效时发出。"},
-    "close": {"payload":"关闭原因。","timing":"关闭操作完成后发出。"},
-    "action": {"payload":"触发的Action描述。","timing":"点击底部操作时发出。"}
-  },
+  "eventNotes": {"update:modelValue":{"payload":"新的打开状态；关闭请求为false。","timing":"关闭通过守卫并实际生效时发出。"},"close":{"payload":"关闭原因。","timing":"关闭操作完成后发出。"},"action":{"payload":"触发的Action描述。","timing":"点击底部操作时发出。"}},
   "slotNotes": {
     "close-icon": {"scope":"自定义关闭按钮内容。","description":"保留按钮语义和可访问名称；插槽仅替换图形内容。"},
     "default": {"scope":"对话框主体；插槽参数提供readonly。","description":"编辑和只读内容都由调用方组织，内容区负责纵向滚动。"},
@@ -85,6 +71,8 @@
   }
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、family（不代表支持）
 
 ## 规则与适用条件
 
@@ -165,59 +153,13 @@
     }
   ],
   "dependencies": ["wb-button","wb-scrollbar"],
-  "foundationKeys": [
-    "color-surface-overlay",
-    "color-surface-page",
-    "color-scrim-modal",
-    "color-text-primary",
-    "color-text-secondary",
-    "color-icon-primary",
-    "color-icon-hover",
-    "color-border-focus",
-    "color-scrollbar-thumb-fill-hover",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "spacing-layout-container-block",
-    "spacing-layout-container-inline",
-    "spacing-layout-action-gap",
-    "spacing-dialog-padding-block-end-with-actions",
-    "spacing-screen-edge-expanded",
-    "radius-lg",
-    "radius-full",
-    "shadow-xl",
-    "font-body-m",
-    "font-body-s",
-    "font-headline-m",
-    "font-headline-s",
-    "icon-size-16",
-    "color-icon-active",
-    "layout-grid-columns-wide",
-    "layout-grid-gutter",
-    "layout-grid-max-width"
-  ],
+  "foundationKeys": ["color-surface-overlay","color-surface-page","color-scrim-modal","color-text-primary","color-text-secondary","color-icon-primary","color-icon-hover","color-border-focus","color-scrollbar-thumb-fill-hover","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg","spacing-layout-container-block","spacing-layout-container-inline","spacing-layout-action-gap","spacing-dialog-padding-block-end-with-actions","spacing-screen-edge-expanded","radius-lg","radius-full","shadow-xl","font-body-m","font-body-s","font-headline-m","font-headline-s","icon-size-16","color-icon-active","layout-grid-columns-wide","layout-grid-gutter","layout-grid-max-width"],
   "intro": "在当前页面上方集中处理需要明确确认的短流程；通过尺寸和插槽承载内容，打开时管理模态焦点与背景。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["用于需要用户完成或取消后才能继续的短任务、确认和只读信息；跨页面主流程或大量纵向内容使用Drawer或独立页面。"],"bullets":[]},
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["标题、内容、底部操作构成清晰的决策层级。size按固定版心栅格确定；内容区独立滚动，标题与操作保持可见。readonly用于信息展示，不用禁用表单模拟只读。"],
-      "bullets": []
-    },
-    {
-      "id": "interaction",
-      "title": "交互与键盘",
-      "paragraphs": ["打开后圈定焦点并锁定背景滚动；关闭后恢复触发元素。关闭按钮、Escape、遮罩以及closeOnClick Action遵循beforeClose。"],
-      "bullets": []
-    },
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchModal（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"structure","title":"设计结构与排版","paragraphs":["标题、内容、底部操作构成清晰的决策层级。size按固定版心栅格确定；内容区独立滚动，标题与操作保持可见。readonly用于信息展示，不用禁用表单模拟只读。"],"bullets":[]},
+    {"id":"interaction","title":"交互与键盘","paragraphs":["打开后圈定焦点并锁定背景滚动；关闭后恢复触发元素。关闭按钮、Escape、遮罩以及closeOnClick Action遵循beforeClose。"],"bullets":[]},
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchModal（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"对话框 Modal组件规范","href":"#rules"}]
 }

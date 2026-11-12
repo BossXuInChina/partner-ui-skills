@@ -19,28 +19,22 @@
   "useWhen": ["展示、选择、排序、筛选或展开伙伴业务管理数据"],
   "avoidWhen": ["移动端卡片转换、虚拟滚动、树形表格或需要内置编辑引擎的表格","未经验证的生产目标"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -74,41 +68,9 @@
     "columnWidths": {"type":"Object","default":{"kind":"undefined"}},
     "columnFilters": {"type":"Object","default":{"kind":"function"}}
   },
-  "events": [
-    "update:selectedRowKeys",
-    "selection-change",
-    "update:sort",
-    "sort-change",
-    "column-filter",
-    "update:columnFilters",
-    "column-filter-change",
-    "update:page",
-    "page-change",
-    "update:pageSize",
-    "page-size-change",
-    "update:expandedRowKeys",
-    "expand-change",
-    "row-action",
-    "retry",
-    "update:columnWidths",
-    "column-width-change"
-  ],
-  "eventDetails": null,
-  "slots": [
-    "toolbar-leading",
-    "toolbar-actions",
-    "error",
-    "empty",
-    "row-actions",
-    "expanded-content",
-    "expanded-actions",
-    "batch-actions"
-  ],
-  "slotDetails": null,
-  "slotPatterns": [
-    {"kind":"prefix","prefix":"header-","expression":"`header-${column.key}`"},
-    {"kind":"prefix","prefix":"cell-","expression":"`cell-${column.key}`"}
-  ],
+  "events": ["update:selectedRowKeys","selection-change","update:sort","sort-change","column-filter","update:columnFilters","column-filter-change","update:page","page-change","update:pageSize","page-size-change","update:expandedRowKeys","expand-change","row-action","retry","update:columnWidths","column-width-change"],
+  "slots": ["toolbar-leading","toolbar-actions","error","empty","row-actions","expanded-content","expanded-actions","batch-actions"],
+  "slotPatterns": [{"kind":"prefix","prefix":"header-","expression":"`header-${column.key}`"},{"kind":"prefix","prefix":"cell-","expression":"`cell-${column.key}`"}],
   "exposed": [{"name":"resetColumnWidths","declaration":"resetColumnWidths(key?: string): void;"}],
   "family": [
     {
@@ -127,18 +89,7 @@
         "showAdvancedFilter": {"type":"Boolean","default":true},
         "showViewSwitch": {"type":"Boolean","default":true}
       },
-      "events": [
-        "update:viewMode",
-        "view-change",
-        "update:advancedFilterExpanded",
-        "filter-confirm",
-        "filter-cancel",
-        "filter-remove",
-        "filter-reset",
-        "refresh",
-        "settings",
-        "fullscreen-change"
-      ],
+      "events": ["update:viewMode","view-change","update:advancedFilterExpanded","filter-confirm","filter-cancel","filter-remove","filter-reset","refresh","settings","fullscreen-change"],
       "slots": ["secondary-actions","primary-action","additional-actions","search","advanced-filter-form"],
       "slotPatterns": [],
       "exposed": []
@@ -180,10 +131,7 @@
     "sort-change": {"payload":"与update:sort相同的排序意图。","timing":"排序方向切换后发出；实际重排由调用方完成。"},
     "column-filter": {"payload":"对象包含列key、column和source。","timing":"用户激活filterable列的筛选入口时发出；调用方可接管筛选面板。"},
     "update:columnFilters": {"payload":"按列key索引筛选值数组的对象。","timing":"用户在标准筛选面板选择或重置选项后发出。"},
-    "column-filter-change": {
-      "payload": "对象包含key、column、values、完整columnFilters及source；source为option、reset-column或reset-all。",
-      "timing": "标准筛选面板的选择或重置操作后发出；不变换rows。"
-    },
+    "column-filter-change": {"payload":"对象包含key、column、values、完整columnFilters及source；source为option、reset-column或reset-all。","timing":"标准筛选面板的选择或重置操作后发出；不变换rows。"},
     "update:page": {"payload":"目标页码。","timing":"用户在分页器切换页码后发出。"},
     "page-change": {"payload":"目标页码。","timing":"切页意图发出时与update:page一同触发。"},
     "update:pageSize": {"payload":"目标每页数量。","timing":"用户选择新的每页数量后发出。"},
@@ -209,6 +157,8 @@
   }
 }
 ```
+
+未声明或为空：eventDetails、slotDetails（不代表支持）
 
 ## 来源补充结构
 
@@ -267,22 +217,10 @@
     "update:columnWidths": "Record<column.key,pixel number> overrides; reset removes override keys",
     "column-width-change": "{ key: string|null, width: number|null, columnWidths, source: pointer|keyboard|button|reset }"
   },
-  "controlledState": [
-    "Caller handles updates, sorts the full data and supplies a page slice.",
-    "Ordinary text cells and display slots stay on one line with overflow-only full-text Tooltip. Editable controls retain their own feedback and overlays; expanded details may wrap.",
-    "Caller resets page and selection when pageSize changes; Table emits pageSize but does not own reset policy.",
-    "Changing page or pageSize requests clearing nonempty selection; caller applies update:selectedRowKeys.",
-    "columnWidths supplied is controlled; drag previews then commits on release, cancellation discards; resetColumnWidths(key?) restores original column definitions. Omitted map stores local overrides, cleared only for removed keys."
-  ],
+  "controlledState": ["Caller handles updates, sorts the full data and supplies a page slice.","Ordinary text cells and display slots stay on one line with overflow-only full-text Tooltip. Editable controls retain their own feedback and overlays; expanded details may wrap.","Caller resets page and selection when pageSize changes; Table emits pageSize but does not own reset policy.","Changing page or pageSize requests clearing nonempty selection; caller applies update:selectedRowKeys.","columnWidths supplied is controlled; drag previews then commits on release, cancellation discards; resetColumnWidths(key?) restores original column definitions. Omitted map stores local overrides, cleared only for removed keys."],
   "dynamicSlots": [
-    {
-      "name": "header-${column.key}",
-      "props": {"column":"Column; only replaces title content, never header controls or semantics"}
-    },
-    {
-      "name": "cell-${column.key}",
-      "props": {"row":"row record","value":"string cellValue","column":"Column","rowIndex":"zero-based index"}
-    }
+    {"name":"header-${column.key}","props":{"column":"Column; only replaces title content, never header controls or semantics"}},
+    {"name":"cell-${column.key}","props":{"row":"row record","value":"string cellValue","column":"Column","rowIndex":"zero-based index"}}
   ]
 }
 ```
@@ -296,15 +234,7 @@
 ```json
 {
   "rules": [
-    {
-      "id": "wb-table-controlled-state",
-      "title": "业务状态由调用方控制",
-      "text": "选择、排序、筛选、分页与展开只发出目标状态和意图，Table不请求或持久化业务数据。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用Table"],
-      "references": []
-    },
+    {"id":"wb-table-controlled-state","title":"业务状态由调用方控制","text":"选择、排序、筛选、分页与展开只发出目标状态和意图，Table不请求或持久化业务数据。","strength":"must","status":"confirmed","when":["使用Table"],"references":[]},
     {
       "id": "wb-table-action-semantics",
       "title": "行操作保持语义边界",
@@ -314,15 +244,7 @@
       "when": ["提供行操作"],
       "references": []
     },
-    {
-      "id": "wb-table-toolbar-badge",
-      "title": "筛选计数复用Badge",
-      "text": "DataToolbar筛选计数复用17px数字Badge，并提供筛选条件语境的可访问名称。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["显示生效筛选数量"],
-      "references": []
-    },
+    {"id":"wb-table-toolbar-badge","title":"筛选计数复用Badge","text":"DataToolbar筛选计数复用17px数字Badge，并提供筛选条件语境的可访问名称。","strength":"must","status":"confirmed","when":["显示生效筛选数量"],"references":[]},
     {
       "id": "wb-table-overflow-adapter",
       "title": "固定列滚动适配属于Table",
@@ -333,120 +255,39 @@
       "references": []
     }
   ],
-  "dependencies": [
-    "wb-badge",
-    "wb-button",
-    "wb-button-radio-group",
-    "wb-checkbox",
-    "wb-radio",
-    "wb-dropdown",
-    "wb-link",
-    "wb-pagination",
-    "wb-scrollbar",
-    "wb-skeleton",
-    "wb-tag",
-    "wb-tooltip",
-    "wb-popover"
-  ],
-  "foundationKeys": [
-    "color-border-focus",
-    "color-border-separator",
-    "color-border-separator-subtle",
-    "color-fill-hover",
-    "color-fill-selected",
-    "color-icon-active",
-    "color-icon-disabled",
-    "color-icon-hover",
-    "color-icon-primary",
-    "color-icon-secondary",
-    "color-scrollbar-thumb-fill-hover",
-    "color-surface-card-tinted",
-    "color-surface-container",
-    "color-table-header-fill-default",
-    "color-table-header-sticky-fill-default",
-    "color-table-row-fill-alternating",
-    "color-text-primary",
-    "color-text-secondary",
-    "color-text-action",
-    "color-text-action-hover",
-    "color-text-action-active",
-    "font-body-m",
-    "font-headline-s",
-    "radius-full",
-    "radius-sm",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "spacing-component-xl",
-    "spacing-layout-container-block",
-    "spacing-layout-container-inline",
-    "spacing-layout-content-gap",
-    "color-brand"
-  ],
+  "dependencies": ["wb-badge","wb-button","wb-button-radio-group","wb-checkbox","wb-radio","wb-dropdown","wb-link","wb-pagination","wb-scrollbar","wb-skeleton","wb-tag","wb-tooltip","wb-popover"],
+  "foundationKeys": ["color-border-focus","color-border-separator","color-border-separator-subtle","color-fill-hover","color-fill-selected","color-icon-active","color-icon-disabled","color-icon-hover","color-icon-primary","color-icon-secondary","color-scrollbar-thumb-fill-hover","color-surface-card-tinted","color-surface-container","color-table-header-fill-default","color-table-header-sticky-fill-default","color-table-row-fill-alternating","color-text-primary","color-text-secondary","color-text-action","color-text-action-hover","color-text-action-active","font-body-m","font-headline-s","radius-full","radius-sm","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg","spacing-component-xl","spacing-layout-container-block","spacing-layout-container-inline","spacing-layout-content-gap","color-brand"],
   "intro": "用于伙伴业务管理数据的结构化查看与操作。WorkbenchTable展示调用方提供的行并发出受控意图；WorkbenchDataToolbar负责可复用的表格、列表和卡片操作区。",
   "sections": [
     {
       "id": "selection",
       "title": "选型",
       "paragraphs": ["当用户需要对多列业务数据进行比较、排序、选择、分页或展开查看时使用Table。需要卡片化阅读或移动端卡片转换时，Table本身不负责转换；由调用方选择对应展示方案。"],
-      "bullets": [
-        "Table使用原生table、thead、tbody和列标题语义；不要用普通Grid模拟表格结构。",
-        "WorkbenchDataToolbar是可独立复用于Table、列表和卡片视图的正式子能力。标题、精简和复杂三种结构分别承载标题操作、搜索筛选及视图/工具操作。",
-        "公开导出包括WorkbenchTable和WorkbenchDataToolbar；TableScrollArea是Table内部适配能力，不是独立Catalog block。"
-      ]
+      "bullets": ["Table使用原生table、thead、tbody和列标题语义；不要用普通Grid模拟表格结构。","WorkbenchDataToolbar是可独立复用于Table、列表和卡片视图的正式子能力。标题、精简和复杂三种结构分别承载标题操作、搜索筛选及视图/工具操作。","公开导出包括WorkbenchTable和WorkbenchDataToolbar；TableScrollArea是Table内部适配能力，不是独立Catalog block。"]
     },
     {
       "id": "structure",
       "title": "设计结构与排版",
       "paragraphs": ["表头和数据行统一40px高，单元格水平留白8px；多选列48px，操作列160px。表格本体不创建卡片圆角，需要卡片表面时由外层WorkbenchCard负责。"],
-      "bullets": [
-        "列使用稳定key和title，可用field指定取值；fixed用于显式固定左右列，primary标记主信息列，fluid指定吸收剩余空间。width、minWidth、maxWidth按列独立配置；普通数据默认单行截断并在真实溢出时显示全文Tooltip，ellipsis保留兼容。",
-        "列按左固定、普通、右固定稳定分组；选择列、操作列和业务列按其规则分配宽度。窄容器保留横向滚动；固定区只在隐藏内容时显示连续阴影。",
-        "列标题的排序、筛选与调宽操作使用14px图标，并保留24px交互热区；图标及来源沿用已登记资产，不改绘制属性。",
-        "WorkbenchDataToolbar的title、compact、complex分别组织标题操作、主要操作/搜索/高级筛选，以及视图切换和工具按钮。高级筛选由调用方插槽提供字段；应用条件、标签及徽标由调用方维护。",
-        "表格底栏与表格保持12px间隔，默认32px高；底栏选择摘要与分页器各自保留对齐关系。筛选字段和已生效条件在工具栏中独占完整行。",
-        "表头、单元格分隔、固定列、行操作、展开详情、滚动条和列宽的完整数值规则仍以Catalog批准规范为准；此处不重新定义几何参数。"
-      ]
+      "bullets": ["列使用稳定key和title，可用field指定取值；fixed用于显式固定左右列，primary标记主信息列，fluid指定吸收剩余空间。width、minWidth、maxWidth按列独立配置；普通数据默认单行截断并在真实溢出时显示全文Tooltip，ellipsis保留兼容。","列按左固定、普通、右固定稳定分组；选择列、操作列和业务列按其规则分配宽度。窄容器保留横向滚动；固定区只在隐藏内容时显示连续阴影。","列标题的排序、筛选与调宽操作使用14px图标，并保留24px交互热区；图标及来源沿用已登记资产，不改绘制属性。","WorkbenchDataToolbar的title、compact、complex分别组织标题操作、主要操作/搜索/高级筛选，以及视图切换和工具按钮。高级筛选由调用方插槽提供字段；应用条件、标签及徽标由调用方维护。","表格底栏与表格保持12px间隔，默认32px高；底栏选择摘要与分页器各自保留对齐关系。筛选字段和已生效条件在工具栏中独占完整行。","表头、单元格分隔、固定列、行操作、展开详情、滚动条和列宽的完整数值规则仍以Catalog批准规范为准；此处不重新定义几何参数。"]
     },
     {
       "id": "grouped-table",
       "title": "分组表格的区域与分隔",
       "paragraphs": ["如身份差距表，左侧是跨行维度列；上层为列组表头，下层为组内叶子列表头，下面的对应数据组成表体分组。"],
-      "bullets": [
-        "相邻叶子列设置相同的group.key和group.title形成列组；未分组列可形成跨行维度列。",
-        "列组边界线贯穿表头和表体；叶子列之间使用组内短分隔线，不与列组边界叠加。",
-        "banded只控制数据列的浅色底纹，不改变列组身份或分隔线。窄容器保留表格内部横向滚动。"
-      ]
+      "bullets": ["相邻叶子列设置相同的group.key和group.title形成列组；未分组列可形成跨行维度列。","列组边界线贯穿表头和表体；叶子列之间使用组内短分隔线，不与列组边界叠加。","banded只控制数据列的浅色底纹，不改变列组身份或分隔线。窄容器保留表格内部横向滚动。"]
     },
     {
       "id": "interaction",
       "title": "交互与键盘",
       "paragraphs": ["Table只展示rows并发出用户操作意图。排序、筛选、分页、业务选择、展开状态及列宽持久化由调用方响应事件并回传受控值。"],
-      "bullets": [
-        "sortable列按升序、降序、默认三态切换；filterable列通过标准面板或调用方的面板接入筛选。标准筛选更新columnFilters，不直接改变rows。",
-        "selectedRowKeys表示当前页选择；全选跳过不可选行。受控页码或每页数量实际改变时，Table会发出清空选择的受控更新。",
-        "total有效时显示分页。Table不请求数据、不排序数据、不保存跨页选择；调用方根据sort、筛选和分页状态计算并传入当前rows。",
-        "初次加载在表头下显示五行骨架；刷新加载时保留已有行并暴露忙碌状态。错误状态保留工具栏并通过retry请求调用方重试。",
-        "空数据通过emptyKind区分初始暂无数据和筛选无结果；可用empty和error插槽替换状态内容，业务状态仍由调用方管理。",
-        "可展开详情通过expandedRowKeys受控；expand-change给出row、rowKey和展开状态。详情不计入条数、选择和斑马纹；展开项处理遵循调用方及已批准规则。",
-        "行操作最多两个文字操作直接显示，其余进入更多菜单；复杂操作可用row-actions插槽。图标操作示例规则为四个以内直出，更多时显示前三个和更多入口。",
-        "开启resizable后可以通过拖动或键盘调整列宽；方向键以10px移动，Shift加方向键以1px移动，Home到下限，End到有限上限。Escape或取消操作不提交临时宽度。",
-        "排序、筛选、列宽和展开控件支持键盘；筛选Escape关闭并恢复触发按钮焦点。详细事件参数由共享API表展示。"
-      ]
+      "bullets": ["sortable列按升序、降序、默认三态切换；filterable列通过标准面板或调用方的面板接入筛选。标准筛选更新columnFilters，不直接改变rows。","selectedRowKeys表示当前页选择；全选跳过不可选行。受控页码或每页数量实际改变时，Table会发出清空选择的受控更新。","total有效时显示分页。Table不请求数据、不排序数据、不保存跨页选择；调用方根据sort、筛选和分页状态计算并传入当前rows。","初次加载在表头下显示五行骨架；刷新加载时保留已有行并暴露忙碌状态。错误状态保留工具栏并通过retry请求调用方重试。","空数据通过emptyKind区分初始暂无数据和筛选无结果；可用empty和error插槽替换状态内容，业务状态仍由调用方管理。","可展开详情通过expandedRowKeys受控；expand-change给出row、rowKey和展开状态。详情不计入条数、选择和斑马纹；展开项处理遵循调用方及已批准规则。","行操作最多两个文字操作直接显示，其余进入更多菜单；复杂操作可用row-actions插槽。图标操作示例规则为四个以内直出，更多时显示前三个和更多入口。","开启resizable后可以通过拖动或键盘调整列宽；方向键以10px移动，Shift加方向键以1px移动，Home到下限，End到有限上限。Escape或取消操作不提交临时宽度。","排序、筛选、列宽和展开控件支持键盘；筛选Escape关闭并恢复触发按钮焦点。详细事件参数由共享API表展示。"]
     },
     {
       "id": "responsibility",
       "title": "使用边界与职责",
       "paragraphs": ["调用方持有rows、排序、筛选、分页、选择及展开等业务状态。Table不负责网络请求、数据变换、跨页选择或持久化。"],
-      "bullets": [
-        "列筛选可以使用filterOptions和columnFilters的标准受控面板；没有选项时，Table发出column-filter意图，由调用方呈现筛选UI。",
-        "高级筛选应用后如何重置页码、选择或展开项属于业务策略；Studio组合示例的处理不扩展为Table内建数据逻辑。",
-        "单元格插槽中使用Input、Select、DatePicker、TimePicker时，其值与校验仍归调用方；Table不提供内置单元格编辑引擎。",
-        "不包含多列排序、跨页选择、列显隐、虚拟滚动、内部纵向滚动、树形表格或移动端卡片转换。",
-        "WorkbenchDataToolbar负责展示筛选条件和发出确认、取消、重置、视图切换、刷新、设置及全屏意图；业务筛选、加载和全屏逻辑由调用方实现。",
-        "当前交付资格沿用prototype-only；历史审批不等于本轮实现的人工视觉验收。完整设计规则与边界见Catalog原规范。"
-      ]
+      "bullets": ["列筛选可以使用filterOptions和columnFilters的标准受控面板；没有选项时，Table发出column-filter意图，由调用方呈现筛选UI。","高级筛选应用后如何重置页码、选择或展开项属于业务策略；Studio组合示例的处理不扩展为Table内建数据逻辑。","单元格插槽中使用Input、Select、DatePicker、TimePicker时，其值与校验仍归调用方；Table不提供内置单元格编辑引擎。","不包含多列排序、跨页选择、列显隐、虚拟滚动、内部纵向滚动、树形表格或移动端卡片转换。","WorkbenchDataToolbar负责展示筛选条件和发出确认、取消、重置、视图切换、刷新、设置及全屏意图；业务筛选、加载和全屏逻辑由调用方实现。","当前交付资格沿用prototype-only；历史审批不等于本轮实现的人工视觉验收。完整设计规则与边界见Catalog原规范。"]
     }
   ],
   "related": [{"label":"完整已批准Table规范","href":"#rules"},{"label":"WorkbenchDataToolbar辅助组件API","href":"#family"}]

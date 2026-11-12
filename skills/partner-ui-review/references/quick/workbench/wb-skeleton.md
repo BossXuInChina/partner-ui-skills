@@ -19,28 +19,22 @@
   "useWhen": ["加载前已知内容结构，以稳定骨架占位减少跳动。"],
   "avoidWhen": ["未知进度用 Loading；静态布局说明不要被播报为正在加载。","未经验证的公司内部UI框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -48,71 +42,35 @@
   "props": {
     "variant": {"type":"String","default":"title-text","enum":["title-text","text","media-text","item-text","hero-text"]},
     "showTitle": {"type":"Boolean","default":true},
-    "lines": {
-      "type": "Number",
-      "default": 3,
-      "validator": {"kind":"unknown","expression":"value => Number.isInteger(value) && value >= 1 && value <= 5"}
-    },
+    "lines": {"type":"Number","default":3,"validator":{"kind":"unknown","expression":"value => Number.isInteger(value) && value >= 1 && value <= 5"}},
     "animated": {"type":"Boolean","default":true},
     "label": {"type":"String","default":""}
   },
-  "events": [],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
   "family": [
     {
       "assetId": "wb-skeleton",
       "independentApproval": false,
       "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchSkeletonBlock"},
-      "props": {
-        "radius": {"type":"String","default":"sm","enum":["sm","lg"]},
-        "animated": {"type":"Boolean","default":true},
-        "label": {"type":"String","default":""}
-      },
+      "props": {"radius":{"type":"String","default":"sm","enum":["sm","lg"]},"animated":{"type":"Boolean","default":true},"label":{"type":"String","default":""}},
       "events": [],
       "slots": [],
       "slotPatterns": [],
       "exposed": []
     }
   ],
-  "propNotes": {
-    "variant": "预设内容结构：title-text、text、media-text、item-text或hero-text。",
-    "showTitle": "是否显示标题占位。",
-    "lines": "正文占位行数，整数1至5。",
-    "animated": "是否启用流光动画；尊重减少动态效果偏好。",
-    "label": "加载区域的可访问文本。"
-  },
-  "eventNotes": {},
-  "slotNotes": {}
+  "propNotes": {"variant":"预设内容结构：title-text、text、media-text、item-text或hero-text。","showTitle":"是否显示标题占位。","lines":"正文占位行数，整数1至5。","animated":"是否启用流光动画；尊重减少动态效果偏好。","label":"加载区域的可访问文本。"}
 }
 ```
+
+未声明或为空：events、eventDetails、slots、slotDetails、slotPatterns、exposed、eventNotes、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
   "rules": [
-    {
-      "id": "wb-skeleton-rule-1",
-      "title": "用途与边界",
-      "text": "加载前已知内容结构，以稳定骨架占位减少跳动。 未知进度用 Loading；静态布局说明不要被播报为正在加载。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用骨架屏 Skeleton"],
-      "references": []
-    },
-    {
-      "id": "wb-skeleton-rule-2",
-      "title": "交互与状态",
-      "text": "整体只播报一次；内部块不重复播报；每个变体复用同一块实现。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用骨架屏 Skeleton"],
-      "references": []
-    },
+    {"id":"wb-skeleton-rule-1","title":"用途与边界","text":"加载前已知内容结构，以稳定骨架占位减少跳动。 未知进度用 Loading；静态布局说明不要被播报为正在加载。","strength":"must","status":"confirmed","when":["使用骨架屏 Skeleton"],"references":[]},
+    {"id":"wb-skeleton-rule-2","title":"交互与状态","text":"整体只播报一次；内部块不重复播报；每个变体复用同一块实现。","strength":"must","status":"confirmed","when":["使用骨架屏 Skeleton"],"references":[]},
     {
       "id": "wb-skeleton-rule-3",
       "title": "公开API",
@@ -123,44 +81,19 @@
       "references": []
     }
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-fill-default",
-    "color-fill-subtle-default",
-    "color-surface-page",
-    "color-surface-card-default",
-    "color-text-primary",
-    "color-text-secondary",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "spacing-component-xl",
-    "radius-sm",
-    "radius-lg",
-    "font-body-m",
-    "font-headline-s",
-    "font-headline-xl"
-  ],
+  "foundationKeys": ["color-fill-default","color-fill-subtle-default","color-surface-page","color-surface-card-default","color-text-primary","color-text-secondary","spacing-component-sm","spacing-component-md","spacing-component-lg","spacing-component-xl","radius-sm","radius-lg","font-body-m","font-headline-s","font-headline-xl"],
   "intro": "在数据加载期间预留真实内容的结构与空间，降低页面布局跳动；请求状态仍由宿主管理。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["内容结构已知且加载会持续一段时间时使用；仅短暂等待用Loading。无数据、失败和成功状态由父级分别切换。"],"bullets":[]},
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["variant选择标题、文本、媒体或条目结构；showTitle和lines控制骨架内容。WorkbenchSkeletonBlock可独立生成简单圆角占位块。"],
-      "bullets": []
-    },
+    {"id":"structure","title":"设计结构与排版","paragraphs":["variant选择标题、文本、媒体或条目结构；showTitle和lines控制骨架内容。WorkbenchSkeletonBlock可独立生成简单圆角占位块。"],"bullets":[]},
     {"id":"interaction","title":"交互与键盘","paragraphs":["无键盘操作。容器应标注aria-busy；骨架不替代真实内容状态，也不承载交互。"],"bullets":[]},
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchSkeleton（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchSkeleton（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"骨架屏 Skeleton组件规范","href":"#rules"}]
 }
 ```
+
+未声明或为空：dependencies（不代表支持）
 
 ## 官方示例
 

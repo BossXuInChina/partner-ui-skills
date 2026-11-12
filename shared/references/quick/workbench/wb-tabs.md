@@ -19,28 +19,22 @@
   "useWhen": ["同一上下文内平级内容切换"],
   "avoidWhen": ["站点路由导航、异步加载时直接自动激活","未经验证的内部 UI 框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -55,12 +49,7 @@
     "addable": {"type":"Boolean","default":false}
   },
   "events": ["update:modelValue","change","add","remove"],
-  "eventDetails": null,
   "slots": ["tab","panel"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "modelValue": "当前唯一选中值，必填。",
     "items": "必填页签数组；value唯一、label提供可访问名称，可选disabled与closable。",
@@ -75,27 +64,18 @@
     "add": {"payload":"无。","timing":"激活新增入口后发出；调用方创建新item并更新items。"},
     "remove": {"payload":"请求移除的item对象。","timing":"启用且closable的basic页签被关闭时发出；组件保留数据所有权给调用方。"}
   },
-  "slotNotes": {
-    "tab": {"scope":"{ item, selected }","description":"自定义页签标签；保留可访问标签与选中状态。"},
-    "panel": {"scope":"{ item }","description":"渲染当前选中项的内容面板；内容数据和草稿由调用方维护。"}
-  }
+  "slotNotes": {"tab":{"scope":"{ item, selected }","description":"自定义页签标签；保留可访问标签与选中状态。"},"panel":{"scope":"{ item }","description":"渲染当前选中项的内容面板；内容数据和草稿由调用方维护。"}}
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、exposed、family（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
   "rules": [
-    {
-      "id": "wb-tabs-rule-1",
-      "title": "选型边界",
-      "text": "同一上下文内平级内容切换；不适用于站点路由导航、异步加载时直接自动激活",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["同一上下文内平级内容切换"],
-      "references": []
-    },
+    {"id":"wb-tabs-rule-1","title":"选型边界","text":"同一上下文内平级内容切换；不适用于站点路由导航、异步加载时直接自动激活","strength":"must","status":"confirmed","when":["同一上下文内平级内容切换"],"references":[]},
     {
       "id": "wb-tabs-rule-2",
       "title": "交互与调用合同",
@@ -115,27 +95,7 @@
       "references": []
     }
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-border-focus",
-    "color-border-separator",
-    "color-brand",
-    "color-fill-hover",
-    "color-surface-card-default",
-    "color-surface-overlay",
-    "color-surface-page",
-    "color-text-disabled",
-    "color-text-primary",
-    "color-text-secondary",
-    "font-body-l",
-    "font-body-m",
-    "radius-full",
-    "radius-sm",
-    "shadow-sm",
-    "spacing-component-lg",
-    "spacing-component-sm",
-    "spacing-component-xs"
-  ],
+  "foundationKeys": ["color-border-focus","color-border-separator","color-brand","color-fill-hover","color-surface-card-default","color-surface-overlay","color-surface-page","color-text-disabled","color-text-primary","color-text-secondary","font-body-l","font-body-m","radius-full","radius-sm","shadow-sm","spacing-component-lg","spacing-component-sm","spacing-component-xs"],
   "intro": "用于切换相互关联的平级内容面板。需要互斥设置值但不切换内容面板时使用ButtonRadioGroup。",
   "sections": [
     {
@@ -150,10 +110,11 @@
       "paragraphs": ["items的value必须唯一，label为可访问名称；disabled项不可选择。方向键、Home和End按自动激活模型切换，并跳过禁用项。"],
       "bullets": ["panel插槽只呈现当前项内容；面板草稿由父级托管。","closable仅适用于basic；组件发出remove请求，不会直接修改items。addable显示新增入口，调用方创建并更新项目。"]
     }
-  ],
-  "related": null
+  ]
 }
 ```
+
+未声明或为空：dependencies、related（不代表支持）
 
 ## 官方示例
 
@@ -164,13 +125,7 @@
   "id": "application-sections",
   "title": "申请详情页签",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-tabs",
-    "scenarioId": "tabs",
-    "exampleId": "application-sections",
-    "codeSha256": "sha256:4acf11bbf504e75619c5360c6bb59dd861a5f50460b7b6cd7d8dd53fbb368785"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-tabs","scenarioId":"tabs","exampleId":"application-sections","codeSha256":"sha256:4acf11bbf504e75619c5360c6bb59dd861a5f50460b7b6cd7d8dd53fbb368785"},
   "description": "面板根据当前页签值显示相应平级信息；切换后的业务数据由父级决定。",
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []

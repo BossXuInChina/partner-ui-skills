@@ -19,28 +19,22 @@
   "useWhen": ["管理应用多层级与频繁切换导航","可收起侧栏及三级四级面板"],
   "avoidWhen": ["移动端正式导航","超过四级或跨刷新持久化需求","未经验证的Vue2或内部框架生产调用"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -63,15 +57,7 @@
     "collapsible": {"type":"Boolean","default":true}
   },
   "events": ["update:collapsed","update:activeItem","update:expandedItems","update:panelItemId","select"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [
-    {"name":"toggle","declaration":"toggle(): void;"},
-    {"name":"closePanel","declaration":"closePanel(restoreFocus?: boolean): void;"}
-  ],
-  "family": [],
+  "exposed": [{"name":"toggle","declaration":"toggle(): void;"},{"name":"closePanel","declaration":"closePanel(restoreFocus?: boolean): void;"}],
   "propNotes": {
     "items": "层级导航数据；每项使用id、label及可选children。",
     "activeItem": "受控当前选中项标识。",
@@ -95,10 +81,11 @@
     "update:expandedItems": {"payload":"新的展开项标识数组。","timing":"用户展开或收起层级时发出。"},
     "update:panelItemId": {"payload":"将要打开的二级菜单标识；请求关闭时为空字符串。","timing":"受控面板触发项被切换或请求关闭时发出。"},
     "select": {"payload":"被选中导航项。","timing":"用户激活导航项时发出。"}
-  },
-  "slotNotes": {}
+  }
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、family、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -170,57 +157,18 @@
     }
   ],
   "dependencies": ["wb-button","wb-search"],
-  "foundationKeys": [
-    "color-brand",
-    "color-fill-hover",
-    "color-fill-selected",
-    "color-surface-container",
-    "color-text-primary",
-    "color-text-secondary",
-    "color-icon-primary",
-    "color-icon-hover",
-    "color-icon-active",
-    "color-border-focus",
-    "color-border-separator",
-    "font-body-m",
-    "font-body-s",
-    "radius-xs",
-    "radius-sm",
-    "radius-md",
-    "radius-full",
-    "shadow-r-sm",
-    "shadow-base",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg"
-  ],
+  "foundationKeys": ["color-brand","color-fill-hover","color-fill-selected","color-surface-container","color-text-primary","color-text-secondary","color-icon-primary","color-icon-hover","color-icon-active","color-border-focus","color-border-separator","font-body-m","font-body-s","radius-xs","radius-sm","radius-md","radius-full","shadow-r-sm","shadow-base","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg"],
   "intro": "用于页面内的一级、二级导航及更深层级展开。当前选中页面由消费方控制；折叠与展开状态可受控。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["用于同一产品区域的层级页面导航；全站站点切换使用WorkbenchTopNav。"],
-      "bullets": ["panelMode选择flyout、popup或columns深层面板呈现。","需要四级搜索及收藏入口时使用columns；简单层级使用flyout。"]
-    },
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["items定义导航层级；width可指定侧栏宽度，默认按布局栅格计算。"],
-      "bullets": ["主菜单48px行高；整体折叠时宽48px。","深层面板显示模式、密度与图标由panelMode及相关属性配置。","基础侧栏无阴影与圆角，右侧使用分隔线。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["用于同一产品区域的层级页面导航；全站站点切换使用WorkbenchTopNav。"],"bullets":["panelMode选择flyout、popup或columns深层面板呈现。","需要四级搜索及收藏入口时使用columns；简单层级使用flyout。"]},
+    {"id":"structure","title":"设计结构与排版","paragraphs":["items定义导航层级；width可指定侧栏宽度，默认按布局栅格计算。"],"bullets":["主菜单48px行高；整体折叠时宽48px。","深层面板显示模式、密度与图标由panelMode及相关属性配置。","基础侧栏无阴影与圆角，右侧使用分隔线。"]},
     {
       "id": "interaction",
       "title": "交互与键盘",
       "paragraphs": ["collapsed、expandedItems、activeItem与panelItemId支持受控；展开父项不会清除已选叶子。"],
       "bullets": ["方向键和Home/End移动同级焦点；Right展开、Left返回、Escape关闭面板。","topToggle控制顶部折叠入口；collapsible控制底部折叠能力。"]
     },
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["侧边导航发出选中值，不执行宿主路由或权限判断。"],
-      "bullets": ["消费方维护导航数据、当前页面及展开路径。","activeItem应表示最终选中的叶子页面；只展开父项不会显示叶子选中标记。","当前交付为preview-vue3；不声明Vue2或生产适配资格。"]
-    }
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["侧边导航发出选中值，不执行宿主路由或权限判断。"],"bullets":["消费方维护导航数据、当前页面及展开路径。","activeItem应表示最终选中的叶子页面；只展开父项不会显示叶子选中标记。","当前交付为preview-vue3；不声明Vue2或生产适配资格。"]}
   ],
   "related": [{"label":"侧边导航规范","href":"#rules"}]
 }

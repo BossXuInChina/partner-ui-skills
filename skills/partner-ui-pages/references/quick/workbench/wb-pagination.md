@@ -19,28 +19,22 @@
   "useWhen": ["已知总量列表的分页与每页数量切换"],
   "avoidWhen": ["未知总量无限加载、服务端请求调度","未经验证的内部 UI 框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -51,23 +45,13 @@
     "modelValue": {"type":"Number","default":1},
     "pageSize": {"type":"Number","default":10},
     "pageSizeOptions": {"type":"Array","default":{"kind":"function"}},
-    "middlePageCount": {
-      "type": "Number",
-      "default": 3,
-      "validator": {"kind":"unknown","expression":"(value) => Number.isInteger(value) && value > 0"}
-    },
+    "middlePageCount": {"type":"Number","default":3,"validator":{"kind":"unknown","expression":"(value) => Number.isInteger(value) && value > 0"}},
     "simpleMode": {"type":"String","default":"click","enum":["click","select","input"]},
     "simpleEditable": {"type":"Boolean","default":false},
     "disabled": {"type":"Boolean","default":false},
     "ariaLabel": {"type":"String","default":"分页"}
   },
   "events": ["update:modelValue","update:pageSize","change","page-size-change"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "variant": "default、full或simple。",
     "total": "总记录数，必填。",
@@ -85,25 +69,18 @@
     "update:pageSize": {"payload":"新的Number每页数量。","timing":"用户切换每页数量后发出。"},
     "change": {"payload":"新的Number页码。","timing":"页码变化时发出，可用于触发数据请求。"},
     "page-size-change": {"payload":"新的Number每页数量。","timing":"每页数量变化时发出，可用于重置分页数据请求。"}
-  },
-  "slotNotes": {}
+  }
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、exposed、family、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
   "rules": [
-    {
-      "id": "wb-pagination-rule-1",
-      "title": "选型边界",
-      "text": "已知总量列表的分页与每页数量切换；不适用于未知总量无限加载、服务端请求调度",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["已知总量列表的分页与每页数量切换"],
-      "references": []
-    },
+    {"id":"wb-pagination-rule-1","title":"选型边界","text":"已知总量列表的分页与每页数量切换；不适用于未知总量无限加载、服务端请求调度","strength":"must","status":"confirmed","when":["已知总量列表的分页与每页数量切换"],"references":[]},
     {
       "id": "wb-pagination-rule-2",
       "title": "交互与调用合同",
@@ -133,48 +110,16 @@
     }
   ],
   "dependencies": ["wb-dropdown","wb-select"],
-  "foundationKeys": [
-    "color-border",
-    "color-border-disabled",
-    "color-border-focus",
-    "color-border-hover",
-    "color-fill-hover",
-    "color-fill-selected",
-    "color-fill-subtle-default",
-    "color-surface-card-default",
-    "color-surface-overlay",
-    "color-surface-page",
-    "color-text-disabled",
-    "color-text-primary",
-    "color-text-secondary",
-    "font-body-m",
-    "radius-sm",
-    "shadow-sm",
-    "spacing-component-lg",
-    "spacing-component-md",
-    "spacing-component-sm",
-    "spacing-component-xs",
-    "color-icon-active",
-    "color-icon-disabled"
-  ],
+  "foundationKeys": ["color-border","color-border-disabled","color-border-focus","color-border-hover","color-fill-hover","color-fill-selected","color-fill-subtle-default","color-surface-card-default","color-surface-overlay","color-surface-page","color-text-disabled","color-text-primary","color-text-secondary","font-body-m","radius-sm","shadow-sm","spacing-component-lg","spacing-component-md","spacing-component-sm","spacing-component-xs","color-icon-active","color-icon-disabled"],
   "intro": "用于在有明确总量的数据集中切换页码和每页数量。分页控件发出请求意图，数据加载由调用方管理。",
   "sections": [
-    {
-      "id": "model",
-      "title": "页码与数量",
-      "paragraphs": ["total为有限非负整数；v-model页码从1开始。pageSize为每页条数，pageSizeOptions仅保留正整数且去重。"],
-      "bullets": ["total为0时控件不可操作。","改变每页数量后回到第一页；越界页码会被约束在有效范围内。"]
-    },
-    {
-      "id": "variants",
-      "title": "样式与跳页",
-      "paragraphs": ["default显示页码和跳页；full在前面增加每页数量选择；simple只保留前后翻页与当前页控件。simpleMode选择点击、选择或输入。"],
-      "bullets": ["middlePageCount为正整数，默认3，同时决定连续页码数和省略号步进。"]
-    }
-  ],
-  "related": null
+    {"id":"model","title":"页码与数量","paragraphs":["total为有限非负整数；v-model页码从1开始。pageSize为每页条数，pageSizeOptions仅保留正整数且去重。"],"bullets":["total为0时控件不可操作。","改变每页数量后回到第一页；越界页码会被约束在有效范围内。"]},
+    {"id":"variants","title":"样式与跳页","paragraphs":["default显示页码和跳页；full在前面增加每页数量选择；simple只保留前后翻页与当前页控件。simpleMode选择点击、选择或输入。"],"bullets":["middlePageCount为正整数，默认3，同时决定连续页码数和省略号步进。"]}
+  ]
 }
 ```
+
+未声明或为空：related（不代表支持）
 
 ## 官方示例
 

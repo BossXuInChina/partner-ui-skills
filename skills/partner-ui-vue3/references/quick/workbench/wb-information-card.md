@@ -16,31 +16,24 @@
   "kind": "block",
   "version": "1.0.0",
   "summary": "需要以稳定数据接口复用信息卡片结构、布局和独立底部区域",
-  "useWhen": ["需要以稳定数据接口复用信息卡片结构、布局和独立底部区域"],
   "avoidWhen": ["跨卡片业务流程、持久化与编排应由宿主/Pattern管理","未经人工视觉签收或生产接入验证即宣称可生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -61,17 +54,11 @@
     "structure": {"type":"String","default":"icon","enum":["icon","text-action"]}
   },
   "events": ["action"],
-  "eventDetails": null,
-  "slots": ["header","icon","header-actions","footer","actions","content"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
-  "propNotes": null,
-  "eventNotes": null,
-  "slotNotes": null
+  "slots": ["header","icon","header-actions","footer","actions","content"]
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、exposed、family、propNotes、eventNotes、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -87,31 +74,14 @@
       "when": ["信息卡片组合"],
       "references": []
     },
-    {
-      "id": "wb-information-card-navigation",
-      "title": "原生导航与职责边界",
-      "text": "navigation保留原生href，内部仅被动内容，禁止嵌套交互；业务保存和跨卡片编排归宿主。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["整卡导航"],
-      "references": []
-    }
+    {"id":"wb-information-card-navigation","title":"原生导航与职责边界","text":"navigation保留原生href，内部仅被动内容，禁止嵌套交互；业务保存和跨卡片编排归宿主。","strength":"must","status":"confirmed","when":["整卡导航"],"references":[]}
   ],
   "dependencies": ["wb-card","wb-button"],
-  "foundationKeys": [
-    "color-text-primary",
-    "color-text-secondary",
-    "font-body-m",
-    "font-body-s",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg"
-  ],
-  "intro": null,
-  "sections": null,
-  "related": null
+  "foundationKeys": ["color-text-primary","color-text-secondary","font-body-m","font-body-s","spacing-component-sm","spacing-component-md","spacing-component-lg"]
 }
 ```
+
+未声明或为空：intro、sections、related（不代表支持）
 
 ## 官方示例
 
@@ -122,13 +92,7 @@
   "id": "information-block",
   "title": "信息 Block · 辅助内容与真实操作",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-card",
-    "scenarioId": "card",
-    "exampleId": "information-block",
-    "codeSha256": "sha256:e302bc849eb6dcdc8d36245c487a7357339cae6361d7493a40ddc0e52ad98a8c"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-card","scenarioId":"card","exampleId":"information-block","codeSha256":"sha256:e302bc849eb6dcdc8d36245c487a7357339cae6361d7493a40ddc0e52ad98a8c"},
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []
 }

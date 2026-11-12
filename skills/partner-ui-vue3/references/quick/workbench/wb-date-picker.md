@@ -19,28 +19,22 @@
   "useWhen": ["日期选择器 DatePicker相关交互与状态展示"],
   "avoidWhen": ["未经独立生产接入与设计验收直接用于生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -72,15 +66,7 @@
     "today": {"type":"Date","default":{"kind":"function"}}
   },
   "events": ["update:modelValue","change","clear","openChange"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [
-    {"name":"focus","declaration":"focus(): void;"},
-    {"name":"open","declaration":"open(): Promise<void>;"},
-    {"name":"close","declaration":"close(restoreFocus?: boolean): void;"}
-  ],
+  "exposed": [{"name":"focus","declaration":"focus(): void;"},{"name":"open","declaration":"open(): Promise<void>;"},{"name":"close","declaration":"close(restoreFocus?: boolean): void;"}],
   "family": [
     {
       "assetId": "wb-date-picker",
@@ -133,26 +119,20 @@
     "change": {"payload":"已提交的日期值。","timing":"有效日期值发生提交后发出。"},
     "clear": {"payload":"无。","timing":"用户清除当前选择后发出。"},
     "openChange": {"payload":"布尔展开状态。","timing":"日期面板打开或关闭时发出。"}
-  },
-  "slotNotes": {}
+  }
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
-  "rules": [],
-  "dependencies": [],
   "foundationKeys": ["spacing-component-sm"],
   "intro": "用于选择日期、月份、年份或日期时间；支持单值与日期范围。值通过受控modelValue提交。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["日期使用date；按月或年归档时使用month或year；需要日期和时分选择时使用datetime。"],
-      "bullets": ["单值场景将modelValue设为字符串；range=true时以两个端点组成数组。","日期筛选需要快捷范围时可配置shortcuts。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["日期使用date；按月或年归档时使用month或year；需要日期和时分选择时使用datetime。"],"bullets":["单值场景将modelValue设为字符串；range=true时以两个端点组成数组。","日期筛选需要快捷范围时可配置shortcuts。"]},
     {
       "id": "structure",
       "title": "设计结构与排版",
@@ -175,6 +155,8 @@
   "related": [{"label":"日期选择规范","href":"#rules"}]
 }
 ```
+
+未声明或为空：rules、dependencies（不代表支持）
 
 ## 官方示例
 

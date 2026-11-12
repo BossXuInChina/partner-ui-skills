@@ -19,28 +19,22 @@
   "useWhen": ["即时开启或关闭一个布尔配置"],
   "avoidWhen": ["提交后才生效的多项选择或不可立即撤销的操作"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -57,12 +51,6 @@
     "invalid": {"type":"Boolean"}
   },
   "events": ["update:modelValue"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
   "propNotes": {
     "modelValue": "当前布尔值。",
     "disabled": "阻止用户切换。",
@@ -74,10 +62,11 @@
     "ariaDescribedby": "关联补充说明的ID。",
     "invalid": "声明错误状态。"
   },
-  "eventNotes": {"update:modelValue":{"payload":"新的Boolean值。","timing":"用户通过点击或Space改变状态时发出。"}},
-  "slotNotes": {}
+  "eventNotes": {"update:modelValue":{"payload":"新的Boolean值。","timing":"用户通过点击或Space改变状态时发出。"}}
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、exposed、family、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -93,29 +82,10 @@
       "when": ["即时布尔配置"],
       "references": []
     },
-    {
-      "id": "wb-switch-rule-2",
-      "title": "禁用与加载",
-      "text": "disabled或loading均阻止切换；loading保留当前开关值、设置aria-busy并在滑块内复用Loading。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["异步切换"],
-      "references": []
-    }
+    {"id":"wb-switch-rule-2","title":"禁用与加载","text":"disabled或loading均阻止切换；loading保留当前开关值、设置aria-busy并在滑块内复用Loading。","strength":"must","status":"confirmed","when":["异步切换"],"references":[]}
   ],
   "dependencies": ["wb-loading"],
-  "foundationKeys": [
-    "color-border-focus",
-    "color-fill-disabled",
-    "color-icon-disabled",
-    "color-icon-inverse",
-    "color-icon-primary",
-    "color-none",
-    "color-text-disabled",
-    "color-text-primary",
-    "radius-full",
-    "spacing-component-sm"
-  ],
+  "foundationKeys": ["color-border-focus","color-fill-disabled","color-icon-disabled","color-icon-inverse","color-icon-primary","color-none","color-text-disabled","color-text-primary","radius-full","spacing-component-sm"],
   "intro": "用于即时切换一个布尔设置。切换后由调用方保存状态并决定后续业务影响。",
   "sections": [
     {
@@ -125,10 +95,11 @@
       "bullets": ["传入label提供可见名称；无可见名称时通过ariaLabel命名。","name与value使控件遵循原生checkbox表单语义。"]
     },
     {"id":"responsibility","title":"使用边界","paragraphs":["仅用于可以立即生效的布尔设置。需要提交多字段配置时使用表单控件，不用开关代替保存动作。"],"bullets":[]}
-  ],
-  "related": null
+  ]
 }
 ```
+
+未声明或为空：related（不代表支持）
 
 ## 官方示例
 

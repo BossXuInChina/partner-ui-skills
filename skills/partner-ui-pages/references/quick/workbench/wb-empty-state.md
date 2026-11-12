@@ -19,43 +19,24 @@
   "useWhen": ["空状态 Empty / EmptyState：局部信息、卡片或页面当前没有可展示内容","暂无数据、搜索无结果、网络异常、加载失败、无权限、内容已下架、内容已失效、敬请期待"],
   "avoidWhen": ["请求仍在加载时应使用Loading或Skeleton","已有有效内容时不以空状态覆盖现有数据","未经生产接入验证作为生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "unavailable",
-  "usageUnsupported": [
-    {
-      "code": "OFFICIAL_SFC_MISSING",
-      "reason": "No official usage SFC mentions this public asset. Scenario/story source was not substituted."
-    }
-  ],
+  "usageUnsupported": [{"code":"OFFICIAL_SFC_MISSING","reason":"No official usage SFC mentions this public asset. Scenario/story source was not substituted."}],
   "variantStatus": "unavailable",
-  "variantUnsupported": [
-    {
-      "code": "VARIANT_VIEW_MISSING",
-      "reason": "No current declared variants view/readingPilot is available; source declarations are retained."
-    }
-  ],
-  "caseSemantics": null
+  "variantUnsupported": [{"code":"VARIANT_VIEW_MISSING","reason":"No current declared variants view/readingPilot is available; source declarations are retained."}]
 }
 ```
 
+未声明或为空：unsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchEmptyState"},
   "props": {
-    "type": {
-      "type": "String",
-      "default": "no-data",
-      "enum": ["no-data","no-results","network-error","load-failed","forbidden","removed","expired","coming-soon"]
-    },
+    "type": {"type":"String","default":"no-data","enum":["no-data","no-results","network-error","load-failed","forbidden","removed","expired","coming-soon"]},
     "level": {"type":"String","default":"card","enum":["local","card","page"]},
     "size": {"type":"String","default":"auto","enum":["auto","small","default","large"]},
     "locale": {"type":"String","default":"zh-CN","enum":["zh-CN","en-US"]},
@@ -68,24 +49,9 @@
     "live": {"type":"String","default":"off","enum":["off","polite"]}
   },
   "events": ["retry","primary","secondary"],
-  "eventDetails": null,
   "slots": ["illustration","title","description","actions"],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
-  "propNotes": {
-    "type": "八类空状态语义。",
-    "level": "local / card / page。",
-    "size": "auto / small / default / large。",
-    "locale": "zh-CN / en-US。",
-    "busy": "禁用内建操作并暴露 aria-busy。"
-  },
-  "eventNotes": {
-    "retry": {"payload":"type","timing":"点击内联重试入口。"},
-    "primary": {"payload":"MouseEvent","timing":"点击主操作。"},
-    "secondary": {"payload":"MouseEvent","timing":"点击次操作。"}
-  },
+  "propNotes": {"type":"八类空状态语义。","level":"local / card / page。","size":"auto / small / default / large。","locale":"zh-CN / en-US。","busy":"禁用内建操作并暴露 aria-busy。"},
+  "eventNotes": {"retry":{"payload":"type","timing":"点击内联重试入口。"},"primary":{"payload":"MouseEvent","timing":"点击主操作。"},"secondary":{"payload":"MouseEvent","timing":"点击次操作。"}},
   "slotNotes": {
     "illustration": {"scope":"{ type, size }","description":"替换卡片或页面插画。"},
     "title": {"description":"替换标题。"},
@@ -94,6 +60,8 @@
   }
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns、exposed、family（不代表支持）
 
 ## 规则与适用条件
 
@@ -138,37 +106,18 @@
     }
   ],
   "dependencies": ["wb-button"],
-  "foundationKeys": [
-    "color-text-primary",
-    "color-text-secondary",
-    "color-text-action",
-    "color-text-disabled",
-    "color-border-focus",
-    "font-body-s",
-    "font-body-m",
-    "font-headline-xs",
-    "font-headline-s"
-  ],
+  "foundationKeys": ["color-text-primary","color-text-secondary","color-text-action","color-text-disabled","color-border-focus","font-body-s","font-body-m","font-headline-xs","font-headline-s"],
   "intro": "在局部、卡片或页面没有可展示内容时解释原因，并提供恢复操作。",
   "sections": [
     {"id":"levels","title":"层级与选型","paragraphs":["local 仅展示描述；card 与 page 展示插画、可选标题及操作。加载过程使用 Loading 或 Skeleton。"]},
-    {
-      "id": "semantics",
-      "title": "语义、尺寸与语言",
-      "paragraphs": ["支持暂无数据、搜索无结果、网络异常、加载失败、无权限、已下架、已失效、即将上线。插画使用已登记的独立原始尺寸；locale 切换中英文。"]
-    },
-    {
-      "id": "interaction",
-      "title": "操作与职责",
-      "paragraphs": ["网络异常和加载失败提供重试事件。busy 禁用内建操作；自定义 actions 插槽自行遵循 busy。请求、路由及恢复后的状态由调用方管理。"]
-    }
-  ],
-  "related": null
+    {"id":"semantics","title":"语义、尺寸与语言","paragraphs":["支持暂无数据、搜索无结果、网络异常、加载失败、无权限、已下架、已失效、即将上线。插画使用已登记的独立原始尺寸；locale 切换中英文。"]},
+    {"id":"interaction","title":"操作与职责","paragraphs":["网络异常和加载失败提供重试事件。busy 禁用内建操作；自定义 actions 插槽自行遵循 busy。请求、路由及恢复后的状态由调用方管理。"]}
+  ]
 }
 ```
 
+未声明或为空：related（不代表支持）
+
 ## 官方示例
 
-官方来源 SFC 状态：`unavailable`。仅展开首个可移植示例，不代表全部变体。
-
-包内未提供可展开的官方可移植示例；不以场景源码、Studio cases 或手写代码补齐。
+官方来源 SFC 状态：`unavailable`。包内未提供可展开的官方可移植示例；不以场景源码、Studio cases 或手写代码补齐。

@@ -19,28 +19,22 @@
   "useWhen": ["需要编排结构化字段、同步校验反馈、只读展示和提交操作的表单。"],
   "avoidWhen": ["异步远程校验、多步骤流程编排或由组件内部持有业务值。"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -58,10 +52,7 @@
     "showGrid": {"type":"Boolean"}
   },
   "events": ["submit","invalid"],
-  "eventDetails": null,
   "slots": ["default","actions"],
-  "slotDetails": null,
-  "slotPatterns": [],
   "exposed": [
     {"name":"validate","declaration":"validate(): Promise<FormValidation>;"},
     {"name":"resetValidation","declaration":"resetValidation(): void;"},
@@ -121,16 +112,12 @@
     "showGrid": "Studio布局检查辅助项，不是业务视觉功能。",
     "disabled": "禁用表单中的可编辑字段。"
   },
-  "eventNotes": {
-    "submit": {"payload":"{ model }，提交时的表单数据对象。","timing":"整组校验通过后发出。"},
-    "invalid": {"payload":"{ valid, errors }，包含验证状态及错误信息。","timing":"整组校验未通过时发出。"}
-  },
-  "slotNotes": {
-    "default": {"scope":"无插槽参数。","description":"放置WorkbenchFormItem或WorkbenchFormGroup字段内容。"},
-    "actions": {"scope":"无插槽参数。","description":"放置表单操作；组件不自动创建提交按钮。"}
-  }
+  "eventNotes": {"submit":{"payload":"{ model }，提交时的表单数据对象。","timing":"整组校验通过后发出。"},"invalid":{"payload":"{ valid, errors }，包含验证状态及错误信息。","timing":"整组校验未通过时发出。"}},
+  "slotNotes": {"default":{"scope":"无插槽参数。","description":"放置WorkbenchFormItem或WorkbenchFormGroup字段内容。"},"actions":{"scope":"无插槽参数。","description":"放置表单操作；组件不自动创建提交按钮。"}}
 }
 ```
+
+未声明或为空：eventDetails、slotDetails、slotPatterns（不代表支持）
 
 ## 规则与适用条件
 
@@ -193,28 +180,10 @@
     }
   ],
   "dependencies": ["wb-tooltip"],
-  "foundationKeys": [
-    "color-text-primary",
-    "color-text-secondary",
-    "color-error",
-    "color-border-focus",
-    "spacing-component-xs",
-    "spacing-component-sm",
-    "spacing-component-lg",
-    "spacing-layout-content-gap",
-    "font-body-s",
-    "font-body-m",
-    "font-headline-xs",
-    "font-headline-s"
-  ],
+  "foundationKeys": ["color-text-primary","color-text-secondary","color-error","color-border-focus","spacing-component-xs","spacing-component-sm","spacing-component-lg","spacing-layout-content-gap","font-body-s","font-body-m","font-headline-xs","font-headline-s"],
   "intro": "用于编排字段、同步校验与提交。业务model始终由调用方持有；WorkbenchFormItem统一负责字段标签、必填语义与反馈。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["需要整组字段编排、校验和提交时使用WorkbenchForm；独立字段可单独使用WorkbenchFormItem。"],
-      "bullets": ["WorkbenchFormGroup用于给一组字段添加可选标题和嵌套缩进。","mixed模式适用于同一表单中部分只读、部分可编辑的场景。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["需要整组字段编排、校验和提交时使用WorkbenchForm；独立字段可单独使用WorkbenchFormItem。"],"bullets":["WorkbenchFormGroup用于给一组字段添加可选标题和嵌套缩进。","mixed模式适用于同一表单中部分只读、部分可编辑的场景。"]},
     {
       "id": "structure",
       "title": "设计结构与排版",
@@ -225,21 +194,13 @@
       "id": "interaction",
       "title": "交互与键盘",
       "paragraphs": ["rules使用同步required或validator校验；触发时机可配置为blur、change或二者。"],
-      "bullets": [
-        "提交时校验整组字段，失败后聚焦第一个可编辑的无效字段。",
-        "验证只保留错误状态；外部validateStatus/message可控反馈并优先于本地规则。",
-        "ref可调用validate、resetValidation、focusFirstInvalid与submit。"
-      ]
+      "bullets": ["提交时校验整组字段，失败后聚焦第一个可编辑的无效字段。","验证只保留错误状态；外部validateStatus/message可控反馈并优先于本地规则。","ref可调用validate、resetValidation、focusFirstInvalid与submit。"]
     },
     {
       "id": "responsibility",
       "title": "使用边界与职责",
       "paragraphs": ["调用方负责更新model值；resetValidation只重置校验状态，不会重置业务数据。"],
-      "bullets": [
-        "异步校验、数组路径语法、多步骤表单及生产框架适配不在当前能力范围。",
-        "同步validator返回空字符串表示通过；字符串或false表示失败，Promise会明确报不支持异步校验。",
-        "WorkbenchFormItem独立使用时由调用方提供modelValue或可校验值；不加入整表提交注册。"
-      ]
+      "bullets": ["异步校验、数组路径语法、多步骤表单及生产框架适配不在当前能力范围。","同步validator返回空字符串表示通过；字符串或false表示失败，Promise会明确报不支持异步校验。","WorkbenchFormItem独立使用时由调用方提供modelValue或可校验值；不加入整表提交注册。"]
     }
   ],
   "related": [{"label":"字段职责与表单规范","href":"#rules"},{"label":"字段辅助组件API","href":"#family"}]
@@ -255,13 +216,7 @@
   "id": "validated-form",
   "title": "同步校验表单",
   "portability": "portable",
-  "source": {
-    "kind": "studio-official-usage",
-    "ownerAssetId": "wb-form",
-    "scenarioId": "form",
-    "exampleId": "validated-form",
-    "codeSha256": "sha256:908437d53f33e8c49d81f28be9f5e48ae8dac9f2d272de09e3d0fdd86c1dc6cd"
-  },
+  "source": {"kind":"studio-official-usage","ownerAssetId":"wb-form","scenarioId":"form","exampleId":"validated-form","codeSha256":"sha256:908437d53f33e8c49d81f28be9f5e48ae8dac9f2d272de09e3d0fdd86c1dc6cd"},
   "description": "受控数据与同步规则完整定义；提交行为由调用方处理。",
   "dataBoundary": "Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.",
   "unsupported": []

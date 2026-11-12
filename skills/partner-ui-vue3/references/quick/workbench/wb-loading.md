@@ -19,78 +19,45 @@
   "useWhen": ["已知操作正在处理中，内容结构未知或适合用进度标识时。"],
   "avoidWhen": ["已知内容结构优先 Skeleton；不要把 Loading 当作禁用逻辑。","未经验证的公司内部UI框架或生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchLoading"},
   "props": {
-    "size": {
-      "type": "Number",
-      "default": 20,
-      "validator": {"kind":"unknown","expression":"(value) => [64, 48, 24, 20, 14, 12].includes(value)"}
-    },
+    "size": {"type":"Number","default":20,"validator":{"kind":"unknown","expression":"(value) => [64, 48, 24, 20, 14, 12].includes(value)"}},
     "inverse": {"type":"Boolean","default":false},
     "label": {"type":"String","default":""},
     "ariaLabel": {"type":"String","default":""}
   },
-  "events": [],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
-  "exposed": [],
-  "family": [],
-  "propNotes": {"size":"认可尺寸为64、48、24、20、14、12像素；默认20。","inverse":"在深色背景上使用反色样式。","label":"加载指示旁显示的可见文本。","ariaLabel":"加载图形的可访问名称。"},
-  "eventNotes": {},
-  "slotNotes": {}
+  "propNotes": {"size":"认可尺寸为64、48、24、20、14、12像素；默认20。","inverse":"在深色背景上使用反色样式。","label":"加载指示旁显示的可见文本。","ariaLabel":"加载图形的可访问名称。"}
 }
 ```
+
+未声明或为空：events、eventDetails、slots、slotDetails、slotPatterns、exposed、family、eventNotes、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
 ```json
 {
   "rules": [
-    {
-      "id": "wb-loading-rule-1",
-      "title": "用途与边界",
-      "text": "已知操作正在处理中，内容结构未知或适合用进度标识时。 已知内容结构优先 Skeleton；不要把 Loading 当作禁用逻辑。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用加载 Loading"],
-      "references": []
-    },
-    {
-      "id": "wb-loading-rule-2",
-      "title": "交互与状态",
-      "text": "八个固定轨道圆点与旋转前景弧；减少动态效果偏好下停止动画，状态文案仍保留。",
-      "strength": "must",
-      "status": "confirmed",
-      "when": ["使用加载 Loading"],
-      "references": []
-    },
+    {"id":"wb-loading-rule-1","title":"用途与边界","text":"已知操作正在处理中，内容结构未知或适合用进度标识时。 已知内容结构优先 Skeleton；不要把 Loading 当作禁用逻辑。","strength":"must","status":"confirmed","when":["使用加载 Loading"],"references":[]},
+    {"id":"wb-loading-rule-2","title":"交互与状态","text":"八个固定轨道圆点与旋转前景弧；减少动态效果偏好下停止动画，状态文案仍保留。","strength":"must","status":"confirmed","when":["使用加载 Loading"],"references":[]},
     {
       "id": "wb-loading-rule-3",
       "title": "公开API",
@@ -101,43 +68,19 @@
       "references": []
     }
   ],
-  "dependencies": [],
-  "foundationKeys": [
-    "color-brand",
-    "color-icon-primary",
-    "color-text-primary",
-    "color-text-secondary",
-    "color-fill-subtle-default",
-    "color-fill-hover",
-    "color-border",
-    "color-surface-card-default",
-    "spacing-component-sm",
-    "spacing-component-md",
-    "spacing-component-lg",
-    "radius-sm",
-    "font-body-m",
-    "font-body-s"
-  ],
+  "foundationKeys": ["color-brand","color-icon-primary","color-text-primary","color-text-secondary","color-fill-subtle-default","color-fill-hover","color-border","color-surface-card-default","spacing-component-sm","spacing-component-md","spacing-component-lg","radius-sm","font-body-m","font-body-s"],
   "intro": "在请求或内容准备期间显示轻量加载指示；组件只表达进行中状态，不管理请求生命周期。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["用于短时等待和局部忙碌反馈；页面骨架结构尚未到达时使用Skeleton。调用方负责防重复提交、错误和超时。"],"bullets":[]},
-    {
-      "id": "structure",
-      "title": "设计结构与排版",
-      "paragraphs": ["size使用组件认可的离散像素尺寸；inverse用于深色背景上的反色显示。label提供可见说明，ariaLabel提供辅助技术名称。"],
-      "bullets": []
-    },
+    {"id":"structure","title":"设计结构与排版","paragraphs":["size使用组件认可的离散像素尺寸；inverse用于深色背景上的反色显示。label提供可见说明，ariaLabel提供辅助技术名称。"],"bullets":[]},
     {"id":"interaction","title":"交互与键盘","paragraphs":["无键盘操作。父级应在忙碌区域设置aria-busy并在请求完成后移除指示。"],"bullets":[]},
-    {
-      "id": "responsibility",
-      "title": "使用边界与职责",
-      "paragraphs": ["组件公开入口为 WorkbenchLoading（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],
-      "bullets": []
-    }
+    {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchLoading（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"加载 Loading组件规范","href":"#rules"}]
 }
 ```
+
+未声明或为空：dependencies（不代表支持）
 
 ## 官方示例
 

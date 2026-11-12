@@ -19,28 +19,22 @@
   "useWhen": ["级联选择器 Cascader相关交互与状态展示"],
   "avoidWhen": ["未经独立生产接入与设计验收直接用于生产交付"],
   "status": {"maturity":"prototype-validated","deliveryEligibility":"prototype-only"},
-  "source": {
-    "package": "@workbench/ui-vue3",
-    "version": "0.2.0-prototype.20261106.7",
-    "commit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
-  },
-  "unsupported": null,
   "usageStatus": "supported",
-  "usageUnsupported": [],
   "variantStatus": "unsupported",
   "variantUnsupported": [
     {
       "code": "CUSTOM_VARIANT_GALLERY",
       "reason": "A custom gallery or indirect scenario factory owns the rendered cases; manifest declarations are preserved, but are not claimed as an exhaustive portable gallery."
     }
-  ],
-  "caseSemantics": null
+  ]
 }
 ```
 
+未声明或为空：unsupported、usageUnsupported、caseSemantics（不代表支持）
+
 ## 公开 API
 
-以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。
+包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。
 
 ```json
 {
@@ -62,22 +56,13 @@
     "tagRemovable": {"type":"Boolean"}
   },
   "events": ["update:modelValue","update:open","change","expand","remove","clear"],
-  "eventDetails": null,
-  "slots": [],
-  "slotDetails": null,
-  "slotPatterns": [],
   "exposed": [{"name":"focus","declaration":"focus(): void;"},{"name":"close","declaration":"close(): void;"}],
   "family": [
     {
       "assetId": "wb-cascader",
       "independentApproval": false,
       "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchCascaderOverflow"},
-      "props": {
-        "id": {"type":"String","required":true},
-        "anchor": {"type":"Object","required":true},
-        "items": {"type":"Array","required":true},
-        "removable": {"type":"Boolean"}
-      },
+      "props": {"id":{"type":"String","required":true},"anchor":{"type":"Object","required":true},"items":{"type":"Array","required":true},"removable":{"type":"Boolean"}},
       "events": ["remove","dismiss","focusout"],
       "slots": [],
       "slotPatterns": [],
@@ -125,10 +110,11 @@
     "expand": {"payload":"被展开节点key及当前展开路径。","timing":"用户展开或切换级联层级时发出。"},
     "remove": {"payload":"移除的节点key数组。","timing":"用户移除一个或多个已选标签时发出。"},
     "clear": {"payload":"无。","timing":"用户清空全部选择后发出。"}
-  },
-  "slotNotes": {}
+  }
 }
 ```
+
+未声明或为空：eventDetails、slots、slotDetails、slotPatterns、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -146,48 +132,15 @@
     }
   ],
   "dependencies": ["wb-select","wb-checkbox","wb-tag","wb-tooltip"],
-  "foundationKeys": [
-    "color-text-primary",
-    "color-text-secondary",
-    "color-text-disabled",
-    "color-text-placeholder",
-    "color-border",
-    "color-border-hover",
-    "color-border-focus",
-    "color-border-disabled",
-    "color-fill-hover",
-    "color-fill-disabled",
-    "color-surface-overlay",
-    "color-icon-primary",
-    "color-icon-secondary",
-    "color-icon-disabled",
-    "font-body-m",
-    "font-body-s",
-    "radius-sm",
-    "radius-md",
-    "color-fill-subtle-default",
-    "color-fill-subtle-disabled",
-    "color-fill-selected",
-    "color-border-separator",
-    "shadow-base"
-  ],
+  "foundationKeys": ["color-text-primary","color-text-secondary","color-text-disabled","color-text-placeholder","color-border","color-border-hover","color-border-focus","color-border-disabled","color-fill-hover","color-fill-disabled","color-surface-overlay","color-icon-primary","color-icon-secondary","color-icon-disabled","font-body-m","font-body-s","radius-sm","radius-md","color-fill-subtle-default","color-fill-subtle-disabled","color-fill-selected","color-border-separator","shadow-base"],
   "intro": "用于从多层级选项中选择末级值；支持单选、末级多选和全层级多选。",
   "sections": [
-    {
-      "id": "selection",
-      "title": "选型",
-      "paragraphs": ["当选项本身具有父子层级且需要逐级定位时使用Cascader。平铺选项使用Select。"],
-      "bullets": ["single仅选择末级并存单值；leaf与all均启用多选，分别表达末级或全层级选择。","默认浮层适合常规页面；inlinePanel用于内容区内嵌面板。"]
-    },
+    {"id":"selection","title":"选型","paragraphs":["当选项本身具有父子层级且需要逐级定位时使用Cascader。平铺选项使用Select。"],"bullets":["single仅选择末级并存单值；leaf与all均启用多选，分别表达末级或全层级选择。","默认浮层适合常规页面；inlinePanel用于内容区内嵌面板。"]},
     {
       "id": "structure",
       "title": "设计结构与排版",
       "paragraphs": ["options以key、label及可选children构成树；叶子选择值按mode变化。"],
-      "bullets": [
-        "size支持small、medium、large；selected标签过多时折叠为+n，并可展开查看隐藏项。",
-        "open可受控；未提供时由defaultOpen初始化内部展开状态。",
-        "clearable控制整体清除，tagRemovable控制逐项移除。"
-      ]
+      "bullets": ["size支持small、medium、large；selected标签过多时折叠为+n，并可展开查看隐藏项。","open可受控；未提供时由defaultOpen初始化内部展开状态。","clearable控制整体清除，tagRemovable控制逐项移除。"]
     },
     {
       "id": "interaction",
@@ -199,11 +152,7 @@
       "id": "responsibility",
       "title": "使用边界与职责",
       "paragraphs": ["消费方维护options与受控modelValue，并根据change更新业务筛选或表单值。"],
-      "bullets": [
-        "change附带完整层级路径；消费方可用路径构造面包屑或结果描述。",
-        "组件不负责远程加载层级；需要异步数据时由消费方更新options。",
-        "内置WorkbenchCascaderPanel/Overflow为辅助API，常规场景使用主组件。"
-      ]
+      "bullets": ["change附带完整层级路径；消费方可用路径构造面包屑或结果描述。","组件不负责远程加载层级；需要异步数据时由消费方更新options。","内置WorkbenchCascaderPanel/Overflow为辅助API，常规场景使用主组件。"]
     }
   ],
   "related": [{"label":"级联选择注册规范","href":"#rules"},{"label":"面板与溢出辅助组件API","href":"#family"}]

@@ -537,7 +537,9 @@ function quickData(value) {
   // Round-trip first to retain JSON.stringify's handling of optional/undefined fields.
   const format = (item, depth = 0) => {
     const compact = JSON.stringify(item);
-    if (compact.length <= 120 || item === null || typeof item !== "object") return compact;
+    if (compact.length <= 200 || item === null || typeof item !== "object" ||
+      (Array.isArray(item) && item.every((entry) => entry === null || typeof entry !== "object")))
+      return compact;
     const array = Array.isArray(item);
     const rows = array
       ? item.map((entry) => format(entry, depth + 1))
@@ -553,12 +555,11 @@ function quickExamples(usage, fullReference) {
     (example) => example.portability === "portable" &&
       typeof example.code === "string" && example.code.trim().length > 0,
   );
-  const lines = [
-    "## 官方示例",
-    `官方来源 SFC 状态：${tick(usage?.usageStatus ?? "unknown")}。仅展开首个可移植示例，不代表全部变体。`,
-  ];
+  const status = `官方来源 SFC 状态：${tick(usage?.usageStatus ?? "unknown")}。`;
+  const lines = ["## 官方示例"];
   if (selected) {
     lines.push(
+      status + "仅展开首个可移植示例，不代表全部变体。",
       quickData({
         id: selected.id,
         title: selected.title,
@@ -571,7 +572,7 @@ function quickExamples(usage, fullReference) {
       fence(selected.code, "vue"),
     );
   } else {
-    lines.push("包内未提供可展开的官方可移植示例；不以场景源码、Studio cases 或手写代码补齐。");
+    lines.push(status + "包内未提供可展开的官方可移植示例；不以场景源码、Studio cases 或手写代码补齐。");
   }
   const remaining = examples.filter((example) => example !== selected);
   if (remaining.length) {
@@ -588,8 +589,23 @@ function quickExamples(usage, fullReference) {
   }
   return lines.join("\n\n");
 }
+// Empty top-level fields (null, [], {}) are listed by name instead of printed as JSON,
+// so unknowns stay visible without padding. Nested values are never trimmed.
+const quickEmpty = (value) =>
+  value == null ||
+  (typeof value === "object" && Object.keys(value).length === 0);
+function quickBlock(value) {
+  const present = Object.fromEntries(
+    Object.entries(value).filter(([, item]) => !quickEmpty(item)),
+  );
+  const empty = Object.keys(value).filter((key) => quickEmpty(value[key]));
+  return [
+    ...(Object.keys(present).length ? [quickData(present)] : []),
+    ...(empty.length ? [`未声明或为空：${empty.join("、")}（不代表支持）`] : []),
+  ];
+}
 function quickAPI(contract, usage = {}) {
-  return quickData({
+  return quickBlock({
     publicImport: contract.publicImport ?? null,
     props: contract.props ?? null,
     events: contract.events ?? null,
@@ -627,28 +643,31 @@ function quickPage(pkg, id, contract, usage, family) {
     qualification(pkg),
     `完整资料：[${tick(id)}](<${fullReference}>)。本页省略 Studio controls/cases，不省略已声明的公开 API；预览配置不是 props。`,
     "## 资产与已知边界",
-    quickData({
+    ...quickBlock({
       id,
       kind: contract.kind ?? contract.group ?? null,
       version: contract.version ?? null,
       summary: contract.summary ?? null,
-      useWhen: contract.useWhen ?? null,
+      // Omitted when it only repeats summary; package identity is on the 包： line.
+      ...(JSON.stringify(contract.useWhen) === JSON.stringify([contract.summary])
+        ? {}
+        : { useWhen: contract.useWhen ?? null }),
       avoidWhen: contract.avoidWhen ?? null,
       status: contract.status ?? null,
-      source: contract.source ?? null,
       unsupported: contract.unsupported ?? null,
       usageStatus: usage?.usageStatus ?? "unknown",
-      usageUnsupported: usage?.unsupported ?? null,
+      // AI assets pass the contract as its own usage; do not print unsupported twice.
+      ...(usage === contract ? {} : { usageUnsupported: usage?.unsupported ?? null }),
       variantStatus: usage?.variants?.status ?? "unknown",
       variantUnsupported: usage?.variants?.unsupported ?? null,
       caseSemantics: usage?.variants?.caseSemantics ?? null,
     }),
     "## 公开 API",
-    "以下字段来自包内声明。null 表示来源为空或未声明，不代表支持；不猜测签名、嵌套类型或动态 slot 名。",
-    quickAPI(contract, usage?.usage ?? {}),
+    "包内声明原样列出；null 与“未声明或为空”字段不代表支持，不猜测签名、嵌套类型或动态 slot 名。",
+    ...quickAPI(contract, usage?.usage ?? {}),
     ...quickSupplement(contract.usage),
     "## 规则与适用条件",
-    quickData({
+    ...quickBlock({
       rules: contract.rules ?? null,
       dependencies: contract.dependencies ?? null,
       foundationKeys: contract.foundationKeys ?? null,

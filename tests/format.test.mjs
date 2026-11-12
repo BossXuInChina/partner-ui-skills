@@ -439,6 +439,31 @@ test("quick index is lightweight, source-derived, ordered and references every a
   }
 });
 
+// Quick JSON blocks omit empty top-level fields (null, [], {}) and list their names on a
+// "未声明或为空" line. Only the contract sections before the example section are searched.
+function quickContract(page) {
+  const head = page.split("\n## 官方示例")[0];
+  return {
+    blocks: fencedJSON(head).filter((block) => block && !Array.isArray(block)),
+    empty: [...head.matchAll(/^未声明或为空：(.*)（不代表支持）$/gm)].flatMap((match) => match[1].split("、")),
+  };
+}
+function quickEmptyValue(value) {
+  return value == null || (typeof value === "object" && Object.keys(value).length === 0);
+}
+function assertQuickField(page, key, expected, message) {
+  const { blocks, empty } = quickContract(page);
+  const block = blocks.find((item) => Object.hasOwn(item, key));
+  if (quickEmptyValue(expected)) {
+    assert.equal(block, undefined, message + " printed although empty");
+    assert.ok(empty.includes(key), message + " not listed as empty");
+  } else {
+    assert.ok(block, message + " missing");
+    assert.deepEqual(block[key], expected, message);
+    assert.ok(!empty.includes(key), message + " listed as empty");
+  }
+}
+
 test("quick pages retain complete declared API, rules, qualifications and unknowns without Studio payloads", () => {
   const output = generateReferences({ packages });
   for (const pkg of packages) {
@@ -446,29 +471,33 @@ test("quick pages retain complete declared API, rules, qualifications and unknow
     for (const [id, contract] of Object.entries(pkg.metadata.components.assets)) {
       const usage = pkg.name === wbName ? pkg.metadata.usage.assets[id] : contract;
       const page = output.get(`quick/${family}/${id}.md`);
-      const [boundary, api, ...rest] = fencedJSON(page);
-      // Optional supplement block sits between API and rules.
-      const rules = rest.find((block) => block && !Array.isArray(block) && Object.hasOwn(block, "intro"));
+      const field = (key, expected) => assertQuickField(page, key, expected, `${id}.${key}`);
       for (const key of ["publicImport", "props", "events", "eventDetails", "slots", "slotDetails",
-        "slotPatterns", "exposed", "family"]) {
-        assert.deepEqual(api[key], contract[key] ?? null, `${id}.${key}`);
-      }
-      for (const key of ["propNotes", "eventNotes", "slotNotes"])
-        assert.deepEqual(api[key], usage?.usage?.[key] ?? null, `${id}.${key}`);
-      for (const key of ["status", "source", "unsupported", "useWhen", "avoidWhen"])
-        assert.deepEqual(boundary[key], contract[key] ?? null, `${id}.${key}`);
-      assert.equal(boundary.usageStatus, usage?.usageStatus ?? "unknown");
-      assert.deepEqual(boundary.usageUnsupported, usage?.unsupported ?? null);
-      assert.equal(boundary.variantStatus, usage?.variants?.status ?? "unknown");
-      assert.deepEqual(boundary.variantUnsupported, usage?.variants?.unsupported ?? null);
-      for (const key of ["rules", "dependencies", "foundationKeys"])
-        assert.deepEqual(rules[key], contract[key] ?? null, `${id}.${key}`);
-      assert.deepEqual(rules.sections, usage?.usage?.sections ?? null);
-      assert.deepEqual(rules.related, usage?.usage?.related ?? null);
+        "slotPatterns", "exposed", "family", "status", "unsupported", "avoidWhen",
+        "rules", "dependencies", "foundationKeys"])
+        field(key, contract[key]);
+      for (const key of ["propNotes", "eventNotes", "slotNotes", "sections", "related"])
+        field(key, usage?.usage?.[key]);
+      // useWhen is dropped only when it repeats summary verbatim.
+      if (JSON.stringify(contract.useWhen) === JSON.stringify([contract.summary])) {
+        field("summary", contract.summary);
+        assert.ok(!quickContract(page).blocks.some((block) => Object.hasOwn(block, "useWhen")));
+      } else field("useWhen", contract.useWhen);
+      field("usageStatus", usage?.usageStatus ?? "unknown");
+      if (usage === contract)
+        assert.ok(!quickContract(page).blocks.some((block) => Object.hasOwn(block, "usageUnsupported")));
+      else field("usageUnsupported", usage?.unsupported);
+      field("variantStatus", usage?.variants?.status ?? "unknown");
+      field("variantUnsupported", usage?.variants?.unsupported);
+      // Package identity lives on the 包： line, not in a repeated source object.
+      assert.ok(!quickContract(page).blocks.some((block) => Object.hasOwn(block, "source")));
+      assert.ok(page.includes(`${contract.source.package}@${contract.source.version}`));
       assert.ok(page.includes(pkg.sourceCommit));
       assert.match(page, /不授予发布或生产批准/);
-      assert.equal(Object.hasOwn(boundary, "cases"), false);
-      assert.equal(Object.hasOwn(api, "controls"), false);
+      for (const block of quickContract(page).blocks) {
+        assert.equal(Object.hasOwn(block, "cases"), false);
+        assert.equal(Object.hasOwn(block, "controls"), false);
+      }
     }
   }
 });
@@ -641,12 +670,13 @@ function quickRendersContractKey(page, key, contract) {
   const inBlocks = (name, expected) => blocks.some((block) =>
     block && typeof block === "object" && Object.hasOwn(block, name) &&
     JSON.stringify(block[name]) === JSON.stringify(expected));
-  const listedEmpty = (name) => [...page.matchAll(/^未声明或为空：(.*)$/gm)]
-    .some((match) => match[1].split(/[、（]/).includes(name));
+  const listedEmpty = (name) => quickContract(page).empty.includes(name);
   if (key === "label") return page.split("\n").some((line) => line.startsWith("# ") &&
     line.includes(value.replaceAll("&", "&amp;").replaceAll("<", "&lt;")));
   if (key === "group") return inBlocks("kind", contract.kind ?? value) && (contract.kind ?? value) === value;
   if (key === "source") return page.includes(`${value.package}@${value.version}`) && page.includes(value.commit);
+  if (key === "useWhen" && JSON.stringify(value) === JSON.stringify([contract.summary]))
+    return inBlocks("summary", contract.summary);
   if (key === "usage") {
     const { kind, example, ...rest } = value;
     return page.includes("## 来源补充结构") && page.includes(String(kind)) &&
