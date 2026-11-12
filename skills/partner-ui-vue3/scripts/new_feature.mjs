@@ -559,9 +559,15 @@ export function createFeature({
       mkdirSync(dirname(target), { recursive: true });
       writeFileSync(target, content, { flag: "wx" });
     }
-    // Reserve an absent target exclusively, then publish one complete tree by same-filesystem rename.
+    // Reserve the target before publishing. Windows cannot rename a directory
+    // over an existing directory, even when it is empty; remove our empty
+    // reservation first there. Windows then refuses an already-existing target.
     mkdirSync(destination);
     reservation = lstatSync(destination);
+    if (process.platform === "win32") {
+      rmdirSync(destination);
+      reservation = undefined;
+    }
     renameSync(scratch, destination);
     reservation = undefined;
     return {

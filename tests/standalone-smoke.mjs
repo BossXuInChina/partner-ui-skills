@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -33,6 +33,16 @@ try {
   node(join(vue, 'scripts/new_feature.mjs'), 'agreements', '--template', 'workbench-list', '--out', feature);
   assert.ok(existsSync(join(feature, 'delivery.json')));
   assert.ok(existsSync(join(feature, 'index.ts')));
+  const contested = join(work, '并发 feature');
+  const launch = template => new Promise((yes, no) => {
+    const child = spawn(process.execPath, [join(vue, 'scripts/new_feature.mjs'), 'contested', '--template', template, '--out', contested], {cwd: work, stdio:'ignore'});
+    child.once('error', no);
+    child.once('close', yes);
+  });
+  const codes = await Promise.all([launch('blank'), launch('ai-chat')]);
+  assert.deepEqual(codes.sort(), [0, 1], 'exactly one concurrent writer must succeed');
+  const delivery = JSON.parse(readFileSync(join(contested, 'delivery.json'), 'utf8'));
+  assert.ok(existsSync(join(contested, 'pages', delivery.template, 'Page.vue')));
   console.log('PASS partner-ui-vue3: verify bundled package identity and generate feature');
 
   const review = join(dist, names[2]);
