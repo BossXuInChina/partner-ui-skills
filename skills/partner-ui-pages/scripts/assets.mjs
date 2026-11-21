@@ -7,9 +7,10 @@ const fail = (message) => { throw new Error('ASSET_QUERY: ' + message); };
 const compare = (a, b) => a < b ? -1 : a > b ? 1 : 0;
 const kinds = ['component', 'block', 'pattern'];
 const help = `node scripts/assets.mjs search --query <text> [--kind component|block|pattern] [--package <name>] [--limit 5] [--offset 0] [--paths]
-node scripts/assets.mjs show --id <id> [--package <name>] [--view quick|full]
+node scripts/assets.mjs show --id <id> [--package <name>] [--view quick|full|task]
 Space-separated terms must all match. A zero or partial result does not prove an asset is missing.
 --paths adds reference paths (relative to this Skill's references directory). Querying does NOT validate the runtime or project lock.
+The optional task view is available in Vue3 for wb-table and wb-draft-list-filter (agreement list).
 `;
 const zeroHint = 'No match. This does not prove the asset is missing. Retry with one shorter keyword or the English export name, then read references/workbench/index.md and references/ai-ui.md.';
 const cjkRun = /[\u3400-\u9fff\uf900-\ufaff]+/g;
@@ -45,7 +46,7 @@ function parse(argv) {
   if (command === 'search' && !options['--query']) fail('--query required (no implicit full catalog dump)');
   if (command === 'show' && !options['--id']) fail('--id required');
   if (options['--kind'] && !kinds.includes(options['--kind'])) fail('invalid kind');
-  if (options['--view'] && !['quick', 'full'].includes(options['--view'])) fail('invalid view');
+  if (options['--view'] && !['quick', 'full', 'task'].includes(options['--view'])) fail('invalid view');
   return options;
 }
 export function queryAssets(skillRoot, argv) {
@@ -74,7 +75,15 @@ export function queryAssets(skillRoot, argv) {
     entries = entries.filter(e => e.id === options['--id']);
     if (!entries.length) fail('asset not found');
     if (entries.length !== 1) fail('ambiguous id; specify --package');
-    return readInside(root, options['--view'] === 'full' ? entries[0].reference : entries[0].quickReference);
+    const [entry] = entries;
+    if (options['--view'] === 'task') {
+      try { return readInside(root, 'task/' + entry.reference); }
+      catch (error) {
+        if (error.code === 'ENOENT') fail('no task view for this asset; use --view quick or --view full');
+        throw error;
+      }
+    }
+    return readInside(root, options['--view'] === 'full' ? entry.reference : entry.quickReference);
   }
   const limit = number(options['--limit'], 5, 1, 50);
   const offset = number(options['--offset'], 0, 0, Number.MAX_SAFE_INTEGER);

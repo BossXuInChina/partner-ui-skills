@@ -55,6 +55,7 @@ export function usePage(api: WorkbenchListApi) {
   ];
   const draft = reactive<Filter>({ keyword: '', status: 'all' }),
     applied = reactive<Filter>({ keyword: '', status: 'all' });
+  const hasAppliedFilters = computed(() => Boolean(applied.keyword) || applied.status !== 'all');
   const sort = ref<Sort>(null),
     page = ref(1),
     pageSize = ref(10),
@@ -269,6 +270,7 @@ export function usePage(api: WorkbenchListApi) {
     statusOptions,
     draft,
     applied,
+    hasAppliedFilters,
     sort,
     page,
     pageSize,

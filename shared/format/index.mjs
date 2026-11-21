@@ -800,3 +800,101 @@ export function generateReferences({ packages, studioBaseURLs = {}, searchAliase
   );
   return new Map([...output].sort(([a], [b]) => compare(a, b)));
 }
+
+function listTaskFields(source, names) {
+  return Object.fromEntries(names.map((name) => {
+    if (!source || !Object.hasOwn(source, name))
+      throw new Error(`REFERENCE_LIST_TASK_CONTRACT_MISSING: ${name}`);
+    return [name, source[name]];
+  }));
+}
+
+export function generateAgreementListReferences(packages) {
+  const wb = packages.find((pkg) => pkg.name === wbName);
+  const tableId = "wb-table";
+  const filterId = "wb-draft-list-filter";
+  const table = wb?.metadata.components?.assets?.[tableId];
+  const filter = wb?.metadata.components?.assets?.[filterId];
+  const styles = `${wbName}/styles.css`;
+  if (!table?.usage || !filter || !wb.manifest?.exports?.["./styles.css"])
+    throw new Error("REFERENCE_LIST_TASK_CONTRACT_MISSING: Workbench list assets or styles export");
+
+  const tableUsage = wb.metadata.usage.assets[tableId].usage;
+  const columns = table.usage.structures.columns;
+  const tableProps = ["caption", "ariaLabel", "columns", "rowKey", "rows", "page", "pageSize",
+    "pageSizeOptions", "total", "loading", "errorMessage", "emptyKind"];
+  const tableEvents = ["update:page", "update:pageSize", "page-change", "page-size-change", "retry"];
+  const tableSlots = ["empty", "error"];
+  if (!tableEvents.every((event) => table.events.includes(event)) ||
+      !tableSlots.every((slot) => table.slots.includes(slot)))
+    throw new Error("REFERENCE_LIST_TASK_CONTRACT_MISSING: Table events or slots");
+  const tableContract = {
+    publicImport: table.publicImport,
+    publicStyles: styles,
+    props: listTaskFields(table.props, tableProps),
+    columns: {
+      type: columns.type,
+      requiredFields: columns.requiredFields,
+      fields: listTaskFields(columns.fields, [...new Set([...columns.requiredFields,
+        "field", "align", "primary", "fluid", "fixed", "width", "minWidth", "maxWidth"])]),
+    },
+    events: {
+      ...listTaskFields(table.usage.eventPayloads, tableEvents.filter((event) => event !== "retry")),
+      retry: listTaskFields(tableUsage.eventNotes, ["retry"]).retry.payload,
+    },
+    slots: listTaskFields(tableUsage.slotNotes, tableSlots),
+    dynamicSlots: table.usage.dynamicSlots,
+  };
+
+  const page = (id, contract, notes, example) => [
+    header([wb]),
+    `# 协议列表 · ${tick(contract.publicImport.exportName)}`,
+    `用于协议管理、续签列表和最终客户筛选。以下为任务所需接口，其他用法见[完整 API](<../../workbench/${id}.md>)与[速查](<../../quick/workbench/${id}.md>)。样式在宿主应用入口导入一次，参见[接入说明](<../../integration.md>)。`,
+    quickData(contract),
+    ...notes.map((note) => `- ${note}`),
+    "最小用法片段，沿用宿主的数据及状态。",
+    fence(example, "vue"),
+  ].join("\n\n") + "\n";
+
+  const { exportName: tableExport } = table.publicImport;
+  const { exportName: filterExport } = filter.publicImport;
+  return new Map([
+    [`task/workbench/${tableId}.md`, page(tableId, tableContract, [
+      tableUsage.propNotes.caption,
+      tableUsage.propNotes.rowKey,
+      "先按已应用条件筛选，再分页。`rows` 传当前页数据，默认 `[]`。`total` 传筛选后总数，非负时显示分页。默认每页选项为 `[10, 20, 50, 100]`。",
+      "响应 `update:page` 和 `update:pageSize` 并回传受控值。重置筛选、应用筛选或换每页条数时回到第 1 页。已有选中行由宿主按业务规则清理。",
+      `${tableUsage.propNotes.emptyKind}${tableUsage.propNotes.loading}${tableUsage.propNotes.errorMessage}`,
+    ], `<script setup>
+import { ${tableExport} } from '${wbName}';
+const columns = [{ key: 'id', title: '协议编号' }, { key: 'name', title: '协议名称' }];
+// 沿用列表状态 page/pageSize、pageRows、filtered 与 hasAppliedFilters。
+</script>
+<template>
+  <${tableExport} caption="协议列表" :columns="columns" :rows="pageRows" row-key="id"
+    v-model:page="page" :page-size="pageSize" :total="filtered.length"
+    :empty-kind="hasAppliedFilters ? 'filtered' : 'initial'"
+    @update:page-size="size => { pageSize = size; page = 1; }" />
+</template>`)],
+    [`task/workbench/${filterId}.md`, page(filterId, {
+      publicImport: filter.publicImport,
+      publicStyles: styles,
+      props: filter.props,
+      events: filter.events,
+      slots: filter.slots,
+    }, [
+      ...filter.rules.map(({ text }) => text),
+      "直接使用组件时，`fieldCount` 与 `default` 插槽内的字段数一致（整数 1–4），默认操作区提供查询和重置按钮。使用随包列表模板时，将第三字段放入 `ListFilter` 的 `#extra`，沿用模板的响应式布局。新增字段时同步更新草稿、已应用条件、匹配逻辑和重置。",
+    ], `<script setup>
+import { ${filterExport}, WorkbenchInput } from '${wbName}';
+// 沿用 draft、applied、page 以及生成的列表状态。
+const apply = () => { Object.assign(applied, draft); page.value = 1; };
+const reset = () => { draft.keyword = ''; apply(); };
+</script>
+<template>
+  <${filterExport} :field-count="1" @apply="apply" @reset="reset">
+    <WorkbenchInput v-model="draft.keyword" aria-label="关键词" />
+  </${filterExport}>
+</template>`)],
+  ]);
+}

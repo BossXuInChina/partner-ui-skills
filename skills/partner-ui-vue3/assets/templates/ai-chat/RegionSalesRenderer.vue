@@ -16,5 +16,10 @@ const part = computed(() => (isRegionSalesPart(content.value) ? content.value : 
     :rows="part.rows"
     row-key="region"
   />
-  <p v-else role="status">{{ text.unsupported }}</p>
+  <p
+    v-else
+    role="status"
+  >
+    {{ text.unsupported }}
+  </p>
 </template>

@@ -80,7 +80,10 @@ import { copy } from './locale/zh-CN';
 </script>
 
 <template>
-  <div class="feature-page" :data-template-ready="loading ? 'false' : 'true'">
+  <div
+    class="feature-page"
+    :data-template-ready="loading ? 'false' : 'true'"
+  >
     <WorkbenchTopNav
       :tabs="nav.tabs"
       :sites="nav.sites"
@@ -100,10 +103,16 @@ import { copy } from './locale/zh-CN';
           type="error"
           :message="error"
           :show-close="false"
-        /><WorkbenchButton v-if="error" appearance="secondary" @click="reload">{{
-          copy.text41
-        }}</WorkbenchButton>
-        <WorkbenchBreadcrumb :items="crumbs" @navigate="preventNavigation" />
+        /><WorkbenchButton
+          v-if="error"
+          appearance="secondary"
+          @click="reload"
+          >{{ copy.text41 }}</WorkbenchButton
+        >
+        <WorkbenchBreadcrumb
+          :items="crumbs"
+          @navigate="preventNavigation"
+        />
 
         <header class="page-head">
           <div>
@@ -121,12 +130,18 @@ import { copy } from './locale/zh-CN';
             </div>
           </div>
           <div class="feature-row">
-            <WorkbenchDropdown :items="moreItems" v-bind="a11y(copy.text25)" @action="onMore"
+            <WorkbenchDropdown
+              :items="moreItems"
+              v-bind="a11y(copy.text25)"
+              @action="onMore"
               ><template #trigger>{{ copy.text43 }}</template></WorkbenchDropdown
             >
-            <WorkbenchButton v-if="!editing" appearance="secondary" @click="startEdit">{{
-              copy.text44
-            }}</WorkbenchButton>
+            <WorkbenchButton
+              v-if="!editing"
+              appearance="secondary"
+              @click="startEdit"
+              >{{ copy.text44 }}</WorkbenchButton
+            >
             <WorkbenchButton
               appearance="primary"
               :disabled="editing || model.status !== '待续签'"
@@ -192,7 +207,11 @@ import { copy } from './locale/zh-CN';
                   @update:model-value="setField('name', $event)"
                 />
               </WorkbenchFormItem>
-              <WorkbenchFormItem :label="copy.text29" prop="type" :formatter="formatType">
+              <WorkbenchFormItem
+                :label="copy.text29"
+                prop="type"
+                :formatter="formatType"
+              >
                 <WorkbenchSelect
                   :model-value="[model.type]"
                   :options="typeOptions"
@@ -201,14 +220,21 @@ import { copy } from './locale/zh-CN';
                   @update:model-value="setType"
                 />
               </WorkbenchFormItem>
-              <WorkbenchFormItem :label="copy.text30" prop="endDate">
+              <WorkbenchFormItem
+                :label="copy.text30"
+                prop="endDate"
+              >
                 <WorkbenchDatePicker
                   :model-value="model.endDate"
                   v-bind="a11y(copy.text30)"
                   @update:model-value="setEndDate"
                 />
               </WorkbenchFormItem>
-              <WorkbenchFormItem :label="copy.text31" prop="amount" :formatter="formatAmount">
+              <WorkbenchFormItem
+                :label="copy.text31"
+                prop="amount"
+                :formatter="formatAmount"
+              >
                 <WorkbenchInput
                   :model-value="String(model.amount)"
                   v-bind="a11y(copy.text31)"
@@ -217,7 +243,11 @@ import { copy } from './locale/zh-CN';
               </WorkbenchFormItem>
             </WorkbenchFormGroup>
             <WorkbenchFormGroup :label="copy.text32">
-              <WorkbenchFormItem :label="copy.text33" prop="partner" mode="readonly" />
+              <WorkbenchFormItem
+                :label="copy.text33"
+                prop="partner"
+                mode="readonly"
+              />
               <WorkbenchFormItem
                 :label="copy.text34"
                 prop="owner"
@@ -230,7 +260,11 @@ import { copy } from './locale/zh-CN';
                   @update:model-value="setField('owner', $event)"
                 />
               </WorkbenchFormItem>
-              <WorkbenchFormItem :label="copy.text35" prop="autoRenew" :formatter="formatAutoRenew">
+              <WorkbenchFormItem
+                :label="copy.text35"
+                prop="autoRenew"
+                :formatter="formatAutoRenew"
+              >
                 <WorkbenchSwitch
                   :model-value="model.autoRenew"
                   v-bind="a11y(copy.text35)"
@@ -240,13 +274,24 @@ import { copy } from './locale/zh-CN';
             </WorkbenchFormGroup>
           </WorkbenchForm>
 
-          <WorkbenchUploadFileList v-else-if="tab === 'files'" :files="files" />
+          <WorkbenchUploadFileList
+            v-else-if="tab === 'files'"
+            :files="files"
+          />
 
-          <WorkbenchTimeline v-else :items="history" node-type="dot" :label="copy.text15" />
+          <WorkbenchTimeline
+            v-else
+            :items="history"
+            node-type="dot"
+            :label="copy.text15"
+          />
         </section>
       </main>
 
-      <div v-if="editing" class="action-bar">
+      <div
+        v-if="editing"
+        class="action-bar"
+      >
         <div class="feature-container">
           <span class="feature-text-s">{{ copy.text46 }}</span>
           <div class="feature-row">
@@ -257,14 +302,20 @@ import { copy } from './locale/zh-CN';
               @click="cancelEdit"
               >{{ copy.text47 }}</WorkbenchButton
             >
-            <WorkbenchButton appearance="primary" size="36" :disabled="busy" @click="submitForm">{{
-              copy.text48
-            }}</WorkbenchButton>
+            <WorkbenchButton
+              appearance="primary"
+              size="36"
+              :disabled="busy"
+              @click="submitForm"
+              >{{ copy.text48 }}</WorkbenchButton
+            >
           </div>
         </div>
       </div>
 
-      <WorkbenchFooter v-else :registration="{ id: 'registration', label: '' }" />
+      <WorkbenchFooter
+        v-else
+        :registration="{ id: 'registration', label: '' }" />
 
       <WorkbenchFeedbackDialog
         :model-value="renewOpen"
@@ -277,14 +328,27 @@ import { copy } from './locale/zh-CN';
         @update:model-value="setRenewOpen" />
       <MessagesHost :messages="feedback"
     /></template>
-    <main v-else class="feature-container">
-      <div v-if="loading" role="status" :aria-label="copy.text40"><WorkbenchLoading /></div>
+    <main
+      v-else
+      class="feature-container"
+    >
+      <div
+        v-if="loading"
+        role="status"
+        :aria-label="copy.text40"
+      >
+        <WorkbenchLoading />
+      </div>
       <WorkbenchAlert
         v-else-if="error"
         type="error"
         :message="error"
         :show-close="false"
-      /><WorkbenchEmptyState v-else type="no-data" level="page" /><WorkbenchButton
+      /><WorkbenchEmptyState
+        v-else
+        type="no-data"
+        level="page"
+      /><WorkbenchButton
         v-if="error"
         appearance="secondary"
         @click="reload"

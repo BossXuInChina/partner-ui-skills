@@ -1,6 +1,6 @@
-import test from "node:test";
-import assert from "node:assert/strict";
-import { spawn, spawnSync } from "node:child_process";
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { spawn, spawnSync } from 'node:child_process';
 import {
   cpSync,
   existsSync,
@@ -12,50 +12,41 @@ import {
   symlinkSync,
   unlinkSync,
   writeFileSync,
-} from "node:fs";
-import { tmpdir } from "node:os";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+} from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { transformSync } from 'esbuild';
 import {
   createFeature,
   FEATURE_TEMPLATES,
   readFeaturePackageIdentity,
   renderFeatureDelivery,
-} from "../skills/partner-ui-vue3/scripts/new_feature.mjs";
-import {
-  findIcons,
-  loadIconRegistry,
-} from "../skills/partner-ui-vue3/scripts/find_icon.mjs";
+} from '../skills/partner-ui-vue3/scripts/new_feature.mjs';
+import { findIcons, loadIconRegistry } from '../skills/partner-ui-vue3/scripts/find_icon.mjs';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const skill = resolve(root, "skills/partner-ui-vue3");
-const featureScript = resolve(skill, "scripts/new_feature.mjs");
-const iconScript = resolve(skill, "scripts/find_icon.mjs");
-const temporary = () =>
-  mkdtempSync(resolve(tmpdir(), "partner-feature-tools-"));
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const skill = resolve(root, 'skills/partner-ui-vue3');
+const featureScript = resolve(skill, 'scripts/new_feature.mjs');
+const iconScript = resolve(skill, 'scripts/find_icon.mjs');
+const temporary = () => mkdtempSync(resolve(tmpdir(), 'partner-feature-tools-'));
 function portableSkill(parent) {
-  const portable = resolve(parent, "skill");
-  for (const path of ["assets/templates", "assets/scaffold"])
+  const portable = resolve(parent, 'skill');
+  for (const path of ['assets/templates', 'assets/scaffold'])
     cpSync(resolve(skill, path), resolve(portable, path), { recursive: true });
-  mkdirSync(resolve(portable, "assets/harness/src"), { recursive: true });
+  mkdirSync(resolve(portable, 'assets/harness/src'), { recursive: true });
   cpSync(
-    resolve(skill, "assets/harness/src/feature-dom.d.ts"),
-    resolve(portable, "assets/harness/src/feature-dom.d.ts"),
+    resolve(skill, 'assets/harness/src/feature-dom.d.ts'),
+    resolve(portable, 'assets/harness/src/feature-dom.d.ts'),
   );
-  cpSync(resolve(skill, "skill.json"), resolve(portable, "skill.json"));
-  mkdirSync(resolve(portable, "scripts"));
-  for (const name of ["new_feature.mjs", "find_icon.mjs"])
-    cpSync(resolve(skill, "scripts", name), resolve(portable, "scripts", name));
-  mkdirSync(resolve(portable, "references"));
-  cpSync(
-    resolve(skill, "references/icons.json"),
-    resolve(portable, "references/icons.json"),
-  );
-  cpSync(
-    resolve(root, "source.lock.json"),
-    resolve(portable, "source.lock.json"),
-  );
-  cpSync(resolve(root, "vendor"), resolve(portable, "vendor"), {
+  cpSync(resolve(skill, 'skill.json'), resolve(portable, 'skill.json'));
+  mkdirSync(resolve(portable, 'scripts'));
+  for (const name of ['new_feature.mjs', 'find_icon.mjs'])
+    cpSync(resolve(skill, 'scripts', name), resolve(portable, 'scripts', name));
+  mkdirSync(resolve(portable, 'references'));
+  cpSync(resolve(skill, 'references/icons.json'), resolve(portable, 'references/icons.json'));
+  cpSync(resolve(root, 'source.lock.json'), resolve(portable, 'source.lock.json'));
+  cpSync(resolve(root, 'vendor'), resolve(portable, 'vendor'), {
     recursive: true,
   });
   return portable;
@@ -63,138 +54,150 @@ function portableSkill(parent) {
 function runScript(script, args, cwd = root) {
   return spawnSync(process.execPath, [script, ...args], {
     cwd,
-    env: { ...process.env, PATH: "" },
-    encoding: "utf8",
+    env: { ...process.env, PATH: '' },
+    encoding: 'utf8',
   });
 }
 
-test("all six source templates produce closed feature starts and truthful unverified manifests", () => {
+test('all six source templates produce closed feature starts and truthful unverified manifests', () => {
   const parent = temporary();
-  const originalLock = readFileSync(resolve(root, "source.lock.json"), "utf8");
-  const originalManifest = readFileSync(resolve(root, "package.json"), "utf8");
+  const originalLock = readFileSync(resolve(root, 'source.lock.json'), 'utf8');
+  const originalManifest = readFileSync(resolve(root, 'package.json'), 'utf8');
   try {
     for (const template of Object.keys(FEATURE_TEMPLATES)) {
-      const name = "feature-" + template;
+      const name = 'feature-' + template;
       const result = createFeature({
         name,
         template,
         directory: resolve(parent, name),
       });
-      assert.ok(
-        existsSync(resolve(result.directory, `pages/${template}/Page.vue`)),
-      );
-      assert.ok(existsSync(resolve(result.directory, "styles/layout.css")));
-      assert.ok(existsSync(resolve(result.directory, "feature-dom.d.ts")));
-      assert.ok(result.files.some((file) => file.includes("/mocks/")));
-      assert.ok(result.files.some((file) => file.includes("/__tests__/")));
-      assert.ok(
-        !result.files.some((file) => /\.(?:ttf|otf|woff2?|tgz)$/.test(file)),
-      );
-      assert.equal(existsSync(resolve(result.directory, "vendor")), false);
-      for (const file of result.files.filter((file) =>
-        /\.(?:ts|vue)$/.test(file),
-      )) {
-        const source = readFileSync(resolve(result.directory, file), "utf8");
+      assert.ok(existsSync(resolve(result.directory, `pages/${template}/Page.vue`)));
+      assert.ok(existsSync(resolve(result.directory, 'styles/layout.css')));
+      assert.ok(existsSync(resolve(result.directory, 'feature-dom.d.ts')));
+      assert.ok(result.files.some((file) => file.includes('/mocks/')));
+      assert.ok(result.files.some((file) => file.includes('/__tests__/')));
+      assert.ok(!result.files.some((file) => /\.(?:ttf|otf|woff2?|tgz)$/.test(file)));
+      assert.equal(existsSync(resolve(result.directory, 'vendor')), false);
+      for (const file of result.files.filter((file) => /\.(?:ts|vue)$/.test(file))) {
+        const source = readFileSync(resolve(result.directory, file), 'utf8');
         assert.doesNotMatch(source, /['"]@scaffold\//);
         for (const match of source.matchAll(
           /(?:\bfrom\s*|\bimport\s*\(\s*|\bimport\s*)['"](\.[^'"]+)['"]/g,
         )) {
-          const candidate = resolve(
-            dirname(resolve(result.directory, file)),
-            match[1],
-          );
+          const candidate = resolve(dirname(resolve(result.directory, file)), match[1]);
           assert.ok(
-            ["", ".ts", ".vue", ".css", "/index.ts"].some((suffix) =>
+            ['', '.ts', '.vue', '.css', '/index.ts'].some((suffix) =>
               existsSync(candidate + suffix),
             ),
             `${template}: unresolved ${match[1]} in ${file}`,
           );
         }
       }
-      const manifest = JSON.parse(
-        readFileSync(resolve(result.directory, "delivery.json"), "utf8"),
-      );
-      assert.equal(manifest.skillVersion, "0.2.2-preview.20261112.1");
-      assert.ok(
-        manifest.knownLimits.every((limit) => !limit.includes("skillVersion is null")),
-      );
+      const manifest = JSON.parse(readFileSync(resolve(result.directory, 'delivery.json'), 'utf8'));
+      assert.equal(manifest.skillVersion, '0.2.2-preview.20261112.1');
+      assert.ok(manifest.knownLimits.every((limit) => !limit.includes('skillVersion is null')));
       assert.equal(manifest.vue.resolved, null);
       assert.equal(manifest.vue.singleInstance, null);
       assert.ok(
-        manifest.checks.every(
-          (check) => check.result === "not-run" && check.durationMs === null,
-        ),
+        manifest.checks.every((check) => check.result === 'not-run' && check.durationMs === null),
       );
       assert.ok(
         manifest.api.every(
-          (api) =>
-            api.status === "assumed" &&
-            api.path === null &&
-            api.method === null,
+          (api) => api.status === 'assumed' && api.path === null && api.method === null,
         ),
       );
-      assert.equal(manifest.pages[0].route, "/" + name);
-      assert.ok(manifest.pages[0].components.includes("WorkbenchTopNav"));
+      assert.equal(manifest.pages[0].route, '/' + name);
+      assert.ok(manifest.pages[0].components.includes('WorkbenchTopNav'));
       assert.equal(
-        readFileSync(resolve(result.directory, "DELIVERY.md"), "utf8"),
+        readFileSync(resolve(result.directory, 'DELIVERY.md'), 'utf8'),
         renderFeatureDelivery(manifest),
       );
       assert.doesNotMatch(
-        readFileSync(resolve(result.directory, "index.ts"), "utf8"),
+        readFileSync(resolve(result.directory, 'index.ts'), 'utf8'),
         /export\s*{\s*default\s+as/,
       );
-      if (template === "blank")
+      if (template === 'blank')
         assert.equal(
-          result.files.some((file) => file.startsWith("scaffold/")),
+          result.files.some((file) => file.startsWith('scaffold/')),
           false,
         );
-      if (template === "ai-chat")
-        assert.ok(manifest.pages[0].components.includes("ChatPanel"));
-      if (template === "ai-assistant-workspace")
-        assert.ok(
-          manifest.pages[0].components.includes("AgreementAssistantPanel"),
-        );
+      if (template === 'ai-chat') assert.ok(manifest.pages[0].components.includes('ChatPanel'));
+      if (template === 'ai-assistant-workspace')
+        assert.ok(manifest.pages[0].components.includes('AgreementAssistantPanel'));
     }
-    assert.equal(
-      readFileSync(resolve(root, "source.lock.json"), "utf8"),
-      originalLock,
-    );
-    assert.equal(
-      readFileSync(resolve(root, "package.json"), "utf8"),
-      originalManifest,
-    );
-    assert.ok(readdirSync(parent).every((name) => !name.includes("staging")));
+    assert.equal(readFileSync(resolve(root, 'source.lock.json'), 'utf8'), originalLock);
+    assert.equal(readFileSync(resolve(root, 'package.json'), 'utf8'), originalManifest);
+    assert.ok(readdirSync(parent).every((name) => !name.includes('staging')));
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
 });
-test("all independent Skills declare their version and user-controlled releases", () => {
-  for (const name of ["partner-ui-vue3", "partner-ui-pages", "partner-ui-review"]) {
+test('all independent Skills declare their version and user-controlled releases', () => {
+  for (const name of ['partner-ui-vue3', 'partner-ui-pages', 'partner-ui-review']) {
     const declaration = JSON.parse(
-      readFileSync(resolve(root, "skills", name, "skill.json"), "utf8"),
+      readFileSync(resolve(root, 'skills', name, 'skill.json'), 'utf8'),
     );
     assert.equal(declaration.name, name);
-    assert.equal(declaration.version, { "partner-ui-pages": "0.3.1-preview.20261112.1", "partner-ui-vue3": "0.2.2-preview.20261112.1", "partner-ui-review": "0.1.7-preview.20261112.1" }[name]);
-    assert.equal(declaration.releasePolicy, "user-decides");
+    assert.equal(
+      declaration.version,
+      {
+        'partner-ui-pages': '0.3.1-preview.20261112.1',
+        'partner-ui-vue3': '0.2.2-preview.20261112.1',
+        'partner-ui-review': '0.1.7-preview.20261112.1',
+      }[name],
+    );
+    assert.equal(declaration.releasePolicy, 'user-decides');
   }
 });
-test("a missing Skill declaration preserves null without borrowing package or runtime versions", () => {
+test('generated list routes retain their default API prop and opt into the host shell', async () => {
+  const parent = temporary();
+  try {
+    const { directory, files } = createFeature({
+      name: 'agreements',
+      template: 'workbench-list',
+      directory: resolve(parent, 'agreements'),
+    });
+    const routeSource = readFileSync(resolve(directory, 'routes.ts'), 'utf8');
+    const { code } = transformSync(routeSource, { loader: 'ts', format: 'esm' });
+    const { createFeatureRoutes } = await import(
+      'data:text/javascript;base64,' + Buffer.from(code).toString('base64')
+    );
+    const api = {};
+    const [route] = createFeatureRoutes(api);
+    assert.equal(route.path, '/agreements');
+    assert.equal(typeof route.component, 'function');
+    assert.deepEqual(route.props(), { api });
+    assert.deepEqual(createFeatureRoutes(api, { shell: 'host' })[0].props(), {
+      api,
+      shell: 'host',
+    });
+    assert.ok(files.includes('pages/workbench-list/ListContent.vue'));
+    assert.ok(files.includes('pages/workbench-list/ListFilter.vue'));
+    assert.ok(files.includes('pages/workbench-list/README.md'));
+    const integration = readFileSync(resolve(directory, 'INTEGRATION.md'), 'utf8');
+    assert.match(integration, /createFeatureRoutes\(api, \{ shell: 'host' \}\)/);
+    assert.match(integration, /\(pages\/workbench-list\/README.md\)/);
+  } finally {
+    rmSync(parent, { recursive: true, force: true });
+  }
+});
+test('a missing Skill declaration preserves null without borrowing package or runtime versions', () => {
   const parent = temporary();
   try {
     const portable = portableSkill(parent);
-    unlinkSync(resolve(portable, "skill.json"));
+    unlinkSync(resolve(portable, 'skill.json'));
     writeFileSync(
-      resolve(portable, "package.json"),
+      resolve(portable, 'package.json'),
       JSON.stringify({
-        name: "partner-ui-vue3",
-        version: "99.0.0",
-        runtimeVersion: "88.0.0",
+        name: 'partner-ui-vue3',
+        version: '99.0.0',
+        runtimeVersion: '88.0.0',
       }),
     );
     const result = createFeature({
-      name: "no-declaration",
+      name: 'no-declaration',
       skillRoot: portable,
-      directory: resolve(parent, "no-declaration"),
+      directory: resolve(parent, 'no-declaration'),
     });
     assert.equal(result.manifest.skillVersion, null);
     assert.ok(
@@ -202,196 +205,182 @@ test("a missing Skill declaration preserves null without borrowing package or ru
         /No skill.json.*source Skill root.*skillVersion is null/.test(limit),
       ),
     );
-    assert.match(
-      readFileSync(resolve(result.directory, "DELIVERY.md"), "utf8"),
-      /未声明（null）/,
-    );
+    assert.match(readFileSync(resolve(result.directory, 'DELIVERY.md'), 'utf8'), /未声明（null）/);
     assert.equal(
-      readFileSync(resolve(result.directory, "DELIVERY.md"), "utf8"),
+      readFileSync(resolve(result.directory, 'DELIVERY.md'), 'utf8'),
       renderFeatureDelivery(result.manifest),
     );
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
 });
-test("invalid Skill declarations fail without partial output or fallback versions", () => {
+test('invalid Skill declarations fail without partial output or fallback versions', () => {
   const parent = temporary();
   try {
     const portable = portableSkill(parent);
-    const script = resolve(portable, "scripts/new_feature.mjs");
+    const script = resolve(portable, 'scripts/new_feature.mjs');
     const invalid = [
-      ["{", /FEATURE_SKILL_DECLARATION_INVALID/],
+      ['{', /FEATURE_SKILL_DECLARATION_INVALID/],
       [
-        JSON.stringify({ name: "partner-ui-pages", version: "0.1.0" }),
+        JSON.stringify({ name: 'partner-ui-pages', version: '0.1.0' }),
         /FEATURE_SKILL_NAME_INVALID/,
       ],
-      ...[
-        null, 1, "", "0.1", "v0.1.0", "01.1.0", "0.1.0-01", "0.1.0+", "0.1.0\n",
-      ].map((version) => [
-        JSON.stringify({ name: "partner-ui-vue3", version, runtimeVersion: "0.1.0" }),
-        /FEATURE_SKILL_VERSION_INVALID/,
-      ]),
+      ...[null, 1, '', '0.1', 'v0.1.0', '01.1.0', '0.1.0-01', '0.1.0+', '0.1.0\n'].map(
+        (version) => [
+          JSON.stringify({ name: 'partner-ui-vue3', version, runtimeVersion: '0.1.0' }),
+          /FEATURE_SKILL_VERSION_INVALID/,
+        ],
+      ),
       [
-        JSON.stringify({ name: "partner-ui-vue3", runtimeVersion: "0.1.0" }),
+        JSON.stringify({ name: 'partner-ui-vue3', runtimeVersion: '0.1.0' }),
         /FEATURE_SKILL_VERSION_INVALID/,
       ],
     ];
     for (const [index, [declaration, error]] of invalid.entries()) {
-      writeFileSync(resolve(portable, "skill.json"), declaration);
-      const destination = resolve(parent, "invalid-" + index);
-      const result = runScript(
-        script,
-        ["invalid-skill", "--out", destination, "--json"],
-        parent,
-      );
+      writeFileSync(resolve(portable, 'skill.json'), declaration);
+      const destination = resolve(parent, 'invalid-' + index);
+      const result = runScript(script, ['invalid-skill', '--out', destination, '--json'], parent);
       assert.equal(result.status, 1);
       assert.match(result.stderr, error);
-      assert.equal(result.stdout, "");
+      assert.equal(result.stdout, '');
       assert.equal(existsSync(destination), false);
-      assert.ok(readdirSync(parent).every((name) => !name.includes("staging")));
+      assert.ok(readdirSync(parent).every((name) => !name.includes('staging')));
     }
     writeFileSync(
-      resolve(portable, "skill.json"),
-      JSON.stringify({ name: "partner-ui-vue3", version: "1.2.3-rc.1+build.001" }),
+      resolve(portable, 'skill.json'),
+      JSON.stringify({ name: 'partner-ui-vue3', version: '1.2.3-rc.1+build.001' }),
     );
     const result = createFeature({
-      name: "valid-semver",
+      name: 'valid-semver',
       skillRoot: portable,
-      directory: resolve(parent, "valid-semver"),
+      directory: resolve(parent, 'valid-semver'),
     });
-    assert.equal(result.manifest.skillVersion, "1.2.3-rc.1+build.001");
+    assert.equal(result.manifest.skillVersion, '1.2.3-rc.1+build.001');
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
 });
-test("package identity comes from verified tarballs and preserves the release claims", () => {
+test('package identity comes from verified tarballs and preserves the release claims', () => {
   const identity = readFeaturePackageIdentity();
-  const lock = JSON.parse(
-    readFileSync(resolve(root, "source.lock.json"), "utf8"),
-  );
+  const lock = JSON.parse(readFileSync(resolve(root, 'source.lock.json'), 'utf8'));
   for (const entry of identity.packages) {
     const pinned = lock.packages.find((item) => item.name === entry.name);
     assert.equal(entry.source.sha256, pinned.sha256);
     assert.equal(entry.sourceCommit, pinned.sourceCommit);
     assert.equal(entry.version, pinned.version);
-    assert.equal(entry.source.scope, "skill-lock");
+    assert.equal(entry.source.scope, 'skill-lock');
     assert.equal(entry.source.copiedToFeature, false);
   }
   assert.equal(
-    identity.packages.find((entry) => entry.name === "@workbench/ui-vue3")
-      .status.targetProductionEligible,
+    identity.packages.find((entry) => entry.name === '@workbench/ui-vue3').status
+      .targetProductionEligible,
     false,
   );
   assert.deepEqual(
-    identity.packages.find((entry) => entry.name === "huawei-partner-ai-ui")
-      .status,
+    identity.packages.find((entry) => entry.name === 'huawei-partner-ai-ui').status,
     {},
   );
 });
-test("unsafe names, unknown templates, existing directories and dangling target symlinks never overwrite", () => {
+test('unsafe names, unknown templates, existing directories and dangling target symlinks never overwrite', () => {
   const parent = temporary();
   try {
     for (const name of [
-      "",
-      "..",
-      "../escape",
-      "a/../b",
-      "a\\b",
-      "UpperCase",
-      "-name",
-      "a--b",
-      "x$(id)",
-      "1name",
-      "a".repeat(65),
+      '',
+      '..',
+      '../escape',
+      'a/../b',
+      'a\\b',
+      'UpperCase',
+      '-name',
+      'a--b',
+      'x$(id)',
+      '1name',
+      'a'.repeat(65),
     ])
       assert.throws(
-        () =>
-          createFeature({ name, directory: resolve(parent, "destination") }),
+        () => createFeature({ name, directory: resolve(parent, 'destination') }),
         /FEATURE_NAME_INVALID/,
       );
     assert.throws(
       () =>
         createFeature({
-          name: "safe",
-          template: "../blank",
-          directory: resolve(parent, "destination"),
+          name: 'safe',
+          template: '../blank',
+          directory: resolve(parent, 'destination'),
         }),
       /FEATURE_TEMPLATE_UNKNOWN/,
     );
-    const existing = resolve(parent, "existing");
+    const existing = resolve(parent, 'existing');
     mkdirSync(existing);
-    writeFileSync(resolve(existing, "user.txt"), "preserve");
+    writeFileSync(resolve(existing, 'user.txt'), 'preserve');
     assert.throws(
-      () => createFeature({ name: "safe", directory: existing }),
+      () => createFeature({ name: 'safe', directory: existing }),
       /FEATURE_DESTINATION_EXISTS/,
     );
-    assert.equal(
-      readFileSync(resolve(existing, "user.txt"), "utf8"),
-      "preserve",
-    );
-    const empty = resolve(parent, "empty");
+    assert.equal(readFileSync(resolve(existing, 'user.txt'), 'utf8'), 'preserve');
+    const empty = resolve(parent, 'empty');
     mkdirSync(empty);
     assert.throws(
-      () => createFeature({ name: "safe", directory: empty }),
+      () => createFeature({ name: 'safe', directory: empty }),
       /FEATURE_DESTINATION_EXISTS/,
     );
-    const dangling = resolve(parent, "dangling");
-    symlinkSync(resolve(parent, "missing"), dangling);
+    const dangling = resolve(parent, 'dangling');
+    symlinkSync(resolve(parent, 'missing'), dangling);
     assert.throws(
-      () => createFeature({ name: "safe", directory: dangling }),
+      () => createFeature({ name: 'safe', directory: dangling }),
       /FEATURE_DESTINATION_EXISTS/,
     );
     assert.throws(
       () =>
         createFeature({
-          name: "safe",
-          directory: resolve(skill, "generated-feature"),
+          name: 'safe',
+          directory: resolve(skill, 'generated-feature'),
         }),
       /FEATURE_DESTINATION_OVERLAPS_SKILL/,
     );
     assert.throws(
       () =>
         createFeature({
-          name: "safe",
-          directory: resolve(parent, "missing-parent/safe"),
+          name: 'safe',
+          directory: resolve(parent, 'missing-parent/safe'),
         }),
       /ENOENT/,
     );
-    assert.ok(readdirSync(parent).every((name) => !name.includes("staging")));
+    assert.ok(readdirSync(parent).every((name) => !name.includes('staging')));
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
 });
-test("standalone CLI runs with only Node, without global tools or Skill root dependencies", () => {
+test('standalone CLI runs with only Node, without global tools or Skill root dependencies', () => {
   const parent = temporary();
   try {
     const portable = portableSkill(parent);
-    const script = resolve(portable, "scripts/new_feature.mjs");
+    const script = resolve(portable, 'scripts/new_feature.mjs');
     const result = runScript(
       script,
       [
-        "standalone-chat",
-        "--template",
-        "ai-chat",
-        "--out",
-        resolve(parent, "standalone-chat"),
-        "--json",
+        'standalone-chat',
+        '--template',
+        'ai-chat',
+        '--out',
+        resolve(parent, 'standalone-chat'),
+        '--json',
       ],
       parent,
     );
     assert.equal(result.status, 0, result.stderr);
-    assert.equal(JSON.parse(result.stdout).manifest.feature, "standalone-chat");
-    assert.equal(JSON.parse(result.stdout).manifest.skillVersion, "0.2.2-preview.20261112.1");
-    assert.equal(existsSync(resolve(portable, "node_modules")), false);
+    assert.equal(JSON.parse(result.stdout).manifest.feature, 'standalone-chat');
+    assert.equal(JSON.parse(result.stdout).manifest.skillVersion, '0.2.2-preview.20261112.1');
+    assert.equal(existsSync(resolve(portable, 'node_modules')), false);
     const found = runScript(
-      resolve(portable, "scripts/find_icon.mjs"),
-      ["告警", "--family", "status", "--size", "12", "--limit", "2", "--json"],
+      resolve(portable, 'scripts/find_icon.mjs'),
+      ['告警', '--family', 'status', '--size', '12', '--limit', '2', '--json'],
       parent,
     );
     assert.equal(found.status, 0, found.stderr);
     assert.equal(JSON.parse(found.stdout).results.length, 2);
-    for (const tool of [script, resolve(portable, "scripts/find_icon.mjs")]) {
-      const help = runScript(tool, ["--help"], parent);
+    for (const tool of [script, resolve(portable, 'scripts/find_icon.mjs')]) {
+      const help = runScript(tool, ['--help'], parent);
       assert.equal(help.status, 0, help.stderr);
       assert.match(help.stdout, /Usage:/);
     }
@@ -399,103 +388,86 @@ test("standalone CLI runs with only Node, without global tools or Skill root dep
     rmSync(parent, { recursive: true, force: true });
   }
 });
-test("bad archive SHA, forged identity and symlinked inputs fail before publishing output", () => {
+test('bad archive SHA, forged identity and symlinked inputs fail before publishing output', () => {
   const parent = temporary();
   try {
     const portable = portableSkill(parent);
-    const lockFile = resolve(portable, "source.lock.json");
-    const lock = JSON.parse(readFileSync(lockFile, "utf8"));
+    const lockFile = resolve(portable, 'source.lock.json');
+    const lock = JSON.parse(readFileSync(lockFile, 'utf8'));
     const original = JSON.stringify(lock);
-    lock.packages[0].sha256 = "0".repeat(64);
+    lock.packages[0].sha256 = '0'.repeat(64);
     writeFileSync(lockFile, JSON.stringify(lock));
     assert.throws(
       () =>
         createFeature({
-          name: "bad-sha",
+          name: 'bad-sha',
           skillRoot: portable,
-          directory: resolve(parent, "bad-sha"),
+          directory: resolve(parent, 'bad-sha'),
         }),
       /FEATURE_ARCHIVE_SHA_MISMATCH/,
     );
-    assert.equal(existsSync(resolve(parent, "bad-sha")), false);
+    assert.equal(existsSync(resolve(parent, 'bad-sha')), false);
     const wrongVersion = JSON.parse(original);
-    wrongVersion.packages[0].version = "99.0.0";
+    wrongVersion.packages[0].version = '99.0.0';
     writeFileSync(lockFile, JSON.stringify(wrongVersion));
-    assert.throws(
-      () => readFeaturePackageIdentity(portable),
-      /FEATURE_PACKAGE_IDENTITY_MISMATCH/,
-    );
+    assert.throws(() => readFeaturePackageIdentity(portable), /FEATURE_PACKAGE_IDENTITY_MISMATCH/);
     writeFileSync(lockFile, original);
     const archive = JSON.parse(original).packages[0].tarball;
     unlinkSync(resolve(portable, archive));
     symlinkSync(resolve(root, archive), resolve(portable, archive));
-    assert.throws(
-      () => readFeaturePackageIdentity(portable),
-      /FEATURE_ARCHIVE_ESCAPES_VENDOR/,
-    );
+    assert.throws(() => readFeaturePackageIdentity(portable), /FEATURE_ARCHIVE_ESCAPES_VENDOR/);
     unlinkSync(resolve(portable, archive));
     cpSync(resolve(root, archive), resolve(portable, archive));
-    const page = resolve(portable, "assets/templates/blank/Page.vue");
+    const page = resolve(portable, 'assets/templates/blank/Page.vue');
     unlinkSync(page);
-    symlinkSync(resolve(parent, "external-user-file"), page);
-    writeFileSync(resolve(parent, "external-user-file"), "private sentinel");
+    symlinkSync(resolve(parent, 'external-user-file'), page);
+    writeFileSync(resolve(parent, 'external-user-file'), 'private sentinel');
     assert.throws(
       () =>
         createFeature({
-          name: "bad-source",
+          name: 'bad-source',
           skillRoot: portable,
-          directory: resolve(parent, "bad-source"),
+          directory: resolve(parent, 'bad-source'),
         }),
       /FEATURE_SOURCE_SYMLINK/,
     );
-    assert.equal(existsSync(resolve(parent, "bad-source")), false);
-    assert.ok(readdirSync(parent).every((name) => !name.includes("staging")));
+    assert.equal(existsSync(resolve(parent, 'bad-source')), false);
+    assert.ok(readdirSync(parent).every((name) => !name.includes('staging')));
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
 });
-test("concurrent CLI creation publishes one complete tree and refuses the other writer", async () => {
+test('concurrent CLI creation publishes one complete tree and refuses the other writer', async () => {
   const parent = temporary();
   try {
-    const destination = resolve(parent, "contended");
+    const destination = resolve(parent, 'contended');
     const launch = (template) =>
       new Promise((yes, no) => {
         const child = spawn(
           process.execPath,
-          [
-            featureScript,
-            "contended",
-            "--template",
-            template,
-            "--out",
-            destination,
-          ],
-          { cwd: parent, env: { ...process.env, PATH: "" }, stdio: "ignore" },
+          [featureScript, 'contended', '--template', template, '--out', destination],
+          { cwd: parent, env: { ...process.env, PATH: '' }, stdio: 'ignore' },
         );
-        child.once("error", no);
-        child.once("close", (code) => yes(code));
+        child.once('error', no);
+        child.once('close', (code) => yes(code));
       });
-    const codes = await Promise.all([launch("blank"), launch("ai-chat")]);
+    const codes = await Promise.all([launch('blank'), launch('ai-chat')]);
     assert.deepEqual(codes.sort(), [0, 1]);
-    const delivery = JSON.parse(
-      readFileSync(resolve(destination, "delivery.json"), "utf8"),
-    );
-    assert.ok(
-      existsSync(resolve(destination, `pages/${delivery.template}/Page.vue`)),
-    );
-    assert.equal(readdirSync(resolve(destination, "pages")).length, 1);
-    assert.ok(readdirSync(parent).every((name) => !name.includes("staging")));
+    const delivery = JSON.parse(readFileSync(resolve(destination, 'delivery.json'), 'utf8'));
+    assert.ok(existsSync(resolve(destination, `pages/${delivery.template}/Page.vue`)));
+    assert.equal(readdirSync(resolve(destination, 'pages')).length, 1);
+    assert.ok(readdirSync(parent).every((name) => !name.includes('staging')));
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
 });
-test("icon filters use the actual 1201-entry registry and confirmed native dimensions", () => {
+test('icon filters use the actual 1201-entry registry and confirmed native dimensions', () => {
   const registry = loadIconRegistry();
   assert.equal(registry.iconCount, 1201);
   const result = findIcons({
-    query: "告警",
-    family: "status",
-    size: "12x12",
+    query: '告警',
+    family: 'status',
+    size: '12x12',
     limit: 2,
   });
   assert.ok(result.total >= 2);
@@ -504,7 +476,7 @@ test("icon filters use the actual 1201-entry registry and confirmed native dimen
     const actual = registry.icons.find((entry) => entry.key === icon.key);
     assert.equal(icon.native.width, 12);
     assert.equal(icon.native.height, 12);
-    assert.equal(icon.family, "status");
+    assert.equal(icon.family, 'status');
     assert.deepEqual(
       icon.publicBindings,
       actual.components.map((entry) => ({
@@ -513,45 +485,36 @@ test("icon filters use the actual 1201-entry registry and confirmed native dimen
       })),
     );
   }
-  assert.equal(
-    findIcons({ query: "nonexistent-icon-key-702913" }).results.length,
-    0,
-  );
-  assert.equal(
-    findIcons({ limit: 2000 }).results.length,
-    registry.icons.length,
-  );
-  assert.equal(findIcons({ size: "9999" }).total, 0);
+  assert.equal(findIcons({ query: 'nonexistent-icon-key-702913' }).results.length, 0);
+  assert.equal(findIcons({ limit: 2000 }).results.length, registry.icons.length);
+  assert.equal(findIcons({ size: '9999' }).total, 0);
   assert.ok(
-    findIcons({ query: "告警 镂空" }).results.every((icon) =>
-      (icon.name + icon.alias + icon.key).includes("告警"),
+    findIcons({ query: '告警 镂空' }).results.every((icon) =>
+      (icon.name + icon.alias + icon.key).includes('告警'),
     ),
   );
 });
-test("icon CLI reports bad filters and never substitutes a guessed icon", () => {
+test('icon CLI reports bad filters and never substitutes a guessed icon', () => {
   for (const args of [
-    ["--family", "made-up"],
-    ["--size", "-1"],
-    ["--size", "1.5"],
-    ["--limit", "0"],
-    ["--limit", "NaN"],
-    ["--unknown"],
+    ['--family', 'made-up'],
+    ['--size', '-1'],
+    ['--size', '1.5'],
+    ['--limit', '0'],
+    ['--limit', 'NaN'],
+    ['--unknown'],
   ])
     assert.equal(runScript(iconScript, args).status, 1);
-  const result = runScript(iconScript, [
-    "missing-registry-key-917317",
-    "--json",
-  ]);
+  const result = runScript(iconScript, ['missing-registry-key-917317', '--json']);
   assert.equal(result.status, 0);
   assert.deepEqual(JSON.parse(result.stdout).results, []);
   const readable = runScript(iconScript, [
-    "告警",
-    "--family",
-    "status",
-    "--size",
-    "12",
-    "--limit",
-    "1",
+    '告警',
+    '--family',
+    'status',
+    '--size',
+    '12',
+    '--limit',
+    '1',
   ]);
   assert.equal(readable.status, 0);
   assert.match(readable.stdout, /import \{ WorkbenchStatusIcon \}/);

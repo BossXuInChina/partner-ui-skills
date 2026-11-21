@@ -76,16 +76,21 @@ const {
       /></template>
       <div class="workspace">
         <main class="feature-container feature-stack workspace-main">
-          <WorkbenchBreadcrumb :items="text.crumbs" @navigate="page.breadcrumb" />
+          <WorkbenchBreadcrumb
+            :items="text.crumbs"
+            @navigate="page.breadcrumb"
+          />
           <header class="page-head">
             <div>
               <h1 class="feature-title-xl">{{ text.title }}</h1>
               <p class="feature-text feature-muted">{{ text.description }}</p>
             </div>
             <div class="feature-row">
-              <WorkbenchButton v-if="!ai.open" appearance="secondary" @click="ai.open = true">{{
-                text.assistant
-              }}</WorkbenchButton
+              <WorkbenchButton
+                v-if="!ai.open"
+                appearance="secondary"
+                @click="ai.open = true"
+                >{{ text.assistant }}</WorkbenchButton
               ><WorkbenchButton
                 appearance="primary"
                 :disabled="submitting || loading || !agreements.length"
@@ -104,10 +109,16 @@ const {
               @activate="page.ask(text.priorityQuery)"
             />
           </div>
-          <section class="feature-surface feature-stack" :aria-busy="loading">
+          <section
+            class="feature-surface feature-stack"
+            :aria-busy="loading"
+          >
             <div class="feature-row feature-between">
               <h2 class="feature-title-m">{{ text.upcoming }}（{{ agreements.length }}）</h2>
-              <div role="group" :aria-label="text.rangeLabel">
+              <div
+                role="group"
+                :aria-label="text.rangeLabel"
+              >
                 <WorkbenchButtonRadioGroup
                   :model-value="range"
                   :items="text.rangeItems"
@@ -115,12 +126,25 @@ const {
                 />
               </div>
             </div>
-            <p v-if="loading" role="status">{{ text.loading }}</p>
-            <p v-else-if="loadError" role="alert">
+            <p
+              v-if="loading"
+              role="status"
+            >
+              {{ text.loading }}
+            </p>
+            <p
+              v-else-if="loadError"
+              role="alert"
+            >
               {{ text.loadError }}
               <WorkbenchButton @click="page.load">{{ text.retry }}</WorkbenchButton>
             </p>
-            <p v-else-if="!agreements.length" role="status">{{ text.empty }}</p>
+            <p
+              v-else-if="!agreements.length"
+              role="status"
+            >
+              {{ text.empty }}
+            </p>
             <WorkbenchTable
               v-else
               :caption="text.tableCaption"
@@ -136,11 +160,16 @@ const {
                   size="small"
                   :status="page.statusTone(row)" /></template
             ></WorkbenchTable>
-            <p v-if="renewError" role="alert">
+            <p
+              v-if="renewError"
+              role="alert"
+            >
               {{ text.renewError }}
-              <WorkbenchButton :disabled="submitting" @click="page.retryRenew">{{
-                text.retry
-              }}</WorkbenchButton>
+              <WorkbenchButton
+                :disabled="submitting"
+                @click="page.retryRenew"
+                >{{ text.retry }}</WorkbenchButton
+              >
             </p>
           </section>
         </main>
@@ -155,8 +184,14 @@ const {
           dragKeydown,
         }"
       >
-        <div class="partner-ai assistant-frame" data-ai-component="AgreementAssistantPanel">
-          <p v-if="assistantError" role="alert">
+        <div
+          class="partner-ai assistant-frame"
+          data-ai-component="AgreementAssistantPanel"
+        >
+          <p
+            v-if="assistantError"
+            role="alert"
+          >
             {{ text.assistantLoadError }}
             <WorkbenchButton @click="page.loadRenderers">{{ text.retry }}</WorkbenchButton>
           </p>

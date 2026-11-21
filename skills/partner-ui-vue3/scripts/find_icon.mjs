@@ -1,21 +1,21 @@
 #!/usr/bin/env node
-import { existsSync, readFileSync, realpathSync } from "node:fs";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { existsSync, readFileSync, realpathSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const ownFile = fileURLToPath(import.meta.url);
-const defaultRegistry = resolve(dirname(ownFile), "../references/icons.json");
+const defaultRegistry = resolve(dirname(ownFile), '../references/icons.json');
 export function loadIconRegistry(file = defaultRegistry) {
-  const registry = JSON.parse(readFileSync(file, "utf8"));
+  const registry = JSON.parse(readFileSync(file, 'utf8'));
   if (
-    registry.schemaVersion !== "1.0" ||
-    registry.packageName !== "@workbench/ui-vue3" ||
+    registry.schemaVersion !== '1.0' ||
+    registry.packageName !== '@workbench/ui-vue3' ||
     !registry.version ||
-    !/^[a-f0-9]{40}$/.test(registry.sourceCommit ?? "") ||
+    !/^[a-f0-9]{40}$/.test(registry.sourceCommit ?? '') ||
     !Array.isArray(registry.icons) ||
     registry.icons.length !== registry.iconCount
   )
-    throw new Error("ICON_REGISTRY_INVALID");
+    throw new Error('ICON_REGISTRY_INVALID');
   return registry;
 }
 function dimensions(size) {
@@ -28,28 +28,26 @@ function dimensions(size) {
     Number(match[1]) <= 0 ||
     Number(match[2] ?? match[1]) <= 0
   )
-    throw new Error(
-      "ICON_SIZE_INVALID: use a positive native size, such as 24 or 24x24",
-    );
+    throw new Error('ICON_SIZE_INVALID: use a positive native size, such as 24 or 24x24');
   return { width: Number(match[1]), height: Number(match[2] ?? match[1]) };
 }
 export function findIcons({
-  query = "",
+  query = '',
   family,
   size,
   limit = 20,
   registryFile = defaultRegistry,
 } = {}) {
   if (!Number.isSafeInteger(limit) || limit < 1)
-    throw new Error("ICON_LIMIT_INVALID: use a positive integer");
+    throw new Error('ICON_LIMIT_INVALID: use a positive integer');
   const registry = loadIconRegistry(registryFile);
   const families = registry.families.map((entry) => entry.id);
   if (family && !families.includes(family))
-    throw new Error("ICON_FAMILY_UNKNOWN: " + families.join(", "));
+    throw new Error('ICON_FAMILY_UNKNOWN: ' + families.join(', '));
   const native = dimensions(size);
   const terms = String(query)
-    .normalize("NFKC")
-    .toLocaleLowerCase("en-US")
+    .normalize('NFKC')
+    .toLocaleLowerCase('en-US')
     .trim()
     .split(/\s+/)
     .filter(Boolean);
@@ -57,7 +55,7 @@ export function findIcons({
     if (family && icon.family !== family) return false;
     if (
       native &&
-      (icon.native?.status !== "confirmed" ||
+      (icon.native?.status !== 'confirmed' ||
         icon.native.width !== native.width ||
         icon.native.height !== native.height)
     )
@@ -72,9 +70,9 @@ export function findIcons({
       icon.family,
     ]
       .filter(Boolean)
-      .join(" ")
-      .normalize("NFKC")
-      .toLocaleLowerCase("en-US");
+      .join(' ')
+      .normalize('NFKC')
+      .toLocaleLowerCase('en-US');
     return terms.every((term) => haystack.includes(term));
   });
   return {
@@ -107,32 +105,30 @@ export function findIcons({
   };
 }
 export function parseFindIconOptions(args) {
-  const options = { query: "", limit: 20 };
+  const options = { query: '', limit: 20 };
   const words = [];
   for (let index = 0; index < args.length; index++) {
     const argument = args[index];
-    if (argument === "--help" || argument === "-h") options.help = true;
-    else if (argument === "--json") options.json = true;
-    else if (["--query", "--family", "--size", "--limit"].includes(argument)) {
+    if (argument === '--help' || argument === '-h') options.help = true;
+    else if (argument === '--json') options.json = true;
+    else if (['--query', '--family', '--size', '--limit'].includes(argument)) {
       const value = args[++index];
-      if (!value || value.startsWith("--"))
-        throw new Error(argument + " requires a value");
-      if (argument === "--query") words.push(value);
-      if (argument === "--family") options.family = value;
-      if (argument === "--size") options.size = value;
-      if (argument === "--limit") options.limit = Number(value);
-    } else if (argument.startsWith("-"))
-      throw new Error("Unknown option: " + argument);
+      if (!value || value.startsWith('--')) throw new Error(argument + ' requires a value');
+      if (argument === '--query') words.push(value);
+      if (argument === '--family') options.family = value;
+      if (argument === '--size') options.size = value;
+      if (argument === '--limit') options.limit = Number(value);
+    } else if (argument.startsWith('-')) throw new Error('Unknown option: ' + argument);
     else words.push(argument);
   }
-  options.query = words.join(" ");
+  options.query = words.join(' ');
   return options;
 }
 function main(args) {
   const options = parseFindIconOptions(args);
   if (options.help) {
     console.log(
-      "Usage: node find_icon.mjs [keywords] [--query text] [--family system|status|file|empty|pedestal] [--size 24|24x24] [--limit 20] [--json]\nReads only the Skill icons.json. --size filters confirmed native dimensions; it does not resize artwork.",
+      'Usage: node find_icon.mjs [keywords] [--query text] [--family system|status|file|empty|pedestal] [--size 24|24x24] [--limit 20] [--json]\nReads only the Skill icons.json. --size filters confirmed native dimensions; it does not resize artwork.',
     );
     return;
   }
@@ -144,7 +140,7 @@ function main(args) {
     );
     for (const icon of result.results) {
       console.log(
-        `${icon.key}\n  family=${icon.family}; name=${icon.name}; alias=${icon.alias}; native=${icon.native?.width ?? "?"}x${icon.native?.height ?? "?"}; rendered=${icon.renderedCanvas?.width ?? "?"}x${icon.renderedCanvas?.height ?? "?"}`,
+        `${icon.key}\n  family=${icon.family}; name=${icon.name}; alias=${icon.alias}; native=${icon.native?.width ?? '?'}x${icon.native?.height ?? '?'}; rendered=${icon.renderedCanvas?.width ?? '?'}x${icon.renderedCanvas?.height ?? '?'}`,
       );
       for (const binding of icon.publicBindings)
         console.log(

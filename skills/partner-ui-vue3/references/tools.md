@@ -22,6 +22,8 @@ node <Skill根>/scripts/new_feature.mjs --help
 
 从功能 `index.ts` 取得 `createFeatureRoutes(api)` 并接入产品 router；AI 模板还接受 namespace/storage 选项。API 实现必填，默认不注入历史存储。工具不会安装依赖、启动应用、接后端或修改产品配置。生产入口不导入生成的 mocks；宿主仍需等价构建 guard 和真实验证。
 
+列表模板嵌入已有工作台时用 `createFeatureRoutes(api, { shell: 'host' })`。生成目录的 `INTEGRATION.md` 链到页面壳与字段扩展说明。
+
 包身份取自 `source.lock.json`，实际校验 tarball SHA-256 及公开 manifest/release 的版本和完整提交；资格声明原样保留。没有把组件库源码或 tarball 复制进功能。草稿中 `source.file` 相对原 Skill 锁根解释，`scope: skill-lock`、`copiedToFeature:false`；宿主完成 vendor/安装后更新实际位置与证据。
 
 草稿的 `skillVersion:null`、API `assumed` 且 method/path 为 `null`、所有检查 `not-run`、实际 Vue/单实例及体积为未验证。复制模板不等于实际需求完成。按 [integration.md](integration.md) 接线、按 [testing.md](testing.md) 运行检查，再按 [delivery.md](delivery.md) 更新 JSON 与摘要。

@@ -1,3 +1,4 @@
+export type WorkbenchListShell = 'standalone' | 'host';
 export const agreementStatuses = ['生效中', '待续签', '审批中', '已到期'] as const;
 export type AgreementStatus = (typeof agreementStatuses)[number];
 export type Agreement = {
