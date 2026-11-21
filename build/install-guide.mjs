@@ -1,8 +1,12 @@
 const requirements = {
-  'partner-ui-pages': '基本使用需 Node.js 22.13 或更高版本；新建和导出离线原型无需 npm install。使用 Python 页面脚手架时还需 Python 3。',
-  'partner-ui-vue3': '生成器需 Node.js 22.13 或更高版本；完整 harness 验证还需 pnpm、安装依赖以及 Playwright Chromium。业务宿主依赖按宿主工程说明安装。',
-  'partner-ui-review': '需 Node.js 22.13 或更高版本；静态复查使用目标工程或 Skill 内安装的 TypeScript 和 Vue，浏览器检查需要 Playwright Chromium。图片对照需要 Python 3 和 Pillow。',
-  'design-requirement-canvas': '需 Python 3.9+ 和 Node.js 20+。校验、画布生成和交接使用 Python 标准库；图片裁剪需要 Pillow，DOM 和浏览器检查需要相应 Node 依赖及 Playwright Chromium。',
+  'partner-ui-pages':
+    '基本使用需 Node.js 22.13 或更高版本；新建和导出离线原型无需 npm install。使用 Python 页面脚手架时还需 Python 3。',
+  'partner-ui-vue3':
+    '生成器需 Node.js 22.13 或更高版本；完整 harness 验证还需 pnpm、安装依赖以及 Playwright Chromium。业务宿主依赖按宿主工程说明安装。',
+  'partner-ui-review':
+    '需 Node.js 22.13 或更高版本；静态复查使用目标工程或 Skill 内安装的 TypeScript 和 Vue，浏览器检查需要 Playwright Chromium。图片对照需要 Python 3 和 Pillow。',
+  'design-requirement-canvas':
+    '需 Python 3.9+ 和 Node.js 20+。校验、画布生成和交接使用 Python 标准库；图片裁剪需要 Pillow，DOM 和浏览器检查需要相应 Node 依赖及 Playwright Chromium。',
 };
 
 export function installGuide(name, version) {

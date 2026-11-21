@@ -57,7 +57,10 @@ import { copy } from './locale/zh-CN';
 </script>
 
 <template>
-  <div class="feature-page" :data-template-ready="loading ? 'false' : 'true'">
+  <div
+    class="feature-page"
+    :data-template-ready="loading ? 'false' : 'true'"
+  >
     <WorkbenchTopNav
       :tabs="nav.tabs"
       :sites="nav.sites"
@@ -77,10 +80,19 @@ import { copy } from './locale/zh-CN';
         type="error"
         :message="error"
         :show-close="false"
-      /><WorkbenchButton v-if="error" appearance="secondary" @click="reload">{{
-        copy.text31
-      }}</WorkbenchButton>
-      <div v-if="loading" role="status" :aria-label="copy.loading"><WorkbenchLoading /></div>
+      /><WorkbenchButton
+        v-if="error"
+        appearance="secondary"
+        @click="reload"
+        >{{ copy.text31 }}</WorkbenchButton
+      >
+      <div
+        v-if="loading"
+        role="status"
+        :aria-label="copy.loading"
+      >
+        <WorkbenchLoading />
+      </div>
       <template v-else>
         <header class="page-head">
           <div>
@@ -89,7 +101,10 @@ import { copy } from './locale/zh-CN';
               {{ data.organization }} · {{ data.partnerLevel }}
             </p>
           </div>
-          <div class="partner-ai" style="height: auto; background: transparent">
+          <div
+            class="partner-ai"
+            style="height: auto; background: transparent"
+          >
             <WorkspaceSmartTag
               :fragments="[
                 { text: copy.text13 },
@@ -101,7 +116,10 @@ import { copy } from './locale/zh-CN';
           </div>
         </header>
 
-        <div class="feature-grid" style="align-items: start">
+        <div
+          class="feature-grid"
+          style="align-items: start"
+        >
           <div class="feature-span-16 feature-stack">
             <WorkbenchMetricCard
               :title="copy.text17"
@@ -120,7 +138,10 @@ import { copy } from './locale/zh-CN';
               <template #header
                 ><h2 class="feature-title-m">{{ copy.text32 }}</h2></template
               >
-              <div class="trend feature-custom" :data-feature-name="copy.text19">
+              <div
+                class="trend feature-custom"
+                :data-feature-name="copy.text19"
+              >
                 <div class="trend-head">
                   <div class="legend feature-text-s">
                     <span
@@ -141,15 +162,28 @@ import { copy } from './locale/zh-CN';
                     @update:model-value="setRange"
                   />
                 </div>
-                <WorkbenchEmptyState v-if="!chart.bars.length" type="no-data" level="local" />
+                <WorkbenchEmptyState
+                  v-if="!chart.bars.length"
+                  type="no-data"
+                  level="local"
+                />
                 <svg
                   v-else
                   :viewBox="`0 0 ${chart.w} ${chart.h}`"
                   role="img"
                   :aria-label="copy.text23"
                 >
-                  <line class="axis" :x1="0" :x2="chart.w" :y1="chart.h - 24" :y2="chart.h - 24" />
-                  <g v-for="(b, i) in chart.bars" :key="b.m">
+                  <line
+                    class="axis"
+                    :x1="0"
+                    :x2="chart.w"
+                    :y1="chart.h - 24"
+                    :y2="chart.h - 24"
+                  />
+                  <g
+                    v-for="(b, i) in chart.bars"
+                    :key="b.m"
+                  >
                     <rect
                       class="bar"
                       :class="{ 'is-last': i === chart.bars.length - 1 }"
@@ -159,18 +193,29 @@ import { copy } from './locale/zh-CN';
                       :height="b.bh"
                       rx="2"
                     />
-                    <text class="label" :x="b.x + b.bw / 2" :y="chart.h - 6" text-anchor="middle">
+                    <text
+                      class="label"
+                      :x="b.x + b.bw / 2"
+                      :y="chart.h - 6"
+                      text-anchor="middle"
+                    >
                       {{ b.m }}
                     </text>
                   </g>
-                  <polyline class="line" :points="chart.line" />
+                  <polyline
+                    class="line"
+                    :points="chart.line"
+                  />
                 </svg>
               </div>
             </WorkbenchCard>
 
             <WorkbenchCard variant="display-white">
               <template #header>
-                <div class="feature-row feature-between" style="width: 100%">
+                <div
+                  class="feature-row feature-between"
+                  style="width: 100%"
+                >
                   <h2 class="feature-title-m">{{ copy.text35 }}</h2>
                   <WorkbenchButton
                     appearance="text"
@@ -189,7 +234,11 @@ import { copy } from './locale/zh-CN';
                 @update:model-value="setTodoTab"
               />
               <div v-if="todos.length">
-                <div v-for="t in todos" :key="t.id" class="todo-item">
+                <div
+                  v-for="t in todos"
+                  :key="t.id"
+                  class="todo-item"
+                >
                   <div class="todo-main">
                     <WorkbenchTag
                       :label="t.type"
@@ -201,13 +250,21 @@ import { copy } from './locale/zh-CN';
                   </div>
                   <div class="feature-row">
                     <span class="feature-text-s">{{ t.date }}</span>
-                    <WorkbenchButton appearance="text" size="28" @click="processTodo(t)">{{
-                      copy.text36
-                    }}</WorkbenchButton>
+                    <WorkbenchButton
+                      appearance="text"
+                      size="28"
+                      @click="processTodo(t)"
+                      >{{ copy.text36 }}</WorkbenchButton
+                    >
                   </div>
                 </div>
               </div>
-              <WorkbenchEmptyState v-else type="no-data" level="local" :title="copy.text25" />
+              <WorkbenchEmptyState
+                v-else
+                type="no-data"
+                level="local"
+                :title="copy.text25"
+              />
             </WorkbenchCard>
           </div>
           <div class="feature-span-8 feature-stack">
@@ -218,7 +275,10 @@ import { copy } from './locale/zh-CN';
               @activate="onAppActivate"
             />
 
-            <div class="partner-ai" style="height: auto; background: transparent">
+            <div
+              class="partner-ai"
+              style="height: auto; background: transparent"
+            >
               <WorkspaceSmartCard
                 :title="copy.text27"
                 :items="data.insights"
@@ -239,7 +299,11 @@ import { copy } from './locale/zh-CN';
               <template #header
                 ><h2 class="feature-title-m">{{ copy.text30 }}</h2></template
               >
-              <WorkbenchTimeline :items="data.notices" node-type="dot" :label="copy.text30" />
+              <WorkbenchTimeline
+                :items="data.notices"
+                node-type="dot"
+                :label="copy.text30"
+              />
             </WorkbenchCard>
           </div>
         </div>

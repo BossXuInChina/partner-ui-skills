@@ -22,7 +22,11 @@ description: 用伙伴工作台 Workbench 与 AI UI 发布包，将 PRD、partne
 
 ## 读取与选型
 
-先用 `node scripts/assets.mjs search --query "关键词" --limit 5` 定位资产，再用 `node scripts/assets.mjs show --id <id>` 读取消费速查；需完整变体/更多示例时加 `--view full`。查询只读随包资料，不证明宿主版本一致或运行时通过验证；命令以 Skill 根为基准，其他工作目录请使用脚本绝对路径。search 返回 0 或 `matchMode: partial` 不代表资产不存在：先换更短关键词或英文导出名重试，再查 [Workbench 索引](references/workbench/index.md) 与 [AI 包参考](references/ai-ui.md)；确认缺失后才自建并标 `pui-custom`。无 Node 时直接用这两个索引。只读命中的组件页、相关 [设计规则](references/design-rules.md) 和 [Token](references/tokens.md) 段落，通常 3–8 个组件足够。规则有适用条件和强度，不能把建议升级为全局禁止。组件 API、使用场景及原生图标尺寸以当前锁包记录为准，不按截图猜 props。
+**新建管理列表**时，先用业务词运行 `node scripts/templates.mjs --query "页面需求"`。命中后，在消费工程实际运行返回的生成命令，把输出目录作为可编辑的业务模块。保留模板的页头、面包屑、筛选、结果卡和分页，用注入的 API 提供数据。独立页面用默认路由；已有导航、滚动容器和页脚的宿主用 `createFeatureRoutes(api, { shell: 'host' })`。工具路径相对于 Skill；从工程运行时使用脚本绝对路径，并用 `--out` 指向工程内的新目录。
+
+**续签或追加字段**时，沿用已生成的列表，按其 `pages/workbench-list/README.md` 的列、草稿/已应用筛选与第三字段插槽扩展。只需核对表格、筛选的任务契约时使用检索结果中的 `--view task`。先验证当前需求的查询结果与真实布局；需要更多事件、变体或错误细节时再展开 quick、full 或详细日志。
+
+**局部控件和其余资产**先用 `node scripts/assets.mjs search --query "关键词" --limit 5` 定位资产，再用 `node scripts/assets.mjs show --id <id>` 读取消费速查；需完整变体/更多示例时加 `--view full`。查询只读随包资料，不证明宿主版本一致或运行时通过验证；命令以 Skill 根为基准，其他工作目录请使用脚本绝对路径。search 返回 0 或 `matchMode: partial` 不代表资产不存在：先换更短关键词或英文导出名重试，再查 [Workbench 索引](references/workbench/index.md) 与 [AI 包参考](references/ai-ui.md)；确认缺失后才自建并标 `pui-custom`。无 Node 时直接用这两个索引。只读命中的组件页、相关 [设计规则](references/design-rules.md) 和 [Token](references/tokens.md) 段落，通常 3–8 个组件足够。规则有适用条件和强度，不能把建议升级为全局禁止。组件 API、使用场景及原生图标尺寸以当前锁包记录为准，不按截图猜 props。
 
 使用 AI 时读 [AI Vue 组合](references/ai-ui-vue.md)；[AI 包参考](references/ai-ui.md) 说明现有结构化元数据的实际范围。大图标表只做关键词过滤查询，核对 `key`/`alias` 与 family，不全量展开 [图标资料](references/icons.md) 或 JSON。
 

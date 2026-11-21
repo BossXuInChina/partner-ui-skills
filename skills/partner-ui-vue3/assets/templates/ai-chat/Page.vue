@@ -35,7 +35,10 @@ const {
 const { messages, processing, aborted } = session;
 </script>
 <template>
-  <div class="feature-page chat-page" :data-template-ready="ready ? 'true' : 'false'">
+  <div
+    class="feature-page chat-page"
+    :data-template-ready="ready ? 'true' : 'false'"
+  >
     <WorkbenchTopNav
       :tabs="text.tabs"
       :sites="text.sites"
@@ -43,7 +46,10 @@ const { messages, processing, aborted } = session;
       @update:active-tab="navigateTab"
     />
     <main class="feature-container feature-stack chat-main">
-      <WorkbenchBreadcrumb :items="text.crumbs" @navigate="breadcrumb" />
+      <WorkbenchBreadcrumb
+        :items="text.crumbs"
+        @navigate="breadcrumb"
+      />
       <div class="feature-grid chat-layout">
         <aside class="feature-span-6 feature-stack">
           <WorkbenchCard variant="display-white">
@@ -75,7 +81,10 @@ const { messages, processing, aborted } = session;
           data-ai-component="ChatPanel"
           :aria-label="text.title"
         >
-          <div v-if="rendererError" role="alert">
+          <div
+            v-if="rendererError"
+            role="alert"
+          >
             {{ text.rendererError }}
             <WorkbenchButton @click="loadRenderers">{{ text.retry }}</WorkbenchButton>
           </div>
