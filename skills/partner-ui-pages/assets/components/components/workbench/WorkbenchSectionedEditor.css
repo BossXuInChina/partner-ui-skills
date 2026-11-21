@@ -1,0 +1,7 @@
+
+.sectioned-editor[data-v-c50e9e95] {
+  display: grid;
+  gap: var(--wb-spacing-layout-card-gap);
+  min-inline-size: 0;
+}
+

@@ -6,7 +6,10 @@ const route = useRoute();
 
 <template>
   <div class="app-shell">
-    <header v-if="!route.meta.template" class="app-header">
+    <header
+      v-if="!route.meta.template"
+      class="app-header"
+    >
       <span>{{ copy.appName }}</span>
       <nav aria-label="页面导航">
         <RouterLink :to="{ name: 'blank' }">{{ copy.blankLink }}</RouterLink>

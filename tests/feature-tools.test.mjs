@@ -461,9 +461,9 @@ test('concurrent CLI creation publishes one complete tree and refuses the other 
     rmSync(parent, { recursive: true, force: true });
   }
 });
-test('icon filters use the actual 1201-entry registry and confirmed native dimensions', () => {
+test('icon filters use the actual 1205-entry registry and confirmed native dimensions', () => {
   const registry = loadIconRegistry();
-  assert.equal(registry.iconCount, 1201);
+  assert.equal(registry.iconCount, 1205);
   const result = findIcons({
     query: '告警',
     family: 'status',

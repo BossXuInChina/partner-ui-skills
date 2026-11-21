@@ -26,8 +26,16 @@ const __sfc_main__ = {
     autoplay: { type: Boolean, default: true },
     contentMotion: { type: Boolean, default: false },
     showNavigation: { type: Boolean, default: true },
-    indicatorPlacement: { type: String, default: "overlay", validator: (value) => ["overlay", "below"].includes(value) },
-    transitionStyle: { type: String, default: "fade", validator: (value) => ["fade", "slide"].includes(value) }
+    indicatorPlacement: {
+      type: String,
+      default: "overlay",
+      validator: (value) => ["overlay", "below"].includes(value)
+    },
+    transitionStyle: {
+      type: String,
+      default: "fade",
+      validator: (value) => ["fade", "slide"].includes(value)
+    }
   },
   emits: ["update:modelValue", "change"],
   setup(__props, { emit: __emit }) {
@@ -54,11 +62,24 @@ const __sfc_main__ = {
       const nodes = [...element.querySelectorAll("[data-wb-carousel-motion]")];
       const style = getComputedStyle(element);
       const token = (key) => parseFloat(style.getPropertyValue(`--wb-asset-wb-carousel-content-${key}`));
-      const duration = token("duration"), stagger = token("stagger"), offset = token("offset");
+      const duration = token("duration");
+      const stagger = token("stagger");
+      const offset = token("offset");
       const animations = nodes.map((node, index) => {
         const animation = node.animate(
-          entering ? [{ opacity: 0, transform: `translateY(${offset}px)` }, { opacity: 1, transform: "translateY(0)" }] : [{ opacity: 1, transform: "translateY(0)" }, { opacity: 0, transform: `translateY(${offset}px)` }],
-          { duration, delay: (entering ? index : nodes.length - index - 1) * stagger, easing: "ease-out", fill: "both" }
+          entering ? [
+            { opacity: 0, transform: `translateY(${offset}px)` },
+            { opacity: 1, transform: "translateY(0)" }
+          ] : [
+            { opacity: 1, transform: "translateY(0)" },
+            { opacity: 0, transform: `translateY(${offset}px)` }
+          ],
+          {
+            duration,
+            delay: (entering ? index : nodes.length - index - 1) * stagger,
+            easing: "ease-out",
+            fill: "both"
+          }
         );
         contentAnimations.add(animation);
         return animation;
@@ -72,12 +93,18 @@ const __sfc_main__ = {
       });
     }
     const motionSlide = ref(null);
-    const displayedIndex = ref(Math.min(Math.max(Number.isInteger(props.modelValue) ? props.modelValue : 0, 0), Math.max(0, props.items.length - 1)));
+    const displayedIndex = ref(
+      Math.min(
+        Math.max(Number.isInteger(props.modelValue) ? props.modelValue : 0, 0),
+        Math.max(0, props.items.length - 1)
+      )
+    );
     let motionRevision = 0;
     async function changeContent() {
       const revision = ++motionRevision;
       cancelContentMotion();
-      if (props.contentMotion && motionSlide.value) await new Promise((done) => animateContent(motionSlide.value, false, done));
+      if (props.contentMotion && motionSlide.value)
+        await new Promise((done) => animateContent(motionSlide.value, false, done));
       if (revision !== motionRevision) return;
       displayedIndex.value = safeIndex.value;
       await nextTick();
@@ -86,9 +113,16 @@ const __sfc_main__ = {
     }
     const itemCount = computed(() => props.items.length);
     const hasMultiple = computed(() => itemCount.value > 1);
-    const safeIndex = computed(() => itemCount.value ? Math.min(Math.max(Number.isInteger(props.modelValue) ? props.modelValue : 0, 0), itemCount.value - 1) : 0);
+    const safeIndex = computed(
+      () => itemCount.value ? Math.min(
+        Math.max(Number.isInteger(props.modelValue) ? props.modelValue : 0, 0),
+        itemCount.value - 1
+      ) : 0
+    );
     const activeItem = computed(() => props.items[safeIndex.value]);
-    const shouldAutoplay = computed(() => hasMultiple.value && props.autoplay && !props.disabled && !hovered.value && !focused.value && !documentHidden.value && !reducedMotion.value);
+    const shouldAutoplay = computed(
+      () => hasMultiple.value && props.autoplay && !props.disabled && !hovered.value && !focused.value && !documentHidden.value && !reducedMotion.value
+    );
     const slideId = (index) => `${instanceId}-slide-${index}`;
     function stopAutoplay() {
       if (timer) window.clearInterval(timer);
@@ -96,7 +130,15 @@ const __sfc_main__ = {
     }
     function syncAutoplay() {
       stopAutoplay();
-      if (shouldAutoplay.value) timer = window.setInterval(() => goTo(safeIndex.value + 1), Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--wb-asset-wb-carousel-autoplay-interval")) || 5e3);
+      if (shouldAutoplay.value)
+        timer = window.setInterval(
+          () => goTo(safeIndex.value + 1),
+          Number.parseFloat(
+            getComputedStyle(document.documentElement).getPropertyValue(
+              "--wb-asset-wb-carousel-autoplay-interval"
+            )
+          ) || 5e3
+        );
     }
     function normalized(index) {
       if (!itemCount.value) return 0;
@@ -134,9 +176,14 @@ const __sfc_main__ = {
     function onMotionChange(event) {
       reducedMotion.value = event.matches;
     }
-    watch(() => [props.modelValue, itemCount.value], () => {
-      if (itemCount.value && props.modelValue !== safeIndex.value) emit("update:modelValue", safeIndex.value);
-    }, { immediate: true });
+    watch(
+      () => [props.modelValue, itemCount.value],
+      () => {
+        if (itemCount.value && props.modelValue !== safeIndex.value)
+          emit("update:modelValue", safeIndex.value);
+      },
+      { immediate: true }
+    );
     watch([safeIndex, () => props.contentMotion, reducedMotion], changeContent);
     watch(shouldAutoplay, syncAutoplay, { immediate: true });
     watch(() => props.items, syncAutoplay, { deep: true });
@@ -157,7 +204,12 @@ const __sfc_main__ = {
     });
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("section", {
-        class: _normalizeClass(["wb-carousel", { "is-disabled": __props.disabled, "is-empty": !itemCount.value, "is-slide-reverse": slideDirection.value < 0, "wb-carousel--indicators-below": __props.indicatorPlacement === "below" }]),
+        class: _normalizeClass(["wb-carousel", {
+          "is-disabled": __props.disabled,
+          "is-empty": !itemCount.value,
+          "is-slide-reverse": slideDirection.value < 0,
+          "wb-carousel--indicators-below": __props.indicatorPlacement === "below"
+        }]),
         "aria-label": __props.ariaLabel,
         "aria-roledescription": "carousel",
         onMouseenter: _cache[2] || (_cache[2] = ($event) => hovered.value = true),

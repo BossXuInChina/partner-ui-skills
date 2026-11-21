@@ -10,7 +10,15 @@ const part = computed(() => (isSummaryPart(content.value) ? content.value : null
 </script>
 <template>
   <div class="partner-ai">
-    <AiSummaryCard v-if="part" :text="part.text" />
-    <p v-else role="status">{{ zhCN.assistant.unsupportedContent }}</p>
+    <AiSummaryCard
+      v-if="part"
+      :text="part.text"
+    />
+    <p
+      v-else
+      role="status"
+    >
+      {{ zhCN.assistant.unsupportedContent }}
+    </p>
   </div>
 </template>

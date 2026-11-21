@@ -1,11 +1,11 @@
 {
-  "_generated": "Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit.",
+  "_generated": "Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit.",
   "schemaVersion": "1.0",
   "packageName": "@workbench/ui-vue3",
-  "version": "0.2.0-prototype.20261106.7",
-  "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc",
+  "version": "0.5.1-dev.20261121.1",
+  "sourceCommit": "651d5bb52c6f91471c6e2269977f854ea3ef706f",
   "sourceHasLocalChanges": false,
-  "iconCount": 1201,
+  "iconCount": 1205,
   "families": [
     {
       "id": "system",
@@ -200,7 +200,7 @@
     },
     {
       "id": "pedestal",
-      "iconCount": 51,
+      "iconCount": 55,
       "components": [
         {
           "publicImport": {
@@ -230,7 +230,7 @@
         }
       ],
       "selection": {
-        "exactSelection": "name accepts a registered key or alias; no size or color override prop"
+        "exactSelection": "name accepts a registered key or alias; size 28 or 48 scales the selected artwork without changing the registered native geometry"
       }
     }
   ],
@@ -56994,6 +56994,170 @@
           },
           "props": {
             "name": "pedestal/rounded-square/high/pending/48"
+          }
+        }
+      ]
+    },
+    {
+      "family": "pedestal",
+      "kind": "pedestal",
+      "key": "pedestal/rounded-square/high/pgi-industry-solution/40",
+      "alias": "pedestal/rounded-square/high/pgi-industry-solution_40px",
+      "name": "行业解决方案能力",
+      "displayName": "行业解决方案能力",
+      "group": "PGI 经营指标",
+      "semantic": "行业解决方案能力",
+      "style": "unspecified",
+      "colorMode": null,
+      "size": 40,
+      "native": {
+        "status": "confirmed",
+        "width": 40,
+        "height": 40
+      },
+      "exported": {
+        "width": 40,
+        "height": 40.000008
+      },
+      "viewBox": "0 0 40 40",
+      "renderedCanvas": {
+        "width": 40,
+        "height": 40.000008,
+        "viewBox": "0 0 40 40"
+      },
+      "replacementKey": null,
+      "registeredNativeStatus": "confirmed",
+      "components": [
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchPedestalIcon"
+          },
+          "props": {
+            "name": "pedestal/rounded-square/high/pgi-industry-solution/40"
+          }
+        }
+      ]
+    },
+    {
+      "family": "pedestal",
+      "kind": "pedestal",
+      "key": "pedestal/rounded-square/high/pgi-performance/40",
+      "alias": "pedestal/rounded-square/high/pgi-performance_40px",
+      "name": "业绩指标",
+      "displayName": "业绩指标",
+      "group": "PGI 经营指标",
+      "semantic": "业绩指标",
+      "style": "unspecified",
+      "colorMode": null,
+      "size": 40,
+      "native": {
+        "status": "confirmed",
+        "width": 40,
+        "height": 40
+      },
+      "exported": {
+        "width": 40,
+        "height": 40.000004
+      },
+      "viewBox": "0 0 40 40",
+      "renderedCanvas": {
+        "width": 40,
+        "height": 40.000004,
+        "viewBox": "0 0 40 40"
+      },
+      "replacementKey": null,
+      "registeredNativeStatus": "confirmed",
+      "components": [
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchPedestalIcon"
+          },
+          "props": {
+            "name": "pedestal/rounded-square/high/pgi-performance/40"
+          }
+        }
+      ]
+    },
+    {
+      "family": "pedestal",
+      "kind": "pedestal",
+      "key": "pedestal/rounded-square/high/pgi-service/40",
+      "alias": "pedestal/rounded-square/high/pgi-service_40px",
+      "name": "服务能力",
+      "displayName": "服务能力",
+      "group": "PGI 经营指标",
+      "semantic": "服务能力",
+      "style": "unspecified",
+      "colorMode": null,
+      "size": 40,
+      "native": {
+        "status": "confirmed",
+        "width": 40,
+        "height": 40
+      },
+      "exported": {
+        "width": 40,
+        "height": 40.000008
+      },
+      "viewBox": "0 0 40 40",
+      "renderedCanvas": {
+        "width": 40,
+        "height": 40.000008,
+        "viewBox": "0 0 40 40"
+      },
+      "replacementKey": null,
+      "registeredNativeStatus": "confirmed",
+      "components": [
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchPedestalIcon"
+          },
+          "props": {
+            "name": "pedestal/rounded-square/high/pgi-service/40"
+          }
+        }
+      ]
+    },
+    {
+      "family": "pedestal",
+      "kind": "pedestal",
+      "key": "pedestal/rounded-square/high/pgi-specialization/40",
+      "alias": "pedestal/rounded-square/high/pgi-specialization_40px",
+      "name": "专业化能力",
+      "displayName": "专业化能力",
+      "group": "PGI 经营指标",
+      "semantic": "专业化能力",
+      "style": "unspecified",
+      "colorMode": null,
+      "size": 40,
+      "native": {
+        "status": "confirmed",
+        "width": 40,
+        "height": 40
+      },
+      "exported": {
+        "width": 40,
+        "height": 40.000008
+      },
+      "viewBox": "0 0 40 40",
+      "renderedCanvas": {
+        "width": 40,
+        "height": 40.000008,
+        "viewBox": "0 0 40 40"
+      },
+      "replacementKey": null,
+      "registeredNativeStatus": "confirmed",
+      "components": [
+        {
+          "publicImport": {
+            "moduleName": "@workbench/ui-vue3",
+            "exportName": "WorkbenchPedestalIcon"
+          },
+          "props": {
+            "name": "pedestal/rounded-square/high/pgi-specialization/40"
           }
         }
       ]

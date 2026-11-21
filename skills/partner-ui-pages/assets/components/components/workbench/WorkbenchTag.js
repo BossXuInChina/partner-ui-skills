@@ -65,6 +65,7 @@ const __sfc_main__ = /* @__PURE__ */ Object.assign({ inheritAttrs: false }, {
       default: "none",
       validator: (value) => ["none", "add", "remove"].includes(value)
     },
+    showFull: { type: Boolean, default: false },
     interactive: { type: Boolean, default: false },
     selected: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false }
@@ -83,7 +84,7 @@ const __sfc_main__ = /* @__PURE__ */ Object.assign({ inheritAttrs: false }, {
       }
       return Array.from(fullLabel.value);
     });
-    const truncated = computed(() => graphemes.value.length > 7);
+    const truncated = computed(() => !props.showFull && graphemes.value.length > 7);
     const TagTooltip = (_, { slots: tooltipSlots }) => truncated.value ? h(WorkbenchTooltip, { content: fullLabel.value }, { trigger: tooltipSlots.default }) : tooltipSlots.default({ aria: {} })[0];
     const displayLabel = computed(
       () => truncated.value ? `${graphemes.value.slice(0, 7).join("")}\u2026` : fullLabel.value

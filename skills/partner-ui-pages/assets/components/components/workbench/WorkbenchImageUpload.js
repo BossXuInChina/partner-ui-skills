@@ -49,7 +49,20 @@ const __sfc_main__ = {
     uploadRequest: { type: Function, default: void 0 },
     previewState: { type: String, default: "default" }
   },
-  emits: ["update:modelValue", "change", "reject", "progress", "success", "error", "cancel", "remove", "retry", "preview", "download", "batch-download"],
+  emits: [
+    "update:modelValue",
+    "change",
+    "reject",
+    "progress",
+    "success",
+    "error",
+    "cancel",
+    "remove",
+    "retry",
+    "preview",
+    "download",
+    "batch-download"
+  ],
   setup(__props, { expose: __expose, emit: __emit }) {
     const props = __props;
     const disabled = useFormDisabled(() => props.disabled);
@@ -69,8 +82,12 @@ const __sfc_main__ = {
     let alive = true;
     let pendingItems = null;
     const currentItems = () => pendingItems ?? items.value;
-    const successful = computed(() => items.value.filter((item) => ["success", "ready"].includes(item.status) && item.url));
-    const help = computed(() => props.hint ?? `\u4E0D\u8D85\u8FC7${Math.round(props.maxSize / 1024)}KB\uFF0C\u652F\u6301${props.accept.split(",").map((type) => type.trim().replace("image/", "").replace("jpeg", "jpg")).join("\u3001")}\uFF0C\u6700\u591A\u4E0A\u4F20${limit.value}\u5F20\u56FE\u7247`);
+    const successful = computed(
+      () => items.value.filter((item) => ["success", "ready"].includes(item.status) && item.url)
+    );
+    const help = computed(
+      () => props.hint ?? `\u4E0D\u8D85\u8FC7${Math.round(props.maxSize / 1024)}KB\uFF0C\u652F\u6301${props.accept.split(",").map((type) => type.trim().replace("image/", "").replace("jpeg", "jpg")).join("\u3001")}\uFF0C\u6700\u591A\u4E0A\u4F20${limit.value}\u5F20\u56FE\u7247`
+    );
     function commit(next) {
       const value = next.map((item) => ({ ...item }));
       if (props.modelValue === void 0) localItems.value = value;
@@ -94,7 +111,9 @@ const __sfc_main__ = {
     function accepted(file) {
       const types = props.accept.split(",").map((type) => type.trim().toLowerCase()).filter(Boolean);
       const mime = file.type.toLowerCase();
-      return types.length === 0 || types.some((type) => type.startsWith(".") ? file.name.toLowerCase().endsWith(type) : type.endsWith("/*") ? mime.startsWith(type.slice(0, -1)) : mime === type);
+      return types.length === 0 || types.some(
+        (type) => type.startsWith(".") ? file.name.toLowerCase().endsWith(type) : type.endsWith("/*") ? mime.startsWith(type.slice(0, -1)) : mime === type
+      );
     }
     async function selectFiles(event) {
       const selected = Array.from(event.target.files ?? []);
@@ -106,7 +125,8 @@ const __sfc_main__ = {
       for (const file of selected) {
         let reason = "";
         if (!accepted(file)) reason = "\u6587\u4EF6\u683C\u5F0F\u4E0D\u652F\u6301";
-        else if (file.size > props.maxSize) reason = `\u6587\u4EF6\u4E0D\u80FD\u8D85\u8FC7${Math.round(props.maxSize / 1024)}KB`;
+        else if (file.size > props.maxSize)
+          reason = `\u6587\u4EF6\u4E0D\u80FD\u8D85\u8FC7${Math.round(props.maxSize / 1024)}KB`;
         else if (next.length >= limit.value) reason = `\u6700\u591A\u4E0A\u4F20${limit.value}\u5F20\u56FE\u7247`;
         if (reason) {
           rejected.push(`${file.name}\uFF1A${reason}`);
@@ -158,7 +178,11 @@ const __sfc_main__ = {
           }
         });
         if (!valid()) return;
-        patch(item.id, { status: "success", progress: 100, ...typeof result === "string" ? { url: result } : result?.url ? { url: result.url } : {} });
+        patch(item.id, {
+          status: "success",
+          progress: 100,
+          ...typeof result === "string" ? { url: result } : result?.url ? { url: result.url } : {}
+        });
         emit("success", { id: item.id, result });
       } catch (error) {
         if (!valid()) return;
@@ -224,26 +248,40 @@ const __sfc_main__ = {
       downloads.add(controller);
       const selected = successful.value.map((item) => ({ ...item }));
       try {
-        const entries = await Promise.all(selected.map(async (item, index) => [`${index + 1}-${item.name.replace(/[\\/]/g, "_")}`, new Uint8Array(await (await imageBlob(item, controller.signal)).arrayBuffer())]));
+        const entries = await Promise.all(
+          selected.map(async (item, index) => [
+            `${index + 1}-${item.name.replace(/[\\/]/g, "_")}`,
+            new Uint8Array(await (await imageBlob(item, controller.signal)).arrayBuffer())
+          ])
+        );
         if (!alive) return;
-        saveBlob(new Blob([zipSync(Object.fromEntries(entries), { level: 0 })], { type: "application/zip" }), "\u56FE\u7247.zip");
+        saveBlob(
+          new Blob([zipSync(Object.fromEntries(entries), { level: 0 })], { type: "application/zip" }),
+          "\u56FE\u7247.zip"
+        );
         emit("batch-download", selected);
       } catch (error) {
-        if (alive && !controller.signal.aborted) message.value = error.message || "\u6279\u91CF\u4E0B\u8F7D\u5931\u8D25\uFF0C\u8BF7\u91CD\u8BD5";
+        if (alive && !controller.signal.aborted)
+          message.value = error.message || "\u6279\u91CF\u4E0B\u8F7D\u5931\u8D25\uFF0C\u8BF7\u91CD\u8BD5";
       } finally {
         downloads.delete(controller);
         downloading.value = false;
       }
     }
-    watch(items, (next) => {
-      const ids = new Set(next.map((item) => item.id));
-      for (const id of jobs.keys()) if (!ids.has(id)) stop(id);
-      for (const [id, url] of urls) if (!ids.has(id)) {
-        URL.revokeObjectURL(url);
-        urls.delete(id);
-      }
-      if (preview.value && !ids.has(preview.value.id)) preview.value = null;
-    }, { flush: "post" });
+    watch(
+      items,
+      (next) => {
+        const ids = new Set(next.map((item) => item.id));
+        for (const id of jobs.keys()) if (!ids.has(id)) stop(id);
+        for (const [id, url] of urls)
+          if (!ids.has(id)) {
+            URL.revokeObjectURL(url);
+            urls.delete(id);
+          }
+        if (preview.value && !ids.has(preview.value.id)) preview.value = null;
+      },
+      { flush: "post" }
+    );
     onBeforeUnmount(() => {
       alive = false;
       for (const id of jobs.keys()) stop(id);
@@ -251,9 +289,13 @@ const __sfc_main__ = {
       for (const url of urls.values()) URL.revokeObjectURL(url);
       urls.clear();
     });
-    __expose({ selectFiles: () => {
-      if (!disabled.value && items.value.length < limit.value) input.value?.click();
-    }, retry, cancel: (item) => remove(item, true) });
+    __expose({
+      selectFiles: () => {
+        if (!disabled.value && items.value.length < limit.value) input.value?.click();
+      },
+      retry,
+      cancel: (item) => remove(item, true)
+    });
     watch(disabled, (value) => {
       if (value) {
         preview.value = null;

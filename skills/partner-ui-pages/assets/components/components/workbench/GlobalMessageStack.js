@@ -24,12 +24,22 @@ import WorkbenchLoading from "../loading/WorkbenchLoading.vue";
 import WorkbenchIcon from "../icons/WorkbenchIcon.vue";
 const __sfc_main__ = {
   __name: "GlobalMessageStack",
-  props: { items: { type: Array, default: () => [] }, autoClose: { type: Number, default: void 0 } },
+  props: {
+    items: { type: Array, default: () => [] },
+    autoClose: { type: Number, default: void 0 }
+  },
   emits: ["dismiss", "link", "checkbox"],
   setup(__props, { emit: __emit }) {
     const props = __props;
     const emit = __emit;
-    const statusIconSemantics = { info: "info", success: "success", warning: "warning", danger: "alert-orange", critical: "alert-red", error: "close_circle" };
+    const statusIconSemantics = {
+      info: "info",
+      success: "success",
+      warning: "warning",
+      danger: "alert-orange",
+      critical: "alert-red",
+      error: "close_circle"
+    };
     const visibleItems = computed(() => props.items.slice(0, 2));
     const statusIconName = (type) => `${statusIconSemantics[type]}/solid/16`;
     const timers = /* @__PURE__ */ new Map();
@@ -56,32 +66,41 @@ const __sfc_main__ = {
       replacementTimers.delete(item.id);
       emit("dismiss", { id: item.id, reason });
     }
-    watch(() => props.items.map((item) => [item.id, item.messageKey, item.message, item.type, props.autoClose]), () => {
-      const ids = new Set(props.items.map((item) => item.id));
-      for (const id of feedbackRefs.keys()) if (!ids.has(id)) feedbackRefs.delete(id);
-      for (const [id, entry] of timers) if (!ids.has(id)) {
-        entry.timer.dispose();
-        timers.delete(id);
-      }
-      for (const [id, replacementTimer] of replacementTimers) if (!ids.has(id)) {
-        clearTimeout(replacementTimer);
-        replacementTimers.delete(id);
-      }
-      for (const id of dismissed) if (!ids.has(id)) dismissed.delete(id);
-      for (const item of props.items.slice(1)) {
-        if (replacementTimers.has(item.id) || dismissed.has(item.id)) continue;
-        replacementTimers.set(item.id, setTimeout(() => dismiss(item, "replaced"), 200));
-      }
-      for (const item of props.items.slice(0, 1)) {
-        const signature = JSON.stringify([item.messageKey, item.message, item.type, props.autoClose]);
-        const entry = timers.get(item.id);
-        if (entry?.signature === signature) continue;
-        dismissed.delete(item.id);
-        const timer = entry?.timer || createAutoDismiss(() => dismiss(item, "timeout"));
-        timers.set(item.id, { timer, signature });
-        timer.reset(item.type === "loading" ? 0 : normalizeDuration(props.autoClose, 2e3));
-      }
-    }, { immediate: true });
+    watch(
+      () => props.items.map((item) => [item.id, item.messageKey, item.message, item.type, props.autoClose]),
+      () => {
+        const ids = new Set(props.items.map((item) => item.id));
+        for (const id of feedbackRefs.keys()) if (!ids.has(id)) feedbackRefs.delete(id);
+        for (const [id, entry] of timers)
+          if (!ids.has(id)) {
+            entry.timer.dispose();
+            timers.delete(id);
+          }
+        for (const [id, replacementTimer] of replacementTimers)
+          if (!ids.has(id)) {
+            clearTimeout(replacementTimer);
+            replacementTimers.delete(id);
+          }
+        for (const id of dismissed) if (!ids.has(id)) dismissed.delete(id);
+        for (const item of props.items.slice(1)) {
+          if (replacementTimers.has(item.id) || dismissed.has(item.id)) continue;
+          replacementTimers.set(
+            item.id,
+            setTimeout(() => dismiss(item, "replaced"), 200)
+          );
+        }
+        for (const item of props.items.slice(0, 1)) {
+          const signature = JSON.stringify([item.messageKey, item.message, item.type, props.autoClose]);
+          const entry = timers.get(item.id);
+          if (entry?.signature === signature) continue;
+          dismissed.delete(item.id);
+          const timer = entry?.timer || createAutoDismiss(() => dismiss(item, "timeout"));
+          timers.set(item.id, { timer, signature });
+          timer.reset(item.type === "loading" ? 0 : normalizeDuration(props.autoClose, 2e3));
+        }
+      },
+      { immediate: true }
+    );
     onBeforeUnmount(() => {
       for (const entry of feedbackReleases.values()) entry.release();
       feedbackReleases.clear();
@@ -112,7 +131,14 @@ const __sfc_main__ = {
                   onMouseleave: ($event) => _unref(timers).get(item.id)?.timer.resume("pointer"),
                   onFocusin: ($event) => _unref(timers).get(item.id)?.timer.pause("focus"),
                   onFocusout: ($event) => !$event.currentTarget.contains($event.relatedTarget) && _unref(timers).get(item.id)?.timer.resume("focus"),
-                  class: _normalizeClass(["wb-message wb-message--stack", [`wb-message--${item.type}`, { "has-icon": item.showIcon !== false, "has-close": item.showClose !== false, "is-replacing": index > 0 }]]),
+                  class: _normalizeClass(["wb-message wb-message--stack", [
+                    `wb-message--${item.type}`,
+                    {
+                      "has-icon": item.showIcon !== false,
+                      "has-close": item.showClose !== false,
+                      "is-replacing": index > 0
+                    }
+                  ]]),
                   role: ["critical", "error"].includes(item.type) ? "alert" : "status",
                   "aria-live": ["critical", "error"].includes(item.type) ? "assertive" : "polite"
                 }, [

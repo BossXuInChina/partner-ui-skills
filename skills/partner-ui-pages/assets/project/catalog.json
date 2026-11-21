@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "runtimeVersion": "1.1.0-dev.20261106.1",
+  "runtimeVersion": "1.1.0-dev.20261121.1",
   "packages": [
     {
       "name": "@workbench/ui-vue3",
-      "version": "0.2.0-prototype.20261106.7",
-      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
-      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc"
+      "version": "0.5.1-dev.20261121.1",
+      "sha256": "df538467a1ebb9310196a544fdb50fd801dcce36e17cd0ebc0755479e917ed98",
+      "sourceCommit": "651d5bb52c6f91471c6e2269977f854ea3ef706f"
     },
     {
       "name": "huawei-partner-ai-ui",
-      "version": "0.3.1-dev.20261106.1",
-      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
-      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393"
+      "version": "0.3.1-dev.20261121.1",
+      "sha256": "e9060f1af12a0f953f00b7b12b91ac1c0ece2c635cf0ba48ebee435be716dfd1",
+      "sourceCommit": "9e1e87e9e8e8230e7330f1edaf29b3e74081cba7"
     }
   ],
   "exports": {
@@ -256,13 +256,17 @@
       "WorkbenchRadio",
       "WorkbenchRating",
       "WorkbenchReadonlyFields",
+      "WorkbenchRecordCard",
+      "WorkbenchRecordWorkspace",
       "WorkbenchScrollbar",
       "WorkbenchSearch",
+      "WorkbenchSectionedEditor",
       "WorkbenchSelect",
       "WorkbenchSideNavigation",
       "WorkbenchSkeleton",
       "WorkbenchSkeletonBlock",
       "WorkbenchSlider",
+      "WorkbenchStaticFields",
       "WorkbenchStatusIcon",
       "WorkbenchSteps",
       "WorkbenchSwitch",
@@ -491,7 +495,7 @@
           },
           "validator": {
             "kind": "unknown",
-            "expression": "value => Number.isInteger(value)"
+            "expression": "(value) => Number.isInteger(value)"
           }
         },
         "ariaLabel": {
@@ -1031,6 +1035,14 @@
             "radar"
           ]
         },
+        "appearance": {
+          "type": "String",
+          "default": "default",
+          "enum": [
+            "default",
+            "analysis"
+          ]
+        },
         "categories": {
           "type": "Array",
           "default": {
@@ -1133,6 +1145,10 @@
             "kind": "function"
           }
         },
+        "gaugeMarker": {
+          "type": "Boolean",
+          "default": true
+        },
         "status": {
           "type": "String",
           "default": ""
@@ -1149,7 +1165,9 @@
         }
       },
       "events": [],
-      "slots": [],
+      "slots": [
+        "gauge-center"
+      ],
       "useWhen": [
         "工作台看板中的数值分布、趋势、占比、达成度与多维对比"
       ],
@@ -3994,7 +4012,7 @@
           "default": 5,
           "validator": {
             "kind": "unknown",
-            "expression": "value => Number.isInteger(value) && value > 0"
+            "expression": "(value) => Number.isInteger(value) && value > 0"
           }
         },
         "step": {
@@ -4002,7 +4020,7 @@
           "default": 1,
           "validator": {
             "kind": "unknown",
-            "expression": "value => value === 1 || value === 0.5"
+            "expression": "(value) => value === 1 || value === 0.5"
           }
         },
         "disabled": {
@@ -4070,7 +4088,7 @@
       "id": "wb-readonly-fields",
       "package": "@workbench/ui-vue3",
       "name": "WorkbenchReadonlyFields",
-      "label": "静态字段组 ReadonlyFields",
+      "label": "只读表单字段组 ReadonlyFields",
       "kind": "block",
       "summary": "静态字段组的受控业务组合",
       "props": {
@@ -4126,6 +4144,144 @@
       "reference": "references/workbench/wb-readonly-fields.md"
     },
     {
+      "id": "wb-record-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchRecordCard",
+      "label": "业务记录卡片 RecordCard",
+      "kind": "block",
+      "summary": "展示一条记录的标题、标签、收藏、选择和操作。点击卡片可打开记录，交互控件和文本选择保持独立。",
+      "props": {
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "href": {
+          "type": "String"
+        },
+        "status": {
+          "type": "String",
+          "default": ""
+        },
+        "tone": {
+          "type": "String",
+          "default": "info"
+        },
+        "tags": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        },
+        "selectable": {
+          "type": "Boolean"
+        },
+        "selectDisabled": {
+          "type": "Boolean"
+        },
+        "selected": {
+          "type": "Boolean"
+        },
+        "selectLabel": {
+          "type": "String",
+          "default": ""
+        },
+        "favorite": {
+          "type": "Boolean"
+        },
+        "starred": {
+          "type": "Boolean"
+        },
+        "openOnTitle": {
+          "type": "Boolean"
+        },
+        "deletable": {
+          "type": "Boolean"
+        },
+        "actions": {
+          "type": "Array",
+          "default": {
+            "kind": "function"
+          }
+        }
+      },
+      "events": [
+        "select",
+        "favorite",
+        "open",
+        "delete",
+        "action"
+      ],
+      "slots": [
+        "header-actions",
+        "default",
+        "footer",
+        "progress"
+      ],
+      "useWhen": [
+        "展示一条记录的标题、标签、收藏、选择和操作。点击卡片可打开记录，交互控件和文本选择保持独立。"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-record-card.md"
+    },
+    {
+      "id": "wb-record-workspace",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchRecordWorkspace",
+      "label": "记录工作区 RecordWorkspace",
+      "kind": "block",
+      "summary": "在左侧筛选或用途后排列全选和计数，右侧排列批量操作。用于 BOQ、商务通知单、订单及其他可复用的记录列表。",
+      "props": {
+        "toolbarClass": {
+          "type": "String",
+          "default": ""
+        },
+        "selectedCount": {
+          "type": "Number",
+          "default": 0
+        },
+        "selectableCount": {
+          "type": "Number",
+          "default": 0
+        },
+        "checked": {
+          "type": "Boolean"
+        },
+        "indeterminate": {
+          "type": "Boolean"
+        }
+      },
+      "events": [
+        "toggle-all"
+      ],
+      "slots": [
+        "filters",
+        "actions",
+        "default",
+        "footer"
+      ],
+      "useWhen": [
+        "在左侧筛选或用途后排列全选和计数，右侧排列批量操作。用于 BOQ、商务通知单、订单及其他可复用的记录列表。"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-record-workspace.md"
+    },
+    {
       "id": "wb-scrollbar",
       "package": "@workbench/ui-vue3",
       "name": "WorkbenchScrollbar",
@@ -4150,6 +4306,9 @@
         },
         "state": {
           "type": "String"
+        },
+        "trackInsets": {
+          "type": "Object"
         }
       },
       "events": [],
@@ -4316,6 +4475,36 @@
       },
       "unsupported": [],
       "reference": "references/workbench/wb-search.md"
+    },
+    {
+      "id": "wb-sectioned-editor",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSectionedEditor",
+      "label": "交易分区编辑",
+      "kind": "block",
+      "summary": "创建报备、编辑报备与投标沿用有序的表单分区。",
+      "props": {
+        "sections": {
+          "type": "Array",
+          "required": true
+        }
+      },
+      "events": [],
+      "slots": [
+        "default"
+      ],
+      "useWhen": [
+        "创建报备、编辑报备与投标沿用有序的表单分区。"
+      ],
+      "avoidWhen": [
+        "提交、草稿持久化、表单校验与页面操作区由宿主负责。"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-sectioned-editor.md"
     },
     {
       "id": "wb-select",
@@ -4517,7 +4706,7 @@
           "default": 3,
           "validator": {
             "kind": "unknown",
-            "expression": "value => Number.isInteger(value) && value >= 1 && value <= 5"
+            "expression": "(value) => Number.isInteger(value) && value >= 1 && value <= 5"
           }
         },
         "animated": {
@@ -4656,6 +4845,45 @@
       "reference": "references/workbench/wb-slider.md"
     },
     {
+      "id": "wb-static-fields",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchStaticFields",
+      "label": "静态字段展示 StaticFields",
+      "kind": "block",
+      "summary": "三列紧凑字段。窄屏单行截断，聚焦或悬停可查看全文。字段可配置值色、链接、复制及右侧操作。",
+      "props": {
+        "label": {
+          "type": "String",
+          "required": true
+        },
+        "model": {
+          "type": "Object",
+          "required": true
+        },
+        "fields": {
+          "type": "Array",
+          "required": true
+        }
+      },
+      "events": [
+        "copy"
+      ],
+      "slots": [],
+      "useWhen": [
+        "三列紧凑字段。窄屏单行截断，聚焦或悬停可查看全文。字段可配置值色、链接、复制及右侧操作。"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "status": {
+        "maturity": "prototype-validated",
+        "deliveryEligibility": "prototype-only"
+      },
+      "unsupported": [],
+      "reference": "references/workbench/wb-static-fields.md"
+    },
+    {
       "id": "wb-steps",
       "package": "@workbench/ui-vue3",
       "name": "WorkbenchSteps",
@@ -4681,6 +4909,9 @@
         "size": {
           "type": "String",
           "default": "medium"
+        },
+        "compactEdges": {
+          "type": "Boolean"
         },
         "nodeType": {
           "type": "String",
@@ -4813,6 +5044,10 @@
             "Function"
           ],
           "required": true
+        },
+        "rowGroup": {
+          "type": "Object",
+          "default": null
         },
         "selectedRowKeys": {
           "type": "Array",
@@ -5275,6 +5510,10 @@
             "remove"
           ]
         },
+        "showFull": {
+          "type": "Boolean",
+          "default": false
+        },
         "interactive": {
           "type": "Boolean",
           "default": false
@@ -5416,6 +5655,14 @@
         "label": {
           "type": "String",
           "default": "事件时间轴"
+        },
+        "layout": {
+          "type": "String",
+          "default": "standard",
+          "enum": [
+            "standard",
+            "compact"
+          ]
         }
       },
       "events": [],
@@ -5531,6 +5778,18 @@
             "authenticated"
           ]
         },
+        "alignment": {
+          "type": "String",
+          "default": "centered",
+          "enum": [
+            "edges",
+            "centered"
+          ]
+        },
+        "brandTitle": {
+          "type": "String",
+          "default": "伙伴工作台"
+        },
         "activeTab": {
           "type": "String",
           "default": "home"
@@ -5538,6 +5797,10 @@
         "currentSite": {
           "type": "String",
           "default": "partner"
+        },
+        "showSiteSwitcher": {
+          "type": "Boolean",
+          "default": true
         },
         "currentLanguage": {
           "type": "String",
@@ -6255,7 +6518,7 @@
           }
         },
         "align": {
-          "type": "'start'|'center'",
+          "type": "'start' | 'center'",
           "required": false,
           "default": {
             "kind": "literal",
@@ -6544,21 +6807,21 @@
           }
         },
         "clear": {
-          "type": "()=>Promise<boolean>",
+          "type": "() => Promise<boolean>",
           "required": true,
           "default": {
             "kind": "undefined"
           }
         },
         "remove": {
-          "type": "(id:string)=>Promise<boolean>",
+          "type": "(id: string) => Promise<boolean>",
           "required": true,
           "default": {
             "kind": "undefined"
           }
         },
         "select": {
-          "type": "(id:string)=>Promise<boolean>",
+          "type": "(id: string) => Promise<boolean>",
           "required": true,
           "default": {
             "kind": "undefined"
@@ -7013,7 +7276,7 @@
           "required": false,
           "default": {
             "kind": "factory",
-            "source": "()=>[]"
+            "source": "() => []"
           }
         },
         "welcomeEntries": {
@@ -7021,7 +7284,7 @@
           "required": false,
           "default": {
             "kind": "factory",
-            "source": "()=>[]"
+            "source": "() => []"
           }
         },
         "suggestionPills": {
@@ -7029,7 +7292,7 @@
           "required": false,
           "default": {
             "kind": "factory",
-            "source": "()=>[]"
+            "source": "() => []"
           }
         },
         "messagePrompts": {
@@ -7052,7 +7315,7 @@
           "required": false,
           "default": {
             "kind": "factory",
-            "source": "()=>[]"
+            "source": "() => []"
           }
         }
       },

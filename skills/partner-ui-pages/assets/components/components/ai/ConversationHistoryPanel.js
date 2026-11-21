@@ -74,33 +74,70 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     const delivery = useDeliveryMode();
     const id = `history-${useId().replace(/[^a-zA-Z0-9-]/g, "")}`;
     let changingPane = false;
-    const visible = ref(false), moreId = ref(""), deleting = ref(), deleteFailure = ref("");
-    const query = ref(""), earlier = ref(false), confirming = ref(false), style = ref({});
-    const search = ref(), cancel = ref(), clearButton = ref();
-    const content = ref(), list = ref();
+    const visible = ref(false);
+    const moreId = ref("");
+    const deleting = ref();
+    const deleteFailure = ref("");
+    const query = ref("");
+    const earlier = ref(false);
+    const confirming = ref(false);
+    const style = ref({});
+    const search = ref();
+    const cancel = ref();
+    const clearButton = ref();
+    const content = ref();
+    const list = ref();
     useAutoScrollbars(() => content.value, [{ selector: ".history-list", axis: "y" }]);
     const now = ref(Date.now());
-    const groups = computed(() => groupConversationHistory(props.records, query.value, earlier.value, now.value));
-    const hasRecords = computed(() => props.records.some((item) => item.messages.length || item.view.draft));
-    const hasEarlier = computed(() => props.records.some((item) => !item.pinned && item.updatedAt < now.value - 30 * 864e5 && (item.messages.length || item.view.draft)));
+    const groups = computed(
+      () => groupConversationHistory(props.records, query.value, earlier.value, now.value)
+    );
+    const hasRecords = computed(
+      () => props.records.some((item) => item.messages.length || item.view.draft)
+    );
+    const hasEarlier = computed(
+      () => props.records.some(
+        (item) => !item.pinned && item.updatedAt < now.value - 30 * 864e5 && (item.messages.length || item.view.draft)
+      )
+    );
     let observer;
-    let frame = 0, enterFrame = 0, leaveTimer = 0;
+    let frame = 0;
+    let enterFrame = 0;
+    let leaveTimer = 0;
     function position() {
       const hostElement = props.anchor.closest(".chat-panel");
       const host = hostElement?.getBoundingClientRect() ?? props.anchor.getBoundingClientRect();
-      const box = props.anchor.getBoundingClientRect(), viewportWidth = document.documentElement.clientWidth, viewportHeight = document.documentElement.clientHeight;
+      const box = props.anchor.getBoundingClientRect();
+      const viewportWidth = document.documentElement.clientWidth;
+      const viewportHeight = document.documentElement.clientHeight;
       const width = Math.max(0, Math.min(300, host.width - 24, viewportWidth - 24));
-      const left = Math.max(12, host.left + 12, Math.min(box.right - width, host.right - width - 12, viewportWidth - width - 12));
+      const left = Math.max(
+        12,
+        host.left + 12,
+        Math.min(box.right - width, host.right - width - 12, viewportWidth - width - 12)
+      );
       const top = Math.max(12, Math.min(box.bottom + 8, viewportHeight - 100));
       const composerTop = hostElement?.querySelector(".composer")?.getBoundingClientRect().top;
-      const bottom = Math.min(host.bottom - 12, viewportHeight - 12, composerTop && composerTop - top >= 80 ? composerTop - 8 : Infinity);
-      const next = { left: `${left}px`, top: `${top}px`, width: `${width}px`, maxHeight: `${Math.min(520, Math.max(80, bottom - top))}px` };
+      const bottom = Math.min(
+        host.bottom - 12,
+        viewportHeight - 12,
+        composerTop && composerTop - top >= 80 ? composerTop - 8 : Infinity
+      );
+      const next = {
+        left: `${left}px`,
+        top: `${top}px`,
+        width: `${width}px`,
+        maxHeight: `${Math.min(520, Math.max(80, bottom - top))}px`
+      };
       const port = list.value;
       if (port) {
         const gutter = port.offsetWidth - port.clientWidth;
         const nativeTrack = parseFloat(getComputedStyle(port, "::-webkit-scrollbar").width);
         const track = gutter || (Number.isFinite(nativeTrack) ? nativeTrack : 14);
-        Object.assign(next, { "--history-scroll-extension": `${(16 + track) / 2}px`, "--history-native-gutter": `${gutter}px` });
+        Object.assign(next, {
+          "--history-scroll-extension": `${(16 + track) / 2}px`,
+          "--history-native-gutter": `${gutter}px`
+        });
       }
       if (JSON.stringify(style.value) !== JSON.stringify(next)) style.value = next;
     }
@@ -122,13 +159,15 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       if (!props.open) return;
       if (event.target instanceof Node && !content.value?.contains(event.target) && !props.anchor.contains(event.target)) {
         if (props.busy) return;
-        if (content.value?.contains(document.activeElement)) props.anchor.focus({ preventScroll: true });
+        if (content.value?.contains(document.activeElement))
+          props.anchor.focus({ preventScroll: true });
         emit("close");
       }
     }
     function focusOutside(event) {
       if (!props.open || changingPane) return;
-      if (event.target instanceof Node && !content.value?.contains(event.target) && !props.anchor.contains(event.target) && !props.busy) emit("close");
+      if (event.target instanceof Node && !content.value?.contains(event.target) && !props.anchor.contains(event.target) && !props.busy)
+        emit("close");
     }
     function escape(event) {
       if (props.open && event.key === "Escape" && !document.querySelector("dialog[open]")) {
@@ -153,7 +192,9 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       deleting.value = void 0;
       deleteFailure.value = "";
       await nextTick();
-      const trigger = [...content.value?.querySelectorAll(".history-more") ?? []].find((button) => button.dataset.recordId === recordId);
+      const trigger = [
+        ...content.value?.querySelectorAll(".history-more") ?? []
+      ].find((button) => button.dataset.recordId === recordId);
       (trigger ?? search.value)?.focus({ preventScroll: true });
       changingPane = false;
     }
@@ -220,16 +261,19 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
         emit("closed");
       }
     }
-    watch(() => props.open, (open) => {
-      cancelAnimationFrame(enterFrame);
-      window.clearTimeout(leaveTimer);
-      visible.value = open;
-      if (!open) {
-        moreId.value = "";
-        const duration = content.value ? parseFloat(getComputedStyle(content.value).transitionDuration) * 1e3 : 0;
-        leaveTimer = window.setTimeout(() => finishLeave(), duration + 20);
-      } else void nextTick(() => search.value?.focus({ preventScroll: true }));
-    });
+    watch(
+      () => props.open,
+      (open) => {
+        cancelAnimationFrame(enterFrame);
+        window.clearTimeout(leaveTimer);
+        visible.value = open;
+        if (!open) {
+          moreId.value = "";
+          const duration = content.value ? parseFloat(getComputedStyle(content.value).transitionDuration) * 1e3 : 0;
+          leaveTimer = window.setTimeout(() => finishLeave(), duration + 20);
+        } else void nextTick(() => search.value?.focus({ preventScroll: true }));
+      }
+    );
     onBeforeUnmount(() => {
       cancelAnimationFrame(frame);
       cancelAnimationFrame(enterFrame);
@@ -241,7 +285,8 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       document.removeEventListener("focusin", focusOutside);
       document.removeEventListener("keydown", escape, true);
       if (content.value?.contains(document.activeElement)) props.anchor.focus({ preventScroll: true });
-      if (props.anchor.getAttribute("aria-controls") === id) props.anchor.removeAttribute("aria-controls");
+      if (props.anchor.getAttribute("aria-controls") === id)
+        props.anchor.removeAttribute("aria-controls");
     });
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("section", {
@@ -292,7 +337,7 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                 class: "button button--quiet",
                 disabled: __props.busy,
                 onClick: cancelDelete
-              }, "\u53D6\u6D88", 8, _hoisted_7),
+              }, " \u53D6\u6D88", 8, _hoisted_7),
               _createElementVNode("button", {
                 class: "button button--primary",
                 disabled: __props.busy || __props.blocked,
@@ -330,7 +375,7 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                 class: "button button--quiet",
                 disabled: __props.busy,
                 onClick: cancelClear
-              }, "\u53D6\u6D88", 8, _hoisted_12),
+              }, " \u53D6\u6D88", 8, _hoisted_12),
               _createElementVNode("button", {
                 class: "button button--primary",
                 disabled: __props.busy || __props.blocked,
@@ -408,7 +453,7 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                 [_unref(vAiTooltip), { content: "\u6E05\u9664\u641C\u7D22", disabled: !__props.open, closeOnPointerLeave: true }]
               ]) : _createCommentVNode("v-if", true)
             ]),
-            __props.blocked ? (_openBlock(), _createElementBlock("p", _hoisted_19, "\u8BF7\u5148\u5B8C\u6210\u6216\u53D6\u6D88\u5F53\u524D\u4E1A\u52A1\u7F16\u8F91\u3002")) : _createCommentVNode("v-if", true),
+            __props.blocked ? (_openBlock(), _createElementBlock("p", _hoisted_19, " \u8BF7\u5148\u5B8C\u6210\u6216\u53D6\u6D88\u5F53\u524D\u4E1A\u52A1\u7F16\u8F91\u3002 ")) : _createCommentVNode("v-if", true),
             __props.error ? (_openBlock(), _createElementBlock("p", _hoisted_20, [
               _createTextVNode(
                 _toDisplayString(__props.error) + " ",
@@ -448,7 +493,11 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                       "aria-hidden": "true"
                     })
                   ], 8, _hoisted_23)), [
-                    [_unref(vAiTooltip), { content: item.pinned ? "\u53D6\u6D88\u7F6E\u9876" : "\u7F6E\u9876", disabled: !__props.open, closeOnPointerLeave: true }]
+                    [_unref(vAiTooltip), {
+                      content: item.pinned ? "\u53D6\u6D88\u7F6E\u9876" : "\u7F6E\u9876",
+                      disabled: !__props.open,
+                      closeOnPointerLeave: true
+                    }]
                   ]) : _createCommentVNode("v-if", true),
                   _createVNode(ConversationMoreMenu, {
                     title: item.title,
@@ -477,7 +526,12 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                       /* TEXT */
                     )
                   ], 8, _hoisted_24)), [
-                    [_unref(vAiTooltip), { content: item.title, overflowOnly: true, overflowSelector: "span", disabled: !__props.open }]
+                    [_unref(vAiTooltip), {
+                      content: item.title,
+                      overflowOnly: true,
+                      overflowSelector: "span",
+                      disabled: !__props.open
+                    }]
                   ])
                 ]),
                 _: 1

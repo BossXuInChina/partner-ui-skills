@@ -11,7 +11,11 @@ const __sfc_main__ = {
   props: {
     modelValue: { type: [String, Number], required: true },
     items: { type: Array, required: true },
-    size: { type: String, default: "small", validator: (value) => ["small", "large"].includes(value) },
+    size: {
+      type: String,
+      default: "small",
+      validator: (value) => ["small", "large"].includes(value)
+    },
     ariaLabel: { type: String, default: "\u5355\u9009\u7EC4" },
     fill: Boolean
   },
@@ -23,9 +27,15 @@ const __sfc_main__ = {
     const rootElement = ref(null);
     const itemElements = ref([]);
     const highlightElement = ref(null);
-    const selectedIndex = computed(() => props.items.findIndex((item) => item.value === props.modelValue));
-    const enabledIndexes = computed(() => props.items.map((item, index) => disabled.value || item.disabled ? -1 : index).filter((index) => index >= 0));
-    const focusIndex = computed(() => !disabled.value && selectedIndex.value >= 0 && !props.items[selectedIndex.value]?.disabled ? selectedIndex.value : enabledIndexes.value[0] ?? -1);
+    const selectedIndex = computed(
+      () => props.items.findIndex((item) => item.value === props.modelValue)
+    );
+    const enabledIndexes = computed(
+      () => props.items.map((item, index) => disabled.value || item.disabled ? -1 : index).filter((index) => index >= 0)
+    );
+    const focusIndex = computed(
+      () => !disabled.value && selectedIndex.value >= 0 && !props.items[selectedIndex.value]?.disabled ? selectedIndex.value : enabledIndexes.value[0] ?? -1
+    );
     let resizeObserver;
     function updateHighlight() {
       const selected = itemElements.value[selectedIndex.value];
@@ -46,7 +56,8 @@ const __sfc_main__ = {
       if (focus) nextTick(() => itemElements.value[index]?.focus());
     }
     function onKeydown(event, index) {
-      if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
+      if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key))
+        return;
       const enabled = enabledIndexes.value;
       if (!enabled.length) return;
       event.preventDefault();
@@ -54,18 +65,26 @@ const __sfc_main__ = {
       let target;
       if (event.key === "Home") target = enabled[0];
       else if (event.key === "End") target = enabled.at(-1);
-      else if (event.key === "ArrowRight" || event.key === "ArrowDown") target = enabled[(Math.max(position, -1) + 1) % enabled.length];
+      else if (event.key === "ArrowRight" || event.key === "ArrowDown")
+        target = enabled[(Math.max(position, -1) + 1) % enabled.length];
       else target = enabled[(position <= 0 ? enabled.length : position) - 1];
       select(props.items[target], target, true);
     }
-    watch(() => [props.modelValue, props.size, props.items], () => nextTick(updateHighlight), { deep: true });
+    watch(
+      () => [props.modelValue, props.size, props.items],
+      () => nextTick(updateHighlight),
+      { deep: true }
+    );
     onMounted(() => {
       nextTick(updateHighlight);
       resizeObserver = new ResizeObserver(updateHighlight);
       if (rootElement.value) resizeObserver.observe(rootElement.value);
     });
     onBeforeUnmount(() => resizeObserver?.disconnect());
-    const { attrs: fieldAttrs } = useFieldControl(() => props.modelValue, { labelable: false, focus: () => itemElements.value?.find((el) => el?.tabIndex === 0)?.focus() });
+    const { attrs: fieldAttrs } = useFieldControl(() => props.modelValue, {
+      labelable: false,
+      focus: () => itemElements.value?.find((el) => el?.tabIndex === 0)?.focus()
+    });
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("div", _mergeProps({
         ref_key: "rootElement",

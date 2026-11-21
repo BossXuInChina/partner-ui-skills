@@ -14,19 +14,32 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
   setup(__props, { emit: __emit }) {
     const props = __props;
     const emit = __emit;
-    const tagElement = ref(), textElement = ref(), resolvedBackground = ref("");
-    const resolvedStyle = computed(() => resolvedBackground.value ? { "--ov-smart-tag-bg-resolved": resolvedBackground.value } : {});
-    let resizeObserver, mutationObserver, frame = 0, disposed = false;
-    let defaultBackground = "", defaultCenter = { x: 45.1526, y: 49.1071 }, lastCenter = "";
+    const tagElement = ref();
+    const textElement = ref();
+    const resolvedBackground = ref("");
+    const resolvedStyle = computed(
+      () => resolvedBackground.value ? { "--ov-smart-tag-bg-resolved": resolvedBackground.value } : {}
+    );
+    let resizeObserver;
+    let mutationObserver;
+    let frame = 0;
+    let disposed = false;
+    let defaultBackground = "";
+    let defaultCenter = { x: 45.1526, y: 49.1071 };
+    let lastCenter = "";
     function withCenter(background, x, y) {
       const pattern = /^(\s*radial-gradient\(\s*(?:circle|ellipse)\s+[^,]*?\bat\s+)[^,]+/s;
-      return background.replace(pattern, (_match, prefix) => `${prefix}${Number(x.toFixed(4))}% ${Number(y.toFixed(4))}%`);
+      return background.replace(
+        pattern,
+        (_match, prefix) => `${prefix}${Number(x.toFixed(4))}% ${Number(y.toFixed(4))}%`
+      );
     }
     function sourceBackground(element) {
       return getComputedStyle(element).getPropertyValue("--partner-ai-smart-tag-bg").trim() || defaultBackground;
     }
     function notifyCenter(x, y) {
-      const center = { x: Number(x.toFixed(4)), y: Number(y.toFixed(4)) }, key = `${center.x}:${center.y}`;
+      const center = { x: Number(x.toFixed(4)), y: Number(y.toFixed(4)) };
+      const key = `${center.x}:${center.y}`;
       if (key === lastCenter) return;
       lastCenter = key;
       emit("highlightCenter", center);
@@ -39,24 +52,34 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       });
     }
     function measureHighlight() {
-      const element = tagElement.value, text = textElement.value;
+      const element = tagElement.value;
+      const text = textElement.value;
       if (!element || !text || disposed || !props.autoFollowHighlight) return;
       const source = sourceBackground(element);
       if (!defaultBackground) {
         defaultBackground = source;
-        const point = source.match(/^\s*radial-gradient\(\s*(?:circle|ellipse)\s+[^,]*?\bat\s+(-?\d*\.?\d+)%\s+(-?\d*\.?\d+)%/s);
+        const point = source.match(
+          /^\s*radial-gradient\(\s*(?:circle|ellipse)\s+[^,]*?\bat\s+(-?\d*\.?\d+)%\s+(-?\d*\.?\d+)%/s
+        );
         if (point) defaultCenter = { x: Number(point[1]), y: Number(point[2]) };
       }
       const box = element.getBoundingClientRect();
       const clip = text.getBoundingClientRect();
-      const rects = [...text.querySelectorAll(".intelligence-fragment--data")].flatMap((node) => [...node.getClientRects()]).map((rect) => ({ left: Math.max(rect.left, clip.left), right: Math.min(rect.right, clip.right), top: Math.max(rect.top, clip.top), bottom: Math.min(rect.bottom, clip.bottom) })).filter((rect) => rect.right > rect.left && rect.bottom > rect.top);
+      const rects = [...text.querySelectorAll(".intelligence-fragment--data")].flatMap((node) => [...node.getClientRects()]).map((rect) => ({
+        left: Math.max(rect.left, clip.left),
+        right: Math.min(rect.right, clip.right),
+        top: Math.max(rect.top, clip.top),
+        bottom: Math.min(rect.bottom, clip.bottom)
+      })).filter((rect) => rect.right > rect.left && rect.bottom > rect.top);
       if (box.width <= 0 || box.height <= 0 || !rects.length) {
         resolvedBackground.value = withCenter(source, defaultCenter.x, defaultCenter.y);
         notifyCenter(defaultCenter.x, defaultCenter.y);
         return;
       }
-      const left = Math.min(...rects.map((rect) => rect.left)), right = Math.max(...rects.map((rect) => rect.right));
-      const top = Math.min(...rects.map((rect) => rect.top)), bottom = Math.max(...rects.map((rect) => rect.bottom));
+      const left = Math.min(...rects.map((rect) => rect.left));
+      const right = Math.max(...rects.map((rect) => rect.right));
+      const top = Math.min(...rects.map((rect) => rect.top));
+      const bottom = Math.max(...rects.map((rect) => rect.bottom));
       const x = ((left + right) / 2 - box.left) / box.width * 100;
       const y = ((top + bottom) / 2 - box.top) / box.height * 100;
       resolvedBackground.value = withCenter(source, x, y);
@@ -72,14 +95,18 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     function onWindowResize() {
       scheduleMeasure();
     }
-    watch(() => props.autoFollowHighlight, (enabled) => {
-      if (!enabled) {
-        resolvedBackground.value = "";
-        return;
-      }
-      lastCenter = "";
-      scheduleMeasure();
-    }, { immediate: true });
+    watch(
+      () => props.autoFollowHighlight,
+      (enabled) => {
+        if (!enabled) {
+          resolvedBackground.value = "";
+          return;
+        }
+        lastCenter = "";
+        scheduleMeasure();
+      },
+      { immediate: true }
+    );
     onMounted(async () => {
       const element = tagElement.value;
       if (!element) return;

@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 页脚 Footer — `WorkbenchFooter`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -59,7 +59,7 @@
 
 ```json
 {
-  "foundationKeys": ["font-body-s","color-text-primary","color-text-secondary","color-text-disabled","color-surface-page","color-border-focus","spacing-component-sm","spacing-component-lg","spacing-component-xl","spacing-screen-edge-compact","spacing-screen-edge-expanded","layout-grid-max-width"],
+  "foundationKeys": ["font-body-s","color-text-primary","color-text-secondary","color-text-disabled","color-surface-footer","color-border-focus","spacing-component-sm","spacing-component-lg","spacing-component-xl","spacing-screen-edge-compact","spacing-screen-edge-expanded","layout-grid-max-width"],
   "intro": "展示页面级版权、备案和法律入口；链接导航由浏览器处理，宿主可监听条目选择。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["用于页面或产品外壳的末尾辅助信息和法律入口；主导航、页内操作或独立反馈使用对应导航和按钮组件。"],"bullets":[]},

@@ -40,7 +40,11 @@ import FloatingButtonPopover from "./FloatingButtonPopover.vue";
 const __sfc_main__ = {
   __name: "FloatingButton",
   props: {
-    variant: { type: String, default: "single", validator: (value) => ["single", "group"].includes(value) },
+    variant: {
+      type: String,
+      default: "single",
+      validator: (value) => ["single", "group"].includes(value)
+    },
     items: { type: Array, default: () => [] },
     expanded: { type: Boolean, default: void 0 },
     ratings: { type: Object, default: void 0 },
@@ -48,7 +52,13 @@ const __sfc_main__ = {
     showBackToTop: { type: Boolean, default: false },
     ariaLabel: { type: String, default: "\u60AC\u6D6E\u5FEB\u6377\u64CD\u4F5C" }
   },
-  emits: ["update:expanded", "action", "back-to-top", "rating-change", "update:ratings"],
+  emits: [
+    "update:expanded",
+    "action",
+    "back-to-top",
+    "rating-change",
+    "update:ratings"
+  ],
   setup(__props, { emit: __emit }) {
     const props = __props;
     const emit = __emit;
@@ -61,12 +71,15 @@ const __sfc_main__ = {
     const dismissedPopover = ref(false);
     const focusedItemId = ref(null);
     function focusItem(event, item) {
-      if (event.target.matches(":focus-visible") || event.target.closest(".wb-floating-button__tooltip")) focusedItemId.value = item.id;
+      if (event.target.matches(":focus-visible") || event.target.closest(".wb-floating-button__tooltip"))
+        focusedItemId.value = item.id;
     }
     function enterPopover(event, item) {
       if (event.shiftKey || item.disabled || dismissedPopover.value) return;
       const popup = event.currentTarget.parentElement.querySelector(".wb-floating-button__tooltip");
-      const control = popup?.querySelector('button:not(:disabled)[tabindex="0"], a[href], input:not(:disabled)');
+      const control = popup?.querySelector(
+        'button:not(:disabled)[tabindex="0"], a[href], input:not(:disabled)'
+      );
       if (!control) return;
       event.preventDefault();
       focusedItemId.value = item.id;
@@ -75,13 +88,16 @@ const __sfc_main__ = {
     function blurItem(event, item) {
       const wrapper = event.currentTarget;
       nextTick(() => {
-        if (!wrapper.contains(document.activeElement) && focusedItemId.value === item.id) focusedItemId.value = null;
+        if (!wrapper.contains(document.activeElement) && focusedItemId.value === item.id)
+          focusedItemId.value = null;
       });
     }
     function dismissPopover(event) {
       if (event.key !== "Escape") return;
       dismissedPopover.value = true;
-      const wrapper = event.target.closest(".wb-floating-button__item, .wb-floating-button__single, .wb-floating-button__back-to-top");
+      const wrapper = event.target.closest(
+        ".wb-floating-button__item, .wb-floating-button__single, .wb-floating-button__back-to-top"
+      );
       wrapper?.querySelector(".wb-floating-button__action")?.focus();
       event.stopPropagation();
     }
@@ -90,13 +106,17 @@ const __sfc_main__ = {
       dismissedPopover.value = false;
     }
     const singleItem = computed(() => props.items[0]);
-    const effectiveVariant = computed(() => props.variant === "group" && props.items.length < 2 ? "single" : props.variant);
+    const effectiveVariant = computed(
+      () => props.variant === "group" && props.items.length < 2 ? "single" : props.variant
+    );
     const collapsedCount = computed(() => {
       if (!Number.isFinite(props.defaultVisibleCount)) return props.items.length;
       return Math.min(props.items.length, Math.max(0, Math.floor(props.defaultVisibleCount)));
     });
     const hasOverflowItems = computed(() => props.items.length > collapsedCount.value);
-    const visibleItems = computed(() => resolvedExpanded.value ? props.items : props.items.slice(0, collapsedCount.value));
+    const visibleItems = computed(
+      () => resolvedExpanded.value ? props.items : props.items.slice(0, collapsedCount.value)
+    );
     function tooltipId(item, suffix = "") {
       return `${instanceId}-${item?.id ?? "control"}${suffix}-tooltip`;
     }
@@ -118,7 +138,8 @@ const __sfc_main__ = {
       let element = root.value?.parentElement;
       while (element && element !== document.body) {
         const overflowY = getComputedStyle(element).overflowY;
-        if (/(auto|scroll|overlay)/.test(overflowY) && element.scrollHeight > element.clientHeight) return element;
+        if (/(auto|scroll|overlay)/.test(overflowY) && element.scrollHeight > element.clientHeight)
+          return element;
         element = element.parentElement;
       }
       return null;
@@ -135,7 +156,10 @@ const __sfc_main__ = {
       return _openBlock(), _createElementBlock("aside", {
         ref_key: "root",
         ref: root,
-        class: _normalizeClass(["wb-floating-button", [`wb-floating-button--${effectiveVariant.value}`, { "is-popover-dismissed": dismissedPopover.value }]]),
+        class: _normalizeClass(["wb-floating-button", [
+          `wb-floating-button--${effectiveVariant.value}`,
+          { "is-popover-dismissed": dismissedPopover.value }
+        ]]),
         onKeydown: dismissPopover,
         onPointerleave: resetPopover,
         onFocusin: resetPopover,

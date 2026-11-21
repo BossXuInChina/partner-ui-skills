@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 卡片 Card — `WorkbenchCard`
 
-资产：`wb-card` · 类型：`component` · 资产合同版本：`1.0.4`
+资产：`wb-card` · 类型：`component` · 资产合同版本：`1.0.6`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -799,7 +799,7 @@ unsupported：TARGET_NOT_RENDERED：The official SFC does not statically render 
 
 id：`wb-card-appearance` · must / confirmed
 
-display-white为白底无描边无阴影；display-tinted使用color-surface-card-tinted浅灰表面且无描边无阴影；operation为白底1px描边无阴影；navigation为白底无描边并使用交互阴影。页面背景color-surface-page不作为灰色卡片默认背景。
+display-white为白底无描边无阴影；display-tinted使用color-surface-card-tinted浅灰表面且无描边无阴影；operation为白底1px卡片专用描边color-border-card且无阴影；navigation为白底无描边并使用交互阴影。页面背景color-surface-page不作为灰色卡片默认背景。
 
 **适用条件**：选择Card外观
 
@@ -863,7 +863,7 @@ id：`wb-card-footer-text-action-align` · must / confirmed
 
 ### Foundation 引用
 
-`color-surface-card-default`、`color-surface-card-tinted`、`color-border`、`color-border-focus`、`color-border-separator-subtle`、`color-fill-selected`、`spacing-layout-container-inline`、`spacing-layout-container-block`、`spacing-dialog-padding-block-end-with-actions`、`spacing-layout-action-gap`、`spacing-layout-card-gap`、`spacing-component-md`、`spacing-component-sm`、`radius-lg`、`shadow-sm`、`shadow-md`、`font-body-s`、`layout-grid-breakpoint-medium`、`layout-grid-breakpoint-wide`、`layout-grid-columns-medium`、`layout-grid-columns-wide`
+`color-surface-card-default`、`color-surface-card-tinted`、`color-border-card`、`color-border-focus`、`color-border-separator-subtle`、`color-fill-selected`、`spacing-layout-container-inline`、`spacing-layout-container-block`、`spacing-dialog-padding-block-end-with-actions`、`spacing-layout-action-gap`、`spacing-layout-card-gap`、`spacing-component-md`、`spacing-component-sm`、`radius-lg`、`shadow-sm`、`shadow-md`、`font-body-s`、`layout-grid-breakpoint-medium`、`layout-grid-breakpoint-wide`、`layout-grid-columns-medium`、`layout-grid-columns-wide`
 
 ### 选型
 
@@ -897,7 +897,7 @@ Action = { id:string, label:string, appearance?:primary/secondary/text/icon, ico
 
 footer = {kind:metadata,text:string} | {kind:progress,value:number,label?:string} | null；进度归一到0至100并提供原生progress语义。辅助内容与动作各自启用，关闭后移除对应容器。
 
-共同slots为header、header-actions、footer、actions。存在内容的slot覆盖同名props；空slot不留下占位。导航模式只渲染数据驱动的被动内容，忽略所有可注入交互的slots与操作数组；缺少href时沿用基础Card的展示降级。
+共同slots为header、header-actions、footer、actions。头部右侧插槽内的文字按钮使用 text-layout="inline"。存在内容的slot覆盖同名props；空slot不留下占位。导航模式只渲染数据驱动的被动内容，忽略所有可注入交互的slots与操作数组；缺少href时沿用基础Card的展示降级。
 
 ### 四类 Block 数据与插槽
 

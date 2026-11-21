@@ -7,7 +7,7 @@
   padding: var(--wb-asset-wb-cascader-panel-padding);
   width: max-content;
   max-width: var(
-    --wb-cascader-panel-max-width,
+    --cascader-panel-max-width,
     calc(100vw - var(--wb-asset-wb-cascader-viewport-edge) * 2)
   );
   overflow: auto;

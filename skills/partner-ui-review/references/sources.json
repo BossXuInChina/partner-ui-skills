@@ -1,5 +1,5 @@
 {
-  "_generated": "Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc); huawei-partner-ai-ui@0.3.1-dev.20261106.1 (16d91bbbede5006960cce5278b0e2cda88785393) — do not edit.",
+  "_generated": "Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f); huawei-partner-ai-ui@0.3.1-dev.20261121.1 (9e1e87e9e8e8230e7330f1edaf29b3e74081cba7) — do not edit.",
   "schemaVersion": "1.0",
   "studioBaseURLs": {
     "@workbench/ui-vue3": "http://localhost:4173",
@@ -8,9 +8,9 @@
   "packages": [
     {
       "name": "@workbench/ui-vue3",
-      "version": "0.2.0-prototype.20261106.7",
-      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc",
-      "sha256": "b7a23e6ed8412deab35216600beaf55bc2be5e489baccc8d11d31317d870f413",
+      "version": "0.5.1-dev.20261121.1",
+      "sourceCommit": "651d5bb52c6f91471c6e2269977f854ea3ef706f",
+      "sha256": "df538467a1ebb9310196a544fdb50fd801dcce36e17cd0ebc0755479e917ed98",
       "metadata": [
         "components",
         "icons",
@@ -21,8 +21,8 @@
       "qualification": {
         "schemaVersion": "1.0",
         "packageName": "@workbench/ui-vue3",
-        "version": "0.2.0-prototype.20261106.7",
-        "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc",
+        "version": "0.5.1-dev.20261121.1",
+        "sourceCommit": "651d5bb52c6f91471c6e2269977f854ea3ef706f",
         "sourceHasLocalChanges": false,
         "channel": "development",
         "developmentEligible": true,
@@ -81,12 +81,16 @@
           "wb-radio",
           "wb-rating",
           "wb-readonly-fields",
+          "wb-record-card",
+          "wb-record-workspace",
           "wb-scrollbar",
           "wb-search",
+          "wb-sectioned-editor",
           "wb-select",
           "wb-side-navigation",
           "wb-skeleton",
           "wb-slider",
+          "wb-static-fields",
           "wb-steps",
           "wb-switch",
           "wb-table",
@@ -108,9 +112,9 @@
     },
     {
       "name": "huawei-partner-ai-ui",
-      "version": "0.3.1-dev.20261106.1",
-      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393",
-      "sha256": "fa2b794610eadc22cde74b7e4ea3ddf92bf4ce8b6f1b28a0f3da0ad8f74d2c88",
+      "version": "0.3.1-dev.20261121.1",
+      "sourceCommit": "9e1e87e9e8e8230e7330f1edaf29b3e74081cba7",
+      "sha256": "e9060f1af12a0f953f00b7b12b91ac1c0ece2c635cf0ba48ebee435be716dfd1",
       "metadata": [
         "components",
         "release"
@@ -118,8 +122,8 @@
       "qualification": {
         "schemaVersion": "1.0",
         "packageName": "huawei-partner-ai-ui",
-        "version": "0.3.1-dev.20261106.1",
-        "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393",
+        "version": "0.3.1-dev.20261121.1",
+        "sourceCommit": "9e1e87e9e8e8230e7330f1edaf29b3e74081cba7",
         "sourceHasLocalChanges": false
       }
     }

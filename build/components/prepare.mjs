@@ -17,6 +17,38 @@ function variable(code, name) {
   visit(parse(code));
   return result;
 }
+function literalValue(node) {
+  if (
+    ts.isParenthesizedExpression(node) ||
+    ts.isAsExpression(node) ||
+    ts.isSatisfiesExpression(node)
+  )
+    return literalValue(node.expression);
+  if (ts.isStringLiteralLike(node)) return node.text;
+  if (ts.isNumericLiteral(node)) return Number(node.text);
+  if (node.kind === ts.SyntaxKind.TrueKeyword) return true;
+  if (node.kind === ts.SyntaxKind.FalseKeyword) return false;
+  if (node.kind === ts.SyntaxKind.NullKeyword) return null;
+  if (ts.isPrefixUnaryExpression(node) && node.operator === ts.SyntaxKind.MinusToken)
+    return -literalValue(node.operand);
+  if (ts.isArrayLiteralExpression(node)) return node.elements.map(literalValue);
+  if (ts.isObjectLiteralExpression(node)) {
+    const out = {};
+    for (const prop of node.properties) {
+      if (!ts.isPropertyAssignment(prop)) throw Error('UNSUPPORTED_ARTWORK_PROPERTY');
+      const key =
+        ts.isIdentifier(prop.name) ||
+        ts.isStringLiteralLike(prop.name) ||
+        ts.isNumericLiteral(prop.name)
+          ? prop.name.text
+          : null;
+      if (key === null) throw Error('UNSUPPORTED_ARTWORK_KEY');
+      out[key] = literalValue(prop.initializer);
+    }
+    return out;
+  }
+  throw Error('UNSUPPORTED_ARTWORK_NODE: ' + ts.SyntaxKind[node.kind]);
+}
 export function aiIconDefaults(code) {
   const defaults = variable(code, 'defaults');
   const expression = ts.isSatisfiesExpression(defaults) ? defaults.expression : defaults;
@@ -184,7 +216,7 @@ export function prepareResources(raw) {
     defaultsModule: aiIconsId,
     ...aiIconDefaults(graph.modules[aiIconsId].code),
     artworkModule: artId,
-    artwork: JSON.parse(art.getText()),
+    artwork: literalValue(art),
   };
   graph.helpers = {
     chat: helperContract(

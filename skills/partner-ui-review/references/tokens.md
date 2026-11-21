@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc); huawei-partner-ai-ui@0.3.1-dev.20261106.1 (16d91bbbede5006960cce5278b0e2cda88785393) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f); huawei-partner-ai-ui@0.3.1-dev.20261121.1 (9e1e87e9e8e8230e7330f1edaf29b3e74081cba7) — do not edit. -->
 
 # Tokens
 
 ## `@workbench/ui-vue3`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -14,6 +14,7 @@
 | color-alert-hover | themed-color | --wb-color-alert-hover | rgb(246 158 57 / 100%) | rgb(246 158 57 / 100%) |
 | color-alert-subtle | themed-color | --wb-color-alert-subtle | rgb(254 245 232 / 100%) | rgb(100 40 2 / 100%) |
 | color-border | themed-color | --wb-color-border | rgb(201 201 201 / 100%) | rgb(119 119 119 / 100%) |
+| color-border-card | themed-color | --wb-color-border-card | rgb(223 223 223 / 100%) | rgb(119 119 119 / 100%) |
 | color-border-disabled | themed-color | --wb-color-border-disabled | rgb(201 201 201 / 100%) | rgb(89 89 89 / 100%) |
 | color-border-focus | themed-color | --wb-color-border-focus | rgb(25 25 25 / 100%) | rgb(243 243 243 / 100%) |
 | color-border-hover | themed-color | --wb-color-border-hover | rgb(25 25 25 / 100%) | rgb(243 243 243 / 100%) |
@@ -74,8 +75,10 @@
 | color-surface-card-tinted | themed-color | --wb-color-surface-card-tinted | rgb(119 119 119 / 5%) | rgb(243 243 243 / 10%) |
 | color-surface-container | themed-color | --wb-color-surface-container | rgb(255 255 255 / 100%) | rgb(25 25 25 / 100%) |
 | color-surface-elevated | themed-color | --wb-color-surface-elevated | rgb(255 255 255 / 100%) | rgb(57 57 57 / 100%) |
+| color-surface-footer | themed-color | --wb-color-surface-footer | rgb(243 243 243 / 100%) | rgb(0 0 0 / 100%) |
 | color-surface-overlay | themed-color | --wb-color-surface-overlay | rgb(255 255 255 / 100%) | rgb(42 42 42 / 100%) |
-| color-surface-page | themed-color | --wb-color-surface-page | rgb(243 243 243 / 100%) | rgb(0 0 0 / 100%) |
+| color-surface-page | themed-color | --wb-color-surface-page | rgb(248 248 248 / 100%) | rgb(0 0 0 / 100%) |
+| color-surface-top-nav-utility | themed-color | --wb-color-surface-top-nav-utility | rgb(243 243 243 / 100%) | rgb(243 243 243 / 20%) |
 | color-table-header-fill-default | themed-color | --wb-color-table-header-fill-default | rgb(25 25 25 / 5%) | rgb(243 243 243 / 10%) |
 | color-table-header-sticky-fill-default | themed-color | --wb-color-table-header-sticky-fill-default | rgb(243 243 243 / 100%) | rgb(57 57 57 / 100%) |
 | color-table-row-fill-alternating | themed-color | --wb-color-table-row-fill-alternating | rgb(147 147 147 / 5%) | rgb(119 119 119 / 15%) |
@@ -219,7 +222,7 @@
 
 ## `huawei-partner-ai-ui`
 
-包：`huawei-partner-ai-ui@0.3.1-dev.20261106.1` · commit：`16d91bbbede5006960cce5278b0e2cda88785393` · dirty：false
+包：`huawei-partner-ai-ui@0.3.1-dev.20261121.1` · commit：`9e1e87e9e8e8230e7330f1edaf29b3e74081cba7` · dirty：false
 
 资格（包内声明）：channel=unknown；stableEligible=unknown；targetProductionEligible=unknown。元数据和示例不授予发布或生产批准。
 

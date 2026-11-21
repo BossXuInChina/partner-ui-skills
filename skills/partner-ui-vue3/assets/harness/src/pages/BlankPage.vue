@@ -3,7 +3,10 @@ import { copy } from '../content/zh-CN';
 </script>
 
 <template>
-  <main class="blank-page" aria-labelledby="blank-page-title">
+  <main
+    class="blank-page"
+    aria-labelledby="blank-page-title"
+  >
     <h1 id="blank-page-title">{{ copy.blankTitle }}</h1>
     <p>{{ copy.blankDescription }}</p>
   </main>

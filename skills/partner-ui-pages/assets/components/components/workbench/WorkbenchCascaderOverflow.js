@@ -50,7 +50,8 @@ const __sfc_main__ = {
       const spacing = padding;
       panel.value.style.width = `${widthLimit}px`;
       const available = widthLimit - padding * 2;
-      let rowWidth = 0, widest = 0;
+      let rowWidth = 0;
+      let widest = 0;
       for (const tag of content.value.children) {
         const width = tag.getBoundingClientRect().width;
         const next = rowWidth ? rowWidth + spacing + width : width;
@@ -71,14 +72,24 @@ const __sfc_main__ = {
       const box = panel.value.getBoundingClientRect();
       const preferred = useAbove ? anchor.top - gap - box.height : anchor.bottom + gap;
       const top = Math.max(edge, Math.min(preferred, window.innerHeight - edge - box.height));
-      const left = Math.max(edge, Math.min(anchor.left + anchor.width / 2 - box.width / 2, window.innerWidth - edge - box.width));
+      const left = Math.max(
+        edge,
+        Math.min(anchor.left + anchor.width / 2 - box.width / 2, window.innerWidth - edge - box.width)
+      );
       panel.value.dataset.placement = useAbove ? "top" : "bottom";
-      const arrowLeft = Math.max(0, Math.min(box.width - arrowWidth, anchor.left + anchor.width / 2 - left - arrowWidth / 2));
+      const arrowLeft = Math.max(
+        0,
+        Math.min(box.width - arrowWidth, anchor.left + anchor.width / 2 - left - arrowWidth / 2)
+      );
       panel.value.style.setProperty("--cascader-overflow-arrow-left", `${arrowLeft}px`);
       panel.value.style.top = `${top}px`;
       panel.value.style.left = `${left}px`;
     }
-    watch(() => [props.items, props.removable], () => nextTick(position), { deep: true });
+    watch(
+      () => [props.items, props.removable],
+      () => nextTick(position),
+      { deep: true }
+    );
     onMounted(() => {
       observer = new ResizeObserver(position);
       observer.observe(panel.value);

@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 日期选择 DatePicker — `WorkbenchDatePicker`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -94,6 +94,11 @@
     }
   ],
   "propNotes": {
+    "dateMarkers": "以日期字符串为键，按日提供日历标记。",
+    "showEmptyMarkers": "在没有日期标记的日期保留标记位置。",
+    "fluid": "让简单的内联单日期面板随容器宽度展开。",
+    "flatInline": "为内联面板使用平铺外观。",
+    "showInput": "内联模式是否显示日期输入框，默认显示。",
     "modelValue": "受控日期值；range模式为起止值数组。",
     "type": "date、month、year或datetime，决定选择精度。",
     "range": "启用双端点范围选择。",

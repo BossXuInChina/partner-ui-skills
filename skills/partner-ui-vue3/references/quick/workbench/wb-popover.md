@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 气泡框 Popover — `WorkbenchPopover`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -14,7 +14,7 @@
 {
   "id": "wb-popover",
   "kind": "component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "在触发元素附近展示需要阅读的补充说明，可包含正文链接；不用于操作菜单或确认任务。",
   "useWhen": ["在触发元素附近提供可含链接的补充说明"],
   "avoidWhen": ["仅需纯文本悬停提示","需要点击触发的菜单或确认操作","未经验证的内部 UI 框架或生产交付"],

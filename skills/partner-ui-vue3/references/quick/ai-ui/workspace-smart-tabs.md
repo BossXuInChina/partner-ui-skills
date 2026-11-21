@@ -1,8 +1,8 @@
-<!-- Generated from huawei-partner-ai-ui@0.3.1-dev.20261106.1 (16d91bbbede5006960cce5278b0e2cda88785393) — do not edit. -->
+<!-- Generated from huawei-partner-ai-ui@0.3.1-dev.20261121.1 (9e1e87e9e8e8230e7330f1edaf29b3e74081cba7) — do not edit. -->
 
 # WorkspaceSmartTabs — `WorkspaceSmartTabs`
 
-包：`huawei-partner-ai-ui@0.3.1-dev.20261106.1` · commit：`16d91bbbede5006960cce5278b0e2cda88785393` · dirty：false
+包：`huawei-partner-ai-ui@0.3.1-dev.20261121.1` · commit：`9e1e87e9e8e8230e7330f1edaf29b3e74081cba7` · dirty：false
 
 资格（包内声明）：channel=unknown；stableEligible=unknown；targetProductionEligible=unknown。元数据和示例不授予发布或生产批准。
 
@@ -38,7 +38,7 @@
     "modelValue": {"type":"string","required":true,"default":{"kind":"undefined"}},
     "items": {"type":"readonly WorkspaceSmartTab[]","required":true,"default":{"kind":"undefined"}},
     "ariaLabel": {"type":"string","required":false,"default":{"kind":"literal","value":"智慧页签"}},
-    "align": {"type":"'start'|'center'","required":false,"default":{"kind":"literal","value":"center"}}
+    "align": {"type":"'start' | 'center'","required":false,"default":{"kind":"literal","value":"center"}}
   },
   "events": ["update:modelValue","change"],
   "eventDetails": {

@@ -26,9 +26,21 @@ const __sfc_main__ = {
     wrapConditions: Boolean,
     helpText: String,
     modelValue: { type: String, default: "" },
-    searchIconPosition: { type: String, default: "left", validator: (value) => ["left", "right"].includes(value) },
-    variant: { type: String, default: "outlined", validator: (value) => ["outlined", "filled"].includes(value) },
-    appearance: { type: String, default: "standard", validator: (value) => ["standard", "global"].includes(value) },
+    searchIconPosition: {
+      type: String,
+      default: "left",
+      validator: (value) => ["left", "right"].includes(value)
+    },
+    variant: {
+      type: String,
+      default: "outlined",
+      validator: (value) => ["outlined", "filled"].includes(value)
+    },
+    appearance: {
+      type: String,
+      default: "standard",
+      validator: (value) => ["standard", "global"].includes(value)
+    },
     type: { type: String, default: "basic" },
     placeholder: { type: String, default: "\u8BF7\u8F93\u5165\u641C\u7D22\u5185\u5BB9" },
     disabled: Boolean,
@@ -45,7 +57,17 @@ const __sfc_main__ = {
     suffixOptions: { type: Array, default: () => [] },
     showPanel: Boolean
   },
-  emits: ["update:modelValue", "update:filterValue", "update:prefixValue", "update:suffixValue", "search", "clear", "filter-change", "update:conditions", "condition-change"],
+  emits: [
+    "update:modelValue",
+    "update:filterValue",
+    "update:prefixValue",
+    "update:suffixValue",
+    "search",
+    "clear",
+    "filter-change",
+    "update:conditions",
+    "condition-change"
+  ],
   setup(__props, { emit: __emit }) {
     const props = __props;
     const disabled = useFormDisabled(() => props.disabled);
@@ -56,7 +78,8 @@ const __sfc_main__ = {
     const isDisabled = computed(() => disabled.value || props.previewState === "disabled");
     let lastLiveValue;
     function searchLive(value) {
-      if (props.searchIconPosition !== "left" || isDisabled.value || composing.value || value === lastLiveValue) return;
+      if (props.searchIconPosition !== "left" || isDisabled.value || composing.value || value === lastLiveValue)
+        return;
       lastLiveValue = value;
       emit("search", value);
     }
@@ -99,7 +122,16 @@ const __sfc_main__ = {
         onConditionChange: _cache[4] || (_cache[4] = ($event) => emit("condition-change", $event))
       }, null, 8, ["model-value", "conditions", "fields", "wrap-conditions", "help-text", "disabled", "preview-state"])) : (_openBlock(), _createElementBlock("div", {
         key: 1,
-        class: _normalizeClass(["wb-search", [`wb-search--${__props.type}`, `is-${__props.previewState}`, { "is-disabled": isDisabled.value, "wb-search--global": __props.appearance === "global", "wb-search--filled": __props.variant === "filled", "is-populated": Boolean(__props.modelValue) }]]),
+        class: _normalizeClass(["wb-search", [
+          `wb-search--${__props.type}`,
+          `is-${__props.previewState}`,
+          {
+            "is-disabled": isDisabled.value,
+            "wb-search--global": __props.appearance === "global",
+            "wb-search--filled": __props.variant === "filled",
+            "is-populated": Boolean(__props.modelValue)
+          }
+        ]]),
         "data-grid-span": both.value ? 6 : 4
       }, [
         __props.type === "filter-prefix" || both.value ? (_openBlock(), _createBlock(SearchFilter, {

@@ -19,6 +19,22 @@
   --timeline-tone: var(--wb-color-icon-tertiary);
   --timeline-focus-tone: var(--wb-color-info-primary);
 }
+.wb-timeline--compact > .wb-timeline__item[data-v-876c723c] {
+  /* Keep the leading inset as spacing between events and remove the trailing inset. */
+  min-height: calc(var(--wb-asset-wb-timeline-pitch) - var(--wb-asset-wb-timeline-content-bottom));
+}
+.wb-timeline--compact > .wb-timeline__item[data-v-876c723c]:last-child {
+  min-height: 0;
+}
+.wb-timeline--compact > .wb-timeline__item > .wb-timeline__node[data-v-876c723c] {
+  margin-top: calc(var(--wb-asset-wb-timeline-node-top) - var(--wb-asset-wb-timeline-content-top));
+}
+.wb-timeline--compact > .wb-timeline__item > .wb-timeline__connector[data-v-876c723c] {
+  top: calc(var(--wb-asset-wb-timeline-connector-top) - var(--wb-asset-wb-timeline-content-top));
+}
+.wb-timeline--compact > .wb-timeline__item > .wb-timeline__content[data-v-876c723c] {
+  padding-block: 0;
+}
 .wb-timeline__item[data-status='success'][data-v-876c723c] {
   --timeline-tone: var(--wb-color-success);
   --timeline-focus-tone: var(--wb-color-success);

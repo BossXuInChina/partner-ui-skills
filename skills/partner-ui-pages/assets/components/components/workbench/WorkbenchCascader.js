@@ -56,11 +56,17 @@ const __sfc_main__ = {
     const id = useId();
     const overflowPanel = ref(null);
     const overflowAnchor = ref(null);
-    const root = ref(null), trigger = ref(null), values = ref(null), popup = ref(null), panel = ref(null), measure = ref(null);
+    const root = ref(null);
+    const trigger = ref(null);
+    const values = ref(null);
+    const popup = ref(null);
+    const panel = ref(null);
+    const measure = ref(null);
     const localValue = ref(props.defaultValue);
     const localOpen = ref(props.defaultOpen);
     const path = ref([...props.defaultExpandedKeys]);
-    const visibleCount = ref(0), overflowHover = ref(false);
+    const visibleCount = ref(0);
+    const overflowHover = ref(false);
     const index = computed(() => indexOptions(props.options));
     const multiple = computed(() => props.mode !== "single");
     const value = computed(

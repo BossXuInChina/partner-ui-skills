@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # Workbench 组件索引
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -61,13 +61,17 @@
 | [快捷应用卡片 Block](wb-quick-app-card.md) | WorkbenchQuickAppCard | block | 需要以稳定数据接口复用快捷应用卡片结构、布局和独立底部区域 | [在 Studio 中查看](http://localhost:4173/preview/WB-CARD-BLOCKS-REGISTER-20261025/quick-app-card?view=preview) |
 | [单选框 Radio](wb-radio.md) | WorkbenchRadio | component | 互斥选择 | [在 Studio 中查看](http://localhost:4173/preview/WB-CHOICE-V1/radio?view=preview) |
 | [评分 Rating](wb-rating.md) | WorkbenchRating | component | 以五级星形表达主观评分 | [在 Studio 中查看](http://localhost:4173/preview/WB-RATING-V1/rating?view=preview) |
-| [静态字段组 ReadonlyFields](wb-readonly-fields.md) | WorkbenchReadonlyFields | block | 静态字段组的受控业务组合 | [在 Studio 中查看](http://localhost:4173/preview/WB-TRANSACTION-ASSETS-20261030/tx-asset-readonly-fields?view=preview) |
+| [只读表单字段组 ReadonlyFields](wb-readonly-fields.md) | WorkbenchReadonlyFields | block | 静态字段组的受控业务组合 | [在 Studio 中查看](http://localhost:4173/preview/WB-TRANSACTION-ASSETS-20261030/tx-asset-readonly-fields?view=preview) |
+| [业务记录卡片 RecordCard](wb-record-card.md) | WorkbenchRecordCard | block | 展示一条记录的标题、标签、收藏、选择和操作。点击卡片可打开记录，交互控件和文本选择保持独立。 | [在 Studio 中查看](http://localhost:4173/preview/WB-TRANSACTION-ASSETS-20261030/tx-asset-record-card?view=preview) |
+| [记录工作区 RecordWorkspace](wb-record-workspace.md) | WorkbenchRecordWorkspace | block | 在左侧筛选或用途后排列全选和计数，右侧排列批量操作。用于 BOQ、商务通知单、订单及其他可复用的记录列表。 | [在 Studio 中查看](http://localhost:4173/preview/WB-TRANSACTION-ASSETS-20261030/tx-asset-boq-workspace?view=preview) |
 | [滚动条 Scrollbar](wb-scrollbar.md) | WorkbenchScrollbar | component | 小尺寸适用于空间受限、需要弱化视觉干扰或辅助性质的微型滚动场景，例如下拉选择框菜单、多行输入框、弹出气泡框内的滚动。；默认尺寸适用于全屏／主页面滚动、主体内容列表、表格的主体滚动区域、中大型弹窗、侧边抽屉等尺寸较大的独立层级，以及用户需要频繁拖拽或观察滚动位置的区域。 | [在 Studio 中查看](http://localhost:4173/preview/WB-SCROLLBAR-V1/scrollbar?view=preview) |
 | [搜索 Search](wb-search.md) | WorkbenchSearch | component | 文本搜索及前后缀筛选；多字段条件与关键字组合的综合搜索，字段菜单复用级联选择面板 | [在 Studio 中查看](http://localhost:4173/preview/WB-SEARCH-V1/search?view=preview) |
+| [交易分区编辑](wb-sectioned-editor.md) | WorkbenchSectionedEditor | block | 创建报备、编辑报备与投标沿用有序的表单分区。 | [在 Studio 中查看](http://localhost:4173/preview/WB-INDEPENDENT-DEMO-ASSETS-20261119/sectioned-editor?view=preview) |
 | [选择器 Select](wb-select.md) | WorkbenchSelect | component | 单选或多选已有选项 | [在 Studio 中查看](http://localhost:4173/preview/WB-SELECT-V1/select?view=preview) |
 | [侧边导航 Side Navigation](wb-side-navigation.md) | WorkbenchSideNavigation | component | 管理应用多层级与频繁切换导航；可收起侧栏及三级四级面板 | [在 Studio 中查看](http://localhost:4173/preview/WB-SIDE-NAV-V1/side-navigation?view=preview) |
 | [骨架屏 Skeleton](wb-skeleton.md) | WorkbenchSkeleton | component | 加载前已知内容结构，以稳定骨架占位减少跳动。 | [在 Studio 中查看](http://localhost:4173/preview/WB-SKELETON-V1/skeleton?view=preview) |
 | [滑动条 Slider](wb-slider.md) | WorkbenchSlider | component | 在连续值、离散值或离散区间内快速选择 | [在 Studio 中查看](http://localhost:4173/preview/WB-SLIDER-V1/slider?view=preview) |
+| [静态字段展示 StaticFields](wb-static-fields.md) | WorkbenchStaticFields | block | 三列紧凑字段。窄屏单行截断，聚焦或悬停可查看全文。字段可配置值色、链接、复制及右侧操作。 | [在 Studio 中查看](http://localhost:4173/preview/WB-TX-ASSET-RECORD-FIELDS-20261109/tx-asset-record-fields?view=preview) |
 | [步骤条 Steps](wb-steps.md) | WorkbenchSteps | component | 步骤条 Steps相关交互与状态展示 | [在 Studio 中查看](http://localhost:4173/preview/WB-STEPS-V1/steps?view=preview) |
 | [开关 Switch](wb-switch.md) | WorkbenchSwitch | component | 即时开启或关闭一个布尔配置 | [在 Studio 中查看](http://localhost:4173/preview/WB-SWITCH-V1/switch?view=preview) |
 | [表格 Table](wb-table.md) | WorkbenchTable | component | 展示、选择、排序、筛选或展开伙伴业务管理数据 | [在 Studio 中查看](http://localhost:4173/preview/WB-TABLE-V1/table?view=preview) |

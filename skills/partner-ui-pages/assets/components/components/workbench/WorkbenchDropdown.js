@@ -22,6 +22,7 @@ const _hoisted_7 = {
   "aria-hidden": "true"
 };
 const _hoisted_8 = { class: "wb-dropdown__item-label" };
+import "../scrollbar/scrollbar.css";
 import { useFormDisabled } from "../form/useFormDisabled.js";
 import "../../../../foundation/generated/runtime/foundation.css";
 import "../../../../catalog/generated/asset.tokens.css";
@@ -324,7 +325,7 @@ const __sfc_main__ = {
               ref: panel,
               role: "menu",
               "aria-labelledby": `${_unref(id)}-trigger`,
-              class: _normalizeClass(["wb-dropdown__panel", [`wb-dropdown__panel--${__props.size}`, `is-width-${__props.panelWidth}`]]),
+              class: _normalizeClass(["wb-dropdown__panel wb-scrollbar", [`wb-dropdown__panel--${__props.size}`, `is-width-${__props.panelWidth}`]]),
               onKeydown: keydown,
               onFocusout: handleFocusOut
             }, [

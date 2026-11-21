@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 时间轴 Timeline — `WorkbenchTimeline`
 
 资产：`wb-timeline` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -142,6 +142,22 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
       ]
     },
     {
+      "id": "layout",
+      "label": "布局",
+      "type": "select",
+      "default": "standard",
+      "options": [
+        {
+          "value": "standard",
+          "label": "标准"
+        },
+        {
+          "value": "compact",
+          "label": "紧凑"
+        }
+      ]
+    },
+    {
       "id": "itemCount",
       "label": "事件数量",
       "type": "range",
@@ -237,6 +253,7 @@ const items = [{ id: 'created', time: '09:00', title: '订单已创建', descrip
 | --- | --- | --- | --- | --- |
 | items | Array | {"kind":"function"} |  | 按展示顺序排列的事件数据。 |
 | label | String | 事件时间轴 |  | 时间轴区域的可访问名称。 |
+| layout | String | standard | standard / compact | standard 为默认布局；compact 用于流程卡内的紧凑时间轴，末项按内容收尾。 |
 | nodeType | String | dot | dot / icon | dot使用圆点节点；icon使用事件图标节点。 |
 
 ### Slots
@@ -266,6 +283,8 @@ const items = [{ id: 'created', time: '09:00', title: '订单已创建', descrip
 ### 设计结构与排版
 
 items提供时间、标题、描述及可选图像等数据；nodeType选择点或图标节点。分区插槽可覆盖节点、时间、图片、标题和描述内容。时间轴填满父容器可用宽度，正文只在空间不足时自然换行；182px仅为规范样张宽度，不作为业务宽度上限。
+
+- 标准布局的最小项高为 86px。空间紧凑的流程卡可设置 layout 为 compact。非末项最小高度为 74px，末项按内容收尾，换行内容继续自然撑高。
 
 ### 交互与键盘
 

@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 评分 Rating — `WorkbenchRating`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -41,8 +41,8 @@
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchRating"},
   "props": {
     "modelValue": {"type":"Number","default":0},
-    "max": {"type":"Number","default":5,"validator":{"kind":"unknown","expression":"value => Number.isInteger(value) && value > 0"}},
-    "step": {"type":"Number","default":1,"validator":{"kind":"unknown","expression":"value => value === 1 || value === 0.5"}},
+    "max": {"type":"Number","default":5,"validator":{"kind":"unknown","expression":"(value) => Number.isInteger(value) && value > 0"}},
+    "step": {"type":"Number","default":1,"validator":{"kind":"unknown","expression":"(value) => value === 1 || value === 0.5"}},
     "disabled": {"type":"Boolean"},
     "name": {"type":"String"},
     "ariaLabel": {"type":"String","default":"评分"},

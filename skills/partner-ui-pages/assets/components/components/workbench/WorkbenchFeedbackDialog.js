@@ -14,7 +14,11 @@ const __sfc_main__ = {
   __name: "FeedbackDialog",
   props: {
     modelValue: { type: Boolean, default: false },
-    type: { type: String, default: "info", validator: (value) => ["info", "success", "warning", "danger", "critical", "error"].includes(value) },
+    type: {
+      type: String,
+      default: "info",
+      validator: (value) => ["info", "success", "warning", "danger", "critical", "error"].includes(value)
+    },
     title: { type: String, required: true },
     message: { type: String, required: true },
     showIcon: { type: Boolean, default: true },
@@ -27,7 +31,14 @@ const __sfc_main__ = {
     beforeClose: { type: Function, default: void 0 },
     showGrid: { type: Boolean, default: false }
   },
-  emits: ["update:modelValue", "update:checkboxChecked", "action", "close", "action-error", "close-error"],
+  emits: [
+    "update:modelValue",
+    "update:checkboxChecked",
+    "action",
+    "close",
+    "action-error",
+    "close-error"
+  ],
   setup(__props, { emit: __emit }) {
     const statusIconSemantics = {
       info: "info",
@@ -43,10 +54,14 @@ const __sfc_main__ = {
     const emit = __emit;
     const working = ref(false);
     let operation = 0;
-    watch(() => props.modelValue, () => {
-      operation += 1;
-      working.value = false;
-    }, { flush: "sync" });
+    watch(
+      () => props.modelValue,
+      () => {
+        operation += 1;
+        working.value = false;
+      },
+      { flush: "sync" }
+    );
     onBeforeUnmount(() => {
       operation += 1;
     });
@@ -56,7 +71,8 @@ const __sfc_main__ = {
       const currentOperation = ++operation;
       try {
         emit("action", action.id);
-        if (await props.actionHandler?.(action) === false || currentOperation !== operation || !props.modelValue) return;
+        if (await props.actionHandler?.(action) === false || currentOperation !== operation || !props.modelValue)
+          return;
         await requestClose("action");
       } catch (error) {
         if (currentOperation === operation && props.modelValue) emit("action-error", { action, error });
@@ -146,7 +162,10 @@ const __sfc_main__ = {
         default: _withCtx(() => [
           _createElementVNode("div", {
             id: messageId,
-            class: _normalizeClass(["feedback-dialog__message", [`feedback-dialog__message--${__props.type}`, { "feedback-dialog__message--with-icon": __props.showIcon }]]),
+            class: _normalizeClass(["feedback-dialog__message", [
+              `feedback-dialog__message--${__props.type}`,
+              { "feedback-dialog__message--with-icon": __props.showIcon }
+            ]]),
             "aria-busy": working.value || __props.pending,
             "data-feedback-type": __props.type
           }, [

@@ -1,5 +1,5 @@
 {
-  "_generated": "Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc); huawei-partner-ai-ui@0.3.1-dev.20261106.1 (16d91bbbede5006960cce5278b0e2cda88785393) — do not edit.",
+  "_generated": "Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f); huawei-partner-ai-ui@0.3.1-dev.20261121.1 (9e1e87e9e8e8230e7330f1edaf29b3e74081cba7) — do not edit.",
   "schemaVersion": 1,
   "entries": [
     {
@@ -1087,7 +1087,7 @@
       "id": "wb-readonly-fields",
       "package": "@workbench/ui-vue3",
       "name": "WorkbenchReadonlyFields",
-      "label": "静态字段组 ReadonlyFields",
+      "label": "只读表单字段组 ReadonlyFields",
       "kind": "block",
       "summary": "静态字段组的受控业务组合",
       "useWhen": [
@@ -1105,6 +1105,44 @@
         "只读信息",
         "描述列表"
       ]
+    },
+    {
+      "id": "wb-record-card",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchRecordCard",
+      "label": "业务记录卡片 RecordCard",
+      "kind": "block",
+      "summary": "展示一条记录的标题、标签、收藏、选择和操作。点击卡片可打开记录，交互控件和文本选择保持独立。",
+      "useWhen": [
+        "展示一条记录的标题、标签、收藏、选择和操作。点击卡片可打开记录，交互控件和文本选择保持独立。"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "quickReference": "quick/workbench/wb-record-card.md",
+      "reference": "workbench/wb-record-card.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-record-workspace",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchRecordWorkspace",
+      "label": "记录工作区 RecordWorkspace",
+      "kind": "block",
+      "summary": "在左侧筛选或用途后排列全选和计数，右侧排列批量操作。用于 BOQ、商务通知单、订单及其他可复用的记录列表。",
+      "useWhen": [
+        "在左侧筛选或用途后排列全选和计数，右侧排列批量操作。用于 BOQ、商务通知单、订单及其他可复用的记录列表。"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "quickReference": "quick/workbench/wb-record-workspace.md",
+      "reference": "workbench/wb-record-workspace.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": []
     },
     {
       "id": "wb-scrollbar",
@@ -1146,6 +1184,24 @@
         "搜索框",
         "关键字搜索"
       ]
+    },
+    {
+      "id": "wb-sectioned-editor",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchSectionedEditor",
+      "label": "交易分区编辑",
+      "kind": "block",
+      "summary": "创建报备、编辑报备与投标沿用有序的表单分区。",
+      "useWhen": [
+        "创建报备、编辑报备与投标沿用有序的表单分区。"
+      ],
+      "avoidWhen": [
+        "提交、草稿持久化、表单校验与页面操作区由宿主负责。"
+      ],
+      "quickReference": "quick/workbench/wb-sectioned-editor.md",
+      "reference": "workbench/wb-sectioned-editor.md",
+      "exampleStatus": "unavailable",
+      "searchAliases": []
     },
     {
       "id": "wb-select",
@@ -1228,6 +1284,25 @@
       "quickReference": "quick/workbench/wb-slider.md",
       "reference": "workbench/wb-slider.md",
       "exampleStatus": "supported",
+      "searchAliases": []
+    },
+    {
+      "id": "wb-static-fields",
+      "package": "@workbench/ui-vue3",
+      "name": "WorkbenchStaticFields",
+      "label": "静态字段展示 StaticFields",
+      "kind": "block",
+      "summary": "三列紧凑字段。窄屏单行截断，聚焦或悬停可查看全文。字段可配置值色、链接、复制及右侧操作。",
+      "useWhen": [
+        "三列紧凑字段。窄屏单行截断，聚焦或悬停可查看全文。字段可配置值色、链接、复制及右侧操作。"
+      ],
+      "avoidWhen": [
+        "业务持久化、路由和审批由宿主负责",
+        "不得作为稳定发布或生产资格依据"
+      ],
+      "quickReference": "quick/workbench/wb-static-fields.md",
+      "reference": "workbench/wb-static-fields.md",
+      "exampleStatus": "unavailable",
       "searchAliases": []
     },
     {

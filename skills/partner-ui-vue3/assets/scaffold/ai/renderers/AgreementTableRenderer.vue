@@ -12,7 +12,16 @@ const actions = useBusinessRendererActions();
 </script>
 <template>
   <div class="partner-ai">
-    <AgreementTable v-if="part" :agreements="part.agreements" @open="actions.openAgreement" />
-    <p v-else role="status">{{ zhCN.assistant.unsupportedContent }}</p>
+    <AgreementTable
+      v-if="part"
+      :agreements="part.agreements"
+      @open="actions.openAgreement"
+    />
+    <p
+      v-else
+      role="status"
+    >
+      {{ zhCN.assistant.unsupportedContent }}
+    </p>
   </div>
 </template>

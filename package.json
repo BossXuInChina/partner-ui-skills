@@ -1,6 +1,6 @@
 {
   "name": "partner-ui-skills",
-  "version": "0.3.0-dev.20261107.1",
+  "version": "0.3.0-dev.20261121.1",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@11.22.0",
@@ -27,9 +27,9 @@
   "dependencies": {
     "@opentiny/tiny-robot": "0.5.1",
     "@opentiny/tiny-robot-kit": "0.4.0",
-    "@workbench/ui-vue3": "file:vendor/workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz",
+    "@workbench/ui-vue3": "file:vendor/workbench-ui-vue3-0.5.1-dev.20261121.1.tgz",
     "dompurify": "3.4.17",
-    "huawei-partner-ai-ui": "file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz",
+    "huawei-partner-ai-ui": "file:vendor/huawei-partner-ai-ui-0.3.1-dev.20261121.1.tgz",
     "markdown-it": "14.3.3",
     "vue": "3.5.42"
   },

@@ -1,8 +1,8 @@
 
 .transaction-stage-progress[data-v-07e923f2] {
   min-width: 0;
-  padding: var(--wb-spacing-component-lg);
-  border-radius: var(--wb-radius-sm);
+  padding: var(--wb-spacing-component-xl);
+  border-radius: var(--wb-radius-lg);
   background: var(--wb-color-surface-card-tinted);
 }
 .transaction-stage-progress__title[data-v-07e923f2] {

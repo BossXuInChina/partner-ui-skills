@@ -1,81 +1,188 @@
+import { defineComponent as _defineComponent } from "vue";
 import { renderSlot as _renderSlot, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, normalizeClass as _normalizeClass } from "vue";
 const _hoisted_1 = ["aria-label", "aria-describedby"];
-import { ref, reactive, onMounted, onBeforeUnmount, watchPostEffect } from "vue";
+import { computed, onBeforeUnmount, onMounted, reactive, ref, watch, watchPostEffect } from "vue";
 import "./scrollbar.css";
-const __sfc_main__ = {
+const __sfc_main__ = /* @__PURE__ */ _defineComponent({
   __name: "WorkbenchScrollbar",
   props: {
     label: { type: String, required: true },
     describedby: String,
     axis: { type: String, default: "vertical" },
     size: { type: String, default: "default" },
-    state: String
+    state: String,
+    trackInsets: { type: Object }
   },
   setup(__props, { expose: __expose }) {
     const props = __props;
-    const viewport = ref(), content = ref(), track = ref(), thumb = ref();
-    const metrics = reactive({ ratio: 1, position: 0 });
+    const viewport = ref();
+    const content = ref();
+    const track = ref();
+    const thumb = ref();
+    const metrics = reactive({ ratio: 1, position: 0, width: 0, height: 0 });
     const dragging = ref(false);
+    const horizontal = computed(() => props.axis === "horizontal");
+    function inset(value, size) {
+      return typeof value === "number" && Number.isFinite(value) ? Math.max(0, Math.min(size, value)) : 0;
+    }
+    const blockEnd = computed(() => inset(props.trackInsets?.blockEnd, metrics.height));
+    const inlineEnd = computed(() => inset(props.trackInsets?.inlineEnd, metrics.width));
+    const reservedTail = computed(
+      () => horizontal.value ? 0 : Math.max(0, inset(props.trackInsets?.blockEndReserve, metrics.height) - blockEnd.value)
+    );
+    const hasTrack = computed(
+      () => metrics.ratio < 1 && (horizontal.value ? inlineEnd.value < metrics.width && blockEnd.value < metrics.height : blockEnd.value + reservedTail.value < metrics.height && inlineEnd.value < metrics.width)
+    );
     watchPostEffect(() => {
-      if (!thumb.value) return;
-      thumb.value.style.setProperty("--scrollbar-thumb-length", `${metrics.ratio * 100}%`);
-      thumb.value.style.setProperty("--scrollbar-thumb-position", `${metrics.position * 100}%`);
+      if (track.value) {
+        const style = track.value.style;
+        style.setProperty(
+          "--scrollbar-track-block-end",
+          props.trackInsets?.blockEnd === void 0 ? "" : blockEnd.value + "px"
+        );
+        style.setProperty(
+          "--scrollbar-track-inline-end",
+          props.trackInsets?.inlineEnd === void 0 ? "" : inlineEnd.value + "px"
+        );
+      }
+      if (thumb.value) {
+        thumb.value.style.setProperty(
+          "--scrollbar-thumb-length",
+          thumbLength(metrics.ratio, reservedTail.value)
+        );
+        thumb.value.style.setProperty(
+          "--scrollbar-thumb-position",
+          thumbLength(metrics.position, reservedTail.value)
+        );
+      }
     });
-    let observer, drag;
-    const horizontal = () => props.axis === "horizontal";
+    function thumbLength(fraction, reserve) {
+      return reserve ? `calc(${fraction * 100}% - ${fraction * reserve}px)` : `${fraction * 100}%`;
+    }
+    function dimensions(element) {
+      return horizontal.value ? { total: element.scrollWidth, client: element.clientWidth } : { total: element.scrollHeight, client: element.clientHeight };
+    }
+    function horizontalScrollOrigin(element, range) {
+      return horizontal.value && getComputedStyle(element).direction === "rtl" ? -range : 0;
+    }
+    function readScroll(element, origin) {
+      return horizontal.value ? element.scrollLeft - origin : element.scrollTop;
+    }
+    function writeScroll(element, position, origin) {
+      if (horizontal.value) element.scrollLeft = position + origin;
+      else element.scrollTop = position;
+    }
     function measure() {
-      const e = viewport.value;
-      if (!e) return;
-      const client = horizontal() ? e.clientWidth : e.clientHeight, total = horizontal() ? e.scrollWidth : e.scrollHeight;
+      const element = viewport.value;
+      if (!element) return;
+      const { total, client } = dimensions(element);
+      const range = Math.max(0, total - client);
       metrics.ratio = total ? Math.min(1, client / total) : 1;
-      metrics.position = total ? (horizontal() ? e.scrollLeft : e.scrollTop) / total : 0;
+      metrics.position = total ? readScroll(element, horizontalScrollOrigin(element, range)) / total : 0;
+      metrics.width = element.clientWidth;
+      metrics.height = element.clientHeight;
+    }
+    let observer;
+    let drag;
+    function geometry() {
+      const element = viewport.value;
+      const rect = track.value?.getBoundingClientRect();
+      if (!element || !rect) return;
+      const { total, client } = dimensions(element);
+      const range = total - client;
+      const length = (horizontal.value ? rect.width : rect.height) - reservedTail.value;
+      if (range <= 0 || length <= 0) return;
+      const origin = horizontalScrollOrigin(element, range);
+      return {
+        element,
+        total,
+        range,
+        length,
+        client,
+        origin,
+        edge: horizontal.value ? rect.left : rect.top,
+        scroll: readScroll(element, origin)
+      };
     }
     function pointerDown(event) {
-      if (event.button !== 0) return;
-      const e = viewport.value;
-      e.focus({ preventScroll: true });
-      const rect = track.value.getBoundingClientRect();
-      const length = horizontal() ? rect.width : rect.height;
-      const total = horizontal() ? e.scrollWidth : e.scrollHeight;
-      const point = horizontal() ? event.clientX : event.clientY;
-      if (!event.target.closest(".wb-scrollarea__thumb")) {
-        const offset = point - (horizontal() ? rect.left : rect.top);
-        e[horizontal() ? "scrollLeft" : "scrollTop"] = (offset / length - metrics.ratio / 2) * total;
+      if (event.button !== 0 || drag) return;
+      const g = geometry();
+      if (!g) return;
+      const point = horizontal.value ? event.clientX : event.clientY;
+      g.element.focus({ preventScroll: true });
+      if (!(event.target instanceof Node && thumb.value?.contains(event.target))) {
+        const offset = point - g.edge;
+        writeScroll(g.element, offset / g.length * g.total - g.client / 2, g.origin);
+        measure();
       }
-      drag = { point, scroll: horizontal() ? e.scrollLeft : e.scrollTop, total, length };
+      const scroll = readScroll(g.element, g.origin);
+      drag = { pointerId: event.pointerId, point, preciseScroll: scroll, appliedScroll: scroll };
       dragging.value = true;
-      track.value.setPointerCapture(event.pointerId);
+      track.value?.setPointerCapture(event.pointerId);
       event.preventDefault();
     }
     function pointerMove(event) {
-      if (!drag) return;
-      viewport.value[horizontal() ? "scrollLeft" : "scrollTop"] = drag.scroll + ((horizontal() ? event.clientX : event.clientY) - drag.point) * drag.total / drag.length;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+      const g = geometry();
+      if (!g) {
+        endDrag();
+        return;
+      }
+      const point = horizontal.value ? event.clientX : event.clientY;
+      const previous = g.scroll === drag.appliedScroll ? drag.preciseScroll : g.scroll;
+      const next = Math.max(
+        0,
+        Math.min(g.range, previous + (point - drag.point) * g.total / g.length)
+      );
+      writeScroll(g.element, next, g.origin);
+      drag.point = point;
+      drag.preciseScroll = next;
+      drag.appliedScroll = readScroll(g.element, g.origin);
+      measure();
     }
-    function endDrag() {
-      drag = null;
+    function endDrag(event) {
+      if (!drag || event && event.pointerId !== drag.pointerId) return;
+      const { pointerId } = drag;
+      drag = void 0;
       dragging.value = false;
+      if (track.value?.hasPointerCapture(pointerId)) track.value.releasePointerCapture(pointerId);
     }
     function keydown(event) {
-      if (event.target !== viewport.value) return;
-      const e = viewport.value;
-      const amount = horizontal() ? e.clientWidth : e.clientHeight;
-      const keys = horizontal() ? ["ArrowLeft", "ArrowRight"] : ["ArrowUp", "ArrowDown"];
+      if (event.target !== viewport.value || !viewport.value) return;
+      const element = viewport.value;
+      const { total, client } = dimensions(element);
+      const keys = horizontal.value ? ["ArrowLeft", "ArrowRight"] : ["ArrowUp", "ArrowDown"];
       let delta;
       if (event.key === keys[0]) delta = -40;
       else if (event.key === keys[1]) delta = 40;
-      else if (event.key === "PageUp") delta = -amount;
-      else if (event.key === "PageDown") delta = amount;
+      else if (event.key === "PageUp") delta = -client;
+      else if (event.key === "PageDown") delta = client;
       else if (event.key === "Home") delta = -Infinity;
       else if (event.key === "End") delta = Infinity;
       else return;
       event.preventDefault();
-      const key = horizontal() ? "scrollLeft" : "scrollTop";
-      e[key] = delta === -Infinity ? 0 : delta === Infinity ? horizontal() ? e.scrollWidth : e.scrollHeight : e[key] + delta;
+      const origin = horizontalScrollOrigin(element, Math.max(0, total - client));
+      writeScroll(
+        element,
+        delta === -Infinity ? 0 : delta === Infinity ? total : readScroll(element, origin) + delta,
+        origin
+      );
     }
+    watch(
+      horizontal,
+      () => {
+        endDrag();
+        measure();
+      },
+      { flush: "post" }
+    );
+    watch(hasTrack, (visible) => {
+      if (!visible) endDrag();
+    });
     onMounted(() => {
       observer = new ResizeObserver(measure);
-      observer.observe(viewport.value);
-      observer.observe(content.value);
+      if (viewport.value) observer.observe(viewport.value);
+      if (content.value) observer.observe(content.value);
       measure();
     });
     onBeforeUnmount(() => {
@@ -122,7 +229,7 @@ const __sfc_main__ = {
               /* NEED_PATCH */
             )
           ], 40, _hoisted_1),
-          metrics.ratio < 1 ? (_openBlock(), _createElementBlock(
+          hasTrack.value ? (_openBlock(), _createElementBlock(
             "div",
             {
               key: 0,
@@ -158,5 +265,5 @@ const __sfc_main__ = {
       );
     };
   }
-};
+});
 export default /* @__PURE__ */ Object.assign(__sfc_main__, {});

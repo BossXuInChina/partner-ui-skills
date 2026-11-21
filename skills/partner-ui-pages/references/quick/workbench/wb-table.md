@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 表格 Table — `WorkbenchTable`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -46,6 +46,7 @@
     "columns": {"type":"Array","required":true},
     "rows": {"type":"Array","default":{"kind":"function"}},
     "rowKey": {"type":["String","Function"],"required":true},
+    "rowGroup": {"type":"Object","default":null},
     "selectedRowKeys": {"type":"Array","default":{"kind":"function"}},
     "sort": {"type":"Object","default":null},
     "page": {"type":"Number","default":1},
@@ -102,6 +103,7 @@
     "columns": "列定义数组，使用稳定key；可按需配置field、sortable、filterable、fixed、primary、fluid、width、minWidth、maxWidth、ellipsis及filterOptions。",
     "rows": "调用方传入的当前展示数据；组件保持行顺序，不代为搜索、排序、筛选或分页切片。",
     "rowKey": "每行稳定唯一键的字段名或取键函数。",
+    "rowGroup": "指定一个表体行组表头列及业务组键。默认关闭。",
     "selectedRowKeys": "当前页受控选择键数组。",
     "sort": "受控排序状态；组件只请求排序变更，不重排rows。",
     "page": "受控当前页；组件通过更新事件请求切页。",
@@ -183,6 +185,7 @@
         "filterMultiple": "boolean, default true; false renders a single-choice radio list",
         "align": "start | center | end; left/right aliases are supported",
         "primary": "boolean",
+        "rowHeader": "optional boolean; renders body cells as native row headers",
         "ellipsis": "boolean; compatibility flag, ordinary data cells always truncate on one line and reveal full text only when overflowing",
         "fluid": "boolean; explicit true takes priority over unspecified widths and absorbs remaining space",
         "fixed": "left | right | undefined",
@@ -193,6 +196,7 @@
       }
     },
     "rowKey": "string row property or (row) => key; required; stable unique row identity",
+    "rowGroup": "optional { columnKey, key }; key is a row field or function returning a non-empty string or finite number. Matching adjacent keys and labels form native body row groups within current rows and stop before a full-width detail row.",
     "rows": "Array<Record>; caller supplies current page rows; Table does not sort or slice them",
     "selectedRowKeys": "Array<rowKey>; controlled; selection disabled when selectable=false",
     "columnFilters": "Record<column.key,Array<string|number>>; controlled, default {}; Table never filters rows",
@@ -275,7 +279,7 @@
       "id": "grouped-table",
       "title": "分组表格的区域与分隔",
       "paragraphs": ["如身份差距表，左侧是跨行维度列；上层为列组表头，下层为组内叶子列表头，下面的对应数据组成表体分组。"],
-      "bullets": ["相邻叶子列设置相同的group.key和group.title形成列组；未分组列可形成跨行维度列。","列组边界线贯穿表头和表体；叶子列之间使用组内短分隔线，不与列组边界叠加。","banded只控制数据列的浅色底纹，不改变列组身份或分隔线。窄容器保留表格内部横向滚动。"]
+      "bullets": ["相邻叶子列设置相同的group.key和group.title形成列组；未分组列可形成跨行维度列。","列组边界线贯穿表头和表体；叶子列之间使用组内短分隔线，不与列组边界叠加。","banded只控制数据列的浅色底纹，不改变列组身份或分隔线。窄容器保留表格内部横向滚动。","表体跨行使用rowGroup={ columnKey, key }。key是行字段名或取键函数；只有当前rows中组键和字段文字一致的相邻行会合并。组键须是非空字符串或有限数字。","跨行列使用原生行组表头，其他列可通过rowHeader提供逐行表头；选择仍按行。跨行在详情行前断开，展开入口使用非分组列；只有一个数据列且可展开时保持逐行展示。","跨行列的自定义插槽只在组首渲染，适合共享标签。行独有文本和操作请放在逐行单元格内。"]
     },
     {
       "id": "interaction",

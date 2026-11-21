@@ -5,21 +5,21 @@
     {
       "id": "workbench",
       "name": "@workbench/ui-vue3",
-      "version": "0.2.0-prototype.20261106.7",
-      "sourceCommit": "6dad97e7a215069b5841b1f4413f80c1c587c1cc",
-      "archive": "vendor/offline-workbench-6dad97e7a215.tar.gz",
-      "sha256": "8b8df8d5057315574d08d566cab014e8f7238954deae70686e9a83c7034f4114",
-      "files": 1398,
+      "version": "0.5.1-dev.20261121.1",
+      "sourceCommit": "651d5bb52c6f91471c6e2269977f854ea3ef706f",
+      "archive": "vendor/offline-workbench-651d5bb52c6f.tar.gz",
+      "sha256": "383dab03d0332b0ff1840a3da4661e94ab520d815f23234e3b450a925471d0cb",
+      "files": 1437,
       "origin": "git archive at published release sourceCommit; sourceHasLocalChanges=false"
     },
     {
       "id": "ai",
       "name": "huawei-partner-ai-ui",
-      "version": "0.3.1-dev.20261106.1",
-      "sourceCommit": "16d91bbbede5006960cce5278b0e2cda88785393",
-      "archive": "vendor/offline-ai-16d91bbbede5.tar.gz",
-      "sha256": "ad059bdf29418d565c156bd8c85a87ba035d78450802d34566edd1db9a7670bd",
-      "files": 137,
+      "version": "0.3.1-dev.20261121.1",
+      "sourceCommit": "9e1e87e9e8e8230e7330f1edaf29b3e74081cba7",
+      "archive": "vendor/offline-ai-9e1e87e9e8e8.tar.gz",
+      "sha256": "a8cd99ab6b205a25bfbad26813aa8f2860af9c9433e0fb290208a05b9045a4e1",
+      "files": 138,
       "origin": "git archive at published release sourceCommit; sourceHasLocalChanges=false"
     },
     {

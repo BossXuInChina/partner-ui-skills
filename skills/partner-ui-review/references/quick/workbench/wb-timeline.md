@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 时间轴 Timeline — `WorkbenchTimeline`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -39,9 +39,14 @@
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchTimeline"},
-  "props": {"items":{"type":"Array","default":{"kind":"function"}},"nodeType":{"type":"String","default":"dot","enum":["dot","icon"]},"label":{"type":"String","default":"事件时间轴"}},
+  "props": {
+    "items": {"type":"Array","default":{"kind":"function"}},
+    "nodeType": {"type":"String","default":"dot","enum":["dot","icon"]},
+    "label": {"type":"String","default":"事件时间轴"},
+    "layout": {"type":"String","default":"standard","enum":["standard","compact"]}
+  },
   "slots": ["node","time","image","title","description"],
-  "propNotes": {"items":"按展示顺序排列的事件数据。","nodeType":"dot使用圆点节点；icon使用事件图标节点。","label":"时间轴区域的可访问名称。"},
+  "propNotes": {"items":"按展示顺序排列的事件数据。","nodeType":"dot使用圆点节点；icon使用事件图标节点。","label":"时间轴区域的可访问名称。","layout":"standard 为默认布局；compact 用于流程卡内的紧凑时间轴，末项按内容收尾。"},
   "slotNotes": {
     "node": {"scope":"每项节点内容；参数为item与零基index。","description":"只替换节点呈现，事件顺序仍由items决定。"},
     "time": {"scope":"每项时间内容；参数为item与零基index。","description":"保留清晰可读的时间文本。"},
@@ -62,7 +67,12 @@
   "intro": "按先后顺序呈现多个相关事件及其时间、标题和说明，帮助阅读者理解过程与进展。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["当事件顺序本身有意义时使用；若只需列举独立项目，使用列表；若强调必须完成的线性步骤，使用Steps。"],"bullets":[]},
-    {"id":"structure","title":"设计结构与排版","paragraphs":["items提供时间、标题、描述及可选图像等数据；nodeType选择点或图标节点。分区插槽可覆盖节点、时间、图片、标题和描述内容。时间轴填满父容器可用宽度，正文只在空间不足时自然换行；182px仅为规范样张宽度，不作为业务宽度上限。"],"bullets":[]},
+    {
+      "id": "structure",
+      "title": "设计结构与排版",
+      "paragraphs": ["items提供时间、标题、描述及可选图像等数据；nodeType选择点或图标节点。分区插槽可覆盖节点、时间、图片、标题和描述内容。时间轴填满父容器可用宽度，正文只在空间不足时自然换行；182px仅为规范样张宽度，不作为业务宽度上限。"],
+      "bullets": ["标准布局的最小项高为 86px。空间紧凑的流程卡可设置 layout 为 compact。非末项最小高度为 74px，末项按内容收尾，换行内容继续自然撑高。"]
+    },
     {"id":"interaction","title":"交互与键盘","paragraphs":["时间轴为信息展示结构；插槽内若放交互内容，调用方需保证其键盘顺序和名称。"],"bullets":[]},
     {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchTimeline（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],

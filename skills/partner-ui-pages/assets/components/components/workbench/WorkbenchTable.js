@@ -1,4 +1,4 @@
-import { toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, renderSlot as _renderSlot, createElementVNode as _createElementVNode, renderList as _renderList, Fragment as _Fragment, createVNode as _createVNode, normalizeClass as _normalizeClass, unref as _unref, mergeProps as _mergeProps, withCtx as _withCtx, createBlock as _createBlock, createTextVNode as _createTextVNode } from "vue";
+import { toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, renderSlot as _renderSlot, createElementVNode as _createElementVNode, renderList as _renderList, Fragment as _Fragment, createVNode as _createVNode, normalizeClass as _normalizeClass, unref as _unref, mergeProps as _mergeProps, withCtx as _withCtx, createBlock as _createBlock, createTextVNode as _createTextVNode, resolveDynamicComponent as _resolveDynamicComponent } from "vue";
 const _hoisted_1 = ["aria-busy"];
 const _hoisted_2 = {
   key: 0,
@@ -32,9 +32,9 @@ const _hoisted_12 = {
   key: 1,
   class: "wb-table__action-column"
 };
-const _hoisted_13 = ["rowspan", "data-fixed"];
+const _hoisted_13 = ["rowspan", "data-fixed", "data-table-fixed-key"];
 const _hoisted_14 = ["colspan", "data-anchor-key", "data-fixed"];
-const _hoisted_15 = ["rowspan", "data-fixed", "data-column-key", "aria-sort"];
+const _hoisted_15 = ["rowspan", "data-fixed", "data-table-fixed-key", "data-column-key", "aria-sort"];
 const _hoisted_16 = { class: "wb-table__header-content" };
 const _hoisted_17 = { class: "wb-table__header-title-host" };
 const _hoisted_18 = {
@@ -42,14 +42,14 @@ const _hoisted_18 = {
   class: "wb-table__header-actions"
 };
 const _hoisted_19 = ["disabled", "aria-label", "onClick"];
-const _hoisted_20 = ["rowspan", "data-fixed"];
+const _hoisted_20 = ["rowspan", "data-fixed", "data-table-fixed-key"];
 const _hoisted_21 = {
   key: 0,
   class: "wb-table__skeleton-body"
 };
-const _hoisted_22 = ["data-fixed"];
-const _hoisted_23 = ["data-fixed"];
-const _hoisted_24 = ["data-fixed"];
+const _hoisted_22 = ["data-fixed", "data-table-fixed-key"];
+const _hoisted_23 = ["data-fixed", "data-table-fixed-key"];
+const _hoisted_24 = ["data-fixed", "data-table-fixed-key"];
 const _hoisted_25 = { key: 1 };
 const _hoisted_26 = ["colspan"];
 const _hoisted_27 = {
@@ -62,45 +62,43 @@ const _hoisted_30 = {
   class: "wb-table__state",
   role: "status"
 };
-const _hoisted_31 = { key: 3 };
-const _hoisted_32 = ["data-fixed"];
-const _hoisted_33 = ["data-fixed"];
-const _hoisted_34 = ["disabled", "aria-expanded", "aria-controls", "aria-label", "onClick"];
-const _hoisted_35 = {
+const _hoisted_31 = ["data-fixed", "data-table-fixed-key"];
+const _hoisted_32 = ["disabled", "aria-expanded", "aria-controls", "aria-label", "onClick"];
+const _hoisted_33 = {
   key: 2,
   class: "wb-table__ellipsis-host"
 };
-const _hoisted_36 = ["aria-describedby"];
-const _hoisted_37 = ["data-fixed"];
-const _hoisted_38 = {
+const _hoisted_34 = ["aria-describedby"];
+const _hoisted_35 = ["data-fixed", "data-table-fixed-key"];
+const _hoisted_36 = {
   key: 1,
   class: "wb-table__row-actions"
 };
-const _hoisted_39 = {
+const _hoisted_37 = {
   key: 0,
   class: "wb-table__detail-row"
 };
-const _hoisted_40 = ["colspan"];
-const _hoisted_41 = ["id", "aria-label"];
-const _hoisted_42 = {
+const _hoisted_38 = ["colspan"];
+const _hoisted_39 = ["id", "aria-label"];
+const _hoisted_40 = {
   key: 0,
   class: "wb-table__detail-actions"
 };
-const _hoisted_43 = {
+const _hoisted_41 = {
   key: 2,
   class: "wb-table__footer"
 };
-const _hoisted_44 = {
+const _hoisted_42 = {
   key: 0,
   class: "wb-table__total"
 };
-const _hoisted_45 = {
+const _hoisted_43 = {
   key: 1,
   class: "wb-table__batch",
   "aria-live": "polite"
 };
-const _hoisted_46 = { class: "wb-table__selection-summary" };
-const _hoisted_47 = { class: "wb-table__selection-count" };
+const _hoisted_44 = { class: "wb-table__selection-summary" };
+const _hoisted_45 = { class: "wb-table__selection-count" };
 import "../shared/disclosure-motion.css";
 import { resolveColumnWidths } from "./column-widths.js";
 import { layoutCellWidth } from "./layout-width.js";
@@ -128,6 +126,7 @@ const __sfc_main__ = {
     columns: { type: Array, required: true },
     rows: { type: Array, default: () => [] },
     rowKey: { type: [String, Function], required: true },
+    rowGroup: { type: Object, default: null },
     selectedRowKeys: { type: Array, default: () => [] },
     sort: { type: Object, default: null },
     page: { type: Number, default: 1 },
@@ -179,9 +178,10 @@ const __sfc_main__ = {
     const slots = useSlots();
     const instanceId = useId();
     const expandedKeys = computed(() => new Set(props.expandedRowKeys));
-    const expansionKey = computed(
-      () => normalizedColumns.value.find((column) => column.fixed === "left")?.key ?? primaryKey.value
-    );
+    const expansionKey = computed(() => {
+      const columns = normalizedColumns.value.filter((column) => column !== rowGroupColumn.value);
+      return columns.find((column) => column.fixed === "left")?.key ?? columns.find((column) => column.key === primaryKey.value)?.key ?? columns[0]?.key;
+    });
     const detailId = (row) => `table-${instanceId}-detail-${encodeURIComponent(String(keyOf(row)))}`;
     function toggleExpanded(row) {
       const key = keyOf(row);
@@ -210,7 +210,8 @@ const __sfc_main__ = {
     const isOverflowing = ref(false);
     const columnWidths = ref({});
     const pixelColumns = ref([]);
-    let resizeObserver, rootFontProbe;
+    let resizeObserver;
+    let rootFontProbe;
     const normalizedColumns = computed(
       () => props.columns.filter((column) => column && column.key && column.title).slice().sort((a, b) => {
         const rank = (column) => column.fixed === "left" ? 0 : column.fixed === "right" ? 2 : 1;
@@ -231,7 +232,8 @@ const __sfc_main__ = {
       )
     );
     const groupedHeaderRows = computed(() => {
-      const top = [], bottom = [];
+      const top = [];
+      const bottom = [];
       for (const column of normalizedColumns.value) {
         const group = column.group;
         if (!group?.key || !group?.title) {
@@ -264,6 +266,33 @@ const __sfc_main__ = {
     const primaryKey = computed(
       () => normalizedColumns.value.find((column) => column.primary)?.key ?? normalizedColumns.value[0]?.key
     );
+    const rowGroupColumn = computed(() => {
+      const group = props.rowGroup;
+      if (!group || typeof group.key !== "function" && typeof group.key !== "string") return null;
+      if (props.expandable && normalizedColumns.value.length < 2) return null;
+      return normalizedColumns.value.find((column) => column.key === group.columnKey) ?? null;
+    });
+    const bodyGroups = computed(() => {
+      const column = rowGroupColumn.value;
+      const rows = props.rows.map((row, rowIndex) => ({ row, rowIndex }));
+      if (!column) return [{ id: "ungrouped", grouped: false, entries: rows }];
+      const takeKey = props.rowGroup.key;
+      const groups = [];
+      let previousExpanded = false;
+      for (const entry of rows) {
+        const { row } = entry;
+        const key = typeof takeKey === "function" ? takeKey(row) : row?.[takeKey];
+        const grouped = typeof key === "string" && key.trim() !== "" || Number.isFinite(key);
+        const label = grouped ? cellValue(row, column) : "";
+        const current = groups.at(-1);
+        if (!current || current.grouped !== grouped || grouped && (previousExpanded || current.key !== key || current.label !== label || current.entries.length === 65534)) {
+          groups.push({ id: keyOf(row), key, label, grouped, entries: [] });
+        }
+        groups.at(-1).entries.push(entry);
+        previousExpanded = grouped && isExpanded(row);
+      }
+      return groups;
+    });
     const resize = useColumnResize({
       props,
       columns: normalizedColumns,
@@ -309,6 +338,9 @@ const __sfc_main__ = {
     const skeletonRows = Object.freeze([0, 1, 2, 3, 4]);
     function keyOf(row) {
       return typeof props.rowKey === "function" ? props.rowKey(row) : row?.[props.rowKey];
+    }
+    function isExpanded(row) {
+      return props.expandable && expandedKeys.value.has(keyOf(row)) && props.isRowExpandable(row);
     }
     function cellValue(row, column) {
       const value = typeof column.field === "function" ? column.field(row) : row?.[column.field ?? column.key];
@@ -435,16 +467,20 @@ const __sfc_main__ = {
         )
       );
       const headers = [selectionHeader, ...leafHeaders, actionHeader].filter(Boolean);
+      const fixedBodyCells = /* @__PURE__ */ new Map();
+      for (const cell of table.querySelectorAll(":scope > tbody > tr > [data-table-fixed-key]")) {
+        const key = cell.dataset.tableFixedKey;
+        if (!fixedBodyCells.has(key)) fixedBodyCells.set(key, []);
+        fixedBodyCells.get(key).push(cell);
+      }
       for (const side of ["left", "right"]) {
         let offset = 0;
         const fixedHeaders = headers.filter((header) => header.dataset.fixed === side);
         if (side === "right") fixedHeaders.reverse();
         for (const header of fixedHeaders) {
-          const index = headers.indexOf(header);
           header.style.setProperty("--table-fixed-offset", `${offset}px`);
-          for (const row of viewport.querySelectorAll("tbody tr:not(.wb-table__detail-row)")) {
-            const cell = row.children[index];
-            if (cell) cell.style.setProperty("--table-fixed-offset", `${offset}px`);
+          for (const cell of fixedBodyCells.get(header.dataset.tableFixedKey) ?? []) {
+            cell.style.setProperty("--table-fixed-offset", `${offset}px`);
           }
           offset += layoutCellWidth(header);
         }
@@ -662,6 +698,7 @@ const __sfc_main__ = {
                         rowspan: hasGroupedHeaders.value ? 2 : 1,
                         class: _normalizeClass(["wb-table__selection-cell wb-table__selection-cell--header", { "is-sticky": isOverflowing.value && __props.selectionFixed }]),
                         "data-fixed": __props.selectionFixed ? "left" : void 0,
+                        "data-table-fixed-key": __props.selectionFixed ? "selection" : void 0,
                         scope: "col"
                       }, [
                         _createVNode(WorkbenchCheckbox, {
@@ -698,6 +735,7 @@ const __sfc_main__ = {
                                 ref_for: true,
                                 ref: (element) => applyColumnGeometry(element, column),
                                 "data-fixed": column.fixed,
+                                "data-table-fixed-key": column.fixed ? "column:" + column.key : void 0,
                                 class: _normalizeClass(["wb-table__header-cell", [
                                   `is-align-${columnAlign(column)}`,
                                   {
@@ -799,6 +837,7 @@ const __sfc_main__ = {
                         rowspan: hasGroupedHeaders.value ? 2 : 1,
                         class: _normalizeClass(["wb-table__action-cell wb-table__action-cell--header", { "is-sticky": isOverflowing.value && __props.actionsFixed }]),
                         "data-fixed": __props.actionsFixed ? "right" : void 0,
+                        "data-table-fixed-key": __props.actionsFixed ? "actions" : void 0,
                         scope: "col"
                       }, " \u64CD\u4F5C ", 10, _hoisted_20)) : _createCommentVNode("v-if", true)
                     ]);
@@ -816,7 +855,8 @@ const __sfc_main__ = {
                       __props.selectable ? (_openBlock(), _createElementBlock("td", {
                         key: 0,
                         class: _normalizeClass(["wb-table__selection-cell", { "is-sticky": isOverflowing.value && __props.selectionFixed }]),
-                        "data-fixed": __props.selectionFixed ? "left" : void 0
+                        "data-fixed": __props.selectionFixed ? "left" : void 0,
+                        "data-table-fixed-key": __props.selectionFixed ? "selection" : void 0
                       }, null, 10, _hoisted_22)) : _createCommentVNode("v-if", true),
                       (_openBlock(true), _createElementBlock(
                         _Fragment,
@@ -827,6 +867,7 @@ const __sfc_main__ = {
                             ref_for: true,
                             ref: (element) => applyColumnGeometry(element, column),
                             "data-fixed": column.fixed,
+                            "data-table-fixed-key": column.fixed ? "column:" + column.key : void 0,
                             class: _normalizeClass({
                               "is-primary": column.key === primaryKey.value,
                               "is-sticky": isOverflowing.value && Boolean(column.fixed)
@@ -841,7 +882,8 @@ const __sfc_main__ = {
                       hasRowActions.value ? (_openBlock(), _createElementBlock("td", {
                         key: 1,
                         class: _normalizeClass(["wb-table__action-cell", { "is-sticky": isOverflowing.value && __props.actionsFixed }]),
-                        "data-fixed": __props.actionsFixed ? "right" : void 0
+                        "data-fixed": __props.actionsFixed ? "right" : void 0,
+                        "data-table-fixed-key": __props.actionsFixed ? "actions" : void 0
                       }, [
                         _createVNode(WorkbenchSkeletonBlock, { animated: true })
                       ], 10, _hoisted_24)) : _createCommentVNode("v-if", true)
@@ -917,264 +959,308 @@ const __sfc_main__ = {
                     ])
                   ], 8, _hoisted_29)
                 ])
-              ])) : (_openBlock(), _createElementBlock("tbody", _hoisted_31, [
-                (_openBlock(true), _createElementBlock(
-                  _Fragment,
-                  null,
-                  _renderList(__props.rows, (row, rowIndex) => {
-                    return _openBlock(), _createElementBlock(
-                      _Fragment,
-                      {
-                        key: keyOf(row)
-                      },
-                      [
-                        _createElementVNode(
-                          "tr",
-                          {
-                            class: _normalizeClass(["wb-table__data-row", {
-                              "is-selected": selectedKeySet.value.has(keyOf(row)),
-                              "is-even": rowIndex % 2 === 1
-                            }])
-                          },
-                          [
-                            __props.selectable ? (_openBlock(), _createElementBlock("td", {
-                              key: 0,
-                              class: _normalizeClass(["wb-table__selection-cell", { "is-sticky": isOverflowing.value && __props.selectionFixed }]),
-                              "data-fixed": __props.selectionFixed ? "left" : void 0
-                            }, [
-                              _createVNode(WorkbenchCheckbox, {
-                                "model-value": selectedKeySet.value.has(keyOf(row)),
-                                disabled: __props.loading || !__props.isRowSelectable(row, rowIndex),
-                                "aria-label": `\u9009\u62E9\u7B2C ${rowIndex + 1} \u884C`,
-                                "onUpdate:modelValue": ($event) => toggleRow(row, $event)
-                              }, null, 8, ["model-value", "disabled", "aria-label", "onUpdate:modelValue"])
-                            ], 10, _hoisted_32)) : _createCommentVNode("v-if", true),
-                            (_openBlock(true), _createElementBlock(
-                              _Fragment,
-                              null,
-                              _renderList(normalizedColumns.value, (column) => {
-                                return _openBlock(), _createElementBlock("td", {
-                                  key: column.key,
-                                  ref_for: true,
-                                  ref: (element) => applyColumnGeometry(element, column),
-                                  "data-fixed": column.fixed,
-                                  class: _normalizeClass([
-                                    `is-align-${columnAlign(column)}`,
-                                    {
-                                      "is-primary": column.key === primaryKey.value,
-                                      "is-sticky": isOverflowing.value && Boolean(column.fixed),
-                                      "is-banded": column.banded === true,
-                                      "is-group-start": groupStarts.value.has(column.key)
-                                    }
-                                  ])
-                                }, [
-                                  _createElementVNode(
-                                    "div",
-                                    {
-                                      class: _normalizeClass(["wb-table__value", { "has-expand": __props.expandable && column.key === expansionKey.value }])
-                                    },
-                                    [
-                                      __props.expandable && column.key === expansionKey.value ? (_openBlock(), _createElementBlock("button", {
-                                        key: 0,
-                                        class: "wb-table__expand",
-                                        type: "button",
-                                        disabled: __props.loading || !__props.isRowExpandable(row),
-                                        "aria-expanded": expandedKeys.value.has(keyOf(row)),
-                                        "aria-controls": detailId(row),
-                                        "aria-label": `${expandedKeys.value.has(keyOf(row)) ? "\u6536\u8D77" : "\u5C55\u5F00"}\u8BE6\u60C5\uFF1A${keyOf(row)}`,
-                                        onClick: ($event) => toggleExpanded(row)
-                                      }, [
-                                        _createVNode(WorkbenchIcon, {
-                                          class: _normalizeClass(["wb-disclosure-icon wb-disclosure-icon--branch", { "is-expanded": expandedKeys.value.has(keyOf(row)) }]),
-                                          name: "\u7ED3\u6784\u6811\u7BAD\u5934/\u65B9\u5411=\u5411\u53F3"
-                                        }, null, 8, ["class"])
-                                      ], 8, _hoisted_34)) : _createCommentVNode("v-if", true),
-                                      _ctx.$slots[`cell-${column.key}`] ? (_openBlock(), _createBlock(
-                                        TableCellContent,
-                                        { key: 1 },
+              ])) : (_openBlock(true), _createElementBlock(
+                _Fragment,
+                { key: 3 },
+                _renderList(bodyGroups.value, (group) => {
+                  return _openBlock(), _createElementBlock(
+                    "tbody",
+                    {
+                      key: group.id,
+                      class: _normalizeClass({
+                        "wb-table__row-group": group.grouped,
+                        "is-group-selected": group.grouped && group.entries.every(({ row }) => selectedKeySet.value.has(keyOf(row)))
+                      })
+                    },
+                    [
+                      (_openBlock(true), _createElementBlock(
+                        _Fragment,
+                        null,
+                        _renderList(group.entries, ({ row, rowIndex }, groupIndex) => {
+                          return _openBlock(), _createElementBlock(
+                            _Fragment,
+                            {
+                              key: keyOf(row)
+                            },
+                            [
+                              _createElementVNode(
+                                "tr",
+                                {
+                                  class: _normalizeClass(["wb-table__data-row", {
+                                    "is-selected": selectedKeySet.value.has(keyOf(row)),
+                                    "is-even": rowIndex % 2 === 1
+                                  }])
+                                },
+                                [
+                                  __props.selectable ? (_openBlock(), _createElementBlock("td", {
+                                    key: 0,
+                                    class: _normalizeClass(["wb-table__selection-cell", { "is-sticky": isOverflowing.value && __props.selectionFixed }]),
+                                    "data-fixed": __props.selectionFixed ? "left" : void 0,
+                                    "data-table-fixed-key": __props.selectionFixed ? "selection" : void 0
+                                  }, [
+                                    _createVNode(WorkbenchCheckbox, {
+                                      "model-value": selectedKeySet.value.has(keyOf(row)),
+                                      disabled: __props.loading || !__props.isRowSelectable(row, rowIndex),
+                                      "aria-label": `\u9009\u62E9\u7B2C ${rowIndex + 1} \u884C`,
+                                      "onUpdate:modelValue": ($event) => toggleRow(row, $event)
+                                    }, null, 8, ["model-value", "disabled", "aria-label", "onUpdate:modelValue"])
+                                  ], 10, _hoisted_31)) : _createCommentVNode("v-if", true),
+                                  (_openBlock(true), _createElementBlock(
+                                    _Fragment,
+                                    null,
+                                    _renderList(normalizedColumns.value, (column) => {
+                                      return _openBlock(), _createElementBlock(
+                                        _Fragment,
                                         {
-                                          default: _withCtx(() => [
-                                            _renderSlot(_ctx.$slots, `cell-${column.key}`, {
-                                              row,
-                                              value: cellValue(row, column),
-                                              column,
-                                              rowIndex
-                                            })
-                                          ]),
-                                          _: 2
-                                          /* DYNAMIC */
+                                          key: column.key
                                         },
-                                        1024
-                                        /* DYNAMIC_SLOTS */
-                                      )) : (_openBlock(), _createElementBlock("span", _hoisted_35, [
-                                        _createVNode(WorkbenchTooltip, {
-                                          content: cellValue(row, column),
-                                          "overflow-only": ""
-                                        }, {
-                                          trigger: _withCtx(({ aria }) => [
-                                            _createElementVNode("span", {
-                                              class: _normalizeClass(column.ellipsis ? "wb-table__ellipsis" : "wb-table__cell-content"),
-                                              tabindex: "0",
-                                              "aria-describedby": aria["aria-describedby"]
-                                            }, _toDisplayString(cellValue(row, column)), 11, _hoisted_36)
-                                          ]),
-                                          _: 2
-                                          /* DYNAMIC */
-                                        }, 1032, ["content"])
-                                      ]))
-                                    ],
-                                    2
-                                    /* CLASS */
-                                  )
-                                ], 10, _hoisted_33);
-                              }),
-                              128
-                              /* KEYED_FRAGMENT */
-                            )),
-                            hasRowActions.value ? (_openBlock(), _createElementBlock("td", {
-                              key: 1,
-                              class: _normalizeClass(["wb-table__action-cell", { "is-sticky": isOverflowing.value && __props.actionsFixed }]),
-                              "data-fixed": __props.actionsFixed ? "right" : void 0
-                            }, [
-                              _ctx.$slots["row-actions"] ? _renderSlot(_ctx.$slots, "row-actions", {
-                                row,
-                                actions: actionsFor(row),
-                                emitAction: (action) => emitRowAction(row, action, "slot")
-                              }, void 0, void 0, 0) : (_openBlock(), _createElementBlock("div", _hoisted_38, [
-                                (_openBlock(true), _createElementBlock(
-                                  _Fragment,
-                                  null,
-                                  _renderList(actionsFor(row).slice(0, 2), (action, actionIndex) => {
-                                    return _openBlock(), _createElementBlock(
-                                      _Fragment,
-                                      {
-                                        key: action.id
-                                      },
-                                      [
-                                        action.type === "link" ? (_openBlock(), _createBlock(WorkbenchLink, {
-                                          key: 0,
-                                          class: _normalizeClass([
-                                            "wb-table__row-action",
-                                            actionIndex === 0 ? "wb-table__row-action--primary" : "wb-table__row-action--secondary"
-                                          ]),
-                                          href: action.href,
-                                          disabled: actionDisabled(action, row),
-                                          onClick: ($event) => emitRowAction(row, action, "direct")
-                                        }, {
-                                          default: _withCtx(() => [
-                                            _createTextVNode(
-                                              _toDisplayString(action.label),
-                                              1
-                                              /* TEXT */
-                                            )
-                                          ]),
-                                          _: 2
-                                          /* DYNAMIC */
-                                        }, 1032, ["class", "href", "disabled", "onClick"])) : (_openBlock(), _createBlock(WorkbenchButton, {
-                                          key: 1,
-                                          class: _normalizeClass([
-                                            "wb-table__row-action",
-                                            actionIndex === 0 ? "wb-table__row-action--primary" : "wb-table__row-action--secondary"
-                                          ]),
-                                          appearance: "text",
-                                          size: "28",
-                                          disabled: actionDisabled(action, row),
-                                          onClick: ($event) => emitRowAction(row, action, "direct")
-                                        }, {
-                                          default: _withCtx(() => [
-                                            _createTextVNode(
-                                              _toDisplayString(action.label),
-                                              1
-                                              /* TEXT */
-                                            )
-                                          ]),
-                                          _: 2
-                                          /* DYNAMIC */
-                                        }, 1032, ["class", "disabled", "onClick"]))
-                                      ],
-                                      64
-                                      /* STABLE_FRAGMENT */
-                                    );
-                                  }),
-                                  128
-                                  /* KEYED_FRAGMENT */
-                                )),
-                                overflowItems(row).length ? (_openBlock(), _createBlock(WorkbenchDropdown, {
-                                  key: 0,
-                                  class: "wb-table__row-more",
-                                  size: "small",
-                                  "trigger-type": "text",
-                                  "text-intent": "drilldown",
-                                  "panel-width": "min",
-                                  items: overflowItems(row),
-                                  disabled: __props.loading,
-                                  "aria-label": `\u66F4\u591A\u64CD\u4F5C\uFF1A${cellValue(row, normalizedColumns.value.find((column) => column.key === primaryKey.value) ?? normalizedColumns.value[0])}`,
-                                  onAction: ($event) => activateOverflow(row, $event.id),
-                                  "onUpdate:open": markOverflowPanel
-                                }, {
-                                  trigger: _withCtx(() => [..._cache[5] || (_cache[5] = [
-                                    _createTextVNode(
-                                      "\u66F4\u591A",
-                                      -1
-                                      /* CACHED */
-                                    )
-                                  ])]),
-                                  _: 1
-                                  /* STABLE */
-                                }, 8, ["items", "disabled", "aria-label", "onAction"])) : _createCommentVNode("v-if", true)
-                              ]))
-                            ], 10, _hoisted_37)) : _createCommentVNode("v-if", true)
-                          ],
-                          2
-                          /* CLASS */
-                        ),
-                        __props.expandable && __props.isRowExpandable(row) && expandedKeys.value.has(keyOf(row)) ? (_openBlock(), _createElementBlock("tr", _hoisted_39, [
-                          _createElementVNode("td", { colspan: totalColumnCount.value }, [
-                            _createElementVNode("div", {
-                              id: detailId(row),
-                              class: "wb-table__detail",
-                              role: "region",
-                              "aria-label": `\u8BE6\u60C5\uFF1A${keyOf(row)}`
-                            }, [
-                              _renderSlot(_ctx.$slots, "expanded-content", {
-                                row,
-                                rowKey: keyOf(row),
-                                rowIndex
-                              }),
-                              _ctx.$slots["expanded-actions"] ? (_openBlock(), _createElementBlock("div", _hoisted_42, [
-                                _renderSlot(_ctx.$slots, "expanded-actions", {
-                                  row,
-                                  rowKey: keyOf(row),
-                                  rowIndex
-                                })
+                                        [
+                                          !group.grouped || column !== rowGroupColumn.value || groupIndex === 0 ? (_openBlock(), _createBlock(_resolveDynamicComponent(
+                                            group.grouped && column === rowGroupColumn.value || column.rowHeader ? "th" : "td"
+                                          ), {
+                                            key: 0,
+                                            scope: group.grouped && column === rowGroupColumn.value ? "rowgroup" : column.rowHeader ? "row" : void 0,
+                                            rowspan: group.grouped && column === rowGroupColumn.value ? group.entries.length : void 0,
+                                            ref_for: true,
+                                            ref: (element) => applyColumnGeometry(element, column),
+                                            "data-fixed": column.fixed,
+                                            "data-table-fixed-key": column.fixed ? "column:" + column.key : void 0,
+                                            class: _normalizeClass([
+                                              `is-align-${columnAlign(column)}`,
+                                              {
+                                                "is-primary": column.key === primaryKey.value,
+                                                "is-sticky": isOverflowing.value && Boolean(column.fixed),
+                                                "is-banded": column.banded === true,
+                                                "is-group-start": groupStarts.value.has(column.key),
+                                                "wb-table__row-group-header": group.grouped && column === rowGroupColumn.value
+                                              }
+                                            ])
+                                          }, {
+                                            default: _withCtx(() => [
+                                              _createElementVNode(
+                                                "div",
+                                                {
+                                                  class: _normalizeClass(["wb-table__value", { "has-expand": __props.expandable && column.key === expansionKey.value }])
+                                                },
+                                                [
+                                                  __props.expandable && column.key === expansionKey.value ? (_openBlock(), _createElementBlock("button", {
+                                                    key: 0,
+                                                    class: "wb-table__expand",
+                                                    type: "button",
+                                                    disabled: __props.loading || !__props.isRowExpandable(row),
+                                                    "aria-expanded": expandedKeys.value.has(keyOf(row)),
+                                                    "aria-controls": detailId(row),
+                                                    "aria-label": `${expandedKeys.value.has(keyOf(row)) ? "\u6536\u8D77" : "\u5C55\u5F00"}\u8BE6\u60C5\uFF1A${keyOf(row)}`,
+                                                    onClick: ($event) => toggleExpanded(row)
+                                                  }, [
+                                                    _createVNode(WorkbenchIcon, {
+                                                      class: _normalizeClass(["wb-disclosure-icon wb-disclosure-icon--branch", { "is-expanded": expandedKeys.value.has(keyOf(row)) }]),
+                                                      name: "\u7ED3\u6784\u6811\u7BAD\u5934/\u65B9\u5411=\u5411\u53F3"
+                                                    }, null, 8, ["class"])
+                                                  ], 8, _hoisted_32)) : _createCommentVNode("v-if", true),
+                                                  _ctx.$slots[`cell-${column.key}`] ? (_openBlock(), _createBlock(
+                                                    TableCellContent,
+                                                    { key: 1 },
+                                                    {
+                                                      default: _withCtx(() => [
+                                                        _renderSlot(_ctx.$slots, `cell-${column.key}`, {
+                                                          row,
+                                                          value: cellValue(row, column),
+                                                          column,
+                                                          rowIndex
+                                                        })
+                                                      ]),
+                                                      _: 2
+                                                      /* DYNAMIC */
+                                                    },
+                                                    1024
+                                                    /* DYNAMIC_SLOTS */
+                                                  )) : (_openBlock(), _createElementBlock("span", _hoisted_33, [
+                                                    _createVNode(WorkbenchTooltip, {
+                                                      content: cellValue(row, column),
+                                                      "overflow-only": ""
+                                                    }, {
+                                                      trigger: _withCtx(({ aria }) => [
+                                                        _createElementVNode("span", {
+                                                          class: _normalizeClass(
+                                                            column.ellipsis ? "wb-table__ellipsis" : "wb-table__cell-content"
+                                                          ),
+                                                          tabindex: "0",
+                                                          "aria-describedby": aria["aria-describedby"]
+                                                        }, _toDisplayString(cellValue(row, column)), 11, _hoisted_34)
+                                                      ]),
+                                                      _: 2
+                                                      /* DYNAMIC */
+                                                    }, 1032, ["content"])
+                                                  ]))
+                                                ],
+                                                2
+                                                /* CLASS */
+                                              )
+                                            ]),
+                                            _: 2
+                                            /* DYNAMIC */
+                                          }, 1032, ["scope", "rowspan", "data-fixed", "data-table-fixed-key", "class"])) : _createCommentVNode("v-if", true)
+                                        ],
+                                        64
+                                        /* STABLE_FRAGMENT */
+                                      );
+                                    }),
+                                    128
+                                    /* KEYED_FRAGMENT */
+                                  )),
+                                  hasRowActions.value ? (_openBlock(), _createElementBlock("td", {
+                                    key: 1,
+                                    class: _normalizeClass(["wb-table__action-cell", { "is-sticky": isOverflowing.value && __props.actionsFixed }]),
+                                    "data-fixed": __props.actionsFixed ? "right" : void 0,
+                                    "data-table-fixed-key": __props.actionsFixed ? "actions" : void 0
+                                  }, [
+                                    _ctx.$slots["row-actions"] ? _renderSlot(_ctx.$slots, "row-actions", {
+                                      row,
+                                      actions: actionsFor(row),
+                                      emitAction: (action) => emitRowAction(row, action, "slot")
+                                    }, void 0, void 0, 0) : (_openBlock(), _createElementBlock("div", _hoisted_36, [
+                                      (_openBlock(true), _createElementBlock(
+                                        _Fragment,
+                                        null,
+                                        _renderList(actionsFor(row).slice(0, 2), (action, actionIndex) => {
+                                          return _openBlock(), _createElementBlock(
+                                            _Fragment,
+                                            {
+                                              key: action.id
+                                            },
+                                            [
+                                              action.type === "link" ? (_openBlock(), _createBlock(WorkbenchLink, {
+                                                key: 0,
+                                                class: _normalizeClass([
+                                                  "wb-table__row-action",
+                                                  actionIndex === 0 ? "wb-table__row-action--primary" : "wb-table__row-action--secondary"
+                                                ]),
+                                                href: action.href,
+                                                disabled: actionDisabled(action, row),
+                                                onClick: ($event) => emitRowAction(row, action, "direct")
+                                              }, {
+                                                default: _withCtx(() => [
+                                                  _createTextVNode(
+                                                    _toDisplayString(action.label),
+                                                    1
+                                                    /* TEXT */
+                                                  )
+                                                ]),
+                                                _: 2
+                                                /* DYNAMIC */
+                                              }, 1032, ["class", "href", "disabled", "onClick"])) : (_openBlock(), _createBlock(WorkbenchButton, {
+                                                key: 1,
+                                                class: _normalizeClass([
+                                                  "wb-table__row-action",
+                                                  actionIndex === 0 ? "wb-table__row-action--primary" : "wb-table__row-action--secondary"
+                                                ]),
+                                                appearance: "text",
+                                                size: "28",
+                                                disabled: actionDisabled(action, row),
+                                                onClick: ($event) => emitRowAction(row, action, "direct")
+                                              }, {
+                                                default: _withCtx(() => [
+                                                  _createTextVNode(
+                                                    _toDisplayString(action.label),
+                                                    1
+                                                    /* TEXT */
+                                                  )
+                                                ]),
+                                                _: 2
+                                                /* DYNAMIC */
+                                              }, 1032, ["class", "disabled", "onClick"]))
+                                            ],
+                                            64
+                                            /* STABLE_FRAGMENT */
+                                          );
+                                        }),
+                                        128
+                                        /* KEYED_FRAGMENT */
+                                      )),
+                                      overflowItems(row).length ? (_openBlock(), _createBlock(WorkbenchDropdown, {
+                                        key: 0,
+                                        class: "wb-table__row-more",
+                                        size: "small",
+                                        "trigger-type": "text",
+                                        "text-intent": "drilldown",
+                                        "panel-width": "min",
+                                        items: overflowItems(row),
+                                        disabled: __props.loading,
+                                        "aria-label": `\u66F4\u591A\u64CD\u4F5C\uFF1A${cellValue(row, normalizedColumns.value.find((column) => column.key === primaryKey.value) ?? normalizedColumns.value[0])}`,
+                                        onAction: ($event) => activateOverflow(row, $event.id),
+                                        "onUpdate:open": markOverflowPanel
+                                      }, {
+                                        trigger: _withCtx(() => [..._cache[5] || (_cache[5] = [
+                                          _createTextVNode(
+                                            "\u66F4\u591A",
+                                            -1
+                                            /* CACHED */
+                                          )
+                                        ])]),
+                                        _: 1
+                                        /* STABLE */
+                                      }, 8, ["items", "disabled", "aria-label", "onAction"])) : _createCommentVNode("v-if", true)
+                                    ]))
+                                  ], 10, _hoisted_35)) : _createCommentVNode("v-if", true)
+                                ],
+                                2
+                                /* CLASS */
+                              ),
+                              isExpanded(row) ? (_openBlock(), _createElementBlock("tr", _hoisted_37, [
+                                _createElementVNode("td", { colspan: totalColumnCount.value }, [
+                                  _createElementVNode("div", {
+                                    id: detailId(row),
+                                    class: "wb-table__detail",
+                                    role: "region",
+                                    "aria-label": `\u8BE6\u60C5\uFF1A${keyOf(row)}`
+                                  }, [
+                                    _renderSlot(_ctx.$slots, "expanded-content", {
+                                      row,
+                                      rowKey: keyOf(row),
+                                      rowIndex
+                                    }),
+                                    _ctx.$slots["expanded-actions"] ? (_openBlock(), _createElementBlock("div", _hoisted_40, [
+                                      _renderSlot(_ctx.$slots, "expanded-actions", {
+                                        row,
+                                        rowKey: keyOf(row),
+                                        rowIndex
+                                      })
+                                    ])) : _createCommentVNode("v-if", true)
+                                  ], 8, _hoisted_39)
+                                ], 8, _hoisted_38)
                               ])) : _createCommentVNode("v-if", true)
-                            ], 8, _hoisted_41)
-                          ], 8, _hoisted_40)
-                        ])) : _createCommentVNode("v-if", true)
-                      ],
-                      64
-                      /* STABLE_FRAGMENT */
-                    );
-                  }),
-                  128
-                  /* KEYED_FRAGMENT */
-                ))
-              ]))
+                            ],
+                            64
+                            /* STABLE_FRAGMENT */
+                          );
+                        }),
+                        128
+                        /* KEYED_FRAGMENT */
+                      ))
+                    ],
+                    2
+                    /* CLASS */
+                  );
+                }),
+                128
+                /* KEYED_FRAGMENT */
+              ))
             ], 8, _hoisted_8)
           ]),
           _: 3
           /* FORWARDED */
         }, 8, ["label"]),
-        hasPagination.value || selectedVisibleKeys.value.length ? (_openBlock(), _createElementBlock("footer", _hoisted_43, [
+        hasPagination.value || selectedVisibleKeys.value.length ? (_openBlock(), _createElementBlock("footer", _hoisted_41, [
           hasPagination.value ? (_openBlock(), _createElementBlock(
             "span",
-            _hoisted_44,
+            _hoisted_42,
             "\u5171\uFF1A" + _toDisplayString(__props.total) + " \u9879",
             1
             /* TEXT */
           )) : _createCommentVNode("v-if", true),
-          selectedVisibleKeys.value.length ? (_openBlock(), _createElementBlock("div", _hoisted_45, [
-            _createElementVNode("span", _hoisted_46, [
+          selectedVisibleKeys.value.length ? (_openBlock(), _createElementBlock("div", _hoisted_43, [
+            _createElementVNode("span", _hoisted_44, [
               _cache[6] || (_cache[6] = _createTextVNode(
                 "\u5DF2\u9009\u4E2D\uFF1A",
                 -1
@@ -1182,7 +1268,7 @@ const __sfc_main__ = {
               )),
               _createElementVNode(
                 "span",
-                _hoisted_47,
+                _hoisted_45,
                 _toDisplayString(selectedVisibleKeys.value.length),
                 1
                 /* TEXT */

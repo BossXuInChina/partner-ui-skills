@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 文字提示 Tooltip — `WorkbenchTooltip`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -14,7 +14,7 @@
 {
   "id": "wb-tooltip",
   "kind": "component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "在控件附近补充简短、非必要的说明文字；不承载交互内容或关键信息。",
   "useWhen": ["悬停或键盘聚焦时显示短文本、溢出内容全文或静态标签。"],
   "avoidWhen": ["需要链接使用Popover；操作确认使用Popconfirm；不要在Tooltip里放可交互元素。","未经验证的公司内部UI框架或生产交付"],

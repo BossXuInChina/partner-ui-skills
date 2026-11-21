@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 按钮 Button — `WorkbenchButton`
 
-资产：`wb-button` · 类型：`component` · 资产合同版本：`1.7.0`
+资产：`wb-button` · 类型：`component` · 资产合同版本：`1.8.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -489,9 +489,9 @@ function createApplication() { created.value = true }
 | iconLayout | String | inline | inline / container | 图标按钮默认 inline 贴合实际图标；container 使用32/24px标准点击区域。 |
 | intent | String | action | action / drilldown | text外观的action或drilldown语义。 |
 | previewState | String | default |  | Studio状态预览值；业务交互应由真实DOM状态和调用方逻辑管理。 |
-| size | String | 32 |  | 按钮尺寸字符串；当前组件默认32，填充按钮支持28、32、36，文字与图标尺寸按组件契约使用。 |
+| size | String | 32 |  | 按钮尺寸档位：large / medium / small，默认 medium。填充按钮支持三档，文字按钮支持 medium / small，图标按钮容器支持 medium / small。数值写法（填充 36、32、28，图标 32、24）继续有效并选择同一档位。 |
 | textLayout | String | container | inline / container | 文字按钮默认 container，提供标准尺寸及透明内边距；inline 随行高且无内边距。 |
-| variant | String | default | default / dashed |  |
+| variant | String | default | default / dashed | 边框样式。默认 default，dashed 用于虚线按钮。 |
 
 ### Slots
 

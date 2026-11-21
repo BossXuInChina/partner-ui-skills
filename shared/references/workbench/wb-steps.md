@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 步骤条 Steps — `WorkbenchSteps`
 
 资产：`wb-steps` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -447,6 +447,7 @@ function onChange(index, item) { selected.value = index; console.log('查看步�
 | 名称 | 类型 | 默认 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
 | ariaLabel | String | 流程步骤 |  | 有序步骤列表可访问名称。 |
+| compactEdges | Boolean |  |  | 默认关闭。横向布局开启后，按首尾标题的实际宽度收紧两侧留白，步骤保持等距。 |
 | current | Number |  |  | 实际流程进度；不传时跟随modelValue。 |
 | disabled | Boolean | false |  | 禁用整个步骤条。 |
 | items * | Array |  |  | 必填StepItem数组：title必填；可选key、description、status、disabled、clickable。 |

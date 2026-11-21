@@ -10,17 +10,36 @@ import { computed, nextTick, ref, watch } from "vue";
 import WorkbenchIcon from "../icons/WorkbenchIcon.vue";
 const __sfc_main__ = {
   __name: "WorkbenchNumberCount",
-  props: { modelValue: { type: Number, default: 0 }, step: { type: Number, default: 1 }, min: { type: Number, default: void 0 }, max: { type: Number, default: void 0 }, disabled: Boolean, name: String, ariaLabel: { type: String, default: "\u6570\u91CF" } },
+  props: {
+    modelValue: { type: Number, default: 0 },
+    step: { type: Number, default: 1 },
+    min: { type: Number, default: void 0 },
+    max: { type: Number, default: void 0 },
+    disabled: Boolean,
+    name: String,
+    ariaLabel: { type: String, default: "\u6570\u91CF" }
+  },
   emits: ["update:modelValue", "change"],
   setup(__props, { emit: __emit }) {
     const props = __props;
     const native = ref(null);
     const emit = __emit;
-    const hasMin = computed(() => Number.isFinite(props.min)), hasMax = computed(() => Number.isFinite(props.max));
+    const hasMin = computed(() => Number.isFinite(props.min));
+    const hasMax = computed(() => Number.isFinite(props.max));
     const safeStep = computed(() => Number.isFinite(props.step) && props.step > 0 ? props.step : 1);
     const places = (value) => String(value).split(".")[1]?.length ?? 0;
-    const precision = computed(() => Math.max(places(safeStep.value), places(props.modelValue), hasMin.value ? places(props.min) : 0, hasMax.value ? places(props.max) : 0));
-    const clamp = (value) => Math.min(hasMax.value ? props.max : Infinity, Math.max(hasMin.value ? props.min : -Infinity, value));
+    const precision = computed(
+      () => Math.max(
+        places(safeStep.value),
+        places(props.modelValue),
+        hasMin.value ? places(props.min) : 0,
+        hasMax.value ? places(props.max) : 0
+      )
+    );
+    const clamp = (value) => Math.min(
+      hasMax.value ? props.max : Infinity,
+      Math.max(hasMin.value ? props.min : -Infinity, value)
+    );
     const current = computed(() => clamp(Number.isFinite(props.modelValue) ? props.modelValue : 0));
     const format = (value) => Number(value.toFixed(precision.value)).toString();
     const draft = ref(format(current.value));
@@ -28,8 +47,12 @@ const __sfc_main__ = {
       draft.value = format(value);
     });
     const disabled = computed(() => props.disabled);
-    const canDecrement = computed(() => !disabled.value && (!hasMin.value || current.value > props.min));
-    const canIncrement = computed(() => !disabled.value && (!hasMax.value || current.value < props.max));
+    const canDecrement = computed(
+      () => !disabled.value && (!hasMin.value || current.value > props.min)
+    );
+    const canIncrement = computed(
+      () => !disabled.value && (!hasMax.value || current.value < props.max)
+    );
     function update(value, source) {
       const next = Number(clamp(Number(value)).toFixed(precision.value));
       if (next === current.value) {
@@ -66,7 +89,10 @@ const __sfc_main__ = {
         update(current.value + safeStep.value, "increment");
       }
     }
-    const { attrs: fieldAttrs } = useFieldControl(() => props.modelValue, { nativeRequired: true, focus: () => native.value?.focus() });
+    const { attrs: fieldAttrs } = useFieldControl(() => props.modelValue, {
+      nativeRequired: true,
+      focus: () => native.value?.focus()
+    });
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("div", {
         class: _normalizeClass(["wb-counter-input", { "is-disabled": disabled.value }]),

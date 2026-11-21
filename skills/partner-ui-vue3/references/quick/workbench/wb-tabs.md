@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 页签 Tabs — `WorkbenchTabs`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -51,6 +51,7 @@
   "events": ["update:modelValue","change","add","remove"],
   "slots": ["tab","panel"],
   "propNotes": {
+    "align": "控制页签列表在容器内的对齐位置。",
     "modelValue": "当前唯一选中值，必填。",
     "items": "必填页签数组；value唯一、label提供可访问名称，可选disabled与closable。",
     "variant": "basic、divider、rail或segment。",

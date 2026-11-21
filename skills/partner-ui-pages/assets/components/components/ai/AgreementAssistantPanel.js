@@ -71,10 +71,47 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     const props = __props;
     provideAiIcons(toRef(props, "icons"));
     const emit = __emit;
-    const { scopeId, messages, isProcessing, requestState, send, retry, abortRequest, resetting, activeRequestContext, error, selected, confirmation, discard, operationBusy, operationError, toast, dirty, renderers, currentStatus, discardDraft, applyBusinessUpdate, handleEvent, closeDrawer, saveEdit, confirmRenew, newConversation: clearConversation, history, switchConversation, clearHistory, removeConversation } = useAgreementPanel(props, emit, (action) => emit("businessAction", action), (navigation) => emit("workspaceNavigate", navigation));
+    const {
+      scopeId,
+      messages,
+      isProcessing,
+      requestState,
+      send,
+      retry,
+      abortRequest,
+      resetting,
+      activeRequestContext,
+      error,
+      selected,
+      confirmation,
+      discard,
+      operationBusy,
+      operationError,
+      toast,
+      dirty,
+      renderers,
+      currentStatus,
+      discardDraft,
+      applyBusinessUpdate,
+      handleEvent,
+      closeDrawer,
+      saveEdit,
+      confirmRenew,
+      newConversation: clearConversation,
+      history,
+      switchConversation,
+      clearHistory,
+      removeConversation
+    } = useAgreementPanel(
+      props,
+      emit,
+      (action) => emit("businessAction", action),
+      (navigation) => emit("workspaceNavigate", navigation)
+    );
     const allContentRenderers = computed(() => [...props.contentRenderers, ...renderers]);
     const chat = ref();
-    const historyAnchor = ref(), historyShown = ref(false);
+    const historyAnchor = ref();
+    const historyShown = ref(false);
     function saveView() {
       if (chat.value) history.updateView(chat.value.captureView());
     }
@@ -108,11 +145,25 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       return true;
     }
     function getMessages() {
-      return messages.value.map((message, index) => ({ ...message, id: message.id ?? `message-${index}` }));
+      return messages.value.map((message, index) => ({
+        ...message,
+        id: message.id ?? `message-${index}`
+      }));
     }
-    __expose({ applyBusinessUpdate, currentStatus, discardDraft, reset: resetAll, newConversation, canSendQuery, sendQuery, getMessages, locateReply: (id) => chat.value?.locateReply(id), start: () => {
-      if (!messages.value.length) void send("\u67E5\u8BE2\u5F85\u7EED\u7B7E\u534F\u8BAE");
-    } });
+    __expose({
+      applyBusinessUpdate,
+      currentStatus,
+      discardDraft,
+      reset: resetAll,
+      newConversation,
+      canSendQuery,
+      sendQuery,
+      getMessages,
+      locateReply: (id) => chat.value?.locateReply(id),
+      start: () => {
+        if (!messages.value.length) void send("\u67E5\u8BE2\u5F85\u7EED\u7B7E\u534F\u8BAE");
+      }
+    });
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("div", {
         id: _unref(scopeId),
@@ -332,7 +383,7 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                       disabled: _unref(operationBusy),
                       onClick: _cache[13] || (_cache[13] = //@ts-ignore
                       (...args) => _unref(closeDrawer) && _unref(closeDrawer)(...args))
-                    }, "\u53D6\u6D88", 8, _hoisted_11),
+                    }, " \u53D6\u6D88", 8, _hoisted_11),
                     _createElementVNode("button", {
                       class: "button button--primary",
                       disabled: _unref(operationBusy) || !_unref(dirty),
@@ -384,7 +435,7 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                       "data-initial-focus": "",
                       disabled: _unref(operationBusy),
                       onClick: _cache[15] || (_cache[15] = ($event) => confirmation.value = null)
-                    }, "\u518D\u60F3\u60F3", 8, _hoisted_17),
+                    }, " \u518D\u60F3\u60F3", 8, _hoisted_17),
                     _createElementVNode("button", {
                       class: "button button--primary",
                       disabled: _unref(operationBusy),
@@ -421,12 +472,12 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                       class: "button button--quiet",
                       "data-initial-focus": "",
                       onClick: _cache[18] || (_cache[18] = ($event) => discard.value = false)
-                    }, "\u7EE7\u7EED\u7F16\u8F91"),
+                    }, " \u7EE7\u7EED\u7F16\u8F91"),
                     _createElementVNode("button", {
                       class: "button button--primary",
                       onClick: _cache[19] || (_cache[19] = //@ts-ignore
                       (...args) => _unref(discardDraft) && _unref(discardDraft)(...args))
-                    }, "\u653E\u5F03\u4FEE\u6539")
+                    }, " \u653E\u5F03\u4FEE\u6539 ")
                   ])
                 ])
               ]),

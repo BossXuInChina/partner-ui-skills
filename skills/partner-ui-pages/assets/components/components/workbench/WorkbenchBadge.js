@@ -39,7 +39,9 @@ const __sfc_main__ = {
       return Number.isInteger(props.value) && props.value > 0;
     });
     const displayValue = computed(() => props.value > 99 ? "99+" : String(props.value));
-    const isSingleDigit = computed(() => props.variant === "number" && props.value > 0 && props.value < 10);
+    const isSingleDigit = computed(
+      () => props.variant === "number" && props.value > 0 && props.value < 10
+    );
     const accessibleLabel = computed(() => props.ariaLabel || `${props.value} \u6761\u672A\u8BFB\u6D88\u606F`);
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock(

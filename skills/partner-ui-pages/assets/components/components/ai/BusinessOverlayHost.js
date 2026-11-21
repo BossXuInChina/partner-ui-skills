@@ -12,21 +12,26 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
   },
   setup(__props) {
     const props = __props;
-    const target = ref(), stack = ref([]);
+    const target = ref();
+    const stack = ref([]);
     const { style } = useHostRegion(toRef(props, "region"));
     provide(businessOverlayKey, { target, stack });
     let restore;
-    watch(() => [props.region, stack.value.length], ([region, count]) => {
-      restore?.();
-      restore = void 0;
-      if (region && count) {
-        const wasInert = region.inert;
-        region.inert = true;
-        restore = () => {
-          region.inert = wasInert;
-        };
-      }
-    }, { flush: "sync" });
+    watch(
+      () => [props.region, stack.value.length],
+      ([region, count]) => {
+        restore?.();
+        restore = void 0;
+        if (region && count) {
+          const wasInert = region.inert;
+          region.inert = true;
+          restore = () => {
+            region.inert = wasInert;
+          };
+        }
+      },
+      { flush: "sync" }
+    );
     onBeforeUnmount(() => restore?.());
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock(

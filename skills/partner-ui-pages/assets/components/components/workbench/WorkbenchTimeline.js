@@ -34,7 +34,12 @@ const __sfc_main__ = {
   props: {
     items: { type: Array, default: () => [] },
     nodeType: { type: String, default: "dot", validator: (value) => ["dot", "icon"].includes(value) },
-    label: { type: String, default: "\u4E8B\u4EF6\u65F6\u95F4\u8F74" }
+    label: { type: String, default: "\u4E8B\u4EF6\u65F6\u95F4\u8F74" },
+    layout: {
+      type: String,
+      default: "standard",
+      validator: (value) => ["standard", "compact"].includes(value)
+    }
   },
   setup(__props) {
     const statusLabels = {
@@ -59,7 +64,7 @@ const __sfc_main__ = {
     }
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("ol", {
-        class: "wb-timeline",
+        class: _normalizeClass(["wb-timeline", { "wb-timeline--compact": __props.layout === "compact" }]),
         "aria-label": __props.label
       }, [
         (_openBlock(true), _createElementBlock(
@@ -172,7 +177,7 @@ const __sfc_main__ = {
           128
           /* KEYED_FRAGMENT */
         ))
-      ], 8, _hoisted_1);
+      ], 10, _hoisted_1);
     };
   }
 };

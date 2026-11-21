@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # Blocks 与 Patterns
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -303,6 +303,38 @@ navigation保留原生href，内部仅被动内容，禁止嵌套交互；业务
 类型：`block` · 导出：`WorkbenchReadonlyFields`
 
 静态字段组的受控业务组合
+
+包内未提供规则；不补写设计结论。
+
+## [wb-record-card](workbench/wb-record-card.md)
+
+类型：`block` · 导出：`WorkbenchRecordCard`
+
+展示一条记录的标题、标签、收藏、选择和操作。点击卡片可打开记录，交互控件和文本选择保持独立。
+
+包内未提供规则；不补写设计结论。
+
+## [wb-record-workspace](workbench/wb-record-workspace.md)
+
+类型：`block` · 导出：`WorkbenchRecordWorkspace`
+
+在左侧筛选或用途后排列全选和计数，右侧排列批量操作。用于 BOQ、商务通知单、订单及其他可复用的记录列表。
+
+包内未提供规则；不补写设计结论。
+
+## [wb-sectioned-editor](workbench/wb-sectioned-editor.md)
+
+类型：`block` · 导出：`WorkbenchSectionedEditor`
+
+创建报备、编辑报备与投标沿用有序的表单分区。
+
+包内未提供规则；不补写设计结论。
+
+## [wb-static-fields](workbench/wb-static-fields.md)
+
+类型：`block` · 导出：`WorkbenchStaticFields`
+
+三列紧凑字段。窄屏单行截断，聚焦或悬停可查看全文。字段可配置值色、链接、复制及右侧操作。
 
 包内未提供规则；不补写设计结论。
 

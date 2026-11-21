@@ -53,7 +53,7 @@ test('gallery uses locked metadata, preserves case semantics and renders officia
       });
       await page.goto(`http://127.0.0.1:${server.address().port}/`);
       await page.getByText('付款方式将在本月底失效。').first().waitFor();
-      assert.match(await page.locator('.count').innerText(), /91 \/ 91 条资产/);
+      assert.match(await page.locator('.count').innerText(), /95 \/ 95 条资产/);
       assert.equal(
         await page.getByRole('link', { name: 'Open in Studio ↗' }).getAttribute('href'),
         'http://localhost:4173/preview/WB-ALERT-V1/alert?view=preview',

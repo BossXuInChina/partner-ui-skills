@@ -9,7 +9,7 @@
   padding-inline: var(--wb-spacing-layout-container-inline);
   color: inherit;
   border: 0;
-  border-radius: var(--wb-radius-lg);
+  border-radius: var(--wb-asset-wb-card-radius);
   box-shadow: none;
   text-decoration: none;
 }
@@ -29,7 +29,7 @@
 }
 
 .wb-card--operation {
-  border: var(--wb-asset-wb-card-border-width) solid var(--wb-color-border);
+  border: var(--wb-asset-wb-card-border-width) solid var(--wb-color-border-card);
 }
 
 .wb-card--navigation {

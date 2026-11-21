@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 图表 Chart — `WorkbenchChart`
 
 资产：`wb-chart` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -54,6 +54,7 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
 
 | 名称 | 类型 | 默认 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
+| appearance | String | default | default / analysis |  |
 | ariaLabel | String | 图表 |  |  |
 | barWidth | Number | 12 |  |  |
 | categories | Array | {"kind":"function"} |  |  |
@@ -62,6 +63,7 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
 | centerValue | String \| Number |  |  |  |
 | color | String |  |  |  |
 | formatter | Function | null |  |  |
+| gaugeMarker | Boolean | true |  |  |
 | height | Number | 240 |  |  |
 | indicators | Array | {"kind":"function"} |  |  |
 | labelRotate | Boolean |  |  |  |
@@ -83,6 +85,10 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
 | unitRight | String |  |  |  |
 | value | Number | 0 |  |  |
 
+### Slots
+
+- `gauge-center`
+
 ### 规则
 
 ### 图表类型与数据合同
@@ -103,4 +109,4 @@ id：`wb-chart-rule-2` · must / confirmed
 
 ### Foundation 引用
 
-`color-info-primary`、`color-info-secondary`、`color-warning`、`color-none`、`color-none-subtle`、`color-border-separator`、`color-fill-hover`、`color-text-primary`、`color-text-secondary`、`color-surface-overlay`、`color-surface-card-default`、`font-body-s`、`font-caption-m`、`font-display-xs`、`radius-xs`、`radius-md`、`radius-full`、`shadow-base`、`spacing-component-xs`、`spacing-component-sm`、`spacing-component-md`、`spacing-component-lg`
+`color-info-primary`、`color-info-secondary`、`color-warning`、`color-none`、`color-none-subtle`、`color-border-separator`、`color-fill-hover`、`color-text-primary`、`color-text-secondary`、`color-surface-overlay`、`color-surface-card-default`、`font-body-s`、`font-body-m`、`font-caption-m`、`font-display-s`、`font-display-xs`、`radius-xs`、`radius-md`、`radius-full`、`shadow-base`、`spacing-component-xs`、`spacing-component-sm`、`spacing-component-md`、`spacing-component-lg`

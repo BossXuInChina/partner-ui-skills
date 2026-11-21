@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 悬浮按钮 FloatingButton — `WorkbenchFloatingButton`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -14,7 +14,7 @@
 {
   "id": "wb-floating-button",
   "kind": "component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "用于帮助、反馈、评价或返回顶部等全局辅助入口。不要替代主业务提交操作或持久化导航。",
   "useWhen": ["全局辅助入口、帮助、评分和返回顶部。"],
   "avoidWhen": ["主业务提交放在页面操作区；不要用此组件替代导航或持久化业务状态。","未经验证的公司内部UI框架或生产交付"],

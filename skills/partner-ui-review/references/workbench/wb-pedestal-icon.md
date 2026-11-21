@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 底托图标 — `WorkbenchPedestalIcon`
 
 资产：`wb-pedestal-icon` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -38,7 +38,7 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
       "label": "搜索图标",
       "type": "text",
       "default": "",
-      "description": "按语义名称、分类、调用名或Pixso节点ID搜索。"
+      "description": "按语义名称、分类、调用名、原始文件名或Pixso节点ID搜索。"
     },
     {
       "id": "family",
@@ -69,6 +69,10 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
         {
           "value": "5694:1020",
           "label": "圆角矩形底托图标/高饱和度/备选"
+        },
+        {
+          "value": "pgi-indicators",
+          "label": "PGI 经营指标"
         }
       ]
     },
@@ -85,7 +89,7 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
       "label": "搜索图标",
       "type": "text",
       "default": "",
-      "description": "按语义名称、分类、调用名或Pixso节点ID搜索。"
+      "description": "按语义名称、分类、调用名、原始文件名或Pixso节点ID搜索。"
     },
     {
       "id": "family",
@@ -116,6 +120,10 @@ unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPi
         {
           "value": "5694:1020",
           "label": "圆角矩形底托图标/高饱和度/备选"
+        },
+        {
+          "value": "pgi-indicators",
+          "label": "PGI 经营指标"
         }
       ]
     },

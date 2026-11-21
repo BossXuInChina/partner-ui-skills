@@ -39,7 +39,11 @@ const __sfc_main__ = {
   props: {
     modelValue: { type: Array, default: () => [] },
     mode: { type: String, default: "click", validator: (value) => ["click", "drag"].includes(value) },
-    listType: { type: String, default: "text", validator: (value) => ["text", "compact", "card"].includes(value) },
+    listType: {
+      type: String,
+      default: "text",
+      validator: (value) => ["text", "compact", "card"].includes(value)
+    },
     accept: { type: String, default: ".doc,.xlsx,.pdf" },
     maxSize: { type: Number, default: 5 * 1024 * 1024 },
     limit: { type: Number, default: 0 },
@@ -54,7 +58,20 @@ const __sfc_main__ = {
     label: { type: String, default: "\u6587\u4EF6\u4E0A\u4F20" },
     previewState: { type: String, default: "default" }
   },
-  emits: ["update:modelValue", "change", "select", "progress", "success", "error", "reject", "remove", "pause", "resume", "preview", "download"],
+  emits: [
+    "update:modelValue",
+    "change",
+    "select",
+    "progress",
+    "success",
+    "error",
+    "reject",
+    "remove",
+    "pause",
+    "resume",
+    "preview",
+    "download"
+  ],
   setup(__props, { expose: __expose, emit: __emit }) {
     const props = __props;
     const disabled = useFormDisabled(() => props.disabled);
@@ -69,13 +86,21 @@ const __sfc_main__ = {
     let dragDepth = 0;
     const jobs = /* @__PURE__ */ new Map();
     const effectiveDisabled = computed(() => disabled.value || props.previewState === "disabled");
-    const actualListType = computed(() => props.mode === "drag" && props.listType === "text" ? "card" : props.listType);
-    const hintText = computed(() => props.hint ?? `${props.maxSize > 0 ? `\u4E0D\u8D85\u8FC7${formatFileSize(props.maxSize)}\uFF0C` : ""}${props.accept ? `\u652F\u6301${props.accept.replaceAll(".", "").replaceAll(",", "\u3001")}` : "\u652F\u6301\u6240\u6709\u6587\u4EF6\u683C\u5F0F"}`);
-    watch(() => props.modelValue, (value) => {
-      const next = value.map((file) => normalizeUploadFile(file, `${instanceId}-${++sequence}`));
-      for (const id of jobs.keys()) if (!next.some((file) => file.id === id)) abort(id);
-      files.value = next;
-    }, { immediate: true });
+    const actualListType = computed(
+      () => props.mode === "drag" && props.listType === "text" ? "card" : props.listType
+    );
+    const hintText = computed(
+      () => props.hint ?? `${props.maxSize > 0 ? `\u4E0D\u8D85\u8FC7${formatFileSize(props.maxSize)}\uFF0C` : ""}${props.accept ? `\u652F\u6301${props.accept.replaceAll(".", "").replaceAll(",", "\u3001")}` : "\u652F\u6301\u6240\u6709\u6587\u4EF6\u683C\u5F0F"}`
+    );
+    watch(
+      () => props.modelValue,
+      (value) => {
+        const next = value.map((file) => normalizeUploadFile(file, `${instanceId}-${++sequence}`));
+        for (const id of jobs.keys()) if (!next.some((file) => file.id === id)) abort(id);
+        files.value = next;
+      },
+      { immediate: true }
+    );
     watch(effectiveDisabled, (value) => {
       if (value) {
         dragging.value = false;
@@ -134,7 +159,17 @@ const __sfc_main__ = {
           reject(raw, "limit", `\u6700\u591A\u4E0A\u4F20${props.limit}\u4E2A\u6587\u4EF6`);
           continue;
         }
-        const record = normalizeUploadFile({ name: raw.name, size: raw.size, type: raw.type, raw: markRaw(raw), status: "ready", percentage: 0 }, `${instanceId}-${++sequence}`);
+        const record = normalizeUploadFile(
+          {
+            name: raw.name,
+            size: raw.size,
+            type: raw.type,
+            raw: markRaw(raw),
+            status: "ready",
+            percentage: 0
+          },
+          `${instanceId}-${++sequence}`
+        );
         publish([...files.value, record]);
         emit("select", record);
         if (props.autoUpload && props.customRequest) void upload(record);
@@ -142,13 +177,18 @@ const __sfc_main__ = {
     }
     async function upload(file) {
       const current = files.value.find((item) => item.id === file.id);
-      if (!alive || effectiveDisabled.value || !current || !props.customRequest || jobs.has(file.id)) return;
+      if (!alive || effectiveDisabled.value || !current || !props.customRequest || jobs.has(file.id))
+        return;
       const controller = new AbortController();
       const job = { controller };
       jobs.set(file.id, job);
       const isCurrent = () => alive && !controller.signal.aborted && jobs.get(file.id) === job && files.value.some((item) => item.id === file.id);
       const resumed = current.status === "paused";
-      update(file.id, { status: "uploading", error: "", percentage: resumed ? progressOf(current) : 0 });
+      update(file.id, {
+        status: "uploading",
+        error: "",
+        percentage: resumed ? progressOf(current) : 0
+      });
       try {
         const result = await props.customRequest({
           file: current.raw,
@@ -158,12 +198,19 @@ const __sfc_main__ = {
           onProgress(progress) {
             if (!isCurrent()) return;
             const percentage = typeof progress === "number" ? progress : progress?.total > 0 ? progress.loaded / progress.total * 100 : 0;
-            const record2 = update(file.id, { percentage: Math.max(0, Math.min(100, Number(percentage) || 0)) });
+            const record2 = update(file.id, {
+              percentage: Math.max(0, Math.min(100, Number(percentage) || 0))
+            });
             emit("progress", record2);
           }
         });
         if (!isCurrent()) return;
-        const record = update(file.id, { status: "success", percentage: 100, response: result, ...result?.url ? { url: result.url } : {} });
+        const record = update(file.id, {
+          status: "success",
+          percentage: 100,
+          response: result,
+          ...result?.url ? { url: result.url } : {}
+        });
         emit("success", record, result);
       } catch (error) {
         if (!isCurrent()) return;
@@ -203,7 +250,8 @@ const __sfc_main__ = {
       if (!effectiveDisabled.value) input.value?.click();
     }
     function enter(event) {
-      if (effectiveDisabled.value || !Array.from(event.dataTransfer?.types ?? []).includes("Files")) return;
+      if (effectiveDisabled.value || !Array.from(event.dataTransfer?.types ?? []).includes("Files"))
+        return;
       dragDepth += 1;
       dragging.value = true;
     }
@@ -217,7 +265,10 @@ const __sfc_main__ = {
       void selectFiles(event.dataTransfer?.files);
     }
     function submit() {
-      if (!effectiveDisabled.value) return Promise.all(files.value.filter((file) => ["ready", "error"].includes(file.status)).map(upload));
+      if (!effectiveDisabled.value)
+        return Promise.all(
+          files.value.filter((file) => ["ready", "error"].includes(file.status)).map(upload)
+        );
     }
     onBeforeUnmount(() => {
       alive = false;

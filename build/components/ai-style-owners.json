@@ -1,263 +1,259 @@
 {
   "schemaVersion": 1,
-  "sourceHash": "e725f9e4f2434d3e611d4325f7ac4b08b33499cf319e825f4f62c8e3834495e0",
-  "ownerSourcesHash": "cb0a371f522b57fcbad87e75376a38f2c8951a83a57123f46f102333df051fde",
+  "sourceHash": "8812e515a961716ba5ee82b745d278f0e086699bb4499ad83391db9e31ada208",
+  "ownerSourcesHash": "dfad587405b87b96467e294a37a1514a96d27c9cadaac5f61c8f15bd67efcba4",
   "rules": [
     {
       "key": "ai-global-0",
       "selector": ".partner-ai",
       "owners": [],
       "policy": "base",
-      "hash": "3bceb733250be82a803d3279317b3e2b98d143b76beda282fb3f4e96e9c6c031"
+      "hash": "aaaf4b6b0bb21f7abe2813f748d1952411ab314591ef23ce5cfbc7a0eb37fa01"
     },
     {
       "key": "ai-global-1",
-      "selector": "& *, & *::before,& *::after",
+      "selector": "& *,\n  & *::before,\n  & *::after",
       "owners": [],
       "policy": "base",
-      "hash": "10939ed582f1506d0a747a70d14efd5fc8c99abb90d50c3c0a0ccf2ad0745ee6"
+      "hash": "cd944e9fb6da4f09c86b7f314dbdb4dddd1180f000732bf68009c39f19dc7f2a"
     },
     {
       "key": "ai-global-2",
-      "selector": "& button,& input",
+      "selector": "& button,\n  & input",
       "owners": [],
       "policy": "base",
-      "hash": "23de20db6e6acd69db6e7cf9f02d364b72c06662737593329a53226b9f5583d8"
+      "hash": "99f877254e23c3d8c7825835488a055a515184491902e1fd1d64f1a1dafaee07"
     },
     {
       "key": "ai-global-3",
       "selector": "& button",
       "owners": [],
       "policy": "base",
-      "hash": "3f25d83cbd572a623fa064c455f812570f769970d66ba8e1b41a0cf6b8cd9b66"
+      "hash": "4aad635a4d0cd5d73ad419d3bd36e605d7d730a4215162a531deafed35765c40"
     },
     {
       "key": "ai-global-4",
       "selector": "& button:disabled",
       "owners": [],
       "policy": "base",
-      "hash": "395b842b95991aaebdd1bf85aeecadc5e4020d45ca05e8932e8d652d94889fd4"
+      "hash": "be15b20ed25ffec6c6c36d09ac590f90e74f1c412b3bcb7a642c5ecdba7913b7"
     },
     {
       "key": "ai-global-5",
-      "selector": "& button:focus-visible,& input:focus-visible,& [contenteditable]:focus-visible",
+      "selector": "& button:focus-visible,\n  & input:focus-visible,\n  & [contenteditable]:focus-visible",
       "owners": [],
       "policy": "base",
-      "hash": "faa4d5b0d15db49175af902e3689888ede4dae102358ace7b312442497345f2b"
+      "hash": "147ecb6429a9bc5ce57839813e7a751a31c8aed88fa1deeb1d210a77374885a8"
     },
     {
       "key": "ai-global-6",
       "selector": "& button svg",
       "owners": [],
       "policy": "base",
-      "hash": "e2234a6f290798b969241cabb1abf5ff64cdaa54a3cd6d07f239b80b9ddda6ef"
+      "hash": "c056b8ff477ba78b026a225b6557ddd71aa1c2f4ebf59f3bc4c14fe9951cd5cb"
     },
     {
       "key": "ai-global-7",
-      "selector": "& h1,& h2,& h3,& p",
+      "selector": "& h1,\n  & h2,\n  & h3,\n  & p",
       "owners": [],
       "policy": "base",
-      "hash": "8d6f4c02f7914d11a908653853639ff480aa5efbdd028647fbe4467920ed08a0"
+      "hash": "a06c3f19c8f11bc469090ddcc15ab9c93177449eef3c1e8e0fb48182ee92bebf"
     },
     {
       "key": "ai-global-8",
-      "selector": "& b,& strong",
+      "selector": "& b,\n  & strong",
       "owners": [],
       "policy": "base",
-      "hash": "8fa10f6dc1e7b3e6809568f354432fd294b78f51e56e165be4de083a5dcdadac"
+      "hash": "c1ce8adce92e655998188a2ed4ead78e6be19051ef9847b10d449409144ab535"
     },
     {
       "key": "ai-global-9",
-      "selector": "& small,.muted,.composer-note",
+      "selector": "& small,\n  .muted,\n  .composer-note",
       "owners": [],
       "policy": "base",
-      "hash": "79b4c262407edc31e0855a06e009a3de21d23f5a8d883811d278e4cf3a03a617"
+      "hash": "aa761f6ba1607c3c0f71375a676df9ccb360340ed035b35e0f90a573c1bae2f9"
     },
     {
       "key": "ai-global-10",
       "selector": ".app-frame",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "2db2cd1807390618e1fceeff44c6bc21342b921e2bfd5db69e41a43db98ce0af"
+      "hash": "e96117149e53aa7521bce7dae9e8f1dfe4bdf96d1f831d74ee5e9cdfc3c190f0"
     },
     {
       "key": "ai-global-11",
       "selector": ".sidebar",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "a014a062dc3f5ebd7cdb4c663602ccc056301def2884a0d4ef6c29d133ec5369"
+      "hash": "e4fb1604b13c882f12c245bbe8106064fb7b0ab1fdf51829de45847835cbedf9"
     },
     {
       "key": "ai-global-12",
       "selector": ".brand",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "c0e09c6213d23546d9f8b6e93c8840ecd543f3e3913fb8f2b185af46a7c01f94"
+      "hash": "b73a052b49ad2f1bf3076ff9fcd68edc42e1c09ce7bbb11b3d91e3f681bdc88a"
     },
     {
       "key": "ai-global-13",
       "selector": ".brand-mark",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "c6dfa95902546889df3e3aef1b7e4f538c577ff8b58fc8b78a066098d16e790c"
+      "hash": "fa88137adb1cc22a6abacdff81b098f1e094b587c2482707420f6d58cecb9441"
     },
     {
       "key": "ai-global-14",
       "selector": ".brand small",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "288c59b48efedc626ab26f26846a7f26f2ce8781cbe3163926fe2f6c1a4ece11"
+      "hash": "6bd363a0e038ec3204ff56a47a9f7ae70266f8b2a00e4cd0872fa1e890ff2084"
     },
     {
       "key": "ai-global-15",
       "selector": ".sidebar-section",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "c63f4dfa40b58261e27f1aacb7c690f18962080f2ad2eb0cf094bbc743ae2038"
+      "hash": "adec0a3be95072706a18bb7c3d3681d4a3113622ec66e9a2a31b58ea8e8839fd"
     },
     {
       "key": "ai-global-16",
       "selector": ".nav-item",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "4f2b6bf0c96dd893a324f679ccd6d276bc78193ed4fe3d33dfd4a77dd4202b77"
+      "hash": "8719701e5b8a9b0a3e8d2ee4748f7791fb6b6d47dda01b97c1b42141c2f4c7f7"
     },
     {
       "key": "ai-global-17",
       "selector": ".nav-item svg",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "f9e54bfd8a7754b6e02a7813e3d5977182b111214d4eebaf8c26fec60fa78754"
+      "hash": "119b611f160aa81391e8c6b722d6b1e570b5e2b4259341b64ffc1efe4f7f8427"
     },
     {
       "key": "ai-global-18",
       "selector": ".sidebar-summary",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "3ad4118efd44f345187a00575c574873a7f91ac3638e824800b8b6dda3f21dc0"
+      "hash": "e4bc1ad21be08bf76a716dd032d04d11ba717b2097b0b8b5109c9fdf0b11b18b"
     },
     {
       "key": "ai-global-19",
       "selector": ".sidebar-summary b",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "41df29ef09629055cf0199ffeb7c214914e4b2f3292f7b83333818fca63d02f9"
+      "hash": "f6cd1b83e6f0a39360b83f39b2ea1fd9b319da7ad87bc52c4d5a4aa25f1388af"
     },
     {
       "key": "ai-global-20",
       "selector": ".sidebar-bottom",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "eae4228ebc3219c55685cb5445a24cc4d6e6f2bdb31e285b85a8e12d65427f42"
+      "hash": "853c2c1f27f993bd6b0b93a4d5b69b2ca921a3b5dcaa7dcd55021605aa923b2a"
     },
     {
       "key": "ai-global-21",
-      "selector": ".sidebar-bottom>p",
+      "selector": ".sidebar-bottom > p",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "14c51305fa6ae8a92a5be56ef02501ed4bfcd437f5f77067465a415b673f2e44"
+      "hash": "3b05f928723fe22d902892183246b4a30e319615460e3bc6e72a3b9358b584ad"
     },
     {
       "key": "ai-global-22",
       "selector": ".profile",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "49d7f2731860ba6979e5caf5d3d0667ef2295e265e03bbd7d06ec3078061589e"
+      "hash": "b0af51485fff69a4e1bfbfc609b42a75d7945cffa3581f294d63d38687932577"
     },
     {
       "key": "ai-global-23",
       "selector": ".profile small",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "b48664a6e6fcd1c76f2b8f922e1a07c749b79b472692e2d62e901bf965ad6ac2"
+      "hash": "72a5e05303eed9d9caf57708452fc93d21e3a1dbf0f4f012d5712e26c7dd4f0f"
     },
     {
       "key": "ai-global-24",
       "selector": ".avatar",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "a6846befd604e0c35c02dc0ec2afcdab311a9cc02ee877ac14f6860674996743"
+      "hash": "5c44db50871ec77b8a58688c185d7d03839e3f26bc202247d97ad533fc1e0915"
     },
     {
       "key": "ai-global-25",
       "selector": ".main-area",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "6655af59749f689f20a17e8ff4703b6003f86b59e64d90bd81b7dd70964012d2"
+      "hash": "6977fb6c10b7e5809d4b99ddd10c0f126d1f8355e33f0a2bcc6d267c63aeac43"
     },
     {
       "key": "ai-global-26",
       "selector": ".topbar",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "a3ee01e30a77877f1c2cd8e06b84484ac6e165b88c44cdecb72e675fcf1dca82"
+      "hash": "784015c29a8462f7282b65d0225feafa19975c9a4022535dc506ea3d1c51aede"
     },
     {
       "key": "ai-global-27",
-      "selector": ".breadcrumb,.workspace-label",
+      "selector": ".breadcrumb,\n  .workspace-label",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "ade0ca4922c7a520d49207fc6a2b52150da3e2b8da4f65b04da7f37f17b7315c"
+      "hash": "542075bbfffc39a9b668577167ce1e5a1c2d30af68bc9cff4ae7dd08b9159b37"
     },
     {
       "key": "ai-global-28",
       "selector": ".breadcrumb span",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "24d7333ef1177c0d765a4eec6f21825d32353a56b58b74ea0380883ffc21acc2"
+      "hash": "9d80b25366c9a9c510b30fcc105f6aea2858f73361df4c8715f23378e7775137"
     },
     {
       "key": "ai-global-29",
       "selector": ".breadcrumb b",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "d20a07fb004f6323a91a5ee1a85ff627ceff9cab8e08c53020a162843c7f49a9"
+      "hash": "345bef32324ad6d53f94bfe544a0b690a717673a5688c4939c00e8f7566f0431"
     },
     {
       "key": "ai-global-30",
       "selector": ".page-heading",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "73978fa0d883cccdfd2583347a246f67b7d12c7006cae5dca235ee6762286c6e"
+      "hash": "8d1186e18cf26fa3cb0e9984cefc30f8a05080438f5c52f999720191b28afb6e"
     },
     {
       "key": "ai-global-31",
       "selector": ".page-heading h1",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "7b766a1033b657d1771521b0875dca64bebfd795400afeb6c238a606e085d2c5"
+      "hash": "a0caff9e2bc647aa4652e2df7efc781ab4839a55307774604c5728be86cbab33"
     },
     {
       "key": "ai-global-32",
-      "selector": ".page-heading>div>p:last-child",
+      "selector": ".page-heading > div > p:last-child",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "809b52475c4c592668c052596453e811d9cba67193ea62aa3c11b21ddd0238bf"
+      "hash": "92ce8605f6ab542c027a6ae78b2406f98be99a15eac90b79b50209aa3331edf1"
     },
     {
       "key": "ai-global-33",
       "selector": ".eyebrow",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "fc5a9eef65f23567a6aa204c93707464f6edfc9d0787ea686ea9aabeb287eb72"
+      "hash": "9adda80f793c010d6e4a3d9c52af5dfb6ae33865c021eff6fb7fc7bf48f417a2"
     },
     {
       "key": "ai-global-34",
       "selector": ".eyebrow svg",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "9c3a7053b64394af397eba90ee376f0ea5a25bebd867f9e24346d5b58021617d"
+      "hash": "9eae5a479834d533bfdc0fa0a016ffd0265f1a8d6517fafe859d85c940481d1f"
     },
     {
       "key": "ai-global-35",
       "selector": ".online-dot",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "0ab8ea749930fdbd6aa623fd0f8ff0813ee9c8a56417498354527cbcb3459d52"
+      "hash": "6de25fdab6779fef23dd00ad682902d65573cd1de371e61f5001f715eb50c797"
     },
     {
       "key": "ai-global-36",
@@ -267,7 +263,7 @@
         "ai/src/ui/history/ConversationHistoryPanel.vue"
       ],
       "policy": "owners",
-      "hash": "b671f6795f50fe2e6ca0d7c4585a73e4f8ebeb129cb54971e4a70e844379d060"
+      "hash": "57de536935f98f668e6c4b26fabd7175ffff6231831a3e20770fa322051a1cab"
     },
     {
       "key": "ai-global-37",
@@ -277,7 +273,7 @@
         "ai/src/ui/history/ConversationHistoryPanel.vue"
       ],
       "policy": "owners",
-      "hash": "7778acdaa9514e07b8e100e407ccf1834d8c6d6dccdaba9a19694239a8a81e3a"
+      "hash": "8197372da1937053d1a0167c6283ddc9c7a39319be865c2d8bcd2357335313ec"
     },
     {
       "key": "ai-global-38",
@@ -287,7 +283,7 @@
         "ai/src/ui/history/ConversationHistoryPanel.vue"
       ],
       "policy": "owners",
-      "hash": "81c0c9177a48da2542ae370abe5734a1f2661cb9d02280a78bf1aa189dfd75a8"
+      "hash": "1094c5b2e4ced5abdcca4826ff514f2de142fcb5769320e7d85ae18c5d6a26f4"
     },
     {
       "key": "ai-global-39",
@@ -297,1119 +293,941 @@
         "ai/src/ui/history/ConversationHistoryPanel.vue"
       ],
       "policy": "owners",
-      "hash": "da34018fe260fbf5dae5c0dcff0e329566e713d3c26ffb4d2445229d84fdcfa6"
+      "hash": "b6d5678bd533a7ae54c7ecb87694043139b4eedf9a9130eddf15aebe32d8fc4a"
     },
     {
       "key": "ai-global-40",
       "selector": ".icon-button",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "e709b0cd12a7a199530ff101c6c235726ddaeb8495215da654cb94982906b80a"
+      "hash": "ded5486670833a2bdc5b851c8d2863f328055a2255ef6b69be99e4a3ba86a3ba"
     },
     {
       "key": "ai-global-41",
       "selector": ".text-button",
-      "owners": [
-        "ai/src/ui/history/ConversationHistoryPanel.vue"
-      ],
+      "owners": ["ai/src/ui/history/ConversationHistoryPanel.vue"],
       "policy": "owners",
-      "hash": "beab9d97914742cff39ec50bcfed67bb284ef15dd2d89107612134bc3ead07d5"
+      "hash": "8e79ccf51673b84317927e67398c233d6897935ea1516614c75b096b144fcf71"
     },
     {
       "key": "ai-global-42",
       "selector": ".content-grid",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "03f538dd0df0e12b0d97cb21318f07bd0dcf2cdbe4c4fc79a15fa52dfc8277a9"
+      "hash": "fab2cbb93787b7a858606af45468b6161df4b0099ea792c55a730353bebc4ef9"
     },
     {
       "key": "ai-global-43",
       "selector": ".chat-panel",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "ffe01e474a4361905e58e7319096248656f92df1bf39846d1f34b761c7082f2c"
+      "hash": "8b16562776a6ee73bd4d250ed31a39c86fdca377280a7ab47c5294a3a0c792ae"
     },
     {
       "key": "ai-global-44",
       "selector": ".chat-panel .tr-layout__main",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "2dc6debc3eec366aedc542186e60cca70780744b0f6f381ec9f7aad008ceb578"
+      "hash": "0ce9a13c2142a5f72cdd9f5b72e371c21303df58d03d1704a60fe940260cba52"
     },
     {
       "key": "ai-global-45",
       "selector": ".chat-panel .tr-layout__content",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "ea1e6a74f8e08f3ea0107cb73b5aa38956886a5eeb914fa9ba8eae9d2dac55e5"
+      "hash": "bad33adcb7985826785015d3ad99491519999a4ae69f88d3a0c8ce21fecab3ac"
     },
     {
       "key": "ai-global-46",
       "selector": ".chat-header",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "b2c47b3ae9884608e68d9731ac587d8a44c48cc50634f91c81f5b76eaf5dee95"
+      "hash": "ce4c0db25c366889291082ecb1befb671f39d5721d084cc2c68c6776def2046a"
     },
     {
       "key": "ai-global-47",
       "selector": ".chat-header h2",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "0059547a77a6285f7a8bd14068b7abdeb9c810b10986c17a1c5426cd39e844e8"
+      "hash": "6fedae1acfd95ea42ee517b317c62ea1fb33e8ca7ef641b0bd2224d612078d3e"
     },
     {
       "key": "ai-global-48",
       "selector": ".chat-header p",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "fad6fe2ebd7eba4c37b7d30745d51b25a41e280cd4e56b3f8a2d7f6d0ef37115"
+      "hash": "4cbf99295822eaab8233cf593273441756ae2f35d4392946ae31f92f5328be85"
     },
     {
       "key": "ai-global-49",
       "selector": ".assistant-avatar",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "7be4764683c8f0943a2c72f86e754a5437d5df31276a52dc4b258921b1c6b249"
+      "hash": "64aef837c9ecb626cf3ba3f50b61c2723d840d4aa0801ab8c7efdbdf20cd1b2b"
     },
     {
       "key": "ai-global-50",
       "selector": ".assistant-avatar svg",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "802f2cc474cbd3e4e5eeb523f2a95f98e97e8b20daa26961368779f680d58071"
+      "hash": "a3d18da89b1bfce4653a24b3d6b152197168ae4fbb46d82e752820abc6c8a563"
     },
     {
       "key": "ai-global-51",
       "selector": ".local-badge",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "d483d235082f2be3651e2d585fe2a7e8577ea29373b2617b6d2dfdf0e04ea222"
+      "hash": "f4005cc8bbe1a4af72950a23529f4897ebced554015d1f88e375a1856c086a5b"
     },
     {
       "key": "ai-global-52",
       "selector": ".chat-scroll",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "e351f5f4e70c6544e7d577dcea317d2c928ce67e664af411936978202f76498d"
+      "hash": "a268c92d8fde81a7ac1bc417cd5c2715e2376ceaf70792b8ba35cc0f3949479a"
     },
     {
       "key": "ai-global-53",
       "selector": ".chat-scroll .tr-bubble",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "22e2b464543b781acced3debeb3a3c07209a754df46964778eff4c609c873760"
+      "hash": "43a8423dd48ede7e3746b74ae9b88420aec5b2b37e0054197856dc675f62e6d6"
     },
     {
       "key": "ai-global-54",
       "selector": ".chat-scroll .tr-bubble__content",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "dda7b5fb93510b60363231719da2097b3dc23ff1fa3405edf08ad4aee14ea4c4"
+      "hash": "cb85387a3135da1177a90a1ea1d2806a95b4eff01e47148fb45a717453d56b77"
     },
     {
       "key": "ai-global-55",
       "selector": ".chat-scroll .tr-bubble__box",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "7097d5294fcfc518947b38c09d06157de745dbe47acd1c942d6376eeb2f44caa"
+      "hash": "ecf9251dd54444584cabc6e55bb3f2b7bc40c3c9f623c1a88755a7cfbee69d71"
     },
     {
       "key": "ai-global-56",
       "selector": ".chat-scroll .tr-bubble__avatar",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "18186f8c5988e3c45cdfb5b439b35efc99c94ee38d0c8ef5ba062e95c133f377"
+      "hash": "a3a3f5a41ec6412d0bc725aa04e0ad35ef9ecb8b3b30099df745408dfa53d6bf"
     },
     {
       "key": "ai-global-57",
-      "selector": ".chat-scroll [data-type=\"text\"],.chat-scroll .markdown-body",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "selector": ".chat-scroll [data-type='text'],\n  .chat-scroll .markdown-body",
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "23a8fd5afeecc0a9fdc132327e28e4b0df3839f4748f4b97767105b26d20649f"
+      "hash": "cf0e80a32e593f4ba05b4ef104718d732d41e2f8c881c87d60b17b059da6a230"
     },
     {
       "key": "ai-global-58",
-      "selector": ".chat-scroll .tr-bubble__content .markdown-body p,.chat-scroll .tr-bubble__content p.tr-bubble__text",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "selector": ".chat-scroll .tr-bubble__content .markdown-body p,\n  .chat-scroll .tr-bubble__content p.tr-bubble__text",
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "ec55021e6137f795243fc4bbc7eb0d404f8b17ce75177b35276e49c56d7dea4a"
+      "hash": "abe5b6fb9036b4887def6780e0f6e192c17d05338624941f2fcc9461829935b8"
     },
     {
       "key": "ai-global-59",
       "selector": ".chat-scroll .tr-bubble__content pre",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "900d64a94a57d393fb7efa9a8e9fc53c4761c298e305b16bbb1747771811c02a"
+      "hash": "21971f5f2b2530932bf01d6db0359ad7130da68838d98b487be60b7f91daeb27"
     },
     {
       "key": "ai-global-60",
       "selector": ".chat-feedback",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "e142d93dad4b796c3cdac0fbbc680bc8bef988db1cd026e6a93f4d88af41251f"
+      "hash": "eda86d4a629eeca1a620804ad044472591a83546430e6011b5f7803b82a0df26"
     },
     {
       "key": "ai-global-61",
       "selector": ".chat-feedback:empty",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "f4b4151e8dcf1cd228c3ee17ed7618e96957d7585230b1f807ef9e975b5212c0"
+      "hash": "7b8e05adecb7e8b3801f63643f628ab64a96084a5c73b6a45a45db163193c20d"
     },
     {
       "key": "ai-global-62",
       "selector": ".loading-line",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "c2a5239a96dd02e41f13074fab501713ff3e01322d987eb639fa1f496aad5b07"
+      "hash": "60b6837191c80e27dfd8315aa24de14b6b165bbbb3f8bced0ac07974daa555c5"
     },
     {
       "key": "ai-global-63",
       "selector": ".spinner",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "bb6a3e227882737e1dadebe45a3a872125afa0f6f73052f9ed6e27c84699c1f3"
+      "hash": "5a5cbbd29874cb15ba6a9dd0cf55cb31e60cfbf3959ecea459ab3a10604e9344"
     },
     {
       "key": "ai-global-64",
       "selector": ".error-box",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "000da1d542dbb2acbd4408ff522572dbd1e2e7de94f9e3d1f10162d221b2cf84"
+      "hash": "bf3354d56163b183c68766bb6031cdad5159ca09890a503f9fd65b12299e18d5"
     },
     {
       "key": "ai-global-65",
       "selector": ".status-pill",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "954ff75ce4b9eec463994a74ba7d94a129df513aff1f536e3ec3029554893bda"
+      "hash": "21ba66c2f16c8c25e6c3886b23b096ed975503d0aeaabac33eb55a27811e8cec"
     },
     {
       "key": "ai-global-66",
-      "selector": ".table-title h3,.empty-result h3",
-      "owners": [
-        "ai/src/business/AgreementRenderer.vue"
-      ],
+      "selector": ".table-title h3,\n  .empty-result h3",
+      "owners": ["ai/src/business/AgreementRenderer.vue"],
       "policy": "owners",
-      "hash": "ddd7fbe21327b9430b7677331d4994fda109f6a6fecc62614ecca8501d2872af"
+      "hash": "fcb06ac88c281ff5217035b05e1ab07a08f250231d9b70c7a151d59a788cda1b"
     },
     {
       "key": "ai-global-67",
       "selector": ".table-card",
-      "owners": [
-        "ai/src/business/AgreementRenderer.vue"
-      ],
+      "owners": ["ai/src/business/AgreementRenderer.vue"],
       "policy": "owners",
-      "hash": "f6559ae0f7f24aae05c3882b94e8b30dd15fa2c57359ed569f0302300495408c"
+      "hash": "6c89414b6a69cc0527f0f23de7c6719f3bc481b77b21cf9ae68e629e7d47eb9a"
     },
     {
       "key": "ai-global-68",
       "selector": ".table-title",
-      "owners": [
-        "ai/src/business/AgreementRenderer.vue"
-      ],
+      "owners": ["ai/src/business/AgreementRenderer.vue"],
       "policy": "owners",
-      "hash": "7f63ab550582599c67ffd868a8298cc37feaf914cb7c8a28ee42a1b381180fc1"
+      "hash": "485c18cc06c57690aeea54449cc94940d5323df26d776abefc990c578dc6cfdf"
     },
     {
       "key": "ai-global-69",
       "selector": ".table-title h3",
-      "owners": [
-        "ai/src/business/AgreementRenderer.vue"
-      ],
+      "owners": ["ai/src/business/AgreementRenderer.vue"],
       "policy": "owners",
-      "hash": "ee317f7324013d8282bd9c07ea11fc7e6047364dadf5b89e80ce7eb90b9d0afb"
+      "hash": "5cf3a430c54c63d67ea9e23f3261c38c3ac18d1d0e9846294723ac3abb6d7a75"
     },
     {
       "key": "ai-global-70",
-      "selector": ".table-title>span",
-      "owners": [
-        "ai/src/business/AgreementRenderer.vue"
-      ],
+      "selector": ".table-title > span",
+      "owners": ["ai/src/business/AgreementRenderer.vue"],
       "policy": "owners",
-      "hash": "3111a01e2e2f69c75d04b6671fa84d5b17aa59166ec64a716f5d14ac98eb3d23"
+      "hash": "7f1b63c7d4dd46b79e729ea5683bc3e4e7a241fe65b8ba4c398ecd6fb7211999"
     },
     {
       "key": "ai-global-71",
       "selector": ".table-wrap",
-      "owners": [
-        "ai/src/business/AgreementTable.vue",
-        "ai/src/business/BusinessTable.vue"
-      ],
+      "owners": ["ai/src/business/AgreementTable.vue", "ai/src/business/BusinessTable.vue"],
       "policy": "owners",
-      "hash": "4a13f958931480d4e1e11f34d29175647f502daa650bbd24d1ad7f6012bd2199"
+      "hash": "90ca0bfe7f07e41d3d8a56c15dccd94a6b2111c10e296c4233c0a3e183225f57"
     },
     {
       "key": "ai-global-72",
       "selector": "table",
       "owners": [],
       "policy": "base",
-      "hash": "abd88827c3a19e26c9f35d629fabbbd0e6746e38716a33006926b8502fb9771f"
+      "hash": "d44a28b20f813c30a11dd5fa60892941ba1cd78dc93e92eadf23099e1fa02cab"
     },
     {
       "key": "ai-global-73",
       "selector": "th",
       "owners": [],
       "policy": "base",
-      "hash": "ca177b92c50efc3f2029675b6f99b569b7aadcbfb6cdf5b056098d2790b00698"
+      "hash": "7e56674a6027c2a9254f9d545db0e19c7d7d524580ddd9f6efb8aaede4624c04"
     },
     {
       "key": "ai-global-74",
       "selector": "td",
       "owners": [],
       "policy": "base",
-      "hash": "5f302a5c85d8fa9ad370708d6e7742cd8c745f4f748a338e1d880957f4ff86b0"
+      "hash": "d36dca4a9d0e77b1d7926656c0334fc6bfd43a46ae02ff674c0c852c72677b86"
     },
     {
       "key": "ai-global-75",
-      "selector": "td b,td small",
+      "selector": "td b,\n  td small",
       "owners": [],
       "policy": "base",
-      "hash": "fc26084a8d586fd7e6e0802257cd2b38c98a6717d991575f4ba995aa5bd27e4c"
+      "hash": "8798bb35b8ac955489819e9bdaafdb91cb2c978b9f212165214aaa17939a6df0"
     },
     {
       "key": "ai-global-76",
       "selector": "td b",
       "owners": [],
       "policy": "base",
-      "hash": "942bc957028e10c274e5d6d73df2a1fb857dc9824d1555a07065c33067be9ac8"
+      "hash": "bc323c5d661b8bcdf6432208d79eba95bbe3ce558d50f088f14c8fbffaef3f61"
     },
     {
       "key": "ai-global-77",
-      "selector": ".unknown-message,.empty-result",
+      "selector": ".unknown-message,\n  .empty-result",
       "owners": [
         "ai/src/business/AgreementRenderer.vue",
         "ai/src/ui/messages/FallbackRenderer.vue"
       ],
       "policy": "owners",
-      "hash": "3589c7c4402992d47128c546e24fb28627763f3f74793934d0c20e84d0cb17eb"
+      "hash": "813249ea688ca05b906e443524c1c21b11ec54c15007501bf6ab1e747bf76b37"
     },
     {
       "key": "ai-global-78",
       "selector": ".empty-result h3",
-      "owners": [
-        "ai/src/business/AgreementRenderer.vue"
-      ],
+      "owners": ["ai/src/business/AgreementRenderer.vue"],
       "policy": "owners",
-      "hash": "752550e6a86c6e284a6ae0b01432f46438450da15e929b58e8a72fa2ac6c7e14"
+      "hash": "467b03653014b2525165462e82c3c1d1c910b12c582514e94ce397e4895e6b7d"
     },
     {
       "key": "ai-global-79",
       "selector": ".insights",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "56393e4504780222441937ad1eba0bc65b03820a1b585e7f327a5a3b96b71aaa"
+      "hash": "e4c58e279fccc02b4fb26507e6f95228d7a3fdf189be6c338148e2a7f6b46ce3"
     },
     {
       "key": "ai-global-80",
       "selector": ".insights-heading",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "ab125373d3803e43743d5f0cdf0c3d920378999748b3323046ec7e7c3831cb09"
+      "hash": "64d4c32e4e254471e4a9de1b629bfba92475804a06f7647b40cb3a1e4df82c8b"
     },
     {
       "key": "ai-global-81",
       "selector": ".insights-heading svg",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "e5c38ef3cae767168a60c7269a868446da83e5628838f0a9d2af1f3458bca314"
+      "hash": "f9e66ac6f3d0da0efdc69647da343fa75507777e222b1198abe62d81a9dc9ad6"
     },
     {
       "key": "ai-global-82",
-      "selector": ".insights h2,.insights h3",
+      "selector": ".insights h2,\n  .insights h3",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "e9f892418c9923cfa261baf40688a8118d58147318f85955b6ab3ccae925a3ea"
+      "hash": "5c5d7daa6ea082457e473369803ac2c65da1322a71c8f4d8d6ab16aa7b44e0ef"
     },
     {
       "key": "ai-global-83",
       "selector": ".overview-number",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "1da3a38c287961f3f5835a8386c44b423e8a2957ca7b294a889d6525fc17d102"
+      "hash": "416f23293bcc888b53d5f5fccc739fd7c58a007639d6ae818727523be60ecba7"
     },
     {
       "key": "ai-global-84",
       "selector": ".overview-number strong",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "bf1475b77caa38548e415c2854f0b7624219f30a5bb5c5f1082f6d75ea4b8e1a"
+      "hash": "2948355e1f595bcee89fe55023cc0826903b785624c5760f282fc7a7c815bae0"
     },
     {
       "key": "ai-global-85",
       "selector": ".overview-number span",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "a48608037fb44cbac47360be71bf66f670c6763cde4f555c57a35bf42abdfa88"
+      "hash": "1a72ae582749f99e45f41ccbec2c4aca00855093d92bd345bdfbdee1c5c6c5b6"
     },
     {
       "key": "ai-global-86",
       "selector": ".overview-caption",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "9e52bd4e5cce5dd6e1696ca9e285303180e1ee5071750afa246656f96dcf9b2b"
+      "hash": "3aa7d758d32fecfc7edd9d3fa06138d7911dfae780e049140db4a679df2ae340"
     },
     {
       "key": "ai-global-87",
       "selector": ".metric-list",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "a5ff006808d31cb080993db9611be40c01d79a4d979577d0f6ac64d59594edf8"
+      "hash": "46f657a8c190df2333ab3a577207a2ed83e57d44955fbc8cfa713f84f03af7a2"
     },
     {
       "key": "ai-global-88",
-      "selector": ".metric-list>div",
+      "selector": ".metric-list > div",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "3b5ca2362d3bcec8056167650fba391fa1141aec0163649f59acd79fba696b40"
+      "hash": "979cc5430fbd9976839ed1ce96e872da7d4baedd8a64d64557ea2cdaa10a5b12"
     },
     {
       "key": "ai-global-89",
-      "selector": ".metric-list>div span",
+      "selector": ".metric-list > div span",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "e8d248b8986fd17a7dbb46cd953d9339816db16d89c8782cb5997fc5070e5ba7"
+      "hash": "df56d492cf8d31ea1cd64ff5beee0930f0b2335b73179a2635e3ae7966ed72c9"
     },
     {
       "key": "ai-global-90",
       "selector": ".insight-divider",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "ea8c6c62d5ddb98ace376318f234a439b595ce5fd6ceb02533ed3d22cf66121a"
+      "hash": "734cf5d7e1d8116b0561dcda61cf91e05006842f97882744ff45726f73296e4e"
     },
     {
       "key": "ai-global-91",
       "selector": ".quick-prompt",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "dae7339aed924e51a4be239275ffa814d406c545f2c4695b3f435ced2fc5e521"
+      "hash": "83aef2ea106dfea90fd31b6929802b025c3cd61f3c7c1ce9de975e27bba909d6"
     },
     {
       "key": "ai-global-92",
-      "selector": ".privacy-note,.drawer-note",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "selector": ".privacy-note,\n  .drawer-note",
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "729e61c5c0e89ec7e477b6b59b0b66a6fc5bd10d22db8d597c282dea4565604d"
+      "hash": "832544c316ff87399aa8f65de13a026795d0722f78380993f1846aa80fbc28bb"
     },
     {
       "key": "ai-global-93",
       "selector": ".ui-dialog",
-      "owners": [
-        "ai/src/ui/foundation/UiDialog.vue"
-      ],
+      "owners": ["ai/src/ui/foundation/UiDialog.vue"],
       "policy": "owners",
-      "hash": "5b689d8a21012b7c42ffe8d69feec20905b1a5871fe9c9d8f0470c431fab8822"
+      "hash": "c5165f63ced1529b08c5cfb4ece7ae14ca2323676b79f6a04c0889a8ab1e3fe5"
     },
     {
       "key": "ai-global-94",
       "selector": ".ui-dialog::backdrop",
-      "owners": [
-        "ai/src/ui/foundation/UiDialog.vue"
-      ],
+      "owners": ["ai/src/ui/foundation/UiDialog.vue"],
       "policy": "owners",
-      "hash": "d04aa27e52037f957854bb53282b05e2e40c9578e4e1145ea935811b77dff265"
+      "hash": "579753ae46edeb6c1109863f846850c738871635f5570f8658104bf1545f9650"
     },
     {
       "key": "ai-global-95",
       "selector": ".ui-dialog--drawer",
-      "owners": [
-        "ai/src/ui/foundation/UiDialog.vue"
-      ],
+      "owners": ["ai/src/ui/foundation/UiDialog.vue"],
       "policy": "owners",
-      "hash": "6b7f95b563b214f83ab27281ddd271ef7c410f0590aa8dfd4a40fdc9a34b814e"
+      "hash": "574b259642ae4a35f65c9c40ff85782b9ba0d5b9b698a9f859b5b4202520dea8"
     },
     {
       "key": "ai-global-96",
       "selector": ".drawer",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "64c3cf91bb5d069a77b8e46f67368601d434391e13bfad6c68764d400403c508"
+      "hash": "094f83bd78ccefd3ead5fa90f7009baa25bdee80a02c5c3c5687e9724be4f5a2"
     },
     {
       "key": "ai-global-97",
       "selector": ".drawer header",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "7618f6b29caa29b1b18a9fb8eb3160d38be2555a90793be2c0b37930f9c7d833"
+      "hash": "d50e75010bb7d025e40da4e0bc39750ddfde3660b02b501322f314be9da90359"
     },
     {
       "key": "ai-global-98",
       "selector": ".drawer h2",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "9bb66066581753539a8dd36dbc7a5f0e57120be1bffd430fa0d5bb6f9183324a"
+      "hash": "3c985992ea0cd5c33163a0993d1a0c0df7d96591652012e8e30f097db22bf4ac"
     },
     {
       "key": "ai-global-99",
       "selector": ".drawer header button",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "88bf57bec6b7c5e94c9589f2100a8bf0b80cdd304f0825436f99fb1ad7a22941"
+      "hash": "ccf091bc60af32e149bf41f507d04d34a0fd725a77f8a6bb097537d01ce97216"
     },
     {
       "key": "ai-global-100",
       "selector": ".drawer-body",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "ad8c4ac49f41a69727bafc539eb8723065fef19e01b78f16c1520e9bbc32d8af"
+      "hash": "28e299cd646a81ad2b59e5e961a79b78d6298e564c99e4cf26d24cf9811aae03"
     },
     {
       "key": "ai-global-101",
       "selector": ".drawer dl",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "004ee607ad243b38fab25591f5bc16638c5a6a922cb707af759c755db19817ee"
+      "hash": "519f6d140fb71d22609aeeab5d37e513743aa6286c80bf125b3714c10e4c183b"
     },
     {
       "key": "ai-global-102",
       "selector": ".drawer dt",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "ca3b4aa96c63c5850ec7e275e1f1761d86c41cf57891b683ba0203667c7c5d8b"
+      "hash": "385216ba9c2e2f92648363998e11245f74d313e2c5deabdd2eaad8e6c9a9c56e"
     },
     {
       "key": "ai-global-103",
       "selector": ".drawer dd",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "0f98ea9deef08118648590c5a8139afaa2fe0a67e29c370d9fc3ae56b42518bd"
+      "hash": "4a77d5bb60674379ae608fc6f5e772c48b5db1b17072ae3dbe3cc7d3a1b56b03"
     },
     {
       "key": "ai-global-104",
       "selector": ".field",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "85a52bd2d9b9a2dab27357b06f2e206485f063f98ee96425bd6102a1e4067aa3"
+      "hash": "cbb940ec0958c3cb42e55f74e0a735b2a8b846105ab294fc5518793084fba6f4"
     },
     {
       "key": "ai-global-105",
       "selector": ".field input",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "fbe3021f259d6e354f5953ac720bd0367500970bd405bb8d6409dd4211a40a62"
+      "hash": "214f44aced6bd21acdebfe313f7f2a2df9da6ad3afe03396635d673b95fb2f0a"
     },
     {
       "key": "ai-global-106",
       "selector": ".drawer footer",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "c55dbd1cb7330071958586b8582ea866a3993c2a8e7ed8c5c4571cde43ded051"
+      "hash": "2cdb884be1f91804b375c75fdf179cf4e65a8932d6cab4364e511f04e9f0cb31"
     },
     {
       "key": "ai-global-107",
       "selector": ".confirm-modal",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "fb22fd26c455ac45a538ea6e4a51f6c902ca01acaf74db8032925ff08e2c57ce"
+      "hash": "6a54566a3133406c325fc5ecef8a88b332bb7c17dc6556556e155d202e0026d1"
     },
     {
       "key": "ai-global-108",
       "selector": ".confirm-icon",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "1cb34e4e4c4eb9037d4dce385fd2b6394b53b821e26f2e0ef1019a5faf4a30eb"
+      "hash": "e9bd6078994a80ca2459cc8e2874c40bc6fae3830a92298f969ec3292ef1c91f"
     },
     {
       "key": "ai-global-109",
       "selector": ".confirm-modal h2",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "094de5883d32d21546a838239767ac5881380a9021a5292d36a43767a6872bab"
+      "hash": "d7ed72c145fb9b9a02a08994292f8e00d066bc1d585dcafd109d27034d32f046"
     },
     {
       "key": "ai-global-110",
       "selector": ".confirm-modal p",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "c1b09759588823eb4e477af7dad594cfdf850b7e218aee9aa6d99a2cb9957999"
+      "hash": "57189c10a685319ed5e1afb63c1db3a5da31b1993c0423985a1f9506e459bdce"
     },
     {
       "key": "ai-global-111",
       "selector": ".modal-actions",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "c1ef877e9520225acf0945713f0e4301fc03f01d298571d06803ee7cf2446582"
+      "hash": "603fb3c1333ee1573462c92be1d9704212820f9fd34af7b674e23bc4936a4f64"
     },
     {
       "key": "ai-global-112",
       "selector": ".toast",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "f45a155755ae3d1c1c43392a4bd1d87252037f944471c0e46431a202bbde01c4"
+      "hash": "6d3668cbab77f284dc73f874b35f8779136db2e34292f187856f7e341524ec00"
     },
     {
       "key": "ai-global-113",
       "selector": ".toast svg",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "e0bca16a8c19600cab4df227144b374c63a1ba173f97fb02ef4851b6129f2701"
+      "hash": "4d3f91125e50e98db762073b6b76493dab4583bba687ef5d94f8a64afa1cf22a"
     },
     {
       "key": "ai-global-114",
-      "selector": ".partner-ai[data-ai-theme=\"aurora\"]",
+      "selector": ".partner-ai[data-ai-theme='aurora']",
       "owners": [],
       "policy": "base",
-      "hash": "5f16113511bfa384cd7ae73fd56ee756fa030b73b83e023a91d5559327d88b8d"
+      "hash": "a196b49e56653c3fbf1278de6dfba8c037c6f0593d4f2280bd129cb97f63fc4c"
     },
     {
       "key": "ai-global-115",
-      "selector": ".partner-ai[data-ai-theme=\"aurora\"] .assistant-avatar",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "selector": ".partner-ai[data-ai-theme='aurora'] .assistant-avatar",
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "238ee71f19fc1816745611366c0555a4c73ed440aacc2eced2d07046363187e7"
+      "hash": "70f7bfb401f8b60f35d01f350f58497508f761681d6d6fc431aed31ead18d211"
     },
     {
       "key": "ai-global-116",
-      "selector": ".partner-ai[data-ai-theme=\"aurora\"] .brand-mark",
+      "selector": ".partner-ai[data-ai-theme='aurora'] .brand-mark",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "17f94cc95a9e4424305a0486058a4b393523424e8162edcff574dc697201a9cb"
+      "hash": "8f955cf391e9f9cb7188e3ea2865c8731f2bec7a54af23d19a9392b831ae524e"
     },
     {
       "key": "ai-global-117",
-      "selector": ".partner-ai[data-ai-theme=\"aurora\"] .sidebar",
+      "selector": ".partner-ai[data-ai-theme='aurora'] .sidebar",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "66c65ed700d30c834201c4e2ed22edc6d035ed44bb8dd347f2a52ef0e8b5b0b5"
+      "hash": "27978ee5a1d4f3020c976ac29c9f8dfa1cb8cf7a54ed41b6185daff93b158e99"
     },
     {
       "key": "ai-global-118",
       "selector": "to",
       "owners": [],
       "policy": "base",
-      "hash": "b1a35c158267b994a15f948faeb2533edb413540b927603cd85f92f779277749"
+      "hash": "c7684c4a981c2483855b4f507b04be930eaa16632e2cb261d3c6c6a48a36618e"
     },
     {
       "key": "ai-global-119",
       "selector": ".partner-ai .content-grid",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "c80dad2bbea5ffb8312c7c3ee2a67e199372b78fadaf17d8b32e2aa84f5e5372"
+      "hash": "b23390cdfd2dee60d0daa0c069996c154ba502f57f443aa887de2774d1c0490c"
     },
     {
       "key": "ai-global-120",
       "selector": ".partner-ai .app-frame",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "f3d98f338c9936cabd326faa03da087e94155d712a0fbff1b6999e506d6981c5"
+      "hash": "df2580741b3f986997f9fb899f094dbbef3c8565f85fbbf363923429457c3223"
     },
     {
       "key": "ai-global-121",
       "selector": ".partner-ai .insights",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "5fd4732ed2ed05d1c89b15ca48e1b46e3f998c302d0e8a841ceaf729e01730a6"
+      "hash": "5e28afe3441a29758e89a3c301704b07cb3679b73bbc359437ac7ddc023676ec"
     },
     {
       "key": "ai-global-122",
       "selector": ".partner-ai .content-grid",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "409a729491a7b698250d6aadfc8a8d1d200d2f9665d2a085c29a95d466b26eef"
+      "hash": "5b783608029f6b3afbdeb11d6aa8435a2d71730431c0622170c8962fad4955b3"
     },
     {
       "key": "ai-global-123",
       "selector": ".partner-ai .app-frame",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "0753185727ae53d7e3062ed47d99229b1835f317cd44751415fb78ebab6f9bf3"
+      "hash": "81154f5be04759bb42e3a890ca4fd79cba0509628ff772a33e1fa9956ce11a04"
     },
     {
       "key": "ai-global-124",
       "selector": ".partner-ai .sidebar",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "1c6febf0f6c44415db1c28fe7c98f803517924263ba16649d50d71f7a60a0d45"
+      "hash": "d632802e53d37f9efac4662eceadd922dd33f32a75656343496b82a60076612c"
     },
     {
       "key": "ai-global-125",
       "selector": ".partner-ai .app-frame",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "36fedae210f9ed40759c54c6f8766a17ae544764b2309a3992599b2a65515927"
+      "hash": "1dc3307e2563f8568ae6676334e4d46a1d5ecf5ceaf5bc72be593160a2766651"
     },
     {
       "key": "ai-global-126",
       "selector": ".partner-ai .topbar",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "d101b73aac7d8319d2a20f8812a4885363ab76bd0fa3e06345a5d5e21aad3134"
+      "hash": "b2e4e933aa7996eb42dc589a91a8aa0ebda7a30c58a9ed9c6d142dcb991d594c"
     },
     {
       "key": "ai-global-127",
       "selector": ".partner-ai .workspace-label",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "e63f7079b93d403de40a89fada65da4cacb4698fd78cc1c479ff1e715bd4da70"
+      "hash": "9cada1e6f43335f81b92fe4294cd3efc02a3b0663ee9b8d2e958d53667158efc"
     },
     {
       "key": "ai-global-128",
       "selector": ".partner-ai .page-heading",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "73f1ee43dc5aa036d7e5c32525ffad75a9a314785ae31c8aa2687aa1f7a28741"
+      "hash": "a29a93b19692635a5ee0e9680b08485c9ecf2383e5293177a744acda77f64c30"
     },
     {
       "key": "ai-global-129",
-      "selector": ".partner-ai .page-heading>div>p:last-child",
+      "selector": ".partner-ai .page-heading > div > p:last-child",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "5d0b0f57866e7ea543b1ba6c3cbc919ace8466bb5dce783a09ca81455b90e8d5"
+      "hash": "c546288d6ef28ce99efd069bcf371a6d74e298b07a5945b89f1957cf96252457"
     },
     {
       "key": "ai-global-130",
       "selector": ".partner-ai .page-heading .button",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "893d60935be91c276a0ad274d7ebdfb0ee8f7473c3d653791622b57664cc0812"
+      "hash": "5b93f0480a5ab73e4cdb2046f333d26e27a2aa7797a2a2223fdf1ebf26f78dc2"
     },
     {
       "key": "ai-global-131",
       "selector": ".partner-ai .content-grid",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "a7e7c59e776db191d0ba50c351675c7c71c5dee8d89e542b2c733c7d30fdd23a"
+      "hash": "276d6a03a4a9b9ac8ee0d7062d68e7dabe69838d4134123c51bf147216f20530"
     },
     {
       "key": "ai-global-132",
       "selector": ".partner-ai .chat-header",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "8566733364aa49dbaf566bb37eac2f50cac2495402e1ebb49081163eab4be3c3"
+      "hash": "a9bc8b5a3b949888471a3279e3c0084723e08dc9cfb04d60b7e7f80710da3e54"
     },
     {
       "key": "ai-global-133",
       "selector": ".partner-ai .chat-scroll",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "56fcb9d69f0fe21a0a7cf1ba34f71cb6b8d765644799fbeb726dc5c244d31e83"
+      "hash": "7ba439150b55e260c22e8b64f00788f0b62570474939adba23f08c072b17877f"
     },
     {
       "key": "ai-global-134",
       "selector": ".partner-ai .composer",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "3704cb66fc141b7615f82c6df7f970a9f0b6415447b74a065361182f40c838d9"
+      "hash": "172022ead523bd475ebf59bad108afa6fe207d722d7382ad6d34f2691ce54f48"
     },
     {
       "key": "ai-global-135",
       "selector": ".partner-ai .local-badge",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "421926aeca23dc16312ff14a6b4aec7c0e960e5c2bb1487f066d80ef63597a9c"
+      "hash": "6f561eba75ecc0513984d944f6d2e8bd7db91158b12b917c04c456bdee5dd665"
     },
     {
       "key": "ai-global-136",
       "selector": ".partner-ai .table-title",
-      "owners": [
-        "ai/src/business/AgreementRenderer.vue"
-      ],
+      "owners": ["ai/src/business/AgreementRenderer.vue"],
       "policy": "owners",
-      "hash": "5b30d4f55d64a2f9776b352bfe0ca4098e612b72bfcd4e19131ccd5ffb675d93"
+      "hash": "aeb13f4632280bc57889ea28af08a8398ffcab0ebf7ca96ea97cfbcc824275a2"
     },
     {
       "key": "ai-global-137",
-      "selector": ".partner-ai .drawer header,.partner-ai .drawer-body",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue"
-      ],
+      "selector": ".partner-ai .drawer header,\n  .partner-ai .drawer-body",
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue"],
       "policy": "owners",
-      "hash": "e38c08b455cdf9bf286b0bde632b1822e43e507ee2f43ed3fdb916201d522282"
+      "hash": "a89853bea9f96c8cf6d16e14b4875b2b0a3490f2b389f9fec0c453e75f7c3562"
     },
     {
       "key": "ai-global-138",
       "selector": ".partner-ai .assistant-avatar",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "f6304a7e11eb848bf2ef63fc9e204e8cd7a3d73f5af7eb43ce29892cc9769350"
+      "hash": "f7dd6419ef322ace23f342b380b935f5a6735c6839100ed5ea250652052482ad"
     },
     {
       "key": "ai-global-139",
       "selector": ".partner-ai .chat-header .assistant-avatar",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "063477380b5090e626a0d97c93fa1ca50e6dbbc8aedfcce68d0954a983ef2493"
+      "hash": "a4f93c923118c752e2c02dc7971dc4a76d69823d135137a6fb370da30056ac94"
     },
     {
       "key": "ai-global-140",
       "selector": ".partner-ai .spinner",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "c8742ff503671638909d10473f6d4875aa70ed0efa96a4d654a40c623fc3805f"
+      "hash": "4471f5d7ed74e88dac1e15f303e84735f1bae585425794f350ecf05aff451e9d"
     },
     {
       "key": "ai-global-141",
       "selector": ".partner-ai .chat-handle-area",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "b6ac7678205882ad60d89c0c848f45d65740dbd2f14964bf53c8352eff99ed55"
+      "hash": "77910ebec15b5abad84786d889c41b2f2ec6a705d94518667bac149b5e64eef2"
     },
     {
       "key": "ai-global-142",
       "selector": ".partner-ai .chat-handle",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "8b38bedd7b846649a33f5a93f4c3b5cd2a1c5db3790246a74f4b7d7d2cee05af"
+      "hash": "371f623fb6895e07788214170f48d157c8c10dfd141ec20e70887dd0e01a85d1"
     },
     {
       "key": "ai-global-143",
       "selector": ".partner-ai .chat-header",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "56fc928b4c0e6656511c4640141fa2c1514fb09ba24bbed9ea0b08fce58eb8a1"
+      "hash": "7b7e41d58cbe26643c7bf84acc901ceb788cd6143a6a142ba1451f35bf41ad39"
     },
     {
       "key": "ai-global-144",
       "selector": ".partner-ai .chat-identity",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "09af5aad9b35a942829181931af676d32a98e39fbac98514f3e0b899efa999c8"
+      "hash": "5452b5f9b166e392b8b16cd0b80427fcc6d0398c648578493f2e8c491741e3ca"
     },
     {
       "key": "ai-global-145",
       "selector": ".partner-ai .chat-identity h2",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "f4347af33ef386fed67b282e2a4816c4ce2d36105a943e9fb5d1f79d0b03d610"
+      "hash": "37a938ea3b9a2b3a2467d218a01289a000e5f01f8bf37f6a05aed6918416a357"
     },
     {
       "key": "ai-global-146",
       "selector": ".partner-ai .chat-identity-avatar",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "0ba4de719527b8f08799717a6c90063516ad5881e03b18a00171ebe46d2d8aa6"
+      "hash": "bf9c643008dae8982dafbc7fa1e3eed65e65c09b53e78e0b76adffc9924a55ce"
     },
     {
       "key": "ai-global-147",
       "selector": ".partner-ai .chat-toolbar-actions",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "2530a04f5573cbb8631422720c868a4b488c5b26fb20f568006854878044704e"
+      "hash": "00a5aed424662a19a31d746bdbc5d0a4cc0d273ff9a81857b201559d8dfafeef"
     },
     {
       "key": "ai-global-148",
       "selector": ".partner-ai .chat-configurable-actions",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "42b92fe512d41f1975ca7c7fabe050753066f727fcff5a321dc6c00ef864cfa1"
+      "hash": "b9f20a93c4d0cb9f05efba49f7eb61f260669d6db6e415a5c7b6aa7890b4da35"
     },
     {
       "key": "ai-global-149",
       "selector": ".partner-ai .chat-toolbar-action",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "2581a29caaca831a99d4b02c30a6b8576141e0194722be3ff6010a4fcd2b9533"
+      "hash": "a7e44579728d5d03c6574719281af26b5d43ed521c738f8f202ca2b9a48b5e22"
     },
     {
       "key": "ai-global-150",
-      "selector": ".partner-ai .chat-toolbar-action.tr-action-button,.partner-ai .icon-button",
-      "owners": [
-        "ai/src/business/AgreementAssistantPanel.vue",
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "selector": ".partner-ai .chat-toolbar-action.tr-action-button,\n.partner-ai .icon-button",
+      "owners": ["ai/src/business/AgreementAssistantPanel.vue", "ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "be06597bf0ef0ae96c86a5e4f8612dd6392f1846a767c6f65a49ab31e47134a0"
+      "hash": "3e823dfdf3ca53c4c382704293804fd33687011328204b3a9b1fc9c6e09565b9"
     },
     {
       "key": "ai-global-151",
       "selector": ".partner-ai .chat-toolbar-action:hover:not(:disabled)",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "c774bfb2101bbd7ba1abcf9de5565f716136cbd003a59d1140a768bf2e2d4560"
+      "hash": "259f2cad86a04bbf8be94b104a20a82372a76870ad3638726897a6fcc2699efa"
     },
     {
       "key": "ai-global-152",
       "selector": ".partner-ai .chat-close-action",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "41324bfda3989ac55c73b4946607a4390c34177f947fde32671b0fda6876baf7"
+      "hash": "eb696cfff034a725daa98af06b1393a225873c62da80a7b4b00fd3de74ac4465"
     },
     {
       "key": "ai-global-153",
       "selector": ".partner-ai .chat-main",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "4d2685628394c0db2226f368c552c8ba7b57a79771e2c4e4930097616156a155"
+      "hash": "488d937cbb903973baa1c10e113774d47b3a88518f90a558866381fb45e3e689"
     },
     {
       "key": "ai-global-154",
       "selector": ".partner-ai .chat-feedback",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "37ff31777baa12098a830cd8529adf8b79da5bc3e08e3b5be0d4d977f804448a"
+      "hash": "199f8211dd681715a9afc567e4a70d414a034415489d30688f6fb9e2bc01e33c"
     },
     {
       "key": "ai-global-155",
       "selector": ".partner-ai .chat-feedback:empty",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "bd8a739d5c1a47994d53786b2eb41ed4ed48ce8a31a1161f9cf22142bbeed669"
+      "hash": "ffc057dcf2836981fe4af9168dfe31c8d8e2e9ffdf769d7a59a70570bc3eae14"
     },
     {
       "key": "ai-global-156",
       "selector": ".partner-ai .chat-footer",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "b7d385dd4ecd188253b2b3c37392c8aef32da33e84ab45f13346c7d7394ebee5"
+      "hash": "9d1690a44af71d17e4e52274c88746fe4787fe90b1a14359382dd158bba693e7"
     },
     {
       "key": "ai-global-157",
       "selector": ".partner-ai .chat-footer .composer",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "70e6e3d9a5ffd94abd392330fca672e220993213c8bb7c267074df2eb370ca81"
+      "hash": "dda2334905319f745d022a451647d36073d01dcbbf42684f422fc80247f93b3c"
     },
     {
       "key": "ai-global-158",
       "selector": ".partner-ai .chat-footer .composer-note",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "29347a9abdc3309f88103d5ef79d1c8f0171a66d6c11726f8214ff0f53f5f6b8"
+      "hash": "c57f68465760ed50e0556227b9c1ae0f20f00b1da7150cf1e0a476432fd3e06b"
     },
     {
       "key": "ai-global-159",
       "selector": ".partner-ai .chat-scroll .tr-bubble__box",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "8f61c53fedff83aa5256798b44846dda21012c5ab0bbf12c93ad11523d4372da"
+      "hash": "a55343953f7c70c6c7007882813ea0a8b669e56786f304698e9b7ff257f8cb5a"
     },
     {
       "key": "ai-global-160",
-      "selector": ".partner-ai .chat-scroll .tr-bubble__box[data-placement=\"end\"]",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "selector": ".partner-ai .chat-scroll .tr-bubble__box[data-placement='end']",
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "24bd387d5a188c845c356daecfe3377273b8b10879f5ad9953dbd4ab73cda369"
+      "hash": "4b336b69e5cd94be614a0e47cb6e7058d0c3b0531f9a392a8b78df68ea9c2a49"
     },
     {
       "key": "ai-global-161",
-      "selector": ".partner-ai .chat-scroll .tr-bubble__box[data-placement=\"start\"]",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "selector": ".partner-ai .chat-scroll .tr-bubble__box[data-placement='start']",
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "537f9d36c90cb5a0c755edf84134a4050bff7d52eb53e4d5fb39282a45fd67bd"
+      "hash": "1d40718b35bf4d85e42b1913909f241996241fd3ef7d9d5b6425982d6b695808"
     },
     {
       "key": "ai-global-162",
-      "selector": ".partner-ai .chat-scroll .tr-bubble__box:has(>.table-card,>.empty-result,>.unknown-message)",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "selector": ".partner-ai .chat-scroll .tr-bubble__box:has(> .table-card, > .empty-result, > .unknown-message)",
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "66bfc60ed79bfb46fc6de52612a6e109041f2ad36d1f7f15b813e55e2b3f23c4"
+      "hash": "b0260d76c27f85975b7ee71f74e8ab822440d38a28460c912787c6032af6fcfa"
     },
     {
       "key": "ai-global-163",
-      "selector": ".partner-ai .chat-scroll .tr-bubble__box>.table-card,.partner-ai .chat-scroll .tr-bubble__box>.empty-result,.partner-ai .chat-scroll .tr-bubble__box>.unknown-message",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "selector": ".partner-ai .chat-scroll .tr-bubble__box > .table-card,\n.partner-ai .chat-scroll .tr-bubble__box > .empty-result,\n.partner-ai .chat-scroll .tr-bubble__box > .unknown-message",
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "225f9a74b22e9f5a6ca1db1effe1f8fb46bc6ef29615e9b3af310d88badd8c50"
+      "hash": "84b1c8c38710be3cc638cea4db762bd0939eb824f44d630c22d1ce136d360a6e"
     },
     {
       "key": "ai-global-164",
       "selector": ".partner-ai .chat-footer",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "564f20cb75927af0c860f2ae6889c9c8a95787a729dce954eb6f7e68917770de"
+      "hash": "127ab234f1ef5e7c5bfae5002df54943f515bec61036d1da380d5e6044503ba5"
     },
     {
       "key": "ai-global-165",
       "selector": ".partner-ai .chat-footer .composer",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "2e4e8fde84e2edf059856512af0e1826f4ec92ce12379fa3038e27506251d076"
+      "hash": "8ff8e0b9a7551ab0600b9b01de167525479d5b131b0a725a026787fbf506b6ad"
     },
     {
       "key": "ai-global-166",
       "selector": ".partner-ai .chat-feedback",
       "owners": [],
       "policy": "legacy-host",
-      "hash": "7e3539c3bce8a618180ee328850f588ce6ad2de036a202b8e4b2186c0ca85761"
+      "hash": "5e4c9b6d61afe837d414a9208f3c44aa8e2d44c0f14dbbc0c033a105355d40cd"
     },
     {
       "key": "ai-global-167",
       "selector": ".partner-ai .chat-main",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "52a3f18cb546b7475db759fb54b314067545c941fce55a892f15b6634109ac62"
+      "hash": "4ef330d99a97b318a586353dc63da0bd4038c169b88e915b1a4c5a49c727596b"
     },
     {
       "key": "ai-global-168",
       "selector": ".partner-ai .chat-main",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "e7fa194bd04dbac1f3ae90d399f8679f31340ad3e33d615017afcee4834b5479"
+      "hash": "6f2211b646a82270c850d6e9ad41ee8de1adab7aa9904e81897f4ab08ca066a4"
     },
     {
       "key": "ai-global-169",
       "selector": ".partner-ai .chat-main.can-scroll-up",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "8544d11a62a2423ec7e2c4994c30db5e9246e3e48b29a52976dbec848dd13d3b"
+      "hash": "53140569547a6a155a704a1e287496b38c203a73469e091fedf898207a16f6b9"
     },
     {
       "key": "ai-global-170",
       "selector": ".partner-ai .chat-main.can-scroll-down",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "129044e02815cffc532fe03d2090e9ee7eca26b39c1b1fe1eebd14e58844a757"
+      "hash": "b1b45a65c4f6f99294a8e6246ed2df888553390090798ed7326ec03d62a3bd01"
     },
     {
       "key": "ai-global-171",
       "selector": ".partner-ai .chat-main .chat-scroll",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "88b0c773360e225fd154e6cee6ac520c5c7da8bf85ac28bfa885d5c256a6344f"
+      "hash": "d5adf72b24e0130d9d46891c62ecae954cf20946292082e94194a223d5cf71d9"
     },
     {
       "key": "ai-global-172",
       "selector": ".partner-ai .chat-main:has(.chat-scroll :focus-visible) .chat-scroll",
-      "owners": [
-        "ai/src/ui/panel/ChatPanel.vue"
-      ],
+      "owners": ["ai/src/ui/panel/ChatPanel.vue"],
       "policy": "owners",
-      "hash": "2c6cc6adf92737ceeda9059532235de3734cc24fb80c273a257ecb27f6e12d60"
+      "hash": "072fbe09c2c5d623bc994d023538452f5bdcbdac22ec00af48a4a9d7a88bf992"
     }
-  ],
-  "review": {
-    "date": "2026-11-07",
-    "method": "Template and script class usage plus explicit semantic ownership; legacy page chrome is excluded. Full component states and rule ancestry are retained."
-  }
+  ]
 }

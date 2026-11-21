@@ -9,16 +9,33 @@ import WorkbenchSkeletonBlock from "./WorkbenchSkeletonBlock.vue";
 const __sfc_main__ = {
   __name: "WorkbenchSkeleton",
   props: {
-    variant: { type: String, default: "title-text", validator: (value) => ["title-text", "text", "media-text", "item-text", "hero-text"].includes(value) },
+    variant: {
+      type: String,
+      default: "title-text",
+      validator: (value) => ["title-text", "text", "media-text", "item-text", "hero-text"].includes(value)
+    },
     showTitle: { type: Boolean, default: true },
-    lines: { type: Number, default: 3, validator: (value) => Number.isInteger(value) && value >= 1 && value <= 5 },
+    lines: {
+      type: Number,
+      default: 3,
+      validator: (value) => Number.isInteger(value) && value >= 1 && value <= 5
+    },
     animated: { type: Boolean, default: true },
     label: { type: String, default: "" }
   },
   setup(__props) {
     const props = __props;
-    const resolvedVariant = computed(() => ["title-text", "text", "media-text", "item-text", "hero-text"].includes(props.variant) ? props.variant : "title-text");
-    const textLines = computed(() => Array.from({ length: Number.isFinite(props.lines) ? Math.min(5, Math.max(1, Math.floor(props.lines))) : 3 }, (_, index) => index));
+    const resolvedVariant = computed(
+      () => ["title-text", "text", "media-text", "item-text", "hero-text"].includes(props.variant) ? props.variant : "title-text"
+    );
+    const textLines = computed(
+      () => Array.from(
+        {
+          length: Number.isFinite(props.lines) ? Math.min(5, Math.max(1, Math.floor(props.lines))) : 3
+        },
+        (_, index) => index
+      )
+    );
     const statusLabel = computed(() => props.label.trim());
     const showResolvedTitle = computed(() => props.showTitle && resolvedVariant.value !== "text");
     return (_ctx, _cache) => {

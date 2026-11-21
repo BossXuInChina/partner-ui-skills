@@ -3,7 +3,14 @@ const _hoisted_1 = ["data-list-type", "aria-label"];
 import UploadFileItem from "./UploadFileItem.vue";
 const __sfc_main__ = {
   __name: "UploadFileList",
-  props: { files: { type: Array, default: () => [] }, listType: { type: String, default: "text" }, background: Boolean, disabled: Boolean, previewState: { type: String, default: "default" }, label: { type: String, default: "\u9644\u4EF6\u5217\u8868" } },
+  props: {
+    files: { type: Array, default: () => [] },
+    listType: { type: String, default: "text" },
+    background: Boolean,
+    disabled: Boolean,
+    previewState: { type: String, default: "default" },
+    label: { type: String, default: "\u9644\u4EF6\u5217\u8868" }
+  },
   emits: ["remove", "retry", "pause", "resume", "preview", "download"],
   setup(__props) {
     return (_ctx, _cache) => {

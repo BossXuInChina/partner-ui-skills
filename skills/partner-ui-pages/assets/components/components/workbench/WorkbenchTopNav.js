@@ -1,85 +1,91 @@
-import { createVNode as _createVNode, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, createBlock as _createBlock, createCommentVNode as _createCommentVNode, Transition as _Transition, unref as _unref, createTextVNode as _createTextVNode, normalizeClass as _normalizeClass } from "vue";
+import { createVNode as _createVNode, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, renderList as _renderList, Fragment as _Fragment, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, createBlock as _createBlock, Transition as _Transition, unref as _unref, createTextVNode as _createTextVNode, normalizeClass as _normalizeClass } from "vue";
 const _hoisted_1 = ["aria-label"];
 const _hoisted_2 = { class: "wb-top-nav__utility" };
 const _hoisted_3 = { class: "wb-top-nav__grid wb-top-nav__utility-grid" };
 const _hoisted_4 = ["aria-expanded"];
-const _hoisted_5 = ["aria-expanded"];
-const _hoisted_6 = {
+const _hoisted_5 = {
+  key: 1,
+  class: "wb-top-nav__utility-site"
+};
+const _hoisted_6 = ["aria-expanded"];
+const _hoisted_7 = {
   key: 0,
   id: "wb-top-nav-site-panel",
   class: "wb-top-nav__site-panel",
   role: "menu",
   "aria-label": "\u5207\u6362\u5B98\u7F51"
 };
-const _hoisted_7 = { class: "wb-top-nav__grid wb-top-nav__site-grid" };
-const _hoisted_8 = { class: "wb-top-nav__site-current" };
-const _hoisted_9 = { class: "wb-top-nav__site-list" };
-const _hoisted_10 = { class: "wb-top-nav__site-entry-content" };
-const _hoisted_11 = { class: "wb-top-nav__site-label" };
-const _hoisted_12 = {
+const _hoisted_8 = { class: "wb-top-nav__grid wb-top-nav__site-grid" };
+const _hoisted_9 = { class: "wb-top-nav__site-current" };
+const _hoisted_10 = { class: "wb-top-nav__site-list" };
+const _hoisted_11 = { class: "wb-top-nav__site-entry-content" };
+const _hoisted_12 = { class: "wb-top-nav__site-label" };
+const _hoisted_13 = {
   key: 0,
   id: "wb-top-nav-language-panel",
   class: "wb-top-nav__menu wb-top-nav__language-panel",
   role: "menu",
   "aria-label": "\u5207\u6362\u8BED\u8A00"
 };
-const _hoisted_13 = ["aria-checked", "onClick", "onKeydown"];
-const _hoisted_14 = { class: "wb-top-nav__business" };
-const _hoisted_15 = { class: "wb-top-nav__grid wb-top-nav__business-grid" };
-const _hoisted_16 = ["src"];
-const _hoisted_17 = {
+const _hoisted_14 = ["aria-checked", "onClick", "onKeydown"];
+const _hoisted_15 = { class: "wb-top-nav__business" };
+const _hoisted_16 = { class: "wb-top-nav__grid wb-top-nav__business-grid" };
+const _hoisted_17 = ["src"];
+const _hoisted_18 = ["title"];
+const _hoisted_19 = {
   class: "wb-top-nav__tabs",
   "aria-label": "\u4E1A\u52A1\u5BFC\u822A"
 };
-const _hoisted_18 = ["role"];
-const _hoisted_19 = {
+const _hoisted_20 = ["role"];
+const _hoisted_21 = {
   key: 0,
   class: "wb-top-nav__more-wrap"
 };
-const _hoisted_20 = ["aria-expanded", "role", "aria-selected"];
-const _hoisted_21 = {
+const _hoisted_22 = ["aria-expanded", "role", "aria-selected"];
+const _hoisted_23 = {
   key: 0,
   id: "wb-top-nav-more-panel",
   class: "wb-top-nav__menu wb-top-nav__more-panel",
   role: "menu",
   "aria-label": "\u66F4\u591A\u4E1A\u52A1\u5BFC\u822A"
 };
-const _hoisted_22 = {
+const _hoisted_24 = {
   class: "wb-top-nav__tab-measurer",
   "aria-hidden": "true"
 };
-const _hoisted_23 = ["aria-label"];
-const _hoisted_24 = { class: "wb-top-nav__mega-reveal-content" };
-const _hoisted_25 = { class: "wb-top-nav__grid wb-top-nav__mega-grid" };
-const _hoisted_26 = { class: "wb-top-nav__mega-overview" };
-const _hoisted_27 = { class: "wb-top-nav__mega-content" };
-const _hoisted_28 = ["aria-label"];
-const _hoisted_29 = {
+const _hoisted_25 = ["aria-label"];
+const _hoisted_26 = { class: "wb-top-nav__mega-reveal-content" };
+const _hoisted_27 = { class: "wb-top-nav__grid wb-top-nav__mega-grid" };
+const _hoisted_28 = { class: "wb-top-nav__mega-overview" };
+const _hoisted_29 = { class: "wb-top-nav__mega-content" };
+const _hoisted_30 = ["aria-label"];
+const _hoisted_31 = {
   key: 1,
   id: "wb-top-nav-user-panel",
   class: "wb-top-nav__menu wb-top-nav__user-panel",
   role: "menu",
   "aria-label": "\u6211\u7684\u5165\u53E3"
 };
-const _hoisted_30 = { key: 0 };
-const _hoisted_31 = ["onClick", "onKeydown"];
-const _hoisted_32 = {
+const _hoisted_32 = { key: 0 };
+const _hoisted_33 = ["onClick", "onKeydown"];
+const _hoisted_34 = {
   key: 2,
   id: "wb-top-nav-user-panel",
   class: "wb-top-nav__menu wb-top-nav__user-panel wb-top-nav__guest-panel",
   role: "menu",
   "aria-label": "\u672A\u767B\u5F55\u8D26\u6237"
 };
-const _hoisted_33 = {
+const _hoisted_35 = {
   key: 3,
   id: "wb-top-nav-mobile-panel",
   class: "wb-top-nav__menu wb-top-nav__mobile-panel",
   role: "menu",
   "aria-label": "\u4E1A\u52A1\u5BFC\u822A\u83DC\u5355"
 };
-const _hoisted_34 = { class: "wb-top-nav__mobile-current" };
-const _hoisted_35 = { class: "wb-top-nav__mobile-current" };
-const _hoisted_36 = ["aria-checked", "onClick", "onKeydown"];
+const _hoisted_36 = { class: "wb-top-nav__mobile-title" };
+const _hoisted_37 = { class: "wb-top-nav__mobile-current" };
+const _hoisted_38 = { class: "wb-top-nav__mobile-current" };
+const _hoisted_39 = ["aria-checked", "onClick", "onKeydown"];
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import "../../../../foundation/generated/runtime/foundation.css";
 import "../../../../catalog/generated/asset.tokens.css";
@@ -99,8 +105,15 @@ const __sfc_main__ = {
       default: "authenticated",
       validator: (value) => ["guest", "authenticated"].includes(value)
     },
+    alignment: {
+      type: String,
+      default: "centered",
+      validator: (value) => ["edges", "centered"].includes(value)
+    },
+    brandTitle: { type: String, default: "\u4F19\u4F34\u5DE5\u4F5C\u53F0" },
     activeTab: { type: String, default: "home" },
     currentSite: { type: String, default: "partner" },
+    showSiteSwitcher: { type: Boolean, default: true },
     currentLanguage: { type: String, default: "zh-CN" },
     tabs: { type: Array, default: () => [] },
     sites: { type: Array, default: () => [] },
@@ -155,6 +168,13 @@ const __sfc_main__ = {
     let megaCloseTimer;
     let suppressMegaFocus = false;
     const currentLabel = (items, value) => items.find((item) => item.value === value)?.label ?? value;
+    const currentSiteLabel = computed(() => {
+      const site = props.sites.find((item) => item.value === props.currentSite);
+      return site?.label ?? (props.currentSite === "partner" ? "\u534E\u4E3A\u4F19\u4F34\u5B98\u7F51" : props.currentSite);
+    });
+    const displayedBrandTitle = computed(
+      () => props.mode === "workbench" && props.brandTitle?.trim() || "\u4F19\u4F34\u5DE5\u4F5C\u53F0"
+    );
     const visibleTabs = computed(() => props.tabs.slice(0, visibleTabCount.value));
     const overflowTabs = computed(() => props.tabs.slice(visibleTabCount.value));
     const hasLocalTabs = computed(() => props.tabs.some((tab) => !tab.href));
@@ -216,6 +236,7 @@ const __sfc_main__ = {
         else if (item.type === "message") emit("notification");
         else if (item.type === "login") emit("login");
         else if (item.type === "register") emit("register");
+        else if (item.type === "workbench") reportNavigation("action", item);
       }
       emit("action", {
         type: item.type,
@@ -440,9 +461,21 @@ const __sfc_main__ = {
       () => nextTick(updateIndicator)
     );
     watch(
-      () => props.tabs,
+      () => [props.tabs, props.alignment, displayedBrandTitle.value],
       () => nextTick(updateResponsiveLayout),
       { deep: true }
+    );
+    watch(
+      () => props.showSiteSwitcher,
+      (enabled) => {
+        if (enabled) return;
+        const mobileSiteOpen = activePanel.value === "mobile" && mobileView.value === "site";
+        if (activePanel.value === "site" || mobileSiteOpen) {
+          closePanel({
+            restoreFocus: mobileSiteOpen && root.value?.contains(root.value.ownerDocument.activeElement)
+          });
+        }
+      }
     );
     watch(
       () => [props.mode, props.userState, props.actions],
@@ -469,7 +502,7 @@ const __sfc_main__ = {
       return _openBlock(), _createElementBlock("header", {
         ref_key: "root",
         ref: root,
-        class: _normalizeClass(["wb-top-nav", [`is-${__props.mode}`, `is-${__props.userState}`]]),
+        class: _normalizeClass(["wb-top-nav", [`is-${__props.mode}`, `is-${__props.userState}`, `is-${__props.alignment}`]]),
         role: "banner",
         "aria-label": __props.mode === "workbench" ? "\u4F19\u4F34\u5DE5\u4F5C\u53F0\u9876\u90E8\u5BFC\u822A" : "\u95E8\u6237\u5B98\u7F51\u9876\u90E8\u5BFC\u822A",
         onFocusout: handleRootFocusOut,
@@ -477,7 +510,8 @@ const __sfc_main__ = {
       }, [
         _createElementVNode("div", _hoisted_2, [
           _createElementVNode("div", _hoisted_3, [
-            _createElementVNode("button", {
+            __props.showSiteSwitcher ? (_openBlock(), _createElementBlock("button", {
+              key: 0,
               ref: (element) => setTriggerRef("site", element),
               class: "wb-top-nav__utility-trigger",
               type: "button",
@@ -494,7 +528,7 @@ const __sfc_main__ = {
               _createElementVNode(
                 "span",
                 null,
-                _toDisplayString(currentLabel(__props.sites, __props.currentSite)),
+                _toDisplayString(currentSiteLabel.value),
                 1
                 /* TEXT */
               ),
@@ -503,7 +537,19 @@ const __sfc_main__ = {
                 name: "/ic_arrow_down_line#103:85",
                 size: 8
               })
-            ], 40, _hoisted_4),
+            ], 40, _hoisted_4)) : (_openBlock(), _createElementBlock("span", _hoisted_5, [
+              _createVNode(WorkbenchIcon, {
+                class: "wb-top-nav__utility-icon",
+                name: "WB-TOP-NAV/\u4F01\u4E1A\u4F19\u4F34\u7F51\u7AD9_12px"
+              }),
+              _createElementVNode(
+                "span",
+                null,
+                _toDisplayString(currentSiteLabel.value),
+                1
+                /* TEXT */
+              )
+            ])),
             _createElementVNode("button", {
               ref: (element) => setTriggerRef("language", element),
               class: "wb-top-nav__utility-trigger",
@@ -530,14 +576,14 @@ const __sfc_main__ = {
                 name: "/ic_arrow_down_line#103:85",
                 size: 8
               })
-            ], 40, _hoisted_5)
+            ], 40, _hoisted_6)
           ])
         ]),
         _createVNode(_Transition, { name: "wb-top-nav-site-reveal" }, {
           default: _withCtx(() => [
-            activePanel.value === "site" ? (_openBlock(), _createElementBlock("section", _hoisted_6, [
-              _createElementVNode("div", _hoisted_7, [
-                _createElementVNode("div", _hoisted_8, [
+            __props.showSiteSwitcher && activePanel.value === "site" ? (_openBlock(), _createElementBlock("section", _hoisted_7, [
+              _createElementVNode("div", _hoisted_8, [
+                _createElementVNode("div", _hoisted_9, [
                   _createVNode(WorkbenchIcon, {
                     class: "wb-top-nav__site-current-arrow",
                     name: "\u7BAD\u5934/\u65B9\u5411=\u53F3\u7BAD\u5934_16px",
@@ -546,12 +592,12 @@ const __sfc_main__ = {
                   _createElementVNode(
                     "span",
                     null,
-                    "\u5F53\u524D\u7AD9\u70B9\uFF1A" + _toDisplayString(currentLabel(__props.sites, __props.currentSite)),
+                    "\u5F53\u524D\u7AD9\u70B9\uFF1A" + _toDisplayString(currentSiteLabel.value),
                     1
                     /* TEXT */
                   )
                 ]),
-                _createElementVNode("div", _hoisted_9, [
+                _createElementVNode("div", _hoisted_10, [
                   (_openBlock(true), _createElementBlock(
                     _Fragment,
                     null,
@@ -570,7 +616,7 @@ const __sfc_main__ = {
                         onKeydown: ($event) => menuKeydown($event, "site", index)
                       }, {
                         default: _withCtx(() => [
-                          _createElementVNode("span", _hoisted_10, [
+                          _createElementVNode("span", _hoisted_11, [
                             _createVNode(WorkbenchIcon, {
                               class: "wb-top-nav__site-icon",
                               name: site.icon || "\u623F\u5B50/\u5C3A\u5BF8=24,\u9762\u6027=off",
@@ -579,7 +625,7 @@ const __sfc_main__ = {
                             }, null, 8, ["name"]),
                             _createElementVNode(
                               "span",
-                              _hoisted_11,
+                              _hoisted_12,
                               _toDisplayString(site.label),
                               1
                               /* TEXT */
@@ -605,7 +651,7 @@ const __sfc_main__ = {
           _: 1
           /* STABLE */
         }),
-        activePanel.value === "language" ? (_openBlock(), _createElementBlock("section", _hoisted_12, [
+        activePanel.value === "language" ? (_openBlock(), _createElementBlock("section", _hoisted_13, [
           (_openBlock(true), _createElementBlock(
             _Fragment,
             null,
@@ -632,14 +678,14 @@ const __sfc_main__ = {
                   class: "wb-top-nav__checkmark",
                   name: "/ic_public_checkmark_line_16px"
                 })) : _createCommentVNode("v-if", true)
-              ], 40, _hoisted_13);
+              ], 40, _hoisted_14);
             }),
             128
             /* KEYED_FRAGMENT */
           ))
         ])) : _createCommentVNode("v-if", true),
-        _createElementVNode("div", _hoisted_14, [
-          _createElementVNode("div", _hoisted_15, [
+        _createElementVNode("div", _hoisted_15, [
+          _createElementVNode("div", _hoisted_16, [
             _createElementVNode(
               "div",
               {
@@ -660,7 +706,7 @@ const __sfc_main__ = {
                       class: "wb-top-nav__logo",
                       src: _unref(huaweiLogo),
                       alt: "Huawei"
-                    }, null, 8, _hoisted_16),
+                    }, null, 8, _hoisted_17),
                     _cache[18] || (_cache[18] = _createElementVNode(
                       "span",
                       {
@@ -671,18 +717,15 @@ const __sfc_main__ = {
                       -1
                       /* CACHED */
                     )),
-                    _cache[19] || (_cache[19] = _createElementVNode(
-                      "span",
-                      { class: "wb-top-nav__title" },
-                      "\u4F19\u4F34\u5DE5\u4F5C\u53F0",
-                      -1
-                      /* CACHED */
-                    ))
+                    _createElementVNode("span", {
+                      class: "wb-top-nav__title",
+                      title: displayedBrandTitle.value
+                    }, _toDisplayString(displayedBrandTitle.value), 9, _hoisted_18)
                   ],
                   512
                   /* NEED_PATCH */
                 ),
-                _createElementVNode("nav", _hoisted_17, [
+                _createElementVNode("nav", _hoisted_19, [
                   _createElementVNode("div", {
                     class: "wb-top-nav__tab-list",
                     role: hasLocalTabs.value ? "tablist" : void 0,
@@ -725,7 +768,7 @@ const __sfc_main__ = {
                       128
                       /* KEYED_FRAGMENT */
                     )),
-                    overflowTabs.value.length ? (_openBlock(), _createElementBlock("div", _hoisted_19, [
+                    overflowTabs.value.length ? (_openBlock(), _createElementBlock("div", _hoisted_21, [
                       _createElementVNode("button", {
                         ref: setMoreTrigger,
                         class: "wb-top-nav__more-trigger",
@@ -737,7 +780,7 @@ const __sfc_main__ = {
                         "aria-selected": hasLocalTabs.value ? activeTabIsOverflow.value : void 0,
                         onClick: _cache[4] || (_cache[4] = ($event) => togglePanel("more")),
                         onKeydown: _cache[5] || (_cache[5] = ($event) => triggerKeydown($event, "more"))
-                      }, [..._cache[20] || (_cache[20] = [
+                      }, [..._cache[19] || (_cache[19] = [
                         _createElementVNode(
                           "span",
                           null,
@@ -745,8 +788,8 @@ const __sfc_main__ = {
                           -1
                           /* CACHED */
                         )
-                      ])], 40, _hoisted_20),
-                      activePanel.value === "more" ? (_openBlock(), _createElementBlock("section", _hoisted_21, [
+                      ])], 40, _hoisted_22),
+                      activePanel.value === "more" ? (_openBlock(), _createElementBlock("section", _hoisted_23, [
                         (_openBlock(true), _createElementBlock(
                           _Fragment,
                           null,
@@ -797,9 +840,9 @@ const __sfc_main__ = {
                       512
                       /* NEED_PATCH */
                     )
-                  ], 40, _hoisted_18)
+                  ], 40, _hoisted_20)
                 ]),
-                _createElementVNode("div", _hoisted_22, [
+                _createElementVNode("div", _hoisted_24, [
                   (_openBlock(true), _createElementBlock(
                     _Fragment,
                     null,
@@ -900,9 +943,9 @@ const __sfc_main__ = {
                 onMouseenter: cancelMegaClose,
                 onMouseleave: scheduleMegaClose
               }, [
-                _createElementVNode("div", _hoisted_24, [
-                  _createElementVNode("div", _hoisted_25, [
-                    _createElementVNode("div", _hoisted_26, [
+                _createElementVNode("div", _hoisted_26, [
+                  _createElementVNode("div", _hoisted_27, [
+                    _createElementVNode("div", _hoisted_28, [
                       _createElementVNode(
                         "h2",
                         null,
@@ -922,7 +965,7 @@ const __sfc_main__ = {
                           );
                         })
                       }, {
-                        default: _withCtx(() => [..._cache[21] || (_cache[21] = [
+                        default: _withCtx(() => [..._cache[20] || (_cache[20] = [
                           _createElementVNode(
                             "span",
                             null,
@@ -947,7 +990,7 @@ const __sfc_main__ = {
                         /* STABLE */
                       }, 8, ["href"]))
                     ]),
-                    _createElementVNode("div", _hoisted_27, [
+                    _createElementVNode("div", _hoisted_29, [
                       (_openBlock(true), _createElementBlock(
                         _Fragment,
                         null,
@@ -996,7 +1039,7 @@ const __sfc_main__ = {
                                 128
                                 /* KEYED_FRAGMENT */
                               ))
-                            ], 8, _hoisted_28)
+                            ], 8, _hoisted_30)
                           ]);
                         }),
                         128
@@ -1005,13 +1048,13 @@ const __sfc_main__ = {
                     ])
                   ])
                 ])
-              ], 40, _hoisted_23)) : _createCommentVNode("v-if", true)
+              ], 40, _hoisted_25)) : _createCommentVNode("v-if", true)
             ]),
             _: 1
             /* STABLE */
           })
         ]),
-        activePanel.value === "user" && __props.userState === "authenticated" ? (_openBlock(), _createElementBlock("section", _hoisted_29, [
+        activePanel.value === "user" && __props.userState === "authenticated" ? (_openBlock(), _createElementBlock("section", _hoisted_31, [
           (_openBlock(true), _createElementBlock(
             _Fragment,
             null,
@@ -1022,7 +1065,7 @@ const __sfc_main__ = {
                   key: item.value
                 },
                 [
-                  item.type === "separator" ? (_openBlock(), _createElementBlock("hr", _hoisted_30)) : (_openBlock(), _createElementBlock("button", {
+                  item.type === "separator" ? (_openBlock(), _createElementBlock("hr", _hoisted_32)) : (_openBlock(), _createElementBlock("button", {
                     key: 1,
                     ref_for: true,
                     ref: (element) => setOptionRef("user", index, element),
@@ -1031,7 +1074,7 @@ const __sfc_main__ = {
                     class: _normalizeClass({ "is-danger": item.danger }),
                     onClick: ($event) => choose("user", item),
                     onKeydown: ($event) => menuKeydown($event, "user", index)
-                  }, _toDisplayString(item.label), 43, _hoisted_31))
+                  }, _toDisplayString(item.label), 43, _hoisted_33))
                 ],
                 64
                 /* STABLE_FRAGMENT */
@@ -1041,8 +1084,8 @@ const __sfc_main__ = {
             /* KEYED_FRAGMENT */
           ))
         ])) : _createCommentVNode("v-if", true),
-        activePanel.value === "user" && __props.userState === "guest" ? (_openBlock(), _createElementBlock("section", _hoisted_32, [
-          _cache[22] || (_cache[22] = _createElementVNode(
+        activePanel.value === "user" && __props.userState === "guest" ? (_openBlock(), _createElementBlock("section", _hoisted_34, [
+          _cache[21] || (_cache[21] = _createElementVNode(
             "div",
             { class: "wb-top-nav__guest-message" },
             "\u767B\u5F55\u540E\u53EF\u8BBF\u95EE\u4F19\u4F34\u670D\u52A1",
@@ -1077,20 +1120,20 @@ const __sfc_main__ = {
             /* NEED_HYDRATION, NEED_PATCH */
           )
         ])) : _createCommentVNode("v-if", true),
-        activePanel.value === "mobile" ? (_openBlock(), _createElementBlock("section", _hoisted_33, [
+        activePanel.value === "mobile" ? (_openBlock(), _createElementBlock("section", _hoisted_35, [
           mobileView.value === "main" ? (_openBlock(), _createElementBlock(
             _Fragment,
             { key: 0 },
             [
-              _cache[26] || (_cache[26] = _createElementVNode(
-                "div",
-                { class: "wb-top-nav__mobile-title" },
-                [
-                  _createElementVNode("span", null, "\u4F19\u4F34\u5DE5\u4F5C\u53F0")
-                ],
-                -1
-                /* CACHED */
-              )),
+              _createElementVNode("div", _hoisted_36, [
+                _createElementVNode(
+                  "span",
+                  null,
+                  _toDisplayString(displayedBrandTitle.value),
+                  1
+                  /* TEXT */
+                )
+              ]),
               (_openBlock(true), _createElementBlock(
                 _Fragment,
                 null,
@@ -1128,16 +1171,17 @@ const __sfc_main__ = {
                 _Fragment,
                 { key: 0 },
                 [
-                  _cache[25] || (_cache[25] = _createElementVNode(
+                  _cache[24] || (_cache[24] = _createElementVNode(
                     "hr",
                     null,
                     null,
                     -1
                     /* CACHED */
                   )),
-                  _createElementVNode(
+                  __props.showSiteSwitcher ? (_openBlock(), _createElementBlock(
                     "button",
                     {
+                      key: 0,
                       ref: (element) => setOptionRef("mobile", __props.tabs.length, element),
                       type: "button",
                       "data-mobile-view": "site",
@@ -1146,7 +1190,7 @@ const __sfc_main__ = {
                       onKeydown: _cache[13] || (_cache[13] = ($event) => menuKeydown($event, "mobile", __props.tabs.length))
                     },
                     [
-                      _cache[23] || (_cache[23] = _createElementVNode(
+                      _cache[22] || (_cache[22] = _createElementVNode(
                         "span",
                         null,
                         "\u5207\u6362\u5B98\u7F51",
@@ -1155,15 +1199,15 @@ const __sfc_main__ = {
                       )),
                       _createElementVNode(
                         "span",
-                        _hoisted_34,
-                        _toDisplayString(currentLabel(__props.sites, __props.currentSite)) + " \u203A",
+                        _hoisted_37,
+                        _toDisplayString(currentSiteLabel.value) + " \u203A",
                         1
                         /* TEXT */
                       )
                     ],
                     544
                     /* NEED_HYDRATION, NEED_PATCH */
-                  ),
+                  )) : _createCommentVNode("v-if", true),
                   _createElementVNode(
                     "button",
                     {
@@ -1175,7 +1219,7 @@ const __sfc_main__ = {
                       onKeydown: _cache[15] || (_cache[15] = ($event) => menuKeydown($event, "mobile", __props.tabs.length + 1))
                     },
                     [
-                      _cache[24] || (_cache[24] = _createElementVNode(
+                      _cache[23] || (_cache[23] = _createElementVNode(
                         "span",
                         null,
                         "\u5207\u6362\u8BED\u8A00",
@@ -1184,7 +1228,7 @@ const __sfc_main__ = {
                       )),
                       _createElementVNode(
                         "span",
-                        _hoisted_35,
+                        _hoisted_38,
                         _toDisplayString(currentLabel(__props.languages, __props.currentLanguage)) + " \u203A",
                         1
                         /* TEXT */
@@ -1210,7 +1254,7 @@ const __sfc_main__ = {
                 role: "menuitem",
                 onClick: _cache[16] || (_cache[16] = ($event) => mobileView.value = "main")
               }, " \u2039 \u8FD4\u56DE "),
-              _cache[27] || (_cache[27] = _createElementVNode(
+              _cache[25] || (_cache[25] = _createElementVNode(
                 "div",
                 { class: "wb-top-nav__mobile-title" },
                 "\u5207\u6362\u5B98\u7F51",
@@ -1268,7 +1312,7 @@ const __sfc_main__ = {
                 role: "menuitem",
                 onClick: _cache[17] || (_cache[17] = ($event) => mobileView.value = "main")
               }, " \u2039 \u8FD4\u56DE "),
-              _cache[28] || (_cache[28] = _createElementVNode(
+              _cache[26] || (_cache[26] = _createElementVNode(
                 "div",
                 { class: "wb-top-nav__mobile-title" },
                 "\u5207\u6362\u8BED\u8A00",
@@ -1299,7 +1343,7 @@ const __sfc_main__ = {
                       class: "wb-top-nav__checkmark",
                       name: "/ic_public_checkmark_line_16px"
                     })) : _createCommentVNode("v-if", true)
-                  ], 40, _hoisted_36);
+                  ], 40, _hoisted_39);
                 }),
                 128
                 /* KEYED_FRAGMENT */

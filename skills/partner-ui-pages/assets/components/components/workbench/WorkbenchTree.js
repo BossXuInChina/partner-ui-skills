@@ -77,7 +77,18 @@ const __sfc_main__ = {
     label: { type: String, default: "\u7ED3\u6784\u6811" },
     emptyText: { type: String, default: "\u6682\u65E0\u6570\u636E" }
   },
-  emits: ["update:modelValue", "update:expandedKeys", "update:checkedKeys", "update:search", "select", "expand", "check", "rename", "delete", "more"],
+  emits: [
+    "update:modelValue",
+    "update:expandedKeys",
+    "update:checkedKeys",
+    "update:search",
+    "select",
+    "expand",
+    "check",
+    "rename",
+    "delete",
+    "more"
+  ],
   setup(__props, { expose: __expose, emit: __emit }) {
     const props = __props;
     const emit = __emit;
@@ -87,7 +98,9 @@ const __sfc_main__ = {
     const localChecked = ref([...props.defaultCheckedKeys]);
     const localSearch = ref("");
     const localSelected = ref(null);
-    const selectedKey = computed(() => props.modelValue === void 0 ? localSelected.value : props.modelValue);
+    const selectedKey = computed(
+      () => props.modelValue === void 0 ? localSelected.value : props.modelValue
+    );
     const expanded = computed(() => new Set(props.expandedKeys ?? localExpanded.value));
     const checked = computed(() => new Set(props.checkedKeys ?? localChecked.value));
     const searchValue = computed(() => props.search ?? localSearch.value);
@@ -146,12 +159,17 @@ const __sfc_main__ = {
       return result;
     });
     const enabledRows = computed(() => rows.value.filter((row) => !row.disabled));
-    const tabKey = computed(() => enabledRows.value.some((row) => row.key === focusedKey.value) ? focusedKey.value : enabledRows.value.find((row) => row.key === selectedKey.value)?.key ?? enabledRows.value[0]?.key);
+    const tabKey = computed(
+      () => enabledRows.value.some((row) => row.key === focusedKey.value) ? focusedKey.value : enabledRows.value.find((row) => row.key === selectedKey.value)?.key ?? enabledRows.value[0]?.key
+    );
     const checkStates = computed(() => {
       const states = /* @__PURE__ */ new Map();
       function state(entry) {
         const children = entry.children.filter((child) => !child.disabled).map(state);
-        const result = props.checkStrictly || !children.length ? { checked: checked.value.has(entry.key), mixed: false } : { checked: children.every((child) => child.checked), mixed: children.some((child) => child.checked || child.mixed) && !children.every((child) => child.checked) };
+        const result = props.checkStrictly || !children.length ? { checked: checked.value.has(entry.key), mixed: false } : {
+          checked: children.every((child) => child.checked),
+          mixed: children.some((child) => child.checked || child.mixed) && !children.every((child) => child.checked)
+        };
         states.set(entry.key, result);
         for (const child of entry.children.filter((child2) => child2.disabled)) state(child);
         return result;
@@ -160,7 +178,9 @@ const __sfc_main__ = {
       return states;
     });
     function rowElement(key) {
-      return [...root.value?.querySelectorAll('[role="treeitem"]') ?? []].find((element) => element.dataset.key === String(key));
+      return [...root.value?.querySelectorAll('[role="treeitem"]') ?? []].find(
+        (element) => element.dataset.key === String(key)
+      );
     }
     async function focusRow(key) {
       focusedKey.value = key;
@@ -222,10 +242,11 @@ const __sfc_main__ = {
       emit("update:checkedKeys", [...next]);
       emit("check", [...next], { key: entry.key, checked: value, node: entry.node });
       select(entry);
-      if (event) nextTick(() => {
-        event.target.checked = Boolean(checkStates.value.get(entry.key)?.checked);
-        event.target.indeterminate = Boolean(checkStates.value.get(entry.key)?.mixed);
-      });
+      if (event)
+        nextTick(() => {
+          event.target.checked = Boolean(checkStates.value.get(entry.key)?.checked);
+          event.target.indeterminate = Boolean(checkStates.value.get(entry.key)?.mixed);
+        });
     }
     function searchChanged(value) {
       localSearch.value = value;
@@ -295,7 +316,8 @@ const __sfc_main__ = {
     }
     function onKeydown(event, row) {
       const checkbox = event.target.matches('input[type="checkbox"]');
-      if (event.target !== event.currentTarget && !checkbox || event.isComposing || row.disabled) return;
+      if (event.target !== event.currentTarget && !checkbox || event.isComposing || row.disabled)
+        return;
       if (navigateKey(event, row)) return;
       if (event.key === "Enter") select(row);
       else if (event.key === " " && !checkbox) {
@@ -308,19 +330,30 @@ const __sfc_main__ = {
     function highlighted(entry) {
       const text = titleOf(entry);
       const index = query.value ? text.toLocaleLowerCase().indexOf(query.value) : -1;
-      return index < 0 ? [text, "", ""] : [text.slice(0, index), text.slice(index, index + query.value.length), text.slice(index + query.value.length)];
+      return index < 0 ? [text, "", ""] : [
+        text.slice(0, index),
+        text.slice(index, index + query.value.length),
+        text.slice(index + query.value.length)
+      ];
     }
-    watch(() => props.items, () => {
-      overrides.value = /* @__PURE__ */ new Map();
-      if (!meta.value.byKey.has(editingKey.value)) editingKey.value = null;
-    });
+    watch(
+      () => props.items,
+      () => {
+        overrides.value = /* @__PURE__ */ new Map();
+        if (!meta.value.byKey.has(editingKey.value)) editingKey.value = null;
+      }
+    );
     watch([rows, () => props.disabled], () => {
-      if (editingKey.value !== null && !rows.value.some((row) => row.key === editingKey.value && !row.disabled)) editingKey.value = null;
+      if (editingKey.value !== null && !rows.value.some((row) => row.key === editingKey.value && !row.disabled))
+        editingKey.value = null;
     });
-    __expose({ focus: () => focusRow(tabKey.value), startEdit: (key) => {
-      const entry = meta.value.byKey.get(key);
-      if (entry) startEdit(entry);
-    } });
+    __expose({
+      focus: () => focusRow(tabKey.value),
+      startEdit: (key) => {
+        const entry = meta.value.byKey.get(key);
+        if (entry) startEdit(entry);
+      }
+    });
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("section", {
         ref_key: "root",
@@ -394,7 +427,11 @@ const __sfc_main__ = {
             _renderList(rows.value, (row) => {
               return _openBlock(), _createElementBlock("div", {
                 key: row.key,
-                class: _normalizeClass(["wb-tree__row", { "is-selected": selectedKey.value === row.key, "is-disabled": row.disabled, "is-editing": editingKey.value === row.key }]),
+                class: _normalizeClass(["wb-tree__row", {
+                  "is-selected": selectedKey.value === row.key,
+                  "is-disabled": row.disabled,
+                  "is-editing": editingKey.value === row.key
+                }]),
                 role: "treeitem",
                 "data-key": row.key,
                 "aria-level": row.level,
@@ -424,7 +461,11 @@ const __sfc_main__ = {
                         "span",
                         {
                           key: 0,
-                          class: _normalizeClass(["wb-tree__guide", { "is-continuing": index < row.lines.length - 1 && row.lines[index + 1], "is-branch": index === row.lines.length - 1, "is-last": row.isLast }])
+                          class: _normalizeClass(["wb-tree__guide", {
+                            "is-continuing": index < row.lines.length - 1 && row.lines[index + 1],
+                            "is-branch": index === row.lines.length - 1,
+                            "is-last": row.isLast
+                          }])
                         },
                         null,
                         2

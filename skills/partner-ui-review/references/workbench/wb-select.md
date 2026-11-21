@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 选择器 Select — `WorkbenchSelect`
 
 资产：`wb-select` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -406,7 +406,7 @@ const regionOptions = [
 | multiple | Boolean |  |  | 开启后允许选择多个选项。 |
 | options * | Array |  |  | 正式选项数组；每项使用value、label和可选disabled。 |
 | panelClass | String |  |  | 传递给面板的自定义类名。 |
-| placeholder | String | 请选择 |  |  |
+| placeholder | String | 请选择 |  | 无选中值时显示的占位文字，默认请选择。 |
 | required | Boolean |  |  | 声明必填语义；字段场景的必填标记由表单项负责。 |
 | showPanel | Boolean |  |  | 仅用于Studio预览强制展示面板，不是业务开关。 |
 | state | String | default |  | 正式实现中用于disabled状态；focus和hover由用户交互产生。 |

@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 图表 Chart — `WorkbenchChart`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -36,6 +36,7 @@
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchChart"},
   "props": {
     "type": {"type":"String","default":"bar","enum":["bar","line","area","bar-horizontal","donut","pie","gauge","radar"]},
+    "appearance": {"type":"String","default":"default","enum":["default","analysis"]},
     "categories": {"type":"Array","default":{"kind":"function"}},
     "series": {"type":"Array","default":{"kind":"function"}},
     "height": {"type":"Number","default":240},
@@ -60,14 +61,16 @@
     "color": {"type":"String","default":""},
     "segments": {"type":"Array","default":{"kind":"function"}},
     "scaleLabels": {"type":"Array","default":{"kind":"function"}},
+    "gaugeMarker": {"type":"Boolean","default":true},
     "status": {"type":"String","default":""},
     "indicators": {"type":"Array","default":{"kind":"function"}},
     "ariaLabel": {"type":"String","default":"图表"}
-  }
+  },
+  "slots": ["gauge-center"]
 }
 ```
 
-未声明或为空：events、eventDetails、slots、slotDetails、slotPatterns、exposed、family、propNotes、eventNotes、slotNotes（不代表支持）
+未声明或为空：events、eventDetails、slotDetails、slotPatterns、exposed、family、propNotes、eventNotes、slotNotes（不代表支持）
 
 ## 规则与适用条件
 
@@ -93,7 +96,7 @@
       "references": []
     }
   ],
-  "foundationKeys": ["color-info-primary","color-info-secondary","color-warning","color-none","color-none-subtle","color-border-separator","color-fill-hover","color-text-primary","color-text-secondary","color-surface-overlay","color-surface-card-default","font-body-s","font-caption-m","font-display-xs","radius-xs","radius-md","radius-full","shadow-base","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg"]
+  "foundationKeys": ["color-info-primary","color-info-secondary","color-warning","color-none","color-none-subtle","color-border-separator","color-fill-hover","color-text-primary","color-text-secondary","color-surface-overlay","color-surface-card-default","font-body-s","font-body-m","font-caption-m","font-display-s","font-display-xs","radius-xs","radius-md","radius-full","shadow-base","spacing-component-xs","spacing-component-sm","spacing-component-md","spacing-component-lg"]
 }
 ```
 

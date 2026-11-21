@@ -58,8 +58,7 @@
   cursor: default;
 }
 .wb-empty-state__retry[data-v-5268d809]:focus-visible {
-  outline: var(--wb-asset-wb-empty-state-focus-width) solid
-    var(--wb-color-border-focus);
+  outline: var(--wb-asset-wb-empty-state-focus-width) solid var(--wb-color-border-focus);
   outline-offset: var(--wb-asset-wb-empty-state-focus-offset);
 }
 .wb-empty-state__actions[data-v-5268d809] {
