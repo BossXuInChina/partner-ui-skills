@@ -2,7 +2,15 @@ import { defineComponent as _defineComponent } from "vue";
 import { createElementVNode as _createElementVNode, unref as _unref, renderSlot as _renderSlot, withModifiers as _withModifiers, normalizeClass as _normalizeClass, normalizeStyle as _normalizeStyle, openBlock as _openBlock, createElementBlock as _createElementBlock, withDirectives as _withDirectives, Teleport as _Teleport, createBlock as _createBlock, Fragment as _Fragment } from "vue";
 const _hoisted_1 = ["data-ai-theme", "data-tr-theme", "inert"];
 const _hoisted_2 = ["aria-modal", "aria-labelledby"];
-import { computed, inject, nextTick, onBeforeUnmount, onMounted, ref, setTransitionHooks } from "vue";
+import {
+  computed,
+  inject,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  setTransitionHooks
+} from "vue";
 import { createRegionDrawerMotion } from "./dialogMotion";
 import { createGlobalDialogMotion } from "./globalDialogMotion";
 import { businessOverlayKey } from "../../host/businessOverlay";
@@ -36,20 +44,28 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
         if (superseded || !opener?.isConnected || opener.closest("[inert]")) return;
         if (context?.stack.value.length && !opener.closest(".partner-region-dialog")) return;
         const focus = opener.ownerDocument.activeElement;
-        if (motion && focus && !["BODY", "HTML"].includes(focus.tagName) && focus !== opener && !paintedSurface?.contains(focus)) return;
+        if (motion && focus && !["BODY", "HTML"].includes(focus.tagName) && focus !== opener && !paintedSurface?.contains(focus))
+          return;
         opener.focus({ preventScroll: true });
       });
     }
     const vDialogExit = {
       beforeUnmount(_surface, _binding, vnode) {
         if (!motion) return;
-        const hooks = { mode: void 0, persisted: false, beforeEnter() {
-        }, enter() {
-        }, leave(_node, remove) {
-          motion.leave(remove);
-        }, clone() {
-          return hooks;
-        } };
+        const hooks = {
+          mode: void 0,
+          persisted: false,
+          beforeEnter() {
+          },
+          enter() {
+          },
+          leave(_node, remove) {
+            motion.leave(remove);
+          },
+          clone() {
+            return hooks;
+          }
+        };
         setTransitionHooks(vnode, hooks);
       }
     };
@@ -57,10 +73,12 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     const tokens = ref({});
     let opener = null;
     onMounted(async () => {
-      if (props.scope === "region" && !context) throw new Error('UiDialog scope="region" requires BusinessOverlayHost.');
+      if (props.scope === "region" && !context)
+        throw new Error('UiDialog scope="region" requires BusinessOverlayHost.');
       opener = document.activeElement;
       if (origin.value) {
-        const paint = getComputedStyle(origin.value), values = {};
+        const paint = getComputedStyle(origin.value);
+        const values = {};
         for (let index = 0; index < paint.length; index++) {
           const token = paint[index];
           if (token.startsWith("--partner-ai-")) values[token] = paint.getPropertyValue(token);
@@ -70,8 +88,19 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
         tokens.value = values;
       }
       paintedSurface = surface.value;
-      if (regional.value && props.drawer && surface.value && context?.target.value) motion = createRegionDrawerMotion(surface.value, element.value, context.target.value, props.titleId, release);
-      if (!regional.value && surface.value && element.value) motion = createGlobalDialogMotion(surface.value, element.value, props.titleId, release, { nativeBackdrop: true, drawer: props.drawer });
+      if (regional.value && props.drawer && surface.value && context?.target.value)
+        motion = createRegionDrawerMotion(
+          surface.value,
+          element.value,
+          context.target.value,
+          props.titleId,
+          release
+        );
+      if (!regional.value && surface.value && element.value)
+        motion = createGlobalDialogMotion(surface.value, element.value, props.titleId, release, {
+          nativeBackdrop: true,
+          drawer: props.drawer
+        });
       if (regional.value) {
         context.stack.value = [...context.stack.value, identity];
         element.value?.show();
@@ -94,7 +123,11 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
         return;
       }
       if (event.key !== "Tab") return;
-      const focusable = [...element.value?.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],[tabindex="0"]') ?? []].filter((item) => item.getClientRects().length);
+      const focusable = [
+        ...element.value?.querySelectorAll(
+          'button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],[tabindex="0"]'
+        ) ?? []
+      ].filter((item) => item.getClientRects().length);
       const first = focusable[0];
       const last = focusable.at(-1);
       if (!first) {
@@ -111,7 +144,8 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     function backdrop(event) {
       if (!active.value || event.target !== element.value) return;
       const bounds = element.value.getBoundingClientRect();
-      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) emit("close");
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)
+        emit("close");
     }
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock(

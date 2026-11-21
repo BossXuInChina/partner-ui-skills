@@ -31,10 +31,14 @@
   height: var(--wb-asset-wb-popover-arrow-height);
 }
 .wb-cascader__overflow-bubble[data-placement='top'] .wb-cascader__overflow-arrow[data-v-4e2a1494] {
-  bottom: calc(-1 * var(--wb-asset-wb-popover-arrow-height) + var(--wb-asset-wb-popover-arrow-overlap));
+  bottom: calc(
+    -1 * var(--wb-asset-wb-popover-arrow-height) + var(--wb-asset-wb-popover-arrow-overlap)
+  );
 }
 .wb-cascader__overflow-bubble[data-placement='bottom'] .wb-cascader__overflow-arrow[data-v-4e2a1494] {
-  top: calc(-1 * var(--wb-asset-wb-popover-arrow-height) + var(--wb-asset-wb-popover-arrow-overlap));
+  top: calc(
+    -1 * var(--wb-asset-wb-popover-arrow-height) + var(--wb-asset-wb-popover-arrow-overlap)
+  );
   transform: rotate(180deg);
 }
 

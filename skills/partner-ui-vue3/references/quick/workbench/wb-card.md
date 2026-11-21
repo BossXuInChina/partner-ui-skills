@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 卡片 Card — `WorkbenchCard`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -14,7 +14,7 @@
 {
   "id": "wb-card",
   "kind": "component",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "summary": "用边界清晰的容器组织相关内容、元信息和操作；展示、运营操作与导航卡片有各自明确语义。",
   "useWhen": ["展示一组独立内容","在卡片内部承载多个独立操作","整张卡片作为单一原生地址跳转入口"],
   "avoidWhen": ["在整卡跳转内部嵌套按钮、链接或其他交互控件","把Card尺寸用作非栅格环境中的固定像素宽度","未经验证的内部框架生产实现","使用页面背景色color-surface-page代替灰色卡片的color-surface-card-tinted"],
@@ -85,7 +85,7 @@
     {
       "id": "wb-card-appearance",
       "title": "四种固定外观",
-      "text": "display-white为白底无描边无阴影；display-tinted使用color-surface-card-tinted浅灰表面且无描边无阴影；operation为白底1px描边无阴影；navigation为白底无描边并使用交互阴影。页面背景color-surface-page不作为灰色卡片默认背景。",
+      "text": "display-white为白底无描边无阴影；display-tinted使用color-surface-card-tinted浅灰表面且无描边无阴影；operation为白底1px卡片专用描边color-border-card且无阴影；navigation为白底无描边并使用交互阴影。页面背景color-surface-page不作为灰色卡片默认背景。",
       "strength": "must",
       "status": "confirmed",
       "when": ["选择Card外观"],
@@ -155,7 +155,7 @@
       "references": []
     }
   ],
-  "foundationKeys": ["color-surface-card-default","color-surface-card-tinted","color-border","color-border-focus","color-border-separator-subtle","color-fill-selected","spacing-layout-container-inline","spacing-layout-container-block","spacing-dialog-padding-block-end-with-actions","spacing-layout-action-gap","spacing-layout-card-gap","spacing-component-md","spacing-component-sm","radius-lg","shadow-sm","shadow-md","font-body-s","layout-grid-breakpoint-medium","layout-grid-breakpoint-wide","layout-grid-columns-medium","layout-grid-columns-wide"],
+  "foundationKeys": ["color-surface-card-default","color-surface-card-tinted","color-border-card","color-border-focus","color-border-separator-subtle","color-fill-selected","spacing-layout-container-inline","spacing-layout-container-block","spacing-dialog-padding-block-end-with-actions","spacing-layout-action-gap","spacing-layout-card-gap","spacing-component-md","spacing-component-sm","radius-lg","shadow-sm","shadow-md","font-body-s","layout-grid-breakpoint-medium","layout-grid-breakpoint-wide","layout-grid-columns-medium","layout-grid-columns-wide"],
   "intro": "用边界清晰的容器组织相关内容、元信息和操作；展示、运营操作与导航卡片有各自明确语义。",
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["卡片适合内容分组和摘要入口；需要可点击导航时用navigation并提供真实href；卡片内有多个独立操作时使用operation，避免整卡链接包裹交互控件。"],"bullets":[]},
@@ -175,7 +175,7 @@
     {
       "id": "block-common-api",
       "title": "Block 通用 API",
-      "paragraphs": ["title:string；信息、图文支持display-white/display-tinted/operation/navigation；数值和快捷应用仅支持display-white。size:s/m/l/xl/xxl/xxxl（默认xxxl）；信息与图文导航使用href、target、rel。headerActions和actions均为Action[]，默认[]；footer为null或metadata/progress对象，默认null。结构顺序固定为header、正文、footer、actions。","Action = { id:string, label:string, appearance?:primary/secondary/text/icon, icon?:已登记图标名, disabled?:boolean }。action事件返回{id,source:header/actions,event:MouseEvent}，业务执行与持久化由调用方负责。","footer = {kind:metadata,text:string} | {kind:progress,value:number,label?:string} | null；进度归一到0至100并提供原生progress语义。辅助内容与动作各自启用，关闭后移除对应容器。","共同slots为header、header-actions、footer、actions。存在内容的slot覆盖同名props；空slot不留下占位。导航模式只渲染数据驱动的被动内容，忽略所有可注入交互的slots与操作数组；缺少href时沿用基础Card的展示降级。"]
+      "paragraphs": ["title:string；信息、图文支持display-white/display-tinted/operation/navigation；数值和快捷应用仅支持display-white。size:s/m/l/xl/xxl/xxxl（默认xxxl）；信息与图文导航使用href、target、rel。headerActions和actions均为Action[]，默认[]；footer为null或metadata/progress对象，默认null。结构顺序固定为header、正文、footer、actions。","Action = { id:string, label:string, appearance?:primary/secondary/text/icon, icon?:已登记图标名, disabled?:boolean }。action事件返回{id,source:header/actions,event:MouseEvent}，业务执行与持久化由调用方负责。","footer = {kind:metadata,text:string} | {kind:progress,value:number,label?:string} | null；进度归一到0至100并提供原生progress语义。辅助内容与动作各自启用，关闭后移除对应容器。","共同slots为header、header-actions、footer、actions。头部右侧插槽内的文字按钮使用 text-layout=\"inline\"。存在内容的slot覆盖同名props；空slot不留下占位。导航模式只渲染数据驱动的被动内容，忽略所有可注入交互的slots与操作数组；缺少href时沿用基础Card的展示降级。"]
     },
     {
       "id": "block-data-api",

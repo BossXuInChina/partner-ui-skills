@@ -27,27 +27,48 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
   setup(__props, { emit: __emit }) {
     const props = __props;
     const emit = __emit;
-    const workspace = ref(), business = ref();
-    const mode = ref(props.windowMode), open = toRef(props, "open");
+    const workspace = ref();
+    const business = ref();
+    const mode = ref(props.windowMode);
+    const open = toRef(props, "open");
     const fullscreen = ref(props.fullscreen);
-    watch(() => props.fullscreen, (value) => {
-      fullscreen.value = value;
-    });
+    watch(
+      () => props.fullscreen,
+      (value) => {
+        fullscreen.value = value;
+      }
+    );
     watch(fullscreen, (value) => emit("update:fullscreen", value), { flush: "sync" });
     const expansion = useAssistantFullscreen(open, fullscreen);
-    watch(() => props.windowMode, (value) => {
-      mode.value = value;
-    });
+    watch(
+      () => props.windowMode,
+      (value) => {
+        mode.value = value;
+      }
+    );
     watch(mode, (value) => emit("update:windowMode", value), { flush: "sync" });
     const viewportWidth = toRef(props, "viewportWidth");
-    const layout = useAssistantHostLayout(workspace, { open, mode, sidebarBehavior: toRef(props, "sidebarBehavior"), fullscreen, viewportWidth, flow: toRef(props, "flow") });
+    const layout = useAssistantHostLayout(workspace, {
+      open,
+      mode,
+      sidebarBehavior: toRef(props, "sidebarBehavior"),
+      fullscreen,
+      viewportWidth,
+      flow: toRef(props, "flow")
+    });
     const floating = useAssistantWindow(workspace, mode, open, fullscreen, toRef(props, "flow"));
     function switchMode() {
       if (!fullscreen.value) mode.value = mode.value === "sidebar" ? "floating" : "sidebar";
     }
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("div", {
-        class: _normalizeClass(["partner-assistant-host", { "is-open": open.value, "is-fullscreen": fullscreen.value, "is-floating": mode.value === "floating" && !fullscreen.value, "is-compact": _unref(floating).compact.value, "is-flow": __props.flow }]),
+        class: _normalizeClass(["partner-assistant-host", {
+          "is-open": open.value,
+          "is-fullscreen": fullscreen.value,
+          "is-floating": mode.value === "floating" && !fullscreen.value,
+          "is-compact": _unref(floating).compact.value,
+          "is-flow": __props.flow
+        }]),
         "data-sidebar-behavior": __props.sidebarBehavior,
         onKeydownCapture: _cache[2] || (_cache[2] = //@ts-ignore
         (...args) => _unref(expansion).escape && _unref(expansion).escape(...args))

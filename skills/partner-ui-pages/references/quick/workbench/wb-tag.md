@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 标签 Tag — `WorkbenchTag`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -48,6 +48,7 @@
     "cornerTone": {"type":"String","default":"new","enum":["new","hot","discount","off"]},
     "placement": {"type":"String","default":"top-left","enum":["top-left","top-right"]},
     "action": {"type":"String","default":"none","enum":["none","add","remove"]},
+    "showFull": {"type":"Boolean","default":false},
     "interactive": {"type":"Boolean","default":false},
     "selected": {"type":"Boolean","default":false},
     "disabled": {"type":"Boolean","default":false}
@@ -63,6 +64,7 @@
     "cornerTone": "corner标签的new/hot/discount/off语义。",
     "placement": "角标位于左上或右上。",
     "action": "Basic标签的none/add/remove动作形式。",
+    "showFull": "默认false，超过7个可见字符时截断并提供全文提示；业务明确要求完整标签时设为true，保持单行完整显示。",
     "interactive": "是否渲染为可操作按钮；静态展示保持非聚焦。",
     "selected": "Basic交互标签的选中状态。",
     "disabled": "阻止交互并显示禁用状态。"
@@ -95,7 +97,12 @@
   "sections": [
     {"id":"selection","title":"选型","paragraphs":["用于紧凑分类与状态标注；需要过滤集合时把interactive标签作为选择控件使用并由父级管理状态；多段说明不要塞入标签。"],"bullets":[]},
     {"id":"structure","title":"设计结构与排版","paragraphs":["variant决定基础、状态、分类或角标形态；size决定密度。Basic类型支持add/remove/selected；状态与分类标签可通过interactive触发操作并显示悬浮、按下和焦点，选中视觉仅属于Basic。角标用于静态附着展示。"],"bullets":[]},
-    {"id":"interaction","title":"交互与键盘","paragraphs":["interactive时渲染原生按钮并支持键盘激活；disabled阻断事件。静态标签不进入Tab序列。超过7个可见字符时保留前7个字符并省略；全文提示复用WorkbenchTooltip，悬浮或键盘聚焦时显示，Escape关闭，不叠加原生title或伪元素提示。"],"bullets":[]},
+    {
+      "id": "interaction",
+      "title": "交互与键盘",
+      "paragraphs": ["interactive时渲染原生按钮并支持键盘激活；disabled阻断事件。静态标签不进入Tab序列。超过7个可见字符时保留前7个字符并省略；全文提示复用WorkbenchTooltip，悬浮或键盘聚焦时显示，Escape关闭，不叠加原生title或伪元素提示。业务明确要求完整标签时使用showFull=true，保留单行且不截断，由父容器安排足够空间。"],
+      "bullets": []
+    },
     {"id":"responsibility","title":"使用边界与职责","paragraphs":["组件公开入口为 WorkbenchTag（@workbench/ui-vue3）。当前资格：prototype-only；业务数据、持久化和流程决策由宿主承担。"],"bullets":[]}
   ],
   "related": [{"label":"标签 Tag组件规范","href":"#rules"}]

@@ -1,10 +1,11 @@
 
 .wb-button {
   box-sizing: border-box;
-  --button-block-size: var(--wb-asset-wb-button-height-32);
+  --button-block-size: var(--wb-asset-wb-button-height-m);
   --button-icon-size: var(--wb-icon-size-16);
-  --button-inline-padding: var(--wb-spacing-component-lg);
+  --button-inline-padding: var(--wb-asset-wb-button-padding-inline-m);
   --button-min-inline-size: var(--wb-asset-wb-button-min-width-m);
+  --button-radius: var(--wb-asset-wb-button-radius-m);
 
   display: inline-flex;
   width: fit-content;
@@ -16,7 +17,7 @@
   color: var(--wb-color-text-inverse);
   background: var(--wb-color-brand);
   border: 0;
-  border-radius: var(--wb-radius-sm);
+  border-radius: var(--button-radius);
   font-family: inherit;
   font-size: var(--wb-font-body-m-font-size);
   font-weight: var(--wb-font-body-m-font-weight);
@@ -26,22 +27,26 @@
   cursor: pointer;
 }
 
+/* Size tiers of filled and text buttons: each tier has its own height, inline padding and radius. */
 .wb-button--size-36 {
-  --button-block-size: var(--wb-asset-wb-button-height-36);
+  --button-block-size: var(--wb-asset-wb-button-height-l);
   --button-inline-padding: var(--wb-asset-wb-button-padding-inline-l);
   --button-min-inline-size: var(--wb-asset-wb-button-min-width-l);
+  --button-radius: var(--wb-asset-wb-button-radius-l);
 }
 
 .wb-button--size-32 {
-  --button-block-size: var(--wb-asset-wb-button-height-32);
-  --button-inline-padding: var(--wb-spacing-component-lg);
+  --button-block-size: var(--wb-asset-wb-button-height-m);
+  --button-inline-padding: var(--wb-asset-wb-button-padding-inline-m);
   --button-min-inline-size: var(--wb-asset-wb-button-min-width-m);
+  --button-radius: var(--wb-asset-wb-button-radius-m);
 }
 
 .wb-button--size-28 {
-  --button-block-size: var(--wb-asset-wb-button-height-28);
-  --button-inline-padding: var(--wb-spacing-component-md);
+  --button-block-size: var(--wb-asset-wb-button-height-s);
+  --button-inline-padding: var(--wb-asset-wb-button-padding-inline-s);
   --button-min-inline-size: var(--wb-asset-wb-button-min-width-s);
+  --button-radius: var(--wb-asset-wb-button-radius-s);
 
   font-size: var(--wb-font-body-s-font-size);
   font-weight: var(--wb-font-body-s-font-weight);
@@ -182,9 +187,12 @@
   color: var(--wb-color-text-action-disabled);
 }
 
+/* Icon buttons have their own container sizes (32 / 24) and do not follow the tiers above. */
 .wb-button--icon {
+  --button-block-size: var(--wb-asset-wb-button-height-32);
   --button-inline-padding: 0;
   --button-icon-size: var(--wb-icon-size-20);
+  --button-radius: var(--wb-radius-sm);
 
   width: var(--button-block-size);
   color: var(--wb-color-icon-primary);
@@ -258,7 +266,8 @@
   transform: rotate(0deg);
 }
 .wb-button__icon--trailing.is-arrow-up {
-  transform: rotate(-90deg);
+  /* Continue clockwise from down (90deg), matching the shared disclosure motion. */
+  transform: rotate(270deg);
 }
 .wb-button__icon--trailing.is-arrow-down {
   transform: rotate(90deg);

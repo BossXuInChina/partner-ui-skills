@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 文本输入 Input — `WorkbenchInput`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -68,6 +68,8 @@
   "slots": ["prefix-icon","trailing-icon","suffix-icon"],
   "exposed": [{"name":"validate","declaration":"validate(): boolean;"},{"name":"focus","declaration":"focus(): void;"}],
   "propNotes": {
+    "size": "输入框规格，支持 28 和 32，默认 32。",
+    "prefixPlaceholder": "前缀筛选未选中时显示的占位文字。",
     "modelValue": "受控文本值，通过update:modelValue同步更新。",
     "type": "text、textarea或password，分别对应单行、多行和掩码文本。",
     "maxLength": "按Unicode码点计数并参与校验，不设置原生maxlength。",

@@ -12,7 +12,24 @@ import PopoverArrow from "./PopoverArrow.vue";
 const __sfc_main__ = {
   __name: "WorkbenchPopover",
   props: {
-    placement: { type: String, default: "top", validator: (value) => ["top-start", "top", "top-end", "right-start", "right", "right-end", "bottom-start", "bottom", "bottom-end", "left-start", "left", "left-end"].includes(value) },
+    placement: {
+      type: String,
+      default: "top",
+      validator: (value) => [
+        "top-start",
+        "top",
+        "top-end",
+        "right-start",
+        "right",
+        "right-end",
+        "bottom-start",
+        "bottom",
+        "bottom-end",
+        "left-start",
+        "left",
+        "left-end"
+      ].includes(value)
+    },
     title: { type: String, default: "" },
     open: { type: Boolean, default: void 0 },
     disabled: Boolean,
@@ -20,7 +37,20 @@ const __sfc_main__ = {
   },
   emits: ["update:open"],
   setup(__props, { emit: __emit }) {
-    const placements = ["top-start", "top", "top-end", "right-start", "right", "right-end", "bottom-start", "bottom", "bottom-end", "left-start", "left", "left-end"];
+    const placements = [
+      "top-start",
+      "top",
+      "top-end",
+      "right-start",
+      "right",
+      "right-end",
+      "bottom-start",
+      "bottom",
+      "bottom-end",
+      "left-start",
+      "left",
+      "left-end"
+    ];
     const opposite = { top: "bottom", bottom: "top", left: "right", right: "left" };
     const props = __props;
     const emit = __emit;
@@ -32,8 +62,13 @@ const __sfc_main__ = {
     let observer;
     let ignoreNextFocusOpen = false;
     const controlled = computed(() => props.open !== void 0);
-    const shown = computed(() => !props.disabled && (controlled.value ? props.open : internalOpen.value));
-    const triggerSlotProps = computed(() => ({ open: shown.value, aria: { "aria-describedby": shown.value ? `${id}-popover` : void 0 } }));
+    const shown = computed(
+      () => !props.disabled && (controlled.value ? props.open : internalOpen.value)
+    );
+    const triggerSlotProps = computed(() => ({
+      open: shown.value,
+      aria: { "aria-describedby": shown.value ? `${id}-popover` : void 0 }
+    }));
     function setOpen(value) {
       const next = Boolean(value) && !props.disabled;
       if (!controlled.value) internalOpen.value = next;
@@ -46,7 +81,8 @@ const __sfc_main__ = {
     function scheduleClose() {
       cancelClose();
       closeTimer = window.setTimeout(() => {
-        if (!root.value?.matches(":hover") && !panel.value?.matches(":hover") && !within(document.activeElement)) setOpen(false);
+        if (!root.value?.matches(":hover") && !panel.value?.matches(":hover") && !within(document.activeElement))
+          setOpen(false);
       }, 0);
     }
     function within(node) {
@@ -69,7 +105,10 @@ const __sfc_main__ = {
         return;
       }
       const arrowWidth = parseFloat(getComputedStyle(element).getPropertyValue("--popover-arrow-width")) || 12;
-      const arrowLeft = Math.max(0, Math.min(rect.width - arrowWidth, trigger.left + trigger.width / 2 - left - arrowWidth / 2));
+      const arrowLeft = Math.max(
+        0,
+        Math.min(rect.width - arrowWidth, trigger.left + trigger.width / 2 - left - arrowWidth / 2)
+      );
       element.style.setProperty("--popover-arrow-left", `${arrowLeft}px`);
     }
     function updatePosition() {
@@ -128,15 +167,22 @@ const __sfc_main__ = {
       observer = new ResizeObserver(updatePosition);
       if (root.value) observer.observe(root.value);
     });
-    watch(panel, (node, previous) => {
-      if (previous) observer?.unobserve(previous);
-      if (node) observer?.observe(node);
-      nextTick(updatePosition);
-    }, { flush: "post" });
-    watch(() => [props.placement, props.disabled], () => {
-      if (props.disabled) setOpen(false);
-      else nextTick(updatePosition);
-    });
+    watch(
+      panel,
+      (node, previous) => {
+        if (previous) observer?.unobserve(previous);
+        if (node) observer?.observe(node);
+        nextTick(updatePosition);
+      },
+      { flush: "post" }
+    );
+    watch(
+      () => [props.placement, props.disabled],
+      () => {
+        if (props.disabled) setOpen(false);
+        else nextTick(updatePosition);
+      }
+    );
     onBeforeUnmount(() => {
       cancelClose();
       document.removeEventListener("keydown", onKeydown);

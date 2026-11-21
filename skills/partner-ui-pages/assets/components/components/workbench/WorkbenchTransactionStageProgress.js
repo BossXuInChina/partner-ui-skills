@@ -24,6 +24,7 @@ const __sfc_main__ = {
           current: __props.current,
           readonly: __props.readonly,
           size: "medium",
+          "compact-edges": "",
           "node-type": "icon",
           "aria-label": __props.ariaLabel,
           "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => emit("update:modelValue", $event)),

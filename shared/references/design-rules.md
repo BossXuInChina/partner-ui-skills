@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 设计规则
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -248,7 +248,7 @@ id：`wb-button-radio-group-rule-3` · must / confirmed
 
 id：`wb-card-appearance` · must / confirmed
 
-display-white为白底无描边无阴影；display-tinted使用color-surface-card-tinted浅灰表面且无描边无阴影；operation为白底1px描边无阴影；navigation为白底无描边并使用交互阴影。页面背景color-surface-page不作为灰色卡片默认背景。
+display-white为白底无描边无阴影；display-tinted使用color-surface-card-tinted浅灰表面且无描边无阴影；operation为白底1px卡片专用描边color-border-card且无阴影；navigation为白底无描边并使用交互阴影。页面背景color-surface-page不作为灰色卡片默认背景。
 
 **适用条件**：选择Card外观
 
@@ -1638,6 +1638,14 @@ descriptionMode支持none/text/numeric/per-star，说明位于右侧或下方；
 
 包内未提供规则；不补写设计结论。
 
+## [wb-record-card](workbench/wb-record-card.md)
+
+包内未提供规则；不补写设计结论。
+
+## [wb-record-workspace](workbench/wb-record-workspace.md)
+
+包内未提供规则；不补写设计结论。
+
 ## [wb-scrollbar](workbench/wb-scrollbar.md)
 
 ### Small（小尺寸）：轨道10px，默认可见滑块4px、两侧各3px；Hover
@@ -1914,6 +1922,10 @@ Search前缀与后缀筛选面板主体使用Foundation radius-md（6px）；筛
 
 **适用条件**：使用Search前缀或后缀筛选
 
+## [wb-sectioned-editor](workbench/wb-sectioned-editor.md)
+
+包内未提供规则；不补写设计结论。
+
 ## [wb-select](workbench/wb-select.md)
 
 ### 支持单选、多选以及默认、悬浮、聚焦、禁用、已选择状态
@@ -2121,6 +2133,10 @@ id：`wb-slider-tooltip-radius-20261025` · must / confirmed
 Slider内置数值提示气泡主体使用Foundation radius-sm（4px）；该规则不改变轨道、滑块或配套输入。
 
 **适用条件**：显示Slider数值提示
+
+## [wb-static-fields](workbench/wb-static-fields.md)
+
+包内未提供规则；不补写设计结论。
 
 ## [wb-steps](workbench/wb-steps.md)
 

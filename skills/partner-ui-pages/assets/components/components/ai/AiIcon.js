@@ -1,4 +1,12 @@
-import { computed, createVNode, defineComponent, h, inject, isVNode, provide } from "vue";
+import {
+  computed,
+  createVNode,
+  defineComponent,
+  h,
+  inject,
+  isVNode,
+  provide
+} from "vue";
 import { localIcons, LocalWindowModeIcon } from "../../assets/ai-icons/localIcons";
 import "./aiIcons.css";
 const defaults = {
@@ -41,7 +49,8 @@ export function provideAiIcons(local) {
   const parent = inject(iconScope, void 0);
   const merged = computed(() => {
     const result = { ...parent?.value };
-    for (const [name, value] of Object.entries(local.value ?? {})) if (value != null) result[name] = value;
+    for (const [name, value] of Object.entries(local.value ?? {}))
+      if (value != null) result[name] = value;
     return result;
   });
   provide(iconScope, merged);
@@ -49,9 +58,12 @@ export function provideAiIcons(local) {
 }
 function definition(value, name) {
   const entry = typeof value === "object" && value && "component" in value ? value : { component: value };
-  if (!entry.component || !["object", "function"].includes(typeof entry.component) || isVNode(entry.component)) throw new TypeError("AI icons require a trusted Vue component, not markup, URLs or VNodes");
-  if (entry.color && !["inherit", "original", "gradient"].includes(entry.color)) throw new TypeError("Unknown AI icon color policy");
-  if (entry.color === "gradient" && name !== "smart.mark") throw new TypeError("Gradient icons are supported only for smart.mark");
+  if (!entry.component || !["object", "function"].includes(typeof entry.component) || isVNode(entry.component))
+    throw new TypeError("AI icons require a trusted Vue component, not markup, URLs or VNodes");
+  if (entry.color && !["inherit", "original", "gradient"].includes(entry.color))
+    throw new TypeError("Unknown AI icon color policy");
+  if (entry.color === "gradient" && name !== "smart.mark")
+    throw new TypeError("Gradient icons are supported only for smart.mark");
   return entry;
 }
 export function useAiIconDefinition(name) {
@@ -66,7 +78,13 @@ export const AiIcon = defineComponent({
     const scope = inject(iconScope, void 0);
     return () => {
       const entry = definition(scope?.value[props.name] ?? defaultAiIcons[props.name], props.name);
-      return h(entry.component, { ...attrs, "aria-hidden": "true", focusable: "false", "data-ai-icon": props.name, "data-ai-icon-color": entry.color ?? "inherit" });
+      return h(entry.component, {
+        ...attrs,
+        "aria-hidden": "true",
+        focusable: "false",
+        "data-ai-icon": props.name,
+        "data-ai-icon-color": entry.color ?? "inherit"
+      });
     };
   }
 });

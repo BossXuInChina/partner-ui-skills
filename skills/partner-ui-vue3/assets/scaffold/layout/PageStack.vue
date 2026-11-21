@@ -4,7 +4,12 @@ withDefaults(defineProps<{ space?: 'sm' | 'md' | 'lg' | 'xl' }>(), {
 });
 </script>
 <template>
-  <div class="page-stack" :class="`page-stack--${space}`"><slot /></div>
+  <div
+    class="page-stack"
+    :class="`page-stack--${space}`"
+  >
+    <slot />
+  </div>
 </template>
 <style scoped>
 .page-stack {

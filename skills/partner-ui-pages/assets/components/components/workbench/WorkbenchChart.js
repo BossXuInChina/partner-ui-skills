@@ -1,10 +1,10 @@
-import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, renderList as _renderList, Fragment as _Fragment, normalizeStyle as _normalizeStyle, normalizeClass as _normalizeClass, createTextVNode as _createTextVNode } from "vue";
-const _hoisted_1 = ["aria-label"];
+import { toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, renderList as _renderList, Fragment as _Fragment, normalizeStyle as _normalizeStyle, normalizeClass as _normalizeClass, renderSlot as _renderSlot, createTextVNode as _createTextVNode } from "vue";
+const _hoisted_1 = ["aria-label", "role"];
 const _hoisted_2 = {
   key: 0,
   class: "wb-chart__units"
 };
-const _hoisted_3 = ["width", "height", "viewBox"];
+const _hoisted_3 = ["width", "height", "viewBox", "aria-hidden", "role", "aria-label"];
 const _hoisted_4 = ["id"];
 const _hoisted_5 = { class: "wb-chart__grid" };
 const _hoisted_6 = ["x1", "x2", "y1", "y2"];
@@ -27,47 +27,53 @@ const _hoisted_22 = ["x", "y", "width", "height"];
 const _hoisted_23 = ["x", "y"];
 const _hoisted_24 = ["cx", "cy", "r", "stroke-width"];
 const _hoisted_25 = ["d", "stroke-width"];
-const _hoisted_26 = ["x1", "y1", "x2", "y2"];
-const _hoisted_27 = ["x", "y", "text-anchor"];
-const _hoisted_28 = ["d", "stroke-width"];
+const _hoisted_26 = ["points"];
+const _hoisted_27 = ["x1", "y1", "x2", "y2"];
+const _hoisted_28 = ["x", "y", "text-anchor"];
 const _hoisted_29 = ["d", "stroke-width"];
 const _hoisted_30 = ["d", "stroke-width"];
-const _hoisted_31 = ["d"];
-const _hoisted_32 = ["x", "y", "text-anchor"];
-const _hoisted_33 = ["points"];
-const _hoisted_34 = ["x1", "y1", "x2", "y2"];
-const _hoisted_35 = ["points"];
+const _hoisted_31 = ["d", "stroke-width"];
+const _hoisted_32 = ["d", "transform"];
+const _hoisted_33 = ["x", "y", "text-anchor"];
+const _hoisted_34 = ["points"];
+const _hoisted_35 = ["x1", "y1", "x2", "y2"];
 const _hoisted_36 = ["points"];
-const _hoisted_37 = ["cx", "cy"];
-const _hoisted_38 = ["x", "y", "text-anchor"];
-const _hoisted_39 = { class: "wb-chart__center-value" };
-const _hoisted_40 = { key: 0 };
-const _hoisted_41 = {
+const _hoisted_37 = ["points"];
+const _hoisted_38 = ["cx", "cy"];
+const _hoisted_39 = ["x", "y", "text-anchor"];
+const _hoisted_40 = {
+  key: 1,
+  class: "wb-chart__center wb-chart__center--custom-gauge"
+};
+const _hoisted_41 = { class: "wb-chart__center-content" };
+const _hoisted_42 = { class: "wb-chart__center-value" };
+const _hoisted_43 = { key: 0 };
+const _hoisted_44 = {
   key: 0,
   class: "wb-chart__center-label"
 };
-const _hoisted_42 = {
+const _hoisted_45 = {
   key: 1,
   class: "wb-chart__status"
 };
-const _hoisted_43 = { class: "wb-chart__tooltip-title" };
-const _hoisted_44 = {
+const _hoisted_46 = { class: "wb-chart__tooltip-title" };
+const _hoisted_47 = {
   class: "wb-chart__dot",
   viewBox: "0 0 8 8",
   "aria-hidden": "true"
 };
-const _hoisted_45 = {
-  key: 3,
+const _hoisted_48 = {
+  key: 4,
   class: "wb-chart__legend"
 };
-const _hoisted_46 = {
+const _hoisted_49 = {
   class: "wb-chart__dot",
   viewBox: "0 0 8 8",
   "aria-hidden": "true"
 };
 import "../../../../foundation/generated/runtime/foundation.css";
 import "../../../../catalog/generated/asset.tokens.css";
-import { computed, onBeforeUnmount, onMounted, ref, useId } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, useId, useSlots } from "vue";
 import {
   arcPath,
   axisTicks,
@@ -94,6 +100,11 @@ const __sfc_main__ = {
       default: "bar",
       validator: (value) => ["bar", "line", "area", "bar-horizontal", "donut", "pie", "gauge", "radar"].includes(value)
     },
+    appearance: {
+      type: String,
+      default: "default",
+      validator: (value) => ["default", "analysis"].includes(value)
+    },
     categories: { type: Array, default: () => [] },
     series: { type: Array, default: () => [] },
     height: { type: Number, default: 240 },
@@ -118,12 +129,15 @@ const __sfc_main__ = {
     color: { type: String, default: "" },
     segments: { type: Array, default: () => [] },
     scaleLabels: { type: Array, default: () => [] },
+    gaugeMarker: { type: Boolean, default: true },
     status: { type: String, default: "" },
     indicators: { type: Array, default: () => [] },
     ariaLabel: { type: String, default: "\u56FE\u8868" }
   },
   setup(__props) {
     const props = __props;
+    const slots = useSlots();
+    const hasGaugeCenter = () => props.type === "gauge" && Boolean(slots["gauge-center"]);
     const id = useId();
     const root = ref(null);
     const width = ref(480);
@@ -146,8 +160,15 @@ const __sfc_main__ = {
     const stroke = (color) => ({ stroke: color });
     const isCartesian = computed(() => ["bar", "line", "area"].includes(props.type));
     const isRing = computed(() => ["donut", "pie"].includes(props.type));
+    const analysis = computed(
+      () => props.appearance === "analysis" && ["donut", "gauge"].includes(props.type)
+    );
     const legendItems = computed(() => {
-      if (isRing.value) return props.series.map((item, index) => ({ name: item.name, paint: paint(seriesColor(item, index)) }));
+      if (isRing.value)
+        return props.series.map((item, index) => ({
+          name: item.name,
+          paint: paint(seriesColor(item, index))
+        }));
       if (props.type === "gauge") return [];
       return props.series.map((item, index) => ({
         name: item.name,
@@ -161,72 +182,153 @@ const __sfc_main__ = {
       const left = 40;
       const right = rightSeries.value.length ? 40 : 12;
       const bottom = props.labelRotate ? 48 : 28;
-      return { x: left, y: 12, width: Math.max(10, width.value - left - right), height: Math.max(10, props.height - 12 - bottom) };
+      return {
+        x: left,
+        y: 12,
+        width: Math.max(10, width.value - left - right),
+        height: Math.max(10, props.height - 12 - bottom)
+      };
     });
-    const leftMax = computed(() => props.max ?? niceMax(stackedMax(leftSeries.value.filter((item) => (item.type ?? props.type) === "bar"), props.categories) || Math.max(0, ...leftSeries.value.flatMap((item) => item.data ?? [])), props.ticks));
-    const rightMax = computed(() => props.maxRight ?? niceMax(Math.max(0, ...rightSeries.value.flatMap((item) => item.data ?? [])), props.ticks));
-    const yTicks = computed(() => axisTicks(leftMax.value, props.ticks).map((value) => ({
-      value,
-      label: formatNumber(value),
-      right: formatNumber(rightMax.value / leftMax.value * value),
-      y: plot.value.y + plot.value.height - (leftMax.value > 0 ? value / leftMax.value * plot.value.height : 0)
-    })));
+    const leftMax = computed(
+      () => props.max ?? niceMax(
+        stackedMax(
+          leftSeries.value.filter((item) => (item.type ?? props.type) === "bar"),
+          props.categories
+        ) || Math.max(0, ...leftSeries.value.flatMap((item) => item.data ?? [])),
+        props.ticks
+      )
+    );
+    const rightMax = computed(
+      () => props.maxRight ?? niceMax(Math.max(0, ...rightSeries.value.flatMap((item) => item.data ?? [])), props.ticks)
+    );
+    const yTicks = computed(
+      () => axisTicks(leftMax.value, props.ticks).map((value) => ({
+        value,
+        label: formatNumber(value),
+        right: formatNumber(rightMax.value / leftMax.value * value),
+        y: plot.value.y + plot.value.height - (leftMax.value > 0 ? value / leftMax.value * plot.value.height : 0)
+      }))
+    );
     const slot = computed(() => plot.value.width / Math.max(1, props.categories.length));
-    const xLabels = computed(() => props.categories.map((label, index) => ({ label, x: plot.value.x + slot.value * index + slot.value / 2 })));
+    const xLabels = computed(
+      () => props.categories.map((label, index) => ({
+        label,
+        x: plot.value.x + slot.value * index + slot.value / 2
+      }))
+    );
     const bars = computed(() => {
       const entries = props.series.map((item, index) => ({ item, index })).filter(({ item }) => (item.type ?? props.type) === "bar");
       if (!entries.length) return [];
-      const layout = barLayout({ categories: props.categories, series: entries.map(({ item }) => item), plot: plot.value, max: leftMax.value, barWidth: props.barWidth });
+      const layout = barLayout({
+        categories: props.categories,
+        series: entries.map(({ item }) => item),
+        plot: plot.value,
+        max: leftMax.value,
+        barWidth: props.barWidth
+      });
       return layout.rects.map((rect) => {
         const source = entries[rect.seriesIndex];
-        return { ...rect, seriesIndex: source.index, paint: paint(seriesColor(source.item, source.index)), label: format(rect.value, source.item) };
+        return {
+          ...rect,
+          seriesIndex: source.index,
+          paint: paint(seriesColor(source.item, source.index)),
+          label: format(rect.value, source.item)
+        };
       });
     });
-    const lines = computed(() => props.series.map((item, index) => ({ item, index })).filter(({ item }) => ["line", "area"].includes(item.type ?? props.type)).map(({ item, index }) => {
-      const max = item.axis === "right" ? rightMax.value : leftMax.value;
-      const points = linePoints({ data: item.data, categories: props.categories, plot: plot.value, max });
-      const path = smoothPath(points);
-      const bottom = plot.value.y + plot.value.height;
-      const area = (item.type ?? props.type) === "area" && points.length ? `${path} L${points.at(-1).x},${bottom} L${points[0].x},${bottom} Z` : "";
-      const color = seriesColor(item, index);
-      return { key: index, path, area, points, stroke: stroke(color), paint: paint(color), stopPaint: { stopColor: color }, gradient: `${id}-area-${index}` };
-    }));
-    const tooltipRows = computed(() => hover.value < 0 ? [] : props.series.map((item, index) => ({
-      name: item.name,
-      value: format(item.data?.[hover.value], item),
-      paint: paint(seriesColor(item, index))
-    })));
+    const lines = computed(
+      () => props.series.map((item, index) => ({ item, index })).filter(({ item }) => ["line", "area"].includes(item.type ?? props.type)).map(({ item, index }) => {
+        const max = item.axis === "right" ? rightMax.value : leftMax.value;
+        const points = linePoints({
+          data: item.data,
+          categories: props.categories,
+          plot: plot.value,
+          max
+        });
+        const path = smoothPath(points);
+        const bottom = plot.value.y + plot.value.height;
+        const area = (item.type ?? props.type) === "area" && points.length ? `${path} L${points.at(-1).x},${bottom} L${points[0].x},${bottom} Z` : "";
+        const color = seriesColor(item, index);
+        return {
+          key: index,
+          path,
+          area,
+          points,
+          stroke: stroke(color),
+          paint: paint(color),
+          stopPaint: { stopColor: color },
+          gradient: `${id}-area-${index}`
+        };
+      })
+    );
+    const tooltipRows = computed(
+      () => hover.value < 0 ? [] : props.series.map((item, index) => ({
+        name: item.name,
+        value: format(item.data?.[hover.value], item),
+        paint: paint(seriesColor(item, index))
+      }))
+    );
     const horizontal = computed(() => {
       const labelWidth = 72;
       const valueWidth = 48;
-      const area = { x: labelWidth, y: 8, width: Math.max(10, width.value - labelWidth - valueWidth), height: Math.max(10, props.height - 36) };
+      const area = {
+        x: labelWidth,
+        y: 8,
+        width: Math.max(10, width.value - labelWidth - valueWidth),
+        height: Math.max(10, props.height - 36)
+      };
       const max = props.max ?? niceMax(Math.max(0, ...props.series.flatMap((item2) => item2.data ?? [])), props.ticks);
       const rowHeight = area.height / Math.max(1, props.categories.length);
       const item = props.series[0] ?? { data: [] };
       const color = seriesColor(item, 0);
       return {
         area,
-        ticks: axisTicks(max, props.ticks).map((value) => ({ value, label: formatNumber(value), x: area.x + (max > 0 ? value / max * area.width : 0) })),
+        ticks: axisTicks(max, props.ticks).map((value) => ({
+          value,
+          label: formatNumber(value),
+          x: area.x + (max > 0 ? value / max * area.width : 0)
+        })),
         rows: props.categories.map((label, index) => {
           const value = Number(item.data?.[index]) || 0;
           const barWidth = max > 0 ? value / max * area.width : 0;
-          return { label, value: format(value, item), y: area.y + rowHeight * index + rowHeight / 2, x: area.x, width: barWidth, paint: paint(color) };
+          return {
+            label,
+            value: format(value, item),
+            y: area.y + rowHeight * index + rowHeight / 2,
+            x: area.x,
+            width: barWidth,
+            paint: paint(color)
+          };
         })
       };
     });
     const ringSize = computed(() => Math.min(props.height, width.value));
     const ring = computed(() => {
       const size = ringSize.value;
-      const outer = size / 2 - (props.showPercent ? 36 : 4);
-      const thick = props.type === "pie" ? outer : props.thickness || Math.max(8, Math.round(outer * 0.16));
-      const radius = outer - thick / 2;
+      const hasElbows = analysis.value && props.showPercent && size >= 72 && width.value >= 140;
+      const showCallouts = props.showPercent && (!analysis.value || hasElbows);
+      const outer = hasElbows ? Math.max(0, Math.min(size / 2 - 27, width.value / 2 - 61)) : size / 2 - (showCallouts ? 36 : 4);
+      const requestedThickness = props.thickness || Math.max(8, Math.round(outer * 0.16));
+      const analysisThickness = Math.min(requestedThickness, Math.max(0, outer));
+      const thick = props.type === "pie" ? outer : analysis.value ? analysisThickness : requestedThickness;
+      const radius = analysis.value ? Math.max(0, outer - thick / 2) : outer - thick / 2;
       const cx = width.value / 2;
       const cy = size / 2;
-      const segments = ringSegments(props.series, props.type === "donut" && props.series.length > 1 ? 1.5 : 0).map((segment) => {
+      const gap = analysis.value ? 2 * 180 / (Math.PI * Math.max(1, radius)) : 1.5;
+      const segments = ringSegments(
+        props.series,
+        props.type === "donut" && props.series.length > 1 ? gap : 0
+      ).map((segment) => {
         const item = props.series[segment.index];
         const color = seriesColor(item, segment.index);
-        const anchor = polar(cx, cy, outer + 6, segment.mid);
-        const label = polar(cx, cy, outer + 18, segment.mid);
+        const anchor = polar(cx, cy, outer + (hasElbows ? 0 : 6), segment.mid);
+        const knee = polar(cx, cy, outer + (hasElbows ? 16 : 18), segment.mid);
+        const side = knee.x >= cx ? "start" : "end";
+        const label = hasElbows ? {
+          x: side === "start" ? Math.min(knee.x + 8, width.value - 52) : Math.max(knee.x - 8, 52),
+          y: knee.y
+        } : knee;
+        const elbowX = side === "start" ? Math.min(knee.x, label.x) : Math.max(knee.x, label.x);
         return {
           ...segment,
           name: item.name,
@@ -235,31 +337,50 @@ const __sfc_main__ = {
           paint: paint(color),
           anchor,
           label,
-          side: label.x >= cx ? "start" : "end",
+          side,
+          leader: hasElbows ? `${anchor.x},${anchor.y} ${elbowX},${knee.y} ${label.x},${label.y}` : "",
           percentText: `${(segment.percent * 100).toFixed(segment.percent * 100 % 1 ? 2 : 0)} %`
         };
       });
-      return { cx, cy, radius, thick, outer, segments };
+      return { cx, cy, radius, thick, outer, segments, showCallouts };
     });
+    const gaugeAnalysisWidth = computed(() => Math.min(width.value, props.height * 214 / 195));
     const gauge = computed(() => {
-      const size = Math.min(props.height, width.value);
-      const thick = props.thickness || Math.max(8, Math.round(size * 0.07));
-      const radius = size / 2 - thick / 2 - (props.scaleLabels.length ? 22 : 4);
+      const size = analysis.value ? gaugeAnalysisWidth.value : Math.min(props.height, width.value);
+      const geometryScale = analysis.value ? size / 214 : 1;
+      const thick = (props.thickness || (analysis.value ? 18 : Math.max(8, Math.round(size * 0.07)))) * geometryScale;
+      const radius = size / 2 - thick / 2 - (props.scaleLabels.length ? 22 : analysis.value ? 0 : 4);
       const cx = width.value / 2;
-      const cy = size / 2 + size * 0.04;
+      const cy = analysis.value ? 116.6 * geometryScale : size / 2 + size * 0.04;
       const max = props.max ?? 100;
       const end = gaugeAngle(props.value, props.min, max);
       const color = props.color || "var(--wb-color-info-primary)";
       const segments = props.segments.map((segment, index) => {
         const from = index ? props.segments[index - 1].to : props.min;
-        return { key: index, path: arcPath(cx, cy, radius, gaugeAngle(from, props.min, max), gaugeAngle(segment.to, props.min, max)), stroke: stroke(segment.color) };
+        return {
+          key: index,
+          path: arcPath(
+            cx,
+            cy,
+            radius,
+            gaugeAngle(from, props.min, max),
+            gaugeAngle(segment.to, props.min, max)
+          ),
+          stroke: stroke(segment.color)
+        };
       });
       const tip = polar(cx, cy, radius + thick / 2 + 4, end);
       const tipA = polar(cx, cy, radius + thick / 2 + 12, end - 4);
       const tipB = polar(cx, cy, radius + thick / 2 + 12, end + 4);
+      const pointer2 = polar(cx, cy, radius + thick / 2 + 12 * geometryScale, end);
+      const referenceAngle = 27;
       const scale = props.scaleLabels.map((label, index, list) => {
         const angle = gaugeStart + gaugeSweep / Math.max(1, list.length - 1) * index;
-        return { label, ...polar(cx, cy, radius - thick / 2 - 14, angle), anchor: angle < -10 ? "start" : angle > 10 ? "end" : "middle" };
+        return {
+          label,
+          ...polar(cx, cy, radius - thick / 2 - 14, angle),
+          anchor: angle < -10 ? "start" : angle > 10 ? "end" : "middle"
+        };
       });
       return {
         cx,
@@ -269,8 +390,9 @@ const __sfc_main__ = {
         track: arcPath(cx, cy, radius, gaugeStart, gaugeStart + gaugeSweep),
         value: arcPath(cx, cy, radius, gaugeStart, end),
         stroke: stroke(color),
-        paint: paint(color),
-        marker: `M${tip.x},${tip.y} L${tipA.x},${tipA.y} L${tipB.x},${tipB.y} Z`,
+        paint: analysis.value ? void 0 : paint(color),
+        marker: analysis.value ? "M-3.7,-9.8 L10.2,-2.7 Q11.5,-2 10.1,-1.4 L-0.6,2.9 Q-2,3.5 -2.3,2 L-4.7,-9 Q-5,-10.5 -3.7,-9.8 Z" : `M${tip.x},${tip.y} L${tipA.x},${tipA.y} L${tipB.x},${tipB.y} Z`,
+        markerTransform: analysis.value ? `translate(${pointer2.x} ${pointer2.y}) rotate(${end - referenceAngle}) scale(${geometryScale})` : void 0,
         segments,
         scale
       };
@@ -281,36 +403,60 @@ const __sfc_main__ = {
       const cy = size / 2;
       const radius = size / 2 - 28;
       const step = 360 / Math.max(1, props.indicators.length);
-      const rings = [0.25, 0.5, 0.75, 1].map((ratio) => props.indicators.map((_, index) => polar(cx, cy, radius * ratio, step * index)).map((point) => `${point.x},${point.y}`).join(" "));
+      const rings = [0.25, 0.5, 0.75, 1].map(
+        (ratio) => props.indicators.map((_, index) => polar(cx, cy, radius * ratio, step * index)).map((point) => `${point.x},${point.y}`).join(" ")
+      );
       const axes = props.indicators.map((indicator, index) => {
         const end = polar(cx, cy, radius, step * index);
         const label = polar(cx, cy, radius + 14, step * index);
-        return { key: index, end, label, name: indicator.name, anchor: Math.abs(label.x - cx) < 4 ? "middle" : label.x > cx ? "start" : "end" };
+        return {
+          key: index,
+          end,
+          label,
+          name: indicator.name,
+          anchor: Math.abs(label.x - cx) < 4 ? "middle" : label.x > cx ? "start" : "end"
+        };
       });
       const shapes = props.series.map((item, index) => {
         const points = radarPoints({ indicators: props.indicators, data: item.data, cx, cy, radius });
         const color = seriesColor(item, index);
-        return { key: index, points, polygon: points.map((point) => `${point.x},${point.y}`).join(" "), stroke: stroke(color), paint: paint(color) };
+        return {
+          key: index,
+          points,
+          polygon: points.map((point) => `${point.x},${point.y}`).join(" "),
+          stroke: stroke(color),
+          paint: paint(color)
+        };
       });
       return { cx, cy, rings, axes, shapes };
     });
-    const svgHeight = computed(() => isCartesian.value || props.type === "bar-horizontal" ? props.height : Math.min(props.height, width.value));
-    const tooltipPosition = computed(() => ({ left: `${pointer.value.x}px`, top: `${pointer.value.y}px` }));
+    const svgHeight = computed(() => {
+      if (isCartesian.value || props.type === "bar-horizontal") return props.height;
+      if (analysis.value && props.type === "gauge") return gaugeAnalysisWidth.value * 195 / 214;
+      return Math.min(props.height, width.value);
+    });
+    const tooltipPosition = computed(() => ({
+      left: `${pointer.value.x}px`,
+      top: `${pointer.value.y}px`
+    }));
     function onMove(event) {
       if (!isCartesian.value || !props.tooltip || !props.categories.length) return;
       const rect = root.value.getBoundingClientRect();
       const x = event.clientX - rect.left;
       const index = Math.floor((x - plot.value.x) / slot.value);
       hover.value = index >= 0 && index < props.categories.length ? index : -1;
-      pointer.value = { x: Math.min(x + 12, rect.width - 160), y: Math.max(0, event.clientY - rect.top - 24) };
+      pointer.value = {
+        x: Math.min(x + 12, rect.width - 160),
+        y: Math.max(0, event.clientY - rect.top - 24)
+      };
     }
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("figure", {
         ref_key: "root",
         ref: root,
-        class: _normalizeClass(["wb-chart", "wb-chart--" + __props.type]),
-        "aria-label": __props.ariaLabel,
-        role: "img",
+        class: _normalizeClass(["wb-chart", ["wb-chart--" + __props.type, { "is-analysis": analysis.value }]]),
+        "aria-label": hasGaugeCenter() ? void 0 : __props.ariaLabel,
+        role: hasGaugeCenter() ? void 0 : "img",
         onMousemove: onMove,
         onMouseleave: _cache[0] || (_cache[0] = ($event) => hover.value = -1)
       }, [
@@ -335,7 +481,9 @@ const __sfc_main__ = {
           width: width.value,
           height: svgHeight.value,
           viewBox: `0 0 ${width.value} ${svgHeight.value}`,
-          "aria-hidden": "true"
+          "aria-hidden": hasGaugeCenter() ? void 0 : true,
+          role: hasGaugeCenter() ? "img" : void 0,
+          "aria-label": hasGaugeCenter() ? __props.ariaLabel : void 0
         }, [
           isCartesian.value ? (_openBlock(), _createElementBlock(
             _Fragment,
@@ -622,7 +770,7 @@ const __sfc_main__ = {
             _Fragment,
             { key: 2 },
             [
-              __props.type === "donut" ? (_openBlock(), _createElementBlock("circle", {
+              __props.type === "donut" && !analysis.value ? (_openBlock(), _createElementBlock("circle", {
                 key: 0,
                 class: "wb-chart__track",
                 cx: ring.value.cx,
@@ -645,7 +793,7 @@ const __sfc_main__ = {
                 128
                 /* KEYED_FRAGMENT */
               )),
-              __props.showPercent ? (_openBlock(true), _createElementBlock(
+              ring.value.showCallouts ? (_openBlock(true), _createElementBlock(
                 _Fragment,
                 { key: 1 },
                 _renderList(ring.value.segments, (item) => {
@@ -653,18 +801,23 @@ const __sfc_main__ = {
                     key: "p" + item.index,
                     class: "wb-chart__callout"
                   }, [
-                    _createElementVNode("line", {
+                    item.leader ? (_openBlock(), _createElementBlock("polyline", {
+                      key: 0,
+                      points: item.leader,
+                      fill: "none"
+                    }, null, 8, _hoisted_26)) : (_openBlock(), _createElementBlock("line", {
+                      key: 1,
                       x1: item.anchor.x,
                       y1: item.anchor.y,
                       x2: item.label.x,
                       y2: item.label.y
-                    }, null, 8, _hoisted_26),
+                    }, null, 8, _hoisted_27)),
                     _createElementVNode("text", {
                       x: item.label.x + (item.side === "start" ? 4 : -4),
                       y: item.label.y,
                       "text-anchor": item.side,
                       "dominant-baseline": "middle"
-                    }, _toDisplayString(item.percentText), 9, _hoisted_27)
+                    }, _toDisplayString(item.percentText), 9, _hoisted_28)
                   ]);
                 }),
                 128
@@ -682,7 +835,7 @@ const __sfc_main__ = {
                 class: "wb-chart__gauge-track",
                 d: gauge.value.track,
                 "stroke-width": gauge.value.thick
-              }, null, 8, _hoisted_28)) : _createCommentVNode("v-if", true),
+              }, null, 8, _hoisted_29)) : _createCommentVNode("v-if", true),
               (_openBlock(true), _createElementBlock(
                 _Fragment,
                 null,
@@ -693,7 +846,7 @@ const __sfc_main__ = {
                     d: item.path,
                     "stroke-width": gauge.value.thick,
                     style: _normalizeStyle(item.stroke)
-                  }, null, 12, _hoisted_29);
+                  }, null, 12, _hoisted_30);
                 }),
                 128
                 /* KEYED_FRAGMENT */
@@ -704,12 +857,14 @@ const __sfc_main__ = {
                 d: gauge.value.value,
                 "stroke-width": gauge.value.thick,
                 style: _normalizeStyle(gauge.value.stroke)
-              }, null, 12, _hoisted_30)) : _createCommentVNode("v-if", true),
-              _createElementVNode("path", {
-                class: _normalizeClass(["wb-chart__marker", { "is-neutral": gauge.value.segments.length }]),
+              }, null, 12, _hoisted_31)) : _createCommentVNode("v-if", true),
+              __props.gaugeMarker ? (_openBlock(), _createElementBlock("path", {
+                key: 2,
+                class: _normalizeClass(["wb-chart__marker", { "is-neutral": gauge.value.segments.length || analysis.value }]),
                 d: gauge.value.marker,
+                transform: gauge.value.markerTransform,
                 style: _normalizeStyle(gauge.value.segments.length ? void 0 : gauge.value.paint)
-              }, null, 14, _hoisted_31),
+              }, null, 14, _hoisted_32)) : _createCommentVNode("v-if", true),
               (_openBlock(true), _createElementBlock(
                 _Fragment,
                 null,
@@ -721,7 +876,7 @@ const __sfc_main__ = {
                     y: item.y,
                     "text-anchor": item.anchor,
                     "dominant-baseline": "middle"
-                  }, _toDisplayString(item.label), 9, _hoisted_32);
+                  }, _toDisplayString(item.label), 9, _hoisted_33);
                 }),
                 128
                 /* KEYED_FRAGMENT */
@@ -741,7 +896,7 @@ const __sfc_main__ = {
                     key: "g" + index,
                     class: "wb-chart__radar-ring",
                     points
-                  }, null, 8, _hoisted_33);
+                  }, null, 8, _hoisted_34);
                 }),
                 128
                 /* KEYED_FRAGMENT */
@@ -757,7 +912,7 @@ const __sfc_main__ = {
                     y1: radar.value.cy,
                     x2: item.end.x,
                     y2: item.end.y
-                  }, null, 8, _hoisted_34);
+                  }, null, 8, _hoisted_35);
                 }),
                 128
                 /* KEYED_FRAGMENT */
@@ -773,12 +928,12 @@ const __sfc_main__ = {
                       class: "wb-chart__radar-shape",
                       points: item.polygon,
                       style: _normalizeStyle(item.paint)
-                    }, null, 12, _hoisted_35),
+                    }, null, 12, _hoisted_36),
                     _createElementVNode("polygon", {
                       class: "wb-chart__radar-outline",
                       points: item.polygon,
                       style: _normalizeStyle(item.stroke)
-                    }, null, 12, _hoisted_36),
+                    }, null, 12, _hoisted_37),
                     (_openBlock(true), _createElementBlock(
                       _Fragment,
                       null,
@@ -790,7 +945,7 @@ const __sfc_main__ = {
                           cy: point.y,
                           r: "3",
                           style: _normalizeStyle(item.stroke)
-                        }, null, 12, _hoisted_37);
+                        }, null, 12, _hoisted_38);
                       }),
                       128
                       /* KEYED_FRAGMENT */
@@ -811,7 +966,7 @@ const __sfc_main__ = {
                     y: item.label.y,
                     "text-anchor": item.anchor,
                     "dominant-baseline": "middle"
-                  }, _toDisplayString(item.name), 9, _hoisted_38);
+                  }, _toDisplayString(item.name), 9, _hoisted_39);
                 }),
                 128
                 /* KEYED_FRAGMENT */
@@ -821,14 +976,18 @@ const __sfc_main__ = {
             /* STABLE_FRAGMENT */
           )) : _createCommentVNode("v-if", true)
         ], 8, _hoisted_3)),
-        isRing.value && (__props.centerValue !== "" || __props.centerLabel) || __props.type === "gauge" ? (_openBlock(), _createElementBlock(
+        hasGaugeCenter() ? (_openBlock(), _createElementBlock("div", _hoisted_40, [
+          _createElementVNode("div", _hoisted_41, [
+            _renderSlot(_ctx.$slots, "gauge-center")
+          ])
+        ])) : isRing.value && (__props.centerValue !== "" || __props.centerLabel) || __props.type === "gauge" ? (_openBlock(), _createElementBlock(
           "div",
           {
-            key: 1,
+            key: 2,
             class: _normalizeClass(["wb-chart__center", "wb-chart__center--" + __props.type])
           },
           [
-            _createElementVNode("div", _hoisted_39, [
+            _createElementVNode("div", _hoisted_42, [
               _createTextVNode(
                 _toDisplayString(__props.type === "gauge" && __props.centerValue === "" ? format(__props.value) : __props.centerValue),
                 1
@@ -836,7 +995,7 @@ const __sfc_main__ = {
               ),
               __props.centerUnit ? (_openBlock(), _createElementBlock(
                 "small",
-                _hoisted_40,
+                _hoisted_43,
                 _toDisplayString(__props.centerUnit),
                 1
                 /* TEXT */
@@ -844,14 +1003,14 @@ const __sfc_main__ = {
             ]),
             __props.centerLabel ? (_openBlock(), _createElementBlock(
               "div",
-              _hoisted_41,
+              _hoisted_44,
               _toDisplayString(__props.centerLabel),
               1
               /* TEXT */
             )) : _createCommentVNode("v-if", true),
             __props.status ? (_openBlock(), _createElementBlock(
               "span",
-              _hoisted_42,
+              _hoisted_45,
               _toDisplayString(__props.status),
               1
               /* TEXT */
@@ -863,7 +1022,7 @@ const __sfc_main__ = {
         __props.tooltip && hover.value >= 0 && tooltipRows.value.length ? (_openBlock(), _createElementBlock(
           "div",
           {
-            key: 2,
+            key: 3,
             class: "wb-chart__tooltip",
             style: _normalizeStyle(tooltipPosition.value),
             role: "status"
@@ -871,7 +1030,7 @@ const __sfc_main__ = {
           [
             _createElementVNode(
               "div",
-              _hoisted_43,
+              _hoisted_46,
               _toDisplayString(__props.categories[hover.value]),
               1
               /* TEXT */
@@ -884,7 +1043,7 @@ const __sfc_main__ = {
                   key: index,
                   class: "wb-chart__tooltip-row"
                 }, [
-                  (_openBlock(), _createElementBlock("svg", _hoisted_44, [
+                  (_openBlock(), _createElementBlock("svg", _hoisted_47, [
                     _createElementVNode(
                       "circle",
                       {
@@ -921,7 +1080,7 @@ const __sfc_main__ = {
           4
           /* STYLE */
         )) : _createCommentVNode("v-if", true),
-        __props.legend && legendItems.value.length ? (_openBlock(), _createElementBlock("figcaption", _hoisted_45, [
+        __props.legend && legendItems.value.length ? (_openBlock(), _createElementBlock("figcaption", _hoisted_48, [
           (_openBlock(true), _createElementBlock(
             _Fragment,
             null,
@@ -930,7 +1089,7 @@ const __sfc_main__ = {
                 key: index,
                 class: "wb-chart__legend-item"
               }, [
-                (_openBlock(), _createElementBlock("svg", _hoisted_46, [
+                (_openBlock(), _createElementBlock("svg", _hoisted_49, [
                   _createElementVNode(
                     "circle",
                     {

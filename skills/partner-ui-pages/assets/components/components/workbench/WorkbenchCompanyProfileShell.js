@@ -7,13 +7,15 @@ const _hoisted_5 = {
   key: 0,
   class: "wb-profile-shell__identity-details"
 };
-const _hoisted_6 = {
+const _hoisted_6 = { class: "wb-static-field__label" };
+const _hoisted_7 = {
   key: 0,
   class: "wb-profile-shell__footer"
 };
 import { computed, ref, watch } from "vue";
 import WorkbenchBreadcrumb from "../breadcrumb/WorkbenchBreadcrumb.vue";
 import WorkbenchCard from "../card/WorkbenchCard.vue";
+import "../shared/static-field.css";
 import WorkbenchTag from "../tag/WorkbenchTag.vue";
 import WorkbenchTabs from "../tabs/WorkbenchTabs.vue";
 import WorkbenchTopNav from "../top-nav/WorkbenchTopNav.vue";
@@ -96,6 +98,7 @@ const __sfc_main__ = {
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("div", _hoisted_1, [
         _createVNode(WorkbenchTopNav, {
+          alignment: "centered",
           mode: __props.navigation.mode || "workbench",
           "user-state": __props.navigation.userState || "authenticated",
           tabs: __props.navigation.tabs,
@@ -138,12 +141,13 @@ const __sfc_main__ = {
                 null,
                 _renderList(__props.identity.details, (detail) => {
                   return _openBlock(), _createElementBlock("div", {
-                    key: detail.label
+                    key: detail.label,
+                    class: "wb-static-field"
                   }, [
                     _createElementVNode(
                       "dt",
-                      null,
-                      _toDisplayString(detail.label),
+                      _hoisted_6,
+                      _toDisplayString(detail.label) + _toDisplayString(detail.label && !/[：:]$/.test(detail.label) ? "\uFF1A" : ""),
                       1
                       /* TEXT */
                     ),
@@ -213,7 +217,7 @@ const __sfc_main__ = {
             secondary: secondary.value
           })
         ]),
-        _ctx.$slots.footer ? (_openBlock(), _createElementBlock("footer", _hoisted_6, [
+        _ctx.$slots.footer ? (_openBlock(), _createElementBlock("footer", _hoisted_7, [
           _renderSlot(_ctx.$slots, "footer")
         ])) : _createCommentVNode("v-if", true)
       ]);

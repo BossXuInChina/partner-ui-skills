@@ -43,30 +43,43 @@ const __sfc_main__ = {
       return value === true ? 1 : Number(value) > 0 ? Number(value) : 0;
     };
     const showMarker = (key) => props.view === "date" && Boolean(props.dateMarkers) && (props.showEmptyMarkers || markerCount(key) > 0);
-    const title = computed(() => props.view === "year" ? props.yearStart + " \u5E74 - " + (props.yearStart + 15) + " \u5E74" : props.visibleDate.getFullYear() + " \u5E74");
+    const title = computed(
+      () => props.view === "year" ? props.yearStart + " \u5E74 - " + (props.yearStart + 15) + " \u5E74" : props.visibleDate.getFullYear() + " \u5E74"
+    );
     const items = computed(() => {
-      if (props.view === "month") return Array.from({ length: 12 }, (_, index) => {
-        const date = localDate(props.visibleDate.getFullYear(), index);
-        return { date, key: dateKey(date, "month"), label: index + 1 + "\u6708" };
-      });
-      if (props.view === "year") return Array.from({ length: 16 }, (_, index) => {
-        const date = localDate(props.yearStart + index);
-        return { date, key: dateKey(date, "year"), label: String(props.yearStart + index) };
-      });
+      if (props.view === "month")
+        return Array.from({ length: 12 }, (_, index) => {
+          const date = localDate(props.visibleDate.getFullYear(), index);
+          return { date, key: dateKey(date, "month"), label: index + 1 + "\u6708" };
+        });
+      if (props.view === "year")
+        return Array.from({ length: 16 }, (_, index) => {
+          const date = localDate(props.yearStart + index);
+          return { date, key: dateKey(date, "year"), label: String(props.yearStart + index) };
+        });
       const first = monthStart(props.visibleDate);
       const start = addDays(first, -first.getDay());
       return Array.from({ length: 42 }, (_, index) => {
         const date = addDays(start, index);
-        return { date, key: dateKey(date), label: String(date.getDate()), outside: date.getMonth() !== props.visibleDate.getMonth() };
+        return {
+          date,
+          key: dateKey(date),
+          label: String(date.getDate()),
+          outside: date.getMonth() !== props.visibleDate.getMonth()
+        };
       });
     });
     const limits = computed(() => {
-      const selected = props.selected.map((value) => value.slice(0, props.view === "year" ? 4 : props.view === "month" ? 7 : 10));
+      const selected = props.selected.map(
+        (value) => value.slice(0, props.view === "year" ? 4 : props.view === "month" ? 7 : 10)
+      );
       if (props.range && selected.length === 1 && props.hoverValue) selected.push(props.hoverValue);
       return selected.sort();
     });
     const selectedKey = computed(() => {
-      const selected = items.value.find((item) => limits.value.includes(item.key) && !props.isDisabled(item.date, props.view));
+      const selected = items.value.find(
+        (item) => limits.value.includes(item.key) && !props.isDisabled(item.date, props.view)
+      );
       return selected?.key || items.value.find((item) => !item.outside && !props.isDisabled(item.date, props.view))?.key;
     });
     function classes(item) {
@@ -85,7 +98,10 @@ const __sfc_main__ = {
       };
     }
     function move(amount, year = false) {
-      emit("navigate", props.view === "date" ? { months: year ? amount * 12 : amount } : { years: amount * (props.view === "year" ? 16 : 1) });
+      emit(
+        "navigate",
+        props.view === "date" ? { months: year ? amount * 12 : amount } : { years: amount * (props.view === "year" ? 16 : 1) }
+      );
     }
     function focusInitial() {
       root.value?.querySelector('[tabindex="0"]')?.focus();
@@ -121,7 +137,8 @@ const __sfc_main__ = {
       } else {
         let nextIndex = Math.max(0, Math.min(items.value.length - 1, targetIndex));
         const direction = targetIndex < index ? -1 : 1;
-        while (items.value[nextIndex] && props.isDisabled(items.value[nextIndex].date, props.view)) nextIndex += direction;
+        while (items.value[nextIndex] && props.isDisabled(items.value[nextIndex].date, props.view))
+          nextIndex += direction;
         target = items.value[nextIndex];
       }
       if (target) {
@@ -244,7 +261,10 @@ const __sfc_main__ = {
         _createElementVNode(
           "div",
           {
-            class: _normalizeClass(["wb-date-calendar__grid", { "wb-date-picker__days": __props.view === "date", "has-markers": __props.view === "date" && Boolean(__props.dateMarkers) }]),
+            class: _normalizeClass(["wb-date-calendar__grid", {
+              "wb-date-picker__days": __props.view === "date",
+              "has-markers": __props.view === "date" && Boolean(__props.dateMarkers)
+            }]),
             onMouseleave: _cache[6] || (_cache[6] = ($event) => emit("hover", ""))
           },
           [

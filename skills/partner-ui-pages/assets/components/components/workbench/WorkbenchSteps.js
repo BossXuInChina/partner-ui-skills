@@ -16,6 +16,7 @@ const _hoisted_8 = {
   "aria-hidden": "true"
 };
 const _hoisted_9 = ["disabled"];
+import "../scrollbar/scrollbar.css";
 import WorkbenchIcon from "../icons/WorkbenchIcon.vue";
 import { stepIcons } from "./stepIcons.js";
 import "../../../../foundation/generated/runtime/foundation.css";
@@ -29,6 +30,7 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     current: Number,
     variant: { type: String, default: "horizontal" },
     size: { type: String, default: "medium" },
+    compactEdges: Boolean,
     nodeType: { type: String, default: "number" },
     readonly: { type: Boolean, default: true },
     disabled: { type: Boolean, default: false },
@@ -43,12 +45,31 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     const canScrollBack = ref(false);
     const canScrollForward = ref(false);
     const overflow = computed(() => canScrollBack.value || canScrollForward.value);
-    const active = computed(() => props.modelValue >= 0 && props.modelValue < props.items.length ? props.modelValue : -1);
+    const compactHorizontal = computed(() => props.compactEdges && props.variant === "horizontal");
+    const active = computed(
+      () => props.modelValue >= 0 && props.modelValue < props.items.length ? props.modelValue : -1
+    );
     const progress = computed(() => props.current ?? props.modelValue);
-    const labels = { finish: "\u5DF2\u5B8C\u6210", process: "\u8FDB\u884C\u4E2D", wait: "\u672A\u5F00\u59CB", error: "\u6B65\u9AA4\u5F02\u5E38", disabled: "\u65E0\u6743\u9650", unavailable: "\u4E0D\u53EF\u64CD\u4F5C", available: "\u53EF\u5F00\u59CB" };
+    const labels = {
+      finish: "\u5DF2\u5B8C\u6210",
+      process: "\u8FDB\u884C\u4E2D",
+      wait: "\u672A\u5F00\u59CB",
+      error: "\u6B65\u9AA4\u5F02\u5E38",
+      disabled: "\u65E0\u6743\u9650",
+      unavailable: "\u4E0D\u53EF\u64CD\u4F5C",
+      available: "\u53EF\u5F00\u59CB"
+    };
     function iconName(index) {
       const size = props.variant === "arrow" || ["small", "mini"].includes(props.size) ? "\u5C0F\u5C3A\u5BF8" : props.size === "large" ? "\u5927\u5C3A\u5BF8" : "\u4E2D\u5C3A\u5BF8";
-      const states = { finish: "\u5DF2\u5B8C\u6210", error: "\u5F02\u5E38\u56FE\u6807", disabled: "\u65E0\u6743\u9650\u56FE\u6807", unavailable: "\u672A\u5F00\u59CB\u56FE\u6807", available: "\u53EF\u5F00\u59CB\u56FE\u6807", process: "\u8FDB\u884C\u4E2D\u56FE\u6807", wait: "\u672A\u5F00\u59CB\u56FE\u6807" };
+      const states = {
+        finish: "\u5DF2\u5B8C\u6210",
+        error: "\u5F02\u5E38\u56FE\u6807",
+        disabled: "\u65E0\u6743\u9650\u56FE\u6807",
+        unavailable: "\u672A\u5F00\u59CB\u56FE\u6807",
+        available: "\u53EF\u5F00\u59CB\u56FE\u6807",
+        process: "\u8FDB\u884C\u4E2D\u56FE\u6807",
+        wait: "\u672A\u5F00\u59CB\u56FE\u6807"
+      };
       const status = states[statusAt(index)];
       const focus = props.variant === "arrow" && statusAt(index) === "finish" ? "focus" : active.value === index ? "focus" : "default";
       return stepIcons[`${size}/${status}/${focus}`] ?? stepIcons[`${size}/${status}/default`];
@@ -65,7 +86,9 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     }
     const firstNavigable = computed(() => props.items.findIndex((_, index) => navigable(index)));
     const focusIndex = ref(-1);
-    const tabStop = computed(() => navigable(focusIndex.value) ? focusIndex.value : navigable(active.value) ? active.value : firstNavigable.value);
+    const tabStop = computed(
+      () => navigable(focusIndex.value) ? focusIndex.value : navigable(active.value) ? active.value : firstNavigable.value
+    );
     function select(index) {
       if (!navigable(index) || active.value === index) return;
       emit("update:modelValue", index);
@@ -80,13 +103,15 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       const position = candidates.indexOf(index);
       const target = event.key === "Home" ? candidates[0] : event.key === "End" ? candidates.at(-1) : candidates[position + (event.key === next ? 1 : -1)];
       if (target === void 0) return;
-      const button = list.value?.querySelector(`[data-step-index="${target}"] button`);
+      const button = list.value?.querySelector(
+        `[data-step-index="${target}"] button`
+      );
       button?.focus();
       button?.scrollIntoView({ block: "nearest", inline: "nearest" });
     }
     function measure() {
       const el = viewport.value;
-      if (!el || props.variant === "vertical") {
+      if (!el || props.variant === "vertical" || el.scrollWidth <= (el.parentElement?.clientWidth ?? el.clientWidth) + 1) {
         canScrollBack.value = false;
         canScrollForward.value = false;
         return;
@@ -98,25 +123,57 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       const el = viewport.value;
       if (!el) return;
       const target = el.scrollLeft + direction * Math.ceil(el.clientWidth * 0.75);
-      el.scrollTo({ left: Math.max(0, Math.min(target, el.scrollWidth - el.clientWidth)), behavior: "auto" });
+      el.scrollTo({
+        left: Math.max(0, Math.min(target, el.scrollWidth - el.clientWidth)),
+        behavior: "auto"
+      });
     }
     let observer;
+    let firstEdge;
+    let lastEdge;
+    function measureLayout() {
+      const el = list.value;
+      if (el && firstEdge && lastEdge) {
+        el.style.setProperty("--step-first-edge-width", `${firstEdge.getBoundingClientRect().width}px`);
+        el.style.setProperty("--step-last-edge-width", `${lastEdge.getBoundingClientRect().width}px`);
+      }
+      measure();
+    }
+    function observeEdges() {
+      if (firstEdge) observer?.unobserve(firstEdge);
+      if (lastEdge) observer?.unobserve(lastEdge);
+      const el = compactHorizontal.value ? list.value : void 0;
+      firstEdge = el?.firstElementChild?.querySelector(".wb-steps__content");
+      lastEdge = el?.lastElementChild?.querySelector(".wb-steps__content");
+      if (firstEdge) observer?.observe(firstEdge);
+      if (lastEdge) observer?.observe(lastEdge);
+    }
     onMounted(() => {
-      observer = new ResizeObserver(measure);
+      observer = new ResizeObserver(measureLayout);
       if (viewport.value) observer.observe(viewport.value);
       if (list.value) observer.observe(list.value);
-      measure();
+      observeEdges();
+      measureLayout();
     });
     onBeforeUnmount(() => observer?.disconnect());
-    watch(() => [props.items, props.variant, props.size], async () => {
-      await nextTick();
-      measure();
-    }, { deep: true });
+    watch(
+      () => [props.items, props.variant, props.size, props.compactEdges],
+      async () => {
+        await nextTick();
+        observeEdges();
+        measureLayout();
+      },
+      { deep: true }
+    );
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock(
         "div",
         {
-          class: _normalizeClass(["wb-steps", [`wb-steps--${__props.variant}`, `wb-steps--${__props.size}`, { "wb-steps--overflow": overflow.value }]])
+          class: _normalizeClass(["wb-steps", [
+            `wb-steps--${__props.variant}`,
+            `wb-steps--${__props.size}`,
+            { "wb-steps--overflow": overflow.value, "wb-steps--compact-edges": compactHorizontal.value }
+          ]])
         },
         [
           overflow.value ? (_openBlock(), _createElementBlock("button", {
@@ -134,7 +191,7 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
             {
               ref_key: "viewport",
               ref: viewport,
-              class: "wb-steps__viewport",
+              class: "wb-steps__viewport wb-scrollbar",
               onScrollPassive: measure
             },
             [
@@ -150,7 +207,10 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                   _renderList(__props.items, (item, index) => {
                     return _openBlock(), _createElementBlock("li", {
                       key: item.key ?? index,
-                      class: _normalizeClass(["wb-steps__item", [`wb-steps__item--${statusAt(index)}`, { "wb-steps__item--selected": active.value === index }]]),
+                      class: _normalizeClass(["wb-steps__item", [
+                        `wb-steps__item--${statusAt(index)}`,
+                        { "wb-steps__item--selected": active.value === index }
+                      ]]),
                       "data-step-index": index,
                       "aria-current": active.value === index ? "step" : void 0
                     }, [
@@ -168,7 +228,9 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                           _createElementVNode(
                             "span",
                             {
-                              class: _normalizeClass(["wb-steps__node", { "wb-steps__node--full-icon": !(__props.nodeType === "number" && ["process", "wait"].includes(statusAt(index))) && (__props.size !== "mini" || __props.variant === "arrow") }]),
+                              class: _normalizeClass(["wb-steps__node", {
+                                "wb-steps__node--full-icon": !(__props.nodeType === "number" && ["process", "wait"].includes(statusAt(index))) && (__props.size !== "mini" || __props.variant === "arrow")
+                              }]),
                               "aria-hidden": "true"
                             },
                             [

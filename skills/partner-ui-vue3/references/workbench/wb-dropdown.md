@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 下拉菜单 Dropdown — `WorkbenchDropdown`
 
 资产：`wb-dropdown` · 类型：`component` · 资产合同版本：`1.1.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -685,7 +685,7 @@ function runAction({ id }) { result.value = `已触发：${id}` }
 | radioValues | Object | {"kind":"function"} |  | groupId到已选value的对象映射。 |
 | size | String | default | small / default / large | small、default或large菜单尺寸。 |
 | textIntent | String | drilldown | action / drilldown | 文字触发器的action或drilldown语义。 |
-| textLayout | String | container | container / inline |  |
+| textLayout | String | container | container / inline | 文字触发器的布局。inline 随行高，container 保留标准点击区域。 |
 | triggerType | String | button | button / text / icon | button、text或icon入口样式。 |
 
 ### Events

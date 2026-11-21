@@ -15,7 +15,7 @@
     calc(100vw - 2 * var(--wb-spacing-component-xs))
   );
   padding: var(--wb-spacing-component-xs) var(--wb-spacing-component-sm);
-  border-radius: var(--wb-radius-sm);
+  border-radius: var(--wb-asset-wb-tooltip-radius);
   background: var(--wb-color-surface-overlay);
   box-shadow: var(--wb-shadow-lg);
   color: var(--wb-color-text-primary);

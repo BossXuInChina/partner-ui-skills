@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 滚动条 Scrollbar — `WorkbenchScrollbar`
 
 资产：`wb-scrollbar` · 类型：`component` · 资产合同版本：`1.1.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -231,6 +231,25 @@ const entries = ['申请进度', '所需材料', '联系人信息', '审批记�
 </style>
 ```
 
+### 示例：页脚和侧栏避让
+
+id：`shell-track-avoidance` · portability：`portable` · owner：`wb-scrollbar`
+
+示例输入分别对应页脚的可见高度、完整高度与侧栏宽度。真实页面由宿主按视口实时计算。
+
+Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.
+
+```vue
+<script setup>
+import { WorkbenchScrollbar } from '@workbench/ui-vue3'
+</script>
+<template>
+  <WorkbenchScrollbar label="工作台内容" :track-insets="{ blockEnd: 24, blockEndReserve: 52, inlineEnd: 0 }">
+    <slot />
+  </WorkbenchScrollbar>
+</template>
+```
+
 ## 使用规范与API
 
 [在 Studio 中查看](http://localhost:4173/preview/WB-SCROLLBAR-V1/scrollbar?view=usage)
@@ -242,6 +261,7 @@ const entries = ['申请进度', '所需材料', '联系人信息', '审批记�
 | label * | String |  |  | 必填的滚动区域可访问名称。 |
 | size | String | default |  | 轨道尺寸：small或default；large作为default兼容别名。 |
 | state | String |  |  | Studio状态预览值，用于展示hover态。 |
+| trackInsets | Object |  |  | 本轮候选新增。可选 { blockEnd?: number, inlineEnd?: number, blockEndReserve?: number }，单位为 CSS 像素。动态避让页脚时同时传当前可见高度和完整高度。 |
 
 ### Slots
 
@@ -362,6 +382,14 @@ id：`wb-scrollbar-rule-12` · must / confirmed
 - default适合主内容区，small适合下拉菜单、文本框等辅助小区域。
 
 - 水平与垂直方向使用同一轴向参数；避免交互内容贴近滚动轨道。
+
+### 本轮候选新增 · 轨道避让
+
+宿主通过 trackInsets 传入可见页脚和侧栏的逻辑边界。轨道缩短或平移时，原生视口与正文的可用尺寸保持原样。
+
+- 纵向页面的 blockEnd 传当前可见页脚高度，blockEndReserve 传页脚完整高度，inlineEnd 传侧栏遮挡宽度。完整高度先确定滑块的端点，可见高度只调整轨道的点击范围，页脚进入时滑块保持同向。
+
+- 水平轨道的 inlineEnd 缩短轨道，blockEnd 向上移动整条轨道。blockEndReserve 只适用于纵向页面。值为非负 CSS 像素，省略各项会沿用默认轨道位置。
 
 ### 键盘与可访问性
 

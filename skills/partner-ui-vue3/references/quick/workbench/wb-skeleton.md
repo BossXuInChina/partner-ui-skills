@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 骨架屏 Skeleton — `WorkbenchSkeleton`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -42,7 +42,7 @@
   "props": {
     "variant": {"type":"String","default":"title-text","enum":["title-text","text","media-text","item-text","hero-text"]},
     "showTitle": {"type":"Boolean","default":true},
-    "lines": {"type":"Number","default":3,"validator":{"kind":"unknown","expression":"value => Number.isInteger(value) && value >= 1 && value <= 5"}},
+    "lines": {"type":"Number","default":3,"validator":{"kind":"unknown","expression":"(value) => Number.isInteger(value) && value >= 1 && value <= 5"}},
     "animated": {"type":"Boolean","default":true},
     "label": {"type":"String","default":""}
   },

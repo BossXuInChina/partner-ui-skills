@@ -26,7 +26,13 @@
 .wb-modal:has(.feedback-dialog__message--with-icon) .feedback-dialog__status-icon {
   position: absolute;
   z-index: 1;
-  inset-block-start: calc(var(--wb-spacing-layout-container-block) + (var(--wb-font-headline-s-line-height) - var(--wb-asset-wb-feedback-dialog-status-icon-size)) / 2);
+  inset-block-start: calc(
+    var(--wb-spacing-layout-container-block) +
+      (
+        var(--wb-font-headline-s-line-height) - var(--wb-asset-wb-feedback-dialog-status-icon-size)
+      ) /
+      2
+  );
   inset-inline-start: var(--wb-spacing-layout-container-inline);
   display: flex;
   width: var(--wb-asset-wb-feedback-dialog-status-icon-size);
@@ -54,14 +60,15 @@
 
 .feedback-dialog__message--with-icon,
 .feedback-dialog__actions--with-icon {
-  padding-inline-start: calc(var(--wb-asset-wb-feedback-dialog-status-icon-size) + var(--wb-spacing-component-sm));
+  padding-inline-start: calc(
+    var(--wb-asset-wb-feedback-dialog-status-icon-size) + var(--wb-spacing-component-sm)
+  );
 }
 
 .wb-modal:has(.feedback-dialog__message) .wb-modal__close {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .wb-modal:has(.feedback-dialog__message--with-icon) .wb-modal__close {
@@ -70,8 +77,16 @@
   flex-basis: auto;
 }
 
-
-
-.feedback-dialog__checkbox { min-width: 0; align-self: center; }
-.feedback-dialog__buttons { display: flex; flex: none; align-items: center; justify-content: flex-end; gap: var(--wb-spacing-component-sm); margin-inline-start: auto; }
+.feedback-dialog__checkbox {
+  min-width: 0;
+  align-self: center;
+}
+.feedback-dialog__buttons {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wb-spacing-component-sm);
+  margin-inline-start: auto;
+}
 

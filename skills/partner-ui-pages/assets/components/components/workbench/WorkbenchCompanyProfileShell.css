@@ -23,18 +23,13 @@
   gap: var(--wb-spacing-component-sm);
   margin-bottom: var(--wb-spacing-component-sm);
 }
-.wb-profile-shell .wb-profile-shell__identity,
-.wb-profile-shell .wb-profile-shell__identity-details,
-.wb-profile-shell .wb-profile-shell__identity-details > div {
+.wb-profile-shell .wb-profile-shell__identity {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--wb-spacing-component-sm);
-  margin: 0;
-}
-.wb-profile-shell .wb-profile-shell__identity {
   min-height: var(--wb-asset-wb-form-control-height);
   gap: var(--wb-spacing-component-lg);
+  margin: 0;
 }
 .wb-profile-shell .wb-profile-shell__heading h1 {
   margin: 0;
@@ -44,15 +39,16 @@
   letter-spacing: var(--wb-font-headline-s-letter-spacing);
 }
 .wb-profile-shell .wb-profile-shell__identity-details {
-  min-height: var(--wb-asset-wb-form-control-height);
-  gap: var(--wb-spacing-component-xl);
-  font-size: var(--wb-font-body-m-font-size);
-  font-weight: var(--wb-font-body-m-font-weight);
-  line-height: var(--wb-font-body-m-line-height);
-  letter-spacing: var(--wb-font-body-m-letter-spacing);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-spacing-component-sm) var(--wb-spacing-component-xl);
+  min-inline-size: 0;
+  margin: 0;
 }
-.wb-profile-shell .wb-profile-shell__identity-details dt {
-  color: var(--wb-color-text-secondary);
+.wb-profile-shell .wb-profile-shell__identity-details > .wb-static-field {
+  align-items: baseline;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
 }
 .wb-profile-shell .wb-profile-shell__identity-details dd {
   margin: 0;

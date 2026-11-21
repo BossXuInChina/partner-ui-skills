@@ -48,12 +48,24 @@ import WorkbenchIcon from "../icons/WorkbenchIcon.vue";
 import WorkbenchButton from "../button/WorkbenchButton.vue";
 import "../scrollbar/scrollbar.css";
 import WorkbenchDatePanel from "./WorkbenchDatePanel.vue";
-import { addDays, dateKey, formatValue, localDate, monthStart, pad, parseDate } from "./dateUtils.js";
+import {
+  addDays,
+  dateKey,
+  formatValue,
+  localDate,
+  monthStart,
+  pad,
+  parseDate
+} from "./dateUtils.js";
 const __sfc_main__ = {
   __name: "WorkbenchDatePicker",
   props: {
     modelValue: { type: [String, Array], default: "" },
-    type: { type: String, default: "date", validator: (value) => ["date", "month", "year", "datetime"].includes(value) },
+    type: {
+      type: String,
+      default: "date",
+      validator: (value) => ["date", "month", "year", "datetime"].includes(value)
+    },
     range: Boolean,
     showTime: Boolean,
     disabled: Boolean,
@@ -82,27 +94,47 @@ const __sfc_main__ = {
     const props = __props;
     const disabled = useFormDisabled(() => props.disabled);
     const emit = __emit;
-    const root = ref(null), panel = ref(null), calendars = ref([]), inputs = ref([]), trigger = ref(null);
-    const panelId = "wb-date-panel-" + useId(), open = ref(false);
+    const root = ref(null);
+    const panel = ref(null);
+    const calendars = ref([]);
+    const inputs = ref([]);
+    const trigger = ref(null);
+    const panelId = "wb-date-panel-" + useId();
+    const open = ref(false);
     const unit = computed(() => props.type === "datetime" ? "date" : props.type);
-    const withTime = computed(() => unit.value === "date" && (props.showTime || props.type === "datetime"));
+    const withTime = computed(
+      () => unit.value === "date" && (props.showTime || props.type === "datetime")
+    );
     const inactive = computed(() => disabled.value || props.previewState === "disabled");
     const committed = computed(() => {
       const values = props.range ? Array.isArray(props.modelValue) ? props.modelValue : [] : [props.modelValue];
       return values.filter((value) => parseDate(value, unit.value)).slice(0, props.range ? 2 : 1);
     });
-    const text = ref([]), draft = ref([]), hoverValue = ref(""), view = ref(unit.value);
+    const text = ref([]);
+    const draft = ref([]);
+    const hoverValue = ref("");
+    const view = ref(unit.value);
     const visible = ref(monthStart(parseDate(committed.value[0], unit.value) || props.today));
     const yearStart = ref(visible.value.getFullYear() - 5);
-    const activeTimeEnd = ref(0), timeParts = ref(["00", "00", "00"]);
+    const activeTimeEnd = ref(0);
+    const timeParts = ref(["00", "00", "00"]);
     const hasValue = computed(() => committed.value.length > 0);
     const showPanel = computed(() => !inactive.value && (open.value || props.inline));
-    const fluidPanel = computed(() => props.fluid && props.inline && !props.range && !withTime.value && !shortcutItems.value.length);
-    const ready = computed(() => draft.value.length === (props.range ? 2 : 1) && draft.value.every((value) => {
-      const date = parseDate(value, unit.value);
-      return date && !isDisabled(date, unit.value);
-    }));
-    const dates = computed(() => Array.from({ length: props.range ? 2 : 1 }, (_, index) => view.value === "year" ? localDate(yearStart.value + index * 16) : view.value === "month" ? localDate(visible.value.getFullYear() + index) : monthStart(visible.value, index)));
+    const fluidPanel = computed(
+      () => props.fluid && props.inline && !props.range && !withTime.value && !shortcutItems.value.length
+    );
+    const ready = computed(
+      () => draft.value.length === (props.range ? 2 : 1) && draft.value.every((value) => {
+        const date = parseDate(value, unit.value);
+        return date && !isDisabled(date, unit.value);
+      })
+    );
+    const dates = computed(
+      () => Array.from(
+        { length: props.range ? 2 : 1 },
+        (_, index) => view.value === "year" ? localDate(yearStart.value + index * 16) : view.value === "month" ? localDate(visible.value.getFullYear() + index) : monthStart(visible.value, index)
+      )
+    );
     const defaultShortcuts = computed(() => [
       { label: "\u6628\u5929", date: addDays(props.today, -1) },
       { label: "\u8FC7\u53BB7\u5929", date: addDays(props.today, -6) },
@@ -113,13 +145,22 @@ const __sfc_main__ = {
       { label: "\u672C\u5468\u672B", date: addDays(props.today, 7 - (props.today.getDay() || 7)) },
       { label: "14\u5929\u540E", date: addDays(props.today, 14) }
     ]);
-    const shortcutItems = computed(() => Array.isArray(props.shortcuts) ? props.shortcuts : props.shortcuts ? defaultShortcuts.value : []);
-    const timeChoices = [Array.from({ length: 24 }, (_, index) => pad(index)), ...Array.from({ length: 2 }, () => Array.from({ length: 60 }, (_, index) => pad(index)))];
+    const shortcutItems = computed(
+      () => Array.isArray(props.shortcuts) ? props.shortcuts : props.shortcuts ? defaultShortcuts.value : []
+    );
+    const timeChoices = [
+      Array.from({ length: 24 }, (_, index) => pad(index)),
+      ...Array.from({ length: 2 }, () => Array.from({ length: 60 }, (_, index) => pad(index)))
+    ];
     const timeLabels = ["\u5C0F\u65F6", "\u5206\u949F", "\u79D2"];
-    const fieldPlaceholder = computed(() => props.placeholder || (withTime.value ? "\u8BF7\u9009\u62E9\u65E5\u671F\u4E0E\u65F6\u95F4" : unit.value === "month" ? "\u8BF7\u9009\u62E9\u6708\u4EFD" : unit.value === "year" ? "\u8BF7\u9009\u62E9\u5E74\u4EFD" : "\u8BF7\u9009\u62E9\u65E5\u671F"));
+    const fieldPlaceholder = computed(
+      () => props.placeholder || (withTime.value ? "\u8BF7\u9009\u62E9\u65E5\u671F\u4E0E\u65F6\u95F4" : unit.value === "month" ? "\u8BF7\u9009\u62E9\u6708\u4EFD" : unit.value === "year" ? "\u8BF7\u9009\u62E9\u5E74\u4EFD" : "\u8BF7\u9009\u62E9\u65E5\u671F")
+    );
     function isDisabled(date, displayUnit = unit.value) {
       if (date.getFullYear() < 1 || date.getFullYear() > 9999) return true;
-      const key = dateKey(date, displayUnit), min = parseDate(props.min, unit.value), max = parseDate(props.max, unit.value);
+      const key = dateKey(date, displayUnit);
+      const min = parseDate(props.min, unit.value);
+      const max = parseDate(props.max, unit.value);
       return !!(min && key < dateKey(min, displayUnit) || max && key > dateKey(max, displayUnit) || props.disabledDate?.(new Date(date), displayUnit));
     }
     function loadTime() {
@@ -186,14 +227,25 @@ const __sfc_main__ = {
     }
     function changeView(next) {
       view.value = next;
-      yearStart.value = Math.max(1, Math.min(props.range ? 9968 : 9984, visible.value.getFullYear() - 5));
+      yearStart.value = Math.max(
+        1,
+        Math.min(props.range ? 9968 : 9984, visible.value.getFullYear() - 5)
+      );
     }
     function navigate(change, index) {
       if (change.date) visible.value = monthStart(change.date, -index);
-      else if (view.value === "year") yearStart.value = Math.max(1, Math.min(props.range ? 9968 : 9984, yearStart.value + change.years));
+      else if (view.value === "year")
+        yearStart.value = Math.max(
+          1,
+          Math.min(props.range ? 9968 : 9984, yearStart.value + change.years)
+        );
       else {
-        const next = localDate(visible.value.getFullYear() + (change.years || 0), visible.value.getMonth() + (change.months || 0));
-        if (next.getFullYear() >= 1 && next.getFullYear() <= (props.range ? 9998 : 9999)) visible.value = next;
+        const next = localDate(
+          visible.value.getFullYear() + (change.years || 0),
+          visible.value.getMonth() + (change.months || 0)
+        );
+        if (next.getFullYear() >= 1 && next.getFullYear() <= (props.range ? 9998 : 9999))
+          visible.value = next;
       }
       nextTick(positionPanel);
     }
@@ -232,7 +284,8 @@ const __sfc_main__ = {
       const values = typeof item.value === "function" ? item.value() : item.value;
       let selected = values == null ? [item.date, ...props.range ? [props.today] : []] : Array.isArray(values) ? values : [values];
       selected = selected.map((value) => value instanceof Date ? new Date(value) : parseDate(value, unit.value)).filter(Boolean);
-      if (selected.length !== (props.range ? 2 : 1) || selected.some((date) => isDisabled(date, unit.value))) return;
+      if (selected.length !== (props.range ? 2 : 1) || selected.some((date) => isDisabled(date, unit.value)))
+        return;
       draft.value = selected.map((date) => formatValue(date, unit.value, withTime.value)).sort();
       text.value = [...draft.value];
       visible.value = monthStart(selected[0]);
@@ -243,7 +296,8 @@ const __sfc_main__ = {
       }
     }
     function now() {
-      if (!isDisabled(props.today, unit.value)) selectShortcut({ value: props.range ? [props.today, props.today] : props.today });
+      if (!isDisabled(props.today, unit.value))
+        selectShortcut({ value: props.range ? [props.today, props.today] : props.today });
     }
     function selectTime(index, value) {
       const position = props.range ? activeTimeEnd.value : 0;
@@ -297,35 +351,54 @@ const __sfc_main__ = {
     }
     function positionPanel() {
       if (!panel.value || props.inline || !root.value) return;
-      const anchor = root.value.getBoundingClientRect(), box = panel.value.getBoundingClientRect();
+      const anchor = root.value.getBoundingClientRect();
+      const box = panel.value.getBoundingClientRect();
       const style = getComputedStyle(root.value);
       const gap = parseFloat(style.getPropertyValue("--wb-spacing-component-xs"));
       const edge = parseFloat(style.getPropertyValue("--wb-spacing-component-sm"));
       const top = anchor.bottom + gap + box.height <= window.innerHeight - edge ? anchor.bottom + gap : Math.max(edge, anchor.top - box.height - gap);
-      Object.assign(panel.value.style, { left: Math.max(edge, Math.min(anchor.left, window.innerWidth - box.width - edge)) + "px", top: top + "px" });
+      Object.assign(panel.value.style, {
+        left: Math.max(edge, Math.min(anchor.left, window.innerWidth - box.width - edge)) + "px",
+        top: top + "px"
+      });
     }
-    watch([() => props.modelValue, unit, () => props.range, withTime], resetDraft, { immediate: true, deep: true });
+    watch([() => props.modelValue, unit, () => props.range, withTime], resetDraft, {
+      immediate: true,
+      deep: true
+    });
     watch(inactive, (value) => {
       if (value) close();
     });
-    watch(showPanel, (value) => {
-      const method = value && !props.inline ? "addEventListener" : "removeEventListener";
-      document[method]("pointerdown", outside);
-      document[method]("focusin", outside);
-      window[method]("resize", positionPanel);
-      window[method]("scroll", positionPanel, true);
-      if (value) nextTick(positionPanel);
-    }, { immediate: true });
-    watch(() => props.defaultOpen, (value) => {
-      if (value) setOpen(true);
-    }, { immediate: true });
+    watch(
+      showPanel,
+      (value) => {
+        const method = value && !props.inline ? "addEventListener" : "removeEventListener";
+        document[method]("pointerdown", outside);
+        document[method]("focusin", outside);
+        window[method]("resize", positionPanel);
+        window[method]("scroll", positionPanel, true);
+        if (value) nextTick(positionPanel);
+      },
+      { immediate: true }
+    );
+    watch(
+      () => props.defaultOpen,
+      (value) => {
+        if (value) setOpen(true);
+      },
+      { immediate: true }
+    );
     onBeforeUnmount(() => {
       document.removeEventListener("pointerdown", outside);
       document.removeEventListener("focusin", outside);
       window.removeEventListener("resize", positionPanel);
       window.removeEventListener("scroll", positionPanel, true);
     });
-    __expose({ focus: () => inputs.value[0] ? inputs.value[0].focus() : calendars.value[0]?.focusInitial(), open: () => setOpen(true), close });
+    __expose({
+      focus: () => inputs.value[0] ? inputs.value[0].focus() : calendars.value[0]?.focusInitial(),
+      open: () => setOpen(true),
+      close
+    });
     watch(disabled, (value) => {
       if (value) {
         close();
@@ -337,7 +410,18 @@ const __sfc_main__ = {
         {
           ref_key: "root",
           ref: root,
-          class: _normalizeClass(["wb-date-picker", ["wb-date-picker--" + __props.size, "is-" + __props.previewState, { "is-disabled": inactive.value, "is-open": showPanel.value, "is-invalid": __props.invalid, "has-value": hasValue.value, "is-range": __props.range, "is-fluid": fluidPanel.value }]]),
+          class: _normalizeClass(["wb-date-picker", [
+            "wb-date-picker--" + __props.size,
+            "is-" + __props.previewState,
+            {
+              "is-disabled": inactive.value,
+              "is-open": showPanel.value,
+              "is-invalid": __props.invalid,
+              "has-value": hasValue.value,
+              "is-range": __props.range,
+              "is-fluid": fluidPanel.value
+            }
+          ]]),
           onKeydown: onKey
         },
         [
@@ -433,7 +517,12 @@ const __sfc_main__ = {
               id: panelId,
               ref_key: "panel",
               ref: panel,
-              class: _normalizeClass(["wb-date-picker__panel wb-scrollbar", { "is-inline": __props.inline, "is-panel-only": __props.inline && !__props.showInput, "is-fluid": fluidPanel.value, "is-flat": __props.inline && __props.flatInline }]),
+              class: _normalizeClass(["wb-date-picker__panel wb-scrollbar", {
+                "is-inline": __props.inline,
+                "is-panel-only": __props.inline && !__props.showInput,
+                "is-fluid": fluidPanel.value,
+                "is-flat": __props.inline && __props.flatInline
+              }]),
               role: __props.inline && !__props.showInput ? "group" : "dialog",
               "aria-label": __props.inline && !__props.showInput ? __props.ariaLabel : __props.ariaLabel + "\u9009\u62E9\u9762\u677F",
               onKeydown: onKey

@@ -19,12 +19,21 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
   setup(__props, { emit: __emit }) {
     const props = __props;
     const emit = __emit;
-    const slots = useSlots(), id = `workspace-tabs-${useId()}`;
-    const port = ref(), track = ref(), indicator = ref();
-    const active = computed(() => props.items.findIndex((item) => item.value === props.modelValue && !item.disabled));
-    const entry = computed(() => active.value >= 0 ? active.value : props.items.findIndex((item) => !item.disabled));
-    let observer, frame = 0;
-    const tabId = (index) => `${id}-tab-${index}`, panelId = (index) => `${id}-panel-${index}`;
+    const slots = useSlots();
+    const id = `workspace-tabs-${useId()}`;
+    const port = ref();
+    const track = ref();
+    const indicator = ref();
+    const active = computed(
+      () => props.items.findIndex((item) => item.value === props.modelValue && !item.disabled)
+    );
+    const entry = computed(
+      () => active.value >= 0 ? active.value : props.items.findIndex((item) => !item.disabled)
+    );
+    let observer;
+    let frame = 0;
+    const tabId = (index) => `${id}-tab-${index}`;
+    const panelId = (index) => `${id}-panel-${index}`;
     function tab(index) {
       return track.value?.querySelectorAll("[role=tab]")[index];
     }
@@ -40,11 +49,14 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       if (!frame) frame = requestAnimationFrame(measure);
     }
     function reveal(index) {
-      const node = tab(index), viewport = port.value;
+      const node = tab(index);
+      const viewport = port.value;
       if (!node || !viewport) return;
-      const left = node.offsetLeft, right = left + node.offsetWidth;
+      const left = node.offsetLeft;
+      const right = left + node.offsetWidth;
       if (left < viewport.scrollLeft) viewport.scrollLeft = left;
-      else if (right > viewport.scrollLeft + viewport.clientWidth) viewport.scrollLeft = right - viewport.clientWidth;
+      else if (right > viewport.scrollLeft + viewport.clientWidth)
+        viewport.scrollLeft = right - viewport.clientWidth;
     }
     function select(item, index, focus = false) {
       if (item.disabled) return;
@@ -52,26 +64,32 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
         emit("update:modelValue", item.value);
         emit("change", item);
       }
-      if (focus) void nextTick(() => {
-        tab(index)?.focus({ preventScroll: true });
-        reveal(index);
-      });
+      if (focus)
+        void nextTick(() => {
+          tab(index)?.focus({ preventScroll: true });
+          reveal(index);
+        });
     }
     function keydown(event, index) {
       if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
       const enabled = props.items.flatMap((item, i) => item.disabled ? [] : [i]);
       if (!enabled.length) return;
       event.preventDefault();
-      const at = enabled.indexOf(index), direction = event.key === "ArrowRight" ? 1 : -1;
+      const at = enabled.indexOf(index);
+      const direction = event.key === "ArrowRight" ? 1 : -1;
       const target = event.key === "Home" ? enabled[0] : event.key === "End" ? enabled.at(-1) : enabled[(Math.max(0, at) + direction + enabled.length) % enabled.length];
       select(props.items[target], target, true);
     }
-    watch(() => [props.modelValue, props.items, props.align], () => {
-      void nextTick(() => {
-        schedule();
-        if (active.value >= 0) reveal(active.value);
-      });
-    }, { deep: true });
+    watch(
+      () => [props.modelValue, props.items, props.align],
+      () => {
+        void nextTick(() => {
+          schedule();
+          if (active.value >= 0) reveal(active.value);
+        });
+      },
+      { deep: true }
+    );
     onMounted(() => {
       observer = new ResizeObserver(schedule);
       if (port.value) observer.observe(port.value);

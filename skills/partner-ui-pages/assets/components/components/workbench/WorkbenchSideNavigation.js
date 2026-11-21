@@ -34,8 +34,16 @@ const __sfc_main__ = {
     title: { type: String, default: "" },
     topToggle: { type: Boolean, default: false },
     width: { type: String, default: "" },
-    panelMode: { type: String, default: "flyout", validator: (value) => ["flyout", "popup", "columns"].includes(value) },
-    panelDensity: { type: String, default: "default", validator: (value) => ["small", "default", "large"].includes(value) },
+    panelMode: {
+      type: String,
+      default: "flyout",
+      validator: (value) => ["flyout", "popup", "columns"].includes(value)
+    },
+    panelDensity: {
+      type: String,
+      default: "default",
+      validator: (value) => ["small", "default", "large"].includes(value)
+    },
     showFlyoutIcons: { type: Boolean, default: true },
     showDivider: { type: Boolean, default: true },
     ariaLabel: { type: String, default: "\u4FA7\u8FB9\u5BFC\u822A" },
@@ -47,7 +55,13 @@ const __sfc_main__ = {
     panelExpandAll: { type: Boolean, default: false },
     collapsible: { type: Boolean, default: true }
   },
-  emits: ["update:collapsed", "update:activeItem", "update:expandedItems", "update:panelItemId", "select"],
+  emits: [
+    "update:collapsed",
+    "update:activeItem",
+    "update:expandedItems",
+    "update:panelItemId",
+    "select"
+  ],
   setup(__props, { expose: __expose, emit: __emit }) {
     const props = __props;
     const emit = __emit;
@@ -60,7 +74,12 @@ const __sfc_main__ = {
     });
     const panelTrigger = ref(null);
     const panelId = `wb-side-panel-${useId()}`;
-    const iconAliases = { home: "\u623F\u5B50/\u5C3A\u5BF8=16,\u9762\u6027=off", chart: "\u56FE\u8868/\u7C7B\u578B=\u67F1\u72B6\u56FE,\u5C3A\u5BF8=16,\u9762\u6027=off", users: "\u6587\u4EF6/\u5C3A\u5BF8=16", grid: "\u5E03\u5C40\u89C6\u56FE/\u89C6\u56FE=\u5BAB\u683C,\u5C3A\u5BF8=16,\u9762\u6027=off" };
+    const iconAliases = {
+      home: "\u623F\u5B50/\u5C3A\u5BF8=16,\u9762\u6027=off",
+      chart: "\u56FE\u8868/\u7C7B\u578B=\u67F1\u72B6\u56FE,\u5C3A\u5BF8=16,\u9762\u6027=off",
+      users: "\u6587\u4EF6/\u5C3A\u5BF8=16",
+      grid: "\u5E03\u5C40\u89C6\u56FE/\u89C6\u56FE=\u5BAB\u683C,\u5C3A\u5BF8=16,\u9762\u6027=off"
+    };
     const iconName = (value) => iconAliases[value] ?? (value || "\u5E03\u5C40\u89C6\u56FE/\u89C6\u56FE=\u5BAB\u683C,\u5C3A\u5BF8=16,\u9762\u6027=off");
     const containsActive = (item) => item.id === props.activeItem || (item.children ?? []).some(containsActive);
     const expandedSet = computed(() => new Set(props.expandedItems));
@@ -189,9 +208,10 @@ const __sfc_main__ = {
     }
     function closePanel(restoreFocus = true) {
       setPanel(null);
-      if (restoreFocus) nextTick(() => {
-        if (!panelItem.value) panelTrigger.value?.focus();
-      });
+      if (restoreFocus)
+        nextTick(() => {
+          if (!panelItem.value) panelTrigger.value?.focus();
+        });
     }
     function selectPanelItem(item) {
       emit("update:activeItem", item.id);
@@ -205,35 +225,61 @@ const __sfc_main__ = {
       viewportWidth.value = window.innerWidth;
       if (!root.value) return;
       const box = root.value.getBoundingClientRect();
-      root.value.style.setProperty("--side-navigation-panel-available", `${Math.max(0, window.innerWidth - box.right)}px`);
+      root.value.style.setProperty(
+        "--side-navigation-panel-available",
+        `${Math.max(0, window.innerWidth - box.right)}px`
+      );
       const y = Math.max(0, (panelTrigger.value?.getBoundingClientRect().top ?? box.top) - box.top);
       root.value.style.setProperty("--side-navigation-panel-anchor", `${y}px`);
     }
-    watch(() => props.width, (value) => {
-      if (value) root.value?.style.setProperty("--side-navigation-width", value);
-      else root.value?.style.removeProperty("--side-navigation-width");
-      nextTick(measureViewport);
-    }, { flush: "post" });
-    watch(() => props.collapsed, () => {
-      closePanel(false);
-      nextTick(measureViewport);
-    });
-    watch(() => props.panelMode, () => nextTick(measureViewport));
-    watch(() => props.panelItemId, () => nextTick(() => {
-      panelTrigger.value = panelItem.value ? root.value?.querySelector(`[data-child-id="${CSS.escape(panelItem.value.id)}"]`) ?? null : null;
-      measureViewport();
-    }));
-    watch(() => props.items, () => closePanel(false));
-    watch(() => props.expandedItems, () => {
-      if (panelItem.value && !props.items.some((item) => isExpanded(item) && item.children?.some((child) => child.id === panelItem.value.id))) closePanel(false);
-    });
+    watch(
+      () => props.width,
+      (value) => {
+        if (value) root.value?.style.setProperty("--side-navigation-width", value);
+        else root.value?.style.removeProperty("--side-navigation-width");
+        nextTick(measureViewport);
+      },
+      { flush: "post" }
+    );
+    watch(
+      () => props.collapsed,
+      () => {
+        closePanel(false);
+        nextTick(measureViewport);
+      }
+    );
+    watch(
+      () => props.panelMode,
+      () => nextTick(measureViewport)
+    );
+    watch(
+      () => props.panelItemId,
+      () => nextTick(() => {
+        panelTrigger.value = panelItem.value ? root.value?.querySelector(`[data-child-id="${CSS.escape(panelItem.value.id)}"]`) ?? null : null;
+        measureViewport();
+      })
+    );
+    watch(
+      () => props.items,
+      () => closePanel(false)
+    );
+    watch(
+      () => props.expandedItems,
+      () => {
+        if (panelItem.value && !props.items.some(
+          (item) => isExpanded(item) && item.children?.some((child) => child.id === panelItem.value.id)
+        ))
+          closePanel(false);
+      }
+    );
     onMounted(() => {
       if (props.width) root.value.style.setProperty("--side-navigation-width", props.width);
       measureViewport();
-      if (panelItem.value) nextTick(() => {
-        panelTrigger.value = root.value?.querySelector(`[data-child-id="${CSS.escape(panelItem.value.id)}"]`) ?? null;
-        measureViewport();
-      });
+      if (panelItem.value)
+        nextTick(() => {
+          panelTrigger.value = root.value?.querySelector(`[data-child-id="${CSS.escape(panelItem.value.id)}"]`) ?? null;
+          measureViewport();
+        });
       window.addEventListener("resize", measureViewport);
       document.addEventListener("pointerdown", onOutsidePointer);
     });

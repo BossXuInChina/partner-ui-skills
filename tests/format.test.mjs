@@ -63,14 +63,14 @@ test('all pre-existing reference paths and bytes remain unchanged', () => {
   // Captured from the unmodified formatter against the same locked tarballs/bases.
   assert.equal(
     createHash('sha256').update(JSON.stringify(legacy)).digest('hex'),
-    '92fc0661e9acc8830d6de3ebdbb0fb091df51fb8a8101d13fc2172d4ef68735e',
+    '3c58ce4281130386c4ba6a44313aa37bff0aabcf3aaa93ec648dbdcba7db5027',
   );
 });
 
 test('all locked assets get four Studio columns, declared API and genuine official SFCs', () => {
   const output = generateReferences({ packages, studioBaseURLs: bases });
   const contracts = wb.metadata.components.assets;
-  assert.equal(Object.keys(contracts).length, 73);
+  assert.equal(Object.keys(contracts).length, 77);
   assert.equal(
     [...output.keys()].filter((path) => !path.startsWith('quick/')).length,
     Object.keys(contracts).length + 8 + 19,
@@ -137,7 +137,7 @@ test('every shared case and unsupported custom gallery remains represented witho
   assert.equal(cases, 212);
   assert.equal(custom, 38);
   assert.equal(unsupported, 42);
-  assert.equal(unavailable, 20);
+  assert.equal(unavailable, 24);
 });
 
 test('configured Studio base is combined with package routes; output has no built-in endpoint', () => {
@@ -167,10 +167,10 @@ test('icons JSON retains all real family, native-size and exact public selector 
   const { _generated, ...icons } = JSON.parse(output.get('icons.json'));
   assert.match(_generated, /do not edit/);
   assert.deepEqual(icons, wb.metadata.icons);
-  assert.equal(icons.icons.length, 1201);
+  assert.equal(icons.icons.length, 1205);
   assert.equal(
     icons.families.reduce((sum, family) => sum + family.iconCount, 0),
-    1201,
+    1205,
   );
   for (const family of icons.families) {
     assert.ok(output.get('icons.md').includes(family.id));

@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 日期选择 DatePicker — `WorkbenchDatePicker`
 
 资产：`wb-date-picker` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -224,12 +224,12 @@ const selectedDate = ref('2026-10-24')
 | --- | --- | --- | --- | --- |
 | ariaDescribedby | String |  |  | 关联辅助说明元素ID。 |
 | ariaLabel | String | 选择日期 |  | 日期选择控件可访问名称。 |
-| dateMarkers | Object | null |  |  |
+| dateMarkers | Object | null |  | 以日期字符串为键，按日提供日历标记。 |
 | defaultOpen | Boolean |  |  | 非受控时的初始面板展开状态。 |
 | disabled | Boolean |  |  | 禁用日期修改。 |
 | disabledDate | Function |  |  | 同步日期判定函数；返回禁用结果时该日期不可选。 |
-| flatInline | Boolean |  |  |  |
-| fluid | Boolean |  |  |  |
+| flatInline | Boolean |  |  | 为内联面板使用平铺外观。 |
+| fluid | Boolean |  |  | 让简单的内联单日期面板随容器宽度展开。 |
 | inline | Boolean |  |  | 将面板固定嵌入而非作为普通浮层展开。 |
 | invalid | Boolean |  |  | 声明控件存在错误状态。 |
 | max | String |  |  | 可选日期上界。 |
@@ -240,8 +240,8 @@ const selectedDate = ref('2026-10-24')
 | previewState | String | default |  | Studio预览状态参数。 |
 | range | Boolean |  |  | 启用双端点范围选择。 |
 | shortcuts | Boolean \| Array | false |  | 启用快捷项或提供快捷项配置。 |
-| showEmptyMarkers | Boolean |  |  |  |
-| showInput | Boolean | true |  |  |
+| showEmptyMarkers | Boolean |  |  | 在没有日期标记的日期保留标记位置。 |
+| showInput | Boolean | true |  | 内联模式是否显示日期输入框，默认显示。 |
 | showTime | Boolean |  |  | 在日期选择中启用时间选择。 |
 | size | String | default |  | default或small选择框尺寸。 |
 | today | Date | {"kind":"function"} |  | 今天的日期参考值，用于面板标识。 |

@@ -84,8 +84,13 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     const emit = __emit;
     const draft = ref("");
     const delivery = useDeliveryMode();
-    const presenting = ref({}), displayStopped = ref({});
-    const uiProcessing = computed(() => props.processing || Object.values(presenting.value).some((item) => item.busy));
+    const presenting = ref(
+      {}
+    );
+    const displayStopped = ref({});
+    const uiProcessing = computed(
+      () => props.processing || Object.values(presenting.value).some((item) => item.busy)
+    );
     function stopPresentation() {
       const replies = displayMessages.value.filter((message2) => message2.role === "assistant");
       const message = replies.find((message2) => message2.recovering) ?? replies.reverse().find((message2) => presenting.value[message2.id]?.busy) ?? replies.find((message2) => !message2.state?.completion);
@@ -96,67 +101,118 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       const messageIndex = displayMessages.value.findIndex((item) => item.id === message.id);
       const source = props.messages[messageIndex];
       const thinking = source ? resolveChatContent(source).filter((part) => part.type === "thinking-content").map((part) => ({ ...part, status: "interrupted" })) : [];
-      const parts = [...thinking, ...presenting.value[message.id]?.capture() ?? []].flatMap((part) => {
-        try {
-          return [JSON.parse(JSON.stringify(part))];
-        } catch {
-          return [];
+      const parts = [...thinking, ...presenting.value[message.id]?.capture() ?? []].flatMap(
+        (part) => {
+          try {
+            return [JSON.parse(JSON.stringify(part))];
+          } catch {
+            return [];
+          }
         }
-      });
+      );
       displayStopped.value = { ...displayStopped.value, [message.id]: true };
       emit("abort", { messageId: source?.id, messageIndex, parts });
     }
-    const showSuggestionPills = computed(() => props.messages.length > 0 && props.suggestionPills.length > 0);
+    const showSuggestionPills = computed(
+      () => props.messages.length > 0 && props.suggestionPills.length > 0
+    );
     const composer = ref();
     function sendSuggestion(item) {
       if (item.disabled) return;
       submit(item.query ?? item.label, { aiEnabled: aiEnabled.value, mode: mode.value });
     }
-    const promptsByMessage = computed(() => props.messages.map((message) => message.role?.startsWith("assistant") && !message.loading && !message.recovering && !message.replyError && !(props.error && message === props.messages.at(-1)) && message.state?.completion === "completed" ? props.messagePrompts?.(message) ?? [] : []));
-    const aiEnabled = ref(false), mode = ref(props.modeOptions.find((option) => !option.disabled)?.value ?? "");
-    watch([aiEnabled, mode], () => emit("composerChange", { aiEnabled: aiEnabled.value, mode: mode.value }));
-    watch(() => props.modeOptions, (options) => {
-      if (!options.some((option) => option.value === mode.value && !option.disabled)) mode.value = options.find((option) => !option.disabled)?.value ?? "";
-    }, { deep: true });
+    const promptsByMessage = computed(
+      () => props.messages.map(
+        (message) => message.role?.startsWith("assistant") && !message.loading && !message.recovering && !message.replyError && !(props.error && message === props.messages.at(-1)) && message.state?.completion === "completed" ? props.messagePrompts?.(message) ?? [] : []
+      )
+    );
+    const aiEnabled = ref(false);
+    const mode = ref(props.modeOptions.find((option) => !option.disabled)?.value ?? "");
+    watch(
+      [aiEnabled, mode],
+      () => emit("composerChange", { aiEnabled: aiEnabled.value, mode: mode.value })
+    );
+    watch(
+      () => props.modeOptions,
+      (options) => {
+        if (!options.some((option) => option.value === mode.value && !option.disabled))
+          mode.value = options.find((option) => !option.disabled)?.value ?? "";
+      },
+      { deep: true }
+    );
     function resetComposer() {
       draft.value = "";
       aiEnabled.value = false;
       mode.value = props.modeOptions.find((option) => !option.disabled)?.value ?? "";
     }
     __expose({ resetComposer, captureView, locateReply });
-    watch(() => props.messages.length, (length, before) => {
-      if (!props.conversationId && !length && before) resetComposer();
-    });
-    watch(() => props.conversationId, () => {
-      displayStopped.value = {};
-      presenting.value = {};
-    });
-    watch(() => props.messages.length, (length) => {
-      if (!length) {
+    watch(
+      () => props.messages.length,
+      (length, before) => {
+        if (!props.conversationId && !length && before) resetComposer();
+      }
+    );
+    watch(
+      () => props.conversationId,
+      () => {
         displayStopped.value = {};
         presenting.value = {};
       }
-    });
+    );
+    watch(
+      () => props.messages.length,
+      (length) => {
+        if (!length) {
+          displayStopped.value = {};
+          presenting.value = {};
+        }
+      }
+    );
     const placeholderActions = [
       { id: "agent", label: "agent \u6A21\u5757\u5207\u6362", icon: "panel.mode" },
       { id: "new", label: "\u65B0\u5EFA\u5BF9\u8BDD", icon: "panel.newConversation" },
       { id: "history", label: "\u5386\u53F2\u5BF9\u8BDD\u8BB0\u5F55", icon: "panel.history" }
     ];
     const fullscreenLabel = computed(() => props.fullscreen ? "\u9000\u51FA\u5168\u5C4F" : "\u8FDB\u5165\u5168\u5C4F");
-    const visiblePlaceholderActions = computed(() => placeholderActions.filter((action) => !props.fullscreen || action.id !== "agent"));
-    const windowActionLabel = computed(() => props.windowMode === void 0 ? "agent \u6A21\u5757\u5207\u6362" : props.windowMode === "floating" ? "\u5207\u6362\u4E3A\u4FA7\u680F\u6A21\u5F0F" : "\u5207\u6362\u4E3A\u60AC\u6D6E\u6A21\u5F0F");
+    const visiblePlaceholderActions = computed(
+      () => placeholderActions.filter((action) => !props.fullscreen || action.id !== "agent")
+    );
+    const windowActionLabel = computed(
+      () => props.windowMode === void 0 ? "agent \u6A21\u5757\u5207\u6362" : props.windowMode === "floating" ? "\u5207\u6362\u4E3A\u4FA7\u680F\u6A21\u5F0F" : "\u5207\u6362\u4E3A\u60AC\u6D6E\u6A21\u5F0F"
+    );
     function toggleWindowMode() {
-      if (props.windowMode && !props.fullscreen) emit("windowModeChange", props.windowMode === "sidebar" ? "floating" : "sidebar");
+      if (props.windowMode && !props.fullscreen)
+        emit("windowModeChange", props.windowMode === "sidebar" ? "floating" : "sidebar");
     }
     function toolbarClick(id, event) {
       if (id === "agent") toggleWindowMode();
       else if (id === "new") emit("newConversation");
-      else if (id === "history" && props.historyAvailable && event.currentTarget instanceof HTMLElement) emit("historyOpen", event.currentTarget);
+      else if (id === "history" && props.historyAvailable && event.currentTarget instanceof HTMLElement)
+        emit("historyOpen", event.currentTarget);
     }
     const main = ref();
-    const { suggestionShadows: contentEdgeShadows, scheduleSuggestionShadows: scheduleContentShadows, shadowClipStyle: contentShadowClip } = useSuggestionShadows(main, () => [props.messages, props.welcomeEntries, props.processing, props.conversationId], { itemSelector: ".chat-scroll .tr-bubble__box,.chat-scroll .dislike-feedback-card,.chat-scroll .message-prompt,.chat-welcome .chat-welcome-entry", portSelector: ".chat-scroll,.chat-welcome", nativeGutterOnly: true });
-    useAutoScrollbars(() => main.value?.closest(".chat-panel") ?? void 0, [{ selector: ".chat-scroll,.chat-welcome", axis: "y" }, { selector: ".table-wrap:not(.agreement-table__viewport)", axis: "x" }]);
-    const canScrollUp = ref(false), canScrollDown = ref(false);
+    const {
+      suggestionShadows: contentEdgeShadows,
+      scheduleSuggestionShadows: scheduleContentShadows,
+      shadowClipStyle: contentShadowClip
+    } = useSuggestionShadows(
+      main,
+      () => [props.messages, props.welcomeEntries, props.processing, props.conversationId],
+      {
+        itemSelector: ".chat-scroll .tr-bubble__box,.chat-scroll .dislike-feedback-card,.chat-scroll .message-prompt,.chat-welcome .chat-welcome-entry",
+        portSelector: ".chat-scroll,.chat-welcome",
+        nativeGutterOnly: true
+      }
+    );
+    useAutoScrollbars(
+      () => main.value?.closest(".chat-panel") ?? void 0,
+      [
+        { selector: ".chat-scroll,.chat-welcome", axis: "y" },
+        { selector: ".table-wrap:not(.agreement-table__viewport)", axis: "x" }
+      ]
+    );
+    const canScrollUp = ref(false);
+    const canScrollDown = ref(false);
     let resizeObserver;
     let observedScrollPort;
     const followBottom = ref(true);
@@ -167,39 +223,52 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     function captureReadingAnchor(scroll) {
       if (!scroll || followBottom.value && scroll.matches(".chat-scroll")) return void 0;
       const viewportTop = scroll.getBoundingClientRect().top;
-      const anchor = Array.from(scroll.querySelectorAll("p,li,h1,h2,h3,h4,pre,tr,[data-reply-key],.chat-welcome-entry")).map((node) => ({ node, box: node.getBoundingClientRect() })).filter((item) => item.box.height > 0 && item.box.bottom > viewportTop).sort((a, b) => Math.max(0, a.box.top - viewportTop) - Math.max(0, b.box.top - viewportTop) || a.box.height - b.box.height)[0];
+      const anchor = Array.from(
+        scroll.querySelectorAll(
+          "p,li,h1,h2,h3,h4,pre,tr,[data-reply-key],.chat-welcome-entry"
+        )
+      ).map((node) => ({ node, box: node.getBoundingClientRect() })).filter((item) => item.box.height > 0 && item.box.bottom > viewportTop).sort(
+        (a, b) => Math.max(0, a.box.top - viewportTop) - Math.max(0, b.box.top - viewportTop) || a.box.height - b.box.height
+      )[0];
       if (!anchor) return void 0;
       const offset = anchor.box.top - viewportTop;
       return { node: anchor.node, offset, fraction: offset < 0 ? -offset / anchor.box.height : 0 };
     }
-    watch(() => [props.windowMode, props.fullscreen], ([, expanded], previous) => {
-      const scroll = main.value?.querySelector(".chat-scroll,.chat-welcome");
-      const input = composer.value?.$el.querySelector(".tr-sender-editor-scroll");
-      const top = scroll?.scrollTop, inputTop = input?.scrollTop, following = followBottom.value;
-      const reflow = expanded !== previous[1];
-      const anchor = reflow ? readingAnchor : void 0;
-      cancelAnimationFrame(modeScrollFrame);
-      modeScrollFrame = requestAnimationFrame(() => {
-        modeScrollFrame = 0;
-        if (scroll && top !== void 0) {
-          if (following && scroll.matches(".chat-scroll")) scroll.scrollTop = scroll.scrollHeight;
-          else if (anchor?.node.isConnected) {
-            const box = anchor.node.getBoundingClientRect();
-            scroll.scrollTop += box.top - scroll.getBoundingClientRect().top - (anchor.fraction ? -anchor.fraction * box.height : anchor.offset);
-          } else scroll.scrollTop = top;
-          lastFollowedScrollTop = scroll.scrollTop;
-        }
-        if (input && inputTop !== void 0) input.scrollTop = inputTop;
-        followBottom.value = following;
-        updateFade();
-        publishView();
-      });
-    }, { flush: "pre" });
+    watch(
+      () => [props.windowMode, props.fullscreen],
+      ([, expanded], previous) => {
+        const scroll = main.value?.querySelector(".chat-scroll,.chat-welcome");
+        const input = composer.value?.$el.querySelector(".tr-sender-editor-scroll");
+        const top = scroll?.scrollTop;
+        const inputTop = input?.scrollTop;
+        const following = followBottom.value;
+        const reflow = expanded !== previous[1];
+        const anchor = reflow ? readingAnchor : void 0;
+        cancelAnimationFrame(modeScrollFrame);
+        modeScrollFrame = requestAnimationFrame(() => {
+          modeScrollFrame = 0;
+          if (scroll && top !== void 0) {
+            if (following && scroll.matches(".chat-scroll")) scroll.scrollTop = scroll.scrollHeight;
+            else if (anchor?.node.isConnected) {
+              const box = anchor.node.getBoundingClientRect();
+              scroll.scrollTop += box.top - scroll.getBoundingClientRect().top - (anchor.fraction ? -anchor.fraction * box.height : anchor.offset);
+            } else scroll.scrollTop = top;
+            lastFollowedScrollTop = scroll.scrollTop;
+          }
+          if (input && inputTop !== void 0) input.scrollTop = inputTop;
+          followBottom.value = following;
+          updateFade();
+          publishView();
+        });
+      },
+      { flush: "pre" }
+    );
     function onScroll(event) {
       scheduleContentShadows();
       if (modeScrollFrame) return;
       const scroll = main.value?.querySelector(".chat-scroll");
-      if (scroll && event.target === scroll && scroll.scrollTop !== lastFollowedScrollTop) followBottom.value = scroll.scrollHeight - scroll.clientHeight - scroll.scrollTop <= 20;
+      if (scroll && event.target === scroll && scroll.scrollTop !== lastFollowedScrollTop)
+        followBottom.value = scroll.scrollHeight - scroll.clientHeight - scroll.scrollTop <= 20;
       updateFade();
       publishView();
     }
@@ -231,36 +300,56 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
           resizeObserver?.observe(port);
         }
         const gutter = `${port.offsetWidth - port.clientWidth}px`;
-        if (port.style.getPropertyValue("--partner-ai-native-scrollbar-gutter") !== gutter) port.style.setProperty("--partner-ai-native-scrollbar-gutter", gutter);
+        if (port.style.getPropertyValue("--partner-ai-native-scrollbar-gutter") !== gutter)
+          port.style.setProperty("--partner-ai-native-scrollbar-gutter", gutter);
       }
       const scroll = main.value?.querySelector(".chat-scroll");
       canScrollUp.value = !!scroll && scroll.scrollTop > 1;
       canScrollDown.value = !!scroll && scroll.scrollHeight - scroll.clientHeight - scroll.scrollTop > 1;
-      if (!modeScrollFrame) readingAnchor = captureReadingAnchor(main.value?.querySelector(".chat-scroll,.chat-welcome"));
+      if (!modeScrollFrame)
+        readingAnchor = captureReadingAnchor(
+          main.value?.querySelector(".chat-scroll,.chat-welcome")
+        );
     }
-    watch(() => {
-      const users = props.messages.filter((message) => message.role === "user");
-      return [props.conversationId, users.length, users.at(-1)?.id];
-    }, ([conversationId, count, id], [previousConversationId, previousCount, previousId]) => {
-      if (conversationId !== previousConversationId) return;
-      if (!props.messages.length || count > previousCount || count > 0 && id !== previousId) {
-        followBottom.value = true;
-        lastFollowedScrollTop = void 0;
-        syncFollowReply();
-      }
-    }, { flush: "post" });
-    watch(() => [props.messages, props.processing, props.error, props.aborted, presenting.value], async () => {
-      await nextTick();
-      followReply();
-    }, { deep: true, flush: "post" });
+    watch(
+      () => {
+        const users = props.messages.filter((message) => message.role === "user");
+        return [props.conversationId, users.length, users.at(-1)?.id];
+      },
+      ([conversationId, count, id], [previousConversationId, previousCount, previousId]) => {
+        if (conversationId !== previousConversationId) return;
+        if (!props.messages.length || count > previousCount || count > 0 && id !== previousId) {
+          followBottom.value = true;
+          lastFollowedScrollTop = void 0;
+          syncFollowReply();
+        }
+      },
+      { flush: "post" }
+    );
+    watch(
+      () => [props.messages, props.processing, props.error, props.aborted, presenting.value],
+      async () => {
+        await nextTick();
+        followReply();
+      },
+      { deep: true, flush: "post" }
+    );
     let restoringView = false;
     function captureView() {
-      return { draft: draft.value, aiEnabled: aiEnabled.value, mode: mode.value, scrollTop: main.value?.querySelector(".chat-scroll")?.scrollTop ?? 0, followBottom: followBottom.value };
+      return {
+        draft: draft.value,
+        aiEnabled: aiEnabled.value,
+        mode: mode.value,
+        scrollTop: main.value?.querySelector(".chat-scroll")?.scrollTop ?? 0,
+        followBottom: followBottom.value
+      };
     }
     async function locateReply(id) {
       await nextTick();
       const scroll = main.value?.querySelector(".chat-scroll");
-      const reply = Array.from(scroll?.querySelectorAll("[data-reply-key]") ?? []).find((node) => node.dataset.replyKey === id);
+      const reply = Array.from(scroll?.querySelectorAll("[data-reply-key]") ?? []).find(
+        (node) => node.dataset.replyKey === id
+      );
       if (!scroll || !reply) return false;
       cancelAnimationFrame(scrollFrame);
       scrollFrame = 0;
@@ -278,25 +367,31 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       if (!restoringView && props.conversationId) emit("conversationViewChange", captureView());
     }
     watch([draft, aiEnabled, mode], publishView);
-    watch(() => props.conversationId, async () => {
-      if (!props.conversationId) return;
-      restoringView = true;
-      cancelAnimationFrame(scrollFrame);
-      scrollFrame = 0;
-      const state = props.conversationView;
-      draft.value = state?.draft ?? "";
-      aiEnabled.value = state?.aiEnabled ?? false;
-      mode.value = props.modeOptions.some((option) => option.value === state?.mode && !option.disabled) ? state.mode : props.modeOptions.find((option) => !option.disabled)?.value ?? "";
-      followBottom.value = state?.followBottom ?? true;
-      await nextTick();
-      const scroll = main.value?.querySelector(".chat-scroll");
-      if (scroll) {
-        scroll.scrollTop = followBottom.value ? scroll.scrollHeight : state?.scrollTop ?? 0;
-        lastFollowedScrollTop = scroll.scrollTop;
-      }
-      updateFade();
-      restoringView = false;
-    }, { flush: "post", immediate: true });
+    watch(
+      () => props.conversationId,
+      async () => {
+        if (!props.conversationId) return;
+        restoringView = true;
+        cancelAnimationFrame(scrollFrame);
+        scrollFrame = 0;
+        const state = props.conversationView;
+        draft.value = state?.draft ?? "";
+        aiEnabled.value = state?.aiEnabled ?? false;
+        mode.value = props.modeOptions.some(
+          (option) => option.value === state?.mode && !option.disabled
+        ) ? state.mode : props.modeOptions.find((option) => !option.disabled)?.value ?? "";
+        followBottom.value = state?.followBottom ?? true;
+        await nextTick();
+        const scroll = main.value?.querySelector(".chat-scroll");
+        if (scroll) {
+          scroll.scrollTop = followBottom.value ? scroll.scrollHeight : state?.scrollTop ?? 0;
+          lastFollowedScrollTop = scroll.scrollTop;
+        }
+        updateFade();
+        restoringView = false;
+      },
+      { flush: "post", immediate: true }
+    );
     onMounted(() => {
       resizeObserver = new ResizeObserver(followReply);
       if (main.value) resizeObserver.observe(main.value);
@@ -309,71 +404,103 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     });
     const allRenderers = computed(() => [
       ...props.renderers.map((match) => ({ ...match, renderer: presentedRenderer(match.renderer) })),
-      // Robot 0.5.1 handles text through its fallback, which our unknown-type notice
-      // replaces. Register user text through the public renderer API; keep literal
-      // newlines/markup and consumer priorities. Recheck default matching on upgrades.
-      { find: (message, content) => message.role === "user" && content.type === "text", renderer: markRaw(BubbleRenderers.Text), priority: 5 },
-      { find: (message, content) => message.role === "assistant" && content.type === "text" && !message.loading, renderer: markRaw(DisplayedTextRenderer), priority: 5 },
-      { find: (message, content) => message.role === "assistant" && content.type === "image_url", renderer: presentedRenderer(BubbleRenderers.Image), priority: 5 }
+      // TinyRobot 0.5.1 routes text to fallback by default; register explicit user/assistant text renderers.
+      {
+        find: (message, content) => message.role === "user" && content.type === "text",
+        renderer: markRaw(BubbleRenderers.Text),
+        priority: 5
+      },
+      {
+        find: (message, content) => message.role === "assistant" && content.type === "text" && !message.loading,
+        renderer: markRaw(DisplayedTextRenderer),
+        priority: 5
+      },
+      {
+        find: (message, content) => message.role === "assistant" && content.type === "image_url",
+        renderer: presentedRenderer(BubbleRenderers.Image),
+        priority: 5
+      }
     ]);
     const fallbackRenderer = presentedRenderer(FallbackRenderer);
-    const displayMessages = computed(() => props.messages.map((message, index) => {
-      const parts = resolveChatContent(message).filter((part) => part.type !== "thinking-content");
-      const display = { ...message, content: parts.length ? parts : [{ type: "text", text: "" }], uiPartsOrdered: true, id: message.id ?? `message-${index}`, role: message.role?.startsWith("assistant") ? "assistant" : message.role || "assistant" };
-      delete display.reasoning_content;
-      delete display.uiParts;
-      delete display.renderContent;
-      return display;
+    const displayMessages = computed(
+      () => props.messages.map((message, index) => {
+        const parts = resolveChatContent(message).filter((part) => part.type !== "thinking-content");
+        const display = {
+          ...message,
+          content: parts.length ? parts : [{ type: "text", text: "" }],
+          uiPartsOrdered: true,
+          id: message.id ?? `message-${index}`,
+          role: message.role?.startsWith("assistant") ? "assistant" : message.role || "assistant"
+        };
+        delete display.reasoning_content;
+        delete display.uiParts;
+        delete display.renderContent;
+        return display;
+      })
+    );
+    const groups = (messages) => messages.map((message, index) => ({
+      role: message.role ?? "assistant",
+      messages: [message],
+      messageIndexes: [index],
+      startIndex: index
     }));
-    const groups = (messages) => messages.map((message, index) => ({ role: message.role ?? "assistant", messages: [message], messageIndexes: [index], startIndex: index }));
-    const boxRenderers = computed(() => [{ find: (messages) => messages[0]?.role === "assistant", renderer: markRaw(AnswerBox), attributes: (messages) => {
-      const id = messages[0]?.id ?? "";
-      const index = displayMessages.value.findIndex((message2) => message2.id === id);
-      const message = messages[0];
-      const stopped = displayStopped.value[id] || message?.state?.completion === "aborted" || !message?.state?.completion && props.aborted && !props.processing && index === displayMessages.value.length - 1;
-      const source = props.messages[index] ?? message;
-      const hasOutput = !!source && hasChatOutput(source);
-      const reasoning = source && resolveChatContent(source).find((part) => part.type === "thinking-content");
-      const hasThinking = !!reasoning;
-      const failure = message?.replyError || (index === displayMessages.value.length - 1 ? props.error : "") || (message?.state?.completion === "error" ? "\u672C\u6B21\u56DE\u7B54\u751F\u6210\u5931\u8D25\uFF0C\u8BF7\u91CD\u8BD5\u3002" : "");
-      const active = !!message?.recovering || props.processing && !message?.state?.completion && index === displayMessages.value.length - 1;
-      return {
-        replyKey: id,
-        busy: uiProcessing.value,
-        loading: !!message?.loading,
-        stopped,
-        hasOutput,
-        failure,
-        active,
-        completion: message?.state?.completion,
-        thinking: reasoning ? { content: String(reasoning.content ?? ""), status: reasoning.status } : void 0,
-        expectedParts: Array.isArray(message?.content) ? message.content.flatMap((part, index2) => part.type === "text" ? part.text ? [{ index: index2, signature: String(part.text) }] : [] : [{ index: index2, signature: JSON.stringify(part) }]) : [],
-        onDisplayBusy: (busy, capture) => {
-          if (!capture) {
-            if (presenting.value[id]) {
-              const next = { ...presenting.value };
-              delete next[id];
-              presenting.value = next;
+    const boxRenderers = computed(() => [
+      {
+        find: (messages) => messages[0]?.role === "assistant",
+        renderer: markRaw(AnswerBox),
+        attributes: (messages) => {
+          const id = messages[0]?.id ?? "";
+          const index = displayMessages.value.findIndex((message2) => message2.id === id);
+          const message = messages[0];
+          const stopped = displayStopped.value[id] || message?.state?.completion === "aborted" || !message?.state?.completion && props.aborted && !props.processing && index === displayMessages.value.length - 1;
+          const source = props.messages[index] ?? message;
+          const hasOutput = !!source && hasChatOutput(source);
+          const reasoning = source && resolveChatContent(source).find((part) => part.type === "thinking-content");
+          const hasThinking = !!reasoning;
+          const failure = message?.replyError || (index === displayMessages.value.length - 1 ? props.error : "") || (message?.state?.completion === "error" ? "\u672C\u6B21\u56DE\u7B54\u751F\u6210\u5931\u8D25\uFF0C\u8BF7\u91CD\u8BD5\u3002" : "");
+          const active = !!message?.recovering || props.processing && !message?.state?.completion && index === displayMessages.value.length - 1;
+          return {
+            replyKey: id,
+            busy: uiProcessing.value,
+            loading: !!message?.loading,
+            stopped,
+            hasOutput,
+            failure,
+            active,
+            completion: message?.state?.completion,
+            thinking: reasoning ? { content: String(reasoning.content ?? ""), status: reasoning.status } : void 0,
+            expectedParts: Array.isArray(message?.content) ? message.content.flatMap(
+              (part, index2) => part.type === "text" ? part.text ? [{ index: index2, signature: String(part.text) }] : [] : [{ index: index2, signature: JSON.stringify(part) }]
+            ) : [],
+            onDisplayBusy: (busy, capture) => {
+              if (!capture) {
+                if (presenting.value[id]) {
+                  const next = { ...presenting.value };
+                  delete next[id];
+                  presenting.value = next;
+                }
+                return;
+              }
+              if (presenting.value[id]?.busy !== busy || presenting.value[id]?.capture !== capture)
+                presenting.value = { ...presenting.value, [id]: { busy, capture } };
+            },
+            onDisplayChange: followRenderedReply,
+            onFeedback: (feedback) => emit("event", { name: "chat:feedback", payload: { index, messageId: id, ...feedback } }),
+            canContinue: props.continuationAvailable && hasOutput && !!(failure || stopped),
+            progressText: !hasThinking && !stopped && active ? "\u6B63\u5728\u601D\u8003\u4E2D..." : "",
+            onRegenerate: () => {
+              displayStopped.value = { ...displayStopped.value, [id]: false };
+              if (failure && index === displayMessages.value.length - 1) emit("retry");
+              else emit("event", { name: "chat:regenerate", payload: index });
+            },
+            onContinue: () => {
+              displayStopped.value = { ...displayStopped.value, [id]: false };
+              emit("event", { name: "chat:continue", payload: index });
             }
-            return;
-          }
-          if (presenting.value[id]?.busy !== busy || presenting.value[id]?.capture !== capture) presenting.value = { ...presenting.value, [id]: { busy, capture } };
-        },
-        onDisplayChange: followRenderedReply,
-        onFeedback: (feedback) => emit("event", { name: "chat:feedback", payload: { index, messageId: id, ...feedback } }),
-        canContinue: props.continuationAvailable && hasOutput && !!(failure || stopped),
-        progressText: !hasThinking && !stopped && active ? "\u6B63\u5728\u601D\u8003\u4E2D..." : "",
-        onRegenerate: () => {
-          displayStopped.value = { ...displayStopped.value, [id]: false };
-          if (failure && index === displayMessages.value.length - 1) emit("retry");
-          else emit("event", { name: "chat:regenerate", payload: index });
-        },
-        onContinue: () => {
-          displayStopped.value = { ...displayStopped.value, [id]: false };
-          emit("event", { name: "chat:continue", payload: index });
+          };
         }
-      };
-    } }]);
+      }
+    ]);
     const submitting = ref(false);
     function submit(value, context, preserveDraft = false) {
       if (uiProcessing.value || submitting.value || !value.trim()) return;
@@ -424,7 +551,10 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                   /* CACHED */
                 )
               ])], 42, _hoisted_2)), [
-                [_unref(vAiTooltip), { content: __props.windowMode === "sidebar" ? "\u6309\u4F4F\u62D6\u52A8\u53EF\u8F6C\u4E3A\u60AC\u6D6E\u7A97\uFF1B\u5355\u51FB\u4FDD\u6301\u4FA7\u680F\uFF0C\u4E5F\u53EF\u6309 Enter \u5207\u6362" : __props.windowMode === "floating" ? "\u62D6\u52A8\u79FB\u52A8\u7A97\u53E3\uFF1B\u4E5F\u53EF\u7528\u65B9\u5411\u952E\u79FB\u52A8\uFF0CShift \u52A0\u901F" : "", placement: "top" }]
+                [_unref(vAiTooltip), {
+                  content: __props.windowMode === "sidebar" ? "\u6309\u4F4F\u62D6\u52A8\u53EF\u8F6C\u4E3A\u60AC\u6D6E\u7A97\uFF1B\u5355\u51FB\u4FDD\u6301\u4FA7\u680F\uFF0C\u4E5F\u53EF\u6309 Enter \u5207\u6362" : __props.windowMode === "floating" ? "\u62D6\u52A8\u79FB\u52A8\u7A97\u53E3\uFF1B\u4E5F\u53EF\u7528\u65B9\u5411\u952E\u79FB\u52A8\uFF0CShift \u52A0\u901F" : "",
+                  placement: "top"
+                }]
               ])
             ],
             512
@@ -500,7 +630,11 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                         "aria-expanded": action.id === "history" && __props.historyAvailable ? __props.historyOpen : void 0,
                         onClick: ($event) => toolbarClick(action.id, $event)
                       }, null, 8, ["icon", "disabled", "aria-label", "aria-pressed", "aria-haspopup", "aria-expanded", "onClick"])), [
-                        [_unref(vAiTooltip), { content: action.id === "agent" && __props.windowMode ? windowActionLabel.value : action.id === "new" || action.id === "history" && __props.historyAvailable ? action.label : `${action.label}\uFF08\u5C1A\u672A\u63A5\u5165\uFF09`, placement: "top", disabled: action.id === "history" && __props.historyOpen }]
+                        [_unref(vAiTooltip), {
+                          content: action.id === "agent" && __props.windowMode ? windowActionLabel.value : action.id === "new" || action.id === "history" && __props.historyAvailable ? action.label : `${action.label}\uFF08\u5C1A\u672A\u63A5\u5165\uFF09`,
+                          placement: "top",
+                          disabled: action.id === "history" && __props.historyOpen
+                        }]
                       ]);
                     }),
                     128
@@ -597,7 +731,10 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
                     "auto-scroll": false,
                     "content-render-mode": "single",
                     "content-resolver": _unref(resolveChatContent),
-                    "role-configs": { assistant: { shape: "rounded" }, user: { placement: "end", shape: "corner" } },
+                    "role-configs": {
+                      assistant: { shape: "rounded" },
+                      user: { placement: "end", shape: "corner" }
+                    },
                     onBubbleEvent: _cache[4] || (_cache[4] = ($event) => emit("event", $event))
                   }, {
                     after: _withCtx(({ messageIndexes }) => [

@@ -34,10 +34,12 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
     const portalTarget = ref("body");
     const tokens = ref({});
     const layout = reactive({});
-    const displayedMessage = ref(props.message), displayedType = ref(props.type);
+    const displayedMessage = ref(props.message);
+    const displayedType = ref(props.type);
     let owner;
     let timer;
-    let revision = 0, positionFrame = 0;
+    let revision = 0;
+    let positionFrame = 0;
     function position() {
       const marker = origin.value;
       if (!marker?.isConnected) return false;
@@ -49,7 +51,8 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       }
       const header = host?.querySelector(".chat-header")?.getBoundingClientRect();
       const viewport = marker.ownerDocument.documentElement;
-      const left = Math.max(0, bounds?.left ?? 0), right = Math.min(viewport.clientWidth, bounds?.right ?? viewport.clientWidth);
+      const left = Math.max(0, bounds?.left ?? 0);
+      const right = Math.min(viewport.clientWidth, bounds?.right ?? viewport.clientWidth);
       const top = header?.bottom ?? bounds?.top ?? 0;
       layout.left = `${(left + right) / 2}px`;
       layout.top = `calc(${top}px + var(--partner-ai-toast-top))`;
@@ -92,7 +95,8 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       if (previous && previous !== dismiss) previous();
       activeToasts.set(owner, dismiss);
       portalTarget.value = marker.closest("dialog[open]") ?? owner.body;
-      const paint = getComputedStyle(marker), values = {};
+      const paint = getComputedStyle(marker);
+      const values = {};
       for (let index = 0; index < paint.length; index++) {
         const key = paint[index];
         if (key.startsWith("--partner-ai-")) values[key] = paint.getPropertyValue(key);

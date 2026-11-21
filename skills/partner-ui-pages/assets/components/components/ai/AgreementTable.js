@@ -11,13 +11,21 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
   emits: ["open"],
   setup(__props) {
     const props = __props;
-    const viewport = ref(), table = ref(), track = ref();
-    const width = ref(0), total = ref(0), left = ref(0), dragging = ref(false);
-    let observer, drag;
+    const viewport = ref();
+    const table = ref();
+    const track = ref();
+    const width = ref(0);
+    const total = ref(0);
+    const left = ref(0);
+    const dragging = ref(false);
+    let observer;
+    let drag;
     const overflow = computed(() => total.value - width.value > 1);
     const thumbWidth = computed(() => total.value ? width.value * width.value / total.value : 0);
     const travel = computed(() => Math.max(0, width.value - thumbWidth.value));
-    const thumbLeft = computed(() => total.value > width.value ? left.value / (total.value - width.value) * travel.value : 0);
+    const thumbLeft = computed(
+      () => total.value > width.value ? left.value / (total.value - width.value) * travel.value : 0
+    );
     function measure() {
       const el = viewport.value;
       if (!el) return;
@@ -26,18 +34,23 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       left.value = el.scrollLeft;
     }
     function down(event) {
-      const el = viewport.value, bar = track.value;
+      const el = viewport.value;
+      const bar = track.value;
       if (!el || !bar || event.button !== 0 || !overflow.value || travel.value <= 0) return;
       el.focus({ preventScroll: true });
-      const rect = bar.getBoundingClientRect(), scale = rect.width / bar.clientWidth || 1, range = total.value - width.value;
-      if (!(event.target instanceof Element && event.target.closest(".agreement-table__thumb"))) el.scrollLeft = ((event.clientX - rect.left) / scale - thumbWidth.value / 2) / travel.value * range;
+      const rect = bar.getBoundingClientRect();
+      const scale = rect.width / bar.clientWidth || 1;
+      const range = total.value - width.value;
+      if (!(event.target instanceof Element && event.target.closest(".agreement-table__thumb")))
+        el.scrollLeft = ((event.clientX - rect.left) / scale - thumbWidth.value / 2) / travel.value * range;
       drag = { x: event.clientX, scroll: el.scrollLeft, scale, travel: travel.value, range };
       dragging.value = true;
       bar.setPointerCapture(event.pointerId);
       event.preventDefault();
     }
     function move(event) {
-      if (drag && viewport.value) viewport.value.scrollLeft = drag.scroll + (event.clientX - drag.x) / drag.scale / drag.travel * drag.range;
+      if (drag && viewport.value)
+        viewport.value.scrollLeft = drag.scroll + (event.clientX - drag.x) / drag.scale / drag.travel * drag.range;
     }
     function end() {
       drag = void 0;
@@ -65,7 +78,11 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
       observer?.disconnect();
       end();
     });
-    watch(() => props.agreements, () => void nextTick(measure), { deep: true });
+    watch(
+      () => props.agreements,
+      () => void nextTick(measure),
+      { deep: true }
+    );
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("div", _hoisted_1, [
         _createElementVNode(

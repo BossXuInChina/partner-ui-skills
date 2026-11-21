@@ -1,0 +1,100 @@
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
+
+# 业务记录卡片 RecordCard — `WorkbenchRecordCard`
+
+资产：`wb-record-card` · 类型：`block` · 资产合同版本：`1.0.0`
+
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
+
+资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
+
+## 组件预览
+
+[在 Studio 中查看](http://localhost:4173/preview/WB-TRANSACTION-ASSETS-20261030/tx-asset-record-card?view=preview)
+
+公开入口：`@workbench/ui-vue3` → `WorkbenchRecordCard`
+
+## 变体与状态
+
+状态：`unavailable`。声明值属于 Studio 案例数据，不自动等于公开组件 props。
+
+包内未提供对应 Studio 路由。
+
+unsupported：VARIANT_VIEW_MISSING：No current declared variants view/readingPilot is available; source declarations are retained.
+
+### 包内声明
+
+```json
+{
+  "states": [
+    {
+      "id": "ready",
+      "label": "默认"
+    }
+  ],
+  "controls": [],
+  "pilotControls": [],
+  "presets": []
+}
+```
+
+## 使用场景
+
+包内未提供对应 Studio 路由。
+
+**适用**：展示一条记录的标题、标签、收藏、选择和操作。点击卡片可打开记录，交互控件和文本选择保持独立。
+
+**不适用**：业务持久化、路由和审批由宿主负责；不得作为稳定发布或生产资格依据
+
+官方来源 SFC：unavailable。OFFICIAL_SFC_MISSING：No official usage SFC mentions this public asset. Scenario/story source was not substituted.
+
+## 使用规范与API
+
+包内未提供对应 Studio 路由。
+
+| 名称 | 类型 | 默认 | 可选值 | 说明 |
+| --- | --- | --- | --- | --- |
+| actions | Array | {"kind":"function"} |  |  |
+| deletable | Boolean |  |  |  |
+| favorite | Boolean |  |  |  |
+| href | String |  |  |  |
+| openOnTitle | Boolean |  |  |  |
+| selectDisabled | Boolean |  |  |  |
+| selectLabel | String |  |  |  |
+| selectable | Boolean |  |  |  |
+| selected | Boolean |  |  |  |
+| starred | Boolean |  |  |  |
+| status | String |  |  |  |
+| tags | Array | {"kind":"function"} |  |  |
+| title * | String |  |  |  |
+| tone | String | info |  |  |
+
+### Events
+
+- `select`
+
+- `favorite`
+
+- `open`
+
+- `delete`
+
+- `action`
+
+### Slots
+
+- `header-actions`
+
+- `default`
+
+- `footer`
+
+- `progress`
+
+### 规则
+
+包内未提供规则；不补写设计结论。
+
+### 组件依赖
+
+`wb-button`、`wb-card`、`wb-checkbox`、`wb-dropdown`、`wb-tag`

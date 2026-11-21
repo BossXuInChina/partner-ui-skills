@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 表格 Table — `WorkbenchTable`
 
 资产：`wb-table` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -65,6 +65,10 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
       "label": "表格场景",
       "default": "fixed",
       "options": [
+        {
+          "label": "分组表头",
+          "value": "grouped"
+        },
         {
           "label": "内容：链接、标签与数字",
           "value": "content"
@@ -257,6 +261,10 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
       "label": "表格场景",
       "default": "fixed",
       "options": [
+        {
+          "label": "分组表头",
+          "value": "grouped"
+        },
         {
           "label": "内容：链接、标签与数字",
           "value": "content"
@@ -550,6 +558,7 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
 {
   "literalData": {
     "descriptions": {
+      "grouped": "两级分组表头展示身份指标及差距。",
       "content": "保留链接、标签、数字和长内容的实际单元格。",
       "inputs": "保留输入控件组合与行内交互。",
       "icon-actions": "保留图标操作列和反馈。",
@@ -729,6 +738,7 @@ function cancelEdit() { editingRowId.value = null; feedback.value = "已取消�
 | pageSizeOptions | Array | {"kind":"function"} |  | 分页器可选每页数量。 |
 | resizable | Boolean | false |  | 开启列宽调整控件。 |
 | rowActions | Array \| Function | {"kind":"function"} |  | 操作数组或按行生成操作的函数；动作通过row-action事件交给调用方。 |
+| rowGroup | Object | null |  | 指定一个表体行组表头列及业务组键。默认关闭。 |
 | rowKey * | String \| Function |  |  | 每行稳定唯一键的字段名或取键函数。 |
 | rows | Array | {"kind":"function"} |  | 调用方传入的当前展示数据；组件保持行顺序，不代为搜索、排序、筛选或分页切片。 |
 | selectable | Boolean | false |  | 开启行选择。 |
@@ -929,6 +939,12 @@ TableScrollArea复用Scrollbar视口并计算固定列之间的轨道几何；�
 - 列组边界线贯穿表头和表体；叶子列之间使用组内短分隔线，不与列组边界叠加。
 
 - banded只控制数据列的浅色底纹，不改变列组身份或分隔线。窄容器保留表格内部横向滚动。
+
+- 表体跨行使用rowGroup={ columnKey, key }。key是行字段名或取键函数；只有当前rows中组键和字段文字一致的相邻行会合并。组键须是非空字符串或有限数字。
+
+- 跨行列使用原生行组表头，其他列可通过rowHeader提供逐行表头；选择仍按行。跨行在详情行前断开，展开入口使用非分组列；只有一个数据列且可展开时保持逐行展示。
+
+- 跨行列的自定义插槽只在组首渲染，适合共享标签。行独有文本和操作请放在逐行单元格内。
 
 ### 交互与键盘
 

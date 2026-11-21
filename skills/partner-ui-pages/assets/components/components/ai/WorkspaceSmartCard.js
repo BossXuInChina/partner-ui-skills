@@ -21,7 +21,9 @@ import { computed } from "vue";
 import { localIcons } from "../assets/ai-icons/localIcons";
 import WorkspaceSmartIcon from "./WorkspaceSmartIcon.vue";
 import WorkspaceSmartTag from "./WorkspaceSmartTag.vue";
-import { intelligenceSentence } from "./workspaceIntelligence";
+import {
+  intelligenceSentence
+} from "./workspaceIntelligence";
 const __sfc_main__ = /* @__PURE__ */ _defineComponent({
   __name: "WorkspaceSmartCard",
   props: {
@@ -35,7 +37,9 @@ const __sfc_main__ = /* @__PURE__ */ _defineComponent({
   setup(__props) {
     const SmartActionArrow = localIcons.smartActionRight;
     const props = __props;
-    const sentences = computed(() => props.items.map((item) => ({ ...item, fragments: intelligenceSentence(item.fragments) })));
+    const sentences = computed(
+      () => props.items.map((item) => ({ ...item, fragments: intelligenceSentence(item.fragments) }))
+    );
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("section", {
         class: _normalizeClass(["workspace-smart-card", `workspace-smart-card--${__props.variant}`]),

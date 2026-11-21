@@ -24,8 +24,8 @@
     "verify": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm run check:rules && pnpm run test:unit && pnpm run build && pnpm run smoke:fixtures"
   },
   "dependencies": {
-    "@workbench/ui-vue3": "file:../../vendor/workbench-ui-vue3-0.2.0-prototype.20261106.7.tgz",
-    "huawei-partner-ai-ui": "file:../../vendor/huawei-partner-ai-ui-0.3.1-dev.20261106.1.tgz",
+    "@workbench/ui-vue3": "file:../../vendor/workbench-ui-vue3-0.5.1-dev.20261121.1.tgz",
+    "huawei-partner-ai-ui": "file:../../vendor/huawei-partner-ai-ui-0.3.1-dev.20261121.1.tgz",
     "vue": "3.5.42",
     "vue-router": "4.6.4",
     "@opentiny/tiny-robot": "0.5.1",

@@ -35,7 +35,11 @@ const __sfc_main__ = {
   __name: "Message",
   props: {
     modelValue: { type: Boolean, default: false },
-    type: { type: String, default: "info", validator: (value) => ["info", "success", "warning", "danger", "critical", "error", "loading"].includes(value) },
+    type: {
+      type: String,
+      default: "info",
+      validator: (value) => ["info", "success", "warning", "danger", "critical", "error", "loading"].includes(value)
+    },
     message: { type: String, required: true },
     messageKey: { type: [String, Number], default: "" },
     linkLabel: { type: String, default: "" },
@@ -44,7 +48,11 @@ const __sfc_main__ = {
     checkboxChecked: { type: Boolean, default: false },
     showIcon: { type: Boolean, default: true },
     showClose: { type: Boolean, default: true },
-    placement: { type: String, default: "global", validator: (value) => ["global", "dialog"].includes(value) },
+    placement: {
+      type: String,
+      default: "global",
+      validator: (value) => ["global", "dialog"].includes(value)
+    },
     autoClose: { type: Number, default: void 0 }
   },
   emits: ["update:modelValue", "update:checkboxChecked", "close", "link"],
@@ -97,7 +105,19 @@ const __sfc_main__ = {
     function activateLink() {
       emit("link", { href: props.linkHref });
     }
-    watch(() => [props.modelValue, props.messageKey, props.message, props.type, props.showClose, props.placement, props.autoClose], schedule, { immediate: true });
+    watch(
+      () => [
+        props.modelValue,
+        props.messageKey,
+        props.message,
+        props.type,
+        props.showClose,
+        props.placement,
+        props.autoClose
+      ],
+      schedule,
+      { immediate: true }
+    );
     onBeforeUnmount(() => {
       clearTimer();
       releaseFeedback?.();

@@ -89,9 +89,15 @@ const __sfc_main__ = {
       return ["primary", "secondary"].includes(props.appearance) && Boolean(slots.icon);
     }
     const buttonLabel = computed(() => isIconButton.value ? props.ariaLabel : void 0);
+    const sizeTiers = {
+      filled: { large: "36", medium: "32", small: "28" },
+      text: { medium: "32", small: "28" },
+      icon: { medium: "32", small: "24" }
+    };
     const resolvedSize = computed(() => {
-      const allowedSizes = props.appearance === "icon" ? ["32", "24"] : props.appearance === "text" ? ["32", "28"] : ["36", "32", "28"];
-      return allowedSizes.includes(props.size) ? props.size : "32";
+      const tiers = sizeTiers[props.appearance === "icon" ? "icon" : props.appearance === "text" ? "text" : "filled"];
+      const size = tiers[props.size] ?? props.size;
+      return Object.values(tiers).includes(size) ? size : "32";
     });
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("button", {

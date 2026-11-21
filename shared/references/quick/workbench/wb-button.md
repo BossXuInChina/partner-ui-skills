@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 按钮 Button — `WorkbenchButton`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -14,7 +14,7 @@
 {
   "id": "wb-button",
   "kind": "component",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "summary": "用于提交、创建、编辑、取消与轻量披露等明确操作。按钮承载动作，不代替链接导航、互斥选择或内容页签。",
   "useWhen": ["操作入口","更多、展开与收起入口"],
   "avoidWhen": ["未经验证的内部框架生产实现","以颜色代替权限或错误说明"],
@@ -53,8 +53,9 @@
   },
   "slots": ["icon","default"],
   "propNotes": {
+    "variant": "边框样式。默认 default，dashed 用于虚线按钮。",
     "appearance": "选择primary、secondary、text或icon外观。",
-    "size": "按钮尺寸字符串；当前组件默认32，填充按钮支持28、32、36，文字与图标尺寸按组件契约使用。",
+    "size": "按钮尺寸档位：large / medium / small，默认 medium。填充按钮支持三档，文字按钮支持 medium / small，图标按钮容器支持 medium / small。数值写法（填充 36、32、28，图标 32、24）继续有效并选择同一档位。",
     "textLayout": "文字按钮默认 container，提供标准尺寸及透明内边距；inline 随行高且无内边距。",
     "iconLayout": "图标按钮默认 inline 贴合实际图标；container 使用32/24px标准点击区域。",
     "disabled": "禁用原生按钮交互。",

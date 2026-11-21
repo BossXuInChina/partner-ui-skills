@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 顶部导航 Top Navigation — `WorkbenchTopNav`
 
-资产：`wb-top-nav` · 类型：`component` · 资产合同版本：`1.0.2`
+资产：`wb-top-nav` · 类型：`component` · 资产合同版本：`1.0.3`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -36,6 +36,22 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
   ],
   "controls": [
     {
+      "id": "alignment",
+      "label": "导航对齐方式",
+      "type": "select",
+      "default": "centered",
+      "options": [
+        {
+          "value": "edges",
+          "label": "两侧对齐（32px）"
+        },
+        {
+          "value": "centered",
+          "label": "版心对齐"
+        }
+      ]
+    },
+    {
       "id": "navState",
       "label": "导航状态",
       "type": "select",
@@ -54,6 +70,12 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
           "label": "伙伴工作台 · 已登录"
         }
       ]
+    },
+    {
+      "id": "showSiteSwitcher",
+      "label": "显示官网切换",
+      "type": "boolean",
+      "default": true
     },
     {
       "id": "actionPreset",
@@ -124,6 +146,10 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
         {
           "value": "register",
           "label": "注册按钮"
+        },
+        {
+          "value": "workbench",
+          "label": "伙伴工作台入口"
         }
       ]
     },
@@ -184,6 +210,23 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
   ],
   "pilotControls": [
     {
+      "id": "alignment",
+      "label": "导航对齐方式",
+      "type": "select",
+      "default": "centered",
+      "options": [
+        {
+          "value": "edges",
+          "label": "两侧对齐（32px）"
+        },
+        {
+          "value": "centered",
+          "label": "版心对齐"
+        }
+      ],
+      "intent": "context"
+    },
+    {
       "id": "navState",
       "label": "导航身份与场景",
       "type": "select",
@@ -203,6 +246,23 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
         }
       ],
       "intent": "context"
+    },
+    {
+      "id": "showSiteSwitcher",
+      "label": "显示官网切换",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "brandTitle",
+      "label": "工作台品牌标题",
+      "type": "text",
+      "default": "伙伴工作台",
+      "when": {
+        "navState": [
+          "workbench-authenticated"
+        ]
+      }
     },
     {
       "id": "actionPreset",
@@ -273,6 +333,10 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
         {
           "value": "register",
           "label": "注册按钮"
+        },
+        {
+          "value": "workbench",
+          "label": "伙伴工作台入口"
         }
       ]
     },
@@ -341,16 +405,18 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
     },
     {
       "id": "navState-portal-authenticated",
-      "label": "导航状态 · 门户官网 · 已登录",
+      "label": "导航状态 · 门户官网 · 已登录 · 两侧对齐",
       "controls": {
-        "navState": "portal-authenticated"
+        "navState": "portal-authenticated",
+        "alignment": "edges"
       }
     },
     {
       "id": "navState-workbench-authenticated",
       "label": "导航状态 · 伙伴工作台 · 已登录",
       "controls": {
-        "navState": "workbench-authenticated"
+        "navState": "workbench-authenticated",
+        "alignment": "centered"
       }
     },
     {
@@ -466,6 +532,13 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
       }
     },
     {
+      "id": "actionPreset-workbench",
+      "label": "右侧操作配置 · 伙伴工作台入口",
+      "controls": {
+        "actionPreset": "workbench"
+      }
+    },
+    {
       "id": "actionsDisabled-true",
       "label": "禁用右侧操作 · 开启",
       "controls": {
@@ -530,7 +603,7 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
       },
       {
         "id": "portal-authenticated",
-        "label": "门户 · 已登录"
+        "label": "门户 · 已登录 · 两侧对齐"
       },
       {
         "id": "workbench-authenticated",
@@ -566,7 +639,7 @@ unsupported：CUSTOM_VARIANT_GALLERY：A custom gallery or indirect scenario fac
 
 id：`site-navigation` · portability：`portable` · owner：`wb-top-nav`
 
-完整的受控导航值由调用方持有；链接由浏览器自然导航。
+宿主按需开启官网切换并持有当前站点。链接由浏览器处理。
 
 Inline demonstration data only; the host owns business API, navigation, persistence and action handling. Static portability does not establish runtime or production acceptance.
 
@@ -577,11 +650,11 @@ import { WorkbenchTopNav } from "@workbench/ui-vue3"
 const activeTab = ref('overview')
 const currentSite = ref('partner')
 const tabs = [{ value: 'overview', label: '总览', href: '/overview' }]
-const sites = [{ value: 'partner', label: '伙伴中心' }]
+const sites = [{ value: 'partner', label: '华为伙伴官网' }, { value: 'group', label: '集团网站', href: '/group' }]
 function selectSite(value) { currentSite.value = value }
 </script>
 <template>
-  <WorkbenchTopNav v-model:active-tab="activeTab" :current-site="currentSite" :tabs="tabs" :sites="sites" @select-site="selectSite" />
+  <WorkbenchTopNav v-model:active-tab="activeTab" :current-site="currentSite" :tabs="tabs" :sites="sites" show-site-switcher @select-site="selectSite" />
 </template>
 ```
 
@@ -591,12 +664,15 @@ function selectSite(value) { currentSite.value = value }
 
 | 名称 | 类型 | 默认 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
-| actions | Array | null |  | 自定义顶部操作项。 |
+| actions | Array | null |  | 自定义顶部操作项。type=workbench 渲染“伙伴工作台”主按钮入口（可用 label 改文案，带 href 时触发 navigate），用于官网登录后进入工作台。 |
 | activeTab | String | home |  | 受控当前业务页签。 |
+| alignment | String | centered | edges / centered | centered 默认沿用响应式版心；edges 两侧留 32px。 |
+| brandTitle | String | 伙伴工作台 |  | 工作台模式的品牌标题，默认“伙伴工作台”；空白值回退为默认标题，portal 模式使用默认标题。 |
 | currentLanguage | String | zh-CN |  | 受控当前语言value。 |
 | currentSite | String | partner |  | 受控当前站点value。 |
 | languages | Array | {"kind":"function"} |  | 语言菜单项。 |
 | mode | String | workbench | portal / workbench | workbench或portal导航模式。 |
+| showSiteSwitcher | Boolean | true |  | 默认开启；关闭后仅显示站点名称并隐藏移动端官网切换。 |
 | sites | Array | {"kind":"function"} |  | 站点选项数组，支持value、label与可选href。 |
 | tabMenus | Object | {"kind":"function"} |  | 按tab value映射的分组入口菜单。 |
 | tabs | Array | {"kind":"function"} |  | 页签项数组，支持value、label与可选href。 |
@@ -667,7 +743,7 @@ Top Navigation普通菜单主体与Mega菜单主体统一使用Foundation radius
 
 ### Foundation 引用
 
-`color-brand`、`color-fill-default`、`color-fill-hover`、`color-fill-subtle-default`、`color-text-primary`、`color-text-secondary`、`color-text-inverse`、`color-icon-primary`、`color-icon-secondary`、`color-icon-hover`、`color-border`、`color-border-focus`、`color-border-separator`、`color-border-separator-subtle`、`color-surface-overlay`、`color-scrim-modal`、`color-error`、`spacing-component-xs`、`spacing-component-sm`、`spacing-component-md`、`spacing-component-lg`、`spacing-layout-section-gap-large`、`spacing-screen-edge-compact`、`spacing-screen-edge-expanded`、`radius-full`、`radius-lg`、`radius-sm`、`radius-md`、`shadow-sm`、`font-body-s`、`font-body-m`、`font-body-l`、`icon-size-12`、`icon-size-16`、`icon-size-20`、`icon-size-24`、`icon-size-48`、`font-headline-m`、`font-headline-s`、`font-display-s`、`layout-grid-max-width`、`layout-grid-columns-medium`、`layout-grid-columns-wide`
+`color-brand`、`color-surface-top-nav-utility`、`color-fill-hover`、`color-fill-subtle-default`、`color-text-primary`、`color-text-secondary`、`color-text-inverse`、`color-icon-primary`、`color-icon-secondary`、`color-icon-hover`、`color-border`、`color-border-focus`、`color-border-separator`、`color-border-separator-subtle`、`color-surface-overlay`、`color-scrim-modal`、`color-error`、`spacing-component-xs`、`spacing-component-sm`、`spacing-component-md`、`spacing-component-lg`、`spacing-layout-section-gap-large`、`spacing-screen-edge-compact`、`spacing-screen-edge-expanded`、`radius-full`、`radius-lg`、`radius-sm`、`radius-md`、`shadow-sm`、`font-body-s`、`font-body-m`、`font-body-l`、`icon-size-12`、`icon-size-16`、`icon-size-20`、`icon-size-24`、`icon-size-48`、`font-headline-m`、`font-headline-s`、`font-display-s`、`layout-grid-max-width`、`layout-grid-columns-medium`、`layout-grid-columns-wide`
 
 ### 选型
 
@@ -676,6 +752,8 @@ Top Navigation普通菜单主体与Mega菜单主体统一使用Foundation radius
 - mode选择workbench或portal导航模式；userState区分authenticated与guest。
 
 - 需要菜单分组时使用tabMenus，站点与语言菜单独立配置。
+
+- 官网切换默认开启；宿主可通过 showSiteSwitcher 关闭，并通过 sites 配置站点列表。
 
 ### 设计结构与排版
 

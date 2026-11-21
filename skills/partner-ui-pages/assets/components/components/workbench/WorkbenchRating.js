@@ -32,8 +32,16 @@ const __sfc_main__ = {
     ariaDescribedby: String,
     invalid: Boolean,
     readOnly: Boolean,
-    descriptionMode: { type: String, default: "per-star", validator: (value) => ["none", "text", "numeric", "per-star"].includes(value) },
-    descriptionPlacement: { type: String, default: "right", validator: (value) => ["right", "bottom"].includes(value) },
+    descriptionMode: {
+      type: String,
+      default: "per-star",
+      validator: (value) => ["none", "text", "numeric", "per-star"].includes(value)
+    },
+    descriptionPlacement: {
+      type: String,
+      default: "right",
+      validator: (value) => ["right", "bottom"].includes(value)
+    },
     descriptions: { type: Array, default: () => ["\u5F88\u5DEE", "\u8F83\u5DEE", "\u4E00\u822C", "\u8F83\u597D", "\u5F88\u597D"] }
   },
   emits: ["update:modelValue"],
@@ -43,10 +51,14 @@ const __sfc_main__ = {
     const emit = __emit;
     const items = ref([]);
     const values = computed(() => Array.from({ length: props.max }, (_, index) => index + 1));
-    const focusValue = computed(() => Math.max(1, Math.min(props.max, Math.ceil(props.modelValue) || 1)));
+    const focusValue = computed(
+      () => Math.max(1, Math.min(props.max, Math.ceil(props.modelValue) || 1))
+    );
     const isHalfStep = computed(() => props.step === 0.5);
     const normalize = (value) => Math.max(0, Math.min(props.max, Math.round(value / props.step) * props.step));
-    const scoreText = computed(() => props.descriptionMode === "numeric" ? props.modelValue.toFixed(1) : props.descriptions[Math.max(0, Math.ceil(props.modelValue) - 1)] || "\u672A\u8BC4\u5206");
+    const scoreText = computed(
+      () => props.descriptionMode === "numeric" ? props.modelValue.toFixed(1) : props.descriptions[Math.max(0, Math.ceil(props.modelValue) - 1)] || "\u672A\u8BC4\u5206"
+    );
     function choose(value) {
       if (!disabled.value && !props.readOnly) emit("update:modelValue", normalize(value));
     }
@@ -56,21 +68,32 @@ const __sfc_main__ = {
       choose(value - (event.clientX - rect.left < rect.width / 2 ? 0.5 : 0));
     }
     function keydown(event) {
-      if (disabled.value || props.readOnly || !["ArrowLeft", "ArrowDown", "ArrowRight", "ArrowUp", "Home", "End"].includes(event.key)) return;
+      if (disabled.value || props.readOnly || !["ArrowLeft", "ArrowDown", "ArrowRight", "ArrowUp", "Home", "End"].includes(event.key))
+        return;
       event.preventDefault();
-      const next = normalize(event.key === "Home" ? 0 : event.key === "End" ? props.max : props.modelValue + (["ArrowRight", "ArrowUp"].includes(event.key) ? props.step : -props.step));
+      const next = normalize(
+        event.key === "Home" ? 0 : event.key === "End" ? props.max : props.modelValue + (["ArrowRight", "ArrowUp"].includes(event.key) ? props.step : -props.step)
+      );
       choose(next);
       nextTick(() => items.value[Math.max(0, Math.ceil(next) - 1)]?.focus());
     }
     function fill(value) {
       return Math.max(0, Math.min(1, props.modelValue - value + 1));
     }
-    const { attrs: fieldAttrs } = useFieldControl(() => props.modelValue, { labelable: false, describedBy: () => props.ariaDescribedby, invalid: () => props.invalid, focus: () => items.value?.find((el) => el?.tabIndex === 0)?.focus() });
+    const { attrs: fieldAttrs } = useFieldControl(() => props.modelValue, {
+      labelable: false,
+      describedBy: () => props.ariaDescribedby,
+      invalid: () => props.invalid,
+      focus: () => items.value?.find((el) => el?.tabIndex === 0)?.focus()
+    });
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock(
         "div",
         {
-          class: _normalizeClass(["wb-rating-wrap", [`is-${__props.descriptionPlacement}`, { "has-description": __props.descriptionMode !== "none" && __props.descriptionMode !== "per-star" }]])
+          class: _normalizeClass(["wb-rating-wrap", [
+            `is-${__props.descriptionPlacement}`,
+            { "has-description": __props.descriptionMode !== "none" && __props.descriptionMode !== "per-star" }
+          ]])
         },
         [
           _createElementVNode("div", _mergeProps({
@@ -105,7 +128,11 @@ const __sfc_main__ = {
                     _createElementVNode("span", _hoisted_3, [
                       _createVNode(WorkbenchIcon, {
                         name: "\u6536\u85CF/\u9762\u6027=on_12px",
-                        "color-split": { ratio: fill(value), startColor: _unref(disabled) ? "var(--wb-color-icon-disabled)" : "var(--wb-color-warning)", endColor: _unref(disabled) ? "var(--wb-color-icon-disabled)" : "var(--wb-asset-wb-rating-unselected-color)" }
+                        "color-split": {
+                          ratio: fill(value),
+                          startColor: _unref(disabled) ? "var(--wb-color-icon-disabled)" : "var(--wb-color-warning)",
+                          endColor: _unref(disabled) ? "var(--wb-color-icon-disabled)" : "var(--wb-asset-wb-rating-unselected-color)"
+                        }
                       }, null, 8, ["color-split"])
                     ])
                   ], 10, _hoisted_2),

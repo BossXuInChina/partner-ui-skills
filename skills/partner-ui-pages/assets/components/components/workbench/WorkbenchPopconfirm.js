@@ -1,11 +1,12 @@
 import { normalizeProps as _normalizeProps, guardReactiveProps as _guardReactiveProps, renderSlot as _renderSlot, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, unref as _unref, openBlock as _openBlock, createElementBlock as _createElementBlock, Fragment as _Fragment, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, withModifiers as _withModifiers, withCtx as _withCtx, createBlock as _createBlock, createVNode as _createVNode, Teleport as _Teleport } from "vue";
 const _hoisted_1 = ["id", "data-placement", "aria-busy", "aria-labelledby", "aria-describedby"];
-const _hoisted_2 = { class: "wb-popconfirm__content" };
+const _hoisted_2 = { class: "wb-popconfirm__content wb-scrollbar" };
 const _hoisted_3 = { class: "wb-popconfirm__heading" };
 const _hoisted_4 = ["d"];
 const _hoisted_5 = ["id"];
 const _hoisted_6 = ["id"];
 const _hoisted_7 = { class: "wb-popconfirm__actions" };
+import "../scrollbar/scrollbar.css";
 import "../../../../foundation/generated/runtime/foundation.css";
 import "../../../../catalog/generated/asset.tokens.css";
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from "vue";

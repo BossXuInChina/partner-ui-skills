@@ -6796,7 +6796,7 @@ SOFTWARE.
 
 ---
 
-huawei-partner-ai-ui@0.3.1-dev.20261106.1
+huawei-partner-ai-ui@0.3.1-dev.20261121.1
 Declared license: "see upstream package"
 ""
 

@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 标签 Tag — `WorkbenchTag`
 
 资产：`wb-tag` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -574,6 +574,7 @@ const selected = ref(false)
 | label * | String \| Number |  |  | 标签显示文本或数字；必填，长内容按组件规则截断并保留全文提示。 |
 | placement | String | top-left | top-left / top-right | 角标位于左上或右上。 |
 | selected | Boolean | false |  | Basic交互标签的选中状态。 |
+| showFull | Boolean | false |  | 默认false，超过7个可见字符时截断并提供全文提示；业务明确要求完整标签时设为true，保持单行完整显示。 |
 | size | String | medium | small / medium / large | small/medium/large三档尺寸。 |
 | status | String | info | waiting / info / success / warning / alert / error / none | status类标签的语义状态色。 |
 | variant | String | basic | basic / status-subtle / status-dot / category / corner / status-primary | basic、状态、分类、角标等视觉语义。 |
@@ -650,7 +651,7 @@ variant决定基础、状态、分类或角标形态；size决定密度。Basic�
 
 ### 交互与键盘
 
-interactive时渲染原生按钮并支持键盘激活；disabled阻断事件。静态标签不进入Tab序列。超过7个可见字符时保留前7个字符并省略；全文提示复用WorkbenchTooltip，悬浮或键盘聚焦时显示，Escape关闭，不叠加原生title或伪元素提示。
+interactive时渲染原生按钮并支持键盘激活；disabled阻断事件。静态标签不进入Tab序列。超过7个可见字符时保留前7个字符并省略；全文提示复用WorkbenchTooltip，悬浮或键盘聚焦时显示，Escape关闭，不叠加原生title或伪元素提示。业务明确要求完整标签时使用showFull=true，保留单行且不截断，由父容器安排足够空间。
 
 ### 使用边界与职责
 

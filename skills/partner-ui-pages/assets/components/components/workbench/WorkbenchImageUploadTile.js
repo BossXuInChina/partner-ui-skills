@@ -30,8 +30,12 @@ const __sfc_main__ = {
     const props = __props;
     const uploading = computed(() => props.item.status === "uploading");
     const failed = computed(() => props.item.status === "error");
-    const percentage = computed(() => Math.max(0, Math.min(100, Math.round(Number(props.item.progress) || 0))));
-    const stateText = computed(() => uploading.value ? props.item.url ? `${percentage.value}%` : "\u4E0A\u4F20\u4E2D\u2026" : failed.value ? "\u4E0A\u4F20\u5931\u8D25" : "");
+    const percentage = computed(
+      () => Math.max(0, Math.min(100, Math.round(Number(props.item.progress) || 0)))
+    );
+    const stateText = computed(
+      () => uploading.value ? props.item.url ? `${percentage.value}%` : "\u4E0A\u4F20\u4E2D\u2026" : failed.value ? "\u4E0A\u4F20\u5931\u8D25" : ""
+    );
     return (_ctx, _cache) => {
       return _openBlock(), _createElementBlock("li", {
         class: _normalizeClass(["image-upload-tile", { "image-upload-tile--hover": __props.previewState === "hover", "is-disabled": __props.disabled }]),

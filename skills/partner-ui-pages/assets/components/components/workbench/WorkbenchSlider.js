@@ -93,7 +93,8 @@ const __sfc_main__ = {
   setup(__props, { emit: __emit }) {
     const props = __props;
     const disabled = useFormDisabled(() => props.disabled);
-    const lower = ref(null), upper = ref(null);
+    const lower = ref(null);
+    const upper = ref(null);
     const { field, attrs: lowerFieldAttrs } = useFieldControl(() => props.modelValue, {
       describedBy: () => props.ariaDescribedby,
       invalid: () => props.invalid,
@@ -115,12 +116,15 @@ const __sfc_main__ = {
     const inputDrafts = ref(["", ""]);
     const editingInput = ref([false, false]);
     const lastInteractedThumb = ref("lower");
-    watch(() => disabled.value, (disabled2) => {
-      if (disabled2) {
-        activeThumb.value = "";
-        focusedThumb.value = "";
+    watch(
+      () => disabled.value,
+      (disabled2) => {
+        if (disabled2) {
+          activeThumb.value = "";
+          focusedThumb.value = "";
+        }
       }
-    });
+    );
     const isRange = computed(() => props.type === "discrete" && props.range);
     const span = computed(() => Math.max(0, props.max - props.min));
     const safeStep = computed(() => Number.isFinite(props.step) && props.step > 0 ? props.step : 1);

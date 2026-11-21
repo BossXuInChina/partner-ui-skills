@@ -19,6 +19,11 @@ const actions = useBusinessRendererActions();
       :target="part.target"
       @navigate="actions.navigate"
     />
-    <p v-else role="status">{{ zhCN.assistant.unsupportedContent }}</p>
+    <p
+      v-else
+      role="status"
+    >
+      {{ zhCN.assistant.unsupportedContent }}
+    </p>
   </div>
 </template>

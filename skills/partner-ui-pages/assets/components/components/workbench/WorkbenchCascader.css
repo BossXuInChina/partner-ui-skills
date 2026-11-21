@@ -12,7 +12,7 @@
 }
 .wb-cascader.is-inline[data-v-b35627be] {
   width: max-content;
-  max-width: var(--wb-cascader-inline-max-width, 100%);
+  max-width: var(--cascader-inline-max-width, 100%);
 }
 .wb-cascader__trigger[data-v-b35627be] {
   box-sizing: border-box;

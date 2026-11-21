@@ -1,3 +1,7 @@
 
-.wb-filter-chips { display: flex; flex-wrap: wrap; gap: var(--wb-spacing-component-sm); }
+.wb-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-spacing-component-sm);
+}
 

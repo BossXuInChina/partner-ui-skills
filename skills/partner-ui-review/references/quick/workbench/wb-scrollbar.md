@@ -1,8 +1,8 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 滚动条 Scrollbar — `WorkbenchScrollbar`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -39,10 +39,24 @@
 ```json
 {
   "publicImport": {"moduleName":"@workbench/ui-vue3","exportName":"WorkbenchScrollbar"},
-  "props": {"label":{"type":"String","required":true},"describedby":{"type":"String"},"axis":{"type":"String","default":"vertical"},"size":{"type":"String","default":"default"},"state":{"type":"String"}},
+  "props": {
+    "label": {"type":"String","required":true},
+    "describedby": {"type":"String"},
+    "axis": {"type":"String","default":"vertical"},
+    "size": {"type":"String","default":"default"},
+    "state": {"type":"String"},
+    "trackInsets": {"type":"Object"}
+  },
   "slots": ["default"],
   "exposed": [{"name":"viewport","declaration":"viewport: HTMLElement | null | undefined;"},{"name":"measure","declaration":"measure(): void;"}],
-  "propNotes": {"label":"必填的滚动区域可访问名称。","describedby":"关联说明元素的ID。","axis":"滚动方向：vertical或horizontal，默认vertical。","size":"轨道尺寸：small或default；large作为default兼容别名。","state":"Studio状态预览值，用于展示hover态。"},
+  "propNotes": {
+    "label": "必填的滚动区域可访问名称。",
+    "describedby": "关联说明元素的ID。",
+    "axis": "滚动方向：vertical或horizontal，默认vertical。",
+    "size": "轨道尺寸：small或default；large作为default兼容别名。",
+    "state": "Studio状态预览值，用于展示hover态。",
+    "trackInsets": "本轮候选新增。可选 { blockEnd?: number, inlineEnd?: number, blockEndReserve?: number }，单位为 CSS 像素。动态避让页脚时同时传当前可见高度和完整高度。"
+  },
   "slotNotes": {"default":{"scope":"无","description":"提供需要滚动的全部内容；内容尺寸由宿主和内容自然决定。"}}
 }
 ```
@@ -167,6 +181,12 @@
   "intro": "用于为受限内容区域提供覆盖式滚动指示与拖动控制。滚动内容仍由浏览器原生滚动机制处理。",
   "sections": [
     {"id":"container","title":"容器与适用范围","paragraphs":["宿主负责约束滚动视口尺寸、内容和边缘留白；Scrollbar覆盖轨道不参与排版。内容未溢出时不显示轨道。"],"bullets":["default适合主内容区，small适合下拉菜单、文本框等辅助小区域。","水平与垂直方向使用同一轴向参数；避免交互内容贴近滚动轨道。"]},
+    {
+      "id": "track-avoidance",
+      "title": "本轮候选新增 · 轨道避让",
+      "paragraphs": ["宿主通过 trackInsets 传入可见页脚和侧栏的逻辑边界。轨道缩短或平移时，原生视口与正文的可用尺寸保持原样。"],
+      "bullets": ["纵向页面的 blockEnd 传当前可见页脚高度，blockEndReserve 传页脚完整高度，inlineEnd 传侧栏遮挡宽度。完整高度先确定滑块的端点，可见高度只调整轨道的点击范围，页脚进入时滑块保持同向。","水平轨道的 inlineEnd 缩短轨道，blockEnd 向上移动整条轨道。blockEndReserve 只适用于纵向页面。值为非负 CSS 像素，省略各项会沿用默认轨道位置。"]
+    },
     {"id":"keyboard","title":"键盘与可访问性","paragraphs":["滚动区域可Tab聚焦；方向键、PageUp/PageDown、Home/End可控制滚动。触屏和滚轮继续使用浏览器原生滚动。"],"bullets":["label是必需的区域名称；describedby可关联补充说明。"]}
   ]
 }
@@ -212,3 +232,24 @@ const entries = ['申请进度', '所需材料', '联系人信息', '审批记�
 .scroll-region { block-size: 12rem; }
 </style>
 ```
+
+### 其他官方来源条目（未展开代码）
+
+```json
+[
+  {
+    "id": "shell-track-avoidance",
+    "portability": "portable",
+    "source": {
+      "kind": "studio-official-usage",
+      "ownerAssetId": "wb-scrollbar",
+      "scenarioId": "scrollbar",
+      "exampleId": "shell-track-avoidance",
+      "codeSha256": "sha256:9ce209539abdff20cc8e4a91f9fd5f2d7f41d5cc272151018247fe6bd5dd7dff"
+    },
+    "unsupported": []
+  }
+]
+```
+
+以上条目的详细信息见[完整资料](<../../workbench/wb-scrollbar.md>)。

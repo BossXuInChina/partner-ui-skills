@@ -3,7 +3,7 @@
   container: wb-footer / inline-size;
   width: 100%;
   color: var(--wb-color-text-secondary);
-  background: var(--wb-color-surface-page);
+  background: var(--wb-color-surface-footer);
   font-family: inherit;
   font-size: var(--wb-font-body-s-font-size);
   font-weight: var(--wb-font-body-s-font-weight);
@@ -71,8 +71,7 @@
   text-underline-offset: var(--wb-asset-wb-footer-focus-offset);
 }
 .wb-footer__entry[data-v-740686ca]:focus-visible {
-  outline: var(--wb-asset-wb-footer-focus-width) solid
-    var(--wb-color-border-focus);
+  outline: var(--wb-asset-wb-footer-focus-width) solid var(--wb-color-border-focus);
   outline-offset: var(--wb-asset-wb-footer-focus-offset);
 }
 .wb-footer__entry[data-v-740686ca]:is(:disabled, [aria-disabled='true']) {

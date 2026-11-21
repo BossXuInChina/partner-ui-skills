@@ -1,10 +1,10 @@
-<!-- Generated from @workbench/ui-vue3@0.2.0-prototype.20261106.7 (6dad97e7a215069b5841b1f4413f80c1c587c1cc) — do not edit. -->
+<!-- Generated from @workbench/ui-vue3@0.5.1-dev.20261121.1 (651d5bb52c6f91471c6e2269977f854ea3ef706f) — do not edit. -->
 
 # 页签 Tabs — `WorkbenchTabs`
 
 资产：`wb-tabs` · 类型：`component` · 资产合同版本：`1.0.0`
 
-包：`@workbench/ui-vue3@0.2.0-prototype.20261106.7` · commit：`6dad97e7a215069b5841b1f4413f80c1c587c1cc` · dirty：false
+包：`@workbench/ui-vue3@0.5.1-dev.20261121.1` · commit：`651d5bb52c6f91471c6e2269977f854ea3ef706f` · dirty：false
 
 资格（包内声明）：channel=development；stableEligible=false；targetProductionEligible=false；productionEligible=false。元数据和示例不授予发布或生产批准。
 
@@ -340,7 +340,7 @@ const tabs = [
 | 名称 | 类型 | 默认 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
 | addable | Boolean | false |  | 显示可新增页签的入口；只支持basic、divider、rail。 |
-| align | String | start | start / center |  |
+| align | String | start | start / center | 控制页签列表在容器内的对齐位置。 |
 | ariaLabel | String | 页签 |  | 页签列表可访问名称。 |
 | items * | Array |  |  | 必填页签数组；value唯一、label提供可访问名称，可选disabled与closable。 |
 | modelValue * | String \| Number |  |  | 当前唯一选中值，必填。 |

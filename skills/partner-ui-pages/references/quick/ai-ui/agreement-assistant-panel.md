@@ -1,8 +1,8 @@
-<!-- Generated from huawei-partner-ai-ui@0.3.1-dev.20261106.1 (16d91bbbede5006960cce5278b0e2cda88785393) — do not edit. -->
+<!-- Generated from huawei-partner-ai-ui@0.3.1-dev.20261121.1 (9e1e87e9e8e8230e7330f1edaf29b3e74081cba7) — do not edit. -->
 
 # AgreementAssistantPanel — `AgreementAssistantPanel`
 
-包：`huawei-partner-ai-ui@0.3.1-dev.20261106.1` · commit：`16d91bbbede5006960cce5278b0e2cda88785393` · dirty：false
+包：`huawei-partner-ai-ui@0.3.1-dev.20261121.1` · commit：`9e1e87e9e8e8230e7330f1edaf29b3e74081cba7` · dirty：false
 
 资格（包内声明）：channel=unknown；stableEligible=unknown；targetProductionEligible=unknown。元数据和示例不授予发布或生产批准。
 
@@ -45,12 +45,12 @@
     "autoStart": {"type":"boolean","required":false,"default":{"kind":"literal","value":false}},
     "avatarSrc": {"type":"string","required":false,"default":{"kind":"expression","source":"assistantAvatar"}},
     "toolbarActions": {"type":"ChatToolbarAction[]","required":false,"default":{"kind":"factory","source":"() => []"}},
-    "modeOptions": {"type":"ComposerModeOption[]","required":false,"default":{"kind":"factory","source":"()=>[]"}},
-    "welcomeEntries": {"type":"WelcomeBusinessEntry[]","required":false,"default":{"kind":"factory","source":"()=>[]"}},
-    "suggestionPills": {"type":"ChatSuggestionPill[]","required":false,"default":{"kind":"factory","source":"()=>[]"}},
+    "modeOptions": {"type":"ComposerModeOption[]","required":false,"default":{"kind":"factory","source":"() => []"}},
+    "welcomeEntries": {"type":"WelcomeBusinessEntry[]","required":false,"default":{"kind":"factory","source":"() => []"}},
+    "suggestionPills": {"type":"ChatSuggestionPill[]","required":false,"default":{"kind":"factory","source":"() => []"}},
     "messagePrompts": {"type":"MessagePromptsResolver","required":false,"default":{"kind":"undefined"},"resolvedType":"(message: UIMessage) => ChatSuggestion[]"},
     "historyOptions": {"type":"ConversationHistoryOptions","required":false,"default":{"kind":"undefined"}},
-    "contentRenderers": {"type":"BubbleContentRendererMatch[]","required":false,"default":{"kind":"factory","source":"()=>[]"}}
+    "contentRenderers": {"type":"BubbleContentRendererMatch[]","required":false,"default":{"kind":"factory","source":"() => []"}}
   },
   "events": ["businessAction","workspaceNavigate","windowModeChange","fullscreenChange","windowDragStart","windowDragKeydown","status","toolbarAction","composerChange","welcomeAction"],
   "eventDetails": {
