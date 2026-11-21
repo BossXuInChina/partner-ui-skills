@@ -4,6 +4,8 @@
 
 ## 升级一次包
 
+Workbench 组件与 Block 的合并验证由上游按影响面决定。单模块已有资产跑定向回归，公开 API 或包契约变更加独立消费者，Foundation、跨模块或影响不明时跑全量。原资产沿用批准，历史任务仅在明确恢复时由上游重验。Skill 的验证以当前锁定包及实际 API 为准，以下流程用于升级消费包。
+
 1. 在包维护流程完成变更、门禁与干净构建，取得公开 tarball。由发布元数据核对包名、版本、完整 sourceCommit、sourceHasLocalChanges 和资格；未知保持未知，不改成批准。把批准用于本批消费的 tarball 放入本仓 vendor，记录实际 SHA-256。
 2. 同步 source.lock.json 的包路径、版本、SHA、完整 commit 和受控 buildDate；若 schema 改变，同时核对两包公开 schema 原始字节和 pin。同步根依赖和 harness 的 file 路径，更新锁文件后再冻结安装。不要读取维护仓源码来填消费缺口。
 3. 先运行 pnpm verify:lock，再 pnpm generate。评审 API、Token、图标、案例、资格、SFC 示例及图库差异；controls 不是 props，缺失或不支持必须保留原因。生成文件不手改。
